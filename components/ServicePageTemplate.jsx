@@ -290,7 +290,7 @@ export default function ServicePageTemplate({
                         <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-1.5 pb-1 border-b border-[#F97316]/20">
                           Result
                         </p>
-                        <p className="text-sm font-semibold text-[#FDBA74] leading-relaxed bg-[#F97316]/5 rounded-lg px-3 py-2">
+                        <p className="text-sm font-semibold text-white leading-relaxed bg-[#F97316]/5 rounded-lg px-3 py-2">
                           {study.result}
                         </p>
                       </div>
