@@ -1,7 +1,7 @@
 'use client'
 
 import ServicePageTemplate from '@/components/ServicePageTemplate'
-import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart, FileText } from 'lucide-react'
+import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } from 'lucide-react'
 
 const pageData = {
   tagline: 'Market Research',
@@ -72,27 +72,35 @@ const pageData = {
     },
   ],
 
+  // New case study shape: accentColor + industry + service + challenge + solution + result
+  // Colors chosen to be distinct and high-contrast against the dark #1D342F / #162b23 background
   caseStudies: [
     {
-      title: 'Aviation Route Feasibility — Fly91',
-      client: 'Regional Airline, India',
-      desc: 'Evaluated demand–supply dynamics for four proposed flight routes including UDAN-supported virgin routes. Outcome: Clear go / no-go decisions and optimized route recommendations.',
-      tags: ['Demand–Supply Gap Analysis', 'Aviation'],
-      image: 'https://images.pexels.com/photos/1004409/pexels-photo-1004409.jpeg?w=800',
+      client: 'Fly91 Aviation',
+      industry: 'Aviation',
+      service: 'Demand–Supply Gap Analysis',
+      accentColor: '#2DD4BF',  // teal — fresh, clearly visible on dark green
+      challenge: 'Assess the commercial viability of launching flights on four routes under India\'s UDAN scheme, including virgin routes with no existing air traffic data.',
+      solution: 'Demand–supply dynamics analysis, traveller profiling across road and rail alternatives, route-level passenger demand modelling, and pricing scenario planning.',
+      result: 'Clear go / no-go decisions with optimised flight frequency recommendations, enabling confident route launch planning.',
     },
     {
-      title: 'Market Expansion — ACC Alcon',
-      client: 'Building Materials Manufacturer',
-      desc: 'Evaluated two shortlisted locations for gypsum plaster expansion using primary research and location scoring models. Outcome: Selection of the optimal expansion location with recommended scale of operations.',
-      tags: ['Market Expansion Research', 'Manufacturing'],
-      image: 'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?w=800',
+      client: 'ACC Alcon',
+      industry: 'Building Materials',
+      service: 'Market Expansion Research',
+      accentColor: '#F59E0B',  // amber — warm, energetic, strong contrast
+      challenge: 'Identify the best location and optimal scale for entering the gypsum plaster segment across two shortlisted states.',
+      solution: 'Primary interviews with channel partners and contractors, competitor benchmarking, and a structured location scoring model across key parameters.',
+      result: 'Selected the optimal expansion location with a defined scale of operations and go-to-market strategy.',
     },
     {
-      title: 'Industrial & Commercial Land Development',
-      client: 'Real Estate Developer, India',
-      desc: 'Evaluated development options for land near a notified industrial estate, assessing sector demand, competitive intensity, regulatory feasibility, and financial returns. Outcome: A data-backed, regulation-compliant development strategy with superior return potential.',
-      tags: ['Land Feasibility Study', 'Real Estate'],
-      image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?w=800',
+      client: 'Models Construction',
+      industry: 'Real Estate',
+      service: 'Land Feasibility Study',
+      accentColor: '#A78BFA',  // violet — cool, premium, distinct from the other two
+      challenge: 'Evaluate viable industrial and commercial development options for a land parcel located near a notified industrial estate.',
+      solution: 'Macro-level sector analysis, catchment radius assessment, competitor mapping across development typologies, and financial feasibility modelling.',
+      result: 'Data-backed, regulation-compliant development strategy with a clearly superior return profile versus alternative uses.',
     },
   ],
 
