@@ -79,7 +79,6 @@ const pageData = {
       client: 'Fly91 Aviation',
       industry: 'Aviation',
       service: 'Demand–Supply Gap Analysis',
-      accentColor: '#2DD4BF',  // teal — fresh, clearly visible on dark green
       challenge: 'Assess the commercial viability of launching flights on four routes under India\'s UDAN scheme, including virgin routes with no existing air traffic data.',
       solution: 'Demand–supply dynamics analysis, traveller profiling across road and rail alternatives, route-level passenger demand modelling, and pricing scenario planning.',
       result: 'Clear go / no-go decisions with optimised flight frequency recommendations, enabling confident route launch planning.',
@@ -88,7 +87,6 @@ const pageData = {
       client: 'ACC Alcon',
       industry: 'Building Materials',
       service: 'Market Expansion Research',
-      accentColor: '#F59E0B',  // amber — warm, energetic, strong contrast
       challenge: 'Identify the best location and optimal scale for entering the gypsum plaster segment across two shortlisted states.',
       solution: 'Primary interviews with channel partners and contractors, competitor benchmarking, and a structured location scoring model across key parameters.',
       result: 'Selected the optimal expansion location with a defined scale of operations and go-to-market strategy.',
@@ -97,7 +95,6 @@ const pageData = {
       client: 'Models Construction',
       industry: 'Real Estate',
       service: 'Land Feasibility Study',
-      accentColor: '#A78BFA',  // violet — cool, premium, distinct from the other two
       challenge: 'Evaluate viable industrial and commercial development options for a land parcel located near a notified industrial estate.',
       solution: 'Macro-level sector analysis, catchment radius assessment, competitor mapping across development typologies, and financial feasibility modelling.',
       result: 'Data-backed, regulation-compliant development strategy with a clearly superior return profile versus alternative uses.',
