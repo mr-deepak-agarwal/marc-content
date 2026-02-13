@@ -9,13 +9,13 @@ const HowWeWorkSection = () => {
       id: 1,
       icon: Target,
       title: "Start with Your Ambition",
-      description: "We begin with your goals and constraints, not generic frameworks."
+      description: "We start with your ambition and constraints, not generic frameworks."
     },
     {
       id: 2,
       icon: Lightbulb,
       title: "Research & Strategic Thinking",
-      description: "We combine deep research, strategic analysis, and practical execution planning."
+      description: "We combine research, strategic thinking, and practical execution."
     },
     {
       id: 3,
@@ -27,7 +27,7 @@ const HowWeWorkSection = () => {
       id: 4,
       icon: Rocket,
       title: "Deliver Clarity & Momentum",
-      description: "Whether it's a 6-week strategic sprint or a multi-phase growth mandate, we deliver clarity, confidence, and momentum."
+      description: "Whether it's a 6-week strategic sprint or a multi-phase growth mandate, our engagements are designed to deliver clarity, confidence, and momentum."
     }
   ]
 
@@ -44,7 +44,7 @@ const HowWeWorkSection = () => {
           </h2>
 
           <p className="text-lg text-[#47635D] leading-relaxed">
-            Our approach is hands-on, senior-led, and customised to your specific business needs and market context.
+            Our approach is hands-on, senior-led, and customised.
           </p>
         </div>
 

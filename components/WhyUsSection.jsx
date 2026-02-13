@@ -7,6 +7,34 @@ import { whyWorkWithUs } from '@/data/mock'
 const icons = [Award, Zap, UserCheck, Briefcase, TrendingUp]
 
 const WhyUsSection = () => {
+  const whyMarcPoints = [
+    {
+      id: 1,
+      title: "Glocal Perspective",
+      description: "Deep India expertise with a global outlook."
+    },
+    {
+      id: 2,
+      title: "Custom-Built Solutions",
+      description: "No off-the-shelf answers."
+    },
+    {
+      id: 3,
+      title: "Senior Involvement",
+      description: "Partner-led engagements."
+    },
+    {
+      id: 4,
+      title: "Insight to Impact",
+      description: "Strategy backed by execution support."
+    },
+    {
+      id: 5,
+      title: "15 Years of Cross-Industry Experience",
+      description: "In all sectors including Manufacturing, F&B, Hospitality, Retail, Pharma, Real estate, Education."
+    }
+  ]
+
   return (
     <section id="why-us" data-testid="why-us-section" className="py-24 bg-[#F7FFF5]">
       <div className="max-w-7xl mx-auto px-6">
@@ -22,7 +50,7 @@ const WhyUsSection = () => {
             </h2>
 
             <p className="text-lg text-[#47635D] mb-8 leading-relaxed">
-              We are advisors who stay close until growth is not just achieved, but compounded. Our hands-on, senior-led approach ensures your business gets the strategic attention and execution support needed for sustainable success.
+              We are advisors who stay close until growth is not just achieved, but compounded.
             </p>
 
             {/* Image */}
@@ -39,7 +67,7 @@ const WhyUsSection = () => {
 
           {/* ================= RIGHT FEATURES GRID ================= */}
           <div className="grid gap-6">
-            {whyWorkWithUs.map((item, index) => {
+            {whyMarcPoints.map((item, index) => {
               const Icon = icons[index]
 
               return (

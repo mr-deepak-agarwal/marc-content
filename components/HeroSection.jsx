@@ -203,7 +203,7 @@ const HeroSection = () => {
           className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white text-sm font-medium mb-8"
         >
           <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-          {companyInfo.tagline}
+          Advisors for Compounding Growth
         </div>
 
         {/* Main Heading */}
@@ -211,7 +211,7 @@ const HeroSection = () => {
           data-testid="hero-heading"
           className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight"
         >
-          {companyInfo.heroTitle}
+          Growth Advisory for Ambitious Indian & Global Businesses
         </h1>
 
         {/* Subheading */}
@@ -219,7 +219,7 @@ const HeroSection = () => {
           data-testid="hero-subheading"
           className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed"
         >
-          {companyInfo.heroSubtitle}
+          Strategy and execution for Indian and global businesses that want growth to build—year after year.
         </p>
 
         {/* CTA Buttons */}

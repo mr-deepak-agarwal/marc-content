@@ -9,25 +9,25 @@ const WhoWeWorkWithSection = () => {
       id: 1,
       icon: Building2,
       title: "Indian Companies",
-      description: "Looking to scale nationally or expand globally with strategic market entry and growth planning."
+      description: "Indian companies looking to scale nationally or expand globally."
     },
     {
       id: 2,
       icon: Globe,
       title: "Global & Multinational Firms",
-      description: "Entering or growing in India with localised strategies, partner networks, and regulatory expertise."
+      description: "Global and multinational firms entering or growing in India."
     },
     {
       id: 3,
       icon: TrendingUp,
       title: "PE / VC-Backed Businesses",
-      description: "At inflection points requiring growth acceleration, due diligence, and value creation strategies."
+      description: "PE / VC-backed businesses at inflection points."
     },
     {
       id: 4,
       icon: Users,
       title: "Family-Owned & Founder-Led Organizations",
-      description: "Preparing for the next phase of growth with succession planning and operational excellence."
+      description: "Family-owned and founder-led organisations preparing for the next phase of growth."
     }
   ]
 
