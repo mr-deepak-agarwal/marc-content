@@ -12,84 +12,88 @@ import {
 // Service offerings based on original content
 const services = [
   {
-    title: 'Market Sizing & Segmentation',
-    desc: 'Determine total addressable market, serviceable market, and growth potential with accurate forecasting.',
+    title: 'Land Feasibility Study',
+    desc: 'Identify the most viable and profitable use of land by assessing market demand, demand–supply gaps, competition, regulatory constraints, and financial feasibility.',
     icon: PieChart,
-    features: ['TAM/SAM/SOM Analysis', 'Growth Projections', 'Segment Identification']
+    features: ['Market Demand Assessment', 'Demand–Supply Gap Analysis', 'Financial Feasibility']
   },
   {
-    title: 'Quantitative Research',
-    desc: 'We use segmentation, forecasting, and demand planning techniques to bring broad, actionable insights.',
+    title: 'Product Feasibility Study',
+    desc: 'Assess demand potential, pricing, competitor benchmarks, distribution fit, and scalability across regions before launching products.',
     icon: BarChart3,
-    features: ['Survey Design', 'Statistical Analysis', 'Demand Planning']
+    features: ['Demand Validation', 'Pricing Benchmarks', 'Scalability Analysis']
   },
   {
-    title: 'Qualitative Research',
-    desc: 'Understand your customers deeply and fill the gaps with nuanced insights from key opinion leaders.',
+    title: 'Demand–Supply Gap Analysis',
+    desc: 'Identify genuine, underserved market gaps using bottom-up and top-down demand modelling validated through primary research.',
     icon: Users,
-    features: ['In-depth Interviews', 'Focus Groups', 'Expert Consultations']
+    features: ['Bottom-up Modelling', 'Top-down Modelling', 'Primary Research Validation']
   },
   {
-    title: 'Competitive Intelligence',
-    desc: 'Generate the perfect strategy based on competitor profiling and market positioning analysis.',
+    title: 'Market Expansion Research',
+    desc: 'Help businesses identify where to expand in India, at what scale, and with what strategy using precision research and location scoring.',
     icon: Target,
-    features: ['Competitor Profiling', 'SWOT Analysis', 'Market Share Mapping']
+    features: ['Location Scoring', 'Scale Assessment', 'Expansion Strategy']
   },
   {
-    title: 'B2B Market Research',
-    desc: 'Detailed reports on competitor analysis, consumer analysis, and thorough knowledge of distribution channels.',
+    title: 'Market Entry Research',
+    desc: 'Competitive and pricing landscape analysis, regulatory environment review, and market entry feasibility for new markets.',
     icon: Building2,
-    features: ['Decision Maker Research', 'Channel Analysis', 'B2B Buyer Journey']
+    features: ['Competitor Benchmarking', 'Regulatory Review', 'Entry Feasibility']
   },
   {
-    title: 'Industry Analysis',
-    desc: 'Deep-dive into market trends, value chains, regulatory landscape, and future outlook.',
+    title: 'International Market Research',
+    desc: 'Support Indian companies expanding globally and act as a research backend for global consulting firms across multiple countries.',
     icon: Globe,
-    features: ['Trend Analysis', 'Value Chain Mapping', 'Regulatory Review']
+    features: ['Global Market Sizing', 'Country Prioritisation', 'Go-to-Market Strategy']
   },
 ]
 
 // Methodology steps
 const methodology = [
-  { num: '01', title: 'Discovery', desc: 'Understanding your business objectives and research questions' },
-  { num: '02', title: 'Design', desc: 'Crafting the research methodology and data collection approach' },
-  { num: '03', title: 'Collection', desc: 'Gathering primary and secondary data from multiple sources' },
-  { num: '04', title: 'Analysis', desc: 'Applying analytical frameworks to extract meaningful insights' },
-  { num: '05', title: 'Synthesis', desc: 'Translating findings into actionable recommendations' },
-  { num: '06', title: 'Delivery', desc: 'Presenting insights with clear strategic implications' },
+  { num: '01', title: 'Market Sizing', desc: 'Market sizing and growth assessment for Indian markets using bottom-up and top-down methodologies' },
+  { num: '02', title: 'Regulatory Analysis', desc: 'Regulatory and policy landscape analysis to map compliance requirements and constraints' },
+  { num: '03', title: 'Primary Research', desc: 'On-ground interviews with customers, distributors, manufacturers, and industry experts' },
+  { num: '04', title: 'Competitive Benchmarking', desc: 'Competitive and pricing benchmarking to identify market positioning opportunities' },
+  { num: '05', title: 'Financial Feasibility', desc: 'Financial feasibility analysis including ROI, IRR, and NPV modelling' },
+  { num: '06', title: 'Go / No-Go Recommendation', desc: 'Clear go / no-go and market entry recommendations with measurable impact' },
 ]
 
 // Case study from original content
 const caseStudy = {
-  title: 'Staff Augmentation Company - US Market Expansion',
-  client: 'Colombia-based Technology Company',
-  challenge: 'A staff augmentation company based in Colombia wanted to expand their reach in the US. They focus on partnering with clients in digital solutions, unified customer experiences, and process automation.',
+  title: 'Aviation Route Feasibility — Fly91',
+  client: 'Regional Airline, India',
+  challenge: 'MARC evaluated demand–supply dynamics for four proposed flight routes, including UDAN-supported virgin routes. The study assessed travel behaviour, alternative transport modes, pricing, and passenger demand.',
   approach: [
-    'Researched staff augmentation industry and key technologies',
-    'Analyzed market size of Big Data, AI, and RPA',
-    'Identified competitors across the US by services and sectors',
-    'Mapped geographical pockets and customer prospects'
+    'Assessed demand–supply dynamics for four proposed flight routes',
+    'Evaluated UDAN-supported virgin routes for commercial viability',
+    'Analysed travel behaviour and alternative transport modes',
+    'Modelled pricing and passenger demand scenarios'
   ],
-  outcome: 'Through the study, the client was able to identify various geographical pockets, key industries and customer prospects to target with their offering.'
+  outcome: 'Clear go / no-go decisions and optimized route recommendations, enabling the airline to prioritize routes with the strongest demand–supply opportunity.'
 }
 
 // FAQs
 const faqs = [
   {
-    q: 'Why is market research important for business decisions?',
-    a: 'Almost all business decisions involve huge sums of money either directly or indirectly. Thorough market research provides a simplified yet analytical synopsis of the market, helping management take initiatives that not only yield profits but also maximize them.'
+    q: 'Why is local market research in India so important?',
+    a: 'India is highly diverse, with consumer behaviour, demand drivers, and regulations varying across states and regions. Local market research ensures businesses make decisions based on accurate, on-ground realities rather than assumptions.'
   },
   {
-    q: 'What is the difference between B2B and B2C market research?',
-    a: 'B2B decision makers are fewer, harder to reach and considered more rational. Successful B2B research requires an overtoned understanding of business environments, including detailed competitor analysis, consumer analysis, product feasibility studies, and thorough knowledge of distribution channels.'
+    q: 'What industries does MARC specialize in for market research?',
+    a: 'We work across multiple sectors including real estate, aviation, agriculture, consumer goods, and retail—delivering sector-specific insights backed by primary research.'
   },
   {
-    q: 'How much should companies invest in market research?',
-    a: 'Top performing companies spend around 5-20% of their annual revenue on market research. This investment helps mitigate risks and maximize profits through informed decision-making.'
+    q: 'How does MARC conduct its market research?',
+    a: 'Our approach combines primary research (interviews with customers, distributors, and industry experts) with secondary data analysis, competitive benchmarking, regulatory reviews, and financial feasibility studies to deliver decision-ready intelligence.'
   },
   {
-    q: 'What makes MARC different from other research firms?',
-    a: 'Our research and analytics team generates customized reports compiled from data that is both accurate and relevant. Through in-depth analysis, we present viable options to management, resulting in more informed and better decision-making.'
+    q: 'Can MARC support international companies entering India?',
+    a: 'Yes. We specialize in market entry research and expansion strategies, helping global firms understand India\'s regulatory environment, consumer demand, and competitive landscape to successfully establish operations.'
+  },
+  {
+    q: 'What makes MARC different from other market research firms?',
+    a: 'Unlike generic reports, MARC delivers actionable insights with clear go/no-go recommendations, tailored strategies, and measurable impact. Our strength lies in combining deep local expertise with global standards of analysis.'
   },
 ]
 
@@ -133,12 +137,12 @@ export default function MarketResearchPage() {
               </div>
               
               <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-8">
-                Delivering on the Vision of a
-                <span className="text-[#4E9141]"> Data-Driven Enterprise</span>
+                Market Research in
+                <span className="text-[#4E9141]"> India</span>
               </h1>
               
               <p className="text-[#47635D] text-lg leading-relaxed mb-10 max-w-xl">
-                We take a comprehensive approach to your data challenges, helping you conquer obstacles and become an analytics leader. Our customized research enables more informed and better decision-making.
+                India is one of the world's fastest-growing economies—but also one of its most complex. Consumer behaviour, demand drivers, and regulations vary sharply across regions, making local market research in India critical for success.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -183,10 +187,10 @@ export default function MarketResearchPage() {
           <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visibleSections.value ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Why Choose MARC</span>
             <h2 className="text-3xl lg:text-5xl font-bold text-[#1D342F] mt-4 mb-6">
-              Quantitative & Qualitative Market Research Solutions
+              India's Leading Market Research Partner
             </h2>
             <p className="text-[#47635D] text-lg">
-              Thorough market research provides a simplified yet analytical synopsis of the market, customized based on the domain and nature of your business.
+              MARC is a leading market research firm in India, helping Indian and global businesses make confident decisions on market entry, expansion, and investment.
             </p>
           </div>
 
@@ -194,18 +198,18 @@ export default function MarketResearchPage() {
             {[
               {
                 icon: BarChart3,
-                title: 'Revenue Assessment',
-                desc: 'With our analysis, we assess revenues, make projections, and analyze costs and profitability to develop robust financial models.'
+                title: 'Decision-Ready Intelligence',
+                desc: 'Our market research services combine deep on-ground primary research with rigorous analysis to identify high-potential opportunities.'
               },
               {
                 icon: Target,
-                title: 'Risk Mitigation',
-                desc: 'We use financial models as tools to enable businesses to maximize profits by mitigating risks and reducing losses.'
+                title: 'Risk Reduction',
+                desc: 'We reduce commercial, regulatory, and operational risk so you can enter and expand in Indian markets with confidence.'
               },
               {
                 icon: Lightbulb,
-                title: 'Actionable Insights',
-                desc: 'Our in-depth analysis presents viable options to management, resulting in more informed and better decision-making.'
+                title: 'Local Expertise, Global Standards',
+                desc: 'We work with investors, developers, manufacturers, and brands across sectors, delivering actionable market intelligence for India.'
               },
             ].map((item, i) => (
               <div 
@@ -230,10 +234,10 @@ export default function MarketResearchPage() {
           <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visibleSections.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Our Services</span>
             <h2 className="text-3xl lg:text-5xl font-bold text-[#1D342F] mt-4 mb-6">
-              Market Research Solutions & Data Analytics
+              Market Research Services in India
             </h2>
             <p className="text-[#47635D] text-lg">
-              Comprehensive research capabilities spanning India and 30+ international markets.
+              MARC provides market research services across land feasibility, product feasibility, demand–supply gap analysis, market entry research, market expansion strategy, and international market research.
             </p>
           </div>
 
@@ -270,21 +274,22 @@ export default function MarketResearchPage() {
             <div className={`transition-all duration-700 ${visibleSections.b2b ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
               <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Specialized Research</span>
               <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mt-4 mb-6">
-                Importance of B2B Market Research
+                Our Market Research Approach
               </h2>
               <p className="text-[#47635D] text-lg mb-6">
-                The fundamental differences between B2B and B2C transactions are that B2B decision makers are fewer, harder to reach, and considered to be more rational. Successful presence in B2B markets requires an overtoned understanding of business environments.
+                Our approach is designed to support real business decisions—not just reports. We combine primary research with rigorous analysis to deliver decision-ready market intelligence for India.
               </p>
               <p className="text-[#47635D] mb-8">
-                Our experts obtain sufficient information required to make a mark in the B2B market and work with clients till their business objectives are met. The research methods we use are tailor-made to suit the requirements of our clients.
+                Our market research services in India combine deep on-ground primary research with rigorous analysis to identify high-potential opportunities while reducing commercial, regulatory, and operational risk.
               </p>
               
               <ul className="space-y-4">
                 {[
-                  'Detailed competitor analysis and market mapping',
-                  'Consumer analysis and buyer journey research',
-                  'Product feasibility studies',
-                  'Distribution channel assessment',
+                  'Market sizing and growth assessment for Indian markets',
+                  'Primary research with customers, distributors, manufacturers, and industry experts',
+                  'Competitive and pricing benchmarking',
+                  'Financial feasibility analysis including ROI, IRR, and NPV',
+                  'Clear go / no-go and market entry recommendations',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#4E9141] mt-0.5 flex-shrink-0" />
@@ -296,12 +301,12 @@ export default function MarketResearchPage() {
 
             <div className={`relative transition-all duration-700 delay-200 ${visibleSections.b2b ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
               <div className="bg-[#F7FFF5] rounded-2xl p-10 border border-[#C2DDB4]/30">
-                <h3 className="text-2xl font-bold text-[#1D342F] mb-6">Market & Competitive Intelligence</h3>
+                <h3 className="text-2xl font-bold text-[#1D342F] mb-6">Why Choose MARC as Your Research Partner</h3>
                 <p className="text-[#47635D] mb-8">
-                  Formulating accurate competitive insights quickly can be critical for business growth. Our decade of experience enables us to provide insights that make a subtle yet impactful difference.
+                  One of India's leading market research firms with strong on-ground intelligence, sector expertise, and clear recommendations with measurable impact.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
-                  {['Competitor Profiling', 'Industry Analysis', 'Market Sizing', 'Strategic Partner Selection'].map((item, i) => (
+                  {['Leading Firm in India', 'Decision-Ready Insights', 'Sector Expertise', 'Measurable Impact'].map((item, i) => (
                     <div key={i} className="flex items-center gap-2 text-[#1D342F]">
                       <div className="w-2 h-2 rounded-full bg-[#4E9141]" />
                       <span className="text-sm font-medium">{item}</span>
@@ -321,10 +326,10 @@ export default function MarketResearchPage() {
           <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visibleSections.methodology ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="text-[#4E9141] font-medium uppercase tracking-wider text-sm">Our Approach</span>
             <h2 className="text-3xl lg:text-5xl font-bold text-[#1D342F] mt-4 mb-6">
-              Rigorous, Insight-Led Methodology
+              Rigorous, Decision-Focused Methodology
             </h2>
             <p className="text-[#47635D] text-lg">
-              We approach our research with a view to establishing a sustainable and successful business environment — "Delivering Excellence, Partnering Success."
+              Our approach is designed to support real business decisions—not just reports. We deliver decision-ready market intelligence for India and global markets.
             </p>
           </div>
 
@@ -359,7 +364,7 @@ export default function MarketResearchPage() {
               <div className="p-10 lg:p-14">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#4E9141]/10 rounded-full text-[#4E9141] text-sm font-medium mb-6">
                   <Globe className="w-4 h-4" />
-                  US Market Expansion
+                  Demand–Supply Gap Analysis
                 </div>
                 <h3 className="text-2xl lg:text-3xl font-bold text-[#1D342F] mb-4">{caseStudy.title}</h3>
                 <p className="text-[#47635D] text-sm mb-2">{caseStudy.client}</p>
@@ -431,10 +436,10 @@ export default function MarketResearchPage() {
       <section className="py-24 bg-[#1D342F]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
-            Ready to Make Data-Driven Decisions?
+            Ready to Make Confident Market Decisions?
           </h2>
           <p className="text-[#C2DDB4] text-lg mb-10 max-w-2xl mx-auto">
-            We're ready to answer your questions and take your brand to the next level with comprehensive market research and analytics.
+            We're ready to help you navigate India's complex markets with decision-ready intelligence, clear go/no-go recommendations, and strategies built for long-term growth.
           </p>
           <Link href="/contact" className="inline-flex items-center gap-3 px-10 py-5 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#3d7334] transition-all group" data-testid="final-cta-button">
             Contact Us Today
