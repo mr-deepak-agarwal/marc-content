@@ -1,98 +1,102 @@
 'use client'
 
 import ServicePageTemplate from '@/components/ServicePageTemplate'
-import { Calculator, FileText, TrendingUp, PieChart, Building2, BarChart3, DollarSign, Target } from 'lucide-react'
+import { BarChart3, TrendingUp, Target, PieChart, Calculator, ShieldCheck } from 'lucide-react'
 
 const pageData = {
-  tagline: 'Financial Modelling',
-  title: 'Strategic Financial Models for',
-  titleHighlight: 'Informed Decisions',
-  description: 'Robust financial models and project reports that support investment decisions, fundraising, strategic planning, and business case development.',
-  
+  tagline: 'Growth Strategy',
+  title: 'Financial Modelling &',
+  titleHighlight: 'Project Reports',
+  description: 'Sound financial decisions require robust, reliable models. MARC builds financial models and project reports that go beyond spreadsheets — delivering structured, assumption-driven projections that support investment decisions, fundraising, expansion planning, and bank financing.',
+
   stats: [
-    { value: '250+', label: 'Financial Models' },
-    { value: '₹15,000Cr+', label: 'Deals Supported' },
-    { value: '50+', label: 'Banks & Investors' },
-    { value: '99%', label: 'Model Accuracy' },
+    { value: '250+', label: 'Models Built' },
+    { value: '₹8,000Cr+', label: 'Projects Evaluated' },
+    { value: '30+', label: 'Sectors Covered' },
+    { value: '95%', label: 'Lender Acceptance Rate' },
   ],
-  
+
   valueProps: [
-    { icon: Calculator, title: 'Precision Modeling', desc: 'Detailed financial models built with rigorous assumptions and validation.' },
-    { icon: FileText, title: 'Investor-Ready Reports', desc: 'Professional project reports meeting bank and investor requirements.' },
-    { icon: TrendingUp, title: 'Scenario Analysis', desc: 'Multiple scenarios to understand risks and opportunities.' },
-    { icon: Target, title: 'Decision Support', desc: 'Clear insights to support strategic and investment decisions.' },
+    { icon: BarChart3, title: 'Decision-Ready Models', desc: 'Integrated financial models with P&L, balance sheet, and cash flow projections built on transparent, auditable assumptions.' },
+    { icon: Target, title: 'Scenario Planning', desc: 'Base, upside, and downside scenarios that help management and investors understand the range of outcomes and key sensitivities.' },
+    { icon: TrendingUp, title: 'Investment Returns', desc: 'ROI, IRR, NPV, and payback period analysis to evaluate investment attractiveness and support go / no-go decisions.' },
+    { icon: ShieldCheck, title: 'Lender & Investor Ready', desc: 'Structured project reports and financial models prepared to meet the requirements of banks, NBFCs, and institutional investors.' },
   ],
-  
+
   methodology: [
-    { num: '01', title: 'Requirement Understanding', desc: 'Define model objectives, key questions to answer, and stakeholder requirements.' },
-    { num: '02', title: 'Assumption Development', desc: 'Develop robust assumptions based on market research and industry benchmarks.' },
-    { num: '03', title: 'Model Architecture', desc: 'Design model structure with clear logic, inputs, calculations, and outputs.' },
-    { num: '04', title: 'Model Building', desc: 'Build detailed financial model with projections, sensitivities, and scenarios.' },
-    { num: '05', title: 'Validation & Testing', desc: 'Rigorous testing and validation to ensure accuracy and reliability.' },
-    { num: '06', title: 'Documentation & Training', desc: 'Document assumptions, provide user guide, and train stakeholders.' },
+    { num: '01', title: 'Business Understanding', desc: 'Deep-dive into business model, revenue streams, cost structure, capital requirements, and key value drivers.' },
+    { num: '02', title: 'Assumption Development', desc: 'Build market-validated assumptions on revenue growth, margins, capex, working capital, and financing structure.' },
+    { num: '03', title: 'Model Architecture', desc: 'Design integrated three-statement model (P&L, balance sheet, cash flow) with dynamic, linked assumptions.' },
+    { num: '04', title: 'Returns & Feasibility Analysis', desc: 'Calculate ROI, IRR, NPV, DSCR, and payback period. Assess financial feasibility and debt serviceability.' },
+    { num: '05', title: 'Scenario & Sensitivity Analysis', desc: 'Build base, upside, and downside scenarios. Identify key sensitivities and break-even thresholds.' },
+    { num: '06', title: 'Report Preparation', desc: 'Prepare structured project reports or investor-ready financial summaries aligned with lender or investor requirements.' },
   ],
-  methodologyDescription: 'We build financial models that are not just technically sound but also practical, flexible, and aligned with decision-making needs.',
-  
+  methodologyDescription: 'We combine rigorous financial modelling with deep sector knowledge — building models that are not just mathematically sound but grounded in realistic market and operational assumptions.',
+
   services: [
     {
-      title: 'Business Financial Models',
-      desc: 'Integrated financial models for business planning, budgeting, and strategic decisions.',
-      features: ['P&L Projections', 'Cash Flow', 'Balance Sheet'],
+      title: 'Financial Modelling',
+      desc: 'Integrated three-statement financial models covering P&L, balance sheet, and cash flow — built on structured, transparent assumptions for any business or project.',
+      features: ['Three-Statement Model', 'Dynamic Assumptions', 'Scenario Analysis', 'Sensitivity Testing'],
+      icon: BarChart3,
+    },
+    {
+      title: 'Project Report (DPR)',
+      desc: 'Detailed Project Reports for bank financing, NBFC lending, and government scheme applications — covering project overview, financial projections, and returns analysis.',
+      features: ['Project Overview', 'Capex & Opex Planning', 'DSCR Analysis', 'Bank-Ready Format'],
       icon: Calculator,
     },
     {
-      title: 'Project Finance Models',
-      desc: 'Detailed project finance models for capital projects, infrastructure, and real estate.',
-      features: ['Project Economics', 'Debt Structuring', 'Returns Analysis'],
-      icon: Building2,
+      title: 'Investment Feasibility',
+      desc: 'Assess the financial viability of new investments, expansions, or projects — with ROI, IRR, NPV, and payback analysis to support go / no-go decisions.',
+      features: ['ROI & IRR Analysis', 'NPV Calculation', 'Payback Period', 'Break-even Analysis'],
+      icon: Target,
     },
     {
-      title: 'Valuation Models',
-      desc: 'DCF, comparable, and transaction-based valuation models for M&A and investments.',
-      features: ['DCF Valuation', 'Multiples Analysis', 'Sensitivity'],
+      title: 'Valuation Support',
+      desc: 'Build valuation models using DCF, comparable company analysis, or precedent transaction approaches to support fundraising, M&A, and strategic decisions.',
+      features: ['DCF Valuation', 'Comparable Analysis', 'Transaction Benchmarks', 'Valuation Summary'],
       icon: PieChart,
     },
-    {
-      title: 'Project Reports',
-      desc: 'Comprehensive project reports for bank financing and investor presentations.',
-      features: ['Techno-Economic', 'CMA Data', 'DPR'],
-      icon: FileText,
-    },
   ],
-  
+
   caseStudies: [
     {
-      title: 'Infrastructure Project Model',
-      client: 'Infrastructure Developer',
-      desc: 'Built comprehensive financial model for ₹1,000Cr highway project supporting bank financing.',
-      tags: ['Infrastructure', 'Project Finance'],
-      image: 'https://images.pexels.com/photos/1117452/pexels-photo-1117452.jpeg?w=800',
-    },
-    {
-      title: 'Startup Fundraising Model',
-      client: 'Technology Startup',
-      desc: 'Developed investor-ready financial model supporting successful Series A fundraise.',
-      tags: ['Technology', 'Fundraising'],
-      image: 'https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?w=800',
-    },
-    {
-      title: 'Real Estate Project DPR',
       client: 'Real Estate Developer',
-      desc: 'Prepared detailed project report for mixed-use development supporting bank approval.',
-      tags: ['Real Estate', 'Project Report'],
-      image: 'https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?w=800',
+      industry: 'Real Estate',
+      service: 'Project Feasibility & Financial Model',
+      challenge: 'A real estate developer needed a comprehensive financial model and project report for a mixed-use development to support bank financing and evaluate the project\'s financial viability.',
+      solution: 'Built a detailed financial model covering construction costs, phased revenue projections, financing structure, and returns analysis. Prepared a structured project report meeting bank documentation requirements including DSCR analysis.',
+      result: 'Secured bank financing with the project report and financial model accepted by the lending institution, enabling project commencement.',
+    },
+    {
+      client: 'Manufacturing Startup',
+      industry: 'Manufacturing',
+      service: 'Investment Feasibility & DPR',
+      challenge: 'An entrepreneur planning to set up a manufacturing facility needed a detailed project report for MSME scheme funding and a financial model to evaluate the investment\'s viability.',
+      solution: 'Developed a full DPR covering plant setup, machinery costs, raw material planning, and capacity utilisation assumptions. Built integrated financial projections with ROI, IRR, and payback analysis across multiple scenarios.',
+      result: 'Project report approved for MSME scheme funding. Financial model confirmed investment viability with IRR exceeding target return thresholds.',
+    },
+    {
+      client: 'Hospitality Company',
+      industry: 'Hospitality',
+      service: 'Expansion Financial Model',
+      challenge: 'A hospitality company evaluating expansion into a new property needed a financial model to assess returns and support investor discussions for the new project.',
+      solution: 'Built an integrated financial model for the new property covering room revenue, F&B, events, and ancillary streams. Developed scenario analysis across occupancy and ADR assumptions with full returns analysis.',
+      result: 'Clear go-ahead decision supported by the financial model, which was also used as the basis for investor presentations and capital raise discussions.',
     },
   ],
-  
+
   faqs: [
-    { q: 'What types of financial models do you build?', a: 'We build business models, project finance models, valuation models, LBO models, and custom models for specific decision-making needs.' },
-    { q: 'Are your models accepted by banks?', a: 'Yes, our models and project reports are designed to meet requirements of major banks and financial institutions.' },
-    { q: 'Do you provide model training?', a: 'Yes, we provide training to help your team understand, use, and update the financial models.' },
-    { q: 'Can you update existing models?', a: 'Absolutely. We can review, audit, and update existing financial models to improve accuracy and usability.' },
+    { q: 'What is the difference between a financial model and a project report?', a: 'A financial model is an Excel-based tool with integrated projections and scenario analysis. A project report (DPR) is a structured document — typically required by banks or lenders — that includes the financial model alongside project description, market analysis, and management overview.' },
+    { q: 'What returns metrics do you calculate?', a: 'We typically calculate ROI, IRR, NPV, payback period, DSCR (debt service coverage ratio), and break-even analysis — tailored to the specific requirements of investors or lenders.' },
+    { q: 'Can you prepare project reports for government scheme applications?', a: 'Yes. We prepare DPRs aligned with the documentation requirements of MSME schemes, SIDBI, NABARD, and various state government funding programs.' },
+    { q: 'How long does financial modelling take?', a: 'A focused financial model typically takes 2–3 weeks. A full DPR with market analysis and financial projections typically takes 4–6 weeks.' },
+    { q: 'Do you provide sensitivity and scenario analysis?', a: 'Yes. We always include scenario analysis (base, upside, downside) and sensitivity tables showing the impact of key assumptions on returns — giving decision-makers a clear view of the range of outcomes.' },
   ],
-  
-  ctaTitle: 'Need a Financial Model?',
-  ctaDescription: 'Partner with MARC for robust financial models that support confident investment and strategic decisions.',
+
+  ctaTitle: 'Ready to Build a Robust Financial Model?',
+  ctaDescription: 'Partner with MARC to prepare financial models and project reports that support investment decisions, funding applications, and strategic planning.',
 }
 
 export default function FinancialModellingPage() {
