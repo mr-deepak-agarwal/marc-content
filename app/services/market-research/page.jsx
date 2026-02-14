@@ -1,6 +1,6 @@
 'use client'
 
-import ServicePageTemplateOption1 from '@/components/ServicePageTemplate-Option1'
+import ServicePageTemplate1 from '@/components/ServicePageTemplate1'
 import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } from 'lucide-react'
 
 const pageData = {
