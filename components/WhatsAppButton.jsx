@@ -1,9 +1,46 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { companyInfo } from '@/data/mock'
 
-const WhatsAppButton = ({ phoneNumber = '919876543210' }) => {
-  const whatsappUrl = `https://wa.me/${phoneNumber}`
+const WhatsAppButton = () => {
+  const [isVisible, setIsVisible] = useState(false)
+
+  // Get phone number from companyInfo instead of hardcoding
+  const getWhatsAppNumber = () => {
+    if (!companyInfo.phone) return '919876543210' // Fallback
+    
+    // Remove all non-numeric characters
+    let cleaned = companyInfo.phone.replace(/\D/g, '')
+    
+    // If it doesn't start with country code, assume India (+91)
+    if (!cleaned.startsWith('91') && cleaned.length === 10) {
+      cleaned = '91' + cleaned
+    }
+    
+    return cleaned
+  }
+
+  const phoneNumber = getWhatsAppNumber()
+  
+  // Optional: Add a pre-filled message
+  const message = 'Hi MARC, I would like to discuss growth advisory services.'
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+
+  // Show button after scrolling (optional - remove if you want it always visible)
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 300)
+    }
+
+    // Always show on mobile
+    if (window.innerWidth < 768) {
+      setIsVisible(true)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <a
@@ -11,7 +48,9 @@ const WhatsAppButton = ({ phoneNumber = '919876543210' }) => {
       target="_blank"
       rel="noopener noreferrer"
       data-testid="whatsapp-cta"
-      className="fixed bottom-6 right-6 z-50 group"
+      className={`fixed bottom-6 right-6 z-50 group transition-all duration-300 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'
+      }`}
       aria-label="Chat on WhatsApp"
     >
       {/* Pulse animation ring */}
@@ -29,9 +68,9 @@ const WhatsAppButton = ({ phoneNumber = '919876543210' }) => {
         </svg>
       </div>
 
-      {/* Tooltip */}
-      <span className="absolute right-16 top-1/2 -translate-y-1/2 px-3 py-2 bg-[#1D342F] text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
-        Chat with us
+      {/* Tooltip - Hidden on mobile for better UX */}
+      <span className="hidden md:block absolute right-16 top-1/2 -translate-y-1/2 px-3 py-2 bg-[#1D342F] text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
+        Chat with us on WhatsApp
       </span>
     </a>
   )

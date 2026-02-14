@@ -1,6 +1,6 @@
 'use client'
 
-import ServicePageTemplateOption1 from '@/components/ServicePageTemplate-Option1'
+import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } from 'lucide-react'
 
 const pageData = {
@@ -8,10 +8,6 @@ const pageData = {
   title: 'Market Research in',
   titleHighlight: 'India',
   description: 'India is one of the world\'s fastest-growing economies—but also one of its most complex. Consumer behaviour, demand drivers, and regulations vary sharply across regions, making local market research in India critical for success.',
-  
-  // Custom images for Option 1
-  heroImage: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?w=1200',
-  methodologyImage: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=800',
 
   stats: [
     { value: '500+', label: 'Research Projects' },
@@ -76,6 +72,8 @@ const pageData = {
     },
   ],
 
+  // New case study shape: accentColor + industry + service + challenge + solution + result
+  // Colors chosen to be distinct and high-contrast against the dark #1D342F / #162b23 background
   caseStudies: [
     {
       client: 'Fly91 Aviation',
@@ -115,6 +113,6 @@ const pageData = {
   ctaDescription: 'We\'re ready to help you navigate India\'s complex markets with decision-ready intelligence, clear go/no-go recommendations, and strategies built for long-term growth.',
 }
 
-export default function MarketResearchPageOption1() {
-  return <ServicePageTemplateOption1 {...pageData} />
+export default function MarketResearchPage() {
+  return <ServicePageTemplate {...pageData} />
 }
