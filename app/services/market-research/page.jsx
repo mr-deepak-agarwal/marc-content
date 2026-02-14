@@ -116,5 +116,5 @@ const pageData = {
 }
 
 export default function MarketResearchPageOption1() {
-  return <ServicePageTemplateOption1 {...pageData} />
+  return <ServicePageTemplate1 {...pageData} />
 }

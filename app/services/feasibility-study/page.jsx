@@ -125,5 +125,5 @@ const pageData = {
 }
 
 export default function FeasibilityStudyPageOption2() {
-  return <ServicePageTemplateOption2 {...pageData} />
+  return <ServicePageTemplate2 {...pageData} />
 }
