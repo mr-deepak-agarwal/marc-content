@@ -953,7 +953,7 @@ export default function BlogPage() {
               {featuredPosts.map((post, i) => (
                 <a
                   key={post.id}
-                  href={post.href}
+                  href={/blog/${post.slug}}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group block bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] hover:shadow-xl transition-all duration-500"
@@ -1063,7 +1063,7 @@ export default function BlogPage() {
             {displayedPosts.map((post, i) => (
               <a
                 key={post.id}
-                href={post.href}
+                href={/blog/${post.slug}}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-index={i}
