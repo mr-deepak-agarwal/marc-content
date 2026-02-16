@@ -138,7 +138,7 @@ export const blogDataChunk1 = [
     id: 4,
     slug: 'competitive-benchmarking-with-market-research',
     title: 'Competitive Benchmarking with Market Research',
-    excerpt: 'What if your competitors aren't ahead, but they've spotted something you haven\'t?',
+    excerpt: 'What if your competitors aren\'t ahead, but they haveve spotted something you haven\'t?',
     category: 'research',
     categoryLabel: 'Market Research',
     author: 'MARC Research Team',
