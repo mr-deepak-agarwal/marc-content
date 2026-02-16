@@ -1,313 +1,332 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import Footer from '@/components/Footer'
-import { blogs, categories, popularTags } from '@/data/blogData'
+import { blogs } from '@/data/blogData'
 import {
-  Search, Calendar, Clock, ArrowRight, ArrowUpRight, User,
-  BookOpen, Sparkles, X, ChevronDown
+  Calendar, Clock, Share2, Bookmark, ArrowLeft,
+  Twitter, Linkedin, Facebook, Link2, Check, ChevronRight,
+  FileText, Download, Mail, ArrowUpRight
 } from 'lucide-react'
 
-export default function BlogPage() {
-  const [activeCategory, setActiveCategory] = useState('all')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [visibleCards, setVisibleCards] = useState({})
-  const [showAllPosts, setShowAllPosts] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleCards(prev => ({ ...prev, [entry.target.dataset.index]: true }))
-          }
-        })
+// ─── Helper: generate a fallback content block from excerpt ─────────────────
+function buildFallbackContent(post) {
+  return {
+    introduction: post.excerpt,
+    sections: [
+      {
+        heading: 'Overview',
+        content: `This article explores ${post.title}. Our experts at MARC provide in-depth analysis and actionable insights on this topic to help businesses make better decisions.`,
       },
-      { threshold: 0.1 }
+      {
+        heading: 'Key Insights',
+        content: `For the complete article with detailed insights, case studies, and expert recommendations, visit the full version on our website.`,
+      },
+    ],
+    conclusion: `Stay ahead of the curve with MARC's research and advisory services. Our team of experts is ready to help you apply these insights to your specific business context.`,
+  }
+}
+
+// ─── Related articles: same category, different post ────────────────────────
+function getRelatedPosts(currentPost, allPosts, count = 3) {
+  return allPosts
+    .filter(p => p.category === currentPost.category && p.id !== currentPost.id)
+    .slice(0, count)
+}
+
+// ─── Main Page ───────────────────────────────────────────────────────────────
+export default function BlogDetailPage() {
+  const { slug } = useParams()
+  const [bookmarked, setBookmarked] = useState(false)
+  const [copied, setCopied] = useState(false)
+
+  // Find post from shared data by slug
+  const post = blogs.find(b => b.slug === slug)
+
+  // 404 state
+  if (!post) {
+    return (
+      <div className="bg-white min-h-screen flex flex-col items-center justify-center px-6 text-center">
+        <h1 className="text-4xl font-bold text-[#1D342F] mb-4">Article Not Found</h1>
+        <p className="text-[#47635D] mb-8">The article you're looking for doesn't exist or has been moved.</p>
+        <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-all">
+          <ArrowLeft className="w-4 h-4" />
+          Back to all articles
+        </Link>
+      </div>
     )
-    document.querySelectorAll('[data-index]').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [activeCategory, searchQuery, showAllPosts])
+  }
 
-  const filteredBlogs = blogs.filter(blog => {
-    const matchesCategory = activeCategory === 'all' || blog.category === activeCategory
-    const matchesSearch =
-      blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      blog.author.toLowerCase().includes(searchQuery.toLowerCase())
-    return matchesCategory && matchesSearch
-  })
+  const content = post.content ?? buildFallbackContent(post)
+  const tags = post.tags ?? []
+  const relatedPosts = getRelatedPosts(post, blogs)
+  const cta = post.cta ?? {
+    title: 'Need Expert Consultation?',
+    description: 'Our team of financial experts and consultants is ready to help your business grow.',
+    primaryButton: 'Schedule Consultation',
+    secondaryButton: 'Learn More',
+  }
 
-  const featuredPosts = blogs.filter(b => b.featured).slice(0, 2)
-  const gridPosts = filteredBlogs.filter(b => !b.featured)
-  const displayedPosts = showAllPosts ? gridPosts : gridPosts.slice(0, 9)
+  const handleShare = (platform) => {
+    const url = typeof window !== 'undefined' ? window.location.href : ''
+    const shareUrls = {
+      twitter:  `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(url)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+    }
+    if (platform === 'copy') {
+      navigator.clipboard.writeText(url)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } else {
+      window.open(shareUrls[platform], '_blank', 'width=600,height=400')
+    }
+  }
 
   return (
-    <div className="bg-[#F0F4F0] min-h-screen" data-testid="blog-page">
+    <div className="bg-white min-h-screen">
 
-      {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-16 bg-white border-b border-[#C2DDB4]/30 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
+      {/* Back Navigation */}
+      <div className="bg-[#F7FFF5] border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-[#47635D] hover:text-[#4E9141] transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            <span className="text-sm font-medium">Back to all articles</span>
+          </Link>
+        </div>
+      </div>
 
-            {/* Left */}
-            <div className="lg:col-span-5 lg:sticky lg:top-32">
-              <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50 mb-8">
-                <BookOpen className="w-4 h-4 text-[#4E9141]" />
-                <span className="text-[#4E9141] font-medium text-sm">MARC Blogs</span>
+      {/* Hero */}
+      <article className="bg-white">
+        <div className="max-w-4xl mx-auto px-6 pt-12 pb-8">
+
+          {/* Category & badges */}
+          <div className="flex items-center gap-4 mb-6">
+            <span className="px-4 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full uppercase tracking-wide">
+              {post.categoryLabel ?? post.category}
+            </span>
+            {post.featured && (
+              <span className="px-4 py-1.5 bg-[#F7FFF5] text-[#4E9141] text-xs font-semibold rounded-full border border-[#4E9141]/20">
+                Featured Article
+              </span>
+            )}
+          </div>
+
+          {/* Title */}
+          <h1 className="text-4xl lg:text-5xl font-bold text-[#1D342F] leading-tight mb-6">
+            {post.title}
+          </h1>
+
+          {/* Subtitle / excerpt */}
+          <p className="text-xl text-[#47635D] leading-relaxed mb-8">{post.excerpt}</p>
+
+          {/* Meta */}
+          <div className="flex flex-wrap items-center gap-6 pb-8 border-b border-gray-100">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-[#4E9141] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                {post.author.charAt(0)}
               </div>
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
-                Insights & Trends for
-                <span className="text-[#4E9141]"> Modern Businesses</span>
-              </h1>
-              <p className="text-[#47635D] text-lg leading-relaxed mb-8">
-                Stay up-to-date with knowledgeable insights and the latest trends transforming industries and businesses across the world.
-              </p>
-              <div className="flex gap-8 py-6 border-t border-b border-[#C2DDB4]/30">
-                <div><div className="text-3xl font-bold text-[#4E9141]">75+</div><div className="text-[#47635D] text-sm">Articles</div></div>
-                <div><div className="text-3xl font-bold text-[#4E9141]">15+</div><div className="text-[#47635D] text-sm">Authors</div></div>
-                <div><div className="text-3xl font-bold text-[#4E9141]">50k+</div><div className="text-[#47635D] text-sm">Readers</div></div>
-              </div>
-              <div className="mt-8">
-                <p className="text-sm font-medium text-[#47635D] mb-4">Popular Topics:</p>
-                <div className="flex flex-wrap gap-2">
-                  {popularTags.slice(0, 6).map((tag, i) => (
-                    <button key={i}
-                      className="px-4 py-2 bg-[#F7FFF5] text-[#47635D] text-sm rounded-full border border-[#C2DDB4]/50 hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
-                      {tag}
-                    </button>
-                  ))}
-                </div>
+              <div>
+                <div className="font-semibold text-[#1D342F]">{post.author}</div>
+                <div className="text-sm text-[#47635D]">{post.authorRole ?? 'MARC Advisory'}</div>
               </div>
             </div>
 
-            {/* Right – Featured posts — now link to /blog/[slug] */}
-            <div className="lg:col-span-7 space-y-6">
-              {featuredPosts.map((post, i) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  className="group block bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] hover:shadow-xl transition-all duration-500"
-                  data-testid={`featured-post-${i}`}
-                >
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden">
-                      <img src={post.image} alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">Latest</span>
-                      </div>
+            <div className="flex items-center gap-6 text-sm text-[#47635D]">
+              <span className="flex items-center gap-2">
+                <Calendar className="w-4 h-4" />
+                {post.date}
+              </span>
+              <span className="flex items-center gap-2">
+                <Clock className="w-4 h-4" />
+                {post.readTime}
+              </span>
+            </div>
+
+            {/* Actions */}
+            <div className="ml-auto flex items-center gap-3">
+              <button
+                onClick={() => setBookmarked(!bookmarked)}
+                className={`p-2 rounded-lg border transition-all ${bookmarked
+                  ? 'bg-[#4E9141] text-white border-[#4E9141]'
+                  : 'bg-white text-[#47635D] border-gray-200 hover:border-[#4E9141] hover:text-[#4E9141]'}`}
+                aria-label="Bookmark"
+              >
+                <Bookmark className="w-5 h-5" fill={bookmarked ? 'currentColor' : 'none'} />
+              </button>
+
+              <div className="relative group">
+                <button className="p-2 rounded-lg border border-gray-200 bg-white text-[#47635D] hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
+                  <Share2 className="w-5 h-5" />
+                </button>
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                  <div className="p-2">
+                    {[
+                      { platform: 'twitter',  Icon: Twitter,  label: 'Share on Twitter' },
+                      { platform: 'linkedin', Icon: Linkedin, label: 'Share on LinkedIn' },
+                      { platform: 'facebook', Icon: Facebook, label: 'Share on Facebook' },
+                    ].map(({ platform, Icon, label }) => (
+                      <button key={platform} onClick={() => handleShare(platform)}
+                        className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[#1D342F] hover:bg-[#F7FFF5] rounded-lg transition-colors">
+                        <Icon className="w-4 h-4" />{label}
+                      </button>
+                    ))}
+                    <button onClick={() => handleShare('copy')}
+                      className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[#1D342F] hover:bg-[#F7FFF5] rounded-lg transition-colors">
+                      {copied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
+                      {copied ? 'Copied!' : 'Copy link'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Featured image */}
+        <div className="relative w-full aspect-[21/9] bg-gray-100">
+          <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+        </div>
+
+        {/* Body */}
+        <div className="max-w-4xl mx-auto px-6 py-16">
+
+          {/* Introduction */}
+          <div className="prose prose-lg max-w-none mb-12">
+            <p className="text-lg text-[#47635D] leading-relaxed whitespace-pre-line">
+              {content.introduction}
+            </p>
+          </div>
+
+          {/* Sections */}
+          {content.sections.map((section, i) => (
+            <div key={i} className="mb-12">
+              <h2 className="text-3xl font-bold text-[#1D342F] mb-6 pb-3 border-b-2 border-[#4E9141]/20">
+                {section.heading}
+              </h2>
+              <p className="text-[#47635D] leading-relaxed whitespace-pre-line">{section.content}</p>
+            </div>
+          ))}
+
+          {/* Conclusion */}
+          <div className="mb-12 p-8 bg-[#F7FFF5] rounded-2xl border-l-4 border-[#4E9141]">
+            <h2 className="text-2xl font-bold text-[#1D342F] mb-4">Key Takeaway</h2>
+            <p className="text-[#47635D] leading-relaxed whitespace-pre-line">{content.conclusion}</p>
+          </div>
+
+          {/* Tags */}
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-12 pb-12 border-b border-gray-100">
+              <span className="text-sm font-medium text-[#47635D]">Tags:</span>
+              {tags.map((tag, i) => (
+                <Link key={i} href={`/blog?tag=${tag.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="px-3 py-1 bg-white border border-gray-200 text-[#47635D] text-sm rounded-full hover:border-[#4E9141] hover:text-[#4E9141] transition-colors">
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* Author bio */}
+          <div className="mb-16 p-8 bg-gradient-to-br from-[#F7FFF5] to-white rounded-2xl border border-[#C2DDB4]/30">
+            <div className="flex items-start gap-6">
+              <div className="w-20 h-20 bg-[#4E9141] rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                {post.author.charAt(0)}
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-[#1D342F] mb-2">About {post.author}</h3>
+                <p className="text-[#47635D] mb-4">
+                  {post.authorBio ?? 'Our research team comprises experienced financial analysts and consultants with extensive industry experience.'}
+                </p>
+                <Link href="/blog" className="text-sm text-[#4E9141] hover:underline font-medium">
+                  View all articles →
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="mb-16 p-8 bg-gradient-to-br from-[#4E9141] to-[#3d7334] rounded-2xl text-white">
+            <div className="flex items-center gap-4 mb-4">
+              <FileText className="w-12 h-12 flex-shrink-0" />
+              <div>
+                <h3 className="text-2xl font-bold mb-2">{cta.title}</h3>
+                <p className="text-white/90">{cta.description}</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-4 mt-6">
+              <Link href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#4E9141] rounded-xl font-semibold hover:bg-gray-50 transition-all">
+                {cta.primaryButton}
+                <ChevronRight className="w-5 h-5" />
+              </Link>
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white border-2 border-white/30 rounded-xl font-semibold hover:bg-white/20 transition-all">
+                <Download className="w-5 h-5" />
+                {cta.secondaryButton}
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* Related Articles */}
+      {relatedPosts.length > 0 && (
+        <section className="bg-[#F7FFF5] py-16 border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold text-[#1D342F]">Related Articles</h2>
+              <Link href="/blog" className="text-[#4E9141] font-medium hover:underline flex items-center gap-2">
+                View all articles <ChevronRight className="w-5 h-5" />
+              </Link>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {relatedPosts.map(article => (
+                <Link key={article.id} href={`/blog/${article.slug}`}
+                  className="group bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#4E9141]/40 hover:shadow-lg transition-all">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img src={article.image} alt={article.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 text-xs text-[#47635D] mb-3">
+                      <span className="px-2 py-1 bg-[#F7FFF5] text-[#4E9141] rounded uppercase font-medium">
+                        {article.category.replace('-', ' ')}
+                      </span>
+                      <span>{article.date}</span>
+                      <span>·</span>
+                      <span>{article.readTime}</span>
                     </div>
-                    <div className="p-6 lg:p-8 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 text-sm text-[#47635D] mb-3">
-                        <span className="text-[#4E9141] font-medium capitalize">{post.category.replace('-', ' ')}</span>
-                        <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
-                        <span>{post.readTime}</span>
-                      </div>
-                      <h2 className="text-xl lg:text-2xl font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors line-clamp-3">
-                        {post.title}
-                      </h2>
-                      <p className="text-[#47635D] mb-6 line-clamp-3 text-sm">{post.excerpt}</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
-                            <User className="w-5 h-5 text-[#4E9141]" />
-                          </div>
-                          <div>
-                            <p className="text-sm font-medium text-[#1D342F]">{post.author}</p>
-                            <p className="text-xs text-[#47635D]">{post.date}</p>
-                          </div>
-                        </div>
-                        <ArrowUpRight className="w-5 h-5 text-[#C2DDB4] group-hover:text-[#4E9141] transition-colors" />
-                      </div>
-                    </div>
+                    <h3 className="font-semibold text-[#1D342F] group-hover:text-[#4E9141] transition-colors line-clamp-2">
+                      {article.title}
+                    </h3>
                   </div>
                 </Link>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* ── Search & Filter ───────────────────────────────────────────── */}
-      <section className="py-8 bg-white border-b border-[#C2DDB4]/30 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-            {categories.map((cat) => (
-              <button key={cat.id}
-                onClick={() => { setActiveCategory(cat.id); setShowAllPosts(false) }}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
-                  activeCategory === cat.id
-                    ? 'bg-[#4E9141] text-white shadow-md shadow-[#4E9141]/20'
-                    : 'bg-[#F7FFF5] text-[#47635D] hover:bg-[#C2DDB4]/30 border border-[#C2DDB4]/50'
-                }`}
-                data-testid={`category-${cat.id}`}
-              >
-                {cat.label}
-                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${activeCategory === cat.id ? 'bg-white/20' : 'bg-white'}`}>
-                  {cat.count}
-                </span>
-              </button>
-            ))}
-          </div>
-          <div className="max-w-lg mx-auto">
-            <div className="relative">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#47635D]" />
-              <input type="text" placeholder="Search articles, topics or authors..."
-                className="w-full pl-14 pr-12 py-4 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-2xl focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none transition-all text-[#1D342F]"
-                value={searchQuery}
-                onChange={(e) => { setSearchQuery(e.target.value); setShowAllPosts(false) }}
-                data-testid="search-input"
-              />
-              {searchQuery && (
-                <button onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:bg-[#C2DDB4]/30 rounded-full transition-colors">
-                  <X className="w-4 h-4 text-[#47635D]" />
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Blog Grid — every card now links to /blog/[slug] ─────────── */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-2xl font-bold text-[#1D342F]">All Articles</h2>
-            <p className="text-[#47635D]">
-              Showing <span className="font-semibold text-[#1D342F]">{filteredBlogs.length}</span> articles
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {displayedPosts.map((post, i) => (
-              <Link
-                key={post.id}
-                href={`/blog/${post.slug}`}      {/* ← CHANGED: internal route */}
-                data-index={i}
-                className="group block"
-                data-testid={`blog-post-${post.id}`}
-              >
-                <article
-                  className={`h-full bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] shadow-sm hover:shadow-xl transition-all duration-500 ${
-                    visibleCards[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${i * 50}ms` }}
-                >
-                  {/* Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img src={post.image} alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1.5 bg-white text-[#4E9141] text-xs font-semibold rounded-full shadow-md capitalize">
-                        {post.category.replace('-', ' ')}
-                      </span>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                      <ArrowRight className="w-5 h-5 text-[#4E9141]" />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 text-sm text-[#47635D] mb-3">
-                      <div className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{post.date}</div>
-                      <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
-                      <div className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{post.readTime}</div>
-                    </div>
-                    <h3 className="text-lg font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-[#47635D] text-sm leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
-                    <div className="flex items-center justify-between pt-4 border-t border-[#C2DDB4]/30">
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
-                          <span className="text-[#4E9141] font-bold text-sm">{post.author.charAt(0)}</span>
-                        </div>
-                        <span className="text-sm text-[#47635D] font-medium">{post.author}</span>
-                      </div>
-                      <ArrowUpRight className="w-5 h-5 text-[#C2DDB4] group-hover:text-[#4E9141] transition-colors" />
-                    </div>
-                  </div>
-                </article>
-              </Link>
-            ))}
-          </div>
-
-          {/* Load More */}
-          {gridPosts.length > 9 && !showAllPosts && (
-            <div className="text-center mt-12">
-              <button onClick={() => setShowAllPosts(true)}
-                className="inline-flex items-center gap-3 px-10 py-4 bg-[#1D342F] text-white rounded-full font-semibold hover:bg-[#2a4a43] transition-all group"
-                data-testid="load-more-button">
-                Load More Articles
-                <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-              </button>
-            </div>
-          )}
-
-          {/* No Results */}
-          {filteredBlogs.length === 0 && (
-            <div className="text-center py-20">
-              <div className="w-20 h-20 bg-[#F7FFF5] rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search className="w-10 h-10 text-[#C2DDB4]" />
-              </div>
-              <h3 className="text-xl font-bold text-[#1D342F] mb-2">No articles found</h3>
-              <p className="text-[#47635D]">Try adjusting your search or filter criteria</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* ── Newsletter ─────────────────────────────────────────────────── */}
-      <section className="py-20 bg-white border-t border-[#C2DDB4]/30">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#F7FFF5] rounded-3xl p-10 lg:p-14 border-2 border-[#C2DDB4]/40 text-center">
-            <div className="w-16 h-16 bg-[#4E9141] rounded-2xl flex items-center justify-center mx-auto mb-8">
-              <Sparkles className="w-8 h-8 text-white" />
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">Stay Ahead of the Curve</h2>
-            <p className="text-[#47635D] text-lg mb-10 max-w-xl mx-auto">
-              Get exclusive insights, industry trends, and expert analysis delivered to your inbox every week.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input type="email" placeholder="Enter your email"
-                className="flex-1 px-6 py-4 bg-white border-2 border-[#C2DDB4]/50 rounded-xl text-[#1D342F] placeholder-[#47635D] focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none transition-all"
-                data-testid="newsletter-email" />
-              <button className="px-8 py-4 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-all flex items-center justify-center gap-2 group"
-                data-testid="newsletter-submit">
-                Subscribe
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-            <p className="text-[#47635D] text-sm mt-6">Join 10,000+ professionals. Unsubscribe anytime.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ───────────────────────────────────────────────────────── */}
-      <section className="py-20 bg-[#1D342F]">
+      {/* Newsletter */}
+      <section className="bg-white py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Need Expert Consultation?</h2>
-          <p className="text-[#C2DDB4] text-lg mb-10 max-w-2xl mx-auto">
-            Our team of experts can help you navigate complex business challenges with data-driven insights and strategic guidance.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact"
-              className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#5ba84d] transition-all group"
-              data-testid="cta-contact">
-              Get in Touch
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link href="/services/market-research"
-              className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-white/10 text-white border border-white/20 rounded-full font-semibold hover:bg-white/20 transition-all">
-              Explore Services
-            </Link>
+          <div className="w-16 h-16 bg-[#4E9141] rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Mail className="w-8 h-8 text-white" />
           </div>
+          <h2 className="text-3xl font-bold text-[#1D342F] mb-4">Never Miss an Insight</h2>
+          <p className="text-lg text-[#47635D] mb-8">
+            Get expert analysis, industry trends, and exclusive insights delivered to your inbox every week.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input type="email" placeholder="Enter your email"
+              className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none" />
+            <button className="px-6 py-3 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-colors">
+              Subscribe
+            </button>
+          </div>
+          <p className="text-sm text-[#47635D] mt-4">Join 10,000+ professionals. Unsubscribe anytime.</p>
         </div>
       </section>
 
