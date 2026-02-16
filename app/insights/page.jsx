@@ -845,13 +845,17 @@ const insights = [
   }
 ]
 
-// Card stack data for hero animation
-const stackedCards = [
-  { title: 'Indian Nutraceuticals and OTC Pharmaceutical Market Entry', category: 'Healthcare', downloads: '2.4k', color: '#E8F5E3' },
-  { title: 'Digital Healthcare Report', category: 'Healthcare', downloads: '1.8k', color: '#FEF3C7' },
-  { title: 'GST 2.0: Key Reforms and Sectoral Impact', category: 'Retail', downloads: '3.1k', color: '#DBEAFE' },
-  { title: 'Contract Manufacturing in India', category: 'Manufacturing', downloads: '1.5k', color: '#FCE7F3' },
-]
+// Card stack data for hero animation - these will match actual insights
+const getStackedCards = () => {
+  return [
+    insights[3], // Indian Nutraceuticals and OTC Pharmaceutical Market Entry
+    insights[4], // Digital Healthcare Report
+    insights[5], // GST 2.0: Key Reforms and Sectoral Impact
+    insights[6], // Contract Manufacturing in India
+  ]
+}
+
+const stackedCardsColors = ['#E8F5E3', '#FEF3C7', '#DBEAFE', '#FCE7F3']
 
 const trendingTopics = [
   'Artificial Intelligence',
@@ -865,6 +869,9 @@ export default function InsightsPageV2() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCard, setActiveCard] = useState(0)
+  
+  // Get stacked cards from insights
+  const stackedCards = getStackedCards()
 
   // Auto-rotate cards
   useEffect(() => {
@@ -1074,14 +1081,14 @@ export default function InsightsPageV2() {
                             ? 'border-[#4E9141] shadow-[#4E9141]/20' 
                             : 'border-transparent shadow-black/10'
                         }`}
-                        style={{ backgroundColor: card.color }}
+                        style={{ backgroundColor: stackedCardsColors[index] }}
                       >
                         {/* Card Header */}
                         <div className="flex items-center justify-between mb-4">
-                          <span className="px-3 py-1 bg-white/80 backdrop-blur-sm text-[#4E9141] text-xs font-semibold rounded-full">
+                          <span className="px-3 py-1 bg-white/80 backdrop-blur-sm text-[#4E9141] text-xs font-semibold rounded-full capitalize">
                             {card.category}
                           </span>
-                          {index === 0 && (
+                          {card.new && (
                             <span className="px-2 py-1 bg-[#4E9141] text-white text-xs font-bold rounded">
                               NEW
                             </span>
@@ -1091,7 +1098,7 @@ export default function InsightsPageV2() {
                         {/* Card Image */}
                         <div className="w-full h-32 bg-white/60 rounded-xl mb-4 flex items-center justify-center overflow-hidden relative">
                           <Image 
-                            src={insights[index]?.image || insights[0].image}
+                            src={card.image}
                             alt={card.title}
                             fill
                             sizes="(max-width: 768px) 100vw, 288px"
@@ -1100,7 +1107,7 @@ export default function InsightsPageV2() {
                         </div>
                         
                         {/* Card Title */}
-                        <h3 className="font-bold text-[#1D342F] text-lg leading-tight mb-3">
+                        <h3 className="font-bold text-[#1D342F] text-lg leading-tight mb-3 line-clamp-2">
                           {card.title}
                         </h3>
                         
