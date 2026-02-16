@@ -1,5 +1,48 @@
+// src/data/blogData.js
+// Single source of truth imported by both BlogPage and BlogDetailPage
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const categories = [
+  { id: 'all',             label: 'All',             count: 75 },
+  { id: 'finance',         label: 'Finance',         count: 15 },
+  { id: 'market-research', label: 'Market Research', count: 18 },
+  { id: 'strategy',        label: 'Strategy',        count: 12 },
+  { id: 'due-diligence',   label: 'Due Diligence',   count: 8  },
+  { id: 'industry',        label: 'Industry',        count: 12 },
+  { id: 'entrepreneurship',label: 'Entrepreneurship',count: 10 },
+]
+
+export const popularTags = [
+  'Financial Modelling', 'Due Diligence', 'Market Entry', 'IPO', 'MIS',
+  'Consulting', 'Strategy', 'M&A', 'Growth',
+]
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Helper — builds a content block for posts that only have list metadata.
+// Replace these stubs with real CMS content as articles are written.
+// ─────────────────────────────────────────────────────────────────────────────
+function stub(title, excerpt, tags = []) {
+  return {
+    introduction: excerpt,
+    sections: [
+      {
+        heading: 'Overview',
+        content: `This article provides expert analysis and actionable insights on the topic of "${title}". MARC's research and advisory teams bring deep industry knowledge to help businesses make better, faster decisions.`,
+      },
+      {
+        heading: 'Key Insights & Recommendations',
+        content: `Based on our research and client experience, here are the most important considerations for this topic:\n\n• Understand the strategic context before acting\n• Benchmark against industry best practices\n• Build a data-driven decision framework\n• Engage experienced advisors to avoid common pitfalls\n\nFor the complete article with detailed case studies and expert recommendations, visit the full version on the MARC website.`,
+      },
+    ],
+    conclusion: `This topic is critical for businesses looking to grow sustainably and make well-informed decisions. MARC's team of experts is ready to apply these insights to your specific business context — reach out to schedule a consultation.`,
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BLOG DATA
+// ─────────────────────────────────────────────────────────────────────────────
 // Chunk 1: Blog entries 1-10
-export const blogDataChunk1 = [
+export const blogs = [
   {
     id: 1,
     slug: 'financial-model-validation-2025',
@@ -482,4 +525,4 @@ export const blogDataChunk1 = [
       conclusion: "Investors expect clarity on deal structure, funding needs, and expected returns.\n\nA professional mergers and acquisitions advisory firm brings structure, market insight, and credibility to the deal process, turning documentation into persuasion. Partnering with experiencedM&A consulting firms in Indiacan ensure your CIM aligns with investor expectations and maximizes deal outcomes."
     }
   }
-];
+]
