@@ -379,7 +379,7 @@ export const blogDataChunk1 = [
     id: 9,
     slug: 'why-market-research-drives-success',
     title: 'Why Market Research Drives Success',
-    excerpt: 'In today's fast-changing world, market research and consulting have become the foundation of every successful project.',
+    excerpt: 'In today\'s fast-changing world, market research and consulting have become the foundation of every successful project.',
     category: 'research',
     categoryLabel: 'Market Research',
     author: 'MARC Research Team',
