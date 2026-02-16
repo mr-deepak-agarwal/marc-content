@@ -9,10 +9,7 @@ import {
   FileText, Download, Mail, ArrowUpRight
 } from 'lucide-react'
 
-// This would come from your API/CMS based on the slug
-// For now, using sample data structure matching your blog posts
-const getBlogPost = (slug: string) => {
-  // In production, fetch this from your CMS or database
+const getBlogPost = (slug) => {
   return {
     id: 1,
     slug: "financial-model-validation-2025",
@@ -32,7 +29,6 @@ const getBlogPost = (slug: string) => {
     tags: ["Financial Modeling", "Validation", "Risk Management", "Due Diligence"],
     featured: true,
     
-    // Content sections
     content: {
       introduction: `In the high-stakes world of business financing and mergers & acquisitions, a single flawed assumption can cascade into million-dollar losses. The spectacular collapse of Theranos serves as a stark reminder: when financial models aren't properly validated, even the most promising ventures can crumble.
 
@@ -171,7 +167,6 @@ In 2025's complex business environment, validation is your competitive advantage
 The question isn't whether you can afford to validate your financial models. The question is: can you afford not to?`
     },
     
-    // Call to action
     cta: {
       title: "Need Expert Financial Model Validation?",
       description: "Our team of financial experts can help you validate your models, identify risks, and build investor confidence.",
@@ -181,7 +176,6 @@ The question isn't whether you can afford to validate your financial models. The
   }
 }
 
-// Related articles - these would come from your blog array
 const relatedArticles = [
   {
     id: 2,
@@ -219,10 +213,9 @@ export default function BlogDetailPage() {
   const [bookmarked, setBookmarked] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  // In production, get slug from params and fetch the post
   const blogPost = getBlogPost("financial-model-validation-2025")
 
-  const handleShare = (platform: string) => {
+  const handleShare = (platform) => {
     const url = typeof window !== 'undefined' ? window.location.href : ''
     const text = blogPost.title
     
@@ -237,7 +230,7 @@ export default function BlogDetailPage() {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } else {
-      window.open(shareUrls[platform as keyof typeof shareUrls], '_blank', 'width=600,height=400')
+      window.open(shareUrls[platform], '_blank', 'width=600,height=400')
     }
   }
 
@@ -260,6 +253,7 @@ export default function BlogDetailPage() {
       {/* Hero Section */}
       <article className="bg-white">
         <div className="max-w-4xl mx-auto px-6 pt-12 pb-8">
+
           {/* Category & Meta */}
           <div className="flex items-center gap-4 mb-6">
             <span className="px-4 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full uppercase tracking-wide">
@@ -372,6 +366,7 @@ export default function BlogDetailPage() {
 
         {/* Article Content */}
         <div className="max-w-4xl mx-auto px-6 py-16">
+
           {/* Introduction */}
           <div className="prose prose-lg max-w-none mb-12">
             <p className="text-lg text-[#47635D] leading-relaxed whitespace-pre-line">
