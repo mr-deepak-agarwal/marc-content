@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Footer from '@/components/Footer'
 import { 
   Download, Search, ArrowRight, FileText, TrendingUp, ArrowUpRight,
@@ -10,137 +11,766 @@ import {
 } from 'lucide-react'
 
 const categories = [
-  { id: 'all', label: 'All Reports', count: 65 },
-  { id: 'healthcare', label: 'Healthcare', count: 12 },
-  { id: 'hospitality', label: 'Hospitality', count: 15 },
-  { id: 'manufacturing', label: 'Manufacturing', count: 18 },
-  { id: 'retail', label: 'Retail & FMCG', count: 14 },
-  { id: 'energy', label: 'Energy', count: 6 },
+  { id: 'all', label: 'All Reports', count: 73 },
+  { id: 'healthcare', label: 'Healthcare', count: 10 },
+  { id: 'hospitality', label: 'Hospitality', count: 13 },
+  { id: 'manufacturing', label: 'Manufacturing', count: 14 },
+  { id: 'retail', label: 'Retail & FMCG', count: 12 },
+  { id: 'energy', label: 'Energy', count: 5 },
+  { id: 'other', label: 'Other', count: 19 },
 ]
 
 const insights = [
-  { 
-    title: 'Indian Nutraceuticals and OTC Pharmaceutical Market Entry', 
-    category: 'healthcare', 
-    featured: true, 
-    new: true, 
-    downloads: '2.4k', 
-    readTime: '12 min read',
-    date: 'January 2026',
-    excerpt: 'Comprehensive analysis of market entry strategies for nutraceutical and OTC pharmaceutical companies looking to expand in India.',
-    image: 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?w=800' 
+  {
+    title: "Overview of the Condiments Market",
+    category: "retail",
+    image: "/images/insights/spices-1-500x286.png",
+    date: "February 2026",
+    downloads: "1.2k",
+    readTime: "10 min read",
+    new: true,
+    featured: false
   },
-  { 
-    title: 'Digital Healthcare Report 2025', 
-    category: 'healthcare', 
-    featured: true, 
-    downloads: '1.8k', 
-    readTime: '18 min read',
-    date: 'December 2025',
-    excerpt: 'How technology is transforming healthcare delivery and patient outcomes across emerging markets.',
-    image: 'https://images.pexels.com/photos/7089020/pexels-photo-7089020.jpeg?w=800' 
+  {
+    title: "MARC MSME Overview 2026",
+    category: "manufacturing",
+    image: "/images/insights/marc-msme-1.png",
+    date: "February 2026",
+    downloads: "2.1k",
+    readTime: "15 min read",
+    new: true,
+    featured: false
   },
-  { 
-    title: 'GST 2.0: Key Reforms and Sectoral Impact', 
-    category: 'retail', 
-    new: true, 
-    downloads: '3.1k', 
-    readTime: '8 min read',
-    date: 'January 2026',
-    excerpt: 'Analysis of proposed GST reforms and their potential impact across key sectors of the Indian economy.',
-    image: 'https://images.pexels.com/photos/6694543/pexels-photo-6694543.jpeg?w=800' 
+  {
+    title: "India Life Sciences Landscape",
+    category: "healthcare",
+    image: "/images/insights/lifescience-marc-1.png",
+    date: "February 2026",
+    downloads: "1.8k",
+    readTime: "18 min read",
+    new: true,
+    featured: false
   },
-  { 
-    title: 'Contract Manufacturing in India', 
-    category: 'manufacturing', 
-    downloads: '1.5k', 
-    readTime: '15 min read',
-    date: 'November 2025',
-    excerpt: 'Exploring opportunities and challenges in India\'s growing contract manufacturing sector.',
-    image: 'https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?w=800' 
+  {
+    title: "Indian Nutraceuticals and OTC Pharmaceutical Market Entry",
+    category: "healthcare",
+    image: "/images/insights/nutraci-500x286.png",
+    date: "December 2025",
+    downloads: "2.4k",
+    readTime: "12 min read",
+    new: true,
+    featured: true,
+    excerpt: "Comprehensive analysis of market entry strategies for nutraceutical and OTC pharmaceutical companies looking to expand in India."
   },
-  { 
-    title: 'Rise of Experiential Dining', 
-    category: 'hospitality', 
-    featured: true, 
-    downloads: '2.2k', 
-    readTime: '10 min read',
-    date: 'October 2025',
-    excerpt: 'How restaurants are reimagining the dining experience to attract and retain customers.',
-    image: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?w=800' 
+  {
+    title: "Digital Healthcare Report",
+    category: "healthcare",
+    image: "/images/insights/digitalimg-1-500x286.png",
+    date: "December 2025",
+    downloads: "1.8k",
+    readTime: "18 min read",
+    new: false,
+    featured: true,
+    excerpt: "How technology is transforming healthcare delivery and patient outcomes across emerging markets."
   },
-  { 
-    title: 'Rise of Luxury Hospitality in Tier-2 Cities', 
-    category: 'hospitality', 
-    downloads: '1.9k', 
-    readTime: '14 min read',
-    date: 'September 2025',
-    excerpt: 'Analyzing the growth of premium hospitality offerings beyond metro cities.',
-    image: 'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?w=800' 
+  {
+    title: "GST 2.0: Key Reforms and Sectoral Impact",
+    category: "retail",
+    image: "/images/insights/newgst-500x286.png",
+    date: "December 2025",
+    downloads: "3.1k",
+    readTime: "8 min read",
+    new: true,
+    featured: true,
+    excerpt: "Analysis of proposed GST reforms and their potential impact across key sectors of the Indian economy."
   },
-  { 
-    title: 'Growth of Co-working Spaces', 
-    category: 'retail', 
-    downloads: '1.2k', 
-    readTime: '9 min read',
-    date: 'August 2025',
-    excerpt: 'The evolution of workspace solutions and future trends in flexible office spaces.',
-    image: 'https://images.pexels.com/photos/7070/space-desk-workspace-coworking.jpg?w=800' 
+  {
+    title: "Contract Manufacturing in India",
+    category: "manufacturing",
+    image: "/images/insights/contractm-500x286.png",
+    date: "December 2025",
+    downloads: "1.5k",
+    readTime: "15 min read",
+    new: false,
+    featured: true,
+    excerpt: "Exploring opportunities and challenges in India's growing contract manufacturing sector."
   },
-  { 
-    title: 'Manufacturing Industry Overview', 
-    category: 'manufacturing', 
-    downloads: '2.8k', 
-    readTime: '20 min read',
-    date: 'July 2025',
-    excerpt: 'Comprehensive overview of India\'s manufacturing sector performance and outlook.',
-    image: 'https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?w=800' 
+  {
+    title: "Rise of Experiential Dining",
+    category: "hospitality",
+    image: "/images/insights/dining-500x286.png",
+    date: "December 2025",
+    downloads: "2.2k",
+    readTime: "10 min read",
+    new: false,
+    featured: true,
+    excerpt: "How restaurants are reimagining the dining experience to attract and retain customers."
   },
-  { 
-    title: 'FMCG Industry Overview 2025', 
-    category: 'retail', 
-    new: true, 
-    downloads: '3.5k', 
-    readTime: '16 min read',
-    date: 'January 2026',
-    excerpt: 'State of the FMCG industry with consumer trends and market projections.',
-    image: 'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?w=800' 
+  {
+    title: "Rise of Luxury Hospitality in Tier-2 Cities",
+    category: "hospitality",
+    image: "/images/insights/rise-of-luxury-hospitality-in-tier-2-cities-image-500x286.jpg",
+    date: "October 2025",
+    downloads: "1.9k",
+    readTime: "14 min read",
+    new: false,
+    featured: false,
+    excerpt: "Analyzing the growth of premium hospitality offerings beyond metro cities."
   },
-  { 
-    title: 'Impact of Q-commerce on FMCG', 
-    category: 'retail', 
-    downloads: '2.1k', 
-    readTime: '11 min read',
-    date: 'December 2025',
-    excerpt: 'How quick commerce is disrupting traditional FMCG distribution channels.',
-    image: 'https://images.pexels.com/photos/4393668/pexels-photo-4393668.jpeg?w=800' 
+  {
+    title: "Growth of Co-working Spaces in Tier-2 Cities in India",
+    category: "retail",
+    image: "/images/insights/growth-of-co-working-spaces-in-tier-2-cities-in-india-image-500x286.jpg",
+    date: "October 2025",
+    downloads: "1.2k",
+    readTime: "9 min read",
+    new: false,
+    featured: false,
+    excerpt: "The evolution of workspace solutions and future trends in flexible office spaces."
   },
-  { 
-    title: "India's Logistics Market Analysis", 
-    category: 'manufacturing', 
-    downloads: '1.7k', 
-    readTime: '13 min read',
-    date: 'November 2025',
-    excerpt: 'Deep dive into India\'s logistics infrastructure and growth opportunities.',
-    image: 'https://images.pexels.com/photos/4481326/pexels-photo-4481326.jpeg?w=800' 
+  {
+    title: "Indigo Case Study Report",
+    category: "hospitality",
+    image: "/images/insights/indigo-case-study-report-updated-image-500x286.jpg",
+    date: "October 2025",
+    downloads: "980",
+    readTime: "12 min read",
+    new: false,
+    featured: false
   },
-  { 
-    title: 'Enhancing Power Infrastructure', 
-    category: 'energy', 
-    downloads: '890', 
-    readTime: '17 min read',
-    date: 'October 2025',
-    excerpt: 'Strategies for modernizing India\'s power infrastructure for sustainable growth.',
-    image: 'https://images.pexels.com/photos/9875441/pexels-photo-9875441.jpeg?w=800' 
+  {
+    title: "Manufacturing Industry Overview",
+    category: "manufacturing",
+    image: "/images/insights/manufacturing-500x286.jpg",
+    date: "June 2025",
+    downloads: "2.8k",
+    readTime: "20 min read",
+    new: false,
+    featured: false,
+    excerpt: "Comprehensive overview of India's manufacturing sector performance and outlook."
   },
+  {
+    title: "FMCG Industry Overview 2025",
+    category: "retail",
+    image: "/images/insights/qbs7kzx5imm37fau9lroszd24vnbivsj-500x286.jpg",
+    date: "July 2025",
+    downloads: "3.5k",
+    readTime: "16 min read",
+    new: false,
+    featured: false,
+    excerpt: "State of the FMCG industry with consumer trends and market projections."
+  },
+  {
+    title: "Impact of Q-commerce on FMCG Sales in India",
+    category: "retail",
+    image: "/images/insights/qcommerce.jpg",
+    date: "July 2025",
+    downloads: "2.1k",
+    readTime: "11 min read",
+    new: false,
+    featured: false,
+    excerpt: "How quick commerce is disrupting traditional FMCG distribution channels."
+  },
+  {
+    title: "Maha Kumbh 2025",
+    category: "hospitality",
+    image: "/images/insights/mahakumbh-500x286.jpg",
+    date: "June 2025",
+    downloads: "1.4k",
+    readTime: "8 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "India's Logistics Market Analysis",
+    category: "manufacturing",
+    image: "/images/insights/logistics-500x286.webp",
+    date: "July 2025",
+    downloads: "1.7k",
+    readTime: "13 min read",
+    new: false,
+    featured: false,
+    excerpt: "Deep dive into India's logistics infrastructure and growth opportunities."
+  },
+  {
+    title: "FDI: Fuelling India's Growth and Development",
+    category: "manufacturing",
+    image: "/images/insights/fdi-500x286.jpg",
+    date: "June 2025",
+    downloads: "1.6k",
+    readTime: "14 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "M&A Tracker 2024",
+    category: "other",
+    image: "/images/insights/m_and_a.png",
+    date: "February 2025",
+    downloads: "2.3k",
+    readTime: "25 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Ghost Kitchen Industry",
+    category: "hospitality",
+    image: "/images/insights/ghost-500x286.jpg",
+    date: "June 2025",
+    downloads: "1.1k",
+    readTime: "10 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Hospitality Industry Overview 2025",
+    category: "hospitality",
+    image: "/images/insights/hospitality_2025-500x286.jpg",
+    date: "February 2025",
+    downloads: "2.7k",
+    readTime: "18 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Telangana MSME Policy 2024: Life Sciences & Pharma",
+    category: "healthcare",
+    image: "/images/insights/telangana-500x286.jpg",
+    date: "February 2025",
+    downloads: "890",
+    readTime: "12 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Understanding USA Tariffs and their Impact on India",
+    category: "manufacturing",
+    image: "/images/insights/usa-1.png",
+    date: "June 2025",
+    downloads: "1.9k",
+    readTime: "11 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "The Rubber Industry in Kerala",
+    category: "manufacturing",
+    image: "/images/insights/kerala_report-1-500x286.png",
+    date: "February 2025",
+    downloads: "720",
+    readTime: "9 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Enhancing Power Infrastructure",
+    category: "energy",
+    image: "/images/insights/elec-500x286.jpg",
+    date: "October 2024",
+    downloads: "890",
+    readTime: "17 min read",
+    new: false,
+    featured: false,
+    excerpt: "Strategies for modernizing India's power infrastructure for sustainable growth."
+  },
+  {
+    title: "Hyderabad: A Rising Powerhouse in India's Growth Story",
+    category: "other",
+    image: "/images/insights/powerhouse-1.jpg",
+    date: "June 2025",
+    downloads: "1.3k",
+    readTime: "13 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "M&A Tracker Q2 2024",
+    category: "other",
+    image: "/images/insights/Picture1-1-500x286.png",
+    date: "October 2024",
+    downloads: "1.5k",
+    readTime: "20 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Mergers and Acquisitions Tracker 2023",
+    category: "other",
+    image: "/images/insights/Mna-report.jpg",
+    date: "April 2024",
+    downloads: "2.1k",
+    readTime: "22 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Healthcare Sector Competencies",
+    category: "healthcare",
+    image: "/images/insights/health2025-500x286.jpg",
+    date: "March 2025",
+    downloads: "1.2k",
+    readTime: "15 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Shaping Goa's Future: Impact of Marina Development",
+    category: "hospitality",
+    image: "/images/insights/Picture1-500x286.jpg",
+    date: "August 2024",
+    downloads: "650",
+    readTime: "11 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Mopa Goa Airport",
+    category: "hospitality",
+    image: "/images/insights/bao-menglong-FhoJYnw-cg-unsplash-scaled-500x286.jpg",
+    date: "June 2024",
+    downloads: "780",
+    readTime: "9 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Pharma Industry in Telangana",
+    category: "healthcare",
+    image: "/images/insights/pharma-500x286.jpg",
+    date: "February 2025",
+    downloads: "1.1k",
+    readTime: "14 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Rail Double Tracking in Goa",
+    category: "hospitality",
+    image: "/images/insights/peakpx-500x286.jpg",
+    date: "August 2024",
+    downloads: "540",
+    readTime: "8 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Climate Change and its Effect on the Indian Economy",
+    category: "energy",
+    image: "/images/insights/MARC-Insight-cliate.jpg",
+    date: "March 2024",
+    downloads: "1.4k",
+    readTime: "16 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Tamil Nadu's EV Policy",
+    category: "energy",
+    image: "/images/insights/ev_report-500x286.jpg",
+    date: "February 2025",
+    downloads: "920",
+    readTime: "10 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Maharashtra: Pursuit of a $1 Trillion Economy by 2028",
+    category: "other",
+    image: "/images/insights/image-1-1-500x286.png",
+    date: "August 2024",
+    downloads: "1.6k",
+    readTime: "15 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Restaurant Industry Overview 2024",
+    category: "hospitality",
+    image: "/images/insights/Restaurant-Industry-JPEG.jpg",
+    date: "February 2024",
+    downloads: "2.3k",
+    readTime: "17 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "IT and Startup Ecosystem in Mysuru",
+    category: "other",
+    image: "/images/insights/mysore_it-500x286.jpg",
+    date: "February 2025",
+    downloads: "840",
+    readTime: "12 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Impact of IPL on the Indian Economy",
+    category: "other",
+    image: "/images/insights/MARC-IPL.jpg",
+    date: "April 2024",
+    downloads: "1.7k",
+    readTime: "11 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Gujarat Textiles",
+    category: "manufacturing",
+    image: "/images/insights/Gujarat-picture-1-500x286.png",
+    date: "October 2024",
+    downloads: "680",
+    readTime: "10 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Retail Industry Overview 2024",
+    category: "retail",
+    image: "/images/insights/Retail-report.jpg",
+    date: "April 2024",
+    downloads: "2.9k",
+    readTime: "19 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Hospitality Industry Overview 2024",
+    category: "hospitality",
+    image: "/images/insights/Hospitality-Industry-report-picture.png",
+    date: "March 2024",
+    downloads: "2.6k",
+    readTime: "18 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Healthcare in Dakshin Kannada",
+    category: "healthcare",
+    image: "/images/insights/healthcare-500x286.jpg",
+    date: "September 2024",
+    downloads: "590",
+    readTime: "11 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Quick Commerce Industry Overview",
+    category: "retail",
+    image: "/images/insights/QC.jpg",
+    date: "March 2024",
+    downloads: "1.8k",
+    readTime: "13 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Odisha: A Land to Explore and Invest",
+    category: "other",
+    image: "/images/insights/Odisha-picture.jpg",
+    date: "August 2023",
+    downloads: "970",
+    readTime: "14 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "China +1 Policy",
+    category: "manufacturing",
+    image: "/images/insights/dde637cc-500x286.jpg",
+    date: "October 2024",
+    downloads: "1.5k",
+    readTime: "12 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Electronic Manufacturing Services",
+    category: "manufacturing",
+    image: "/images/insights/EMS-Industry.jpg",
+    date: "March 2024",
+    downloads: "1.3k",
+    readTime: "15 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Indian Shipping and Logistics Industry",
+    category: "manufacturing",
+    image: "/images/insights/RS.jpg",
+    date: "December 2023",
+    downloads: "1.6k",
+    readTime: "16 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Hubballi-Dharwad",
+    category: "other",
+    image: "/images/insights/DALL·E-2024-10-04-17.03.31-A-picturesque-aerial-view-of-Hubli-Dharwad-a-prominent-twin-city-in-Karnataka-India.-The-image-should-capture-both-the-urban-and-suburban-landscapes-500x286.webp",
+    date: "October 2024",
+    downloads: "720",
+    readTime: "10 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Education Industry Overview 2023",
+    category: "other",
+    image: "/images/insights/Education-Industry-Overview.jpg",
+    date: "August 2023",
+    downloads: "1.9k",
+    readTime: "17 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Online/Offline Gambling & Gaming",
+    category: "other",
+    image: "/images/insights/Gaming-and-gambling.jpg",
+    date: "October 2023",
+    downloads: "1.1k",
+    readTime: "13 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Education Sector in Dakshina Kannada",
+    category: "other",
+    image: "/images/insights/Picture11-500x286.png",
+    date: "September 2024",
+    downloads: "480",
+    readTime: "9 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Rise of Family Offices in India",
+    category: "other",
+    image: "/images/insights/Rise-Of-Family-Offices-In-India.png",
+    date: "April 2023",
+    downloads: "1.4k",
+    readTime: "14 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Manufacturing Industry Overview 2023",
+    category: "manufacturing",
+    image: "/images/insights/Manufacturing-insight-report.jpg",
+    date: "July 2023",
+    downloads: "2.4k",
+    readTime: "20 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "National Education Policy 2020",
+    category: "other",
+    image: "/images/insights/church-of-the-king-j9jZSqfH5YI-unsplash-scaled-500x286.jpg",
+    date: "August 2024",
+    downloads: "1.2k",
+    readTime: "15 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Sustainability in Supply Chains",
+    category: "manufacturing",
+    image: "/images/insights/Supply-23.jpg",
+    date: "August 2022",
+    downloads: "890",
+    readTime: "11 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Indian Waste Management Industry 2023",
+    category: "energy",
+    image: "/images/insights/Waste-Management.jpg",
+    date: "August 2023",
+    downloads: "1.3k",
+    readTime: "13 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Healthcare Industry",
+    category: "healthcare",
+    image: "/images/insights/image-2-500x286.png",
+    date: "July 2024",
+    downloads: "2.1k",
+    readTime: "16 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Top 5 Business Ideas for 2023",
+    category: "other",
+    image: "/images/insights/To-5-Business-Idea-Image.jpg",
+    date: "January 2023",
+    downloads: "2.5k",
+    readTime: "10 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Union Budget 2023 for MSMEs",
+    category: "other",
+    image: "/images/insights/Union-budget-Jpeg.jpg",
+    date: "February 2023",
+    downloads: "1.7k",
+    readTime: "12 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "India's AYUSH Sector Overview",
+    category: "healthcare",
+    image: "/images/insights/AYUSH-sector.jpg",
+    date: "May 2024",
+    downloads: "980",
+    readTime: "11 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Indian Pharma Sector Report 2021",
+    category: "healthcare",
+    image: "/images/insights/pharma.jpg",
+    date: "August 2021",
+    downloads: "2.3k",
+    readTime: "19 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "UK Fintech Industry Report",
+    category: "other",
+    image: "/images/insights/Insight-1.jpg",
+    date: "June 2022",
+    downloads: "1.1k",
+    readTime: "14 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "India's Online Travel Agencies (OTAs)",
+    category: "hospitality",
+    image: "/images/insights/Travel-agency-report.jpg",
+    date: "April 2024",
+    downloads: "1.5k",
+    readTime: "12 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "US Educational Sector Report 2022",
+    category: "other",
+    image: "/images/insights/insight-3.jpg",
+    date: "June 2022",
+    downloads: "870",
+    readTime: "13 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Indian Gaming Industry",
+    category: "other",
+    image: "/images/insights/gaming-23.jpg",
+    date: "August 2022",
+    downloads: "1.6k",
+    readTime: "15 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "FMCG Industry Overview 2024",
+    category: "retail",
+    image: "/images/insights/MARC-Insights-FMCG-Industry-in-India.jpg",
+    date: "April 2024",
+    downloads: "3.2k",
+    readTime: "18 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "US Hospitality Sector Report 2022",
+    category: "hospitality",
+    image: "/images/insights/insight-2.jpg",
+    date: "June 2022",
+    downloads: "950",
+    readTime: "14 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Future of Home Delivery in India",
+    category: "retail",
+    image: "/images/insights/Insights_32.jpg",
+    date: "July 2022",
+    downloads: "1.4k",
+    readTime: "11 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "India's Textile Industry Overview",
+    category: "manufacturing",
+    image: "/images/insights/Textile-industry.jpg",
+    date: "March 2024",
+    downloads: "1.8k",
+    readTime: "16 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "The Organic Food Market Report 2021",
+    category: "retail",
+    image: "/images/insights/organic-food.jpg",
+    date: "August 2021",
+    downloads: "1.2k",
+    readTime: "12 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Technologies Changing the Food Industry",
+    category: "retail",
+    image: "/images/insights/MARC-Food-Tech.jpg",
+    date: "January 2023",
+    downloads: "1.5k",
+    readTime: "13 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Alcohol Industry in India",
+    category: "retail",
+    image: "/images/insights/MARC-Insight-Template.jpg",
+    date: "November 2023",
+    downloads: "1.9k",
+    readTime: "15 min read",
+    new: false,
+    featured: false
+  },
+  {
+    title: "Renewable Energy Industry Overview",
+    category: "energy",
+    image: "/images/insights/Renewables.jpg",
+    date: "September 2023",
+    downloads: "2.2k",
+    readTime: "18 min read",
+    new: false,
+    featured: false
+  }
 ]
 
 // Card stack data for hero animation
 const stackedCards = [
-  { title: 'Healthcare Market Analysis', category: 'Healthcare', downloads: '2.4k', color: '#E8F5E3' },
-  { title: 'Digital Transformation Report', category: 'Technology', downloads: '1.8k', color: '#FEF3C7' },
-  { title: 'Retail Industry Outlook 2026', category: 'Retail', downloads: '3.1k', color: '#DBEAFE' },
-  { title: 'Manufacturing Trends India', category: 'Manufacturing', downloads: '1.5k', color: '#FCE7F3' },
+  { title: 'Indian Nutraceuticals and OTC Pharmaceutical Market Entry', category: 'Healthcare', downloads: '2.4k', color: '#E8F5E3' },
+  { title: 'Digital Healthcare Report', category: 'Healthcare', downloads: '1.8k', color: '#FEF3C7' },
+  { title: 'GST 2.0: Key Reforms and Sectoral Impact', category: 'Retail', downloads: '3.1k', color: '#DBEAFE' },
+  { title: 'Contract Manufacturing in India', category: 'Manufacturing', downloads: '1.5k', color: '#FCE7F3' },
 ]
 
 const trendingTopics = [
@@ -191,7 +821,7 @@ export default function InsightsPageV2() {
   })
 
   const featuredInsight = insights.find(i => i.featured && i.new) || insights[0]
-  const latestInsights = insights.filter(i => i !== featuredInsight).slice(0, 4) // Changed to 4
+  const latestInsights = insights.filter(i => i !== featuredInsight).slice(0, 4)
 
   return (
     <div className="bg-white min-h-screen" data-testid="insights-page-v2">
@@ -221,7 +851,7 @@ export default function InsightsPageV2() {
               {/* Quick Stats Row */}
               <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
                 <div>
-                  <div className="text-3xl font-bold text-[#4E9141]">65+</div>
+                  <div className="text-3xl font-bold text-[#4E9141]">73+</div>
                   <div className="text-sm text-[#47635D] mt-1">Research Reports</div>
                 </div>
                 <div>
@@ -287,12 +917,14 @@ export default function InsightsPageV2() {
                           )}
                         </div>
                         
-                        {/* Card Image Placeholder */}
-                        <div className="w-full h-32 bg-white/60 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
-                          <img 
+                        {/* Card Image */}
+                        <div className="w-full h-32 bg-white/60 rounded-xl mb-4 flex items-center justify-center overflow-hidden relative">
+                          <Image 
                             src={insights[index]?.image || insights[0].image}
                             alt={card.title}
-                            className="w-full h-full object-cover"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 288px"
+                            className="object-cover"
                           />
                         </div>
                         
@@ -355,12 +987,15 @@ export default function InsightsPageV2() {
             <Link href="#" className="group block h-full">
               <article className="h-full bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500 flex flex-col">
                 <div className="relative aspect-[16/9] overflow-hidden">
-                  <img 
+                  <Image 
                     src={featuredInsight.image} 
                     alt={featuredInsight.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    priority
                   />
-                  <div className="absolute top-4 left-4 flex gap-2">
+                  <div className="absolute top-4 left-4 flex gap-2 z-10">
                     {featuredInsight.new && (
                       <span className="px-3 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded-full">
                         NEW
@@ -402,13 +1037,15 @@ export default function InsightsPageV2() {
                 <Link key={i} href="#" className="group block">
                   <article className="h-full bg-white rounded-xl border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img 
+                      <Image 
                         src={insight.image} 
                         alt={insight.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 300px"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       {insight.new && (
-                        <div className="absolute top-2 left-2 px-2 py-0.5 bg-[#4E9141] text-white text-xs font-bold rounded">
+                        <div className="absolute top-2 left-2 px-2 py-0.5 bg-[#4E9141] text-white text-xs font-bold rounded z-10">
                           NEW
                         </div>
                       )}
@@ -509,15 +1146,17 @@ export default function InsightsPageV2() {
                 <article className="h-full bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300 overflow-hidden">
                   {/* Image */}
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <img 
+                    <Image 
                       src={insight.image} 
                       alt={insight.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     
                     {/* Badges */}
-                    <div className="absolute top-3 left-3 flex gap-2">
+                    <div className="absolute top-3 left-3 flex gap-2 z-10">
                       {insight.new && (
                         <span className="px-2.5 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded">
                           NEW
@@ -526,7 +1165,7 @@ export default function InsightsPageV2() {
                     </div>
 
                     {/* Download on hover */}
-                    <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all">
+                    <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all z-10">
                       <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
                         <Download className="w-5 h-5 text-[#4E9141]" />
                       </div>
