@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
@@ -784,9 +784,7 @@ const trendingTopics = [
 export default function InsightsPageV2() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
-  const [isVisible, setIsVisible] = useState({})
   const [activeCard, setActiveCard] = useState(0)
-  const observerRefs = useRef([])
 
   // Auto-rotate cards
   useEffect(() => {
@@ -794,24 +792,6 @@ export default function InsightsPageV2() {
       setActiveCard((prev) => (prev + 1) % stackedCards.length)
     }, 3000)
     return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const observers = observerRefs.current.map((ref, index) => {
-      if (!ref) return null
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(prev => ({ ...prev, [index]: true }))
-          }
-        },
-        { threshold: 0.1, rootMargin: '50px' }
-      )
-      observer.observe(ref)
-      return observer
-    })
-
-    return () => observers.forEach(obs => obs?.disconnect())
   }, [])
 
   const filteredInsights = insights.filter(insight => {
@@ -971,10 +951,9 @@ export default function InsightsPageV2() {
 
       {/* ==================== FEATURED INSIGHT - 1 Big + 4 Small ==================== */}
       <section 
-        ref={el => observerRefs.current[0] = el}
         className="py-16 bg-[#F7FFF5]"
       >
-        <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-sm font-semibold text-[#47635D] uppercase tracking-widest">Featured</h2>
             <Link href="#all-reports" className="text-[#4E9141] text-sm font-medium hover:underline flex items-center gap-1">
@@ -1092,10 +1071,9 @@ export default function InsightsPageV2() {
       {/* ==================== ALL REPORTS ==================== */}
       <section 
         id="all-reports"
-        ref={el => observerRefs.current[1] = el}
         className="py-16 bg-white"
       >
-        <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="max-w-7xl mx-auto px-6">
           
           {/* Header with Search & Filters */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
