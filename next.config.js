@@ -4,13 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.pexels.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.marcglocal.com',
+        hostname: 'marc-content.vercel.app',
       },
     ],
+    // Allow local images
+    unoptimized: false,
   },
 }
 
