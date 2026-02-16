@@ -10,6 +10,13 @@ import {
   BookOpen, BarChart3, Clock, ChevronRight, X
 } from 'lucide-react'
 
+// Helper function to generate PDF filename from title
+const getPdfFilename = (title) => {
+  return title
+    .replace(/[^a-zA-Z0-9-_\s]/g, '')
+    .replace(/\s+/g, '-') + '.pdf'
+}
+
 const categories = [
   { id: 'all', label: 'All Reports', count: 73 },
   { id: 'healthcare', label: 'Healthcare', count: 10 },
@@ -29,7 +36,8 @@ const insights = [
     downloads: "1.2k",
     readTime: "10 min read",
     new: true,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "MARC MSME Overview 2026",
@@ -39,7 +47,8 @@ const insights = [
     downloads: "2.1k",
     readTime: "15 min read",
     new: true,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "India Life Sciences Landscape",
@@ -49,7 +58,8 @@ const insights = [
     downloads: "1.8k",
     readTime: "18 min read",
     new: true,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Indian Nutraceuticals and OTC Pharmaceutical Market Entry",
@@ -60,6 +70,7 @@ const insights = [
     readTime: "12 min read",
     new: true,
     featured: true,
+    pdfAvailable: true,
     excerpt: "Comprehensive analysis of market entry strategies for nutraceutical and OTC pharmaceutical companies looking to expand in India."
   },
   {
@@ -71,6 +82,7 @@ const insights = [
     readTime: "18 min read",
     new: false,
     featured: true,
+    pdfAvailable: true,
     excerpt: "How technology is transforming healthcare delivery and patient outcomes across emerging markets."
   },
   {
@@ -82,6 +94,7 @@ const insights = [
     readTime: "8 min read",
     new: true,
     featured: true,
+    pdfAvailable: true,
     excerpt: "Analysis of proposed GST reforms and their potential impact across key sectors of the Indian economy."
   },
   {
@@ -93,6 +106,7 @@ const insights = [
     readTime: "15 min read",
     new: false,
     featured: true,
+    pdfAvailable: true,
     excerpt: "Exploring opportunities and challenges in India's growing contract manufacturing sector."
   },
   {
@@ -104,6 +118,7 @@ const insights = [
     readTime: "10 min read",
     new: false,
     featured: true,
+    pdfAvailable: true,
     excerpt: "How restaurants are reimagining the dining experience to attract and retain customers."
   },
   {
@@ -115,6 +130,7 @@ const insights = [
     readTime: "14 min read",
     new: false,
     featured: false,
+    pdfAvailable: true,
     excerpt: "Analyzing the growth of premium hospitality offerings beyond metro cities."
   },
   {
@@ -126,6 +142,7 @@ const insights = [
     readTime: "9 min read",
     new: false,
     featured: false,
+    pdfAvailable: true,
     excerpt: "The evolution of workspace solutions and future trends in flexible office spaces."
   },
   {
@@ -136,7 +153,8 @@ const insights = [
     downloads: "980",
     readTime: "12 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Manufacturing Industry Overview",
@@ -147,6 +165,7 @@ const insights = [
     readTime: "20 min read",
     new: false,
     featured: false,
+    pdfAvailable: true,
     excerpt: "Comprehensive overview of India's manufacturing sector performance and outlook."
   },
   {
@@ -158,6 +177,7 @@ const insights = [
     readTime: "16 min read",
     new: false,
     featured: false,
+    pdfAvailable: true,
     excerpt: "State of the FMCG industry with consumer trends and market projections."
   },
   {
@@ -169,6 +189,7 @@ const insights = [
     readTime: "11 min read",
     new: false,
     featured: false,
+    pdfAvailable: true,
     excerpt: "How quick commerce is disrupting traditional FMCG distribution channels."
   },
   {
@@ -179,7 +200,8 @@ const insights = [
     downloads: "1.4k",
     readTime: "8 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "India's Logistics Market Analysis",
@@ -190,6 +212,7 @@ const insights = [
     readTime: "13 min read",
     new: false,
     featured: false,
+    pdfAvailable: true,
     excerpt: "Deep dive into India's logistics infrastructure and growth opportunities."
   },
   {
@@ -200,7 +223,8 @@ const insights = [
     downloads: "1.6k",
     readTime: "14 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "M&A Tracker 2024",
@@ -210,7 +234,8 @@ const insights = [
     downloads: "2.3k",
     readTime: "25 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Ghost Kitchen Industry",
@@ -220,7 +245,8 @@ const insights = [
     downloads: "1.1k",
     readTime: "10 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Hospitality Industry Overview 2025",
@@ -230,7 +256,8 @@ const insights = [
     downloads: "2.7k",
     readTime: "18 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Telangana MSME Policy 2024: Life Sciences & Pharma",
@@ -240,7 +267,8 @@ const insights = [
     downloads: "890",
     readTime: "12 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Understanding USA Tariffs and their Impact on India",
@@ -250,7 +278,8 @@ const insights = [
     downloads: "1.9k",
     readTime: "11 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "The Rubber Industry in Kerala",
@@ -260,7 +289,8 @@ const insights = [
     downloads: "720",
     readTime: "9 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Enhancing Power Infrastructure",
@@ -271,6 +301,7 @@ const insights = [
     readTime: "17 min read",
     new: false,
     featured: false,
+    pdfAvailable: true,
     excerpt: "Strategies for modernizing India's power infrastructure for sustainable growth."
   },
   {
@@ -281,7 +312,8 @@ const insights = [
     downloads: "1.3k",
     readTime: "13 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "M&A Tracker Q2 2024",
@@ -291,7 +323,8 @@ const insights = [
     downloads: "1.5k",
     readTime: "20 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Mergers and Acquisitions Tracker 2023",
@@ -301,7 +334,8 @@ const insights = [
     downloads: "2.1k",
     readTime: "22 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Healthcare Sector Competencies",
@@ -311,7 +345,8 @@ const insights = [
     downloads: "1.2k",
     readTime: "15 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Shaping Goa's Future: Impact of Marina Development",
@@ -321,7 +356,8 @@ const insights = [
     downloads: "650",
     readTime: "11 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Mopa Goa Airport",
@@ -331,7 +367,8 @@ const insights = [
     downloads: "780",
     readTime: "9 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Pharma Industry in Telangana",
@@ -341,7 +378,8 @@ const insights = [
     downloads: "1.1k",
     readTime: "14 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Rail Double Tracking in Goa",
@@ -351,7 +389,8 @@ const insights = [
     downloads: "540",
     readTime: "8 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Climate Change and its Effect on the Indian Economy",
@@ -361,7 +400,8 @@ const insights = [
     downloads: "1.4k",
     readTime: "16 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Tamil Nadu's EV Policy",
@@ -371,7 +411,8 @@ const insights = [
     downloads: "920",
     readTime: "10 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Maharashtra: Pursuit of a $1 Trillion Economy by 2028",
@@ -381,7 +422,8 @@ const insights = [
     downloads: "1.6k",
     readTime: "15 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Restaurant Industry Overview 2024",
@@ -391,7 +433,8 @@ const insights = [
     downloads: "2.3k",
     readTime: "17 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "IT and Startup Ecosystem in Mysuru",
@@ -401,7 +444,8 @@ const insights = [
     downloads: "840",
     readTime: "12 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Impact of IPL on the Indian Economy",
@@ -411,7 +455,8 @@ const insights = [
     downloads: "1.7k",
     readTime: "11 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Gujarat Textiles",
@@ -421,7 +466,8 @@ const insights = [
     downloads: "680",
     readTime: "10 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Retail Industry Overview 2024",
@@ -431,7 +477,8 @@ const insights = [
     downloads: "2.9k",
     readTime: "19 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Hospitality Industry Overview 2024",
@@ -441,7 +488,8 @@ const insights = [
     downloads: "2.6k",
     readTime: "18 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Healthcare in Dakshin Kannada",
@@ -451,7 +499,8 @@ const insights = [
     downloads: "590",
     readTime: "11 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Quick Commerce Industry Overview",
@@ -461,7 +510,8 @@ const insights = [
     downloads: "1.8k",
     readTime: "13 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Odisha: A Land to Explore and Invest",
@@ -471,7 +521,8 @@ const insights = [
     downloads: "970",
     readTime: "14 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "China +1 Policy",
@@ -481,7 +532,8 @@ const insights = [
     downloads: "1.5k",
     readTime: "12 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Electronic Manufacturing Services",
@@ -491,7 +543,8 @@ const insights = [
     downloads: "1.3k",
     readTime: "15 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Indian Shipping and Logistics Industry",
@@ -501,7 +554,8 @@ const insights = [
     downloads: "1.6k",
     readTime: "16 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Hubballi-Dharwad",
@@ -511,7 +565,8 @@ const insights = [
     downloads: "720",
     readTime: "10 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Education Industry Overview 2023",
@@ -521,7 +576,8 @@ const insights = [
     downloads: "1.9k",
     readTime: "17 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Online/Offline Gambling & Gaming",
@@ -531,7 +587,8 @@ const insights = [
     downloads: "1.1k",
     readTime: "13 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Education Sector in Dakshina Kannada",
@@ -541,7 +598,8 @@ const insights = [
     downloads: "480",
     readTime: "9 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Rise of Family Offices in India",
@@ -551,7 +609,8 @@ const insights = [
     downloads: "1.4k",
     readTime: "14 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Manufacturing Industry Overview 2023",
@@ -561,7 +620,8 @@ const insights = [
     downloads: "2.4k",
     readTime: "20 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "National Education Policy 2020",
@@ -571,7 +631,8 @@ const insights = [
     downloads: "1.2k",
     readTime: "15 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Sustainability in Supply Chains",
@@ -581,7 +642,8 @@ const insights = [
     downloads: "890",
     readTime: "11 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Indian Waste Management Industry 2023",
@@ -591,7 +653,8 @@ const insights = [
     downloads: "1.3k",
     readTime: "13 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Healthcare Industry",
@@ -601,7 +664,8 @@ const insights = [
     downloads: "2.1k",
     readTime: "16 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Top 5 Business Ideas for 2023",
@@ -611,7 +675,8 @@ const insights = [
     downloads: "2.5k",
     readTime: "10 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Union Budget 2023 for MSMEs",
@@ -621,7 +686,8 @@ const insights = [
     downloads: "1.7k",
     readTime: "12 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "India's AYUSH Sector Overview",
@@ -631,7 +697,8 @@ const insights = [
     downloads: "980",
     readTime: "11 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Indian Pharma Sector Report 2021",
@@ -641,7 +708,8 @@ const insights = [
     downloads: "2.3k",
     readTime: "19 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "UK Fintech Industry Report",
@@ -651,7 +719,8 @@ const insights = [
     downloads: "1.1k",
     readTime: "14 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "India's Online Travel Agencies (OTAs)",
@@ -661,7 +730,8 @@ const insights = [
     downloads: "1.5k",
     readTime: "12 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "US Educational Sector Report 2022",
@@ -671,7 +741,8 @@ const insights = [
     downloads: "870",
     readTime: "13 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Indian Gaming Industry",
@@ -681,7 +752,8 @@ const insights = [
     downloads: "1.6k",
     readTime: "15 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "FMCG Industry Overview 2024",
@@ -691,7 +763,8 @@ const insights = [
     downloads: "3.2k",
     readTime: "18 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "US Hospitality Sector Report 2022",
@@ -701,7 +774,8 @@ const insights = [
     downloads: "950",
     readTime: "14 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Future of Home Delivery in India",
@@ -711,7 +785,8 @@ const insights = [
     downloads: "1.4k",
     readTime: "11 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "India's Textile Industry Overview",
@@ -721,7 +796,8 @@ const insights = [
     downloads: "1.8k",
     readTime: "16 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "The Organic Food Market Report 2021",
@@ -731,7 +807,8 @@ const insights = [
     downloads: "1.2k",
     readTime: "12 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Technologies Changing the Food Industry",
@@ -741,7 +818,8 @@ const insights = [
     downloads: "1.5k",
     readTime: "13 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Alcohol Industry in India",
@@ -751,7 +829,8 @@ const insights = [
     downloads: "1.9k",
     readTime: "15 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   },
   {
     title: "Renewable Energy Industry Overview",
@@ -761,7 +840,8 @@ const insights = [
     downloads: "2.2k",
     readTime: "18 min read",
     new: false,
-    featured: false
+    featured: false,
+    pdfAvailable: true
   }
 ]
 
@@ -802,6 +882,117 @@ export default function InsightsPageV2() {
 
   const featuredInsight = insights.find(i => i.featured && i.new) || insights[0]
   const latestInsights = insights.filter(i => i !== featuredInsight).slice(0, 4)
+
+  // Component for rendering report card with PDF download
+  const ReportCard = ({ insight, featured = false }) => {
+    const pdfUrl = `/pdfs/${getPdfFilename(insight.title)}`
+    
+    if (featured) {
+      return (
+        <a href={pdfUrl} download className="group block h-full">
+          <article className="h-full bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500 flex flex-col">
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <Image 
+                src={insight.image} 
+                alt={insight.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                priority
+              />
+              <div className="absolute top-4 left-4 flex gap-2 z-10">
+                {insight.new && (
+                  <span className="px-3 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded-full">
+                    NEW
+                  </span>
+                )}
+                <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#47635D] text-xs font-medium rounded-full capitalize">
+                  {insight.category}
+                </span>
+              </div>
+            </div>
+            <div className="p-6 flex-1 flex flex-col">
+              <div className="flex items-center gap-4 text-sm text-[#47635D] mb-4">
+                <span>{insight.date}</span>
+                <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
+                <span className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  {insight.readTime}
+                </span>
+              </div>
+              <h3 className="text-2xl font-bold text-[#1D342F] mb-3 group-hover:text-[#4E9141] transition-colors leading-tight">
+                {insight.title}
+              </h3>
+              <p className="text-[#47635D] leading-relaxed mb-6 flex-1">
+                {insight.excerpt}
+              </p>
+              <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                <span className="text-sm text-[#47635D]">{insight.downloads} downloads</span>
+                <span className="inline-flex items-center gap-2 text-[#4E9141] font-semibold group-hover:gap-3 transition-all">
+                  Download PDF <Download className="w-4 h-4" />
+                </span>
+              </div>
+            </div>
+          </article>
+        </a>
+      )
+    }
+
+    return (
+      <a href={pdfUrl} download className="group block">
+        <article className="h-full bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300 overflow-hidden">
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <Image 
+              src={insight.image} 
+              alt={insight.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            
+            {insight.new && (
+              <div className="absolute top-3 left-3 px-2.5 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded z-10">
+                NEW
+              </div>
+            )}
+
+            <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all z-10">
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
+                <Download className="w-5 h-5 text-[#4E9141]" />
+              </div>
+            </div>
+          </div>
+
+          <div className="p-5">
+            <div className="flex items-center gap-2 text-xs text-[#47635D] mb-3">
+              <span className="text-[#4E9141] font-medium uppercase tracking-wide">{insight.category}</span>
+              <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
+              <span>{insight.date}</span>
+            </div>
+            
+            <h3 className="font-semibold text-[#1D342F] group-hover:text-[#4E9141] transition-colors leading-snug mb-3 line-clamp-2">
+              {insight.title}
+            </h3>
+
+            <div className="flex items-center justify-between pt-3 border-t border-gray-50">
+              <div className="flex items-center gap-3 text-xs text-[#47635D]">
+                <span className="flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5" />
+                  {insight.readTime}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Download className="w-3.5 h-3.5" />
+                  {insight.downloads}
+                </span>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-[#47635D] group-hover:text-[#4E9141] transition-colors" />
+            </div>
+          </div>
+        </article>
+      </a>
+    )
+  }
 
   return (
     <div className="bg-white min-h-screen" data-testid="insights-page-v2">
@@ -962,89 +1153,13 @@ export default function InsightsPageV2() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6">
-            {/* Main Featured - Full Height */}
-            <Link href="#" className="group block h-full">
-              <article className="h-full bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500 flex flex-col">
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image 
-                    src={featuredInsight.image} 
-                    alt={featuredInsight.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    priority
-                  />
-                  <div className="absolute top-4 left-4 flex gap-2 z-10">
-                    {featuredInsight.new && (
-                      <span className="px-3 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded-full">
-                        NEW
-                      </span>
-                    )}
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#47635D] text-xs font-medium rounded-full capitalize">
-                      {featuredInsight.category}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center gap-4 text-sm text-[#47635D] mb-4">
-                    <span>{featuredInsight.date}</span>
-                    <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {featuredInsight.readTime}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#1D342F] mb-3 group-hover:text-[#4E9141] transition-colors leading-tight">
-                    {featuredInsight.title}
-                  </h3>
-                  <p className="text-[#47635D] leading-relaxed mb-6 flex-1">
-                    {featuredInsight.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                    <span className="text-sm text-[#47635D]">{featuredInsight.downloads} downloads</span>
-                    <span className="inline-flex items-center gap-2 text-[#4E9141] font-semibold group-hover:gap-3 transition-all">
-                      Read Report <ArrowUpRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </div>
-              </article>
-            </Link>
+            {/* Main Featured */}
+            <ReportCard insight={featuredInsight} featured={true} />
 
             {/* Right Side - 4 Reports in 2x2 Grid */}
             <div className="grid grid-cols-2 gap-4">
               {latestInsights.map((insight, i) => (
-                <Link key={i} href="#" className="group block">
-                  <article className="h-full bg-white rounded-xl border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col">
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <Image 
-                        src={insight.image} 
-                        alt={insight.title}
-                        fill
-                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 300px"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      {insight.new && (
-                        <div className="absolute top-2 left-2 px-2 py-0.5 bg-[#4E9141] text-white text-xs font-bold rounded z-10">
-                          NEW
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-4 flex-1 flex flex-col">
-                      <div className="flex items-center gap-2 text-xs text-[#47635D] mb-2">
-                        <span className="capitalize text-[#4E9141] font-medium">{insight.category}</span>
-                        <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
-                        <span>{insight.readTime}</span>
-                      </div>
-                      <h4 className="font-semibold text-[#1D342F] group-hover:text-[#4E9141] transition-colors line-clamp-2 leading-snug text-sm flex-1">
-                        {insight.title}
-                      </h4>
-                      <div className="flex items-center gap-1 mt-3 pt-3 border-t border-gray-50 text-xs text-[#47635D]">
-                        <Download className="w-3.5 h-3.5" />
-                        {insight.downloads}
-                      </div>
-                    </div>
-                  </article>
-                </Link>
+                <ReportCard key={i} insight={insight} />
               ))}
             </div>
           </div>
@@ -1117,67 +1232,10 @@ export default function InsightsPageV2() {
             ))}
           </div>
 
-          {/* Reports Grid - Clean Symmetrical Layout */}
+          {/* Reports Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredInsights.map((insight, i) => (
-              <Link key={i} href="#" className="group block">
-                <article className="h-full bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300 overflow-hidden">
-                  {/* Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image 
-                      src={insight.image} 
-                      alt={insight.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    
-                    {/* Badges */}
-                    <div className="absolute top-3 left-3 flex gap-2 z-10">
-                      {insight.new && (
-                        <span className="px-2.5 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded">
-                          NEW
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Download on hover */}
-                    <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all z-10">
-                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
-                        <Download className="w-5 h-5 text-[#4E9141]" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-5">
-                    <div className="flex items-center gap-2 text-xs text-[#47635D] mb-3">
-                      <span className="text-[#4E9141] font-medium uppercase tracking-wide">{insight.category}</span>
-                      <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
-                      <span>{insight.date}</span>
-                    </div>
-                    
-                    <h3 className="font-semibold text-[#1D342F] group-hover:text-[#4E9141] transition-colors leading-snug mb-3 line-clamp-2">
-                      {insight.title}
-                    </h3>
-
-                    <div className="flex items-center justify-between pt-3 border-t border-gray-50">
-                      <div className="flex items-center gap-3 text-xs text-[#47635D]">
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5" />
-                          {insight.readTime}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Download className="w-3.5 h-3.5" />
-                          {insight.downloads}
-                        </span>
-                      </div>
-                      <ArrowUpRight className="w-4 h-4 text-[#47635D] group-hover:text-[#4E9141] transition-colors" />
-                    </div>
-                  </div>
-                </article>
-              </Link>
+              <ReportCard key={i} insight={insight} />
             ))}
           </div>
 
