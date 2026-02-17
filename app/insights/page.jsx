@@ -1047,8 +1047,8 @@ export default function InsightsPageV2() {
               </div>
             </div>
 
-            {/* Right - Animated Card Stack */}
-            <div className="relative h-[450px] hidden lg:block">
+            {/* Right - Animated Card Stack — INCREASED SIZE */}
+            <div className="relative h-[520px] hidden lg:block">
               {/* Background decorative elements */}
               <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#4E9141]/5 rounded-full blur-3xl" />
               <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#5D9F94]/10 rounded-full blur-2xl" />
@@ -1063,11 +1063,11 @@ export default function InsightsPageV2() {
                     <div
                       key={index}
                       onClick={() => setActiveCard(index)}
-                      className="absolute w-72 cursor-pointer transition-all duration-700 ease-out"
+                      className="absolute w-[420px] cursor-pointer transition-all duration-700 ease-out"
                       style={{
                         transform: `
-                          translateY(${offset * 12}px) 
-                          translateX(${offset * 8}px) 
+                          translateY(${offset * 14}px) 
+                          translateX(${offset * 10}px) 
                           rotate(${offset * 2}deg)
                           scale(${1 - offset * 0.05})
                         `,
@@ -1076,7 +1076,7 @@ export default function InsightsPageV2() {
                       }}
                     >
                       <div 
-                        className={`rounded-2xl p-6 shadow-xl border-2 transition-all duration-500 ${
+                        className={`rounded-2xl p-7 shadow-xl border-2 transition-all duration-500 ${
                           isActive 
                             ? 'border-[#4E9141] shadow-[#4E9141]/20' 
                             : 'border-transparent shadow-black/10'
@@ -1084,40 +1084,40 @@ export default function InsightsPageV2() {
                         style={{ backgroundColor: stackedCardsColors[index] }}
                       >
                         {/* Card Header */}
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="px-3 py-1 bg-white/80 backdrop-blur-sm text-[#4E9141] text-xs font-semibold rounded-full capitalize">
+                        <div className="flex items-center justify-between mb-5">
+                          <span className="px-3 py-1.5 bg-white/80 backdrop-blur-sm text-[#4E9141] text-xs font-semibold rounded-full capitalize">
                             {card.category}
                           </span>
                           {card.new && (
-                            <span className="px-2 py-1 bg-[#4E9141] text-white text-xs font-bold rounded">
+                            <span className="px-2.5 py-1 bg-[#4E9141] text-white text-xs font-bold rounded">
                               NEW
                             </span>
                           )}
                         </div>
                         
-                        {/* Card Image */}
-                        <div className="w-full h-32 bg-white/60 rounded-xl mb-4 flex items-center justify-center overflow-hidden relative">
+                        {/* Card Image — taller */}
+                        <div className="w-full h-44 bg-white/60 rounded-xl mb-5 flex items-center justify-center overflow-hidden relative">
                           <Image 
                             src={card.image}
                             alt={card.title}
                             fill
-                            sizes="(max-width: 768px) 100vw, 288px"
+                            sizes="(max-width: 768px) 100vw, 420px"
                             className="object-cover"
                           />
                         </div>
                         
                         {/* Card Title */}
-                        <h3 className="font-bold text-[#1D342F] text-lg leading-tight mb-3 line-clamp-2">
+                        <h3 className="font-bold text-[#1D342F] text-xl leading-tight mb-4 line-clamp-2">
                           {card.title}
                         </h3>
                         
                         {/* Card Footer */}
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-[#47635D] flex items-center gap-1">
+                          <span className="text-[#47635D] flex items-center gap-1.5">
                             <Download className="w-4 h-4" />
                             {card.downloads}
                           </span>
-                          <span className="text-[#4E9141] font-medium flex items-center gap-1">
+                          <span className="text-[#4E9141] font-medium flex items-center gap-1.5">
                             PDF Report
                             <ArrowUpRight className="w-4 h-4" />
                           </span>
