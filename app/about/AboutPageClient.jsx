@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Footer from '@/components/Footer'
 import { 
   ArrowRight, Eye, Compass, Award, Users,
@@ -62,7 +63,7 @@ const directors = [
   {
     name: 'Ashutosh Kharangate',
     role: 'Founder & Managing Director',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Ashutosh-Kharangate.jpg',
+    image: '/images/about/ashutosh-kharangate.jpg',
     linkedin: 'https://www.linkedin.com/in/ashutoshkharangate/',
     bio: 'Part of PWC Financial Advisory Division for 4 years. Expert in Due Diligence and Valuations in M&A across sectors. Member of the Institute of Chartered Accounts of India (ICAI).',
     credentials: ['Chartered Accountant', 'PWC Alumni', 'M&A Expert'],
@@ -70,7 +71,7 @@ const directors = [
   {
     name: 'Satish Shinde',
     role: 'Co-Founder & Director',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2025/06/satish-370x370.png',
+    image: '/images/about/satish-shinde.png',
     linkedin: 'https://www.linkedin.com/in/satish-shinde-06962047/',
     bio: 'MD of Astra Metals Group. Leading the Marketing and Finance Division of Astra Metals Group. Over 30 years of experience in the manufacturing arena.',
     credentials: ['30+ Years Experience', 'Manufacturing Expert', 'Finance Leader'],
@@ -78,7 +79,7 @@ const directors = [
   {
     name: 'Anita Ganti',
     role: 'Director',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2025/06/6-1-370x370.png',
+    image: '/images/about/anita-ganti.png',
     linkedin: 'https://www.linkedin.com/in/anita-ganti/',
     bio: 'Former Senior Vice President at Wipro for over 4 years. Ex Texas Instruments and Flex Executive. Finance Major, MBA at The Wharton School of the University of Pennsylvania.',
     credentials: ['Wharton MBA', 'Wipro SVP', 'Global Operations'],
@@ -89,25 +90,25 @@ const keyTeam = [
   {
     name: 'Vaikunth Nadkarni',
     role: 'Manager - Market Research and Financial Analysis',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Vaikunth-Nadkarni.jpg',
+    image: '/images/about/vaikunth-nadkarni.jpg',
     linkedin: null,
   },
   {
     name: 'Avdhut Padwalkar',
     role: 'Assistant Manager - Market Research and Financial Analysis',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Avdhut-Padwalkar.jpg',
+    image: '/images/about/avdhut-padwalkar.jpg',
     linkedin: null,
   },
   {
     name: 'Smriti Bhattacharya',
     role: 'Assistant Manager - Market Research and Financial Analysis',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2025/06/19-1-370x370.png',
+    image: '/images/about/smriti-bhattacharya.png',
     linkedin: null,
   },
   {
     name: 'Roopa Bhat Jacob',
     role: 'Head - Business Development',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2025/06/2-1-370x370.png',
+    image: '/images/about/roopa-bhat-jacob.png',
     linkedin: null,
   },
 ]
@@ -116,55 +117,55 @@ const associates = [
   {
     name: 'Priyanka Kamat',
     role: 'Consultant - Human Capital',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2025/02/Priyanka-Pic-passport.jpeg',
+    image: '/images/about/priyanka-kamat.jpeg',
     linkedin: null,
   },
   {
     name: 'Karan Shah',
     role: 'Associate Partner',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/Karan-1.jpg',
+    image: '/images/about/karan-shah.jpg',
     linkedin: null,
   },
   {
     name: 'Manu Kurian',
     role: 'Associate Partner',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/manu.jpg',
+    image: '/images/about/manu-kurian.jpg',
     linkedin: null,
   },
   {
     name: 'Manas Joshi',
     role: 'Associate Partner',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/manas.jpg',
+    image: '/images/about/manas-joshi.jpg',
     linkedin: null,
   },
   {
     name: 'Varsha Chopra',
     role: 'Associate Partner',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/Varsha-Chopra.jpg',
+    image: '/images/about/varsha-chopra.jpg',
     linkedin: null,
   },
   {
     name: 'Ruchi Jindal',
     role: 'Associate Partner',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/ruchi.jpg',
+    image: '/images/about/ruchi-jindal.jpg',
     linkedin: null,
   },
   {
     name: 'Atanu Sengupta',
     role: 'Associate Partner',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/atanu.jpg',
+    image: '/images/about/atanu-sengupta.jpg',
     linkedin: null,
   },
   {
     name: 'Ayush Soni',
     role: 'Associate Partner',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/profile-image-370x370-1.jpg',
+    image: '/images/about/ayush-soni.jpg',
     linkedin: null,
   },
   {
     name: 'CA Shrinidhi Rao',
     role: 'Associate Partner',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2025/06/unnamed.jpg',
+    image: '/images/about/shrinidhi-rao.jpg',
     linkedin: null,
   },
 ]
@@ -173,19 +174,19 @@ const domainExperts = [
   {
     name: 'Anand Chatterjee',
     role: 'Hospitality Sector Expert',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/Anand-Chatterjee.jpg',
+    image: '/images/about/anand-chatterjee.jpg',
     linkedin: null,
   },
   {
     name: 'Dr. Tejas Kamat',
     role: 'Healthcare Sector Expert',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2022/07/unnamed-3-370x370.jpg',
+    image: '/images/about/tejas-kamat.jpg',
     linkedin: null,
   },
   {
     name: 'Sonali Vartak',
     role: 'Finance Expert',
-    image: 'https://www.marcglocal.com/wp-content/uploads/2023/09/Sonali-website.jpg',
+    image: '/images/about/sonali-vartak.jpg',
     linkedin: null,
   },
 ]
@@ -664,16 +665,16 @@ export default function AboutPageClient() {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {directors.map((director, i) => (
               <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all group">
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
                   <img 
                     src={director.image}
                     alt={director.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/20 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-xl font-bold text-white">{director.name}</h3>
-                    <p className="text-[#C2DDB4] font-medium">{director.role}</p>
+                    <h3 className="text-xl font-bold text-white mb-1">{director.name}</h3>
+                    <p className="text-[#C2DDB4] font-medium text-sm">{director.role}</p>
                   </div>
                 </div>
                 <div className="p-6">
@@ -710,17 +711,28 @@ export default function AboutPageClient() {
             <div className="grid md:grid-cols-4 gap-6">
               {keyTeam.map((member, i) => (
                 <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all group">
-                  <div className="relative h-56 overflow-hidden">
+                  <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
                     <img 
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/80 to-transparent" />
                   </div>
                   <div className="p-5">
                     <h3 className="text-lg font-bold text-[#1D342F] mb-1">{member.name}</h3>
-                    <p className="text-[#47635D] text-sm">{member.role}</p>
+                    <p className="text-[#47635D] text-sm mb-3">{member.role}</p>
+                    {member.linkedin && (
+                      <a 
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-[#4E9141] hover:text-[#3d7334] transition-colors text-sm"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                        <span>LinkedIn</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -736,17 +748,28 @@ export default function AboutPageClient() {
             <div className="grid md:grid-cols-4 lg:grid-cols-5 gap-6">
               {associates.map((member, i) => (
                 <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all group">
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
                     <img 
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/80 to-transparent" />
                   </div>
                   <div className="p-4">
                     <h3 className="text-base font-bold text-[#1D342F] mb-1">{member.name}</h3>
-                    <p className="text-[#47635D] text-xs">{member.role}</p>
+                    <p className="text-[#47635D] text-xs mb-2">{member.role}</p>
+                    {member.linkedin && (
+                      <a 
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-[#4E9141] hover:text-[#3d7334] transition-colors text-xs"
+                      >
+                        <Linkedin className="w-3 h-3" />
+                        <span>LinkedIn</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -762,17 +785,30 @@ export default function AboutPageClient() {
             <div className="grid md:grid-cols-3 gap-8">
               {domainExperts.map((expert, i) => (
                 <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all group">
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
                     <img 
                       src={expert.image}
                       alt={expert.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/80 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/20 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-xl font-bold text-white">{expert.name}</h3>
-                      <p className="text-[#C2DDB4] font-medium">{expert.role}</p>
+                      <h3 className="text-xl font-bold text-white mb-1">{expert.name}</h3>
+                      <p className="text-[#C2DDB4] font-medium text-sm">{expert.role}</p>
                     </div>
+                  </div>
+                  <div className="p-6">
+                    {expert.linkedin && (
+                      <a 
+                        href={expert.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-[#4E9141] hover:text-[#3d7334] transition-colors"
+                      >
+                        <Linkedin className="w-5 h-5" />
+                        <span className="text-sm font-medium">Connect on LinkedIn</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
