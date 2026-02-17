@@ -63,9 +63,8 @@ export default function BlogPage() {
                 </span>
               </div>
 
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
-                Insights & Trends for
-                <span className="text-[#4E9141]"> Modern Businesses</span>
+              <h1 className="text-3xl lg:text-4xl font-bold text-[#1D342F] leading-[1.15] mb-6">
+                Insights & Trends for <span className="text-[#4E9141]">Modern Businesses</span>
               </h1>
               <p className="text-xl text-[#47635D] leading-relaxed mb-8">
                 Stay up-to-date with knowledgeable insights and the latest trends transforming industries and businesses across the world.
