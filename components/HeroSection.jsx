@@ -190,9 +190,9 @@ const HeroSection = () => {
         {/* 3 value blurbs */}
         <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
           {[
-            { num: '01', title: 'Insights that sharpen growth bets.', body: 'Market, customer, and category intelligence to reduce risk and guide compounding growth.' },
-            { num: '02', title: 'Numbers that guide growth.', body: 'Financial models, profitability analyses and focused diagnostics that translate data into clear priorities.' },
-            { num: '03', title: 'M&A, designed for growth.', body: 'Strategic target identification, commercial diligence, and integration support—focused on value creation.' },
+            { num: '01', title: 'Insights that sharpen growth bets.', body: 'Market, customer, and category intelligence — including Feasibility Studies, market assessment, and consumer insights — to reduce risk and guide compounding growth.' },
+            { num: '02', title: 'Numbers that guide growth.', body: 'Profitability Analyses, financial models, and focused diagnostics — plus Standard Operating Procedures (SOP) review and system optimisation — that translate data into clear priorities.' },
+            { num: '03', title: 'M&A, designed for growth.', body: 'Strategic target identification, commercial due diligence, growth thesis validation, and integration support — focused on value creation.' },
           ].map((item) => (
             <div
               key={item.num}

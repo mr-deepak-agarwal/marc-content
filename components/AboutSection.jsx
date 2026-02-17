@@ -150,7 +150,7 @@ const AboutSection = () => {
             </h2>
 
             <p className="text-lg mb-6 leading-relaxed" style={{ color: '#33691E' }}>
-              MARC is a growth advisory firm partnering with founders, leadership teams, and investors to build scalable, resilient businesses with a focus on compounding growth. With deep local expertise and global perspective, we empower Indian entrepreneurs to strengthen their businesses while guiding international firms with market entry and internationalization strategies.
+              MARC is a growth advisory firm partnering with founders, leadership teams, and investors to build scalable, resilient businesses with a focus on compounding growth. With deep local expertise and global perspective, we empower Indian entrepreneurs to strengthen their businesses while guiding international firms with market entry and internationalization strategies. We also collaborate with international consultants, serving as a trusted outsourcing partner.
             </p>
 
             <p className="font-semibold mb-8 text-lg tracking-tight" style={{ color: '#2E7D32' }}>
