@@ -7,8 +7,9 @@ const pageData = {
   tagline: 'Market Research',
   title: 'Market Research in',
   titleHighlight: 'India',
-  description: 'India is one of the world\'s fastest-growing economies—but also one of its most complex. Consumer behaviour, demand drivers, and regulations vary sharply across regions, making local market research in India critical for success.',
-  
+  // ✅ KEYWORD: "market research in India" | "a leading market research firm in India" | "market research services in India"
+  description: 'India is one of the world\'s fastest-growing economies—but also one of its most complex. Consumer behaviour, demand drivers, and regulations vary sharply across regions, making local market research in India critical for success. MARC is a leading market research firm in India, helping Indian and global businesses make confident decisions on market entry, expansion, and investment. Our market research services in India combine deep on-ground primary research with rigorous analysis to identify high-potential opportunities while reducing commercial, regulatory, and operational risk.',
+
   // Custom images for Option 1
   heroImage: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?w=1200',
   methodologyImage: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=800',
@@ -21,7 +22,8 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: Search, title: 'Decision-Ready Intelligence', desc: 'Deep on-ground primary research combined with rigorous analysis to identify high-potential opportunities.' },
+    // ✅ KEYWORD: "market research services in India"
+    { icon: Search, title: 'Decision-Ready Intelligence', desc: 'Our market research services in India combine deep on-ground primary research with rigorous analysis to identify high-potential opportunities.' },
     { icon: Target, title: 'Risk Reduction', desc: 'We reduce commercial, regulatory, and operational risk so you can enter and expand in Indian markets with confidence.' },
     { icon: TrendingUp, title: 'Local Expertise, Global Standards', desc: 'We work with investors, developers, manufacturers, and brands across sectors, delivering actionable market intelligence.' },
     { icon: BarChart3, title: 'Financial Feasibility', desc: 'Financial feasibility analysis including ROI, IRR, and NPV modelling to support go / no-go decisions.' },
@@ -35,18 +37,24 @@ const pageData = {
     { num: '05', title: 'Financial Feasibility', desc: 'Financial feasibility analysis including ROI, IRR, and NPV modelling.' },
     { num: '06', title: 'Go / No-Go Recommendation', desc: 'Clear go / no-go and market entry recommendations with measurable impact.' },
   ],
-  methodologyDescription: 'Our approach is designed to support real business decisions—not just reports. We deliver decision-ready market intelligence for India and global markets.',
+  // ✅ KEYWORD: "market research services in India"
+  methodologyDescription: 'Our market research services in India are designed to support real business decisions—not just reports. We deliver decision-ready market intelligence for India and global markets.',
+
+  // ✅ KEYWORD: "Market Research Services in India" (section heading)
+  servicesSectionTitle: 'Market Research Services in India',
 
   services: [
     {
-      title: 'Land Feasibility Study',
-      desc: 'Identify the most viable and profitable use of land by assessing market demand, demand–supply gaps, competition, regulatory constraints, and financial feasibility.',
+      // ✅ KEYWORD: "Feasibility Study in India" | "land feasibility studies in India"
+      title: 'Land Feasibility Study in India',
+      desc: 'Our land feasibility studies in India identify the most viable and profitable use of land by assessing market demand, demand–supply gaps, competition, regulatory constraints, and financial feasibility.',
       features: ['Market Demand Assessment', 'Demand–Supply Gap Analysis', 'Financial Feasibility'],
       icon: Building2,
     },
     {
+      // ✅ KEYWORD: "product feasibility studies in India"
       title: 'Product Feasibility Study',
-      desc: 'Assess demand potential, pricing, competitor benchmarks, distribution fit, and scalability across regions before launching products.',
+      desc: 'Launching products without validation increases risk. Our product feasibility studies in India assess demand potential, pricing, competitor benchmarks, distribution fit, and scalability across regions.',
       features: ['Demand Validation', 'Pricing Benchmarks', 'Scalability Analysis'],
       icon: BarChart3,
     },
@@ -69,8 +77,9 @@ const pageData = {
       icon: Target,
     },
     {
+      // ✅ KEYWORD: "global consulting firms" | "international market research services"
       title: 'International Market Research',
-      desc: 'Support Indian companies expanding globally and act as a research backend for global consulting firms across multiple countries.',
+      desc: 'We support Indian companies expanding globally and act as a research backend for global consulting firms. Our international market research services include global market sizing, competitive landscape analysis, and market entry feasibility across multiple countries.',
       features: ['Global Market Sizing', 'Country Prioritisation', 'Go-to-Market Strategy'],
       icon: Globe,
     },
@@ -111,8 +120,9 @@ const pageData = {
     { q: 'What makes MARC different from other market research firms?', a: 'Unlike generic reports, MARC delivers actionable insights with clear go/no-go recommendations, tailored strategies, and measurable impact. Our strength lies in combining deep local expertise with global standards of analysis.' },
   ],
 
+  // ✅ KEYWORD: "Market Research Partner in India"
   ctaTitle: 'Ready to Make Confident Market Decisions?',
-  ctaDescription: 'We\'re ready to help you navigate India\'s complex markets with decision-ready intelligence, clear go/no-go recommendations, and strategies built for long-term growth.',
+  ctaDescription: 'Choose MARC as your Market Research Partner in India. We\'re ready to help you navigate India\'s complex markets with decision-ready intelligence, clear go/no-go recommendations, and strategies built for long-term growth.',
 }
 
 export default function MarketResearchPageOption1() {
