@@ -4,10 +4,12 @@ import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Search, FileCheck, Shield, Eye, BarChart3, Building2, Scale, AlertTriangle, TrendingUp, Users } from 'lucide-react'
 
 const pageData = {
+  // ✅ KEYWORD: "Due Diligence Services in India"
   tagline: 'Due Diligence Services in India',
   title: 'Helping Investors Make Confident,',
   titleHighlight: 'Informed Decisions',
-  description: 'MARC provides expert Due Diligence Services to investors, acquirers, and corporates across India. Our work helps clients validate financial and operational information, identify risks early, and make well-informed decisions across mergers, acquisitions, joint ventures, and strategic investments. Due diligence is a structured examination of financial statements and critical business records to assess accuracy, uncover risks, and evaluate the overall integrity and sustainability of a business. As a trusted due diligence firm, MARC supports clients in protecting deal value by validating assumptions and identifying issues before they impact pricing or execution.',
+  // ✅ KEYWORD: "Due Diligence Services" | "due diligence firm"
+  description: 'MARC provides expert Due Diligence Services to investors, acquirers, and corporates across India. Our work helps clients validate financial and operational information, identify risks early, and make well-informed decisions across mergers, acquisitions, joint ventures, and strategic investments. Due diligence is a structured examination of financial statements and critical business records to assess accuracy, uncover risks, and evaluate the overall integrity and sustainability of a business. As a trusted due diligence firm, MARC supports clients in protecting deal value by validating assumptions and identifying issues before they impact pricing or execution. Engaging an experienced due diligence firm ensures that growth and expansion decisions are supported by verified data and risk-adjusted insights.',
 
   stats: [
     { value: '200+', label: 'Due Diligence Projects' },
@@ -31,12 +33,17 @@ const pageData = {
     { num: '05', title: 'Risk Assessment', desc: 'Identification of operating inefficiencies, litigation review, regulatory considerations, and evaluation of third-party relationships.' },
     { num: '06', title: 'Reporting & Support', desc: 'Deliver actionable insights that directly support valuation, negotiations, and decision-making.' },
   ],
+  // ✅ KEYWORD: "Due Diligence Services" (x2)
   methodologyDescription: 'For any transaction to succeed—whether an acquisition, merger, joint venture, or investment—a thorough due diligence process is essential. This involves a detailed review of financial, operational, legal, and commercial records to confirm facts, assess risks, and evaluate value drivers. MARC delivers comprehensive Due Diligence Services across India, supporting domestic and international investors and acquirers across sectors.',
+
+  // ✅ KEYWORD: "Our Due Diligence Services" — servicesTitle
+  servicesTitle: 'Our Due Diligence Services',
 
   services: [
     {
       title: 'Buyer-Side Due Diligence',
       desc: 'Comprehensive support for acquirers throughout the acquisition process.',
+      // ✅ KEYWORD: "Financial modelling and valuation"
       features: ['Target screening aligned with acquisition criteria', 'Financial modelling and valuation support', 'Cash proof and working capital assessment', 'Commercial and operational diligence', 'Coordination of diligence streams and negotiations'],
       icon: BarChart3,
     },
@@ -47,8 +54,9 @@ const pageData = {
       icon: Building2,
     },
     {
+      // ✅ KEYWORD: "financial due diligence services"
       title: 'Financial Due Diligence',
-      desc: 'Focus on quality of earnings, working capital, cash flows, liabilities, and accounting policies.',
+      desc: 'Our financial due diligence services focus on quality of earnings, working capital, cash flows, liabilities, and accounting policies.',
       features: ['Quality of Earnings analysis', 'Working Capital assessment', 'Debt and liability analysis', 'Financial risk evaluation'],
       icon: TrendingUp,
     },
@@ -88,8 +96,10 @@ const pageData = {
   ],
 
   faqs: [
+    // ✅ KEYWORD: "due diligence firms"
     { q: 'What do due diligence firms do?', a: 'They conduct independent reviews of financial and operational information to help investors assess risks and make informed transaction decisions.' },
     { q: 'Why are due diligence services important in India?', a: 'India\'s regulatory complexity and market diversity make due diligence critical for identifying hidden liabilities and validating growth assumptions.' },
+    // ✅ KEYWORD: "financial due diligence services"
     { q: 'What are financial due diligence services?', a: 'They focus on quality of earnings, working capital, cash flows, liabilities, accounting policies, and financial risks to support accurate valuation.' },
     { q: 'Do you offer sell-side due diligence?', a: 'Yes. MARC provides sell-side due diligence and agreed-upon procedures to prepare companies for fundraising, M&A, and strategic exits.' },
     { q: 'Why is due diligence especially important for private company acquisitions?', a: 'In private company transactions, due diligence is especially critical due to limited public disclosures and higher dependence on management-reported information. Our diligence goes beyond surface-level review to uncover hidden risks, assess earnings quality, and evaluate long-term sustainability.' },
@@ -97,7 +107,8 @@ const pageData = {
     { q: 'What scope does your due diligence cover?', a: 'Our due diligence covers review of historical financial statements, validation of forward-looking projections, consumer and market analysis, identification of operating inefficiencies, review of potential litigation, assessment of regulatory considerations, and evaluation of third-party relationships.' },
   ],
 
-  ctaTitle: 'Partner with MARC, a trusted due diligence firm in India',
+  // ✅ KEYWORD: "trusted due diligence firm in India"
+  ctaTitle: 'Partner with MARC, a Trusted Due Diligence Firm in India',
   ctaDescription: 'Protect value, reduce risk, and execute transactions with confidence through comprehensive due diligence services.',
 }
 

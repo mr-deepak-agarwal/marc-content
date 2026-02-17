@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Users, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Download, Lightbulb } from 'lucide-react'
+import { Menu, X, ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Users, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Download, Lightbulb, PieChart } from 'lucide-react'
 import { useLoading } from '@/components/loading-store'
 
 // Services data with icons for the grid menu
@@ -37,6 +37,12 @@ const serviceCategories = [
     label: 'Global Expansion',
     services: [
       { label: 'Internationalization', href: '/services/internationalization', icon: Globe },
+    ]
+  },
+  {
+    label: 'Transactions',
+    services: [
+      { label: 'Business Valuation', href: '/services/business-valuation', icon: PieChart },
     ]
   },
 ]
@@ -93,7 +99,6 @@ export default function Header() {
     setIsMobileMenuOpen(false)
   }
 
-  // Handle hover indicator positioning
   const handleMouseEnter = (e, index) => {
     const rect = e.currentTarget.getBoundingClientRect()
     const navRect = navRef.current?.getBoundingClientRect()
@@ -117,9 +122,7 @@ export default function Header() {
       <header
         data-testid="header"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          isScrolled
-            ? 'py-2'
-            : 'py-0'
+          isScrolled ? 'py-2' : 'py-0'
         }`}
       >
         {/* Glassmorphism background layer */}
@@ -139,15 +142,13 @@ export default function Header() {
         >
           <div 
             className="h-full bg-gradient-to-r from-transparent via-[#4E9141] to-transparent"
-            style={{
-              animation: isScrolled ? 'shimmerLine 3s ease-in-out infinite' : 'none',
-            }}
+            style={{ animation: isScrolled ? 'shimmerLine 3s ease-in-out infinite' : 'none' }}
           />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
-            {/* Logo with zoom + glow effect on scroll */}
+            {/* Logo */}
             <Link 
               href="/" 
               onClick={() => handleClick('/')} 
@@ -161,14 +162,12 @@ export default function Header() {
                 src="/marc_logo.png" 
                 alt="MARC - Business Consulting Services" 
                 className={`relative transition-all duration-500 origin-left ${
-                  isScrolled 
-                    ? 'h-12 drop-shadow-lg scale-105' 
-                    : 'h-10 scale-100'
+                  isScrolled ? 'h-12 drop-shadow-lg scale-105' : 'h-10 scale-100'
                 } group-hover:scale-110`}
               />
             </Link>
 
-            {/* Desktop Navigation with floating indicator */}
+            {/* Desktop Navigation */}
             <nav 
               ref={navRef}
               className="hidden lg:flex items-center gap-1 relative"
@@ -204,9 +203,7 @@ export default function Header() {
                         hoveredIndex === index ? 'text-[#4E9141]' : 'text-[#1D342F]'
                       }`}
                     >
-                      <span className="relative">
-                        {link.label}
-                      </span>
+                      <span className="relative">{link.label}</span>
                       <ChevronDown 
                         size={14} 
                         className={`transition-all duration-300 ${
@@ -223,22 +220,19 @@ export default function Header() {
                           : 'opacity-0 invisible -translate-y-3'
                       }`}
                     >
-                      <div className="w-[720px] bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#C2DDB4]/30 overflow-hidden">
+                      <div className="w-[820px] bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#C2DDB4]/30 overflow-hidden">
                         {/* Top accent line */}
                         <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
                         
                         <div className="p-6">
-                          {/* Services Grid */}
-                          <div className="space-y-6">
-                            {serviceCategories.map((category, catIdx) => (
+                          {/* Top two full-width categories */}
+                          <div className="space-y-6 mb-6">
+                            {serviceCategories.slice(0, 2).map((category, catIdx) => (
                               <div key={catIdx}>
-                                {/* Category Label */}
                                 <div className="flex items-center gap-3 mb-3">
                                   <span className="text-[#4E9141] font-semibold text-xs uppercase tracking-widest">{category.label}</span>
                                   <div className="flex-1 h-[1px] bg-gradient-to-r from-[#C2DDB4] to-transparent" />
                                 </div>
-                                
-                                {/* Services Icon Grid */}
                                 <div className={`grid ${category.services.length <= 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2`}>
                                   {category.services.map((service, svcIdx) => (
                                     <Link
@@ -259,7 +253,36 @@ export default function Header() {
                               </div>
                             ))}
                           </div>
-                          
+
+                          {/* Bottom row — M&A, Global Expansion, Transactions side by side */}
+                          <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#C2DDB4]/30">
+                            {serviceCategories.slice(2).map((category, catIdx) => (
+                              <div key={catIdx}>
+                                <div className="flex items-center gap-3 mb-3">
+                                  <span className="text-[#4E9141] font-semibold text-xs uppercase tracking-widest">{category.label}</span>
+                                  <div className="flex-1 h-[1px] bg-gradient-to-r from-[#C2DDB4] to-transparent" />
+                                </div>
+                                <div className="space-y-1">
+                                  {category.services.map((service, svcIdx) => (
+                                    <Link
+                                      key={svcIdx}
+                                      href={service.href}
+                                      onClick={() => handleClick(service.href)}
+                                      className="group flex items-center gap-3 p-3 rounded-xl hover:bg-[#F7FFF5] transition-all duration-300 border border-transparent hover:border-[#C2DDB4]/50"
+                                    >
+                                      <div className="w-10 h-10 rounded-lg bg-[#F7FFF5] group-hover:bg-[#4E9141] flex items-center justify-center transition-all duration-300 flex-shrink-0">
+                                        <service.icon className="w-5 h-5 text-[#4E9141] group-hover:text-white transition-colors" />
+                                      </div>
+                                      <span className="text-sm text-[#1D342F] group-hover:text-[#4E9141] font-medium transition-colors leading-tight">
+                                        {service.label}
+                                      </span>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
                           {/* Bottom CTA */}
                           <div className="mt-6 pt-4 border-t border-[#C2DDB4]/30 flex items-center justify-between">
                             <span className="text-sm text-[#47635D]">Need help choosing the right service?</span>
@@ -277,7 +300,6 @@ export default function Header() {
                     </div>
                   </div>
                 ) : link.hasInsightsMenu ? (
-                  /* Insights Submenu */
                   <div
                     key={link.label}
                     className="relative"
@@ -294,9 +316,7 @@ export default function Header() {
                         hoveredIndex === index ? 'text-[#4E9141]' : 'text-[#1D342F]'
                       }`}
                     >
-                      <span className="relative">
-                        {link.label}
-                      </span>
+                      <span className="relative">{link.label}</span>
                       <ChevronDown 
                         size={14} 
                         className={`transition-all duration-300 ${
@@ -305,7 +325,6 @@ export default function Header() {
                       />
                     </Link>
 
-                    {/* Insights Dropdown Menu */}
                     <div 
                       className={`absolute -left-4 top-full pt-3 transition-all duration-400 ${
                         activeDropdown === link.label 
@@ -314,11 +333,8 @@ export default function Header() {
                       }`}
                     >
                       <div className="w-[320px] bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#C2DDB4]/30 overflow-hidden">
-                        {/* Top accent line */}
                         <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
-                        
                         <div className="p-4">
-                          {/* Insights Items */}
                           <div className="space-y-2">
                             {insightsItems.map((item, itemIdx) => (
                               <Link
@@ -355,14 +371,12 @@ export default function Header() {
                       hoveredIndex === index ? 'text-[#4E9141]' : 'text-[#1D342F]'
                     }`}
                   >
-                    <span className="relative">
-                      {link.label}
-                    </span>
+                    <span className="relative">{link.label}</span>
                   </Link>
                 )
               )}
 
-              {/* Enhanced CTA Button */}
+              {/* CTA Button */}
               <Link href="/contact" onClick={() => handleClick('/contact')}>
                 <button
                   data-testid="header-cta"
@@ -372,18 +386,16 @@ export default function Header() {
                       : 'bg-[#4E9141] text-white'
                   }`}
                 >
-                  {/* Animated gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-[#4E9141] via-[#5fa84f] to-[#4E9141] opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
                     style={{ backgroundSize: '200% 100%', animation: 'gradientShift 2s linear infinite' }}
                   />
-                  {/* Shine effect */}
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                   <span className="relative z-10">Contact</span>
                 </button>
               </Link>
             </nav>
 
-            {/* Mobile Menu Button with enhanced animation */}
+            {/* Mobile Menu Button */}
             <button
               data-testid="mobile-menu-toggle"
               className={`lg:hidden relative p-2 rounded-xl transition-all duration-300 z-10 ${
@@ -407,13 +419,12 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu - Full screen overlay with glassmorphism */}
+      {/* Mobile Menu */}
       <div 
         className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ${
           isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        {/* Backdrop */}
         <div 
           className={`absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 ${
             isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
@@ -421,7 +432,6 @@ export default function Header() {
           onClick={() => setIsMobileMenuOpen(false)}
         />
         
-        {/* Menu panel */}
         <div 
           className={`absolute top-20 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-[#4E9141]/10 shadow-2xl transition-all duration-500 ${
             isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
@@ -430,7 +440,6 @@ export default function Header() {
           <div className="max-h-[calc(100vh-5rem)] overflow-y-auto px-6 py-6 space-y-2">
             {navLinks.map((link, index) =>
               link.hasServicesMenu ? (
-                /* Services Accordion */
                 <div 
                   key={link.label}
                   style={{ animationDelay: `${index * 50}ms` }}
@@ -452,16 +461,14 @@ export default function Header() {
                   </button>
 
                   <div className={`overflow-hidden transition-all duration-400 ${
-                    activeDropdown === 'Services' ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+                    activeDropdown === 'Services' ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
                   }`}>
                     <div className="py-2 space-y-4">
                       {serviceCategories.map((category, catIdx) => (
                         <div key={catIdx}>
-                          {/* Category Header */}
                           <div className="px-4 mb-2">
                             <span className="text-xs font-semibold text-[#4E9141] uppercase tracking-wider">{category.label}</span>
                           </div>
-                          {/* Services List */}
                           <div className="ml-4 space-y-1 border-l-2 border-[#4E9141]/20">
                             {category.services.map((service, svcIdx) => (
                               <Link
@@ -481,7 +488,6 @@ export default function Header() {
                   </div>
                 </div>
               ) : link.hasInsightsMenu ? (
-                /* Insights Accordion */
                 <div 
                   key={link.label}
                   style={{ animationDelay: `${index * 50}ms` }}
@@ -549,23 +555,14 @@ export default function Header() {
         </div>
       </div>
 
-      {/* CSS for header animations */}
       <style jsx global>{`
         @keyframes shimmerLine {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
         }
         @keyframes gradientShift {
-          0% {
-            background-position: 0% 50%;
-          }
-          100% {
-            background-position: 200% 50%;
-          }
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
         }
       `}</style>
     </>
