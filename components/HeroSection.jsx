@@ -222,6 +222,45 @@ const HeroSection = () => {
           Strategy and execution for Indian and global businesses that want growth to build—year after year.
         </p>
 
+        {/* ===== 3 VALUE BLURBS ===== */}
+        <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left hover:bg-white/15 transition-all duration-300">
+            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center mb-3">
+              <span className="text-white font-bold text-sm">01</span>
+            </div>
+            <h3 className="text-white font-semibold text-base mb-2 leading-snug">
+              Insights that sharpen growth bets.
+            </h3>
+            <p className="text-white/70 text-sm leading-relaxed">
+              Market, customer, and category intelligence to reduce risk and guide compounding growth.
+            </p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left hover:bg-white/15 transition-all duration-300">
+            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center mb-3">
+              <span className="text-white font-bold text-sm">02</span>
+            </div>
+            <h3 className="text-white font-semibold text-base mb-2 leading-snug">
+              Numbers that guide growth.
+            </h3>
+            <p className="text-white/70 text-sm leading-relaxed">
+              Financial models, Profitability analyses and focused financial diagnostics that translate data into clear growth priorities.
+            </p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left hover:bg-white/15 transition-all duration-300">
+            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center mb-3">
+              <span className="text-white font-bold text-sm">03</span>
+            </div>
+            <h3 className="text-white font-semibold text-base mb-2 leading-snug">
+              M&A, designed for growth.
+            </h3>
+            <p className="text-white/70 text-sm leading-relaxed">
+              Strategic target identification, commercial diligence, and integration support—focused on value creation, not just deal completion.
+            </p>
+          </div>
+        </div>
+
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
