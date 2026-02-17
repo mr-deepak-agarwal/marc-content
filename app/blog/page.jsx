@@ -47,17 +47,22 @@ export default function BlogPage() {
     <div className="bg-[#F0F4F0] min-h-screen" data-testid="blog-page">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-16 bg-white border-b border-[#C2DDB4]/30 overflow-hidden">
+      <section className="relative pt-20 pb-16 bg-white border-b border-[#C2DDB4]/30 overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
 
-            {/* Left */}
+            {/* Left — Insights-style header (line + label, no pill) */}
             <div className="lg:col-span-5 lg:sticky lg:top-32">
-              <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50 mb-8">
-                <BookOpen className="w-4 h-4 text-[#4E9141]" />
-                <span className="text-[#4E9141] font-medium text-sm">MARC Blogs</span>
+
+              {/* Label row — matches insights page exactly */}
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-10 h-[2px] bg-[#4E9141]" />
+                <span className="text-[#4E9141] font-medium text-sm uppercase tracking-widest">
+                  Insights & Trends
+                </span>
               </div>
+
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
                 Insights & Trends for
                 <span className="text-[#4E9141]"> Modern Businesses</span>
@@ -65,11 +70,23 @@ export default function BlogPage() {
               <p className="text-[#47635D] text-lg leading-relaxed mb-8">
                 Stay up-to-date with knowledgeable insights and the latest trends transforming industries and businesses across the world.
               </p>
-              <div className="flex gap-8 py-6 border-t border-b border-[#C2DDB4]/30">
-                <div><div className="text-3xl font-bold text-[#4E9141]">75+</div><div className="text-[#47635D] text-sm">Articles</div></div>
-                <div><div className="text-3xl font-bold text-[#4E9141]">15+</div><div className="text-[#47635D] text-sm">Authors</div></div>
-                <div><div className="text-3xl font-bold text-[#4E9141]">50k+</div><div className="text-[#47635D] text-sm">Readers</div></div>
+
+              {/* Stats — matches insights page style */}
+              <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">75+</div>
+                  <div className="text-sm text-[#47635D] mt-1">Articles</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">15+</div>
+                  <div className="text-sm text-[#47635D] mt-1">Authors</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#4E9141]">50k+</div>
+                  <div className="text-sm text-[#47635D] mt-1">Readers</div>
+                </div>
               </div>
+
               <div className="mt-8">
                 <p className="text-sm font-medium text-[#47635D] mb-4">Popular Topics:</p>
                 <div className="flex flex-wrap gap-2">
@@ -83,7 +100,7 @@ export default function BlogPage() {
               </div>
             </div>
 
-            {/* Right – Featured posts — now link to /blog/[slug] */}
+            {/* Right – Featured posts */}
             <div className="lg:col-span-7 space-y-6">
               {featuredPosts.map((post, i) => (
                 <Link
@@ -172,7 +189,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* ── Blog Grid — every card now links to /blog/[slug] ─────────── */}
+      {/* ── Blog Grid ─────────────────────────────────────────────────── */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between mb-10">
@@ -197,7 +214,6 @@ export default function BlogPage() {
                   }`}
                   style={{ transitionDelay: `${i * 50}ms` }}
                 >
-                  {/* Image */}
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img src={post.image} alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -212,7 +228,6 @@ export default function BlogPage() {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="p-6">
                     <div className="flex items-center gap-3 text-sm text-[#47635D] mb-3">
                       <div className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{post.date}</div>
@@ -238,7 +253,6 @@ export default function BlogPage() {
             ))}
           </div>
 
-          {/* Load More */}
           {gridPosts.length > 9 && !showAllPosts && (
             <div className="text-center mt-12">
               <button onClick={() => setShowAllPosts(true)}
@@ -250,7 +264,6 @@ export default function BlogPage() {
             </div>
           )}
 
-          {/* No Results */}
           {filteredBlogs.length === 0 && (
             <div className="text-center py-20">
               <div className="w-20 h-20 bg-[#F7FFF5] rounded-full flex items-center justify-center mx-auto mb-6">

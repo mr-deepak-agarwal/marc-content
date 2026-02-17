@@ -1005,7 +1005,7 @@ export default function InsightsPageV2() {
     <div className="bg-white min-h-screen" data-testid="insights-page-v2">
       
       {/* ==================== HERO with Animated Card Stack ==================== */}
-      <section className="pt-32 pb-20 bg-white border-b border-gray-100 overflow-hidden">
+      <section className="pt-20 pb-16 bg-white border-b border-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
