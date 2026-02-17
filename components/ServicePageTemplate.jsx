@@ -237,17 +237,17 @@ export default function ServicePageTemplateOption2({
 
       {/* ── Case Studies ─────────────────────────────────────────────────── */}
       {caseStudies && caseStudies.length > 0 && (
-        <section className="py-24 bg-[#1e1e1e]">
+        <section className="py-24 bg-[#1a7a3d]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-[2px] bg-[#4E9141]" />
-                  <span className="text-[#4E9141] font-medium tracking-wide uppercase text-sm">Case Studies</span>
+                  <div className="w-12 h-[2px] bg-white/60" />
+                  <span className="text-white/80 font-medium tracking-wide uppercase text-sm">Case Studies</span>
                 </div>
                 <h2 className="text-3xl lg:text-5xl font-bold text-white">Success Stories</h2>
               </div>
-              <Link href="/case-studies" className="mt-6 lg:mt-0 inline-flex items-center gap-2 text-[#4E9141] hover:text-[#C2DDB4] font-medium transition-colors">
+              <Link href="/case-studies" className="mt-6 lg:mt-0 inline-flex items-center gap-2 text-white/80 hover:text-white font-medium transition-colors">
                 View All Case Studies <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -256,15 +256,15 @@ export default function ServicePageTemplateOption2({
               {caseStudies.map((study, i) => (
                 <div
                   key={i}
-                  className="bg-[#2a2a2a] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group flex flex-col"
+                  className="bg-[#158a36] rounded-2xl overflow-hidden border border-white/10 hover:border-[#F97316]/30 transition-all duration-300 group flex flex-col"
                 >
                   <div className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74]" />
                   <div className="p-7 flex flex-col flex-1">
                     <div className="flex flex-wrap gap-2 mb-5">
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#F97316]/10 text-[#FDBA74]">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#F97316]/15 text-[#FDBA74]">
                         {study.industry}
                       </span>
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-[#C2DDB4]">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/80">
                         {study.service}
                       </span>
                     </div>
@@ -273,22 +273,22 @@ export default function ServicePageTemplateOption2({
                     </h3>
                     <div className="space-y-5 flex-1">
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-1.5 pb-1 border-b border-[#F97316]/20">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#FDBA74] mb-1.5 pb-1 border-b border-[#F97316]/20">
                           Challenge
                         </p>
-                        <p className="text-[#C2DDB4] text-sm leading-relaxed">{study.challenge}</p>
+                        <p className="text-white/75 text-sm leading-relaxed">{study.challenge}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-1.5 pb-1 border-b border-[#F97316]/20">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#FDBA74] mb-1.5 pb-1 border-b border-[#F97316]/20">
                           Solution
                         </p>
-                        <p className="text-[#C2DDB4] text-sm leading-relaxed">{study.solution}</p>
+                        <p className="text-white/75 text-sm leading-relaxed">{study.solution}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-1.5 pb-1 border-b border-[#F97316]/20">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#FDBA74] mb-1.5 pb-1 border-b border-[#F97316]/20">
                           Result
                         </p>
-                        <p className="text-sm font-semibold text-white leading-relaxed bg-[#F97316]/5 rounded-lg px-3 py-2">
+                        <p className="text-sm font-semibold text-white leading-relaxed bg-white/10 rounded-lg px-3 py-2">
                           {study.result}
                         </p>
                       </div>
