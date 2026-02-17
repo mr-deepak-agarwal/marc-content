@@ -4,10 +4,12 @@ import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { LayoutDashboard, BarChart3, TrendingUp, ShieldCheck, Database, Target } from 'lucide-react'
 
 const pageData = {
-  tagline: 'Growth Strategy',
+  // ✅ KEYWORD: "MIS Setup Services" — tagline corrected from 'Growth Strategy'
+  tagline: 'MIS Setup Services',
   title: 'Management Information',
   titleHighlight: 'Systems (MIS)',
-  description: 'Limited visibility into financial and operational performance leads to delayed decisions, cost overruns, and weak financial control. MARC\'s MIS setup services help organizations design and implement structured, reliable management reporting systems that convert raw data into meaningful insights for decision-makers.',
+  // ✅ KEYWORD: "MIS setup services" — description updated to match doc exactly
+  description: 'Limited visibility into financial and operational performance often leads to delayed decisions, cost overruns, and weak financial control. MARC\'s MIS setup services help organizations design and implement structured, reliable management reporting systems that convert raw data into meaningful insights for decision-makers. We bring strong domain understanding across hospitality, manufacturing, and education sectors, enabling us to design MIS frameworks aligned with sector-specific business drivers, cost structures, and management priorities.',
 
   stats: [
     { value: '15+', label: 'MIS Frameworks Built' },
@@ -31,7 +33,7 @@ const pageData = {
     { num: '05', title: 'Data Integration', desc: 'Define data sources, validation checks, and reporting timelines. Align MIS with existing accounting systems and ERP.' },
     { num: '06', title: 'Implementation & Handover', desc: 'Develop monthly management reports and dashboards. Support implementation, team training, and ongoing refinement.' },
   ],
-  methodologyDescription: 'We bring strong domain understanding across hospitality, manufacturing, and education sectors — enabling us to design MIS frameworks aligned with sector-specific business drivers, cost structures, and management priorities.',
+  methodologyDescription: 'Our MIS engagements focus on building end-to-end reporting frameworks that track key performance indicators (KPIs) across revenues, expenses, budgets, and business units. We help management move from fragmented data and static reports to consistent, decision-ready monthly MIS that supports performance monitoring, variance analysis, and planning.',
 
   services: [
     {
@@ -88,7 +90,7 @@ const pageData = {
   ],
 
   faqs: [
-    { q: 'What does MIS setup typically include?', a: 'MIS setup includes defining KPIs, building actual vs budget tracking frameworks, designing variance analysis reports, and developing monthly management dashboards aligned with the business\'s decision-making needs.' },
+    { q: 'What does MIS setup typically include?', a: 'MIS setup includes defining KPIs, actual vs budget tracking, variance analysis, reporting structures, and monthly management dashboards aligned with decision-making needs.' },
     { q: 'Do you build the MIS in Excel or a specific software?', a: 'We design MIS frameworks that can be implemented in Excel, Google Sheets, or integrated with your existing ERP or accounting software — depending on your current systems and preferences.' },
     { q: 'How long does MIS setup take?', a: 'A typical MIS setup engagement takes 4–6 weeks from needs assessment to implementation, depending on business complexity and data availability.' },
     { q: 'Can your MIS be maintained by our internal team?', a: 'Yes. We design for handover — the MIS is built to be maintained by your internal finance team, with documentation and training provided as part of the engagement.' },

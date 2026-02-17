@@ -7,7 +7,7 @@ const pageData = {
   tagline: 'Internal Audit Services',
   title: 'Strengthen Governance and',
   titleHighlight: 'Control Effectiveness',
-  description: 'In an increasingly complex regulatory and operating environment, internal audits play a critical role in strengthening governance, improving control effectiveness, and enhancing operational discipline. MARC\'s internal audit services are designed to provide independent, objective assurance while identifying opportunities to improve financial integrity, compliance, and risk management.',
+  description: 'In an increasingly complex regulatory and operating environment, internal audits play a critical role in strengthening governance, improving control effectiveness, and enhancing operational discipline. MARC\'s internal audit services are designed to provide independent, objective assurance while identifying opportunities to improve financial integrity, compliance, and risk management. MARC has deep experience delivering internal audit engagements across hospitality, manufacturing, and education sectors, where multi-location operations, high transaction volumes, and decentralized controls increase audit complexity.',
   
   stats: [
     { value: '150+', label: 'Internal Audits Completed' },
@@ -31,7 +31,7 @@ const pageData = {
     { num: '05', title: 'Deliver Recommendations', desc: 'Deliver structured reports with clear, actionable recommendations.' },
     { num: '06', title: 'Follow-Up Support', desc: 'Support follow-up reviews to track implementation and closure of audit findings.' },
   ],
-  methodologyDescription: 'Our internal audits go beyond checklist-based compliance. We adopt a risk-based, insight-led approach that evaluates financial records, internal controls, statutory compliance, and policy adherence across functions. The objective is to help management gain clarity on risk exposure and take corrective action before issues escalate.',
+  methodologyDescription: 'Our internal audits go beyond checklist-based compliance. We adopt a risk-based, insight-led approach that evaluates financial records, internal controls, statutory compliance, and policy adherence across functions. The objective is to help management gain clarity on risk exposure, identify control gaps, and take corrective action before issues escalate.',
   
   services: [
     {

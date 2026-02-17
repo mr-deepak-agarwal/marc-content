@@ -7,7 +7,8 @@ const pageData = {
   tagline: 'Growth Strategy',
   title: 'Standard Operating',
   titleHighlight: 'Procedures (SOPs)',
-  description: 'Many businesses operate with informal processes, undocumented workflows, and unclear responsibilities. Over time, this leads to delays, inconsistent execution, and high dependence on a few individuals. MARC designs and implements clear, practical SOPs that bring consistency, accountability, and better control across all departments.',
+  // ✅ KEYWORD: "Standard Operating Procedures (SOPs)" — description updated to match doc exactly
+  description: 'Many businesses operate with informal processes, undocumented workflows, and unclear responsibilities across departments. Over time, this leads to delays, inconsistent execution, and high dependence on a few individuals. MARC helps organizations put structure in place by designing and implementing clear and practical Standard Operating Procedures (SOPs) across all departments. We develop SOPs supported by process flowcharts, RASIC (Responsible, Accountable, Support, Informed, Consulted) matrices, and role-wise job descriptions — creating a structured operating framework that makes daily operations smoother and easier to manage.',
 
   stats: [
     { value: '100+', label: 'SOPs Delivered' },
@@ -31,7 +32,7 @@ const pageData = {
     { num: '05', title: 'SOP Documentation', desc: 'Prepare process flowcharts, RASIC matrices, approval hierarchies, and role-wise job descriptions aligned to SOP responsibilities.' },
     { num: '06', title: 'Implementation Support', desc: 'Support teams during implementation and transition, with follow-up reviews to ensure adoption and effectiveness.' },
   ],
-  methodologyDescription: 'We work closely with management and teams on the ground to convert real working practices into simple, workable SOPs — not theoretical documents that sit on a shelf.',
+  methodologyDescription: 'Our SOP writing engagements focus on clearly defining how day-to-day work should be carried out across the organisation. We work closely with management and teams on the ground to understand current practices and convert them into simple, workable SOPs that bring consistency, accountability, and better control across all departments.',
 
   services: [
     {

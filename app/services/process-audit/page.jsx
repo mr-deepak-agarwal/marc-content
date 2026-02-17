@@ -7,7 +7,8 @@ const pageData = {
   tagline: 'Process Audit Services',
   title: 'Identify Inefficiencies and',
   titleHighlight: 'Strengthen Control Checkpoints',
-  description: 'Process inefficiencies, undocumented workflows, and weak control checkpoints often result in cost overruns, revenue leakage, and accountability gaps. MARC\'s process audit services help organizations assess how work actually gets done versus how it is intended to be done.',
+  // ✅ KEYWORD: "Process Audit Services" — description updated to match doc exactly
+  description: 'Process inefficiencies, undocumented workflows, and weak control checkpoints often result in cost overruns, revenue leakage, and accountability gaps. MARC\'s process audit services help organizations assess how work actually gets done versus how it is intended to be done. We bring strong domain understanding of hospitality operations, manufacturing environments, and education institutions, enabling us to assess processes with sector-specific context and benchmarks.',
   
   stats: [
     { value: '100+', label: 'Process Audits Completed' },
@@ -31,7 +32,7 @@ const pageData = {
     { num: '05', title: 'Quantify Impact', desc: 'Quantify operational and financial impact wherever possible.' },
     { num: '06', title: 'Recommend Improvements', desc: 'Recommend process improvements and control enhancements with follow-up monitoring.' },
   ],
-  methodologyDescription: 'Our process audits evaluate end-to-end workflows across operational, financial, and compliance functions, with a focus on identifying inefficiencies, control gaps, and deviations from SOPs. The engagement results in practical recommendations to streamline operations and reinforce accountability.',
+  methodologyDescription: 'Our process audits evaluate end-to-end workflows across operational, financial, and compliance functions, with a focus on identifying inefficiencies, control gaps, and deviations from SOPs. The engagement results in practical recommendations to streamline operations, standardize processes, and reinforce accountability.',
   
   services: [
     {

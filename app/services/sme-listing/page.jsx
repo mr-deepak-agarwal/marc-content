@@ -4,10 +4,12 @@ import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { TrendingUp, FileCheck, Users, Award, Building2, Scale, Target, BarChart3 } from 'lucide-react'
 
 const pageData = {
+  // ✅ KEYWORD: "SME Listing Advisory Services"
   tagline: 'SME Listing Advisory Services',
   title: 'Navigate Your Listing Journey from',
   titleHighlight: 'Readiness to Market Entry',
-  description: 'Access to capital markets can be a transformative milestone for growing businesses, but navigating the SME listing process requires careful planning, regulatory preparedness, and financial discipline. MARC\'s SME Listing advisory services support companies through every stage of their listing journey, from readiness assessment to successful market entry.',
+  // ✅ KEYWORD: "SME Listing advisory services" — description updated to match doc exactly
+  description: 'Access to capital markets can be a transformative milestone for growing businesses, but navigating the SME listing process requires careful planning, regulatory preparedness, and financial discipline. MARC\'s SME Listing advisory services support companies through every stage of their listing journey, from readiness assessment to successful market entry. MARC brings strong experience working with owner-managed businesses, fast-growing SMEs, and mid-market companies across sectors, helping them transition into listed entities with financial controls and compliance structures.',
   
   stats: [
     { value: '25+', label: 'SME Listings Advised' },
@@ -28,7 +30,7 @@ const pageData = {
     { num: '02', title: 'Financial & Compliance Review', desc: 'Review historical financials, compliance status, and governance frameworks.' },
     { num: '03', title: 'Preparation Support', desc: 'Support preparation of financial information, projections, and regulatory disclosures.' },
     { num: '04', title: 'Controls & Systems', desc: 'Assist in strengthening internal controls, MIS, and reporting systems.' },
-    { num: '05', title: 'Stakeholder Coordination', desc: 'Coordinate with legal advisors, merchant bankers, auditors, and other advisors.' },
+    { num: '05', title: 'Stakeholder Coordination', desc: 'Coordinate with legal advisors, merchant bankers, auditors, and other stakeholders.' },
     { num: '06', title: 'Listing Execution', desc: 'Support through documentation, approval processes, and successful market entry.' },
   ],
   methodologyDescription: 'We work closely with promoters and management teams to evaluate listing feasibility, strengthen financial and governance frameworks. Our approach ensures that businesses are well-prepared to meet regulatory requirements while positioning themselves credibly in front of investors.',
@@ -89,6 +91,7 @@ const pageData = {
     { q: 'What are the eligibility criteria for SME listing?', a: 'Eligibility criteria vary by exchange but generally include minimum post-issue paid-up capital, track record of operations, profitability requirements, and corporate governance standards. We assess your specific eligibility during our readiness assessment.' },
     { q: 'How long does the SME listing process take?', a: 'The listing process typically takes 6-9 months from readiness assessment to market entry, depending on the company\'s preparedness, regulatory approvals, and market conditions.' },
     { q: 'What preparation is required before listing?', a: 'Companies need to strengthen financial controls, implement robust MIS, establish governance frameworks, ensure regulatory compliance, prepare historical financials and projections, and position the business credibly for investors.' },
+    // ✅ KEYWORD: "SME Listing advisory services" in FAQ question
     { q: 'Who should consider SME Listing advisory services?', a: 'SME Listing advisory is suitable for growing businesses considering capital market access, promoter exits, or structured growth funding, and who are ready to strengthen governance and financial discipline.' },
     { q: 'What are the key benefits of SME listing?', a: 'Key benefits include clear understanding of listing feasibility and requirements, improved financial discipline and transparency, stronger governance and controls, structured preparation for investor interaction, and reduced execution risk during the listing process.' },
     { q: 'Do you coordinate with other advisors?', a: 'Yes, we coordinate closely with legal advisors, merchant bankers, auditors, and other stakeholders to ensure comprehensive coverage and smooth listing execution.' },
