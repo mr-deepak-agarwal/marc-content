@@ -235,9 +235,9 @@ export default function ServicePageTemplateOption2({
         </section>
       )}
 
-      {/* ── Case Studies ─────────────────────────────────────────────────── */}
+      {/* ── Case Studies (unchanged) ─────────────────────────────────────── */}
       {caseStudies && caseStudies.length > 0 && (
-        <section className="py-24 bg-[#1e1e1e]">
+        <section className="py-24 bg-[#1D342F]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
               <div>
@@ -256,7 +256,7 @@ export default function ServicePageTemplateOption2({
               {caseStudies.map((study, i) => (
                 <div
                   key={i}
-                  className="bg-[#2a2a2a] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group flex flex-col"
+                  className="bg-[#162b23] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group flex flex-col"
                 >
                   <div className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74]" />
                   <div className="p-7 flex flex-col flex-1">

@@ -2,19 +2,8 @@
 
 import React from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
+import { companyInfo } from '@/data/mock'
 import { Button } from './ui/button'
-
-/*
-  MARC Vivid Palette:
-  --green-logo:   #2E7D32   rich logo green
-  --green-mid:    #43A047   bright mid green
-  --green-light:  #81C784   light green tint
-  --green-pale:   #A5D6A7   very light green (text on dark)
-  --green-deep:   #1B5E20   dark section bg
-  --orange:       #E65100   vivid orange (WHY CHOOSE US style)
-  --orange-bright:#FF6D00   even brighter orange accent
-  --white:        #FFFFFF
-*/
 
 const HeroSection = () => {
   const scrollToSection = (href) => {
@@ -23,220 +12,284 @@ const HeroSection = () => {
   }
 
   return (
-    <section
+    <section 
       data-testid="hero-section"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#1B5E20' }}
+      style={{ backgroundColor: '#4E9141' }}
     >
-      {/* ══════════ CUSTOM SVG BACKGROUND ══════════ */}
-      <div className="absolute inset-0 pointer-events-none">
-        <svg
-          className="w-full h-full"
-          viewBox="0 0 1440 900"
-          preserveAspectRatio="xMidYMid slice"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <radialGradient id="hGlobe" cx="42%" cy="40%" r="58%">
-              <stop offset="0%" stopColor="#43A047" />
-              <stop offset="55%" stopColor="#2E7D32" />
-              <stop offset="100%" stopColor="#1B5E20" />
-            </radialGradient>
-            <radialGradient id="hBg" cx="68%" cy="50%" r="70%">
-              <stop offset="0%" stopColor="#2E7D32" />
-              <stop offset="100%" stopColor="#1B5E20" />
-            </radialGradient>
-            <radialGradient id="hOGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#FF6D00" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="#FF6D00" stopOpacity="0" />
-            </radialGradient>
-            <radialGradient id="hGGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#66BB6A" stopOpacity="0.22" />
-              <stop offset="100%" stopColor="#66BB6A" stopOpacity="0" />
-            </radialGradient>
-            <clipPath id="hClip"><circle cx="1060" cy="450" r="320" /></clipPath>
-            <filter id="hBlur"><feGaussianBlur stdDeviation="20" /></filter>
-            <filter id="hSm"><feGaussianBlur stdDeviation="5" /></filter>
-            <filter id="hNode">
-              <feGaussianBlur stdDeviation="6" result="b" />
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
+      {/* ===== GEOMETRIC SHAPES BACKGROUND ===== */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          {/* Gradient definitions */}
+          <linearGradient id="shapeGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.15)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0.05)" />
+          </linearGradient>
+          <linearGradient id="shapeGradient2" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="rgba(194,221,180,0.2)" />
+            <stop offset="100%" stopColor="rgba(194,221,180,0.05)" />
+          </linearGradient>
+          <linearGradient id="shapeGradient3" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </linearGradient>
+        </defs>
 
-          <rect width="1440" height="900" fill="url(#hBg)" />
+        {/* Large Circle - Top Right */}
+        <circle
+          cx="1200"
+          cy="150"
+          r="200"
+          fill="url(#shapeGradient1)"
+          className="animate-geometric-float"
+          style={{ animationDelay: '0s' }}
+        />
 
-          {/* dot grid */}
-          <pattern id="hDots" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r="1.1" fill="#4CAF50" opacity="0.2" />
-          </pattern>
-          <rect width="1440" height="900" fill="url(#hDots)" />
+        {/* Rectangle - Left Side */}
+        <rect
+          x="50"
+          y="300"
+          width="180"
+          height="180"
+          rx="20"
+          fill="url(#shapeGradient2)"
+          transform="rotate(15 140 390)"
+          className="animate-geometric-float"
+          style={{ animationDelay: '0.5s' }}
+        />
 
-          {/* diagonal accent lines */}
-          <line x1="0" y1="150" x2="480" y2="600" stroke="#E65100" strokeWidth="0.7" strokeOpacity="0.12" />
-          <line x1="0" y1="350" x2="360" y2="750" stroke="#E65100" strokeWidth="0.5" strokeOpacity="0.08" />
-          <line x1="120" y1="0" x2="620" y2="520" stroke="#4CAF50" strokeWidth="0.5" strokeOpacity="0.1" />
+        {/* Triangle - Bottom Center */}
+        <polygon
+          points="720,750 820,600 620,600"
+          fill="url(#shapeGradient1)"
+          className="animate-geometric-pulse"
+          style={{ animationDelay: '1s' }}
+        />
 
-          {/* globe glows */}
-          <circle cx="1060" cy="450" r="420" fill="url(#hOGlow)" filter="url(#hBlur)" />
-          <circle cx="1060" cy="450" r="290" fill="url(#hGGlow)" filter="url(#hSm)" />
+        {/* Small Circle - Left */}
+        <circle
+          cx="100"
+          cy="700"
+          r="80"
+          fill="rgba(255,255,255,0.08)"
+          className="animate-geometric-float"
+          style={{ animationDelay: '1.5s' }}
+        />
 
-          {/* globe body */}
-          <circle cx="1060" cy="450" r="320" fill="url(#hGlobe)" />
-          <circle cx="1060" cy="450" r="320" fill="none" stroke="#81C784" strokeWidth="1" strokeOpacity="0.35" />
-          <circle cx="1060" cy="450" r="318" fill="none" stroke="#E65100" strokeWidth="0.5" strokeOpacity="0.2" />
+        {/* Hexagon - Right Side */}
+        <polygon
+          points="1300,500 1350,550 1350,630 1300,680 1250,630 1250,550"
+          fill="url(#shapeGradient2)"
+          className="animate-geometric-float"
+          style={{ animationDelay: '2s' }}
+        />
 
-          {/* lat lines */}
-          <g clipPath="url(#hClip)" fill="none" stroke="#4CAF50" strokeWidth="0.8" strokeOpacity="0.28">
-            <ellipse cx="1060" cy="450" rx="320" ry="78" />
-            <ellipse cx="1060" cy="450" rx="320" ry="162" />
-            <ellipse cx="1060" cy="450" rx="320" ry="244" />
-            <ellipse cx="1060" cy="450" rx="320" ry="308" />
-            <line x1="740" y1="450" x2="1380" y2="450" />
-          </g>
+        {/* Diamond - Top Left */}
+        <rect
+          x="250"
+          y="80"
+          width="100"
+          height="100"
+          fill="rgba(194,221,180,0.15)"
+          transform="rotate(45 300 130)"
+          className="animate-geometric-pulse"
+          style={{ animationDelay: '0.8s' }}
+        />
 
-          {/* long lines */}
-          <g clipPath="url(#hClip)" fill="none" stroke="#4CAF50" strokeWidth="0.8" strokeOpacity="0.28">
-            <ellipse cx="1060" cy="450" rx="58" ry="320" />
-            <ellipse cx="1060" cy="450" rx="135" ry="320" />
-            <ellipse cx="1060" cy="450" rx="215" ry="320" />
-            <ellipse cx="1060" cy="450" rx="290" ry="320" />
-            <line x1="1060" y1="130" x2="1060" y2="770" />
-          </g>
+        {/* Large Rectangle - Bottom Right */}
+        <rect
+          x="1100"
+          y="650"
+          width="250"
+          height="150"
+          rx="30"
+          fill="url(#shapeGradient3)"
+          transform="rotate(-10 1225 725)"
+          className="animate-geometric-float"
+          style={{ animationDelay: '1.2s' }}
+        />
 
-          {/* landmasses — bright fill */}
-          <g clipPath="url(#hClip)" fill="#66BB6A" fillOpacity="0.42">
-            <polygon points="1074,332 1100,324 1122,340 1128,368 1120,400 1106,422 1082,440 1062,428 1054,402 1062,372 1072,344" />
-            <ellipse cx="1166" cy="390" rx="30" ry="44" transform="rotate(18,1166,390)" />
-            <polygon points="1032,318 1057,310 1062,334 1050,352 1026,344" />
-            <polygon points="997,376 1017,368 1027,390 1023,418 1007,430 991,418 985,395" />
-            <ellipse cx="1096" cy="450" rx="9" ry="13" />
-          </g>
+        {/* Circle Outline - Center */}
+        <circle
+          cx="700"
+          cy="200"
+          r="120"
+          fill="none"
+          stroke="rgba(255,255,255,0.1)"
+          strokeWidth="2"
+          strokeDasharray="10 5"
+          className="animate-geometric-pulse"
+        />
 
-          {/* specular */}
-          <ellipse cx="966" cy="320" rx="76" ry="52" fill="white" fillOpacity="0.06" filter="url(#hSm)" />
+        {/* Small Square - Multiple */}
+        <rect
+          x="500"
+          y="600"
+          width="50"
+          height="50"
+          rx="8"
+          fill="rgba(255,255,255,0.1)"
+          className="animate-geometric-float"
+          style={{ animationDelay: '0.3s' }}
+        />
+        <rect
+          x="950"
+          y="350"
+          width="40"
+          height="40"
+          rx="6"
+          fill="rgba(194,221,180,0.12)"
+          className="animate-geometric-float"
+          style={{ animationDelay: '1.8s' }}
+        />
 
-          {/* connection lines */}
-          <line x1="1074" y1="393" x2="602" y2="252" stroke="#FF6D00" strokeWidth="1.8" strokeDasharray="5,4" strokeOpacity="0.65" />
-          <line x1="1032" y1="334" x2="482" y2="418" stroke="#FF6D00" strokeWidth="1.3" strokeDasharray="5,4" strokeOpacity="0.5" />
-          <line x1="1060" y1="132" x2="742" y2="172" stroke="#A5D6A7" strokeWidth="1" strokeDasharray="4,5" strokeOpacity="0.4" />
+        {/* Triangle Small - Top */}
+        <polygon
+          points="550,120 580,70 520,70"
+          fill="rgba(255,255,255,0.08)"
+          className="animate-geometric-pulse"
+          style={{ animationDelay: '2.5s' }}
+        />
 
-          {/* globe nodes */}
-          <circle cx="1074" cy="393" r="8" fill="#FF6D00" filter="url(#hNode)" />
-          <circle cx="1074" cy="393" r="18" fill="#FF6D00" fillOpacity="0.22" />
-          <circle cx="1074" cy="393" r="28" fill="#FF6D00" fillOpacity="0.08" />
-          <circle cx="1032" cy="334" r="6" fill="#FF6D00" filter="url(#hNode)" />
-          <circle cx="1032" cy="334" r="13" fill="#FF6D00" fillOpacity="0.18" />
-          <circle cx="1060" cy="133" r="5" fill="#A5D6A7" filter="url(#hNode)" />
+        {/* Dotted Line Pattern */}
+        <line
+          x1="0"
+          y1="450"
+          x2="400"
+          y2="450"
+          stroke="rgba(255,255,255,0.06)"
+          strokeWidth="2"
+          strokeDasharray="8 8"
+        />
+        <line
+          x1="1040"
+          y1="300"
+          x2="1440"
+          y2="300"
+          stroke="rgba(255,255,255,0.06)"
+          strokeWidth="2"
+          strokeDasharray="8 8"
+        />
+      </svg>
 
-          {/* left panel nodes */}
-          <circle cx="602" cy="252" r="7" fill="#FF6D00" filter="url(#hNode)" />
-          <circle cx="602" cy="252" r="16" fill="#FF6D00" fillOpacity="0.18" />
-          <text x="622" y="246" fontFamily="sans-serif" fontSize="13" fill="#FF8A50" letterSpacing="2.5" fontWeight="700">INDIA</text>
-          <text x="622" y="263" fontFamily="sans-serif" fontSize="10" fill="#A5D6A7">500+ Projects</text>
+      {/* ===== FLOATING GEOMETRIC ELEMENTS ===== */}
+      <div className="absolute top-20 left-[10%] w-16 h-16 rounded-full border-2 border-white/20 animate-geometric-float" style={{ animationDelay: '0s' }} />
+      <div className="absolute top-40 right-[15%] w-24 h-24 rounded-2xl bg-white/10 animate-geometric-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-32 left-[20%] w-12 h-12 bg-[#C2DDB4]/30 rotate-45 animate-geometric-pulse" style={{ animationDelay: '0.5s' }} />
+      <div className="absolute top-1/3 left-[5%] w-20 h-20 border border-white/10 rounded-lg rotate-12 animate-geometric-float" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute bottom-20 right-[10%] w-32 h-8 bg-white/10 rounded-full animate-geometric-float" style={{ animationDelay: '2s' }} />
 
-          <circle cx="482" cy="418" r="6" fill="#FF6D00" filter="url(#hNode)" />
-          <circle cx="482" cy="418" r="13" fill="#FF6D00" fillOpacity="0.14" />
-          <text x="500" y="413" fontFamily="sans-serif" fontSize="13" fill="#FF8A50" letterSpacing="2.5" fontWeight="700">UAE</text>
-          <text x="500" y="429" fontFamily="sans-serif" fontSize="10" fill="#A5D6A7">Active Markets</text>
-
-          <circle cx="742" cy="172" r="5" fill="#A5D6A7" filter="url(#hNode)" />
-          <text x="758" y="167" fontFamily="sans-serif" fontSize="12" fill="#A5D6A7" letterSpacing="2">GLOBAL</text>
-          <text x="758" y="182" fontFamily="sans-serif" fontSize="9.5" fill="#A5D6A7" fillOpacity="0.7">30+ Countries</text>
-
-          {/* orange corner accent */}
-          <path d="M 0 0 Q 220 120 200 340" fill="none" stroke="#E65100" strokeWidth="2" strokeOpacity="0.18" />
-          <path d="M 0 90 Q 170 200 150 420" fill="none" stroke="#E65100" strokeWidth="1" strokeOpacity="0.1" />
-        </svg>
-      </div>
-
-      {/* fade overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, rgba(27,94,32,0.72) 0%, rgba(27,94,32,0.28) 55%, transparent 100%)' }}
+      {/* ===== SUBTLE GRID OVERLAY ===== */}
+      <div 
+        className="absolute inset-0 opacity-[0.03]" 
+        style={{ 
+          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} 
       />
 
-      {/* ══════════ CONTENT ══════════ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
+      {/* ===== DEPTH OVERLAY ===== */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10" />
 
+      {/* ===== CONTENT ===== */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
         {/* Badge */}
-        <div
+        <div 
           data-testid="hero-badge"
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-white text-sm font-medium mb-8"
-          style={{ backgroundColor: 'rgba(255,255,255,0.12)', border: '1px solid rgba(165,214,167,0.4)' }}
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white text-sm font-medium mb-8"
         >
-          <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF6D00' }} />
+          <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
           Advisors for Compounding Growth
         </div>
 
-        {/* Heading */}
-        <h1
+        {/* Main Heading */}
+        <h1 
           data-testid="hero-heading"
           className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight"
         >
-          Growth Advisory for{' '}
-          <span style={{ color: '#A5D6A7' }}>Ambitious Indian</span>{' '}
-          &amp; Global Businesses
+          Growth Advisory for Ambitious Indian & Global Businesses
         </h1>
 
         {/* Subheading */}
-        <p
+        <p 
           data-testid="hero-subheading"
-          className="text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
-          style={{ color: 'rgba(255,255,255,0.85)' }}
+          className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed"
         >
           Strategy and execution for Indian and global businesses that want growth to build—year after year.
         </p>
 
-        {/* 3 value blurbs */}
+        {/* ===== 3 VALUE BLURBS ===== */}
         <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
-          {[
-            { num: '01', title: 'Insights that sharpen growth bets.', body: 'Market, customer, and category intelligence — including Feasibility Studies, market assessment, and consumer insights — to reduce risk and guide compounding growth.' },
-            { num: '02', title: 'Numbers that guide growth.', body: 'Profitability Analyses, financial models, and focused diagnostics — plus Standard Operating Procedures (SOP) review and system optimisation — that translate data into clear priorities.' },
-            { num: '03', title: 'M&A, designed for growth.', body: 'Strategic target identification, commercial due diligence, growth thesis validation, and integration support — focused on value creation.' },
-          ].map((item) => (
-            <div
-              key={item.num}
-              className="rounded-2xl p-5 text-left transition-all duration-300 hover:scale-[1.02]"
-              style={{ backgroundColor: 'rgba(255,255,255,0.09)', border: '1px solid rgba(165,214,167,0.25)' }}
-            >
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: '#E65100' }}>
-                <span className="text-white font-bold text-sm">{item.num}</span>
-              </div>
-              <h3 className="text-white font-semibold text-base mb-2 leading-snug">{item.title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>{item.body}</p>
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left hover:bg-white/15 transition-all duration-300">
+            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center mb-3">
+              <span className="text-white font-bold text-sm">01</span>
             </div>
-          ))}
+            <h3 className="text-white font-semibold text-base mb-2 leading-snug">
+              Insights that sharpen growth bets.
+            </h3>
+            <p className="text-white/70 text-sm leading-relaxed">
+              Market, customer, and category intelligence to reduce risk and guide compounding growth.
+            </p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left hover:bg-white/15 transition-all duration-300">
+            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center mb-3">
+              <span className="text-white font-bold text-sm">02</span>
+            </div>
+            <h3 className="text-white font-semibold text-base mb-2 leading-snug">
+              Numbers that guide growth.
+            </h3>
+            <p className="text-white/70 text-sm leading-relaxed">
+              Financial models, Profitability analyses and focused financial diagnostics that translate data into clear growth priorities.
+            </p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left hover:bg-white/15 transition-all duration-300">
+            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center mb-3">
+              <span className="text-white font-bold text-sm">03</span>
+            </div>
+            <h3 className="text-white font-semibold text-base mb-2 leading-snug">
+              M&A, designed for growth.
+            </h3>
+            <p className="text-white/70 text-sm leading-relaxed">
+              Strategic target identification, commercial diligence, and integration support—focused on value creation, not just deal completion.
+            </p>
+          </div>
         </div>
 
-        {/* CTAs */}
+        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
+          <Button
             data-testid="hero-cta-services"
             onClick={() => scrollToSection('#services')}
-            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-full text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-orange-900/30"
-            style={{ backgroundColor: '#E65100' }}
+            size="lg"
+            className="bg-white text-[#4E9141] hover:bg-[#C2DDB4] px-8 py-6 text-lg font-semibold shadow-2xl shadow-black/20 transition-all duration-300 hover:-translate-y-1"
           >
             Explore Our Services
-            <ArrowRight className="w-5 h-5" />
-          </button>
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
 
-          <button
+          <Button
             data-testid="hero-cta-about"
             onClick={() => scrollToSection('#about')}
-            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-full text-white transition-all duration-300 hover:bg-white/15"
-            style={{ border: '2px solid rgba(165,214,167,0.5)' }}
+            variant="outline"
+            size="lg"
+            className="border-2 border-white/40 text-white hover:bg-white/15 hover:border-white/60 px-8 py-6 text-lg font-semibold backdrop-blur-sm transition-all duration-300"
           >
             Learn About Us
-          </button>
+          </Button>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* ===== SCROLL INDICATOR ===== */}
       <button
         data-testid="hero-scroll-btn"
         onClick={() => scrollToSection('#about')}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-        style={{ color: 'rgba(165,214,167,0.7)' }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white animate-bounce transition-colors duration-300"
         aria-label="Scroll down"
       >
         <ChevronDown size={32} />
