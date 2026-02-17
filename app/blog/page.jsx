@@ -47,10 +47,10 @@ export default function BlogPage() {
     <div className="bg-[#F0F4F0] min-h-screen" data-testid="blog-page">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative pt-20 pb-16 bg-white border-b border-[#C2DDB4]/30 overflow-hidden">
+      <section className="relative pt-24 pb-16 bg-white border-b border-[#C2DDB4]/30 overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
 
             {/* Left — Insights-style header (line + label, no pill) */}
             <div className="lg:col-span-5 lg:sticky lg:top-32">
@@ -67,11 +67,11 @@ export default function BlogPage() {
                 Insights & Trends for
                 <span className="text-[#4E9141]"> Modern Businesses</span>
               </h1>
-              <p className="text-[#47635D] text-lg leading-relaxed mb-8">
+              <p className="text-xl text-[#47635D] leading-relaxed mb-8">
                 Stay up-to-date with knowledgeable insights and the latest trends transforming industries and businesses across the world.
               </p>
 
-              {/* Stats — matches insights page style */}
+              {/* Stats — matches insights page style exactly */}
               <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
                 <div>
                   <div className="text-3xl font-bold text-[#4E9141]">75+</div>
@@ -86,58 +86,48 @@ export default function BlogPage() {
                   <div className="text-sm text-[#47635D] mt-1">Readers</div>
                 </div>
               </div>
-
-              <div className="mt-8">
-                <p className="text-sm font-medium text-[#47635D] mb-4">Popular Topics:</p>
-                <div className="flex flex-wrap gap-2">
-                  {popularTags.slice(0, 6).map((tag, i) => (
-                    <button key={i}
-                      className="px-4 py-2 bg-[#F7FFF5] text-[#47635D] text-sm rounded-full border border-[#C2DDB4]/50 hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
 
-            {/* Right – Featured posts */}
-            <div className="lg:col-span-7 space-y-6">
+            {/* Right – Featured posts — compact so both cards fit in viewport */}
+            <div className="lg:col-span-7 space-y-4">
               {featuredPosts.map((post, i) => (
                 <Link
                   key={post.id}
                   href={`/blog/${post.slug}`}
-                  className="group block bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] hover:shadow-xl transition-all duration-500"
+                  className="group block bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/40 hover:border-[#4E9141] hover:shadow-xl transition-all duration-500"
                   data-testid={`featured-post-${i}`}
                 >
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden">
+                  <div className="flex gap-0">
+                    {/* Compact image — fixed height so two cards stack neatly */}
+                    <div className="relative w-52 shrink-0 overflow-hidden">
                       <img src={post.image} alt={post.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">Latest</span>
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2.5 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">Latest</span>
                       </div>
                     </div>
-                    <div className="p-6 lg:p-8 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 text-sm text-[#47635D] mb-3">
+                    {/* Content */}
+                    <div className="p-5 flex flex-col justify-center flex-1">
+                      <div className="flex items-center gap-2 text-xs text-[#47635D] mb-2">
                         <span className="text-[#4E9141] font-medium capitalize">{post.category.replace('-', ' ')}</span>
                         <span className="w-1 h-1 rounded-full bg-[#C2DDB4]" />
                         <span>{post.readTime}</span>
                       </div>
-                      <h2 className="text-xl lg:text-2xl font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors line-clamp-3">
+                      <h2 className="text-base lg:text-lg font-bold text-[#1D342F] leading-snug mb-2 group-hover:text-[#4E9141] transition-colors line-clamp-2">
                         {post.title}
                       </h2>
-                      <p className="text-[#47635D] mb-6 line-clamp-3 text-sm">{post.excerpt}</p>
+                      <p className="text-[#47635D] text-xs leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
-                            <User className="w-5 h-5 text-[#4E9141]" />
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-[#4E9141]/10 rounded-full flex items-center justify-center">
+                            <User className="w-4 h-4 text-[#4E9141]" />
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-[#1D342F]">{post.author}</p>
+                            <p className="text-xs font-medium text-[#1D342F]">{post.author}</p>
                             <p className="text-xs text-[#47635D]">{post.date}</p>
                           </div>
                         </div>
-                        <ArrowUpRight className="w-5 h-5 text-[#C2DDB4] group-hover:text-[#4E9141] transition-colors" />
+                        <ArrowUpRight className="w-4 h-4 text-[#C2DDB4] group-hover:text-[#4E9141] transition-colors" />
                       </div>
                     </div>
                   </div>
