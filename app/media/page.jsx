@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { ArrowRight, ExternalLink, Newspaper, FileText, Mail, Download, Calendar, ChevronRight, Award } from 'lucide-react'
+import { ArrowRight, ExternalLink, Newspaper, FileText, Mail, Calendar, ChevronRight, Award } from 'lucide-react'
 
 // Media images for animated carousel
 const mediaImages = [
@@ -510,63 +510,7 @@ export default function MediaPage() {
         </div>
       </section>
 
-      {/* Media Contacts & Press Kit */}
-      <section
-        ref={el => observerRefs.current[0] = el}
-        className="py-16 bg-white"
-      >
-        <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex items-center gap-4 mb-8">
-            <span className="w-12 h-[3px] bg-[#4E9141]" />
-            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
-              Resources
-            </span>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Media Contacts */}
-            <div className="group p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#4E9141] flex items-center justify-center mb-6">
-                <Mail className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-[#1D342F] mb-3">Media Contacts</h3>
-              <p className="text-[#47635D] mb-6 leading-relaxed">
-                Journalists, media houses, dailies, and publishers may use the contact information
-                provided for inquiries and clarifications. Prior permission for the use of creative
-                property, referencing the organisation and solicitation must be obtained beforehand.
-              </p>
-              <a
-                href="mailto:contact@marcglocal.com"
-                className="inline-flex items-center gap-2 text-[#4E9141] font-semibold hover:gap-3 transition-all"
-                data-testid="media-contact-link"
-              >
-                contact@marcglocal.com
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-
-            {/* Press Kit */}
-            <div className="group p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#4E9141] flex items-center justify-center mb-6">
-                <Download className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-[#1D342F] mb-3">Press Kit</h3>
-              <p className="text-[#47635D] mb-6 leading-relaxed">
-                Resources and material that may be deemed necessary for media releases, company profiles,
-                and other relevant content. Kindly make use of the same with prior permission only.
-                Re-distribution, sharing, and usage rights are reserved with MARC.
-              </p>
-              <button
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-colors"
-                data-testid="download-press-kit-btn"
-              >
-                <Download className="w-4 h-4" />
-                Download Resources
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* News & Press Releases */}
       <section
@@ -756,6 +700,38 @@ export default function MediaPage() {
                 50% { top: calc(100% - 12px); opacity: 0.5; }
               }
             `}</style>
+          </div>
+        </div>
+      </section>
+
+      {/* Media Contacts */}
+      <section
+        ref={el => observerRefs.current[0] = el}
+        className="py-16 bg-[#F7FFF5]"
+      >
+        <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex items-center gap-4 mb-8">
+            <span className="w-12 h-[3px] bg-[#4E9141]" />
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
+              Get In Touch
+            </span>
+          </div>
+          <div className="max-w-2xl">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">Media Contacts</h2>
+            <p className="text-[#47635D] leading-relaxed mb-6">
+              Journalists, media houses, dailies, and publishers may use the contact information
+              provided for inquiries and clarifications. Prior permission for the use of creative
+              property, referencing the organisation and solicitation must be obtained beforehand.
+            </p>
+            <a
+              href="mailto:contact@marcglocal.com"
+              className="inline-flex items-center gap-2 text-[#4E9141] font-semibold text-lg hover:gap-3 transition-all"
+              data-testid="media-contact-link"
+            >
+              <Mail className="w-5 h-5" />
+              contact@marcglocal.com
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </section>
