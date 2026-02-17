@@ -1,6 +1,6 @@
 'use client'
 
-import ServicePageTemplate1 from '@/components/ServicePageTemplate1'
+import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } from 'lucide-react'
 
 const pageData = {
@@ -126,5 +126,5 @@ const pageData = {
 }
 
 export default function MarketResearchPageOption1() {
-  return <ServicePageTemplate1 {...pageData} />
+  return <ServicePageTemplate {...pageData} />
 }
