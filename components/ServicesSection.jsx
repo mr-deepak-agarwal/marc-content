@@ -4,473 +4,377 @@ import React, { useState } from 'react'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { services } from '@/data/mock'
 
-/* ─── Bespoke SVG illustrations for each service card ─────────────── */
-const ServiceIllustrations = {
-  0: () => (
-    /* Growth Strategy & GTM — compounding bar chart */
-    <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <defs>
-        <linearGradient id="s0bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1A3828" />
-          <stop offset="100%" stopColor="#0D1F16" />
-        </linearGradient>
-        <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#4E9141" />
-          <stop offset="100%" stopColor="#2d5426" />
-        </linearGradient>
-        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#B45309" stopOpacity="0" />
-          <stop offset="25%" stopColor="#B45309" />
-          <stop offset="100%" stopColor="#f59e0b" />
-        </linearGradient>
-        <filter id="gf0"><feGaussianBlur stdDeviation="10" /></filter>
-        <filter id="nGlow0">
-          <feGaussianBlur stdDeviation="4" result="b" />
-          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
-      <rect width="480" height="350" fill="url(#s0bg)" />
-      {/* dot grid */}
-      <pattern id="d0" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-        <circle cx="1" cy="1" r="0.9" fill="#4E9141" opacity="0.1" />
-      </pattern>
-      <rect width="480" height="350" fill="url(#d0)" />
-      {/* glow */}
-      <ellipse cx="240" cy="320" rx="220" ry="100" fill="#4E9141" fillOpacity="0.07" filter="url(#gf0)" />
-      {/* axes */}
-      <line x1="60" y1="40" x2="60" y2="285" stroke="#2A5040" strokeWidth="1" />
-      <line x1="60" y1="285" x2="440" y2="285" stroke="#2A5040" strokeWidth="1" />
-      {/* grid */}
-      <g stroke="#1A3828" strokeWidth="0.5" strokeDasharray="3,4">
-        <line x1="60" y1="240" x2="440" y2="240" />
-        <line x1="60" y1="195" x2="440" y2="195" />
-        <line x1="60" y1="148" x2="440" y2="148" />
-        <line x1="60" y1="100" x2="440" y2="100" />
-      </g>
-      {/* bars — compounding growth */}
-      <rect x="80" y="235" width="35" height="50" rx="2" fill="url(#barGrad)" fillOpacity="0.4" />
-      <rect x="132" y="218" width="35" height="67" rx="2" fill="url(#barGrad)" fillOpacity="0.52" />
-      <rect x="184" y="196" width="35" height="89" rx="2" fill="url(#barGrad)" fillOpacity="0.65" />
-      <rect x="236" y="168" width="35" height="117" rx="2" fill="url(#barGrad)" fillOpacity="0.78" />
-      <rect x="288" y="133" width="35" height="152" rx="2" fill="url(#barGrad)" fillOpacity="0.9" />
-      <rect x="340" y="90" width="35" height="195" rx="2" fill="url(#barGrad)" />
-      <rect x="392" y="58" width="35" height="227" rx="2" fill="#4E9141" />
-      {/* trend line */}
-      <polyline
-        points="97,232 149,215 201,193 253,165 305,128 357,86 409,54"
-        fill="none" stroke="url(#lineGrad)" strokeWidth="2.5" strokeLinecap="round"
-      />
-      {/* peak node */}
-      <circle cx="409" cy="54" r="6" fill="#B45309" filter="url(#nGlow0)" />
-      <circle cx="409" cy="54" r="12" fill="#B45309" fillOpacity="0.18" />
-      {/* callout */}
-      <rect x="360" y="28" width="100" height="20" rx="2" fill="#B45309" fillOpacity="0.12" stroke="#B45309" strokeWidth="0.75" strokeOpacity="0.4" />
-      <text x="410" y="41" fontFamily="sans-serif" fontSize="9.5" fill="#f59e0b" textAnchor="middle" fontWeight="600">↑ 318% Growth</text>
-      {/* x labels */}
-      <g fontFamily="sans-serif" fontSize="8" fill="#5D9F94" textAnchor="middle">
-        {['Y1','Y2','Y3','Y4','Y5','Y6','Y7'].map((y,i) =>
-          <text key={y} x={97 + i*52} y="300">{y}</text>
-        )}
-      </g>
-      {/* title */}
-      <text x="60" y="22" fontFamily="Georgia,serif" fontSize="17" fill="#C2DDB4" fontWeight="400" letterSpacing="0.3">Compounding Growth</text>
-    </svg>
-  ),
+/* ── Vivid MARC palette ──────────────────────────────────────────────
+   #2E7D32  logo green      #43A047  mid green
+   #81C784  light green     #A5D6A7  pale green (text on dark)
+   #1B5E20  deep bg green   #E65100  vivid orange
+   #FF6D00  bright orange   #FF8A50  light orange accent
+   ─────────────────────────────────────────────────────────────────── */
 
-  1: () => (
-    /* India Entry & Expansion — gateway arch */
-    <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <defs>
-        <radialGradient id="s1bg" cx="50%" cy="60%" r="65%">
-          <stop offset="0%" stopColor="#1A3828" />
-          <stop offset="100%" stopColor="#07120E" />
-        </radialGradient>
-        <radialGradient id="doorLight" cx="50%" cy="40%" r="50%">
-          <stop offset="0%" stopColor="#B45309" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#B45309" stopOpacity="0" />
-        </radialGradient>
-        <filter id="gf1s"><feGaussianBlur stdDeviation="14" /></filter>
-        <filter id="archGlow">
-          <feGaussianBlur stdDeviation="5" result="b" />
-          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
-      <rect width="480" height="350" fill="url(#s1bg)" />
-      <pattern id="d1" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-        <circle cx="1" cy="1" r="0.8" fill="#4E9141" opacity="0.08" />
-      </pattern>
-      <rect width="480" height="350" fill="url(#d1)" />
-      {/* door glow */}
-      <ellipse cx="240" cy="180" rx="160" ry="140" fill="url(#doorLight)" filter="url(#gf1s)" />
-      {/* pillars */}
-      <rect x="80" y="50" width="28" height="270" rx="0" fill="#1A3828" />
-      <rect x="372" y="50" width="28" height="270" rx="0" fill="#1A3828" />
-      {/* pillar bands */}
-      <rect x="80" y="50" width="28" height="6" fill="#B45309" fillOpacity="0.45" />
-      <rect x="80" y="62" width="28" height="2.5" fill="#B45309" fillOpacity="0.2" />
-      <rect x="80" y="314" width="28" height="6" fill="#B45309" fillOpacity="0.35" />
-      <rect x="372" y="50" width="28" height="6" fill="#B45309" fillOpacity="0.45" />
-      <rect x="372" y="62" width="28" height="2.5" fill="#B45309" fillOpacity="0.2" />
-      <rect x="372" y="314" width="28" height="6" fill="#B45309" fillOpacity="0.35" />
-      {/* arch */}
-      <path d="M 80 135 Q 240 28 400 135" fill="none" stroke="#4E9141" strokeWidth="1.5" strokeOpacity="0.5" filter="url(#archGlow)" />
-      <path d="M 90 135 Q 240 40 390 135" fill="none" stroke="#C2DDB4" strokeWidth="0.5" strokeOpacity="0.2" />
-      {/* arch fill */}
-      <path d="M 108 135 Q 240 45 372 135 L 372 320 L 108 320 Z" fill="#071510" fillOpacity="0.85" />
-      {/* light portal */}
-      <rect x="196" y="160" width="88" height="160" rx="2" fill="#B45309" fillOpacity="0.06" />
-      <rect x="196" y="160" width="88" height="160" rx="2" fill="none" stroke="#B45309" strokeWidth="1" strokeOpacity="0.45" />
-      {/* golden light rays */}
-      <polygon points="240,160 160,320 320,320" fill="#B45309" fillOpacity="0.05" filter="url(#gf1s)" />
-      {/* door handle */}
-      <circle cx="268" cy="244" r="3.5" fill="#B45309" fillOpacity="0.7" />
-      {/* India map silhouette (faint) */}
-      <g transform="translate(200,72) scale(0.48)" fillOpacity="0.1" fill="#4E9141">
-        <polygon points="120,0 150,10 160,40 180,50 175,90 160,120 140,160 120,200 100,210 85,180 70,150 65,110 75,70 90,40" />
-      </g>
-      {/* floor line */}
-      <line x1="108" y1="320" x2="372" y2="320" stroke="#B45309" strokeWidth="0.5" strokeOpacity="0.2" />
-      {/* top label */}
-      <text x="30" y="24" fontFamily="Georgia,serif" fontSize="16" fill="#C2DDB4" letterSpacing="0.3">India Entry &amp; Expansion</text>
-      {/* bottom caption */}
-      <text x="240" y="342" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1.5">MARKET ENTRY · LOCALISATION · LAUNCH</text>
-    </svg>
-  ),
+const SVG_ILLUSTRATIONS = [
+  /* 0 – Growth Strategy: compounding bar chart */
+  <svg key={0} viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <defs>
+      <linearGradient id="s0bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </linearGradient>
+      <linearGradient id="s0bar" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#43A047" /><stop offset="100%" stopColor="#2E7D32" />
+      </linearGradient>
+      <linearGradient id="s0line" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#FF6D00" stopOpacity="0" />
+        <stop offset="25%" stopColor="#FF6D00" /><stop offset="100%" stopColor="#FF8A50" />
+      </linearGradient>
+      <filter id="s0glow">
+        <feGaussianBlur stdDeviation="4" result="b" />
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="s0bg2"><feGaussianBlur stdDeviation="10" /></filter>
+    </defs>
+    <rect width="480" height="350" fill="url(#s0bg)" />
+    <pattern id="p0" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#4CAF50" opacity="0.18" />
+    </pattern>
+    <rect width="480" height="350" fill="url(#p0)" />
+    <ellipse cx="240" cy="330" rx="220" ry="80" fill="#43A047" fillOpacity="0.06" filter="url(#s0bg2)" />
+    <line x1="58" y1="40" x2="58" y2="288" stroke="#43A047" strokeWidth="1" strokeOpacity="0.35" />
+    <line x1="58" y1="288" x2="442" y2="288" stroke="#43A047" strokeWidth="1" strokeOpacity="0.35" />
+    <g stroke="#2E7D32" strokeWidth="0.5" strokeDasharray="3,4" strokeOpacity="0.5">
+      <line x1="58" y1="244" x2="442" y2="244" /><line x1="58" y1="198" x2="442" y2="198" />
+      <line x1="58" y1="150" x2="442" y2="150" /><line x1="58" y1="100" x2="442" y2="100" />
+    </g>
+    <rect x="78" y="238" width="34" height="50" rx="2" fill="url(#s0bar)" fillOpacity="0.38" />
+    <rect x="130" y="220" width="34" height="68" rx="2" fill="url(#s0bar)" fillOpacity="0.5" />
+    <rect x="182" y="197" width="34" height="91" rx="2" fill="url(#s0bar)" fillOpacity="0.63" />
+    <rect x="234" y="167" width="34" height="121" rx="2" fill="url(#s0bar)" fillOpacity="0.76" />
+    <rect x="286" y="130" width="34" height="158" rx="2" fill="url(#s0bar)" fillOpacity="0.88" />
+    <rect x="338" y="88" width="34" height="200" rx="2" fill="url(#s0bar)" fillOpacity="0.96" />
+    <rect x="390" y="57" width="34" height="231" rx="2" fill="#43A047" />
+    <polyline points="95,234 147,216 199,193 251,163 303,125 355,83 407,52" fill="none" stroke="url(#s0line)" strokeWidth="2.5" strokeLinecap="round" />
+    <circle cx="407" cy="52" r="6" fill="#FF6D00" filter="url(#s0glow)" />
+    <circle cx="407" cy="52" r="13" fill="#FF6D00" fillOpacity="0.2" />
+    <rect x="356" y="26" width="104" height="20" rx="2" fill="#FF6D00" fillOpacity="0.12" stroke="#FF6D00" strokeWidth="0.75" strokeOpacity="0.45" />
+    <text x="408" y="39" fontFamily="sans-serif" fontSize="9.5" fill="#FF8A50" textAnchor="middle" fontWeight="700">↑ 318% Growth</text>
+    <g fontFamily="sans-serif" fontSize="8.5" fill="#81C784" textAnchor="middle">
+      {['Y1','Y2','Y3','Y4','Y5','Y6','Y7'].map((y,i) => <text key={y} x={95+i*52} y="304">{y}</text>)}
+    </g>
+    <text x="58" y="22" fontFamily="Georgia,serif" fontSize="17" fill="#A5D6A7" fontWeight="300">Compounding Growth</text>
+  </svg>,
 
-  2: () => (
-    /* Expansion for Indian Firms — world map with arrows */
-    <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <defs>
-        <linearGradient id="s2bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1A3828" />
-          <stop offset="100%" stopColor="#07100A" />
-        </linearGradient>
-        <filter id="gf2s"><feGaussianBlur stdDeviation="10" /></filter>
-        <filter id="nGlow2">
-          <feGaussianBlur stdDeviation="4" result="b" />
-          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-        <radialGradient id="globeGrad2" cx="42%" cy="42%" r="55%">
-          <stop offset="0%" stopColor="#2A5040" />
-          <stop offset="100%" stopColor="#0D1F16" />
-        </radialGradient>
-      </defs>
-      <rect width="480" height="350" fill="url(#s2bg)" />
-      <pattern id="d2" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-        <circle cx="1" cy="1" r="0.8" fill="#4E9141" opacity="0.09" />
-      </pattern>
-      <rect width="480" height="350" fill="url(#d2)" />
-      {/* mini globe */}
-      <circle cx="240" cy="185" r="130" fill="url(#globeGrad2)" />
-      <circle cx="240" cy="185" r="130" fill="none" stroke="#4E9141" strokeWidth="0.8" strokeOpacity="0.3" />
-      {/* lat / long lines */}
-      <g clipPath="url(#gc2)" stroke="#4E9141" strokeWidth="0.5" strokeOpacity="0.18" fill="none">
-        <ellipse cx="240" cy="185" rx="130" ry="32" />
-        <ellipse cx="240" cy="185" rx="130" ry="70" />
-        <ellipse cx="240" cy="185" rx="130" ry="110" />
-        <ellipse cx="240" cy="185" rx="42" ry="130" />
-        <ellipse cx="240" cy="185" rx="90" ry="130" />
-        <line x1="110" y1="185" x2="370" y2="185" />
-        <line x1="240" y1="55" x2="240" y2="315" />
-      </g>
-      <clipPath id="gc2"><circle cx="240" cy="185" r="130" /></clipPath>
-      {/* landmasses */}
-      <g clipPath="url(#gc2)" fill="#4E9141" fillOpacity="0.22">
-        <polygon points="255,120 278,115 295,128 300,155 292,180 278,198 258,210 240,198 232,174 238,144" />
-        <ellipse cx="318" cy="150" rx="22" ry="32" transform="rotate(15,318,150)" />
-        <polygon points="216,108 240,100 248,122 238,140 216,132" />
-        <polygon points="185,148 205,140 215,160 212,188 196,200 182,188 176,165" />
-      </g>
-      {/* glow behind globe */}
-      <circle cx="240" cy="185" r="150" fill="#4E9141" fillOpacity="0.04" filter="url(#gf2s)" />
-      {/* India origin node */}
-      <circle cx="258" cy="162" r="6" fill="#B45309" filter="url(#nGlow2)" />
-      <circle cx="258" cy="162" r="13" fill="#B45309" fillOpacity="0.18" />
-      {/* arrows out from India to world regions */}
-      <line x1="258" y1="162" x2="170" y2="115" stroke="#B45309" strokeWidth="1.2" strokeDasharray="4,3" strokeOpacity="0.6" />
-      <line x1="258" y1="162" x2="340" y2="120" stroke="#B45309" strokeWidth="1.2" strokeDasharray="4,3" strokeOpacity="0.6" />
-      <line x1="258" y1="162" x2="340" y2="245" stroke="#B45309" strokeWidth="1" strokeDasharray="4,3" strokeOpacity="0.45" />
-      <line x1="258" y1="162" x2="158" y2="240" stroke="#B45309" strokeWidth="1" strokeDasharray="4,3" strokeOpacity="0.45" />
-      {/* destination nodes */}
-      <circle cx="170" cy="115" r="5" fill="#C2DDB4" filter="url(#nGlow2)" />
-      <circle cx="340" cy="120" r="5" fill="#C2DDB4" filter="url(#nGlow2)" />
-      <circle cx="340" cy="245" r="4.5" fill="#C2DDB4" filter="url(#nGlow2)" />
-      <circle cx="158" cy="240" r="4.5" fill="#C2DDB4" filter="url(#nGlow2)" />
-      {/* labels */}
-      <text x="148" y="110" fontFamily="sans-serif" fontSize="8" fill="#C2DDB4" textAnchor="end">Europe</text>
-      <text x="352" y="116" fontFamily="sans-serif" fontSize="8" fill="#C2DDB4">SE Asia</text>
-      <text x="352" y="248" fontFamily="sans-serif" fontSize="8" fill="#C2DDB4">Africa</text>
-      <text x="146" y="244" fontFamily="sans-serif" fontSize="8" fill="#C2DDB4" textAnchor="end">Americas</text>
-      <text x="240" y="24" fontFamily="Georgia,serif" fontSize="17" fill="#C2DDB4" textAnchor="middle">Expansion for Indian Firms</text>
-      <text x="240" y="342" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1.5">MARKET SELECTION · ENTRY STRATEGY · EXECUTION</text>
-    </svg>
-  ),
+  /* 1 – India Entry: gateway arch */
+  <svg key={1} viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <defs>
+      <radialGradient id="s1bg" cx="50%" cy="60%" r="65%">
+        <stop offset="0%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </radialGradient>
+      <radialGradient id="s1door" cx="50%" cy="35%" r="55%">
+        <stop offset="0%" stopColor="#FF6D00" stopOpacity="0.55" />
+        <stop offset="100%" stopColor="#FF6D00" stopOpacity="0" />
+      </radialGradient>
+      <filter id="s1gf"><feGaussianBlur stdDeviation="16" /></filter>
+      <filter id="s1ag">
+        <feGaussianBlur stdDeviation="5" result="b" />
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <rect width="480" height="350" fill="url(#s1bg)" />
+    <pattern id="p1" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#4CAF50" opacity="0.16" />
+    </pattern>
+    <rect width="480" height="350" fill="url(#p1)" />
+    <ellipse cx="240" cy="185" rx="165" ry="145" fill="url(#s1door)" filter="url(#s1gf)" />
+    <rect x="78" y="48" width="28" height="272" rx="0" fill="#1B5E20" />
+    <rect x="374" y="48" width="28" height="272" rx="0" fill="#1B5E20" />
+    <rect x="78" y="48" width="28" height="7" fill="#E65100" fillOpacity="0.55" />
+    <rect x="78" y="61" width="28" height="3" fill="#E65100" fillOpacity="0.25" />
+    <rect x="78" y="313" width="28" height="7" fill="#E65100" fillOpacity="0.4" />
+    <rect x="374" y="48" width="28" height="7" fill="#E65100" fillOpacity="0.55" />
+    <rect x="374" y="61" width="28" height="3" fill="#E65100" fillOpacity="0.25" />
+    <rect x="374" y="313" width="28" height="7" fill="#E65100" fillOpacity="0.4" />
+    <path d="M 78 138 Q 240 30 402 138" fill="none" stroke="#E65100" strokeWidth="2" strokeOpacity="0.6" filter="url(#s1ag)" />
+    <path d="M 90 138 Q 240 42 390 138" fill="none" stroke="#A5D6A7" strokeWidth="0.6" strokeOpacity="0.25" />
+    <path d="M 106 138 Q 240 50 374 138 L 374 320 L 106 320 Z" fill="#1B5E20" fillOpacity="0.85" />
+    <rect x="194" y="162" width="92" height="158" rx="2" fill="#FF6D00" fillOpacity="0.07" />
+    <rect x="194" y="162" width="92" height="158" rx="2" fill="none" stroke="#FF6D00" strokeWidth="1.2" strokeOpacity="0.5" />
+    <polygon points="240,162 158,320 322,320" fill="#FF6D00" fillOpacity="0.05" filter="url(#s1gf)" />
+    <circle cx="270" cy="245" r="4" fill="#E65100" fillOpacity="0.7" />
+    <g transform="translate(204,75) scale(0.5)" fillOpacity="0.12" fill="#A5D6A7">
+      <polygon points="120,0 150,10 160,40 180,50 175,90 160,120 140,160 120,200 100,210 85,180 70,150 65,110 75,70 90,40" />
+    </g>
+    <line x1="106" y1="320" x2="374" y2="320" stroke="#E65100" strokeWidth="0.6" strokeOpacity="0.25" />
+    <text x="30" y="22" fontFamily="Georgia,serif" fontSize="16" fill="#A5D6A7" letterSpacing="0.3">India Entry &amp; Expansion</text>
+    <text x="240" y="342" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1.5">MARKET ENTRY · LOCALISATION · LAUNCH</text>
+  </svg>,
 
-  3: () => (
-    /* Customer & Market Intelligence — radar chart */
-    <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <defs>
-        <linearGradient id="s3bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1A3828" />
-          <stop offset="100%" stopColor="#07100A" />
-        </linearGradient>
-        <filter id="gf3s"><feGaussianBlur stdDeviation="9" /></filter>
-      </defs>
-      <rect width="480" height="350" fill="url(#s3bg)" />
-      <pattern id="d3" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-        <circle cx="1" cy="1" r="0.8" fill="#4E9141" opacity="0.09" />
-      </pattern>
-      <rect width="480" height="350" fill="url(#d3)" />
-      <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#C2DDB4">Market Intelligence</text>
-      <text x="30" y="40" fontFamily="sans-serif" fontSize="7.5" fill="#5D9F94" letterSpacing="1.5">MULTI-DIMENSIONAL CATEGORY ANALYSIS</text>
-      {/* Radar */}
-      <g transform="translate(240,195)">
-        {/* rings */}
-        <polygon points="0,-120 104,-60 104,60 0,120 -104,60 -104,-60" fill="none" stroke="#2A5040" strokeWidth="0.8" />
-        <polygon points="0,-88 76,-44 76,44 0,88 -76,44 -76,-44" fill="none" stroke="#2A5040" strokeWidth="0.8" />
-        <polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28" fill="none" stroke="#2A5040" strokeWidth="0.8" />
-        <polygon points="0,-26 22,-13 22,13 0,26 -22,13 -22,-13" fill="none" stroke="#2A5040" strokeWidth="0.8" />
-        {/* spokes */}
-        <line x1="0" y1="0" x2="0" y2="-120" stroke="#2A5040" strokeWidth="0.8" />
-        <line x1="0" y1="0" x2="104" y2="-60" stroke="#2A5040" strokeWidth="0.8" />
-        <line x1="0" y1="0" x2="104" y2="60" stroke="#2A5040" strokeWidth="0.8" />
-        <line x1="0" y1="0" x2="0" y2="120" stroke="#2A5040" strokeWidth="0.8" />
-        <line x1="0" y1="0" x2="-104" y2="60" stroke="#2A5040" strokeWidth="0.8" />
-        <line x1="0" y1="0" x2="-104" y2="-60" stroke="#2A5040" strokeWidth="0.8" />
-        {/* data polygon */}
-        <polygon
-          points="0,-100 88,-38 84,52 0,76 -70,44 -90,-47"
-          fill="#B45309" fillOpacity="0.1" stroke="#B45309" strokeWidth="1.5" strokeOpacity="0.7"
-        />
-        {/* data dots */}
-        {[[0,-100],[88,-38],[84,52],[0,76],[-70,44],[-90,-47]].map(([x,y],i) => (
-          <circle key={i} cx={x} cy={y} r="4.5" fill="#B45309" />
-        ))}
-        <circle cx="0" cy="0" r="5" fill="#4E9141" fillOpacity="0.6" />
-        <circle cx="0" cy="0" r="11" fill="#4E9141" fillOpacity="0.08" />
+  /* 2 – Expansion for Indian Firms: globe with orange arrows */
+  <svg key={2} viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <defs>
+      <linearGradient id="s2bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </linearGradient>
+      <radialGradient id="s2globe" cx="42%" cy="40%" r="55%">
+        <stop offset="0%" stopColor="#43A047" /><stop offset="65%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </radialGradient>
+      <filter id="s2gf"><feGaussianBlur stdDeviation="10" /></filter>
+      <filter id="s2n">
+        <feGaussianBlur stdDeviation="4" result="b" />
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <rect width="480" height="350" fill="url(#s2bg)" />
+    <pattern id="p2" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#4CAF50" opacity="0.16" />
+    </pattern>
+    <rect width="480" height="350" fill="url(#p2)" />
+    <circle cx="240" cy="185" r="132" fill="url(#s2globe)" stroke="#81C784" strokeWidth="1" strokeOpacity="0.3" />
+    <clipPath id="s2clip"><circle cx="240" cy="185" r="132" /></clipPath>
+    <g clipPath="url(#s2clip)" stroke="#4CAF50" strokeWidth="0.7" strokeOpacity="0.22" fill="none">
+      <ellipse cx="240" cy="185" rx="132" ry="32" />
+      <ellipse cx="240" cy="185" rx="132" ry="72" />
+      <ellipse cx="240" cy="185" rx="132" ry="114" />
+      <ellipse cx="240" cy="185" rx="42" ry="132" />
+      <ellipse cx="240" cy="185" rx="92" ry="132" />
+      <line x1="108" y1="185" x2="372" y2="185" />
+      <line x1="240" y1="53" x2="240" y2="317" />
+    </g>
+    <g clipPath="url(#s2clip)" fill="#81C784" fillOpacity="0.32">
+      <polygon points="252,118 276,110 294,124 298,152 290,178 276,196 256,208 236,196 228,172 236,142 246,122" />
+      <ellipse cx="318" cy="148" rx="22" ry="32" transform="rotate(15,318,148)" />
+      <polygon points="214,104 238,96 244,118 234,136 212,128" />
+      <polygon points="183,146 203,138 213,158 210,186 194,198 180,186 174,164" />
+    </g>
+    <circle cx="240" cy="185" r="150" fill="#E65100" fillOpacity="0.04" filter="url(#s2gf)" />
+    {/* India origin */}
+    <circle cx="256" cy="162" r="7" fill="#E65100" filter="url(#s2n)" />
+    <circle cx="256" cy="162" r="15" fill="#E65100" fillOpacity="0.2" />
+    {/* arrows to 4 regions */}
+    <line x1="256" y1="162" x2="168" y2="112" stroke="#FF6D00" strokeWidth="1.5" strokeDasharray="4,3" strokeOpacity="0.65" />
+    <line x1="256" y1="162" x2="338" y2="118" stroke="#FF6D00" strokeWidth="1.5" strokeDasharray="4,3" strokeOpacity="0.65" />
+    <line x1="256" y1="162" x2="340" y2="244" stroke="#FF6D00" strokeWidth="1.2" strokeDasharray="4,3" strokeOpacity="0.5" />
+    <line x1="256" y1="162" x2="156" y2="238" stroke="#FF6D00" strokeWidth="1.2" strokeDasharray="4,3" strokeOpacity="0.5" />
+    {[[168,112],[338,118],[340,244],[156,238]].map(([x,y],i) => (
+      <g key={i}>
+        <circle cx={x} cy={y} r="5" fill="#A5D6A7" filter="url(#s2n)" />
+        <circle cx={x} cy={y} r="11" fill="#A5D6A7" fillOpacity="0.18" />
       </g>
-      {/* axis labels */}
-      <g fontFamily="sans-serif" fontSize="9" fill="#5D9F94" textAnchor="middle">
-        <text x="240" y="60">Market Size</text>
-        <text x="370" y="135">Competitive</text>
-        <text x="368" y="280">Consumer</text>
-        <text x="240" y="338">Regulatory</text>
-        <text x="110" y="280">Pricing</text>
-        <text x="112" y="135">Channel</text>
-      </g>
-      {/* % labels */}
-      <g fontFamily="Georgia,serif" fontSize="11" fill="#B45309" textAnchor="middle">
-        <text x="240" y="82">85%</text>
-        <text x="344" y="152">73%</text>
-        <text x="340" y="262">69%</text>
-        <text x="240" y="286">61%</text>
-        <text x="136" y="256">58%</text>
-        <text x="140" y="148">72%</text>
-      </g>
-    </svg>
-  ),
+    ))}
+    <g fontFamily="sans-serif" fontSize="8.5" fill="#A5D6A7">
+      <text x="146" y="107" textAnchor="end">Europe</text>
+      <text x="350" y="114">SE Asia</text>
+      <text x="350" y="248">Africa</text>
+      <text x="144" y="242" textAnchor="end">Americas</text>
+    </g>
+    <text x="240" y="22" fontFamily="Georgia,serif" fontSize="17" fill="#A5D6A7" textAnchor="middle">Expansion for Indian Firms</text>
+    <text x="240" y="342" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1.5">MARKET SELECTION · ENTRY STRATEGY · EXECUTION</text>
+  </svg>,
 
-  4: () => (
-    /* Feasibility Studies — product-market fit circles */
-    <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <defs>
-        <radialGradient id="s4bg" cx="40%" cy="55%" r="65%">
-          <stop offset="0%" stopColor="#1C3A28" />
-          <stop offset="100%" stopColor="#07100A" />
-        </radialGradient>
-        <filter id="gf4s"><feGaussianBlur stdDeviation="12" /></filter>
-        <filter id="nGlow4">
-          <feGaussianBlur stdDeviation="5" result="b" />
-          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
-      <rect width="480" height="350" fill="url(#s4bg)" />
-      <pattern id="d4" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-        <circle cx="1" cy="1" r="0.8" fill="#4E9141" opacity="0.09" />
-      </pattern>
-      <rect width="480" height="350" fill="url(#d4)" />
-      <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#C2DDB4">Feasibility Studies</text>
-      {/* Three overlapping circles */}
-      <circle cx="200" cy="195" r="100" fill="#4E9141" fillOpacity="0.1" stroke="#4E9141" strokeWidth="1.2" strokeOpacity="0.5" />
-      <circle cx="290" cy="195" r="100" fill="#B45309" fillOpacity="0.08" stroke="#B45309" strokeWidth="1.2" strokeOpacity="0.4" />
-      <circle cx="245" cy="120" r="90" fill="#5D9F94" fillOpacity="0.08" stroke="#5D9F94" strokeWidth="1.2" strokeOpacity="0.35" />
-      {/* center overlap glow */}
-      <ellipse cx="245" cy="172" rx="40" ry="35" fill="#C2DDB4" fillOpacity="0.08" filter="url(#gf4s)" />
-      {/* center label */}
-      <text x="245" y="165" fontFamily="Georgia,serif" fontSize="13" fill="#C2DDB4" textAnchor="middle" fontStyle="italic">Product–</text>
-      <text x="245" y="180" fontFamily="Georgia,serif" fontSize="13" fill="#C2DDB4" textAnchor="middle" fontStyle="italic">Market Fit</text>
-      {/* circle labels */}
-      <text x="155" y="215" fontFamily="sans-serif" fontSize="9" fill="#4E9141" textAnchor="middle">Product</text>
-      <text x="155" y="227" fontFamily="sans-serif" fontSize="9" fill="#4E9141" textAnchor="middle">Viability</text>
-      <text x="335" y="215" fontFamily="sans-serif" fontSize="9" fill="#B45309" textAnchor="middle">Market</text>
-      <text x="335" y="227" fontFamily="sans-serif" fontSize="9" fill="#B45309" textAnchor="middle">Demand</text>
-      <text x="245" y="88" fontFamily="sans-serif" fontSize="9" fill="#5D9F94" textAnchor="middle">Competitive</text>
-      <text x="245" y="100" fontFamily="sans-serif" fontSize="9" fill="#5D9F94" textAnchor="middle">Landscape</text>
-      <text x="240" y="338" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1.5">VIABILITY · FIT · FEASIBILITY ASSESSMENT</text>
-    </svg>
-  ),
-
-  5: () => (
-    /* Financial Assessment — P&L waterfall */
-    <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <defs>
-        <linearGradient id="s5bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1A3828" />
-          <stop offset="100%" stopColor="#07100A" />
-        </linearGradient>
-        <filter id="gf5s"><feGaussianBlur stdDeviation="9" /></filter>
-      </defs>
-      <rect width="480" height="350" fill="url(#s5bg)" />
-      <pattern id="d5" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-        <circle cx="1" cy="1" r="0.8" fill="#4E9141" opacity="0.09" />
-      </pattern>
-      <rect width="480" height="350" fill="url(#d5)" />
-      <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#C2DDB4">Financial Assessment</text>
-      <text x="30" y="40" fontFamily="sans-serif" fontSize="7.5" fill="#5D9F94" letterSpacing="1.5">PROFITABILITY · BENCHMARKING · ANALYTICS</text>
-      {/* waterfall bars */}
-      <g>
-        {/* Revenue */}
-        <rect x="52" y="100" width="44" height="160" rx="2" fill="#4E9141" fillOpacity="0.8" />
-        <text x="74" y="95" fontFamily="sans-serif" fontSize="8" fill="#C2DDB4" textAnchor="middle">Revenue</text>
-        <text x="74" y="275" fontFamily="sans-serif" fontSize="8" fill="#C2DDB4" textAnchor="middle">100%</text>
-        {/* COGS (negative) */}
-        <rect x="112" y="100" width="44" height="72" rx="2" fill="#B45309" fillOpacity="0.6" />
-        <text x="134" y="95" fontFamily="sans-serif" fontSize="7.5" fill="#C2DDB4" textAnchor="middle">COGS</text>
-        {/* Gross Profit connector */}
-        <rect x="172" y="172" width="44" height="88" rx="2" fill="#4E9141" fillOpacity="0.65" />
-        <text x="194" y="95" fontFamily="sans-serif" fontSize="7.5" fill="#C2DDB4" textAnchor="middle">Gross</text>
-        <text x="194" y="105" fontFamily="sans-serif" fontSize="7.5" fill="#C2DDB4" textAnchor="middle">Profit</text>
-        {/* OpEx */}
-        <rect x="232" y="172" width="44" height="44" rx="2" fill="#B45309" fillOpacity="0.55" />
-        <text x="254" y="95" fontFamily="sans-serif" fontSize="7.5" fill="#C2DDB4" textAnchor="middle">OpEx</text>
-        {/* EBITDA */}
-        <rect x="292" y="216" width="44" height="44" rx="2" fill="#4E9141" fillOpacity="0.6" />
-        <text x="314" y="95" fontFamily="sans-serif" fontSize="7.5" fill="#C2DDB4" textAnchor="middle">EBITDA</text>
-        {/* Net */}
-        <rect x="352" y="226" width="44" height="34" rx="2" fill="#4E9141" />
-        <text x="374" y="95" fontFamily="sans-serif" fontSize="7.5" fill="#C2DDB4" textAnchor="middle">Net</text>
-        <text x="374" y="105" fontFamily="sans-serif" fontSize="7.5" fill="#C2DDB4" textAnchor="middle">Profit</text>
-      </g>
-      {/* baseline */}
-      <line x1="40" y1="260" x2="440" y2="260" stroke="#2A5040" strokeWidth="0.8" />
-      {/* % labels inside bars */}
-      <text x="74" y="188" fontFamily="Georgia,serif" fontSize="11" fill="white" textAnchor="middle">100%</text>
-      <text x="134" y="142" fontFamily="Georgia,serif" fontSize="11" fill="white" textAnchor="middle">−45%</text>
-      <text x="194" y="222" fontFamily="Georgia,serif" fontSize="11" fill="white" textAnchor="middle">55%</text>
-      <text x="254" y="200" fontFamily="Georgia,serif" fontSize="11" fill="white" textAnchor="middle">−22%</text>
-      <text x="314" y="244" fontFamily="Georgia,serif" fontSize="11" fill="white" textAnchor="middle">33%</text>
-      <text x="374" y="248" fontFamily="Georgia,serif" fontSize="11" fill="white" textAnchor="middle">21%</text>
-      <text x="240" y="340" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1.5">P&amp;L · BENCHMARKING · STRATEGIC DECISIONS</text>
-    </svg>
-  ),
-
-  6: () => (
-    /* Process & System Optimization — flowchart */
-    <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <defs>
-        <linearGradient id="s6bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1A3828" />
-          <stop offset="100%" stopColor="#07100A" />
-        </linearGradient>
-        <filter id="nGlow6">
-          <feGaussianBlur stdDeviation="5" result="b" />
-          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-        <marker id="arrow6" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <polygon points="0,0 6,3 0,6" fill="#4E9141" fillOpacity="0.7" />
-        </marker>
-      </defs>
-      <rect width="480" height="350" fill="url(#s6bg)" />
-      <pattern id="d6" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-        <circle cx="1" cy="1" r="0.8" fill="#4E9141" opacity="0.09" />
-      </pattern>
-      <rect width="480" height="350" fill="url(#d6)" />
-      <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#C2DDB4">Process Optimization</text>
-      {/* flowchart nodes */}
-      {[
-        { x: 80, y: 100, label: 'Process\nAudit', col: '#B45309' },
-        { x: 220, y: 100, label: 'SOP\nReview', col: '#4E9141' },
-        { x: 360, y: 100, label: 'System\nMapping', col: '#5D9F94' },
-        { x: 80, y: 220, label: 'Gap\nAnalysis', col: '#4E9141' },
-        { x: 220, y: 220, label: 'Redesign\n& Optimise', col: '#B45309' },
-        { x: 360, y: 220, label: 'Implement\n& Track', col: '#4E9141' },
-      ].map((n, i) => (
+  /* 3 – Market Intelligence: radar with orange data fill */
+  <svg key={3} viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <defs>
+      <linearGradient id="s3bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </linearGradient>
+    </defs>
+    <rect width="480" height="350" fill="url(#s3bg)" />
+    <pattern id="p3" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#4CAF50" opacity="0.16" />
+    </pattern>
+    <rect width="480" height="350" fill="url(#p3)" />
+    <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#A5D6A7">Market Intelligence</text>
+    <text x="30" y="40" fontFamily="sans-serif" fontSize="7.5" fill="#81C784" letterSpacing="1.5">MULTI-DIMENSIONAL CATEGORY ANALYSIS</text>
+    <g transform="translate(240,198)">
+      <polygon points="0,-122 106,-61 106,61 0,122 -106,61 -106,-61" fill="none" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <polygon points="0,-90 78,-45 78,45 0,90 -78,45 -78,-45" fill="none" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <polygon points="0,-58 50,-29 50,29 0,58 -50,29 -50,-29" fill="none" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <polygon points="0,-28 24,-14 24,14 0,28 -24,14 -24,-14" fill="none" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="-122" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <line x1="0" y1="0" x2="106" y2="-61" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <line x1="0" y1="0" x2="106" y2="61" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <line x1="0" y1="0" x2="0" y2="122" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <line x1="0" y1="0" x2="-106" y2="61" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <line x1="0" y1="0" x2="-106" y2="-61" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.35" />
+      <polygon points="0,-104 90,-40 86,54 0,78 -72,46 -92,-49" fill="#E65100" fillOpacity="0.12" stroke="#FF6D00" strokeWidth="1.8" strokeOpacity="0.75" />
+      {[[0,-104],[90,-40],[86,54],[0,78],[-72,46],[-92,-49]].map(([x,y],i) => (
         <g key={i}>
-          <rect x={n.x - 50} y={n.y - 30} width="100" height="60" rx="10" fill="#1A3828" stroke={n.col} strokeWidth="1.2" strokeOpacity="0.6" />
-          <rect x={n.x - 50} y={n.y - 30} width="100" height="60" rx="10" fill={n.col} fillOpacity="0.05" />
-          <circle cx={n.x - 38} cy={n.y - 18} r="4" fill={n.col} fillOpacity="0.7" filter="url(#nGlow6)" />
-          {n.label.split('\n').map((line, li) => (
-            <text key={li} x={n.x} y={n.y + li * 14 - 4} fontFamily="sans-serif" fontSize="9.5" fill="#C2DDB4" textAnchor="middle">{line}</text>
-          ))}
+          <circle cx={x} cy={y} r="5" fill="#FF6D00" />
+          <circle cx={x} cy={y} r="10" fill="#FF6D00" fillOpacity="0.18" />
         </g>
       ))}
-      {/* arrows row 1 */}
-      <line x1="130" y1="100" x2="170" y2="100" stroke="#4E9141" strokeWidth="1" strokeOpacity="0.5" markerEnd="url(#arrow6)" />
-      <line x1="270" y1="100" x2="310" y2="100" stroke="#4E9141" strokeWidth="1" strokeOpacity="0.5" markerEnd="url(#arrow6)" />
-      {/* arrows row 2 */}
-      <line x1="130" y1="220" x2="170" y2="220" stroke="#4E9141" strokeWidth="1" strokeOpacity="0.5" markerEnd="url(#arrow6)" />
-      <line x1="270" y1="220" x2="310" y2="220" stroke="#4E9141" strokeWidth="1" strokeOpacity="0.5" markerEnd="url(#arrow6)" />
-      {/* arrows col down */}
-      <line x1="80" y1="130" x2="80" y2="190" stroke="#B45309" strokeWidth="1" strokeOpacity="0.5" markerEnd="url(#arrow6)" />
-      <line x1="220" y1="130" x2="220" y2="190" stroke="#B45309" strokeWidth="1" strokeOpacity="0.5" markerEnd="url(#arrow6)" />
-      <line x1="360" y1="130" x2="360" y2="190" stroke="#B45309" strokeWidth="1" strokeOpacity="0.5" markerEnd="url(#arrow6)" />
-      <text x="240" y="338" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1.5">AUDIT · SOP REVIEW · SYSTEM OPTIMISATION</text>
-    </svg>
-  ),
+      <circle cx="0" cy="0" r="6" fill="#43A047" />
+      <circle cx="0" cy="0" r="13" fill="#43A047" fillOpacity="0.15" />
+    </g>
+    <g fontFamily="sans-serif" fontSize="9" fill="#81C784" textAnchor="middle">
+      <text x="240" y="60">Market Size</text>
+      <text x="372" y="137">Competitive</text>
+      <text x="370" y="278">Consumer</text>
+      <text x="240" y="340">Regulatory</text>
+      <text x="108" y="278">Pricing</text>
+      <text x="110" y="137">Channel</text>
+    </g>
+    <g fontFamily="Georgia,serif" fontSize="12" fill="#FF8A50" textAnchor="middle">
+      <text x="240" y="80">85%</text>
+      <text x="346" y="155">73%</text>
+      <text x="342" y="264">69%</text>
+      <text x="240" y="292">61%</text>
+      <text x="134" y="258">58%</text>
+      <text x="138" y="148">72%</text>
+    </g>
+  </svg>,
 
-  7: () => (
-    /* M&A & Strategic Partnerships — Venn deal diagram */
-    <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <defs>
-        <radialGradient id="s7bg" cx="50%" cy="50%" r="65%">
-          <stop offset="0%" stopColor="#1C3A28" />
-          <stop offset="100%" stopColor="#07100A" />
-        </radialGradient>
-        <filter id="gf7s"><feGaussianBlur stdDeviation="12" /></filter>
-        <filter id="nGlow7">
-          <feGaussianBlur stdDeviation="5" result="b" />
-          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
-      <rect width="480" height="350" fill="url(#s7bg)" />
-      <pattern id="d7" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
-        <circle cx="1" cy="1" r="0.8" fill="#4E9141" opacity="0.09" />
-      </pattern>
-      <rect width="480" height="350" fill="url(#d7)" />
-      <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#C2DDB4">M&amp;A Advisory</text>
-      {/* Entity A */}
-      <circle cx="175" cy="190" r="100" fill="#0D1F16" stroke="#4E9141" strokeWidth="1.2" strokeOpacity="0.5" />
-      <circle cx="175" cy="190" r="100" fill="#4E9141" fillOpacity="0.05" />
-      {/* Entity B */}
-      <circle cx="305" cy="190" r="100" fill="#0D1F16" stroke="#B45309" strokeWidth="1.2" strokeOpacity="0.5" />
-      <circle cx="305" cy="190" r="100" fill="#B45309" fillOpacity="0.05" />
-      {/* outer glows */}
-      <circle cx="175" cy="190" r="115" fill="#4E9141" fillOpacity="0.04" filter="url(#gf7s)" />
-      <circle cx="305" cy="190" r="115" fill="#B45309" fillOpacity="0.04" filter="url(#gf7s)" />
-      {/* overlap synergy zone */}
-      <path d="M 224 120 Q 240 108 256 120 Q 278 148 278 190 Q 278 232 256 260 Q 240 272 224 260 Q 202 232 202 190 Q 202 148 224 120 Z"
-        fill="#C2DDB4" fillOpacity="0.06" stroke="#C2DDB4" strokeWidth="0.8" strokeOpacity="0.25" />
-      {/* synergy label */}
-      <text x="240" y="183" fontFamily="Georgia,serif" fontSize="12" fill="#C2DDB4" textAnchor="middle" fontStyle="italic">Synergy</text>
-      <text x="240" y="197" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1">MARC</text>
-      {/* entity labels */}
-      <text x="138" y="183" fontFamily="Georgia,serif" fontSize="22" fill="#4E9141" textAnchor="middle" fontWeight="300">A</text>
-      <text x="138" y="200" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1">ACQUIRER</text>
-      <text x="344" y="183" fontFamily="Georgia,serif" fontSize="22" fill="#B45309" textAnchor="middle" fontWeight="300">B</text>
-      <text x="344" y="200" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1">TARGET</text>
-      {/* connecting arrows */}
-      <line x1="220" y1="190" x2="262" y2="190" stroke="#C2DDB4" strokeWidth="1" strokeOpacity="0.4" strokeDasharray="4,3" />
-      <polygon points="262,186 270,190 262,194" fill="#C2DDB4" fillOpacity="0.5" />
-      <polygon points="220,186 212,190 220,194" fill="#C2DDB4" fillOpacity="0.5" />
-      {/* detail labels */}
-      <text x="100" y="240" fontFamily="sans-serif" fontSize="7.5" fill="#5D9F94" textAnchor="middle">Due Diligence</text>
-      <text x="100" y="252" fontFamily="sans-serif" fontSize="7.5" fill="#5D9F94" textAnchor="middle">Valuation</text>
-      <text x="382" y="240" fontFamily="sans-serif" fontSize="7.5" fill="#5D9F94" textAnchor="middle">Growth Thesis</text>
-      <text x="382" y="252" fontFamily="sans-serif" fontSize="7.5" fill="#5D9F94" textAnchor="middle">Synergy Model</text>
-      <text x="240" y="338" fontFamily="sans-serif" fontSize="7" fill="#5D9F94" textAnchor="middle" letterSpacing="1.5">DEAL SCREENING · DILIGENCE · VALUE CREATION</text>
-    </svg>
-  ),
-}
+  /* 4 – Feasibility: Venn circles */
+  <svg key={4} viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <defs>
+      <radialGradient id="s4bg" cx="40%" cy="55%" r="65%">
+        <stop offset="0%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </radialGradient>
+      <filter id="s4gf"><feGaussianBlur stdDeviation="12" /></filter>
+    </defs>
+    <rect width="480" height="350" fill="url(#s4bg)" />
+    <pattern id="p4" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#4CAF50" opacity="0.16" />
+    </pattern>
+    <rect width="480" height="350" fill="url(#p4)" />
+    <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#A5D6A7">Feasibility Studies</text>
+    <circle cx="196" cy="196" r="100" fill="#43A047" fillOpacity="0.12" stroke="#43A047" strokeWidth="1.5" strokeOpacity="0.55" />
+    <circle cx="290" cy="196" r="100" fill="#E65100" fillOpacity="0.1" stroke="#E65100" strokeWidth="1.5" strokeOpacity="0.5" />
+    <circle cx="243" cy="120" r="90" fill="#81C784" fillOpacity="0.08" stroke="#81C784" strokeWidth="1.2" strokeOpacity="0.4" />
+    <ellipse cx="243" cy="172" rx="42" ry="36" fill="#A5D6A7" fillOpacity="0.07" filter="url(#s4gf)" />
+    <text x="243" y="165" fontFamily="Georgia,serif" fontSize="13" fill="#A5D6A7" textAnchor="middle" fontStyle="italic">Product–</text>
+    <text x="243" y="180" fontFamily="Georgia,serif" fontSize="13" fill="#A5D6A7" textAnchor="middle" fontStyle="italic">Market Fit</text>
+    <text x="152" y="218" fontFamily="sans-serif" fontSize="9" fill="#81C784" textAnchor="middle">Product</text>
+    <text x="152" y="230" fontFamily="sans-serif" fontSize="9" fill="#81C784" textAnchor="middle">Viability</text>
+    <text x="336" y="218" fontFamily="sans-serif" fontSize="9" fill="#FF8A50" textAnchor="middle">Market</text>
+    <text x="336" y="230" fontFamily="sans-serif" fontSize="9" fill="#FF8A50" textAnchor="middle">Demand</text>
+    <text x="243" y="88" fontFamily="sans-serif" fontSize="9" fill="#A5D6A7" textAnchor="middle">Competitive</text>
+    <text x="243" y="100" fontFamily="sans-serif" fontSize="9" fill="#A5D6A7" textAnchor="middle">Landscape</text>
+    <text x="240" y="340" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1.5">VIABILITY · FIT · FEASIBILITY ASSESSMENT</text>
+  </svg>,
+
+  /* 5 – Financial Assessment: P&L waterfall */
+  <svg key={5} viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <defs>
+      <linearGradient id="s5bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </linearGradient>
+    </defs>
+    <rect width="480" height="350" fill="url(#s5bg)" />
+    <pattern id="p5" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#4CAF50" opacity="0.16" />
+    </pattern>
+    <rect width="480" height="350" fill="url(#p5)" />
+    <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#A5D6A7">Financial Assessment</text>
+    <text x="30" y="40" fontFamily="sans-serif" fontSize="7.5" fill="#81C784" letterSpacing="1.5">PROFITABILITY · BENCHMARKING · ANALYTICS</text>
+    <line x1="40" y1="262" x2="445" y2="262" stroke="#43A047" strokeWidth="0.8" strokeOpacity="0.4" />
+    <rect x="50" y="100" width="46" height="162" rx="2" fill="#43A047" fillOpacity="0.7" />
+    <rect x="110" y="100" width="46" height="74" rx="2" fill="#E65100" fillOpacity="0.65" />
+    <rect x="170" y="174" width="46" height="88" rx="2" fill="#43A047" fillOpacity="0.6" />
+    <rect x="230" y="174" width="46" height="46" rx="2" fill="#E65100" fillOpacity="0.6" />
+    <rect x="290" y="220" width="46" height="42" rx="2" fill="#43A047" fillOpacity="0.65" />
+    <rect x="350" y="228" width="46" height="34" rx="2" fill="#43A047" />
+    <g fontFamily="sans-serif" fontSize="7.5" fill="#A5D6A7" textAnchor="middle">
+      <text x="73"  y="94">Revenue</text><text x="133" y="94">COGS</text>
+      <text x="193" y="94">Gross</text><text x="253" y="94">OpEx</text>
+      <text x="313" y="94">EBITDA</text><text x="373" y="94">Net</text>
+    </g>
+    <g fontFamily="Georgia,serif" fontSize="11" fill="white" textAnchor="middle">
+      <text x="73"  y="188">100%</text><text x="133" y="143">−45%</text>
+      <text x="193" y="226">55%</text> <text x="253" y="202">−22%</text>
+      <text x="313" y="246">33%</text> <text x="373" y="250">21%</text>
+    </g>
+    <text x="240" y="340" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1.5">P&amp;L · BENCHMARKING · STRATEGIC DECISIONS</text>
+  </svg>,
+
+  /* 6 – Process Optimization: flowchart */
+  <svg key={6} viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <defs>
+      <linearGradient id="s6bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </linearGradient>
+      <marker id="s6arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <polygon points="0,0 6,3 0,6" fill="#43A047" fillOpacity="0.7" />
+      </marker>
+      <marker id="s6arrO" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <polygon points="0,0 6,3 0,6" fill="#E65100" fillOpacity="0.7" />
+      </marker>
+      <filter id="s6n">
+        <feGaussianBlur stdDeviation="4" result="b" />
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <rect width="480" height="350" fill="url(#s6bg)" />
+    <pattern id="p6" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#4CAF50" opacity="0.16" />
+    </pattern>
+    <rect width="480" height="350" fill="url(#p6)" />
+    <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#A5D6A7">Process Optimization</text>
+    {[
+      { x:80,  y:105, l1:'Process', l2:'Audit',    col:'#E65100' },
+      { x:220, y:105, l1:'SOP',     l2:'Review',   col:'#43A047' },
+      { x:360, y:105, l1:'System',  l2:'Mapping',  col:'#81C784' },
+      { x:80,  y:222, l1:'Gap',     l2:'Analysis', col:'#43A047' },
+      { x:220, y:222, l1:'Redesign',l2:'& Optimise',col:'#E65100'},
+      { x:360, y:222, l1:'Implement',l2:'& Track', col:'#43A047' },
+    ].map((n,i) => (
+      <g key={i}>
+        <rect x={n.x-52} y={n.y-32} width="104" height="64" rx="10" fill="#1B5E20" stroke={n.col} strokeWidth="1.5" strokeOpacity="0.6" />
+        <rect x={n.x-52} y={n.y-32} width="104" height="64" rx="10" fill={n.col} fillOpacity="0.06" />
+        <circle cx={n.x-40} cy={n.y-20} r="4.5" fill={n.col} fillOpacity="0.75" filter="url(#s6n)" />
+        <text x={n.x} y={n.y-4}  fontFamily="sans-serif" fontSize="9.5" fill="#A5D6A7" textAnchor="middle">{n.l1}</text>
+        <text x={n.x} y={n.y+10} fontFamily="sans-serif" fontSize="9.5" fill="#A5D6A7" textAnchor="middle">{n.l2}</text>
+      </g>
+    ))}
+    <line x1="132" y1="105" x2="168" y2="105" stroke="#43A047" strokeWidth="1.2" strokeOpacity="0.55" markerEnd="url(#s6arr)" />
+    <line x1="272" y1="105" x2="308" y2="105" stroke="#43A047" strokeWidth="1.2" strokeOpacity="0.55" markerEnd="url(#s6arr)" />
+    <line x1="132" y1="222" x2="168" y2="222" stroke="#43A047" strokeWidth="1.2" strokeOpacity="0.55" markerEnd="url(#s6arr)" />
+    <line x1="272" y1="222" x2="308" y2="222" stroke="#43A047" strokeWidth="1.2" strokeOpacity="0.55" markerEnd="url(#s6arr)" />
+    <line x1="80"  y1="137" x2="80"  y2="190" stroke="#E65100" strokeWidth="1.2" strokeOpacity="0.55" markerEnd="url(#s6arrO)" />
+    <line x1="220" y1="137" x2="220" y2="190" stroke="#E65100" strokeWidth="1.2" strokeOpacity="0.55" markerEnd="url(#s6arrO)" />
+    <line x1="360" y1="137" x2="360" y2="190" stroke="#E65100" strokeWidth="1.2" strokeOpacity="0.55" markerEnd="url(#s6arrO)" />
+    <text x="240" y="340" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1.5">AUDIT · SOP REVIEW · SYSTEM OPTIMISATION</text>
+  </svg>,
+
+  /* 7 – M&A: Venn deal */
+  <svg key={7} viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <defs>
+      <radialGradient id="s7bg" cx="50%" cy="50%" r="65%">
+        <stop offset="0%" stopColor="#2E7D32" /><stop offset="100%" stopColor="#1B5E20" />
+      </radialGradient>
+      <filter id="s7gf"><feGaussianBlur stdDeviation="12" /></filter>
+      <filter id="s7n">
+        <feGaussianBlur stdDeviation="5" result="b" />
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <rect width="480" height="350" fill="url(#s7bg)" />
+    <pattern id="p7" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#4CAF50" opacity="0.16" />
+    </pattern>
+    <rect width="480" height="350" fill="url(#p7)" />
+    <text x="30" y="26" fontFamily="Georgia,serif" fontSize="17" fill="#A5D6A7">M&amp;A Advisory</text>
+    <circle cx="175" cy="192" r="100" fill="#1B5E20" stroke="#43A047" strokeWidth="1.5" strokeOpacity="0.55" />
+    <circle cx="175" cy="192" r="100" fill="#43A047" fillOpacity="0.06" />
+    <circle cx="305" cy="192" r="100" fill="#1B5E20" stroke="#E65100" strokeWidth="1.5" strokeOpacity="0.55" />
+    <circle cx="305" cy="192" r="100" fill="#E65100" fillOpacity="0.06" />
+    <circle cx="175" cy="192" r="115" fill="#43A047" fillOpacity="0.04" filter="url(#s7gf)" />
+    <circle cx="305" cy="192" r="115" fill="#E65100" fillOpacity="0.04" filter="url(#s7gf)" />
+    <path d="M 224 122 Q 240 110 256 122 Q 278 150 278 192 Q 278 234 256 262 Q 240 274 224 262 Q 202 234 202 192 Q 202 150 224 122 Z"
+      fill="#A5D6A7" fillOpacity="0.07" stroke="#A5D6A7" strokeWidth="1" strokeOpacity="0.28" />
+    <text x="240" y="185" fontFamily="Georgia,serif" fontSize="12" fill="#A5D6A7" textAnchor="middle" fontStyle="italic">Synergy</text>
+    <text x="240" y="200" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1">MARC</text>
+    <text x="136" y="185" fontFamily="Georgia,serif" fontSize="24" fill="#43A047" textAnchor="middle" fontWeight="300">A</text>
+    <text x="136" y="202" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1">ACQUIRER</text>
+    <text x="346" y="185" fontFamily="Georgia,serif" fontSize="24" fill="#E65100" textAnchor="middle" fontWeight="300">B</text>
+    <text x="346" y="202" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1">TARGET</text>
+    <line x1="220" y1="192" x2="262" y2="192" stroke="#A5D6A7" strokeWidth="1" strokeOpacity="0.45" strokeDasharray="4,3" />
+    <polygon points="262,188 270,192 262,196" fill="#A5D6A7" fillOpacity="0.55" />
+    <polygon points="220,188 212,192 220,196" fill="#A5D6A7" fillOpacity="0.55" />
+    <g fontFamily="sans-serif" fontSize="7.5" fill="#81C784" textAnchor="middle">
+      <text x="100" y="242">Due Diligence</text><text x="100" y="254">Valuation</text>
+      <text x="382" y="242">Growth Thesis</text><text x="382" y="254">Synergy Model</text>
+    </g>
+    <text x="240" y="340" fontFamily="sans-serif" fontSize="7" fill="#81C784" textAnchor="middle" letterSpacing="1.5">DEAL SCREENING · DILIGENCE · VALUE CREATION</text>
+  </svg>,
+]
 
 const ServicesSection = () => {
   const [hoveredService, setHoveredService] = useState(null)
@@ -478,23 +382,25 @@ const ServicesSection = () => {
   return (
     <section id="services" data-testid="services-section" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        {/* ================= HEADER ================= */}
+
+        {/* HEADER */}
         <div className="max-w-3xl mb-16">
           <h2
             data-testid="services-heading"
-            className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
+            className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-[1.1] tracking-tight"
+            style={{ color: '#1B5E20' }}
           >
             Our Core Advisory Areas
           </h2>
-          <p className="text-lg text-[#47635D] leading-relaxed mb-4">
+          <p className="text-lg mb-4 leading-relaxed" style={{ color: '#33691E' }}>
             We advise organisations at critical growth moments—market entry, expansion, transformation, and scale.
           </p>
-          <p className="text-[#4E9141] font-semibold text-lg">
+          <p className="font-semibold text-lg" style={{ color: '#2E7D32' }}>
             Our role: clarify direction, unlock growth levers, and support execution.
           </p>
         </div>
 
-        {/* ================= SERVICES GRID ================= */}
+        {/* SERVICES GRID */}
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <div
@@ -504,40 +410,35 @@ const ServicesSection = () => {
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
             >
-              {/* Custom SVG Illustration */}
-              <div className="relative h-[350px] bg-[#1D342F]">
-                {ServiceIllustrations[index % 8]?.() ?? ServiceIllustrations[0]()}
+              <div className="relative h-[350px]" style={{ backgroundColor: '#1B5E20' }}>
+                <div className="absolute inset-0">
+                  {SVG_ILLUSTRATIONS[index % SVG_ILLUSTRATIONS.length]}
+                </div>
 
-                {/* Hover overlay */}
+                {/* Hover overlay — vivid orange tint */}
                 <div
                   className={`absolute inset-0 transition-all duration-500 ${
                     hoveredService === index
-                      ? 'bg-[#4E9141]/80'
-                      : 'bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/40 to-transparent'
+                      ? 'bg-[#E65100]/80'
+                      : 'bg-gradient-to-t from-[#1B5E20]/88 via-[#1B5E20]/38 to-transparent'
                   }`}
                 />
               </div>
 
-              {/* ================= CONTENT ================= */}
+              {/* Content overlay */}
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <div
-                  className={`transform transition-all duration-500 ${
-                    hoveredService === index ? '-translate-y-4' : 'translate-y-0'
-                  }`}
+                  className={`transform transition-all duration-500 ${hoveredService === index ? '-translate-y-4' : 'translate-y-0'}`}
                 >
-                  {/* Index */}
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[#C2DDB4] text-sm font-semibold tracking-tight">
+                    <span className="text-sm font-semibold tracking-tight" style={{ color: '#A5D6A7' }}>
                       0{index + 1}
                     </span>
-                    <span className="w-8 h-px bg-[#C2DDB4]" />
+                    <span className="w-8 h-px" style={{ backgroundColor: '#A5D6A7' }} />
                   </div>
-
-                  {/* Service title */}
                   <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 leading-snug tracking-tight">
                     {service.title}
                   </h3>
-
                   <p
                     className={`text-white/90 leading-relaxed transition-all duration-500 ${
                       hoveredService === index ? 'opacity-100 max-h-32' : 'opacity-0 max-h-0'
@@ -547,16 +448,18 @@ const ServicesSection = () => {
                   </p>
                 </div>
 
-                {/* Arrow Button */}
+                {/* Arrow — orange on hover */}
                 <div
-                  className={`absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
-                    hoveredService === index ? 'bg-[#B45309] scale-110' : ''
+                  className={`absolute top-6 right-6 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    hoveredService === index ? 'scale-110' : ''
                   }`}
+                  style={{
+                    backgroundColor: hoveredService === index ? 'white' : 'rgba(255,255,255,0.2)',
+                  }}
                 >
                   <ArrowUpRight
-                    className={`w-5 h-5 transition-all duration-300 ${
-                      hoveredService === index ? 'text-white rotate-45' : 'text-white'
-                    }`}
+                    className="w-5 h-5 transition-all duration-300"
+                    style={{ color: hoveredService === index ? '#E65100' : 'white' }}
                   />
                 </div>
               </div>
@@ -564,11 +467,12 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* ================= CTA ================= */}
+        {/* CTA */}
         <div className="mt-12 text-center">
           <button
             data-testid="services-view-all"
-            className="inline-flex items-center gap-2 text-[#4E9141] font-semibold text-lg hover:text-[#3d7333] transition-colors group"
+            className="inline-flex items-center gap-2 font-semibold text-lg transition-colors group"
+            style={{ color: '#2E7D32' }}
           >
             View All Services
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

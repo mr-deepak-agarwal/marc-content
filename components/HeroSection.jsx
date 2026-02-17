@@ -2,8 +2,19 @@
 
 import React from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
-import { companyInfo } from '@/data/mock'
 import { Button } from './ui/button'
+
+/*
+  MARC Vivid Palette:
+  --green-logo:   #2E7D32   rich logo green
+  --green-mid:    #43A047   bright mid green
+  --green-light:  #81C784   light green tint
+  --green-pale:   #A5D6A7   very light green (text on dark)
+  --green-deep:   #1B5E20   dark section bg
+  --orange:       #E65100   vivid orange (WHY CHOOSE US style)
+  --orange-bright:#FF6D00   even brighter orange accent
+  --white:        #FFFFFF
+*/
 
 const HeroSection = () => {
   const scrollToSection = (href) => {
@@ -15,273 +26,217 @@ const HeroSection = () => {
     <section
       data-testid="hero-section"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#1D342F' }}
+      style={{ backgroundColor: '#1B5E20' }}
     >
-      {/* ===== CUSTOM SVG BACKGROUND: GLOBE + CONNECTION NODES ===== */}
-      <div className="absolute inset-0 w-full h-full">
+      {/* ══════════ CUSTOM SVG BACKGROUND ══════════ */}
+      <div className="absolute inset-0 pointer-events-none">
         <svg
-          className="absolute inset-0 w-full h-full"
+          className="w-full h-full"
           viewBox="0 0 1440 900"
           preserveAspectRatio="xMidYMid slice"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            {/* Globe gradient */}
-            <radialGradient id="globeBody" cx="45%" cy="42%" r="55%">
-              <stop offset="0%" stopColor="#2A5A3A" />
-              <stop offset="60%" stopColor="#1A3828" />
-              <stop offset="100%" stopColor="#0D1F16" />
+            <radialGradient id="hGlobe" cx="42%" cy="40%" r="58%">
+              <stop offset="0%" stopColor="#43A047" />
+              <stop offset="55%" stopColor="#2E7D32" />
+              <stop offset="100%" stopColor="#1B5E20" />
             </radialGradient>
-            {/* Gold glow */}
-            <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#B45309" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#B45309" stopOpacity="0" />
+            <radialGradient id="hBg" cx="68%" cy="50%" r="70%">
+              <stop offset="0%" stopColor="#2E7D32" />
+              <stop offset="100%" stopColor="#1B5E20" />
             </radialGradient>
-            {/* Green pulse rings */}
-            <radialGradient id="greenGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#4E9141" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#4E9141" stopOpacity="0" />
+            <radialGradient id="hOGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#FF6D00" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="#FF6D00" stopOpacity="0" />
             </radialGradient>
-            {/* Subtle background gradient */}
-            <radialGradient id="bgGrad" cx="65%" cy="50%" r="60%">
-              <stop offset="0%" stopColor="#243D2C" />
-              <stop offset="100%" stopColor="#0D1A10" />
+            <radialGradient id="hGGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#66BB6A" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#66BB6A" stopOpacity="0" />
             </radialGradient>
-            {/* Clip globe circle */}
-            <clipPath id="globeClip">
-              <circle cx="1080" cy="450" r="340" />
-            </clipPath>
-            {/* Soft shadow filter */}
-            <filter id="softBlur">
-              <feGaussianBlur stdDeviation="18" />
+            <clipPath id="hClip"><circle cx="1060" cy="450" r="320" /></clipPath>
+            <filter id="hBlur"><feGaussianBlur stdDeviation="20" /></filter>
+            <filter id="hSm"><feGaussianBlur stdDeviation="5" /></filter>
+            <filter id="hNode">
+              <feGaussianBlur stdDeviation="6" result="b" />
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
-            <filter id="smBlur">
-              <feGaussianBlur stdDeviation="5" />
-            </filter>
-            <filter id="nodeGlow">
-              <feGaussianBlur stdDeviation="6" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            {/* Fade mask for left edge of globe */}
-            <mask id="globeFade">
-              <radialGradient id="fadeRad" cx="60%" cy="50%" r="55%">
-                <stop offset="40%" stopColor="white" stopOpacity="1" />
-                <stop offset="100%" stopColor="white" stopOpacity="0" />
-              </radialGradient>
-              <rect width="1440" height="900" fill="url(#fadeRad)" />
-            </mask>
           </defs>
 
-          {/* Base background */}
-          <rect width="1440" height="900" fill="url(#bgGrad)" />
+          <rect width="1440" height="900" fill="url(#hBg)" />
 
-          {/* Subtle grid dots */}
-          <pattern id="dots" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r="1" fill="#4E9141" opacity="0.12" />
+          {/* dot grid */}
+          <pattern id="hDots" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="1.1" fill="#4CAF50" opacity="0.2" />
           </pattern>
-          <rect width="1440" height="900" fill="url(#dots)" />
+          <rect width="1440" height="900" fill="url(#hDots)" />
 
-          {/* Globe soft outer glow */}
-          <circle cx="1080" cy="450" r="380" fill="url(#goldGlow)" filter="url(#softBlur)" />
-          <circle cx="1080" cy="450" r="300" fill="url(#greenGlow)" filter="url(#smBlur)" />
+          {/* diagonal accent lines */}
+          <line x1="0" y1="150" x2="480" y2="600" stroke="#E65100" strokeWidth="0.7" strokeOpacity="0.12" />
+          <line x1="0" y1="350" x2="360" y2="750" stroke="#E65100" strokeWidth="0.5" strokeOpacity="0.08" />
+          <line x1="120" y1="0" x2="620" y2="520" stroke="#4CAF50" strokeWidth="0.5" strokeOpacity="0.1" />
 
-          {/* Globe body */}
-          <circle cx="1080" cy="450" r="340" fill="url(#globeBody)" />
+          {/* globe glows */}
+          <circle cx="1060" cy="450" r="420" fill="url(#hOGlow)" filter="url(#hBlur)" />
+          <circle cx="1060" cy="450" r="290" fill="url(#hGGlow)" filter="url(#hSm)" />
 
-          {/* Globe rim */}
-          <circle cx="1080" cy="450" r="340" fill="none" stroke="#4E9141" strokeWidth="1" strokeOpacity="0.35" />
-          <circle cx="1080" cy="450" r="338" fill="none" stroke="#C2DDB4" strokeWidth="0.4" strokeOpacity="0.15" />
+          {/* globe body */}
+          <circle cx="1060" cy="450" r="320" fill="url(#hGlobe)" />
+          <circle cx="1060" cy="450" r="320" fill="none" stroke="#81C784" strokeWidth="1" strokeOpacity="0.35" />
+          <circle cx="1060" cy="450" r="318" fill="none" stroke="#E65100" strokeWidth="0.5" strokeOpacity="0.2" />
 
-          {/* ---- Latitude lines ---- */}
-          <g clipPath="url(#globeClip)" fill="none" stroke="#4E9141" strokeWidth="0.6" strokeOpacity="0.2">
-            <ellipse cx="1080" cy="450" rx="340" ry="80" />
-            <ellipse cx="1080" cy="450" rx="340" ry="170" />
-            <ellipse cx="1080" cy="450" rx="340" ry="250" />
-            <ellipse cx="1080" cy="450" rx="340" ry="320" />
-            <line x1="740" y1="450" x2="1420" y2="450" />
+          {/* lat lines */}
+          <g clipPath="url(#hClip)" fill="none" stroke="#4CAF50" strokeWidth="0.8" strokeOpacity="0.28">
+            <ellipse cx="1060" cy="450" rx="320" ry="78" />
+            <ellipse cx="1060" cy="450" rx="320" ry="162" />
+            <ellipse cx="1060" cy="450" rx="320" ry="244" />
+            <ellipse cx="1060" cy="450" rx="320" ry="308" />
+            <line x1="740" y1="450" x2="1380" y2="450" />
           </g>
 
-          {/* ---- Longitude lines ---- */}
-          <g clipPath="url(#globeClip)" fill="none" stroke="#4E9141" strokeWidth="0.6" strokeOpacity="0.2">
-            <ellipse cx="1080" cy="450" rx="60" ry="340" />
-            <ellipse cx="1080" cy="450" rx="140" ry="340" />
-            <ellipse cx="1080" cy="450" rx="220" ry="340" />
-            <ellipse cx="1080" cy="450" rx="295" ry="340" />
-            <line x1="1080" y1="110" x2="1080" y2="790" />
+          {/* long lines */}
+          <g clipPath="url(#hClip)" fill="none" stroke="#4CAF50" strokeWidth="0.8" strokeOpacity="0.28">
+            <ellipse cx="1060" cy="450" rx="58" ry="320" />
+            <ellipse cx="1060" cy="450" rx="135" ry="320" />
+            <ellipse cx="1060" cy="450" rx="215" ry="320" />
+            <ellipse cx="1060" cy="450" rx="290" ry="320" />
+            <line x1="1060" y1="130" x2="1060" y2="770" />
           </g>
 
-          {/* ---- Landmasses (India-centric, stylized) ---- */}
-          <g clipPath="url(#globeClip)" fill="#4E9141" fillOpacity="0.28">
-            {/* India */}
-            <polygon points="1095,350 1125,342 1148,358 1155,390 1148,425 1135,455 1112,478 1092,490 1070,472 1060,442 1068,405 1078,370" />
-            {/* SE Asia */}
-            <ellipse cx="1190" cy="410" rx="35" ry="50" transform="rotate(20,1190,410)" />
-            {/* Arabian Peninsula */}
-            <polygon points="1042,338 1068,330 1075,352 1062,372 1038,362" />
-            {/* East Africa stub */}
-            <polygon points="1008,390 1028,382 1040,400 1038,430 1022,448 1005,435 998,410" />
-            {/* Sri Lanka */}
-            <ellipse cx="1115" cy="498" rx="10" ry="14" />
+          {/* landmasses — bright fill */}
+          <g clipPath="url(#hClip)" fill="#66BB6A" fillOpacity="0.42">
+            <polygon points="1074,332 1100,324 1122,340 1128,368 1120,400 1106,422 1082,440 1062,428 1054,402 1062,372 1072,344" />
+            <ellipse cx="1166" cy="390" rx="30" ry="44" transform="rotate(18,1166,390)" />
+            <polygon points="1032,318 1057,310 1062,334 1050,352 1026,344" />
+            <polygon points="997,376 1017,368 1027,390 1023,418 1007,430 991,418 985,395" />
+            <ellipse cx="1096" cy="450" rx="9" ry="13" />
           </g>
 
-          {/* Globe specular highlight */}
-          <ellipse cx="990" cy="335" rx="80" ry="55" fill="white" fillOpacity="0.04" filter="url(#smBlur)" />
+          {/* specular */}
+          <ellipse cx="966" cy="320" rx="76" ry="52" fill="white" fillOpacity="0.06" filter="url(#hSm)" />
 
-          {/* ====== CONNECTION LINES from globe to left side ====== */}
-          {/* India → left panel node */}
-          <line x1="1095" y1="430" x2="640" y2="280" stroke="#B45309" strokeWidth="1.2" strokeDasharray="5,4" strokeOpacity="0.55" />
-          {/* Arabia → left panel node */}
-          <line x1="1055" y1="348" x2="520" y2="420" stroke="#B45309" strokeWidth="1" strokeDasharray="5,4" strokeOpacity="0.4" />
-          {/* SE Asia → right-down */}
-          <line x1="1190" y1="420" x2="1340" y2="600" stroke="#4E9141" strokeWidth="0.8" strokeDasharray="4,5" strokeOpacity="0.3" />
-          {/* Top node */}
-          <line x1="1080" y1="112" x2="780" y2="170" stroke="#C2DDB4" strokeWidth="0.8" strokeDasharray="4,5" strokeOpacity="0.3" />
+          {/* connection lines */}
+          <line x1="1074" y1="393" x2="602" y2="252" stroke="#FF6D00" strokeWidth="1.8" strokeDasharray="5,4" strokeOpacity="0.65" />
+          <line x1="1032" y1="334" x2="482" y2="418" stroke="#FF6D00" strokeWidth="1.3" strokeDasharray="5,4" strokeOpacity="0.5" />
+          <line x1="1060" y1="132" x2="742" y2="172" stroke="#A5D6A7" strokeWidth="1" strokeDasharray="4,5" strokeOpacity="0.4" />
 
-          {/* ====== GLOBE NODES ====== */}
-          {/* India node */}
-          <circle cx="1095" cy="430" r="7" fill="#B45309" filter="url(#nodeGlow)" />
-          <circle cx="1095" cy="430" r="14" fill="#B45309" fillOpacity="0.2" />
-          <circle cx="1095" cy="430" r="22" fill="#B45309" fillOpacity="0.08" />
+          {/* globe nodes */}
+          <circle cx="1074" cy="393" r="8" fill="#FF6D00" filter="url(#hNode)" />
+          <circle cx="1074" cy="393" r="18" fill="#FF6D00" fillOpacity="0.22" />
+          <circle cx="1074" cy="393" r="28" fill="#FF6D00" fillOpacity="0.08" />
+          <circle cx="1032" cy="334" r="6" fill="#FF6D00" filter="url(#hNode)" />
+          <circle cx="1032" cy="334" r="13" fill="#FF6D00" fillOpacity="0.18" />
+          <circle cx="1060" cy="133" r="5" fill="#A5D6A7" filter="url(#hNode)" />
 
-          {/* SE Asia node */}
-          <circle cx="1190" cy="420" r="5" fill="#4E9141" filter="url(#nodeGlow)" />
-          <circle cx="1190" cy="420" r="11" fill="#4E9141" fillOpacity="0.2" />
+          {/* left panel nodes */}
+          <circle cx="602" cy="252" r="7" fill="#FF6D00" filter="url(#hNode)" />
+          <circle cx="602" cy="252" r="16" fill="#FF6D00" fillOpacity="0.18" />
+          <text x="622" y="246" fontFamily="sans-serif" fontSize="13" fill="#FF8A50" letterSpacing="2.5" fontWeight="700">INDIA</text>
+          <text x="622" y="263" fontFamily="sans-serif" fontSize="10" fill="#A5D6A7">500+ Projects</text>
 
-          {/* Arabia node */}
-          <circle cx="1055" cy="348" r="4.5" fill="#B45309" filter="url(#nodeGlow)" />
-          <circle cx="1055" cy="348" r="10" fill="#B45309" fillOpacity="0.18" />
+          <circle cx="482" cy="418" r="6" fill="#FF6D00" filter="url(#hNode)" />
+          <circle cx="482" cy="418" r="13" fill="#FF6D00" fillOpacity="0.14" />
+          <text x="500" y="413" fontFamily="sans-serif" fontSize="13" fill="#FF8A50" letterSpacing="2.5" fontWeight="700">UAE</text>
+          <text x="500" y="429" fontFamily="sans-serif" fontSize="10" fill="#A5D6A7">Active Markets</text>
 
-          {/* Top node */}
-          <circle cx="1080" cy="115" r="4" fill="#C2DDB4" fillOpacity="0.8" />
-          <circle cx="1080" cy="115" r="9" fill="#C2DDB4" fillOpacity="0.15" />
+          <circle cx="742" cy="172" r="5" fill="#A5D6A7" filter="url(#hNode)" />
+          <text x="758" y="167" fontFamily="sans-serif" fontSize="12" fill="#A5D6A7" letterSpacing="2">GLOBAL</text>
+          <text x="758" y="182" fontFamily="sans-serif" fontSize="9.5" fill="#A5D6A7" fillOpacity="0.7">30+ Countries</text>
 
-          {/* ====== LEFT PANEL NODES (connection endpoints) ====== */}
-          {/* India label node */}
-          <circle cx="640" cy="280" r="5" fill="#B45309" filter="url(#nodeGlow)" />
-          <circle cx="640" cy="280" r="12" fill="#B45309" fillOpacity="0.15" />
-          <text x="656" y="275" fontFamily="sans-serif" fontSize="11" fill="#B45309" letterSpacing="1.5" fontWeight="600">INDIA</text>
-          <text x="656" y="289" fontFamily="sans-serif" fontSize="9" fill="#C2DDB4" fillOpacity="0.7">500+ Projects</text>
-
-          {/* UAE/Gulf label node */}
-          <circle cx="520" cy="420" r="4.5" fill="#B45309" filter="url(#nodeGlow)" />
-          <circle cx="520" cy="420" r="11" fill="#B45309" fillOpacity="0.12" />
-          <text x="534" y="416" fontFamily="sans-serif" fontSize="11" fill="#B45309" letterSpacing="1.5" fontWeight="600">UAE</text>
-          <text x="534" y="429" fontFamily="sans-serif" fontSize="9" fill="#C2DDB4" fillOpacity="0.7">Active Markets</text>
-
-          {/* Europe label node */}
-          <circle cx="780" cy="170" r="4" fill="#C2DDB4" fillOpacity="0.8" />
-          <circle cx="780" cy="170" r="10" fill="#C2DDB4" fillOpacity="0.12" />
-          <text x="795" y="166" fontFamily="sans-serif" fontSize="11" fill="#C2DDB4" fillOpacity="0.8" letterSpacing="1.5">GLOBAL</text>
-          <text x="795" y="179" fontFamily="sans-serif" fontSize="9" fill="#C2DDB4" fillOpacity="0.55">30+ Countries</text>
-
-          {/* ====== DECORATIVE HORIZONTAL LINES (left panel breathing room) ====== */}
-          <line x1="0" y1="580" x2="460" y2="580" stroke="#4E9141" strokeWidth="0.5" strokeOpacity="0.2" />
-          <line x1="0" y1="300" x2="320" y2="300" stroke="#4E9141" strokeWidth="0.5" strokeOpacity="0.15" />
-
-          {/* Bottom stat strip */}
-          <rect x="60" y="728" width="100" height="42" rx="3" fill="#4E9141" fillOpacity="0.12" stroke="#4E9141" strokeWidth="0.75" strokeOpacity="0.3" />
-          <rect x="174" y="728" width="100" height="42" rx="3" fill="#4E9141" fillOpacity="0.12" stroke="#4E9141" strokeWidth="0.75" strokeOpacity="0.3" />
-          <rect x="288" y="728" width="100" height="42" rx="3" fill="#4E9141" fillOpacity="0.12" stroke="#4E9141" strokeWidth="0.75" strokeOpacity="0.3" />
-          <rect x="402" y="728" width="100" height="42" rx="3" fill="#4E9141" fillOpacity="0.12" stroke="#4E9141" strokeWidth="0.75" strokeOpacity="0.3" />
+          {/* orange corner accent */}
+          <path d="M 0 0 Q 220 120 200 340" fill="none" stroke="#E65100" strokeWidth="2" strokeOpacity="0.18" />
+          <path d="M 0 90 Q 170 200 150 420" fill="none" stroke="#E65100" strokeWidth="1" strokeOpacity="0.1" />
         </svg>
       </div>
 
-      {/* ===== DEPTH OVERLAY ===== */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#1D342F]/80 via-[#1D342F]/40 to-transparent pointer-events-none" />
+      {/* fade overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to right, rgba(27,94,32,0.72) 0%, rgba(27,94,32,0.28) 55%, transparent 100%)' }}
+      />
 
-      {/* ===== CONTENT ===== */}
+      {/* ══════════ CONTENT ══════════ */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
+
         {/* Badge */}
         <div
           data-testid="hero-badge"
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-[#C2DDB4]/30 text-white text-sm font-medium mb-8"
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-white text-sm font-medium mb-8"
+          style={{ backgroundColor: 'rgba(255,255,255,0.12)', border: '1px solid rgba(165,214,167,0.4)' }}
         >
-          <span className="w-2 h-2 bg-[#B45309] rounded-full animate-pulse" />
+          <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF6D00' }} />
           Advisors for Compounding Growth
         </div>
 
-        {/* Main Heading */}
+        {/* Heading */}
         <h1
           data-testid="hero-heading"
           className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight"
         >
           Growth Advisory for{' '}
-          <span className="text-[#C2DDB4]">Ambitious Indian</span>{' '}
+          <span style={{ color: '#A5D6A7' }}>Ambitious Indian</span>{' '}
           &amp; Global Businesses
         </h1>
 
         {/* Subheading */}
         <p
           data-testid="hero-subheading"
-          className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed"
+          className="text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
+          style={{ color: 'rgba(255,255,255,0.85)' }}
         >
           Strategy and execution for Indian and global businesses that want growth to build—year after year.
         </p>
 
-        {/* ===== 3 VALUE BLURBS ===== */}
+        {/* 3 value blurbs */}
         <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
           {[
-            {
-              num: '01',
-              title: 'Insights that sharpen growth bets.',
-              body: 'Market, customer, and category intelligence to reduce risk and guide compounding growth.',
-            },
-            {
-              num: '02',
-              title: 'Numbers that guide growth.',
-              body: 'Financial models, profitability analyses and focused financial diagnostics that translate data into clear growth priorities.',
-            },
-            {
-              num: '03',
-              title: 'M&A, designed for growth.',
-              body: 'Strategic target identification, commercial diligence, and integration support—focused on value creation, not just deal completion.',
-            },
+            { num: '01', title: 'Insights that sharpen growth bets.', body: 'Market, customer, and category intelligence to reduce risk and guide compounding growth.' },
+            { num: '02', title: 'Numbers that guide growth.', body: 'Financial models, profitability analyses and focused diagnostics that translate data into clear priorities.' },
+            { num: '03', title: 'M&A, designed for growth.', body: 'Strategic target identification, commercial diligence, and integration support—focused on value creation.' },
           ].map((item) => (
             <div
               key={item.num}
-              className="bg-white/8 backdrop-blur-sm border border-[#C2DDB4]/20 rounded-2xl p-5 text-left hover:bg-white/12 hover:border-[#4E9141]/50 transition-all duration-300"
+              className="rounded-2xl p-5 text-left transition-all duration-300 hover:scale-[1.02]"
+              style={{ backgroundColor: 'rgba(255,255,255,0.09)', border: '1px solid rgba(165,214,167,0.25)' }}
             >
-              <div className="w-8 h-8 rounded-lg bg-[#4E9141]/40 border border-[#4E9141]/50 flex items-center justify-center mb-3">
-                <span className="text-[#C2DDB4] font-bold text-sm">{item.num}</span>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: '#E65100' }}>
+                <span className="text-white font-bold text-sm">{item.num}</span>
               </div>
               <h3 className="text-white font-semibold text-base mb-2 leading-snug">{item.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{item.body}</p>
+              <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>{item.body}</p>
             </div>
           ))}
         </div>
 
-        {/* CTA Buttons */}
+        {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button
+          <button
             data-testid="hero-cta-services"
             onClick={() => scrollToSection('#services')}
-            size="lg"
-            className="bg-[#4E9141] hover:bg-[#3d7333] text-white px-8 py-6 text-lg font-semibold shadow-2xl shadow-black/30 transition-all duration-300 hover:-translate-y-1"
+            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-full text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-orange-900/30"
+            style={{ backgroundColor: '#E65100' }}
           >
             Explore Our Services
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
+            <ArrowRight className="w-5 h-5" />
+          </button>
 
-          <Button
+          <button
             data-testid="hero-cta-about"
             onClick={() => scrollToSection('#about')}
-            variant="outline"
-            size="lg"
-            className="border-2 border-[#C2DDB4]/40 text-white hover:bg-white/10 hover:border-[#C2DDB4]/70 px-8 py-6 text-lg font-semibold backdrop-blur-sm transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-full text-white transition-all duration-300 hover:bg-white/15"
+            style={{ border: '2px solid rgba(165,214,167,0.5)' }}
           >
             Learn About Us
-          </Button>
+          </button>
         </div>
       </div>
 
-      {/* ===== SCROLL INDICATOR ===== */}
+      {/* Scroll indicator */}
       <button
         data-testid="hero-scroll-btn"
         onClick={() => scrollToSection('#about')}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#C2DDB4]/60 hover:text-[#C2DDB4] animate-bounce transition-colors duration-300"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+        style={{ color: 'rgba(165,214,167,0.7)' }}
         aria-label="Scroll down"
       >
         <ChevronDown size={32} />
