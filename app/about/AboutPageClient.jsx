@@ -9,23 +9,46 @@ import {
   Building2, Phone, Mail, ExternalLink, Handshake
 } from 'lucide-react'
 
-// Team images for animated carousel - using reliable Unsplash URLs
 const teamImages = [
   {
-    url: 'https://images.unsplash.com/photo-1551135049-8a33b5883817?w=800&q=80',
-    title: 'Strategy Planning',
+    url: '/about/IMG_0359.JPG',
+    title: 'Our Team at Work',
   },
   {
-    url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80',
+    url: '/about/IMG_0372.JPG',
+    title: 'Strategy Sessions',
+  },
+  {
+    url: '/about/IMG_0378.JPG',
     title: 'Client Meetings',
   },
   {
-    url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    url: '/about/IMG_0395.JPG',
+    title: 'Team Collaboration',
+  },
+  {
+    url: '/about/IMG_0435.JPG',
+    title: 'Advisory Consulting',
+  },
+  {
+    url: '/about/IMG_0460.JPG',
+    title: 'Business Planning',
+  },
+  {
+    url: '/about/IMG_0475.JPG',
     title: 'Team Brainstorming',
   },
   {
-    url: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
-    title: 'Collaborative Work',
+    url: '/about/IMG_0490.JPG',
+    title: 'Expert Analysis',
+  },
+  {
+    url: '/about/IMG_0504.JPG',
+    title: 'Leadership Team',
+  },
+  {
+    url: '/about/IMG_0515.JPG',
+    title: 'Global Operations',
   },
 ]
 
@@ -70,7 +93,6 @@ const timeline = [
   { year: '2024', title: 'USA Operations', desc: 'MARC Glocal Inc, Delaware' },
 ]
 
-// All clients from old page - Row 1
 const clientsRow1 = [
   { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
   { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
@@ -80,7 +102,6 @@ const clientsRow1 = [
   { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
 ]
 
-// Row 2 - scrolls opposite direction (duplicated for more logos)
 const clientsRow2 = [
   { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
   { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
@@ -139,7 +160,6 @@ function TeamCarousel() {
 
   return (
     <div className="relative w-full h-[450px]">
-      {/* Stacked cards animation */}
       <div className="relative w-full h-full">
         {teamImages.map((image, index) => {
           const isActive = index === currentIndex
@@ -204,11 +224,10 @@ function TeamCarousel() {
   )
 }
 
-// Client Logo Marquee Component - Two rows, opposite directions
+// Client Logo Marquee Component
 function ClientMarquee() {
   return (
     <div className="space-y-6 overflow-hidden">
-      {/* Row 1 - scrolls left */}
       <div className="relative">
         <div className="flex animate-marquee-left">
           {[...clientsRow1, ...clientsRow1, ...clientsRow1].map((client, i) => (
@@ -226,7 +245,6 @@ function ClientMarquee() {
         </div>
       </div>
       
-      {/* Row 2 - scrolls right (opposite direction) */}
       <div className="relative">
         <div className="flex animate-marquee-right">
           {[...clientsRow2, ...clientsRow2, ...clientsRow2].map((client, i) => (
@@ -244,7 +262,6 @@ function ClientMarquee() {
         </div>
       </div>
       
-      {/* CSS for marquee animations */}
       <style jsx>{`
         @keyframes marquee-left {
           0% { transform: translateX(0); }
@@ -359,7 +376,7 @@ export default function AboutPageClient() {
   return (
     <div className="bg-white min-h-screen" data-testid="about-page">
       
-      {/* ==================== HERO SECTION - Light Background ==================== */}
+      {/* HERO SECTION */}
       <section className="pt-32 pb-20 bg-[#F7FFF5] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
@@ -409,7 +426,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== TRUSTED BY 500+ COMPANIES ==================== */}
+      {/* TRUSTED BY 500+ COMPANIES */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -427,12 +444,11 @@ export default function AboutPageClient() {
             </div>
           </div>
 
-          {/* Client Logos Marquee - Two rows, opposite directions */}
           <ClientMarquee />
         </div>
       </section>
 
-      {/* ==================== VISION & MISSION ==================== */}
+      {/* VISION & MISSION */}
       <section className="py-20 bg-[#F7FFF5]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
@@ -468,7 +484,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== ANIMATED JOURNEY TIMELINE ==================== */}
+      {/* JOURNEY TIMELINE */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
@@ -522,7 +538,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== LEADERSHIP TEAM - Light Green Background ==================== */}
+      {/* LEADERSHIP TEAM */}
       <section className="py-20 bg-[#F7FFF5]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
@@ -576,7 +592,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== LOCATIONS CAROUSEL ==================== */}
+      {/* LOCATIONS CAROUSEL */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 mb-8">
           <div className="flex items-center gap-4 mb-8">
@@ -613,7 +629,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== AFFILIATIONS ==================== */}
+      {/* AFFILIATIONS */}
       <section className="py-20 bg-[#F7FFF5]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
@@ -666,7 +682,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* ==================== CTA ==================== */}
+      {/* CTA */}
       <section className="py-20 bg-[#4E9141]">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
