@@ -722,17 +722,20 @@ export default function AboutPageClient() {
                   <div className="p-5">
                     <h3 className="text-lg font-bold text-[#1D342F] mb-1">{member.name}</h3>
                     <p className="text-[#47635D] text-sm mb-3">{member.role}</p>
-                    {member.linkedin && (
-                      <a 
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[#4E9141] hover:text-[#3d7334] transition-colors text-sm"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                        <span>LinkedIn</span>
-                      </a>
-                    )}
+                    <a 
+                      href={member.linkedin || '#'}
+                      target={member.linkedin ? "_blank" : "_self"}
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1 text-sm ${
+                        member.linkedin 
+                          ? 'text-[#4E9141] hover:text-[#3d7334] cursor-pointer' 
+                          : 'text-gray-400 cursor-not-allowed'
+                      } transition-colors`}
+                      onClick={!member.linkedin ? (e) => e.preventDefault() : undefined}
+                    >
+                      <Linkedin className="w-4 h-4" />
+                      <span>{member.linkedin ? 'LinkedIn' : 'LinkedIn'}</span>
+                    </a>
                   </div>
                 </div>
               ))}
@@ -759,17 +762,20 @@ export default function AboutPageClient() {
                   <div className="p-4">
                     <h3 className="text-base font-bold text-[#1D342F] mb-1">{member.name}</h3>
                     <p className="text-[#47635D] text-xs mb-2">{member.role}</p>
-                    {member.linkedin && (
-                      <a 
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[#4E9141] hover:text-[#3d7334] transition-colors text-xs"
-                      >
-                        <Linkedin className="w-3 h-3" />
-                        <span>LinkedIn</span>
-                      </a>
-                    )}
+                    <a 
+                      href={member.linkedin || '#'}
+                      target={member.linkedin ? "_blank" : "_self"}
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1 text-xs ${
+                        member.linkedin 
+                          ? 'text-[#4E9141] hover:text-[#3d7334] cursor-pointer' 
+                          : 'text-gray-400 cursor-not-allowed'
+                      } transition-colors`}
+                      onClick={!member.linkedin ? (e) => e.preventDefault() : undefined}
+                    >
+                      <Linkedin className="w-3 h-3" />
+                      <span>{member.linkedin ? 'LinkedIn' : 'Coming Soon'}</span>
+                    </a>
                   </div>
                 </div>
               ))}
@@ -798,17 +804,22 @@ export default function AboutPageClient() {
                     </div>
                   </div>
                   <div className="p-6">
-                    {expert.linkedin && (
-                      <a 
-                        href={expert.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-[#4E9141] hover:text-[#3d7334] transition-colors"
-                      >
-                        <Linkedin className="w-5 h-5" />
-                        <span className="text-sm font-medium">Connect on LinkedIn</span>
-                      </a>
-                    )}
+                    <a 
+                      href={expert.linkedin || '#'}
+                      target={expert.linkedin ? "_blank" : "_self"}
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-2 ${
+                        expert.linkedin 
+                          ? 'text-[#4E9141] hover:text-[#3d7334] cursor-pointer' 
+                          : 'text-gray-400 cursor-not-allowed'
+                      } transition-colors`}
+                      onClick={!expert.linkedin ? (e) => e.preventDefault() : undefined}
+                    >
+                      <Linkedin className="w-5 h-5" />
+                      <span className="text-sm font-medium">
+                        {expert.linkedin ? 'Connect on LinkedIn' : 'LinkedIn'}
+                      </span>
+                    </a>
                   </div>
                 </div>
               ))}
