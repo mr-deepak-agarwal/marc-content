@@ -23,8 +23,9 @@ export const aboutSection = {
   title: "Driving Compounding Growth",
   description: "MARC is a growth advisory firm partnering with founders, leadership teams, and investors to build scalable, resilient businesses with a focus on compounding growth. With deep local expertise and global perspective, we empower Indian entrepreneurs to strengthen their businesses while guiding international firms with market entry and internationalization strategies. We also collaborate with international consultants, serving as a trusted outsourcing partner.",
   commitment: "We don't offer templates. We design custom growth journeys grounded in data, context, and on ground realities.",
-  image: "https://images.unsplash.com/photo-1758518727707-b023e285b709?w=800&auto=format&fit=crop",
-  imageAlt: "MARC consulting team discussing business strategy in modern boardroom"
+  // Clean modern architecture / office interior — no people
+  image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop&q=90",
+  imageAlt: "MARC modern office environment representing strategic consulting"
 };
 
 export const services = [
@@ -32,64 +33,72 @@ export const services = [
     id: 1,
     title: "Growth Strategy & GTM",
     description: "Market prioritisation, value proposition, pricing, channel strategy, market assessment, localisation, regulatory context",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
-    imageAlt: "MARC business consultants collaborating on growth strategy in modern office",
+    // Bold upward arrow chart on dark background — sharp and striking
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Growth strategy analytics dashboard",
     link: "/services/growth-strategy"
   },
   {
     id: 2,
     title: "India Entry & Expansion",
     description: "Market assessment, partner strategy, localisation, regulatory context, and launch support.",
-    image: "https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=800&auto=format&fit=crop",
-    imageAlt: "MARC international business consultants discussing India market entry strategy",
+    // Aerial city skyline — Mumbai feel, no people
+    image: "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=800&h=600&fit=crop&q=90",
+    imageAlt: "India city skyline representing market entry",
     link: "/services/india-entry"
   },
   {
     id: 3,
     title: "Expansion for Indian Firms",
     description: "Market selection, entry strategy, operating models, and early-stage execution support.",
-    image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=800&auto=format&fit=crop",
-    imageAlt: "MARC consultant presenting international expansion strategy to Indian firms",
+    // Globe / world map on desk — international feel, no people
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Global expansion strategy and world map",
     link: "/services/international-expansion"
   },
   {
     id: 4,
     title: "Customer & Market Intelligence",
     description: "Deep consumer, B2B, and category insights to reduce risk and sharpen decisions.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
-    imageAlt: "MARC market research analytics and customer intelligence presentation",
+    // Clean data dashboard on monitor — sharp, no people
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Market intelligence analytics dashboard",
     link: "/services/market-intelligence"
   },
   {
     id: 5,
     title: "Feasibility Studies",
     description: "Product-Market Fit assessment, competitive landscape, product viability, land utilisation and feasibility evaluation.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop",
-    imageAlt: "MARC feasibility study and market viability assessment",
+    // Architectural blueprint / building plans overhead — clean and technical
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Feasibility study blueprints and architectural plans",
     link: "/services/feasibility-studies"
   },
   {
     id: 6,
     title: "Financial Assessment & Analytics",
     description: "Profitability analyses, industry and competitor benchmarking to guide strategic decisions.",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop",
-    imageAlt: "MARC financial analytics and profitability assessment",
+    // Financial charts and graphs — crisp, no people
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Financial analytics and performance charts",
     link: "/services/financial-analytics"
   },
   {
     id: 7,
     title: "Process & System Optimization",
     description: "Process audits, SOP review and system optimization to sustain compounding growth.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop",
-    imageAlt: "MARC process optimization and operational excellence consulting",
+    // Clean geometric gears / workflow diagram — no wires, no people
+    image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Process optimization and system workflow",
     link: "/services/process-optimization"
   },
   {
     id: 8,
     title: "M&A & Strategic Partnerships",
     description: "Deal screening, commercial due diligence, growth thesis validation, synergy modelling, and post-merger value creation.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop",
-    imageAlt: "MARC M&A advisory and strategic partnership consulting",
+    // Two modern glass buildings merging / reflecting each other — no people
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Corporate buildings representing M&A and strategic partnerships",
     link: "/services/mergers-acquisitions"
   }
 ];
@@ -107,36 +116,44 @@ export const industries = [
 
 export const industryImages = {
   "Manufacturing": {
-    image: "https://images.pexels.com/photos/17728784/pexels-photo-17728784.jpeg?w=800&auto=format&fit=crop",
-    imageAlt: "Advanced manufacturing facility for MARC manufacturing consulting"
+    // Heavy industrial machinery — dramatic, no people
+    image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Advanced manufacturing facility"
   },
   "F&B (Food & Beverage)": {
-    image: "https://images.pexels.com/photos/6207729/pexels-photo-6207729.jpeg?w=800&auto=format&fit=crop",
-    imageAlt: "Food and beverage industry for MARC F&B consulting"
+    // Stunning overhead flat-lay of spices and ingredients — rich colour
+    image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Food and beverage ingredients overhead"
   },
   "Hospitality": {
-    image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?w=800&auto=format&fit=crop",
-    imageAlt: "Luxury hotel interior representing MARC hospitality consulting services"
+    // Stunning luxury hotel lobby interior — no people
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Luxury hotel interior"
   },
   "Retail": {
-    image: "https://images.unsplash.com/photo-1758874385215-c86fe62b446f?w=800&auto=format&fit=crop",
-    imageAlt: "Modern retail shopping experience for MARC retail consulting"
+    // Clean modern retail store interior — no people
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Modern retail store interior"
   },
   "Pharma": {
-    image: "https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?w=800&auto=format&fit=crop",
-    imageAlt: "Pharmaceutical industry for MARC pharma consulting"
+    // Blue pharmaceutical capsules macro — crisp, vivid
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Pharmaceutical research and medicine"
   },
   "Real Estate": {
-    image: "https://images.unsplash.com/photo-1768796372362-05c256e61d8c?w=800&auto=format&fit=crop",
-    imageAlt: "Modern real estate development for MARC consulting"
+    // Dramatic modern skyscraper looking up — no people
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Modern real estate development"
   },
   "Education": {
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop",
-    imageAlt: "Education sector for MARC education consulting"
+    // Clean university library interior — architectural, no people
+    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Modern university library"
   },
   "Technology": {
-    image: "https://images.unsplash.com/photo-1768796372343-99ed316eb5ef?w=800&auto=format&fit=crop",
-    imageAlt: "Modern technology office environment for MARC technology consulting"
+    // Server room / data center — electric blue, no people
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Technology data center servers"
   }
 };
 
@@ -179,17 +196,17 @@ export const insights = [
     id: 1,
     title: "Overview of the Condiments Market",
     category: "Insight Report",
-    date: "Februrary 2026",
+    date: "February 2026",
     image: "/images/insights/spices-1-500x286.png",
-    imageAlt: "MARC business consultant presenting FMCG industry analytics and charts"
+    imageAlt: "Overview of the condiments and spices market"
   },
   {
     id: 2,
     title: "MARC MSME Overview 2026",
     category: "Overview",
-    date: "Februrary 2026",
+    date: "February 2026",
     image: "/images/insights/marc-msme-1.png",
-    imageAlt: "MARC market analysis presentation on Q-commerce impact in India"
+    imageAlt: "MARC MSME market overview 2026"
   },
   {
     id: 3,
@@ -197,7 +214,7 @@ export const insights = [
     category: "Research",
     date: "February 2026",
     image: "/images/insights/lifescience-marc-1.png",
-    imageAlt: "MARC research team presenting India logistics market data and insights"
+    imageAlt: "India life sciences and pharma landscape research"
   }
 ];
 

@@ -56,8 +56,8 @@ const WhyUsSection = () => {
             {/* Image fills remaining space to match right column height */}
             <div className="card-grayscale relative rounded-3xl overflow-hidden shadow-2xl flex-1">
               <img
-                src="https://images.pexels.com/photos/3810753/pexels-photo-3810753.jpeg?w=800&auto=format&fit=crop"
-                alt="MARC Consultants Team collaborating on business strategy"
+                src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=500&fit=crop&q=90"
+                alt="MARC Strategy - Modern Architecture"
                 className="w-full h-[360px] object-cover transition-all duration-500"
                 loading="lazy"
               />
