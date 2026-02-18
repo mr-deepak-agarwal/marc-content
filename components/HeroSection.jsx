@@ -1,197 +1,192 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 
 const slides = [
   {
     id: 1,
-    title: 'Market Research',
+    eyebrow: 'About Us',
+    heading: 'We Shape Decisions\nfor the Better',
     description:
-      'In-depth market analysis and consumer insights to drive informed business decisions.',
+      "MARC's experience, global reach, and state-of-the-art analytics mean that we are better able to deliver insights and advice that help today's companies grow their businesses.",
     image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&h=1080&fit=crop&q=90',
-    href: '/services/market-research',
+      'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&h=1080&fit=crop&q=85',
+    ctaPrimary: { label: 'Schedule Free Consulting', href: '/contact' },
+    ctaSecondary: { label: 'Learn More', href: '/about' },
   },
   {
     id: 2,
-    title: 'Growth Strategy',
+    eyebrow: 'Market Research',
+    heading: 'In-Depth Market\nIntelligence',
     description:
-      'Strategic planning to overcome challenges and achieve sustainable expansion goals.',
+      'In-depth market analysis and consumer insights to drive informed business decisions.',
     image:
-      'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1920&h=1080&fit=crop&q=90',
-    href: '/services/strategy',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&h=1080&fit=crop&q=85',
+    ctaPrimary: { label: 'Explore Services', href: '/services/market-research' },
+    ctaSecondary: { label: 'Learn More', href: '/services' },
   },
   {
     id: 3,
-    title: 'M&A Advisory',
+    eyebrow: 'Growth Strategy',
+    heading: 'Strategic Growth\nConsulting',
+    description:
+      'Strategic planning to overcome challenges and achieve sustainable expansion goals.',
+    image:
+      'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1920&h=1080&fit=crop&q=85',
+    ctaPrimary: { label: 'Explore Services', href: '/services/strategy' },
+    ctaSecondary: { label: 'Learn More', href: '/services' },
+  },
+  {
+    id: 4,
+    eyebrow: 'M&A Advisory',
+    heading: 'Expert M&A\nAdvisory',
     description:
       'Expert guidance through mergers, acquisitions, and strategic partnerships.',
     image:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=90',
-    href: '/services/ma',
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=85',
+    ctaPrimary: { label: 'Explore Services', href: '/services/ma' },
+    ctaSecondary: { label: 'Learn More', href: '/services' },
   },
 ]
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0)
-  const [prev, setPrev] = useState(null)
   const [animating, setAnimating] = useState(false)
 
-  const goTo = useCallback(
-    (index) => {
-      if (animating || index === current) return
-      setAnimating(true)
-      setPrev(current)
-      setCurrent(index)
-      setTimeout(() => {
-        setPrev(null)
-        setAnimating(false)
-      }, 700)
-    },
-    [animating, current]
-  )
+  const goTo = (index) => {
+    if (animating) return
+    setAnimating(true)
+    setCurrent(index)
+    setTimeout(() => setAnimating(false), 600)
+  }
 
   const goPrev = () => goTo((current - 1 + slides.length) % slides.length)
   const goNext = () => goTo((current + 1) % slides.length)
 
-  // Auto-advance every 6s
   useEffect(() => {
-    const id = setInterval(() => {
-      goNext()
-    }, 6000)
+    const id = setInterval(goNext, 6000)
     return () => clearInterval(id)
-  }, [current, animating])
+  }, [current])
+
+  const slide = slides[current]
 
   return (
     <section
       id="hero"
       data-testid="hero-section"
-      className="relative w-full min-h-screen overflow-hidden"
+      className="relative w-full h-screen min-h-[600px] overflow-hidden"
     >
-      {/* ── Slide backgrounds ──────────────────────────────── */}
-      {slides.map((slide, i) => (
+      {/* ── Background images — crossfade ─────────────────── */}
+      {slides.map((s, i) => (
         <div
-          key={slide.id}
+          key={s.id}
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-            i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            i === current ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          {/* Background image */}
           <img
-            src={slide.image}
-            alt={slide.title}
-            className="absolute inset-0 w-full h-full object-cover"
+            src={s.image}
+            alt={s.eyebrow}
+            className="w-full h-full object-cover"
           />
-
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-[#1D342F]/65" />
+          <div className="absolute inset-0 bg-[#1D342F]/60" />
         </div>
       ))}
 
-      {/* ── Static hero heading (above all slides) ─────────── */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-6 text-center">
+      {/* ── Left arrow ────────────────────────────────────── */}
+      <button
+        onClick={goPrev}
+        aria-label="Previous slide"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
+      >
+        <ChevronLeft className="w-6 h-6 text-white" />
+      </button>
 
-        {/* Top eyebrow */}
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#C2DDB4] mb-5">
-          About Us
-        </p>
+      {/* ── Right arrow ───────────────────────────────────── */}
+      <button
+        onClick={goNext}
+        aria-label="Next slide"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
+      >
+        <ChevronRight className="w-6 h-6 text-white" />
+      </button>
 
-        {/* Main heading — always visible */}
-        <h1
-          data-testid="hero-heading"
-          className="text-4xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 max-w-4xl"
-        >
-          We Shape Decisions <br className="hidden sm:block" />
-          for the Better
-        </h1>
+      {/* ── Main content layer ────────────────────────────── */}
+      <div className="absolute inset-0 z-20 flex flex-col justify-end pb-20 px-8 lg:px-20 max-w-7xl mx-auto left-0 right-0">
+        
+        {/* Bottom row: text left + blurb card right */}
+        <div className="flex flex-col lg:flex-row items-end justify-between gap-8">
 
-        {/* Static sub-copy */}
-        <p className="text-base lg:text-lg text-white/80 leading-relaxed max-w-2xl mb-10">
-          MARC's experience, global reach, and state-of-the-art analytics mean
-          that we are better able to deliver insights and advice that help
-          today's companies grow their businesses.
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-20">
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3e7433] transition-all duration-300 shadow-lg shadow-[#4E9141]/30 group"
-          >
-            Schedule Free Consulting
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-white font-semibold border-2 border-white/30 rounded-full hover:border-white/70 hover:bg-white/10 transition-all duration-300"
-          >
-            Learn More
-          </Link>
-        </div>
-
-        {/* ── Slide blurb strip (bottom of hero) ─────────── */}
-        <div className="w-full max-w-3xl">
-          {/* Blurb text — animates on slide change */}
+          {/* LEFT — eyebrow, heading, description, CTAs */}
           <div
             key={current}
-            className="animate-slide-up text-center mb-8"
+            className="animate-slide-up max-w-2xl"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C2DDB4] mb-2">
-              0{current + 1} / 0{slides.length}
+            <p className="text-[#4E9141] font-semibold text-sm uppercase tracking-[0.2em] mb-3">
+              {slide.eyebrow}
             </p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2 tracking-tight">
-              {slides[current].title}
-            </h2>
-            <p className="text-white/75 text-base leading-relaxed max-w-xl mx-auto mb-4">
-              {slides[current].description}
+
+            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-5 whitespace-pre-line">
+              {slide.heading}
+            </h1>
+
+            <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-lg">
+              {slide.description}
             </p>
-            <Link
-              href={slides[current].href}
-              className="inline-flex items-center gap-2 text-[#C2DDB4] font-semibold text-sm group"
-            >
-              Learn More
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
 
-          {/* Dots + arrows row */}
-          <div className="flex items-center justify-center gap-6">
-            {/* Prev */}
-            <button
-              onClick={goPrev}
-              aria-label="Previous slide"
-              className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
-            >
-              <ChevronLeft className="w-5 h-5 text-white" />
-            </button>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href={slide.ctaPrimary.href}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-md hover:bg-[#3e7433] transition-all duration-300 shadow-lg shadow-[#4E9141]/30 group"
+              >
+                {slide.ctaPrimary.label}
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
 
-            {/* Dots */}
-            <div className="flex items-center gap-3">
-              {slides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`transition-all duration-400 rounded-full ${
-                    i === current
-                      ? 'w-10 h-2.5 bg-[#4E9141]'
-                      : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'
-                  }`}
-                />
-              ))}
+              <Link
+                href={slide.ctaSecondary.href}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-white font-semibold border-2 border-white/50 rounded-md hover:border-white hover:bg-white/10 transition-all duration-300"
+              >
+                {slide.ctaSecondary.label}
+              </Link>
             </div>
-
-            {/* Next */}
-            <button
-              onClick={goNext}
-              aria-label="Next slide"
-              className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
-            >
-              <ChevronRight className="w-5 h-5 text-white" />
-            </button>
           </div>
+
+          {/* RIGHT — white blurb card */}
+          <div className="hidden lg:block flex-shrink-0 w-80 bg-white rounded-2xl p-7 shadow-2xl">
+            <p className="text-[#1D342F] text-base leading-relaxed text-center">
+              MARC is committed to{' '}
+              <span className="text-[#4E9141] font-semibold">Delivering Excellence</span>
+              {' '}&amp;{' '}
+              <span className="text-[#4E9141] font-semibold">Partnering Success</span>
+              {' '}by driving Economic Growth.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Dots + scroll indicator ───────────────────────── */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3">
+        {/* Scroll down arrow */}
+        <ChevronDown className="w-5 h-5 text-white/60 animate-bounce" />
+
+        {/* Dots */}
+        <div className="flex items-center gap-3">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`transition-all duration-300 rounded-full ${
+                i === current
+                  ? 'w-10 h-2.5 bg-[#4E9141]'
+                  : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
