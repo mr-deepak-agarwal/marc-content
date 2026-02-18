@@ -32,7 +32,7 @@ export const services = [
     id: 1,
     title: "Growth Strategy & GTM",
     description: "Market prioritisation, value proposition, pricing, channel strategy, market assessment, localisation, regulatory context",
-    image: "https://images.unsplash.com/photo-1758518725921-1eb74ed293be?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
     imageAlt: "MARC business consultants collaborating on growth strategy in modern office",
     link: "/services/growth-strategy"
   },
@@ -40,7 +40,7 @@ export const services = [
     id: 2,
     title: "India Entry & Expansion",
     description: "Market assessment, partner strategy, localisation, regulatory context, and launch support.",
-    image: "https://images.unsplash.com/photo-1758518729240-7162d07427b8?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=800&auto=format&fit=crop",
     imageAlt: "MARC international business consultants discussing India market entry strategy",
     link: "/services/india-entry"
   },
@@ -48,7 +48,7 @@ export const services = [
     id: 3,
     title: "Expansion for Indian Firms",
     description: "Market selection, entry strategy, operating models, and early-stage execution support.",
-    image: "https://images.unsplash.com/photo-1758691736545-5c33b6255dca?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=800&auto=format&fit=crop",
     imageAlt: "MARC consultant presenting international expansion strategy to Indian firms",
     link: "/services/international-expansion"
   },
@@ -56,7 +56,7 @@ export const services = [
     id: 4,
     title: "Customer & Market Intelligence",
     description: "Deep consumer, B2B, and category insights to reduce risk and sharpen decisions.",
-    image: "https://images.unsplash.com/photo-1758691736498-422201cc57da?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
     imageAlt: "MARC market research analytics and customer intelligence presentation",
     link: "/services/market-intelligence"
   },
@@ -64,7 +64,7 @@ export const services = [
     id: 5,
     title: "Feasibility Studies",
     description: "Product-Market Fit assessment, competitive landscape, product viability, land utilisation and feasibility evaluation.",
-    image: "https://images.unsplash.com/photo-1758519288905-38b7b00c1023?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop",
     imageAlt: "MARC feasibility study and market viability assessment",
     link: "/services/feasibility-studies"
   },
@@ -72,7 +72,7 @@ export const services = [
     id: 6,
     title: "Financial Assessment & Analytics",
     description: "Profitability analyses, industry and competitor benchmarking to guide strategic decisions.",
-    image: "https://images.unsplash.com/photo-1758691736407-02406d18df6c?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop",
     imageAlt: "MARC financial analytics and profitability assessment",
     link: "/services/financial-analytics"
   },
@@ -80,7 +80,7 @@ export const services = [
     id: 7,
     title: "Process & System Optimization",
     description: "Process audits, SOP review and system optimization to sustain compounding growth.",
-    image: "https://images.unsplash.com/photo-1758691736490-03d39c292d7a?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop",
     imageAlt: "MARC process optimization and operational excellence consulting",
     link: "/services/process-optimization"
   },
@@ -88,7 +88,7 @@ export const services = [
     id: 8,
     title: "M&A & Strategic Partnerships",
     description: "Deal screening, commercial due diligence, growth thesis validation, synergy modelling, and post-merger value creation.",
-    image: "https://images.unsplash.com/photo-1758519288905-38b7b00c1023?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop",
     imageAlt: "MARC M&A advisory and strategic partnership consulting",
     link: "/services/mergers-acquisitions"
   }
@@ -177,26 +177,26 @@ export const testimonials = [
 export const insights = [
   {
     id: 1,
-    title: "FMCG Industry Overview",
-    category: "Industry Report",
-    date: "July 2025",
-    image: "https://images.unsplash.com/photo-1758691736498-422201cc57da?w=800&auto=format&fit=crop",
+    title: "Overview of the Condiments Market",
+    category: "Insight Report",
+    date: "Februrary 2026",
+    image: "/images/insights/spices-1-500x286.png",
     imageAlt: "MARC business consultant presenting FMCG industry analytics and charts"
   },
   {
     id: 2,
-    title: "Impact of Q-commerce on FMCG Sales in India",
-    category: "Market Analysis",
-    date: "July 2025",
-    image: "https://images.unsplash.com/photo-1758691736407-02406d18df6c?w=800&auto=format&fit=crop",
+    title: "MARC MSME Overview 2026",
+    category: "Overview",
+    date: "Februrary 2026",
+    image: "/images/insights/marc-msme-1.png",
     imageAlt: "MARC market analysis presentation on Q-commerce impact in India"
   },
   {
     id: 3,
-    title: "India's Logistics Market Report",
+    title: "India Life Sciences Landscape",
     category: "Research",
-    date: "June 2025",
-    image: "https://images.unsplash.com/photo-1758691736490-03d39c292d7a?w=800&auto=format&fit=crop",
+    date: "February 2026",
+    image: "/images/insights/lifescience-marc-1.png",
     imageAlt: "MARC research team presenting India logistics market data and insights"
   }
 ];
