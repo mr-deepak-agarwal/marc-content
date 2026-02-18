@@ -35,22 +35,22 @@ const values = [
 
 const CareersSection = () => {
   return (
-    <section id="careers" data-testid="careers-section" className="py-24 bg-white">
+    <section id="careers" data-testid="careers-section" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* ================= LEFT CONTENT ================= */}
-          <div>
-            <h2 
+          {/* LEFT CONTENT */}
+          <div className="flex flex-col justify-center">
+            <h2
               data-testid="careers-heading"
-              className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
+              className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1D342F] mb-6 leading-[1.15] tracking-tight"
             >
               Build Your Career <br />
               <span className="text-[#4E9141]">With MARC</span>
             </h2>
 
-            <p className="text-lg text-[#47635D] mb-8 leading-relaxed">
-              Join a team of passionate professionals who are dedicated to delivering 
-              excellence and partnering success. At MARC, we believe in nurturing talent, 
+            <p className="text-base lg:text-lg text-[#47635D] mb-8 leading-relaxed">
+              Join a team of passionate professionals who are dedicated to delivering
+              excellence and partnering success. At MARC, we believe in nurturing talent,
               fostering growth, and creating an environment where innovation thrives.
             </p>
 
@@ -76,33 +76,27 @@ const CareersSection = () => {
             </div>
           </div>
 
-          {/* ================= RIGHT - VALUES GRID ================= */}
-          <div className="relative">
-            {/* Decorative background */}
-            <div className="absolute -top-8 -right-8 w-64 h-64 bg-[#C2DDB4]/30 rounded-full blur-3xl" />
-            <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-[#5D9F94]/20 rounded-full blur-3xl" />
-
-            <div className="relative grid gap-4">
-              {values.map((value, index) => (
-                <div
-                  key={index}
-                  data-testid={`value-card-${index}`}
-                  className="group flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#C2DDB4]/40 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="w-12 h-12 bg-[#4E9141] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <value.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#1D342F] mb-1">
-                      {value.title}
-                    </h3>
-                    <p className="text-[#47635D] text-sm leading-relaxed">
-                      {value.description}
-                    </p>
-                  </div>
+          {/* RIGHT - VALUES GRID */}
+          <div className="grid gap-4">
+            {values.map((value, index) => (
+              <div
+                key={index}
+                data-testid={`value-card-${index}`}
+                className="group flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#C2DDB4]/40 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-12 h-12 bg-[#4E9141] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <value.icon className="w-6 h-6 text-white" />
                 </div>
-              ))}
-            </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-[#1D342F] mb-1">
+                    {value.title}
+                  </h3>
+                  <p className="text-[#47635D] text-sm leading-relaxed">
+                    {value.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
