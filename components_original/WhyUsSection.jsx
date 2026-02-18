@@ -54,11 +54,11 @@ const WhyUsSection = () => {
             </p>
 
             {/* Image fills remaining space to match right column height */}
-            <div className="card-grayscale relative rounded-3xl overflow-hidden shadow-2xl flex-1">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl flex-1">
               <img
                 src="https://images.pexels.com/photos/3810753/pexels-photo-3810753.jpeg?w=800&auto=format&fit=crop"
                 alt="MARC Consultants Team collaborating on business strategy"
-                className="w-full h-[360px] object-cover transition-all duration-500"
+                className="w-full h-[360px] object-cover"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/40 to-transparent" />

@@ -35,7 +35,7 @@ const ServicesSection = () => {
             <div
               key={service.id}
               data-testid={`service-card-${index}`}
-              className="card-grayscale group relative rounded-3xl overflow-hidden cursor-pointer"
+              className="group relative rounded-3xl overflow-hidden cursor-pointer"
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
             >
@@ -44,7 +44,7 @@ const ServicesSection = () => {
                 <img
                   src={service.image}
                   alt={service.imageAlt || service.title}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
 

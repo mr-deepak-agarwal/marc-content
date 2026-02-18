@@ -38,13 +38,13 @@ const InsightsSection = () => {
             <article
               key={insight.id}
               data-testid={`insight-card-${index}`}
-              className="card-grayscale group cursor-pointer"
+              className="group cursor-pointer"
             >
               <div className="relative rounded-2xl overflow-hidden h-[300px] bg-white shadow-md border border-[#C2DDB4]/20 hover:shadow-xl hover:border-[#4E9141]/30 transition-all duration-500">
                 <img
                   src={insight.image}
                   alt={insight.title}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/40 to-transparent group-hover:from-[#1D342F]/95 transition-all duration-500" />
                 <div className="absolute inset-0 p-6 flex flex-col justify-end">

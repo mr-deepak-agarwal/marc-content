@@ -45,11 +45,11 @@ const AboutSection = () => {
           {/* ================= IMAGE SIDE ================= */}
           {/* pb-10 gives room for the floating card so it doesn't overflow the grid */}
           <div className="relative pb-10 lg:pb-12">
-            <div className="card-grayscale relative rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
                 src={aboutSection.image}
                 alt={aboutSection.imageAlt || "MARC Team Collaboration"}
-                className="w-full h-[480px] object-cover transition-all duration-500"
+                className="w-full h-[480px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/50 to-transparent" />
             </div>
