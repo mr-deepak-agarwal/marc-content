@@ -96,7 +96,7 @@ export default function Header() {
               <img
                 src="/marc_logo.png"
                 alt="MARC - Business Consulting Services"
-                className="h-10 hover:scale-105 transition-transform duration-300"
+                className="h-10 hover:scale-105 transition-transform duration-300 no-grayscale"
               />
             </Link>
 
