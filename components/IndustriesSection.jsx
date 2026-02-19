@@ -35,6 +35,7 @@ const IndustriesSection = () => {
       className="py-24 lg:py-32 relative overflow-hidden"
       style={{ backgroundColor: '#1D342F' }}
     >
+      {/* Glow blobs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[180px]" style={{ backgroundColor: 'rgba(78,145,65,0.08)' }} />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[150px]" style={{ backgroundColor: 'rgba(249,115,22,0.06)' }} />
 
@@ -100,18 +101,19 @@ const IndustriesSection = () => {
                       : '0 4px 16px rgba(0,0,0,0.3)',
                   }}
                 >
-                  {/* Orange top strip */}
+                  {/* Orange top strip — always present, full on hover */}
                   <div
                     className="h-[4px] w-full"
                     style={{
                       background: 'linear-gradient(to right, #F97316, #FDBA74)',
-                      opacity: isHovered ? 1 : 0.5,
+                      opacity: isHovered ? 1 : 0.45,
                     }}
                   />
 
                   <div className="p-6">
+                    {/* Icon */}
                     <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300"
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
                       style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
                     >
                       <Icon
@@ -120,6 +122,7 @@ const IndustriesSection = () => {
                       />
                     </div>
 
+                    {/* Title */}
                     <h3
                       className="text-lg font-semibold mb-3 transition-colors duration-300"
                       style={{ color: isHovered ? '#ffffff' : '#E8F5E3' }}
@@ -127,6 +130,7 @@ const IndustriesSection = () => {
                       {industry}
                     </h3>
 
+                    {/* Learn more */}
                     <div
                       className="flex items-center gap-2 text-sm font-medium transition-all duration-300"
                       style={{
