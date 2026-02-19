@@ -12,8 +12,7 @@ const ServicesSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
         <div className="max-w-3xl mb-16">
-          {/* Large Heading - Insights Style */}
-          <h2 
+          <h2
             data-testid="services-heading"
             className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
           >
@@ -62,29 +61,17 @@ const ServicesSection = () => {
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <div
                   className={`transform transition-all duration-500 ${
-                    hoveredService === index
-                      ? '-translate-y-4'
-                      : 'translate-y-0'
+                    hoveredService === index ? '-translate-y-4' : 'translate-y-0'
                   }`}
                 >
-                  {/* Index */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[#C2DDB4] text-sm font-semibold tracking-tight">
-                      0{index + 1}
-                    </span>
-                    <span className="w-8 h-px bg-[#C2DDB4]" />
-                  </div>
-
-                  {/* Service title */}
+                  {/* Service title — no number prefix */}
                   <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 leading-snug tracking-tight">
                     {service.title}
                   </h3>
 
                   <p
                     className={`text-white/90 leading-relaxed transition-all duration-500 ${
-                      hoveredService === index
-                        ? 'opacity-100 max-h-32'
-                        : 'opacity-0 max-h-0'
+                      hoveredService === index ? 'opacity-100 max-h-32' : 'opacity-0 max-h-0'
                     } overflow-hidden`}
                   >
                     {service.description}
@@ -94,16 +81,12 @@ const ServicesSection = () => {
                 {/* Arrow Button */}
                 <div
                   className={`absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
-                    hoveredService === index
-                      ? 'bg-white scale-110'
-                      : ''
+                    hoveredService === index ? 'bg-white scale-110' : ''
                   }`}
                 >
                   <ArrowUpRight
                     className={`w-5 h-5 transition-all duration-300 ${
-                      hoveredService === index
-                        ? 'text-[#4E9141] rotate-45'
-                        : 'text-white'
+                      hoveredService === index ? 'text-[#4E9141] rotate-45' : 'text-white'
                     }`}
                   />
                 </div>
@@ -114,7 +97,7 @@ const ServicesSection = () => {
 
         {/* ================= CTA ================= */}
         <div className="mt-12 text-center">
-          <button 
+          <button
             data-testid="services-view-all"
             className="inline-flex items-center gap-2 text-[#4E9141] font-semibold text-lg hover:text-[#4E9141] transition-colors group"
           >
