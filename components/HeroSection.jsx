@@ -9,8 +9,8 @@ const slides = [
     id: 1,
     heading: 'Insights that sharpen growth bets.',
     description: 'Market, customer, and category intelligence to reduce risk and guide compounding growth.',
-    // Data/analytics dashboard — matches market research & intelligence theme
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&h=1080&fit=crop&q=90',
+    // Business analytics reports with charts — market research feel, no stock market
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop&q=90',
     ctaPrimary: { label: 'Explore Services', href: '/services/market-research' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
   },
