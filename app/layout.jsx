@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google'
 import RouteLoader from '@/components/RouteLoader'
 import Header from '@/components/Header'
 import WhatsAppButton from '@/components/WhatsAppButton'
+import ChatbotWidget from '@/components/ChatbotWidget'
 import { LoadingProvider } from '@/components/loading-store'
 
 const poppins = Poppins({ 

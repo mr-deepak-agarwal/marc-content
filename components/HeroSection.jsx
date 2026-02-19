@@ -69,8 +69,10 @@ const HeroSection = () => {
           }`}
         >
           <img src={s.image} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1D342F]/85 via-[#1D342F]/50 to-[#1D342F]/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 via-transparent to-[#1D342F]/30" />
+          {/* Single directional overlay — dark only on left for text legibility, image stays bright on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1D342F]/75 via-[#1D342F]/30 to-transparent" />
+          {/* Very subtle bottom fade for dot/button visibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
         </div>
       ))}
 
