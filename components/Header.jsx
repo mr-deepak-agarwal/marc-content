@@ -22,7 +22,6 @@ const serviceCategories = [
       { label: 'Profit & Loss Analysis', href: '/services/profit-loss-analysis', icon: TrendingUp },
       { label: 'Management Information Systems', href: '/services/mis', icon: BarChart3 },
       { label: 'Financial Modelling', href: '/services/financial-modelling', icon: Calculator },
-      { label: 'HR Advisory', href: '/services/hr-advisory', icon: Users },
     ]
   },
   {
