@@ -33,37 +33,42 @@ const IndustriesSection = () => {
       id="industries"
       data-testid="industries-section"
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#4E9141' }}
+      style={{ backgroundColor: '#2C2F2E' }} // dark charcoal grey
     >
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#4E9141] via-[#5a9e4a] to-[#4E9141]" />
-      
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/10 rounded-full blur-[120px]" />
+      {/* Subtle green glow accents */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4E9141]/8 rounded-full blur-[180px]" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#4E9141]/6 rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          
+
           {/* Left Content */}
           <div className="lg:sticky lg:top-32">
-            <h2 
+            <h2
               data-testid="industries-heading"
-              className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-6"
-              style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontWeight: '400' }}
+              className="text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6"
+              style={{
+                fontFamily: 'Georgia, serif',
+                fontStyle: 'italic',
+                fontWeight: '400',
+                color: '#F0F5F2', // off-white for contrast on dark bg
+              }}
             >
               Shaping Better<br />
               Business Decisions
             </h2>
 
-            <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-md">
-              MARC combines strategy management consulting and market research 
+            <p className="text-lg leading-relaxed mb-8 max-w-md" style={{ color: '#A8BFB8' }}>
+              MARC combines strategy management consulting and market research
               to help businesses act with clarity and confidence across diverse sectors.
             </p>
 
-            <a 
+            <a
               href="/industries"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#1D342F] font-semibold rounded-full hover:bg-[#C2DDB4] transition-all duration-300 group"
+              className="inline-flex items-center gap-3 px-8 py-4 font-semibold rounded-full transition-all duration-300 group"
+              style={{ backgroundColor: '#4E9141', color: '#ffffff' }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#3e7433')}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#4E9141')}
             >
               Explore All Industries
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -82,49 +87,44 @@ const IndustriesSection = () => {
                   data-testid={`industry-card-${index}`}
                   onMouseEnter={() => setHoveredIndustry(index)}
                   onMouseLeave={() => setHoveredIndustry(null)}
-                  className={`group relative p-6 rounded-2xl text-left transition-all duration-500 overflow-hidden ${
-                    isHovered
-                      ? 'bg-white scale-[1.02] shadow-2xl shadow-black/30'
-                      : 'bg-white/15 backdrop-blur-sm hover:bg-white/25'
-                  }`}
+                  className="group relative p-6 rounded-2xl text-left transition-all duration-300 overflow-hidden"
+                  style={{
+                    backgroundColor: isHovered ? '#4E9141' : '#C8E6BB', // light sage green default, brand green on hover
+                    border: isHovered ? '1.5px solid #4E9141' : '1.5px solid #B0D4A4',
+                    transform: isHovered ? 'scale(1.02)' : 'scale(1)',
+                    boxShadow: isHovered ? '0 16px 40px rgba(78,145,65,0.25)' : '0 2px 8px rgba(0,0,0,0.15)',
+                  }}
                 >
-                  {/* Hover gradient effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br from-[#4E9141]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isHovered ? 'opacity-0' : ''}`} />
-                  
                   {/* Icon */}
                   <div
-                    className={`relative w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
-                      isHovered
-                        ? 'bg-[#4E9141]'
-                        : 'bg-white/20'
-                    }`}
+                    className="relative w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300"
+                    style={{ backgroundColor: isHovered ? 'rgba(255,255,255,0.2)' : 'rgba(78,145,65,0.18)' }}
                   >
                     <Icon
-                      className={`w-6 h-6 transition-colors ${
-                        isHovered ? 'text-white' : 'text-white'
-                      }`}
+                      className="w-6 h-6 transition-colors"
+                      style={{ color: isHovered ? '#ffffff' : '#2E6B25' }}
                     />
                   </div>
 
                   {/* Industry title */}
                   <h3
-                    className={`relative text-lg font-semibold mb-2 transition-colors ${
-                      isHovered ? 'text-[#1D342F]' : 'text-white'
-                    }`}
+                    className="relative text-lg font-semibold mb-2 transition-colors"
+                    style={{ color: isHovered ? '#ffffff' : '#1D342F' }}
                   >
                     {industry}
                   </h3>
 
                   {/* Learn more - visible on hover */}
                   <div
-                    className={`relative flex items-center gap-2 text-sm font-medium transition-all duration-300 ${
-                      isHovered
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-2'
-                    }`}
+                    className="relative flex items-center gap-2 text-sm font-medium transition-all duration-300"
+                    style={{
+                      opacity: isHovered ? 1 : 0,
+                      transform: isHovered ? 'translateY(0)' : 'translateY(8px)',
+                      color: 'rgba(255,255,255,0.85)',
+                    }}
                   >
-                    <span className="text-[#4E9141]">Learn more</span>
-                    <ArrowRight className="w-4 h-4 text-[#4E9141]" />
+                    <span>Learn more</span>
+                    <ArrowRight className="w-4 h-4" />
                   </div>
                 </button>
               )
