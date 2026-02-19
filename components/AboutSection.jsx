@@ -83,11 +83,11 @@ const AboutSection = () => {
               data-testid="about-heading"
               className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1D342F] mb-6 leading-[1.15] tracking-tight"
             >
-              Driving Compounding Growth
+              Compounding Growth
             </h2>
 
             <p className="text-base lg:text-lg text-[#47635D] mb-6 leading-relaxed">
-              MARC is a growth advisory firm partnering with founders, leadership teams, and investors to build scalable, resilient businesses with a focus on compounding growth. With deep local expertise and global perspective, we empower Indian entrepreneurs to strengthen their businesses while guiding international firms with market entry and internationalization strategies. We also collaborate with international consultants, serving as a trusted outsourcing partner.
+              MARC is a growth advisory firm partnering with founders, leadership teams, and investors to build scalable, resilient businesses with a focus on compounding growth, especially at the inflection point. With deep local expertise and global perspective, we advise promoters and boards on organic and inorganic growth and global expansion. We also collaborate with international consultants, serving as a trusted outsourcing partner.
             </p>
 
             {/* Strategic emphasis line */}

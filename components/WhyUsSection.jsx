@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import { Award, Zap, UserCheck, Briefcase, TrendingUp } from 'lucide-react'
+import { Award, Zap, UserCheck, Briefcase, TrendingUp, Lock } from 'lucide-react'
 import { whyWorkWithUs } from '@/data/mock'
 
-const icons = [Award, Zap, UserCheck, Briefcase, TrendingUp]
+const icons = [Award, Zap, UserCheck, Briefcase, TrendingUp, Lock]
 
 const WhyUsSection = () => {
   const whyMarcPoints = [
@@ -32,6 +32,11 @@ const WhyUsSection = () => {
       id: 5,
       title: "15 Years of Cross-Industry Experience",
       description: "In all sectors including Manufacturing, F&B, Hospitality, Retail, Pharma, Real estate, Education."
+    },
+    {
+      id: 6,
+      title: "Confidential Advisor",
+      description: "To owners, founders and multi-generational home-grown businesses."
     }
   ]
 

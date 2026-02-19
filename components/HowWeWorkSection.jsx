@@ -27,7 +27,7 @@ const HowWeWorkSection = () => {
       id: 4,
       icon: Rocket,
       title: "Deliver Clarity & Momentum",
-      description: "Whether it's a 6-week strategic sprint or a multi-phase growth mandate, our engagements are designed to deliver clarity, confidence, and momentum."
+      description: "Whether it's a 6-week strategic sprint or a multiphase growth mandate, our engagements are designed to deliver clarity, confidence, and momentum."
     }
   ]
 
