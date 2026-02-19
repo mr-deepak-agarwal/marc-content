@@ -7,11 +7,10 @@ import Link from 'next/link'
 const slides = [
   {
     id: 1,
-    // This is the BIG headline
     heading: 'Insights that sharpen growth bets.',
-    // This is the smaller supporting line
     description: 'Market, customer, and category intelligence to reduce risk and guide compounding growth.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop&q=90',
+    // Data/analytics dashboard — matches market research & intelligence theme
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&h=1080&fit=crop&q=90',
     ctaPrimary: { label: 'Explore Services', href: '/services/market-research' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
   },
@@ -19,6 +18,7 @@ const slides = [
     id: 2,
     heading: 'Numbers that guide growth.',
     description: 'Financial models, profitability analyses and focused financial diagnostics that translate data into clear growth priorities.',
+    // Financial charts/graphs — matches financial analytics theme
     image: 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=1920&h=1080&fit=crop&q=90',
     ctaPrimary: { label: 'Explore Services', href: '/services/financial-analytics' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
@@ -27,6 +27,7 @@ const slides = [
     id: 3,
     heading: 'M&A, designed for growth.',
     description: 'Strategic target identification, commercial diligence, and integration support — focused on value creation, not just deal completion.',
+    // Corporate building/business deal — matches M&A theme
     image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&h=1080&fit=crop&q=90',
     ctaPrimary: { label: 'Explore Services', href: '/services/ma' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
@@ -60,7 +61,7 @@ const HeroSection = () => {
       data-testid="hero-section"
       className="relative w-full h-screen min-h-[600px] overflow-hidden"
     >
-      {/* ── Background images ─────────────────────────────── */}
+      {/* ── Background images — fully monochrome, no colour overlay ── */}
       {slides.map((s, i) => (
         <div
           key={s.id}
@@ -68,15 +69,21 @@ const HeroSection = () => {
             i === current ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <img src={s.image} alt="" className="w-full h-full object-cover" />
-          {/* Single directional overlay — dark only on left for text legibility, image stays bright on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1D342F]/75 via-[#1D342F]/30 to-transparent" />
-          {/* Very subtle bottom fade for dot/button visibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+          {/* grayscale filter makes image fully monochrome */}
+          <img
+            src={s.image}
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ filter: 'grayscale(100%)' }}
+          />
+          {/* Only a dark gradient on the left so text is readable — no green/grey colour cast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+          {/* Subtle bottom fade for dot visibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         </div>
       ))}
 
-      {/* ── Arrows ────────────────────────────────────────── */}
+      {/* ── Arrows ── */}
       <button onClick={goPrev} aria-label="Previous slide" className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/15 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center transition-all duration-200">
         <ChevronLeft className="w-6 h-6 text-white" />
       </button>
@@ -84,10 +91,10 @@ const HeroSection = () => {
         <ChevronRight className="w-6 h-6 text-white" />
       </button>
 
-      {/* ── Content ───────────────────────────────────────── */}
+      {/* ── Content ── */}
       <div className="absolute inset-0 z-20 flex flex-col justify-between px-8 lg:px-20 max-w-7xl mx-auto left-0 right-0">
 
-        {/* TOP — main tagline, always visible */}
+        {/* TOP — main tagline */}
         <div className="pt-32">
           <div className="flex items-center gap-3 mb-1">
             <span className="w-8 h-[2px] bg-[#4E9141]" />
@@ -96,24 +103,18 @@ const HeroSection = () => {
             </p>
           </div>
           <p className="text-white/65 text-sm pl-11 max-w-lg leading-relaxed">
-            Strategy and execution for Indian and global businesses that want to reimagine growth —year on year.
+            Strategy and execution for Indian and global businesses that want to reimagine growth — year on year.
           </p>
         </div>
 
         {/* BOTTOM — slide content */}
         <div key={current} className="animate-slide-up pb-24 max-w-3xl">
-
-          {/* BIG title — the blurb headline */}
           <h1 className="text-5xl lg:text-6xl xl:text-[4.5rem] font-bold text-white leading-[1.1] tracking-tight mb-5">
             {slide.heading}
           </h1>
-
-          {/* Smaller supporting description */}
           <p className="text-white/70 text-lg lg:text-xl font-light leading-relaxed mb-10 max-w-xl">
             {slide.description}
           </p>
-
-          {/* CTAs */}
           <div className="flex flex-wrap gap-4">
             <Link
               href={slide.ctaPrimary.href}
@@ -132,7 +133,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* ── Dots + scroll ─────────────────────────────────── */}
+      {/* ── Dots + scroll ── */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3">
         <ChevronDown className="w-5 h-5 text-white/50 animate-bounce" />
         <div className="flex items-center gap-3">
