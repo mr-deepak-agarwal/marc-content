@@ -91,22 +91,23 @@ const IndustriesSection = () => {
                   onMouseLeave={() => setHoveredIndustry(null)}
                   className="group relative text-left overflow-hidden rounded-2xl transition-all duration-300"
                   style={{
-                    backgroundColor: isHovered ? '#4E9141' : '#2E5E4E',
+                    // Bright light green default, brand green on hover
+                    backgroundColor: isHovered ? '#4E9141' : '#C8E6BB',
                     border: isHovered
                       ? '1.5px solid #F97316'
-                      : '1.5px solid rgba(255,255,255,0.12)',
+                      : '1.5px solid #B0D4A4',
                     transform: isHovered ? 'scale(1.03)' : 'scale(1)',
                     boxShadow: isHovered
                       ? '0 20px 50px rgba(249,115,22,0.2)'
-                      : '0 4px 16px rgba(0,0,0,0.3)',
+                      : '0 4px 16px rgba(0,0,0,0.2)',
                   }}
                 >
-                  {/* Orange top strip — always present, full on hover */}
+                  {/* Orange top strip */}
                   <div
                     className="h-[4px] w-full"
                     style={{
                       background: 'linear-gradient(to right, #F97316, #FDBA74)',
-                      opacity: isHovered ? 1 : 0.45,
+                      opacity: isHovered ? 1 : 0.6,
                     }}
                   />
 
@@ -114,18 +115,22 @@ const IndustriesSection = () => {
                     {/* Icon */}
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+                      style={{
+                        backgroundColor: isHovered
+                          ? 'rgba(255,255,255,0.2)'
+                          : 'rgba(78,145,65,0.18)',
+                      }}
                     >
                       <Icon
                         className="w-6 h-6 transition-colors duration-300"
-                        style={{ color: isHovered ? '#ffffff' : '#C2DDB4' }}
+                        style={{ color: isHovered ? '#ffffff' : '#2E6B25' }}
                       />
                     </div>
 
                     {/* Title */}
                     <h3
                       className="text-lg font-semibold mb-3 transition-colors duration-300"
-                      style={{ color: isHovered ? '#ffffff' : '#E8F5E3' }}
+                      style={{ color: isHovered ? '#ffffff' : '#1D342F' }}
                     >
                       {industry}
                     </h3>
