@@ -35,44 +35,31 @@ const IndustriesSection = () => {
       className="py-24 lg:py-32 relative overflow-hidden"
       style={{ backgroundColor: '#1D342F' }}
     >
-      {/* Subtle glow accents */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4E9141]/8 rounded-full blur-[180px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#F97316]/5 rounded-full blur-[150px]" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[180px]" style={{ backgroundColor: 'rgba(78,145,65,0.08)' }} />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[150px]" style={{ backgroundColor: 'rgba(249,115,22,0.06)' }} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
           {/* Left Content */}
           <div className="lg:sticky lg:top-32">
-            {/* Orange accent line — mirrors case studies section */}
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-[2px] bg-[#F97316]" />
-              <span
-                className="font-medium tracking-wide uppercase text-sm"
-                style={{ color: '#FDBA74' }}
-              >
+              <div className="w-12 h-[2px]" style={{ backgroundColor: '#F97316' }} />
+              <span className="font-medium tracking-wide uppercase text-sm" style={{ color: '#FDBA74' }}>
                 Industries
               </span>
             </div>
 
             <h2
               data-testid="industries-heading"
-              className="text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6"
-              style={{
-                fontFamily: 'Georgia, serif',
-                fontStyle: 'italic',
-                fontWeight: '400',
-                color: '#F0F5F2',
-              }}
+              className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] mb-6"
+              style={{ color: '#F0F5F2' }}
             >
               Shaping Better<br />
               Business Decisions
             </h2>
 
-            <p
-              className="text-lg leading-relaxed mb-8 max-w-md"
-              style={{ color: '#A8BFB8' }}
-            >
+            <p className="text-lg leading-relaxed mb-8 max-w-md" style={{ color: '#A8BFB8' }}>
               MARC combines strategy management consulting and market research
               to help businesses act with clarity and confidence across diverse sectors.
             </p>
@@ -103,47 +90,43 @@ const IndustriesSection = () => {
                   onMouseLeave={() => setHoveredIndustry(null)}
                   className="group relative text-left overflow-hidden rounded-2xl transition-all duration-300"
                   style={{
-                    backgroundColor: '#162b23',
+                    backgroundColor: isHovered ? '#4E9141' : '#2E5E4E',
                     border: isHovered
-                      ? '1.5px solid rgba(249,115,22,0.35)'
-                      : '1.5px solid rgba(255,255,255,0.06)',
-                    transform: isHovered ? 'scale(1.02)' : 'scale(1)',
+                      ? '1.5px solid #F97316'
+                      : '1.5px solid rgba(255,255,255,0.12)',
+                    transform: isHovered ? 'scale(1.03)' : 'scale(1)',
                     boxShadow: isHovered
-                      ? '0 16px 40px rgba(249,115,22,0.12)'
-                      : '0 2px 8px rgba(0,0,0,0.2)',
+                      ? '0 20px 50px rgba(249,115,22,0.2)'
+                      : '0 4px 16px rgba(0,0,0,0.3)',
                   }}
                 >
-                  {/* Orange top strip — same as case study cards, fades in on hover */}
+                  {/* Orange top strip */}
                   <div
-                    className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74] transition-opacity duration-300"
-                    style={{ opacity: isHovered ? 1 : 0 }}
+                    className="h-[4px] w-full"
+                    style={{
+                      background: 'linear-gradient(to right, #F97316, #FDBA74)',
+                      opacity: isHovered ? 1 : 0.5,
+                    }}
                   />
 
                   <div className="p-6">
-                    {/* Icon */}
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300"
-                      style={{
-                        backgroundColor: isHovered
-                          ? 'rgba(249,115,22,0.12)'
-                          : 'rgba(78,145,65,0.15)',
-                      }}
+                      style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
                     >
                       <Icon
                         className="w-6 h-6 transition-colors duration-300"
-                        style={{ color: isHovered ? '#FDBA74' : '#4E9141' }}
+                        style={{ color: isHovered ? '#ffffff' : '#C2DDB4' }}
                       />
                     </div>
 
-                    {/* Industry title */}
                     <h3
-                      className="text-lg font-semibold mb-2 transition-colors duration-300"
-                      style={{ color: isHovered ? '#ffffff' : '#C2DDB4' }}
+                      className="text-lg font-semibold mb-3 transition-colors duration-300"
+                      style={{ color: isHovered ? '#ffffff' : '#E8F5E3' }}
                     >
                       {industry}
                     </h3>
 
-                    {/* Learn more — slides up on hover */}
                     <div
                       className="flex items-center gap-2 text-sm font-medium transition-all duration-300"
                       style={{
