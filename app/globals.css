@@ -577,3 +577,7 @@
 .card-grayscale:hover img {
   filter: grayscale(0%);
 }
+
+img {
+  filter: grayscale(100%);
+}
