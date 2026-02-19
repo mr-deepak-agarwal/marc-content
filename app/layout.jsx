@@ -45,6 +45,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
           <WhatsAppButton phoneNumber="919876543210" />
+          <ChatbotWidget />
         </LoadingProvider>
     </body>
     </html>
