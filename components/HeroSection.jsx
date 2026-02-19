@@ -7,30 +7,26 @@ import Link from 'next/link'
 const slides = [
   {
     id: 1,
-    eyebrow: '01 — Insights that sharpen growth bets.',
-    heading: 'Market, customer\n& category intelligence',
-    description: 'to reduce risk and guide compounding growth.',
-    // Clean modern office with data on screens — consulting feel
+    // This is the BIG headline
+    heading: 'Insights that sharpen growth bets.',
+    // This is the smaller supporting line
+    description: 'Market, customer, and category intelligence to reduce risk and guide compounding growth.',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop&q=90',
     ctaPrimary: { label: 'Explore Services', href: '/services/market-research' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
   },
   {
     id: 2,
-    eyebrow: '02 — Numbers that guide growth.',
-    heading: 'Financial models &\nprofitability analyses',
-    description: 'Focused financial diagnostics that translate data into clear growth priorities.',
-    // Boardroom / strategy meeting environment — no charts
+    heading: 'Numbers that guide growth.',
+    description: 'Financial models, profitability analyses and focused financial diagnostics that translate data into clear growth priorities.',
     image: 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=1920&h=1080&fit=crop&q=90',
     ctaPrimary: { label: 'Explore Services', href: '/services/financial-analytics' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
   },
   {
     id: 3,
-    eyebrow: '03 — M&A, designed for growth.',
-    heading: 'Strategic target\nidentification & diligence',
-    description: 'Integration support focused on value creation, not just deal completion.',
-    // Two glass corporate towers — M&A, partnerships
+    heading: 'M&A, designed for growth.',
+    description: 'Strategic target identification, commercial diligence, and integration support — focused on value creation, not just deal completion.',
     image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&h=1080&fit=crop&q=90',
     ctaPrimary: { label: 'Explore Services', href: '/services/ma' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
@@ -64,7 +60,7 @@ const HeroSection = () => {
       data-testid="hero-section"
       className="relative w-full h-screen min-h-[600px] overflow-hidden"
     >
-      {/* ── Background images — crossfade ─────────────────── */}
+      {/* ── Background images ─────────────────────────────── */}
       {slides.map((s, i) => (
         <div
           key={s.id}
@@ -72,37 +68,24 @@ const HeroSection = () => {
             i === current ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <img
-            src={s.image}
-            alt=""
-            className="w-full h-full object-cover"
-          />
-          {/* Gradient: strong bottom-left, lighter top-right so image shows */}
+          <img src={s.image} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1D342F]/85 via-[#1D342F]/50 to-[#1D342F]/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 via-transparent to-[#1D342F]/30" />
         </div>
       ))}
 
       {/* ── Arrows ────────────────────────────────────────── */}
-      <button
-        onClick={goPrev}
-        aria-label="Previous slide"
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/15 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
-      >
+      <button onClick={goPrev} aria-label="Previous slide" className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/15 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center transition-all duration-200">
         <ChevronLeft className="w-6 h-6 text-white" />
       </button>
-      <button
-        onClick={goNext}
-        aria-label="Next slide"
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/15 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
-      >
+      <button onClick={goNext} aria-label="Next slide" className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/15 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center transition-all duration-200">
         <ChevronRight className="w-6 h-6 text-white" />
       </button>
 
-      {/* ── All content ───────────────────────────────────── */}
-      <div className="absolute inset-0 z-20 flex flex-col justify-between px-8 lg:px-20 max-w-7xl mx-auto left-0 right-0 py-0">
+      {/* ── Content ───────────────────────────────────────── */}
+      <div className="absolute inset-0 z-20 flex flex-col justify-between px-8 lg:px-20 max-w-7xl mx-auto left-0 right-0">
 
-        {/* TOP — main blurb, always visible */}
+        {/* TOP — main tagline, always visible */}
         <div className="pt-32">
           <div className="flex items-center gap-3 mb-1">
             <span className="w-8 h-[2px] bg-[#4E9141]" />
@@ -110,26 +93,21 @@ const HeroSection = () => {
               No. 1 Advisor for Compounding Growth
             </p>
           </div>
-          <p className="text-white/70 text-sm pl-11 max-w-lg leading-relaxed">
+          <p className="text-white/65 text-sm pl-11 max-w-lg leading-relaxed">
             Strategy and execution for Indian and global businesses that want to reimagine growth —year on year.
           </p>
         </div>
 
         {/* BOTTOM — slide content */}
-        <div key={current} className="animate-slide-up pb-24 max-w-2xl">
+        <div key={current} className="animate-slide-up pb-24 max-w-3xl">
 
-          {/* Eyebrow */}
-          <p className="text-[#C2DDB4] font-semibold text-xs uppercase tracking-[0.2em] mb-4">
-            {slide.eyebrow}
-          </p>
-
-          {/* Heading */}
-          <h1 className="text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-4 whitespace-pre-line">
+          {/* BIG title — the blurb headline */}
+          <h1 className="text-5xl lg:text-6xl xl:text-[4.5rem] font-bold text-white leading-[1.1] tracking-tight mb-5">
             {slide.heading}
           </h1>
 
-          {/* Description */}
-          <p className="text-white/75 text-lg leading-relaxed mb-8 max-w-lg">
+          {/* Smaller supporting description */}
+          <p className="text-white/70 text-lg lg:text-xl font-light leading-relaxed mb-10 max-w-xl">
             {slide.description}
           </p>
 
@@ -152,7 +130,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* ── Dots + scroll indicator ───────────────────────── */}
+      {/* ── Dots + scroll ─────────────────────────────────── */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3">
         <ChevronDown className="w-5 h-5 text-white/50 animate-bounce" />
         <div className="flex items-center gap-3">
