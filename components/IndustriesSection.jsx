@@ -33,17 +33,28 @@ const IndustriesSection = () => {
       id="industries"
       data-testid="industries-section"
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#2C2F2E' }} // dark charcoal grey
+      style={{ backgroundColor: '#1D342F' }}
     >
-      {/* Subtle green glow accents */}
+      {/* Subtle glow accents */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4E9141]/8 rounded-full blur-[180px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#4E9141]/6 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#F97316]/5 rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
           {/* Left Content */}
           <div className="lg:sticky lg:top-32">
+            {/* Orange accent line — mirrors case studies section */}
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-[2px] bg-[#F97316]" />
+              <span
+                className="font-medium tracking-wide uppercase text-sm"
+                style={{ color: '#FDBA74' }}
+              >
+                Industries
+              </span>
+            </div>
+
             <h2
               data-testid="industries-heading"
               className="text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6"
@@ -51,14 +62,17 @@ const IndustriesSection = () => {
                 fontFamily: 'Georgia, serif',
                 fontStyle: 'italic',
                 fontWeight: '400',
-                color: '#F0F5F2', // off-white for contrast on dark bg
+                color: '#F0F5F2',
               }}
             >
               Shaping Better<br />
               Business Decisions
             </h2>
 
-            <p className="text-lg leading-relaxed mb-8 max-w-md" style={{ color: '#A8BFB8' }}>
+            <p
+              className="text-lg leading-relaxed mb-8 max-w-md"
+              style={{ color: '#A8BFB8' }}
+            >
               MARC combines strategy management consulting and market research
               to help businesses act with clarity and confidence across diverse sectors.
             </p>
@@ -87,44 +101,60 @@ const IndustriesSection = () => {
                   data-testid={`industry-card-${index}`}
                   onMouseEnter={() => setHoveredIndustry(index)}
                   onMouseLeave={() => setHoveredIndustry(null)}
-                  className="group relative p-6 rounded-2xl text-left transition-all duration-300 overflow-hidden"
+                  className="group relative text-left overflow-hidden rounded-2xl transition-all duration-300"
                   style={{
-                    backgroundColor: isHovered ? '#4E9141' : '#C8E6BB', // light sage green default, brand green on hover
-                    border: isHovered ? '1.5px solid #4E9141' : '1.5px solid #B0D4A4',
+                    backgroundColor: '#162b23',
+                    border: isHovered
+                      ? '1.5px solid rgba(249,115,22,0.35)'
+                      : '1.5px solid rgba(255,255,255,0.06)',
                     transform: isHovered ? 'scale(1.02)' : 'scale(1)',
-                    boxShadow: isHovered ? '0 16px 40px rgba(78,145,65,0.25)' : '0 2px 8px rgba(0,0,0,0.15)',
+                    boxShadow: isHovered
+                      ? '0 16px 40px rgba(249,115,22,0.12)'
+                      : '0 2px 8px rgba(0,0,0,0.2)',
                   }}
                 >
-                  {/* Icon */}
+                  {/* Orange top strip — same as case study cards, fades in on hover */}
                   <div
-                    className="relative w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300"
-                    style={{ backgroundColor: isHovered ? 'rgba(255,255,255,0.2)' : 'rgba(78,145,65,0.18)' }}
-                  >
-                    <Icon
-                      className="w-6 h-6 transition-colors"
-                      style={{ color: isHovered ? '#ffffff' : '#2E6B25' }}
-                    />
-                  </div>
+                    className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74] transition-opacity duration-300"
+                    style={{ opacity: isHovered ? 1 : 0 }}
+                  />
 
-                  {/* Industry title */}
-                  <h3
-                    className="relative text-lg font-semibold mb-2 transition-colors"
-                    style={{ color: isHovered ? '#ffffff' : '#1D342F' }}
-                  >
-                    {industry}
-                  </h3>
+                  <div className="p-6">
+                    {/* Icon */}
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300"
+                      style={{
+                        backgroundColor: isHovered
+                          ? 'rgba(249,115,22,0.12)'
+                          : 'rgba(78,145,65,0.15)',
+                      }}
+                    >
+                      <Icon
+                        className="w-6 h-6 transition-colors duration-300"
+                        style={{ color: isHovered ? '#FDBA74' : '#4E9141' }}
+                      />
+                    </div>
 
-                  {/* Learn more - visible on hover */}
-                  <div
-                    className="relative flex items-center gap-2 text-sm font-medium transition-all duration-300"
-                    style={{
-                      opacity: isHovered ? 1 : 0,
-                      transform: isHovered ? 'translateY(0)' : 'translateY(8px)',
-                      color: 'rgba(255,255,255,0.85)',
-                    }}
-                  >
-                    <span>Learn more</span>
-                    <ArrowRight className="w-4 h-4" />
+                    {/* Industry title */}
+                    <h3
+                      className="text-lg font-semibold mb-2 transition-colors duration-300"
+                      style={{ color: isHovered ? '#ffffff' : '#C2DDB4' }}
+                    >
+                      {industry}
+                    </h3>
+
+                    {/* Learn more — slides up on hover */}
+                    <div
+                      className="flex items-center gap-2 text-sm font-medium transition-all duration-300"
+                      style={{
+                        opacity: isHovered ? 1 : 0,
+                        transform: isHovered ? 'translateY(0)' : 'translateY(6px)',
+                        color: '#FDBA74',
+                      }}
+                    >
+                      <span>Learn more</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
                   </div>
                 </button>
               )
