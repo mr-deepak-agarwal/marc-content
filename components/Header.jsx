@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Users, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Download, Lightbulb } from 'lucide-react'
+import { ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Lightbulb } from 'lucide-react'
 import { useLoading } from '@/components/loading-store'
 
 const serviceCategories = [
@@ -88,10 +88,10 @@ export default function Header() {
         data-testid="header"
         className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm"
       >
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
 
-            {/* Logo */}
+            {/* Logo — no-grayscale keeps it in full colour */}
             <Link href="/" onClick={() => handleClick('/')} data-testid="header-logo">
               <img
                 src="/marc_logo.png"
@@ -106,7 +106,7 @@ export default function Header() {
               className="hidden lg:flex items-center gap-1 relative"
               onMouseLeave={handleMouseLeave}
             >
-              {/* Floating hover indicator */}
+              {/* Floating hover pill indicator */}
               <div
                 className="absolute h-9 bg-[#4E9141]/10 rounded-full transition-all duration-300 ease-out pointer-events-none"
                 style={{
@@ -126,15 +126,14 @@ export default function Header() {
                     onMouseEnter={(e) => { handleMouseEnter(e, index); setActiveDropdown(link.label) }}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <Link
-                      href={link.href}
-                      onClick={() => handleClick(link.href)}
-                      className={`relative px-4 py-2 flex items-center gap-1 text-sm font-medium transition-colors duration-300 ${hoveredIndex === index ? 'text-[#4E9141]' : 'text-[#1D342F]'}`}
+                    <span
+                      className={`relative px-4 py-2 flex items-center gap-1 text-sm font-medium transition-colors duration-300 cursor-default ${hoveredIndex === index ? 'text-[#4E9141]' : 'text-[#1D342F]'}`}
                     >
                       {link.label}
                       <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180 text-[#4E9141]' : ''}`} />
-                    </Link>
+                    </span>
 
+                    {/* Services Mega Menu */}
                     <div className={`absolute -left-20 top-full pt-3 transition-all duration-300 ${activeDropdown === link.label ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-3'}`}>
                       <div className="w-[720px] bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#C2DDB4]/30 overflow-hidden">
                         <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
@@ -174,6 +173,7 @@ export default function Header() {
                       </div>
                     </div>
                   </div>
+
                 ) : link.hasInsightsMenu ? (
                   <div
                     key={link.label}
@@ -190,6 +190,7 @@ export default function Header() {
                       <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180 text-[#4E9141]' : ''}`} />
                     </Link>
 
+                    {/* Insights Dropdown */}
                     <div className={`absolute -left-4 top-full pt-3 transition-all duration-300 ${activeDropdown === link.label ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-3'}`}>
                       <div className="w-[320px] bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#C2DDB4]/30 overflow-hidden">
                         <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
@@ -214,6 +215,7 @@ export default function Header() {
                       </div>
                     </div>
                   </div>
+
                 ) : (
                   <Link
                     key={link.label}
@@ -227,6 +229,7 @@ export default function Header() {
                 )
               )}
 
+              {/* CTA Button */}
               <Link href="/contact" onClick={() => handleClick('/contact')}>
                 <button
                   data-testid="header-cta"
@@ -240,7 +243,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               data-testid="mobile-menu-toggle"
-              className="lg:hidden relative p-2 rounded-xl hover:bg-[#F7FFF5] transition-all duration-300 z-10"
+              className="lg:hidden p-2 rounded-xl hover:bg-[#F7FFF5] transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <div className="relative w-6 h-6">
