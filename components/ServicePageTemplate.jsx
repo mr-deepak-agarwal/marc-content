@@ -235,7 +235,7 @@ export default function ServicePageTemplateOption2({
         </section>
       )}
 
-      {/* ── Case Studies (unchanged) ─────────────────────────────────────── */}
+      {/* ── Case Studies ─────────────────────────────────────────────────── */}
       {caseStudies && caseStudies.length > 0 && (
         <section className="py-24 bg-[#1D342F]">
           <div className="max-w-7xl mx-auto px-6">
@@ -252,8 +252,103 @@ export default function ServicePageTemplateOption2({
               </Link>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {caseStudies.map((study, i) => (
+            {/* 1 case study → full-width horizontal card */}
+            {caseStudies.length === 1 && (
+              <div
+                className="bg-[#162b23] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group"
+              >
+                <div className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74]" />
+                <div className="p-8 lg:p-10">
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#F97316]/10 text-[#FDBA74]">
+                      {caseStudies[0].industry}
+                    </span>
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-[#C2DDB4]">
+                      {caseStudies[0].service}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-8 group-hover:text-[#FDBA74] transition-colors">
+                    {caseStudies[0].client}
+                  </h3>
+                  <div className="grid lg:grid-cols-3 gap-8">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">
+                        Challenge
+                      </p>
+                      <p className="text-[#C2DDB4] text-sm leading-relaxed">{caseStudies[0].challenge}</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">
+                        Solution
+                      </p>
+                      <p className="text-[#C2DDB4] text-sm leading-relaxed">{caseStudies[0].solution}</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">
+                        Result
+                      </p>
+                      <p className="text-sm font-semibold text-white leading-relaxed bg-[#F97316]/5 rounded-lg px-4 py-3">
+                        {caseStudies[0].result}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* 2 case studies → 2-column horizontal cards */}
+            {caseStudies.length === 2 && (
+              <div className="grid lg:grid-cols-2 gap-6">
+                {caseStudies.map((study, i) => (
+                  <div
+                    key={i}
+                    className="bg-[#162b23] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group flex flex-col"
+                  >
+                    <div className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74]" />
+                    <div className="p-8 flex flex-col flex-1">
+                      <div className="flex flex-wrap gap-2 mb-5">
+                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#F97316]/10 text-[#FDBA74]">
+                          {study.industry}
+                        </span>
+                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-[#C2DDB4]">
+                          {study.service}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-6 group-hover:text-[#FDBA74] transition-colors leading-snug">
+                        {study.client}
+                      </h3>
+                      <div className="space-y-5 flex-1">
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-1.5 pb-1 border-b border-[#F97316]/20">
+                            Challenge
+                          </p>
+                          <p className="text-[#C2DDB4] text-sm leading-relaxed">{study.challenge}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-1.5 pb-1 border-b border-[#F97316]/20">
+                            Solution
+                          </p>
+                          <p className="text-[#C2DDB4] text-sm leading-relaxed">{study.solution}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-1.5 pb-1 border-b border-[#F97316]/20">
+                            Result
+                          </p>
+                          <p className="text-sm font-semibold text-white leading-relaxed bg-[#F97316]/5 rounded-lg px-3 py-2">
+                            {study.result}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* 3+ case studies → original 3-column grid */}
+            {caseStudies.length >= 3 && (
+              <div className="grid md:grid-cols-3 gap-6">
+                {caseStudies.map((study, i) => (
                 <div
                   key={i}
                   className="bg-[#162b23] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group flex flex-col"
@@ -295,8 +390,10 @@ export default function ServicePageTemplateOption2({
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
+
           </div>
         </section>
       )}
