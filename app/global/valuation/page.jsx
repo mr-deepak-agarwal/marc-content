@@ -1,7 +1,7 @@
 'use client'
 
 import ServicePageTemplate from '@/components/ServicePageTemplate'
-import { Scale, BarChart3, TrendingUp, FileText, Shield, Users, Calculator, CheckCircle2 } from 'lucide-react'
+import { Scale, TrendingUp, Users, Shield, FileText } from 'lucide-react'
 
 const pageData = {
   tagline: 'Business Valuation | U.S. & Global Markets',
@@ -12,77 +12,77 @@ const pageData = {
   heroImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
 
   stats: [
-    { value: 'US & Global', label: 'Market Coverage' },
-    { value: 'DCF + Multiples', label: 'Dual Methodology' },
+    { value: 'DCF', label: 'Discounted Cash Flow' },
+    { value: 'Multiples', label: 'Market & Transaction' },
+    { value: 'Blended', label: 'Weighted Average Approach' },
     { value: '2–3 Weeks', label: 'Typical Turnaround' },
-    { value: '100%', label: 'White-Label Delivery' },
   ],
 
   valueProps: [
     {
       icon: Scale,
-      title: 'Defensible & Market-Aligned',
-      desc: 'Valuations built on accepted US and global standards, structured to support real-world transaction discussions and investor scrutiny.',
-    },
-    {
-      icon: Shield,
-      title: 'Audit-Ready Documentation',
-      desc: 'Clear models, clean assumptions, and thorough documentation that withstand review from investors, boards, and lenders.',
+      title: 'Establishes Clear Enterprise Value',
+      desc: 'Establishes a clear and defensible view of enterprise value to support transaction discussions and capital raising decisions.',
     },
     {
       icon: TrendingUp,
-      title: 'Transaction-Ready Output',
-      desc: 'Investor and board-ready summaries designed for M&A negotiations, fundraising discussions, and due diligence processes.',
+      title: 'Strengthens Investor Positioning',
+      desc: 'Strengthens positioning in investor and buyer discussions and builds confidence with boards, institutional investors, and financing partners.',
+    },
+    {
+      icon: Shield,
+      title: 'Identifies Key Value Drivers & Risks',
+      desc: 'Identifies key value drivers and underlying risks, supporting capital planning and strategic decision-making.',
     },
     {
       icon: FileText,
-      title: 'White-Label Delivery',
-      desc: 'We operate as your extended team. All deliverables carry your brand—no MARC footprint visible to your clients.',
+      title: 'Investor & Board-Ready Output',
+      desc: 'Investor and board-ready valuation summaries for discussions and presentations, plus support during investor, buyer, or lender due diligence.',
     },
   ],
 
   methodology: [
     {
       num: '01',
-      title: 'Strategic Understanding',
-      desc: 'Define the purpose and context of the valuation—M&A, fundraising, shareholder restructuring, or dispute—to establish the right methodology and scope.',
+      title: 'Historical Financial Analysis',
+      desc: 'Analysis of historical financial performance, normalised earnings, and key operating drivers to establish a credible earnings baseline.',
     },
     {
       num: '02',
-      title: 'Financial Analysis & Normalisation',
-      desc: 'Review historical financials, analyse revenue mix, customer concentration, operating leverage, and apply normalisation adjustments to reflect sustainable earnings.',
+      title: 'Discounted Cash Flow (DCF)',
+      desc: 'Estimates enterprise value by discounting expected future cash flows to present value, incorporating business-specific risk, growth expectations, and capital structure.',
     },
     {
       num: '03',
-      title: 'DCF Valuation',
-      desc: 'Estimate enterprise value by discounting expected future cash flows to present value, incorporating business-specific risk, growth expectations, and capital structure.',
+      title: 'Market Multiples',
+      desc: 'Determines value using earnings multiples derived from comparable companies and precedent transactions within relevant industries and geographies.',
     },
     {
       num: '04',
-      title: 'Market Multiples Benchmarking',
-      desc: 'Determine value using earnings multiples derived from comparable public companies and precedent transactions within relevant industries and geographies.',
+      title: 'Weighted Average Approach',
+      desc: 'Combines values derived from DCF and market-based methods using appropriate weightings to arrive at a balanced and defensible enterprise valuation.',
     },
     {
       num: '05',
-      title: 'Sensitivity & Scenario Analysis',
-      desc: 'Evaluate upside and downside scenarios related to growth assumptions, margin trajectory, customer retention, and market risk to stress-test the valuation range.',
+      title: 'Sensitivity Analysis',
+      desc: 'Detailed financial analysis including normalization adjustments and sensitivity analysis to stress-test the valuation range across scenarios.',
     },
     {
       num: '06',
       title: 'Investor-Ready Reporting',
-      desc: 'Deliver a structured valuation report with clearly articulated assumptions, methodology, findings, and investor-focused summaries ready for deal discussions.',
+      desc: 'Independent enterprise valuation report with clearly articulated assumptions, plus investor and board-ready summaries for discussions and presentations.',
     },
   ],
   methodologyTitle: 'Our Approach',
-  methodologySubtitle: 'Rigorous, US-Standard Valuation Methodology',
-  methodologyDescription: 'Business valuation plays a critical role when companies raise capital, acquire or divest businesses, restructure ownership, or engage with institutional investors. At MARC, our valuation assignments follow accepted US and global standards and are structured to support real-world transaction discussions—not just compliance requirements.',
+  methodologySubtitle: 'U.S. and Global Valuation Standards',
+  methodologyDescription: 'Business valuation plays a critical role when companies raise capital, acquire or divest businesses, restructure ownership, or engage with institutional investors and financing partners. At MARC, our valuation assignments follow accepted U.S. and global standards and are structured to support real-world transaction discussions, due diligence reviews, and capital raising decisions—not just compliance requirements.',
 
-  servicesTitle: 'When You Need a Valuation',
+  servicesTitle: 'When Do You Need Business Valuation',
   services: [
     {
-      title: 'M&A and Divestitures',
-      desc: 'Independent enterprise valuation to support buy-side and sell-side M&A transactions, informing pricing, negotiations, and deal structuring.',
-      features: ['Buy-side valuation support', 'Sell-side positioning', 'Deal structuring inputs'],
+      title: 'Mergers, Acquisitions & Divestitures',
+      desc: 'Independent enterprise valuation to support M&A transactions, informing pricing, negotiations, and deal structuring.',
+      features: ['Buy-side and sell-side support', 'Enterprise value assessment', 'Deal structuring inputs'],
       icon: Scale,
     },
     {
@@ -93,14 +93,14 @@ const pageData = {
     },
     {
       title: 'Shareholder Transactions',
-      desc: 'Support for shareholder entry, exit, restructuring, and ownership change scenarios requiring an independent and defensible view of value.',
-      features: ['Entry / exit valuations', 'Ownership restructuring', 'Board-ready summaries'],
+      desc: 'Support for entry or exit of shareholders and strategic partners requiring an independent and defensible view of value.',
+      features: ['Entry / exit valuations', 'Ownership restructuring support', 'Board-ready summaries'],
       icon: Users,
     },
     {
-      title: 'Transaction Support & Disputes',
-      desc: 'Valuation analysis for asset-backed financing, business restructuring, commercial disputes, and advisory support during investor due diligence.',
-      features: ['Asset-backed financing', 'Dispute resolution support', 'Due diligence assistance'],
+      title: 'Restructuring, Financing & Disputes',
+      desc: 'Business restructuring and ownership changes, asset-backed or structured financing, and transaction support for commercial disputes.',
+      features: ['Business restructuring', 'Asset-backed financing', 'Commercial dispute support'],
       icon: Shield,
     },
   ],
@@ -110,25 +110,9 @@ const pageData = {
       client: 'Healthcare Technology Company (USA)',
       industry: 'Healthcare SaaS',
       service: 'Business Valuation & Information Memorandum',
-      challenge: 'A US-based healthcare technology company providing software-enabled solutions to hospitals and outpatient providers engaged MARC to support capital raising and strategic growth initiatives. The company needed a defensible enterprise valuation and an investor-ready Information Memorandum.',
-      solution: 'MARC reviewed historical financials analysing revenue mix, customer concentration, churn metrics, and operating leverage. Developed forward-looking financial projections incorporating customer growth, pricing expansion, and platform scalability. Conducted valuation using DCF supported by benchmarking against comparable US and global healthcare technology companies and recent transactions. Assessed key value drivers including recurring revenue visibility, regulatory readiness, and customer acquisition efficiency.',
-      result: 'Robust, market-aligned valuation and a well-structured Information Memorandum. The company was positioned as a scalable healthcare technology platform with strong recurring revenues and a clearly articulated growth strategy, supporting effective investor engagement.',
-    },
-    {
-      client: 'In-Car Entertainment Company (USA)',
-      industry: 'Consumer Technology',
-      service: 'Valuation for Capital Raising',
-      challenge: 'A US-based in-car entertainment company engaged MARC to provide valuation support as part of a broader CIM preparation for capital raising and strategic discussions with institutional investors.',
-      solution: 'Developed integrated financial projections aligned with the investment narrative. Embedded valuation analysis and sensitivity frameworks within the CIM. Ensured alignment between narrative, financials, and transaction objectives to reduce diligence friction for prospective investors.',
-      result: 'A concise, market-aligned valuation embedded in an investor-ready CIM that supported investor outreach and diligence, positioning the company effectively for capital raising.',
-    },
-    {
-      client: 'Mid-Market Advisor Clients',
-      industry: 'Multiple Sectors',
-      service: 'White-Label Valuation Support',
-      challenge: 'Boutique investment banks and independent M&A advisors frequently face capacity constraints during active deal cycles, needing high-quality valuation support delivered on tight timelines without expanding full-time headcount.',
-      solution: 'MARC provides on-demand, white-label valuation support—DCF models, market multiples analysis, valuation summaries—delivered to the advisor\'s standards and branded under their identity. Clean handovers, NDAs, and no brand leakage.',
-      result: 'Advisors achieve faster turnaround, maintain deal quality, and scale their capacity without fixed hiring costs—supporting more mandates simultaneously.',
+      challenge: 'A U.S.-based healthcare technology company engaged MARC to support capital raising and strategic growth initiatives. The company provided software-enabled solutions to hospitals and outpatient providers, generating recurring subscription and transaction-based revenues. Objectives: establish enterprise valuation by assessing financial performance, scalability, and market opportunity; prepare an investor-focused Information Memorandum highlighting the business model, technology platform, regulatory environment, and growth strategy.',
+      solution: 'Reviewed historical financials, analysing revenue mix, customer concentration, churn metrics, and operating leverage. Developed forward-looking financial projections incorporating customer growth, pricing expansion, margin improvement, and platform scalability. Conducted valuation using DCF, supported by benchmarking against comparable U.S. and global healthcare technology companies and recent transactions. Assessed key value drivers including recurring revenue visibility, regulatory readiness, platform scalability, and customer acquisition efficiency. Performed sensitivity analysis on reimbursement risk, implementation timelines, and customer retention.',
+      result: 'A robust, market-aligned valuation and a well-structured Information Memorandum. The company was positioned as a scalable healthcare technology platform with strong recurring revenues, regulatory readiness, and a clearly articulated growth strategy, supporting effective investor engagement.',
     },
   ],
 
@@ -143,24 +127,20 @@ const pageData = {
     },
     {
       q: 'Which valuation method is used?',
-      a: 'The approach depends on the business and transaction context. Common methods include DCF, market multiples, or a combination of both. We select the methodology most appropriate to the transaction and investor expectations.',
+      a: 'The approach depends on the business and transaction context. Common methods include DCF, market multiples, or a combination of both.',
     },
     {
       q: 'How does valuation support fundraising?',
-      a: 'Valuation helps investors understand enterprise value, growth potential, risks, and expected returns—enabling more structured and credible discussions and reducing friction during diligence.',
+      a: 'Valuation helps investors understand enterprise value, growth potential, risks, and expected returns, enabling more structured and credible discussions.',
     },
     {
       q: 'How long does a business valuation typically take?',
       a: 'Timelines vary based on complexity, data availability, and transaction requirements. Most valuation engagements are completed within two to three weeks.',
     },
-    {
-      q: 'Do you work directly with end clients or through advisors?',
-      a: 'We work both ways. For global advisors, we deliver entirely white-label—no MARC branding, clean handovers, full confidentiality. We also engage directly with companies preparing for transactions.',
-    },
   ],
 
-  ctaTitle: 'Partner with a Trusted Valuation Team',
-  ctaDescription: 'Supporting U.S. and global transactions with defensible valuation analysis, transaction insight, and investor-ready documentation. Speak with our valuation team to discuss your transaction, fundraising, or strategic requirements.',
+  ctaTitle: 'Partner with a Trusted Business Valuation Firm',
+  ctaDescription: 'Partner with MARC, a trusted provider of business valuation services, supporting U.S. and global transactions with defensible valuation analysis, transaction insight, and investor-ready documentation. Speak with our valuation team to discuss your transaction, fundraising, or strategic requirements.',
 }
 
 export default function GlobalValuationPage() {
