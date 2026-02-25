@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Lightbulb } from 'lucide-react'
+import { ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Lightbulb, Globe2, Building2 } from 'lucide-react'
 import { useLoading } from '@/components/loading-store'
 
 const serviceCategories = [
@@ -45,9 +45,17 @@ const insightsItems = [
   { label: 'Case Studies', href: '/case-studies', icon: Lightbulb, description: 'Client success stories' },
 ]
 
+const globalServices = [
+  { label: 'Business Valuation', href: '/global/valuation', icon: Scale, description: 'Defensible valuations for M&A & fundraising' },
+  { label: 'CIM & Pitch Deck Advisory', href: '/global/cim-pitchdeck', icon: FileText, description: 'Investor-ready CIMs and pitch materials' },
+  { label: 'Due Diligence & QoE', href: '/global/due-diligence', icon: Shield, description: 'QoE analysis and diligence execution' },
+  { label: 'Internationalization', href: '/services/internationalization', icon: Globe, description: 'Cross-border expansion & India market entry' },
+]
+
 const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services', hasServicesMenu: true },
+  { label: 'Global', href: '/global', hasGlobalMenu: true },
   { label: 'Industries', href: '/industries' },
   { label: 'Insights', href: '/insights', hasInsightsMenu: true },
   { label: 'Media', href: '/media' },
@@ -174,6 +182,58 @@ export default function Header() {
                     </div>
                   </div>
 
+                ) : link.hasGlobalMenu ? (
+                  <div
+                    key={link.label}
+                    className="relative"
+                    onMouseEnter={(e) => { handleMouseEnter(e, index); setActiveDropdown(link.label) }}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => handleClick(link.href)}
+                      className={`relative px-4 py-2 flex items-center gap-1 text-sm font-medium transition-colors duration-300 ${hoveredIndex === index ? 'text-[#4E9141]' : 'text-[#1D342F]'}`}
+                    >
+                      <Globe2 size={14} className="text-[#4E9141]" />
+                      {link.label}
+                      <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180 text-[#4E9141]' : ''}`} />
+                    </Link>
+
+                    {/* Global Dropdown */}
+                    <div className={`absolute -left-4 top-full pt-3 transition-all duration-300 ${activeDropdown === link.label ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-3'}`}>
+                      <div className="w-[360px] bg-white rounded-2xl shadow-2xl shadow-black/10 border border-[#C2DDB4]/30 overflow-hidden">
+                        <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
+                        <div className="p-2">
+                          <div className="px-4 pt-3 pb-2">
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#4E9141]">Global Practice Areas</span>
+                          </div>
+                          {globalServices.map((item, itemIdx) => (
+                            <Link
+                              key={itemIdx}
+                              href={item.href}
+                              onClick={() => handleClick(item.href)}
+                              className="group flex items-center gap-4 p-3 rounded-xl hover:bg-[#F7FFF5] transition-all duration-300 border border-transparent hover:border-[#C2DDB4]/50 mx-1 mb-1"
+                            >
+                              <div className="w-10 h-10 rounded-lg bg-[#F7FFF5] group-hover:bg-[#4E9141] flex items-center justify-center transition-all duration-300 flex-shrink-0">
+                                <item.icon className="w-5 h-5 text-[#4E9141] group-hover:text-white transition-colors" />
+                              </div>
+                              <div>
+                                <span className="block text-sm text-[#1D342F] group-hover:text-[#4E9141] font-medium transition-colors">{item.label}</span>
+                                <span className="block text-xs text-[#47635D] mt-0.5">{item.description}</span>
+                              </div>
+                            </Link>
+                          ))}
+                          <div className="mx-1 mt-2 mb-1 p-3 bg-[#1D342F] rounded-xl flex items-center justify-between">
+                            <span className="text-xs text-[#C2DDB4]">For US & global clients</span>
+                            <Link href="/global" onClick={() => handleClick('/global')} className="inline-flex items-center gap-1 text-xs font-semibold text-[#4E9141] hover:text-[#C2DDB4] transition-colors">
+                              View Hub <ArrowRight size={12} />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 ) : link.hasInsightsMenu ? (
                   <div
                     key={link.label}
@@ -287,6 +347,33 @@ export default function Header() {
                             ))}
                           </div>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : link.hasGlobalMenu ? (
+                <div key={link.label}>
+                  <button
+                    onClick={() => setActiveDropdown(activeDropdown === 'Global' ? null : 'Global')}
+                    className="w-full flex justify-between items-center px-4 py-3.5 text-[#1D342F] font-medium hover:bg-[#4E9141]/5 rounded-xl transition-all duration-300"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Globe2 size={15} className="text-[#4E9141]" />
+                      Global
+                    </span>
+                    <ChevronDown className={`transition-transform duration-300 ${activeDropdown === 'Global' ? 'rotate-180 text-[#4E9141]' : ''}`} size={16} />
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ${activeDropdown === 'Global' ? 'max-h-[320px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className="py-2 ml-4 space-y-1 border-l-2 border-[#4E9141]/20">
+                      <Link href="/global" onClick={() => handleClick('/global')} className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#47635D] hover:text-[#4E9141] hover:bg-[#4E9141]/5 rounded-lg transition-all duration-300 font-semibold">
+                        <Globe2 className="w-4 h-4 text-[#4E9141]" />
+                        Global Hub
+                      </Link>
+                      {globalServices.map((item, itemIdx) => (
+                        <Link key={itemIdx} href={item.href} onClick={() => handleClick(item.href)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#47635D] hover:text-[#4E9141] hover:bg-[#4E9141]/5 rounded-lg transition-all duration-300">
+                          <item.icon className="w-4 h-4 text-[#4E9141]" />
+                          {item.label}
+                        </Link>
                       ))}
                     </div>
                   </div>
