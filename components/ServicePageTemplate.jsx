@@ -106,7 +106,7 @@ export default function ServicePageTemplateOption2({
                 <img 
                   src={heroImage} 
                   alt="Service Hero" 
-                  className="w-full h-[500px] object-cover"
+                  className="w-full h-[500px] object-cover grayscale"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/30 to-transparent" />
               </div>
@@ -194,7 +194,7 @@ export default function ServicePageTemplateOption2({
                       <img 
                         src={serviceImage} 
                         alt={service.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500 grayscale group-hover:grayscale-0"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/40 to-transparent" />
                       

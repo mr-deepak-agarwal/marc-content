@@ -52,7 +52,7 @@ export default function ServicePageTemplateOption1({
           <img 
             src={heroImage} 
             alt="Market Research Hero" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover grayscale"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1D342F]/95 via-[#1D342F]/90 to-[#1D342F]/80" />
         </div>
@@ -148,7 +148,7 @@ export default function ServicePageTemplateOption1({
                   <img 
                     src={methodologyImage} 
                     alt="Our Methodology" 
-                    className="w-full h-[400px] object-cover"
+                    className="w-full h-[400px] object-cover grayscale"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/40 to-transparent" />
                 </div>
