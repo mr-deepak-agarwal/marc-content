@@ -669,9 +669,9 @@ export default function AboutPageClient() {
                   <img 
                     src={director.image}
                     alt={director.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500 grayscale group-hover:grayscale-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-xl font-bold text-white mb-1">{director.name}</h3>
                     <p className="text-[#C2DDB4] font-medium text-sm">{director.role}</p>
@@ -715,9 +715,8 @@ export default function AboutPageClient() {
                     <img 
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500 grayscale group-hover:grayscale-0"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/80 to-transparent" />
                   </div>
                   <div className="p-5">
                     <h3 className="text-lg font-bold text-[#1D342F] mb-1">{member.name}</h3>
@@ -755,9 +754,8 @@ export default function AboutPageClient() {
                     <img 
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500 grayscale group-hover:grayscale-0"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/80 to-transparent" />
                   </div>
                   <div className="p-4">
                     <h3 className="text-base font-bold text-[#1D342F] mb-1">{member.name}</h3>
@@ -795,9 +793,9 @@ export default function AboutPageClient() {
                     <img 
                       src={expert.image}
                       alt={expert.name}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500 grayscale group-hover:grayscale-0"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
                       <h3 className="text-xl font-bold text-white mb-1">{expert.name}</h3>
                       <p className="text-[#C2DDB4] font-medium text-sm">{expert.role}</p>
