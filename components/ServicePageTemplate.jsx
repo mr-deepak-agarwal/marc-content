@@ -14,7 +14,7 @@ export default function ServicePageTemplateOption2({
   titleHighlight,
   description,
   stats,
-  heroImage = 'https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?w=1200', // Hero side image
+  heroImage = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80', // glass corporate tower
   
   // Value Propositions
   valueProps,
@@ -44,12 +44,12 @@ export default function ServicePageTemplateOption2({
 
   // Default service images if not provided
   const defaultServiceImages = [
-    'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=600',
-    'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=600',
-    'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=600',
-    'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?w=600',
-    'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?w=600',
-    'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?w=600',
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', // analytics dashboard
+    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80', // financial charts
+    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80', // documents on desk
+    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80', // glass office building
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80', // data on screens
+    'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=80', // server/tech infrastructure
   ]
 
   return (

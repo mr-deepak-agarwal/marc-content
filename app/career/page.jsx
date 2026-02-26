@@ -41,7 +41,7 @@ const employeeTestimonials = [
     role: "Senior Analyst",
     department: "Market Research",
     years: "3 years at MARC",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80",
     quote: "Add your employee testimonial here. What do they love about working at MARC? What projects have they worked on? How have they grown?",
     highlight: "Promoted twice in 3 years"
   },
@@ -51,7 +51,7 @@ const employeeTestimonials = [
     role: "Project Manager",
     department: "Strategy Consulting",
     years: "5 years at MARC",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
     quote: "Add your employee testimonial here. Share their journey, the challenges they've overcome, and why they chose to stay at MARC.",
     highlight: "Led 20+ client engagements"
   },
@@ -61,7 +61,7 @@ const employeeTestimonials = [
     role: "Business Analyst",
     department: "M&A Advisory",
     years: "2 years at MARC",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80",
     quote: "Add your employee testimonial here. Include specifics about the work culture, mentorship, or career development opportunities.",
     highlight: "Worked on ₹200Cr+ deals"
   },
@@ -71,7 +71,7 @@ const employeeTestimonials = [
     role: "Research Lead",
     department: "Consumer & Retail",
     years: "4 years at MARC",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=400&q=80",
     quote: "Add your employee testimonial here. What makes MARC different from other firms? What advice would they give to candidates?",
     highlight: "Built the retail practice"
   }

@@ -10,14 +10,14 @@ const pageData = {
   description: 'Assess risks and rewards with MARC\'s feasibility study for business. We help you understand the risks, rewards, and everything in between before taking a business decision. Our feasibility study services in India combine market insight with business location & feasibility advisory services to help you proceed with confidence and clarity.',
   
   // Custom images for Option 2
-  heroImage: 'https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?w=1200',
+  heroImage: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
   serviceImages: [
-    'https://images.pexels.com/photos/3182752/pexels-photo-3182752.jpeg?w=600', // Market Demand Assessment
-    'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?w=600', // Location Feasibility
-    'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?w=600', // Financial Viability
-    'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?w=600', // Risk Analysis
-    'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?w=600', // Competitive Benchmarking
-    'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?w=600', // Business Planning
+    'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=600&q=80', // Market Demand Assessment - financial data
+    'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80', // Location Feasibility - city aerial
+    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80',    // Financial Viability - calculator/finance
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',    // Risk Analysis - warning/alert concept
+    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80', // Competitive Benchmarking - analytics
+    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80', // Business Planning - strategy documents - strategy doc
   ],
 
   stats: [

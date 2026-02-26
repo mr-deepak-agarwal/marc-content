@@ -9,7 +9,7 @@ const pageData = {
   titleHighlight: 'Quality of Earnings Analysis',
   description: 'MARC provides Due Diligence Services and Quality of Earnings (QoE) Analysis for M&A and investment transactions across the US and global markets. Over the last five years, we have supported private equity firms, strategic acquirers, investors, and advisors in evaluating financial risk, validating earnings quality, and protecting transaction value. Our due diligence services go beyond reported numbers to assess the true sustainability, quality, and drivers of earnings—enabling confident decision-making across acquisitions, divestitures, and strategic investments.',
 
-  heroImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80',
+  heroImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
 
   stats: [
     { value: '5+ Years', label: 'Supporting US Transactions' },

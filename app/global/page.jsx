@@ -60,7 +60,7 @@ const globalServices = [
     ],
     outcome: 'You stay client-facing. We handle the grind.',
     href: '/global/due-diligence',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80',
   },
   {
     icon: Globe,
