@@ -58,7 +58,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-[#47635D] text-sm leading-relaxed mb-6">
-              We offer a wide range of business consulting services that we constantly look to expand.
+              Comprehensive business consulting across strategy, market research, M&A and global expansion
             </p>
             
             {/* Social Icons */}

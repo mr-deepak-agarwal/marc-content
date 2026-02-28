@@ -281,7 +281,7 @@ export default function GlobalPage() {
               <span className="text-[#4E9141] font-semibold tracking-widest uppercase text-xs">Why Work With Us</span>
             </div>
             <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
-              Why US Consultants Work With MARC
+              Why Global Consultants Work With MARC
             </h2>
           </div>
 

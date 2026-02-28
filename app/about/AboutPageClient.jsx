@@ -236,7 +236,7 @@ const affiliations = [
   {
     name: 'Electronica Finance Limited',
     description: 'Pioneer in Machine Finance with 50+ offices across India, serving 7500+ customers with AUM exceeding Rs.1250 crores.',
-    website: 'https://www.efl.co.in/',
+    website: 'https://www.electronicafinance.com/',
   },
 ]
 

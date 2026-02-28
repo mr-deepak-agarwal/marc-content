@@ -9,7 +9,7 @@ const pageData = {
   titleHighlight: 'M&A and Fundraising',
   description: 'A Confidential Information Memorandum (CIM) or Pitch Deck is a core document in U.S. and global mergers and acquisitions and fundraising processes. It presents a company\'s business model, market opportunity, financial performance, and investment rationale in a clear, structured, and investor-ready format aligned with expectations of M&A advisory firms and institutional investors. MARC supports companies across the full lifecycle of CIM and Pitch Deck preparation, combining strategic analysis, market research and consulting, financial modelling and valuation, and investor-focused storytelling to position businesses for successful transactions.',
 
-  heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80',
+  heroImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
 
   stats: [
     { value: 'CIMs', label: 'Confidential Info Memos' },

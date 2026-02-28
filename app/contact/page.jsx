@@ -18,7 +18,7 @@ const offices = [
     address: '2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourém, Panaji, Goa 403001', 
     phone: '+91-93596 28675', 
     email: 'contact@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'https://www.google.com/maps/place/MARC+(Mangal+Analytics+and+Research+Consulting)'
   },
   { 
@@ -29,7 +29,7 @@ const offices = [
     address: '16192 Coastal Highway, Lewes, Delaware 19958, County of Sussex, USA', 
     phone: '+91-93596 28675', 
     email: 'contact@marcglocal.com', 
-    flag: '🇺🇸',
+    /*flag: '🇺🇸',*/
     mapLink: 'https://goo.gl/maps/g3A7FCm2JwucYNwMA'
   },
   { 
@@ -40,7 +40,7 @@ const offices = [
     address: 'B/509, Satyam Apartments, Link Road, Near Don Bosco School, Borivali West, Mumbai, Maharashtra 400091', 
     phone: '+91-90295 03690', 
     email: 'mumbai@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'https://goo.gl/maps/jmu1AvPqTXbxGTpd9'
   },
   { 
@@ -52,7 +52,7 @@ const offices = [
     phone: '+91-91194 59098', 
     phone2: '+91-96500 68123',
     email: 'pune@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'https://goo.gl/maps/k58iKNPJ99NcEzh89'
   },
   { 
@@ -63,7 +63,7 @@ const offices = [
     address: 'Ramakrishna Palli, VIP Road, Kaikhali, 2nd Floor, Office No. 10, Kolkata, West Bengal 700052', 
     phone: '+91-83368 25469', 
     email: 'kolkata@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'https://g.page/Income-tax-service-North-Kolkata'
   },
   { 
@@ -74,7 +74,7 @@ const offices = [
     address: 'B-403, Samudra Complex, C G Road, Mithakhali, Navrangpura, Ahmedabad 380009', 
     phone: '+91-90295 03690', 
     email: 'ahmedabad@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'https://goo.gl/maps/pWr7yC277upKPF9E6'
   },
   { 
@@ -85,7 +85,7 @@ const offices = [
     address: '1st Floor, Chanraprabha, Near Coopmart, Bypass Jn, AM Road, Perumbavoor 683542', 
     phone: '+91-98461 67761', 
     email: 'kochi@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'https://maps.app.goo.gl/UuSeFbAY5kCFDS5n6'
   },
   { 
@@ -96,7 +96,7 @@ const offices = [
     address: '201, Saubhagyashree Building, 16 Janki Nagar Ave., Indore, Madhya Pradesh 452001', 
     phone: '+91-98605 29838', 
     email: 'indore@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'https://g.page/ruchi-jindal-associates'
   },
   { 
@@ -107,7 +107,7 @@ const offices = [
     address: 'Opposite Modern Club, Shibnagar, Dhaleswar, Agartala, Tripura 799007', 
     phone: '+91-72008 21023', 
     email: 'agartala@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'https://www.google.co.in/maps/place/Varsha+Chopra+%26+Co.'
   },
   { 
@@ -118,7 +118,7 @@ const offices = [
     address: 'Vertex One Workspace, Gateway Building, M G Road, Ballalbagh, Mangalore, Karnataka 575003', 
     phone: '+91-82963 47983', 
     email: 'mangaluru@marcglocal.com', 
-    flag: '🇮🇳',
+    /*flag: '🇮🇳',*/
     mapLink: 'http://rb.gy/xazkk9'
   },
 ]

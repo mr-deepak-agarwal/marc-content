@@ -103,6 +103,15 @@ function MediaCarousel() {
 }
 
 const newsArticles = [
+
+  {
+    date: 'Dec 12, 2025',
+    source: 'ET Now Business Conclave & Awards 2025',
+    title: 'Excellence in Growth Advisory & Consulting',
+    excerpt: 'MARC was honoured with the ET Now Award for “Excellence in Growth Advisory & Consulting”  at the ET Now Business Conclave & Awards 2025',
+    link: 'https://www.etnownews.com/hub/business-conclave-awards-2025/winners',
+    featured: true
+  },  
   {
     date: 'Sept 1, 2023',
     source: 'The Economic Times',
