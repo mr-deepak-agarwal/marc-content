@@ -197,6 +197,7 @@ const timeline = [
   { year: '2015', title: 'Rebranded to MARC', desc: 'Expanded service offerings' },
   { year: '2020', title: 'Pan-India Presence', desc: '8+ cities across India' },
   { year: '2024', title: 'USA Operations', desc: 'MARC Glocal Inc, Delaware' },
+  { year: '2026', title: 'And Growing', desc: '500+ clients, 15+ global partners' },
 ]
 
 const clientsRow1 = [
@@ -592,6 +593,43 @@ export default function AboutPageClient() {
 
       {/* JOURNEY TIMELINE — HORIZONTAL */}
       <section className="py-20 bg-white overflow-hidden">
+        <style>{`
+          @keyframes timeline-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+          }
+          @keyframes dot-ping {
+            0% { transform: scale(1); opacity: 0.8; }
+            70% { transform: scale(2.2); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+          }
+          @keyframes bar-shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+          }
+          .timeline-bar {
+            background: linear-gradient(90deg, #C2DDB4 0%, #4E9141 30%, #6abf5e 50%, #4E9141 70%, #C2DDB4 100%);
+            background-size: 200% 100%;
+            animation: bar-shimmer 3s linear infinite;
+          }
+          .dot-ping::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: #4E9141;
+            animation: dot-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+          }
+          .dot-ping-last::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: #4E9141;
+            animation: dot-ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+          }
+        `}</style>
+
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
@@ -606,7 +644,7 @@ export default function AboutPageClient() {
 
           {/* Horizontal timeline — scrollable on small screens */}
           <div className="overflow-x-auto pb-4">
-            <div className="min-w-[860px]">
+            <div className="min-w-[1000px]">
 
               {/* TOP ROW: cards for even-index items (0, 2, 4) */}
               <div className="flex">
@@ -623,7 +661,11 @@ export default function AboutPageClient() {
                         }`}
                         style={{ transitionDelay: `${i * 100}ms` }}
                       >
-                        <div className="bg-[#F7FFF5] rounded-xl p-6 border border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#4E9141]/50 transition-all duration-300 group text-center">
+                        <div className={`rounded-xl p-6 border transition-all duration-300 group text-center ${
+                          item.year === '2026'
+                            ? 'bg-[#4E9141]/10 border-[#4E9141]/40 hover:shadow-xl hover:border-[#4E9141]'
+                            : 'bg-[#F7FFF5] border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#4E9141]/50'
+                        }`}>
                           <span className="text-[#4E9141] font-bold text-3xl group-hover:scale-110 inline-block transition-transform">
                             {item.year}
                           </span>
@@ -636,32 +678,40 @@ export default function AboutPageClient() {
                         </div>
                       </div>
                     ) : (
-                      /* Spacer for odd items — their card is below the line */
                       <div className="h-[174px]" />
                     )}
                   </div>
                 ))}
               </div>
 
-              {/* MIDDLE ROW: horizontal line with animated dots */}
+              {/* MIDDLE ROW: pulsing horizontal bar with dots */}
               <div className="flex items-center">
                 {timeline.map((item, i) => (
                   <div key={i} className="flex-1 flex items-center">
-                    <div className="flex-1 h-[3px] bg-gradient-to-r from-[#C2DDB4] to-[#4E9141]/60" />
-                    <div
-                      className={`w-5 h-5 rounded-full border-4 border-white shadow-lg flex-shrink-0 transition-all duration-700 ${
-                        visibleTimeline.includes(i)
-                          ? 'bg-[#4E9141] scale-125'
-                          : 'bg-[#C2DDB4] scale-100'
-                      }`}
-                      style={{ transitionDelay: `${i * 100}ms` }}
-                    />
-                    <div className="flex-1 h-[3px] bg-gradient-to-r from-[#4E9141]/60 to-[#C2DDB4]" />
+                    {/* Pulsing bar segment */}
+                    <div className="flex-1 h-[4px] timeline-bar rounded-full" />
+
+                    {/* Dot with ping animation */}
+                    <div className="relative flex-shrink-0">
+                      {/* Ping ring */}
+                      <div className={`absolute inset-0 rounded-full bg-[#4E9141]/40 ${item.year === '2026' ? 'dot-ping-last' : 'dot-ping'}`} />
+                      {/* Main dot */}
+                      <div
+                        className={`relative w-5 h-5 rounded-full border-4 border-white shadow-lg transition-all duration-700 ${
+                          visibleTimeline.includes(i)
+                            ? 'bg-[#4E9141] scale-125'
+                            : 'bg-[#C2DDB4] scale-100'
+                        }`}
+                        style={{ transitionDelay: `${i * 100}ms` }}
+                      />
+                    </div>
+
+                    <div className="flex-1 h-[4px] timeline-bar rounded-full" />
                   </div>
                 ))}
               </div>
 
-              {/* BOTTOM ROW: cards for odd-index items (1, 3) */}
+              {/* BOTTOM ROW: cards for odd-index items (1, 3, 5) */}
               <div className="flex">
                 {timeline.map((item, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center px-2">
