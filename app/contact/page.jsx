@@ -15,7 +15,7 @@ const offices = [
     city: 'Panaji', 
     state: 'Goa',
     country: 'India', 
-    address: '2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourém, Panaji, Goa 403001', 
+    address: 'Office No 202, Second Floor CMM Building Rua De Ourem Panaji Goa 403001', 
     phone: '+91-93596 28675', 
     email: 'contact@marcglocal.com', 
     /*flag: '🇮🇳',*/

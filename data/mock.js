@@ -8,7 +8,7 @@ export const companyInfo = {
   heroSubtitle: "Strategy and execution for Indian and global businesses that want growth to build—year after year.",
   phone: "+91 93596 28675",
   email: "contact@marcglocal.com",
-  address: "2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourém, Panaji, Goa 403001",
+  address: "Office No 202, Second Floor CMM Building Rua De Ourem Panaji Goa 403001",
   socialLinks: {
     twitter: "https://twitter.com/Marcglocal",
     facebook: "https://www.facebook.com/MARCGlocal/",
