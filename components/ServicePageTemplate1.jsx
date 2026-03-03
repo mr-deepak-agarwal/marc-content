@@ -218,7 +218,7 @@ export default function ServicePageTemplateOption1({
       )}
 
       {/* ── Case Studies (unchanged from original) ─────────────────────── */}
-      {caseStudies && caseStudies.length > 0 && (
+        {caseStudies && caseStudies.filter(s => s.client || s.challenge || s.solution || s.result).length > 0 && (
         <section className="py-24 bg-[#1D342F]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
