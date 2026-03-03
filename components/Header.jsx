@@ -205,7 +205,7 @@ export default function Header() {
                         <div className="h-1 bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
                         <div className="p-2">
                           <div className="px-4 pt-3 pb-2">
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#4E9141]">Global Practice Areas</span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#4E9141]">For US & global clients</span>
                           </div>
                           {globalServices.map((item, itemIdx) => (
                             <Link
@@ -223,12 +223,6 @@ export default function Header() {
                               </div>
                             </Link>
                           ))}
-                          <div className="mx-1 mt-2 mb-1 p-3 bg-[#1D342F] rounded-xl flex items-center justify-between">
-                            <span className="text-xs text-[#C2DDB4]">For US & global clients</span>
-                            <Link href="/global" onClick={() => handleClick('/global')} className="inline-flex items-center gap-1 text-xs font-semibold text-[#4E9141] hover:text-[#C2DDB4] transition-colors">
-                              View Hub <ArrowRight size={12} />
-                            </Link>
-                          </div>
                         </div>
                       </div>
                     </div>
