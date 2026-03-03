@@ -94,15 +94,15 @@ const keyTeam = [
     linkedin: null,
   },
   {
-    name: 'Prajakta Rawool',
-    role: 'Senior Associate - Human Capital and Administration',
-    image: '/images/about/prajakta.jpeg',
+    name: 'Avdhut Padwalkar',
+    role: 'Assistant Manager - Market Research and Financial Analysis',
+    image: '/images/about/avdhut-padwalkar.jpg',
     linkedin: null,
   },
   {
-    name: 'Soham Shirodkar',
+    name: 'Smriti Bhattacharya',
     role: 'Assistant Manager - Market Research and Financial Analysis',
-    image: '/images/about/soham.jpeg',
+    image: '/images/about/smriti-bhattacharya.png',
     linkedin: null,
   },
   {

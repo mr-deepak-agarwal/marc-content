@@ -144,10 +144,7 @@ const Footer = () => {
                 >
                   <MapPin className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
                   <span className="text-sm leading-relaxed">
-                    2nd Floor, CMM Building,<br />
-                    Above Sarvaa Restaurant,<br />
-                    Rua de Ourém, Panaji,<br />
-                    Goa 403001
+                    Office No 202, Second Floor CMM Building Rua De Ourem Panaji Goa 403001
                   </span>
                 </a>
               </li>
