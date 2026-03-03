@@ -569,6 +569,15 @@
   }
 }
 
+img {
+  filter: grayscale(100%);
+  transition: filter 0.4s ease;
+}
+
+img:hover {
+  filter: grayscale(0%);
+}
+
 .card-grayscale img {
   filter: grayscale(100%);
   transition: filter 0.5s ease;
@@ -577,7 +586,3 @@
 .card-grayscale:hover img {
   filter: grayscale(0%);
 }
-
-/* Grayscale is applied selectively via .card-grayscale and inline styles only */
-/* The old global img { grayscale } was making logos, insight thumbnails, and hero 
-   slide backgrounds go grey, causing text to become invisible on lighter images */
