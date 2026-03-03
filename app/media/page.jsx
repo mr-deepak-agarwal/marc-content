@@ -106,20 +106,26 @@ function MediaCarousel() {
 const newsArticles = [
 
   {
+    date: 'Jan 6, 2026',
+    source: 'Insights Success Magazine',
+    title: 'Creating a Consulting Powerhouse: The Story of Ashutosh Kharangate',
+    excerpt: 'There are leaders who operate on the existing paths and those who blaze their own trail and create a new definition of what is feasible. This spirit defines the journey of Ashutosh Kharangate, a leader who turns challenges into opportunities for growth',
+    link: 'https://insightssuccessmagazine.com/creating-a-consulting-powerhouse-the-story-of-ashutosh-kharangate/',
+    featured: true
+  },
+  {
     date: 'Dec 12, 2025',
     source: 'ET Now Business Conclave & Awards 2025',
     title: 'Excellence in Growth Advisory & Consulting',
     excerpt: 'MARC was honoured with the ET Now Award for “Excellence in Growth Advisory & Consulting”  at the ET Now Business Conclave & Awards 2025',
-    link: 'https://www.etnownews.com/hub/business-conclave-awards-2025/winners',
-    featured: true
+    link: 'https://www.etnownews.com/hub/business-conclave-awards-2025/winners'
   },  
   {
     date: 'Sept 1, 2023',
     source: 'The Economic Times',
     title: 'The most admired Indian companies in 2023',
     excerpt: 'MARC gets featured in The Economic Times for "Top 10 Most Admired Companies in India 2023" that features a diverse range of companies that have achieved financial success while also prioritizing innovation, social responsibility, and employee well-being.',
-    link: 'https://economictimes.indiatimes.com/news/company/corporate-trends/here-are-some-of-the-most-admired-indian-companies-in-2023/articleshow/103255539.cms',
-    featured: true
+    link: 'https://economictimes.indiatimes.com/news/company/corporate-trends/here-are-some-of-the-most-admired-indian-companies-in-2023/articleshow/103255539.cms'
   },
   {
     date: 'Oct 21, 2022',
