@@ -54,9 +54,9 @@ const teamImages = [
 ]
 
 const stats = [
-  { value: '500+', label: 'Clients Worldwide' },
-  { value: '30+', label: 'Countries Served' },
-  { value: '98%', label: 'Client Satisfaction' },
+  { value: '15+', label: 'Partners Globally' },
+  { value: '5+', label: 'Continents Served' },
+  { value: '100+%', label: 'International Projects' },
 ]
 
 const directors = [
