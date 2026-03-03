@@ -32,12 +32,6 @@ const serviceCategories = [
       { label: 'Deal Advisory', href: '/services/deal-advisory', icon: Handshake },
     ]
   },
-  {
-    label: 'Global Expansion',
-    services: [
-      { label: 'Internationalization', href: '/services/internationalization', icon: Globe },
-    ]
-  },
 ]
 
 const insightsItems = [
