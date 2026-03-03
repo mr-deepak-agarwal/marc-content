@@ -159,9 +159,9 @@ export const industryImages = {
 
 export const stats = [
   { value: "15+", label: "Years Experience" },
-  { value: "30+", label: "Countries Served" },
-  { value: "500+", label: "Projects Delivered" },
-  { value: "300+", label: "Happy Clients" }
+  { value: "500+", label: "Clients Served" },
+  { value: "100+", label: "International Projects" },
+  { value: "15+", label: "Partners Globally" }
 ];
 
 export const testimonials = [

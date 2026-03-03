@@ -2,26 +2,27 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Footer from '@/components/Footer'
 import { ArrowRight, ExternalLink, Newspaper, FileText, Mail, Calendar, ChevronRight, Award } from 'lucide-react'
 
 // Media images for animated carousel
 const mediaImages = [
   {
-    url: 'https://images.unsplash.com/photo-1768508950408-d59387d4dcd1?w=800&q=80',
+    url: '/images/media/corporate.jpg',
     title: 'Corporate Events',
   },
   {
-    url: 'https://images.unsplash.com/photo-1713948412932-aad419b13f5e?w=800&q=80',
+    url: '/images/media/story.webp',
     title: 'Business News',
   },
   {
-    url: 'https://images.unsplash.com/photo-1677640724372-adb865d29aa8?w=800&q=80',
+    url: '/images/media/et_now.jpg',
     title: 'Awards & Recognition',
   },
   {
-    url: 'https://images.unsplash.com/photo-1758691737538-220c1902b1ca?w=800&q=80',
-    title: 'Team Celebrations',
+    url: '/images/media/primetoday.jpg',
+    title: 'Business Magazine',
   },
 ]
 
