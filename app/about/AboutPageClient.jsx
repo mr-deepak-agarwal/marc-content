@@ -590,7 +590,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* JOURNEY TIMELINE */}
+      {/* JOURNEY TIMELINE — HORIZONTAL */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-4 mb-8">
@@ -604,41 +604,97 @@ export default function AboutPageClient() {
             From Local Roots to Global Reach
           </h2>
 
-          <div className="relative">
-            <div className="absolute top-0 bottom-0 left-[20px] lg:left-1/2 w-[3px] bg-gradient-to-b from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
-            
-            <div className="space-y-12">
-              {timeline.map((item, i) => (
-                <div 
-                  key={i}
-                  data-timeline-item
-                  data-index={i}
-                  className={`relative flex items-center gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
-                >
-                  <div 
-                    className={`absolute left-[12px] lg:left-1/2 lg:-translate-x-1/2 w-4 h-4 rounded-full border-4 border-white shadow-lg z-10 transition-all duration-700 ${
-                      visibleTimeline.includes(i) 
-                        ? 'bg-[#4E9141] scale-125' 
-                        : 'bg-[#C2DDB4] scale-100'
-                    }`}
-                  />
-                  
-                  <div 
-                    className={`ml-12 lg:ml-0 lg:w-[45%] ${i % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12'} transition-all duration-700 ${
-                      visibleTimeline.includes(i)
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-8'
-                    }`}
-                    style={{ transitionDelay: `${i * 100}ms` }}
-                  >
-                    <div className="bg-[#F7FFF5] rounded-xl p-6 border border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#4E9141]/50 transition-all duration-300 group">
-                      <span className="text-[#4E9141] font-bold text-3xl group-hover:scale-110 inline-block transition-transform">{item.year}</span>
-                      <h4 className="text-xl font-bold text-[#1D342F] mt-2">{item.title}</h4>
-                      <p className="text-[#47635D] mt-1">{item.desc}</p>
-                    </div>
+          {/* Horizontal timeline — scrollable on small screens */}
+          <div className="overflow-x-auto pb-4">
+            <div className="min-w-[860px]">
+
+              {/* TOP ROW: cards for even-index items (0, 2, 4) */}
+              <div className="flex">
+                {timeline.map((item, i) => (
+                  <div key={i} className="flex-1 flex flex-col items-center px-2">
+                    {i % 2 === 0 ? (
+                      <div
+                        data-timeline-item
+                        data-index={i}
+                        className={`w-full transition-all duration-700 ${
+                          visibleTimeline.includes(i)
+                            ? 'opacity-100 translate-y-0'
+                            : 'opacity-0 translate-y-8'
+                        }`}
+                        style={{ transitionDelay: `${i * 100}ms` }}
+                      >
+                        <div className="bg-[#F7FFF5] rounded-xl p-6 border border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#4E9141]/50 transition-all duration-300 group text-center">
+                          <span className="text-[#4E9141] font-bold text-3xl group-hover:scale-110 inline-block transition-transform">
+                            {item.year}
+                          </span>
+                          <h4 className="text-xl font-bold text-[#1D342F] mt-2">{item.title}</h4>
+                          <p className="text-[#47635D] mt-1 text-sm">{item.desc}</p>
+                        </div>
+                        {/* Stem down to dot */}
+                        <div className="flex justify-center">
+                          <div className="w-[3px] h-10 bg-gradient-to-b from-[#4E9141] to-[#C2DDB4]" />
+                        </div>
+                      </div>
+                    ) : (
+                      /* Spacer for odd items — their card is below the line */
+                      <div className="h-[174px]" />
+                    )}
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {/* MIDDLE ROW: horizontal line with animated dots */}
+              <div className="flex items-center">
+                {timeline.map((item, i) => (
+                  <div key={i} className="flex-1 flex items-center">
+                    <div className="flex-1 h-[3px] bg-gradient-to-r from-[#C2DDB4] to-[#4E9141]/60" />
+                    <div
+                      className={`w-5 h-5 rounded-full border-4 border-white shadow-lg flex-shrink-0 transition-all duration-700 ${
+                        visibleTimeline.includes(i)
+                          ? 'bg-[#4E9141] scale-125'
+                          : 'bg-[#C2DDB4] scale-100'
+                      }`}
+                      style={{ transitionDelay: `${i * 100}ms` }}
+                    />
+                    <div className="flex-1 h-[3px] bg-gradient-to-r from-[#4E9141]/60 to-[#C2DDB4]" />
+                  </div>
+                ))}
+              </div>
+
+              {/* BOTTOM ROW: cards for odd-index items (1, 3) */}
+              <div className="flex">
+                {timeline.map((item, i) => (
+                  <div key={i} className="flex-1 flex flex-col items-center px-2">
+                    {i % 2 !== 0 ? (
+                      <div
+                        data-timeline-item
+                        data-index={i}
+                        className={`w-full transition-all duration-700 ${
+                          visibleTimeline.includes(i)
+                            ? 'opacity-100 translate-y-0'
+                            : 'opacity-0 -translate-y-8'
+                        }`}
+                        style={{ transitionDelay: `${i * 100}ms` }}
+                      >
+                        {/* Stem up from dot */}
+                        <div className="flex justify-center">
+                          <div className="w-[3px] h-10 bg-gradient-to-b from-[#C2DDB4] to-[#4E9141]" />
+                        </div>
+                        <div className="bg-[#F7FFF5] rounded-xl p-6 border border-[#C2DDB4]/30 hover:shadow-xl hover:border-[#4E9141]/50 transition-all duration-300 group text-center">
+                          <span className="text-[#4E9141] font-bold text-3xl group-hover:scale-110 inline-block transition-transform">
+                            {item.year}
+                          </span>
+                          <h4 className="text-xl font-bold text-[#1D342F] mt-2">{item.title}</h4>
+                          <p className="text-[#47635D] mt-1 text-sm">{item.desc}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="h-[174px]" />
+                    )}
+                  </div>
+                ))}
+              </div>
+
             </div>
           </div>
         </div>
