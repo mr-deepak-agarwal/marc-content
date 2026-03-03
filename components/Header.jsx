@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Lightbulb, Globe2, Building2 } from 'lucide-react'
 import { useLoading } from '@/components/loading-store'
 
@@ -68,13 +69,43 @@ export default function Header() {
   const [hoveredIndex, setHoveredIndex] = useState(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 })
   const navRef = useRef(null)
+  const pathname = usePathname()
   const { setLoading } = useLoading()
+  const loadingTimerRef = useRef(null)
 
+  // Safety net: always clear loader after 3s max, in case navigation fails or same-page click
   const handleClick = (href) => {
     if (href.startsWith('/#')) return
+
+    // Strip query/hash for comparison
+    const hrefPath = href.split('?')[0].split('#')[0]
+    const currentPath = pathname.split('?')[0].split('#')[0]
+
+    // Don't show loader if already on that page
+    if (hrefPath === currentPath) return
+
     setLoading(true)
     setIsMobileMenuOpen(false)
+
+    // Fallback: clear loader after 3s in case something goes wrong
+    if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current)
+    loadingTimerRef.current = setTimeout(() => {
+      setLoading(false)
+    }, 3000)
   }
+
+  // Always clear loader when pathname changes (normal navigation)
+  useEffect(() => {
+    setLoading(false)
+    if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current)
+  }, [pathname, setLoading])
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current)
+    }
+  }, [])
 
   const handleMouseEnter = (e, index) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -99,7 +130,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
 
-            {/* Logo — no-grayscale keeps it in full colour */}
+            {/* Logo */}
             <Link href="/" onClick={() => handleClick('/')} data-testid="header-logo">
               <img
                 src="/marc_logo.png"
