@@ -224,9 +224,9 @@
 .bg-mesh-marc {
   background-color: var(--marc-warm-neutral);
   background-image: 
-    radial-gradient(at 40% 20%, rgba(95, 187, 70, 0.1) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(93, 159, 148, 0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(95, 187, 70, 0.08) 0px, transparent 50%);
+  radial-gradient(at 40% 20%, rgba(95, 187, 70, 0.1) 0px, transparent 50%),
+  radial-gradient(at 80% 0%, rgba(93, 159, 148, 0.1) 0px, transparent 50%),
+  radial-gradient(at 0% 50%, rgba(95, 187, 70, 0.08) 0px, transparent 50%);
 }
 
 /* ========================================= */
@@ -567,6 +567,10 @@
   .will-change-opacity {
     will-change: opacity;
   }
+}
+
+.no-grayscale{
+  filter: none !important;
 }
 
 img {

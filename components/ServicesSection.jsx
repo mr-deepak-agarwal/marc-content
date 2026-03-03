@@ -52,7 +52,7 @@ const ServicesSection = () => {
                   className={`absolute inset-0 transition-all duration-500 ${
                     hoveredService === index
                       ? 'bg-[#4E9141]/85'
-                      : 'bg-gradient-to-t from-[#1D342F]/90 via-[#1D342F]/50 to-transparent'
+                      : 'bg-black/40'
                   }`}
                 />
               </div>
