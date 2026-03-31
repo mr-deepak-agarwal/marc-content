@@ -45,7 +45,7 @@ export default function ServicePageTemplateOption2({
   // Default service images if not provided
   const defaultServiceImages = [
     'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', // analytics dashboard
-    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80', // financial charts
+    'https://images.unsplash.com/photo-1721714933699-1a7650a79754?w=600&q=80', // financial charts
     'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80', // documents on desk
     'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80', // glass office building
     'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80', // data on screens

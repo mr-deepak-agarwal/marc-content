@@ -628,7 +628,7 @@ export default function ContactPage() {
                 <div className="space-y-6">
                   <div>
                     <p className="text-[#C2DDB4] text-sm mb-1">Address</p>
-                    <p className="text-white">2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourem, Panaji, Goa 403001</p>
+                    <p className="text-white">Office No 202, Second Floor CMM Building Rua De Ourem Panaji Goa 403001</p>
                   </div>
                   <div>
                     <p className="text-[#C2DDB4] text-sm mb-1">Phone</p>
