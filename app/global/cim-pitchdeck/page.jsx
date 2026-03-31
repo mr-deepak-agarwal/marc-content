@@ -27,7 +27,7 @@ const pageData = {
     {
       icon: Scale,
       title: 'Credibility',
-      desc: 'Each document is grounded in robust financial analysis, valuation logic, and a clear articulation of value creation—ensuring credibility throughout investor discussions.',
+      desc: 'Each document is grounded in verified data and aligned with industry standards, supported by financial analysis, valuation logic, and clear value creation ensuring credibility in investor discussions.',
     },
     {
       icon: TrendingUp,
@@ -97,7 +97,7 @@ const pageData = {
         'Investment thesis and key value drivers',
         'Market sizing and competitive landscaping',
         'Financial modeling and value bridge narratives',
-        'Clean design + sharp messaging',
+        'Clean design aligned with brand identity and colour.',
       ],
       icon: Layers,
     },

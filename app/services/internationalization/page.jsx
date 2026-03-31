@@ -36,25 +36,25 @@ const pageData = {
   services: [
     {
       title: 'India Entry Services',
-      desc: 'Help international companies enter and grow in the Indian market.',
+      desc: 'Support international companies in entering and scaling in India through data-backed market assessment, regulatory navigation, partner identification, and on-ground setup execution.',
       features: ['Market Assessment', 'Partner Search', 'Setup Support'],
       icon: MapPin,
     },
     {
       title: 'Global Expansion',
-      desc: 'Support Indian companies expanding to international markets.',
+      desc: 'Enable Indian companies to expand into global markets through structured market selection, entry strategy design, and execution support.',
       features: ['Market Selection', 'Entry Strategy', 'Execution Support'],
       icon: Globe,
     },
     {
       title: 'Cross-border M&A',
-      desc: 'Facilitate cross-border acquisitions and joint ventures.',
+      desc: 'Facilitate cross-border acquisitions and joint ventures through structured target identification, commercial and financial due diligence, and end-to-end deal execution',
       features: ['Target Search', 'Due Diligence', 'Deal Execution'],
       icon: Building2,
     },
     {
       title: 'Regulatory & Compliance',
-      desc: 'Navigate regulatory requirements for international operations.',
+      desc: 'Support international operations by navigating regulatory frameworks, FDI norms, and entity setup requirements.',
       features: ['FDI Compliance', 'Entity Setup', 'Ongoing Compliance'],
       icon: FileCheck,
     },

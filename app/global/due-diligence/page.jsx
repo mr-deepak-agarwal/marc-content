@@ -55,17 +55,17 @@ const pageData = {
     {
       num: '03',
       title: 'Data Collection',
-      desc: 'Collect financials, tax filings, bank statements, and debt agreements. Conduct preliminary review to identify gaps and inconsistencies.',
+      desc: 'Collect financials, tax filings, bank statements, and debt agreements. Conduct preliminary review, including initial cash proof checks, to identify gaps and inconsistencies',
     },
     {
       num: '04',
       title: 'Financial Normalisation',
-      desc: 'Adjustments for non-recurring and non-operational items to derive a clean, sustainable EBITDA baseline.',
+      desc: 'Adjust for non-recurring and non-operational items to derive a clean, sustainable EBITDA baseline. Perform EBITDA bridge analysis to reconcile reported to adjusted earnings.',
     },
     {
       num: '05',
       title: 'Detailed Analysis',
-      desc: 'Detailed analysis of liquidity, working capital, revenue quality, margins, KPIs, and GAAP compliance.',
+      desc: 'Detailed analysis of liquidity, working capital, revenue quality, margins, KPIs, and GAAP compliance. Include working capital PEG assessment to evaluate normalized working capital requirements.',
     },
     {
       num: '06',
@@ -152,7 +152,7 @@ const pageData = {
     },
     {
       q: 'What is included in financial due diligence services?',
-      a: 'Financial due diligence typically includes QoE analysis, working capital and cash flow assessment, cash proof analysis, accounting policy review, and identification of valuation risks.',
+      a: 'Financial due diligence typically includes QoE analysis, working capital PEG and cash flow assessment, cash proof analysis, accounting policy review, and identification of valuation risks.',
     },
     {
       q: 'Why is a Quality of Earnings report important?',

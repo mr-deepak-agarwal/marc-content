@@ -110,9 +110,19 @@ const pageData = {
       client: 'Healthcare Technology Company (USA)',
       industry: 'Healthcare SaaS',
       service: 'Business Valuation & Information Memorandum',
-      challenge: 'A U.S.-based healthcare technology company engaged MARC to support capital raising and strategic growth initiatives. The company provided software-enabled solutions to hospitals and outpatient providers, generating recurring subscription and transaction-based revenues. Objectives: establish enterprise valuation by assessing financial performance, scalability, and market opportunity; prepare an investor-focused Information Memorandum highlighting the business model, technology platform, regulatory environment, and growth strategy.',
-      solution: 'Reviewed historical financials, analysing revenue mix, customer concentration, churn metrics, and operating leverage. Developed forward-looking financial projections incorporating customer growth, pricing expansion, margin improvement, and platform scalability. Conducted valuation using DCF, supported by benchmarking against comparable U.S. and global healthcare technology companies and recent transactions. Assessed key value drivers including recurring revenue visibility, regulatory readiness, platform scalability, and customer acquisition efficiency. Performed sensitivity analysis on reimbursement risk, implementation timelines, and customer retention.',
-      result: 'A robust, market-aligned valuation and a well-structured Information Memorandum. The company was positioned as a scalable healthcare technology platform with strong recurring revenues, regulatory readiness, and a clearly articulated growth strategy, supporting effective investor engagement.',
+      challenge: [
+        '**U.S.-based healthcare SaaS** company serving hospitals and outpatient providers',
+        'Revenues from **recurring subscriptions** and transaction-based fees',
+        'Needed **enterprise valuation** to support capital raising discussions',
+        'Required an **investor-ready IM** covering business model, technology, and growth strategy',
+      ],
+      solution: [
+        'Analysed historical financials including **revenue mix, churn, and customer concentration**',
+        'Built financial model with **growth, pricing, and margin expansion** assumptions',
+        'Conducted **DCF and benchmarking** using U.S. and global comparables',
+        'Performed **sensitivity analysis** across key operational and regulatory risks',
+      ],
+      result: 'Established a defensible, investor-aligned valuation with a **10% improvement in valuation positioning** versus initial expectations. Delivered an investor-ready Information Memorandum enabling structured discussions and improved engagement with multiple investors.',
     },
   ],
 

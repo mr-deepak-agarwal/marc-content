@@ -45,7 +45,7 @@ export default function ServicePageTemplateOption2({
   // Default service images if not provided
   const defaultServiceImages = [
     'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', // analytics dashboard
-    'https://images.unsplash.com/photo-1721714933699-1a7650a79754?w=600&q=80', // financial charts
+    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80', // financial charts
     'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80', // documents on desk
     'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80', // glass office building
     'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80', // data on screens
@@ -60,7 +60,7 @@ export default function ServicePageTemplateOption2({
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left - Content */}
             <div>
               <div className="flex items-center gap-3 mb-8">
@@ -89,11 +89,11 @@ export default function ServicePageTemplateOption2({
 
               {/* Stats inline */}
               {stats && (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4">
                   {stats.map((stat, i) => (
-                    <div key={i} className="text-center sm:text-left">
-                      <div className="text-3xl font-bold text-[#4E9141]">{stat.value}</div>
-                      <div className="text-[#47635D] text-sm mt-1">{stat.label}</div>
+                    <div key={i} className="text-center sm:text-left min-w-0">
+                      <div className="text-2xl lg:text-3xl font-bold text-[#4E9141] leading-tight break-words">{stat.value}</div>
+                      <div className="text-[#47635D] text-sm mt-1 leading-snug">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -101,7 +101,7 @@ export default function ServicePageTemplateOption2({
             </div>
 
             {/* Right - Large Image */}
-            <div className="relative hidden lg:block">
+            <div className="relative hidden lg:block sticky top-8">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src={heroImage} 
@@ -254,49 +254,54 @@ export default function ServicePageTemplateOption2({
               </Link>
             </div>
 
-            {/* 1 case study → full-width horizontal card */}
-            {caseStudies.length === 1 && (
-              <div
-                className="bg-[#162b23] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group"
-              >
-                <div className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74]" />
-                <div className="p-8 lg:p-10">
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#F97316]/10 text-[#FDBA74]">
-                      {caseStudies[0].industry}
-                    </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-[#C2DDB4]">
-                      {caseStudies[0].service}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-8 group-hover:text-[#FDBA74] transition-colors">
-                    {caseStudies[0].client}
-                  </h3>
-                  <div className="grid lg:grid-cols-3 gap-8">
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">
-                        Challenge
-                      </p>
-                      <p className="text-[#C2DDB4] text-sm leading-relaxed">{caseStudies[0].challenge}</p>
+            {/* 1 case study → full-width structured snapshot card */}
+            {caseStudies.length === 1 && (() => {
+              const s = caseStudies[0]
+              const renderField = (val, highlight) => {
+                if (Array.isArray(val)) {
+                  return (
+                    <ul className="space-y-2">
+                      {val.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-[#C2DDB4] leading-snug">
+                          <span className="mt-[5px] w-[5px] h-[5px] rounded-full bg-[#F97316] shrink-0" />
+                          <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, '<strong class="text-white">$1</strong>') }} />
+                        </li>
+                      ))}
+                    </ul>
+                  )
+                }
+                if (highlight) {
+                  return <p className="text-sm font-semibold text-white leading-relaxed bg-[#F97316]/5 rounded-lg px-4 py-3">{val}</p>
+                }
+                return <p className="text-[#C2DDB4] text-sm leading-relaxed">{val}</p>
+              }
+              return (
+                <div className="bg-[#162b23] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group">
+                  <div className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74]" />
+                  <div className="p-8 lg:p-10">
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#F97316]/10 text-[#FDBA74]">{s.industry}</span>
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-[#C2DDB4]">{s.service}</span>
                     </div>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">
-                        Solution
-                      </p>
-                      <p className="text-[#C2DDB4] text-sm leading-relaxed">{caseStudies[0].solution}</p>
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">
-                        Result
-                      </p>
-                      <p className="text-sm font-semibold text-white leading-relaxed bg-[#F97316]/5 rounded-lg px-4 py-3">
-                        {caseStudies[0].result}
-                      </p>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-8 group-hover:text-[#FDBA74] transition-colors">{s.client}</h3>
+                    <div className="grid lg:grid-cols-3 gap-8">
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">Challenge</p>
+                        {renderField(s.challenge, false)}
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">Solution</p>
+                        {renderField(s.solution, false)}
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-3 pb-1 border-b border-[#F97316]/20">Result</p>
+                        {renderField(s.result, true)}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )
+            })()}
 
             {/* 2 case studies → 2-column horizontal cards */}
             {caseStudies.length === 2 && (
