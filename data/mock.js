@@ -31,45 +31,40 @@ export const aboutSection = {
 export const services = [
   {
     id: 1,
+    title: "M&A & Strategic Partnerships",
+    description: "Deal screening, commercial due diligence, growth thesis validation, synergy modelling, and post-merger value creation.",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Corporate buildings representing M&A and strategic partnerships",
+    link: "/services/mergers-acquisitions"
+  },
+  {
+    id: 2,
     title: "Growth Strategy & GTM",
-    description: "Market prioritisation, value proposition, pricing, channel strategy, market assessment, localisation, regulatory context",
-    // Bold upward arrow chart on dark background — sharp and striking
+    description: "Market prioritisation, value proposition, pricing, channel strategy, market assessment, localisation, regulatory context.",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=90",
     imageAlt: "Growth strategy analytics dashboard",
     link: "/services/growth-strategy"
   },
   {
-    id: 2,
+    id: 3,
     title: "India Entry & Expansion",
-    description: "Market assessment, partner strategy, localisation, regulatory context, and launch support.",
-    // Aerial city skyline — Mumbai feel, no people
+    description: "Market assessment, partner strategy, localisation, regulatory context, and launch support for global businesses entering India.",
     image: "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=800&h=600&fit=crop&q=90",
     imageAlt: "India city skyline representing market entry",
     link: "/services/india-entry"
   },
   {
-    id: 3,
+    id: 4,
     title: "Expansion for Indian Firms",
-    description: "Market selection, entry strategy, operating models, and early-stage execution support.",
-    // Globe / world map on desk — international feel, no people
+    description: "Market selection, entry strategy, operating models, and early-stage execution support for Indian businesses going global.",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=90",
     imageAlt: "Global expansion strategy and world map",
     link: "/services/international-expansion"
   },
   {
-    id: 4,
-    title: "Customer & Market Intelligence",
-    description: "Deep consumer, B2B, and category insights to reduce risk and sharpen decisions.",
-    // Clean data dashboard on monitor — sharp, no people
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=90",
-    imageAlt: "Market intelligence analytics dashboard",
-    link: "/services/market-intelligence"
-  },
-  {
     id: 5,
     title: "Feasibility Studies",
     description: "Product-Market Fit assessment, competitive landscape, product viability, land utilisation and feasibility evaluation.",
-    // Architectural blueprint / building plans overhead — clean and technical
     image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&q=90",
     imageAlt: "Feasibility study blueprints and architectural plans",
     link: "/services/feasibility-studies"
@@ -78,7 +73,6 @@ export const services = [
     id: 6,
     title: "Financial Assessment & Analytics",
     description: "Profitability analyses, industry and competitor benchmarking to guide strategic decisions.",
-    // Financial charts and graphs — crisp, no people
     image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=600&fit=crop&q=90",
     imageAlt: "Financial analytics and performance charts",
     link: "/services/financial-analytics"
@@ -87,24 +81,22 @@ export const services = [
     id: 7,
     title: "Process & System Optimization",
     description: "Process audits, SOP review and system optimization to sustain compounding growth.",
-    // Clean geometric gears / workflow diagram — no wires, no people
     image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&q=90",
     imageAlt: "Process optimization and system workflow",
     link: "/services/process-optimization"
   },
   {
     id: 8,
-    title: "M&A & Strategic Partnerships",
-    description: "Deal screening, commercial due diligence, growth thesis validation, synergy modelling, and post-merger value creation.",
-    // Two modern glass buildings merging / reflecting each other — no people
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=90",
-    imageAlt: "Corporate buildings representing M&A and strategic partnerships",
-    link: "/services/mergers-acquisitions"
+    title: "Customer & Market Intelligence",
+    description: "Deep consumer, B2B, and category insights to reduce risk and sharpen decisions.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=90",
+    imageAlt: "Market intelligence analytics dashboard",
+    link: "/services/market-intelligence"
   }
 ];
 
 export const industries = [
-  "Manufacturing",
+  "Manufacturing & FMCG",
   "F&B (Food & Beverage)",
   "Hospitality",
   "Retail",
@@ -113,6 +105,57 @@ export const industries = [
   "Education",
   "Technology"
 ];
+
+export const industryDetails = {
+  "Manufacturing & FMCG": {
+    description: "We support manufacturers and FMCG companies with market entry, distribution strategy, process audits, and financial assessments. From factory to shelf, MARC helps optimise the full value chain.",
+    services: ["Market Research", "Process Audit", "Financial Assessment", "Distribution Strategy"],
+    clients: ["Kineco", "Optel (Manufacturing Technology)"],
+    image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&h=600&fit=crop&q=90",
+  },
+  "F&B (Food & Beverage)": {
+    description: "From QSR to premium dining, we help F&B businesses with feasibility studies, market expansion research, and operational efficiency programmes.",
+    services: ["Feasibility Studies", "Market Expansion", "SOP Design", "Financial Modelling"],
+    clients: ["EP Kamat", "Maduas"],
+    image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=800&h=600&fit=crop&q=90",
+  },
+  "Hospitality": {
+    description: "MARC partners with hotel groups, resorts, and hospitality chains to drive revenue strategy, conduct market assessments, and optimise operations.",
+    services: ["Revenue Strategy", "Market Assessment", "Internal Audit", "SOP Design"],
+    clients: ["Marriott", "Taj Hotels", "The Park Hotels", "Planet Hollywood Goa"],
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&h=600&fit=crop&q=90",
+  },
+  "Retail": {
+    description: "We help retail businesses understand customer demand, evaluate new locations, assess competition, and build scalable operating models.",
+    services: ["Customer Intelligence", "Location Feasibility", "Process Audit", "Growth Strategy"],
+    clients: ["Magsons (Retail)"],
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&q=90",
+  },
+  "Pharma": {
+    description: "MARC supports pharma and life sciences firms with regulatory landscape analysis, market entry research, and distribution feasibility across geographies.",
+    services: ["Market Entry Research", "Regulatory Analysis", "Distribution Feasibility", "Due Diligence"],
+    clients: ["Tulip Diagnostics"],
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=600&fit=crop&q=90",
+  },
+  "Real Estate": {
+    description: "From land feasibility to commercial asset valuation, MARC provides end-to-end advisory to real estate developers, investors, and co-working operators.",
+    services: ["Land Feasibility", "Valuation", "Market Research", "Investment Advisory"],
+    clients: ["CMM Group"],
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=600&fit=crop&q=90",
+  },
+  "Education": {
+    description: "We advise educational institutions and EdTech businesses on expansion strategy, demand assessment, and operational transformation.",
+    services: ["Expansion Strategy", "Demand Assessment", "Financial Modelling", "SOP Design"],
+    clients: [],
+    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&q=90",
+  },
+  "Technology": {
+    description: "MARC supports technology companies and SaaS businesses with go-to-market strategy, investor readiness, and business valuation for fundraising.",
+    services: ["Go-to-Market Strategy", "Investor Readiness", "Business Valuation", "Due Diligence"],
+    clients: ["Isha Yoga", "Danlow"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&q=90",
+  },
+};
 
 export const industryImages = {
   "Manufacturing": {

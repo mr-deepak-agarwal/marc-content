@@ -119,54 +119,63 @@ const associates = [
     role: 'Consultant - Human Capital',
     image: '/images/about/priyanka-kamat.jpeg',
     linkedin: null,
+    location: 'Goa',
   },
   {
     name: 'Karan Shah',
     role: 'Associate Partner',
     image: '/images/about/karan-shah.jpg',
     linkedin: null,
+    location: 'Mumbai',
   },
   {
     name: 'Manu Kurian',
     role: 'Associate Partner',
     image: '/images/about/manu-kurian.jpg',
     linkedin: null,
+    location: 'Kerala',
   },
   {
     name: 'Manas Joshi',
     role: 'Associate Partner',
     image: '/images/about/manas-joshi.jpg',
     linkedin: null,
+    location: 'Pune',
   },
   {
     name: 'Varsha Chopra',
     role: 'Associate Partner',
     image: '/images/about/varsha-chopra.jpg',
     linkedin: null,
+    location: 'North East',
   },
   {
     name: 'Ruchi Jindal',
     role: 'Associate Partner',
     image: '/images/about/ruchi-jindal.jpg',
     linkedin: null,
+    location: 'Indore',
   },
   {
     name: 'Atanu Sengupta',
     role: 'Associate Partner',
     image: '/images/about/atanu-sengupta.jpg',
     linkedin: null,
+    location: 'Kolkata',
   },
   {
     name: 'Ayush Soni',
     role: 'Associate Partner',
     image: '/images/about/ayush-soni.jpg',
     linkedin: null,
+    location: 'Gujarat',
   },
   {
-    name: 'CA Shrinidhi Rao',
+    name: 'CA, CPA Shrinidhi Rao',
     role: 'Associate Partner',
     image: '/images/about/shrinidhi-rao.jpg',
     linkedin: null,
+    location: 'Udupi',
   },
 ]
 
@@ -192,12 +201,10 @@ const domainExperts = [
 ]
 
 const timeline = [
-  { year: '2010', title: 'Founded', desc: 'Started as Mangal Advisory Services' },
-  { year: '2014', title: 'Global Expansion', desc: 'Partnership with Mundi Consulting' },
-  { year: '2015', title: 'Rebranded to MARC', desc: 'Expanded service offerings' },
-  { year: '2020', title: 'Pan-India Presence', desc: '8+ cities across India' },
-  { year: '2024', title: 'USA Operations', desc: 'MARC Glocal Inc, Delaware' },
-  { year: '2026', title: 'And Growing', desc: '500+ clients, 15+ global partners' },
+  { year: '2012', title: 'Founded', desc: '3 people, 1 location, 200 sq ft office — MARC begins' },
+  { year: '2020', title: 'Rapid Growth', desc: '30+ people, 10 offices, 2,000 sq ft — Pan-India presence' },
+  { year: '2021', title: 'USA Operations', desc: 'MARC Glocal Inc established — entering the American market' },
+  { year: '2026', title: 'And Growing', desc: '14+ offices, 50+ people, 100+ associates worldwide' },
 ]
 
 const clientsRow1 = [
@@ -243,7 +250,7 @@ const affiliations = [
 
 const locations = [
   { city: 'Panaji, Goa', type: 'Headquarters', address: '2nd Floor, CMM Building, Above Sarvaa Restaurant, Rua de Ourém', phone: '+91-93596 28675' },
-  { city: 'Delaware, USA', type: 'USA Office', address: '16192 Coastal Highway, Lewes, Delaware 19958', phone: '+91-93596 28675' },
+  { city: 'USA', type: 'USA Office', address: '16192 Coastal Highway, Lewes, Delaware 19958', phone: '+91-93596 28675' },
   { city: 'Mumbai', type: 'Branch', address: 'B/509, Satyam Apartments, Link Road, Borivali West', phone: '+91-90295 03690' },
   { city: 'Pune', type: 'Branch', address: '2nd Floor, Flat No. 5, Godawari Apartment, Karve Road', phone: '+91-91194 59098' },
   { city: 'Kolkata', type: 'Branch', address: 'Ramakrishna Palli, VIP Road, Kaikhali, 2nd Floor', phone: '+91-83368 25469' },
@@ -503,10 +510,15 @@ export default function AboutPageClient() {
                 <span className="text-[#4E9141]"> For the Better</span>
               </h1>
               
-              <p className="text-xl text-[#47635D] leading-relaxed mb-8">
-                MARC is a global strategy consultancy helping business leaders 
+              <p className="text-xl font-semibold text-[#1D342F] leading-relaxed mb-4">
+                MARC is a global advisory firm helping business leaders 
                 seize competitive advantage through data-driven insights and 
                 expert advisory services.
+              </p>
+
+              <p className="text-lg text-[#47635D] leading-relaxed mb-8">
+                With presence across 14+ offices and 100+ associates worldwide, we partner with founders, 
+                leadership teams, and investors to build scalable, resilient businesses.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -561,7 +573,7 @@ export default function AboutPageClient() {
           <div className="flex items-center gap-4 mb-8">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
             <span className="text-[#1D342F] font-bold text-lg uppercase tracking-[0.1em]">
-              Our Purpose
+              Our Vision and Mission
             </span>
           </div>
 
@@ -849,6 +861,7 @@ export default function AboutPageClient() {
 
           {/* ASSOCIATES */}
           <div className="mt-20">
+            <div className="w-full h-[2px] bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-transparent mb-12" />
             <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
               Associates and Partners
             </h2>
@@ -865,7 +878,10 @@ export default function AboutPageClient() {
                   </div>
                   <div className="p-4">
                     <h3 className="text-base font-bold text-[#1D342F] mb-1">{member.name}</h3>
-                    <p className="text-[#47635D] text-xs mb-2">{member.role}</p>
+                    <p className="text-[#47635D] text-xs mb-1">{member.role}</p>
+                    {member.location && (
+                      <p className="text-[#4E9141] text-xs font-medium mb-2">{member.location}</p>
+                    )}
                     <a 
                       href={member.linkedin || '#'}
                       target={member.linkedin ? "_blank" : "_self"}

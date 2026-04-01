@@ -63,9 +63,9 @@ export default function ServicePageTemplateOption2({
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left - Content */}
             <div>
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-[2px] bg-[#4E9141]" />
-                <span className="text-[#4E9141] font-medium tracking-wide uppercase text-sm">{tagline}</span>
+                <span className="text-[#4E9141] font-bold tracking-wide uppercase text-sm">{tagline}</span>
               </div>
 
               <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-8">
@@ -73,7 +73,7 @@ export default function ServicePageTemplateOption2({
                 {titleHighlight && <span className="text-[#4E9141]"> {titleHighlight}</span>}
               </h1>
 
-              <p className="text-[#47635D] text-lg leading-relaxed mb-10 max-w-xl">
+              <p className="text-[#47635D] text-lg font-medium leading-relaxed mb-10 max-w-xl">
                 {description}
               </p>
 

@@ -10,13 +10,13 @@ const ServicesSection = () => {
   return (
     <section id="services" data-testid="services-section" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        {/* ================= HEADER ================= */}
+        {/* HEADER */}
         <div className="max-w-3xl mb-16">
           <h2
             data-testid="services-heading"
             className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
           >
-            Our Core Advisory Areas
+            Our Core Expertise
           </h2>
 
           <p className="text-lg text-[#47635D] leading-relaxed mb-4">
@@ -24,11 +24,11 @@ const ServicesSection = () => {
           </p>
 
           <p className="text-[#4E9141] font-semibold text-lg">
-            Our role: clarify direction, unlock growth levers, and support execution.
+            Our role: guidance and direction in our role to unlock growth levers and support execution.
           </p>
         </div>
 
-        {/* ================= SERVICES GRID ================= */}
+        {/* SERVICES GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <div
@@ -46,29 +46,23 @@ const ServicesSection = () => {
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-
-                {/* Overlay */}
                 <div
                   className={`absolute inset-0 transition-all duration-500 ${
-                    hoveredService === index
-                      ? 'bg-[#4E9141]/85'
-                      : 'bg-black/40'
+                    hoveredService === index ? 'bg-[#4E9141]/85' : 'bg-black/40'
                   }`}
                 />
               </div>
 
-              {/* ================= CONTENT ================= */}
+              {/* CONTENT */}
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <div
                   className={`transform transition-all duration-500 ${
                     hoveredService === index ? '-translate-y-4' : 'translate-y-0'
                   }`}
                 >
-                  {/* Service title — no number prefix */}
                   <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 leading-snug tracking-tight">
                     {service.title}
                   </h3>
-
                   <p
                     className={`text-white/90 leading-relaxed transition-all duration-500 ${
                       hoveredService === index ? 'opacity-100 max-h-32' : 'opacity-0 max-h-0'
@@ -78,7 +72,7 @@ const ServicesSection = () => {
                   </p>
                 </div>
 
-                {/* Arrow Button */}
+                {/* Arrow */}
                 <div
                   className={`absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
                     hoveredService === index ? 'bg-white scale-110' : ''
@@ -95,7 +89,7 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* ================= CTA ================= */}
+        {/* CTA */}
         <div className="mt-12 text-center">
           <button
             data-testid="services-view-all"

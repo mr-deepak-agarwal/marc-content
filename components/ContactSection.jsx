@@ -34,7 +34,7 @@ const ContactSection = () => {
     <section
       id="contact"
       data-testid="contact-section"
-      className="py-24 lg:py-32 relative overflow-hidden"
+      className="mt-8 py-24 lg:py-32 relative overflow-hidden"
       style={{ backgroundColor: '#4E9141' }}
     >
       {/* Decorative blobs */}

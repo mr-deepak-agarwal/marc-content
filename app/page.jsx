@@ -26,11 +26,11 @@ export default function Home() {
         <HeroSection />
         <SectionDivider title="About Us" variant="line-text" />
         <AboutSection />
-        <SectionDivider title="What We Do" variant="line-text" />
+        <SectionDivider title="Core Offerings" variant="line-text" />
         <ServicesSection />
         <SectionDivider title="How We Work" variant="line-text" />
         <HowWeWorkSection />
-        <SectionDivider title="Who We Work With" variant="line-text" />
+        <SectionDivider title="Who We Partner With" variant="line-text" />
         <WhoWeWorkWithSection />
         <SectionDivider title="Industries" variant="line-text" />
         <IndustriesSection />
