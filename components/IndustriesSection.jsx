@@ -3,19 +3,26 @@
 import React, { useState } from 'react'
 import {
   Building2, ShoppingBag, Car, HeartPulse, ShoppingCart,
-  Building, Cpu, Factory, ArrowRight, X, CheckCircle2
+  Building, Cpu, Factory, ArrowRight, X, CheckCircle2,
+  Shirt, GraduationCap, Pill, Home, Utensils, Package
 } from 'lucide-react'
 import { industries, industryDetails } from '@/data/mock'
 
 const industryIcons = {
+  'Construction & Infrastructure': Building,
+  'Consumer Goods': Package,
+  'Automobile': Car,
+  'Clothing & Textiles': Shirt,
+  'E-Commerce': ShoppingCart,
+  'Education': GraduationCap,
+  'F&B (Food & Beverage)': Utensils,
+  'Healthcare': HeartPulse,
+  'Hospitality': Building2,
   'Manufacturing & FMCG': Factory,
-  'F&B (Food & Beverage)': ShoppingBag,
-  Hospitality: Building2,
-  Retail: ShoppingCart,
-  Pharma: HeartPulse,
-  'Real Estate': Building,
-  Education: Building,
-  Technology: Cpu,
+  'Pharma': Pill,
+  'Real Estate': Home,
+  'Retail': ShoppingBag,
+  'Technology': Cpu,
 }
 
 const IndustriesSection = () => {
@@ -71,7 +78,7 @@ const IndustriesSection = () => {
           </div>
 
           {/* Right - Industries Grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {industries.map((industry, index) => {
               const Icon = industryIcons[industry] || Building2
               const isHovered = hoveredIndustry === index

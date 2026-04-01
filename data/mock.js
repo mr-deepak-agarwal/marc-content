@@ -96,40 +96,82 @@ export const services = [
 ];
 
 export const industries = [
-  "Manufacturing & FMCG",
+  "Construction & Infrastructure",
+  "Consumer Goods",
+  "Automobile",
+  "Clothing & Textiles",
+  "E-Commerce",
+  "Education",
   "F&B (Food & Beverage)",
+  "Healthcare",
   "Hospitality",
-  "Retail",
+  "Manufacturing & FMCG",
   "Pharma",
   "Real Estate",
-  "Education",
-  "Technology"
+  "Retail",
+  "Technology",
 ];
 
 export const industryDetails = {
-  "Manufacturing & FMCG": {
-    description: "We support manufacturers and FMCG companies with market entry, distribution strategy, process audits, and financial assessments. From factory to shelf, MARC helps optimise the full value chain.",
-    services: ["Market Research", "Process Audit", "Financial Assessment", "Distribution Strategy"],
-    clients: ["Kineco", "Optel (Manufacturing Technology)"],
-    image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&h=600&fit=crop&q=90",
+  "Construction & Infrastructure": {
+    description: "MARC partners with construction leaders to refine operational models and manage the complexities of large-scale project feasibility. The firm's advisory services help clients mitigate localized risks while capitalizing on emerging urban development and infrastructure trends.",
+    services: ["Project Feasibility", "Operational Model Design", "Risk Assessment", "Market Research"],
+    clients: [],
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop&q=90",
+  },
+  "Consumer Goods": {
+    description: "In the fast-moving consumer goods sector, MARC translates deep market insights into scalable distribution networks and resilient product pipelines. The firm enables brands to turn shifting consumer behaviors into sustainable growth and increased market equity.",
+    services: ["Distribution Strategy", "Market Intelligence", "Product Feasibility", "Growth Strategy"],
+    clients: [],
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&q=90",
+  },
+  "Automobile": {
+    description: "MARC assists automotive stakeholders in navigating the shift toward next-generation mobility by optimizing supply chains and identifying high-growth market segments. The firm's strategic interventions ensure that operations remain resilient while capturing value in an increasingly tech-driven global landscape.",
+    services: ["Supply Chain Optimization", "Market Entry Research", "Feasibility Studies", "Strategic Advisory"],
+    clients: [],
+    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop&q=90",
+  },
+  "Clothing & Textiles": {
+    description: "From supply chain integration to strategic brand positioning, MARC guides apparel firms in scaling operations to capture broader market share. We focus on balancing trend agility with the structural efficiencies required to drive long-term, compounding profitability.",
+    services: ["Supply Chain Integration", "Brand Positioning", "Market Expansion", "Process Audit"],
+    clients: [],
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&q=90",
+  },
+  "E-Commerce": {
+    description: "MARC equips e-commerce ventures with the strategic frameworks necessary to transition from rapid customer acquisition to profitable, compounding scale. By optimizing operational efficiency and unit economics, we focus on building digital platforms designed for long-term market leadership.",
+    services: ["Unit Economics Analysis", "Growth Strategy", "Market Intelligence", "Operational Efficiency"],
+    clients: [],
+    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&q=90",
+  },
+  "Education": {
+    description: "MARC advises educational institutions and ed-tech providers on scaling their impact through digital transformation and rigorous market-entry strategies. Our goal is to align your operational model with the evolving demands of the modern learner and professional landscape.",
+    services: ["Market Entry Research", "Digital Transformation", "Expansion Strategy", "Financial Modelling"],
+    clients: [],
+    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&q=90",
   },
   "F&B (Food & Beverage)": {
-    description: "From QSR to premium dining, we help F&B businesses with feasibility studies, market expansion research, and operational efficiency programmes.",
+    description: "From farm-to-table logistics to the expansion of restaurant chains, MARC provides the feasibility insights and operational rigor needed to scale culinary brands. We help you maintain quality and consistency as you transition into new markets and demographics.",
     services: ["Feasibility Studies", "Market Expansion", "SOP Design", "Financial Modelling"],
     clients: ["EP Kamat", "Maduas"],
     image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=800&h=600&fit=crop&q=90",
   },
+  "Healthcare": {
+    description: "We support healthcare organizations in streamlining service delivery and navigating the regulatory complexities of expansion. Our advisory helps you build scalable, patient-centric models that prioritize both clinical excellence and financial sustainability.",
+    services: ["Regulatory Analysis", "Market Entry Research", "Financial Modelling", "Operational Strategy"],
+    clients: ["Tulip Diagnostics"],
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=600&fit=crop&q=90",
+  },
   "Hospitality": {
-    description: "MARC partners with hotel groups, resorts, and hospitality chains to drive revenue strategy, conduct market assessments, and optimise operations.",
+    description: "MARC partners with hospitality leaders to elevate guest experiences while driving significant improvements in operational efficiency and asset profitability. Whether managing boutique holdings or large-scale properties, our strategies ensure brands remain resilient and scalable at every inflection point.",
     services: ["Revenue Strategy", "Market Assessment", "Internal Audit", "SOP Design"],
     clients: ["Marriott", "Taj Hotels", "The Park Hotels", "Planet Hollywood Goa"],
     image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&h=600&fit=crop&q=90",
   },
-  "Retail": {
-    description: "We help retail businesses understand customer demand, evaluate new locations, assess competition, and build scalable operating models.",
-    services: ["Customer Intelligence", "Location Feasibility", "Process Audit", "Growth Strategy"],
-    clients: ["Magsons (Retail)"],
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&q=90",
+  "Manufacturing & FMCG": {
+    description: "We support manufacturers and FMCG companies with market entry, distribution strategy, process audits, and financial assessments. From factory to shelf, MARC helps optimise the full value chain for compounding growth.",
+    services: ["Market Research", "Process Audit", "Financial Assessment", "Distribution Strategy"],
+    clients: ["Kineco"],
+    image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&h=600&fit=crop&q=90",
   },
   "Pharma": {
     description: "MARC supports pharma and life sciences firms with regulatory landscape analysis, market entry research, and distribution feasibility across geographies.",
@@ -143,11 +185,11 @@ export const industryDetails = {
     clients: ["CMM Group"],
     image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=600&fit=crop&q=90",
   },
-  "Education": {
-    description: "We advise educational institutions and EdTech businesses on expansion strategy, demand assessment, and operational transformation.",
-    services: ["Expansion Strategy", "Demand Assessment", "Financial Modelling", "SOP Design"],
-    clients: [],
-    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&q=90",
+  "Retail": {
+    description: "We help retail businesses understand customer demand, evaluate new locations, assess competition, and build scalable operating models.",
+    services: ["Customer Intelligence", "Location Feasibility", "Process Audit", "Growth Strategy"],
+    clients: ["Magsons"],
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&q=90",
   },
   "Technology": {
     description: "MARC supports technology companies and SaaS businesses with go-to-market strategy, investor readiness, and business valuation for fundraising.",
