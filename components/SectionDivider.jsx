@@ -6,7 +6,7 @@ const SectionDivider = ({ title, variant = 'default' }) => {
   // Clean white background with orange accent line
   if (variant === 'line-text') {
     return (
-      <div className="w-full py-3 px-6 bg-white">
+      <div className="w-full pt-3 pb-2 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
             <span className="w-12 h-[3px] bg-[#B45309]" />

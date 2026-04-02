@@ -20,7 +20,7 @@ const AboutSection = () => {
   }
 
   return (
-    <section id="about" data-testid="about-section" className="py-14 bg-[#F7FFF5]">
+    <section id="about" data-testid="about-section" className="pb-14 pt-6 bg-[#F7FFF5]">
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= STATS BAR ================= */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">

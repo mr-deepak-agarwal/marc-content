@@ -32,7 +32,7 @@ const WhoWeWorkWithSection = () => {
   ]
 
   return (
-    <section id="who-we-work-with" data-testid="who-we-work-with-section" className="py-14 bg-[#F7FFF5]">
+    <section id="who-we-work-with" data-testid="who-we-work-with-section" className="pb-14 pt-6 bg-[#F7FFF5]">
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
         <div className="max-w-3xl mx-auto text-center mb-10">

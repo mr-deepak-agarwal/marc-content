@@ -41,7 +41,7 @@ const WhyUsSection = () => {
   ]
 
   return (
-    <section id="why-us" data-testid="why-us-section" className="py-14 bg-[#F7FFF5]">
+    <section id="why-us" data-testid="why-us-section" className="pb-14 pt-6 bg-[#F7FFF5]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* ================= LEFT CONTENT ================= */}

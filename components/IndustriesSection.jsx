@@ -35,7 +35,7 @@ const IndustriesSection = () => {
     <section
       id="industries"
       data-testid="industries-section"
-      className="py-14 lg:py-20 relative overflow-hidden"
+      className="pb-14 lg:pb-20 pt-6 relative overflow-hidden"
       style={{ backgroundColor: '#1D342F' }}
     >
       {/* Glow blobs */}

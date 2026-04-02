@@ -34,7 +34,7 @@ const TestimonialsSection = () => {
   }, [])
 
   return (
-    <section id="testimonials" data-testid="testimonials-section" className="py-14 bg-[#F0F8F6]">
+    <section id="testimonials" data-testid="testimonials-section" className="pb-14 pt-6 bg-[#F0F8F6]">
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
         <div className="text-center mb-10">

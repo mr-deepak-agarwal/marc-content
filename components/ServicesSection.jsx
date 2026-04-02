@@ -8,7 +8,7 @@ const ServicesSection = () => {
   const [hoveredService, setHoveredService] = useState(null)
 
   return (
-    <section id="services" data-testid="services-section" className="py-14 bg-white">
+    <section id="services" data-testid="services-section" className="pb-14 pt-6 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* HEADER */}
         <div className="max-w-3xl mb-10">
