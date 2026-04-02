@@ -16,7 +16,7 @@ const clients = [
 
 const ClientsSection = () => {
   return (
-    <section id="clients" data-testid="clients-section" className="pt-8 pb-24 bg-white overflow-hidden">
+    <section id="clients" data-testid="clients-section" className="pt-4 pb-14 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* HEADER */}
         <div className="max-w-3xl mb-14">

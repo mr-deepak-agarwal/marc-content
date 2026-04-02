@@ -34,10 +34,10 @@ const TestimonialsSection = () => {
   }, [])
 
   return (
-    <section id="testimonials" data-testid="testimonials-section" className="py-24 bg-[#F0F8F6]">
+    <section id="testimonials" data-testid="testimonials-section" className="py-14 bg-[#F0F8F6]">
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           {/* Large Heading - Insights Style */}
           <h2 
             data-testid="testimonials-heading"

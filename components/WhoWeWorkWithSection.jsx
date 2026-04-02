@@ -32,10 +32,10 @@ const WhoWeWorkWithSection = () => {
   ]
 
   return (
-    <section id="who-we-work-with" data-testid="who-we-work-with-section" className="py-24 bg-[#F7FFF5]">
+    <section id="who-we-work-with" data-testid="who-we-work-with-section" className="py-14 bg-[#F7FFF5]">
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= HEADER ================= */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-10">
           <h2 
             data-testid="who-we-work-with-heading"
             className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
