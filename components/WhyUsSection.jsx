@@ -46,10 +46,10 @@ const WhyUsSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* ================= LEFT CONTENT ================= */}
           <div className="flex flex-col justify-center">
-            {/* Reduced from text-6xl → text-5xl, matching AboutSection */}
+            {}
             <h2
               data-testid="why-us-heading"
-              className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1D342F] mb-6 leading-[1.15] tracking-tight"
+              className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
             >
               Why MARC
             </h2>

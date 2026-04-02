@@ -13,7 +13,7 @@ const InsightsSection = () => {
           <div>
             <h2
               data-testid="insights-heading"
-              className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1D342F] mb-4 leading-[1.15] tracking-tight"
+              className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-4 leading-[1.1] tracking-tight"
             >
               Opinions, Analytics & Thoughts
             </h2>
