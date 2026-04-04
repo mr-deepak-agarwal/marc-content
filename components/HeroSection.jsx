@@ -55,7 +55,7 @@ const HeroSection = () => {
   const goNext = () => goTo((current + 1) % slides.length)
 
   useEffect(() => {
-    const id = setInterval(goNext, 6000)
+    const id = setInterval(goNext, 3000)
     return () => clearInterval(id)
   }, [current])
 
