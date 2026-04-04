@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 
@@ -34,7 +34,6 @@ const slides = [
     heading: 'Your outsourcing partner for global mandates.',
     description: 'International consultants trust MARC for on-ground research, due diligence, and advisory execution across India and emerging markets.',
     image: '/about/IMG_0359.JPG',
-    isTeamPhoto: true,
     ctaPrimary: { label: 'Partner With Us', href: '/contact' },
     ctaSecondary: { label: 'Our Capabilities', href: '/services' },
   },
@@ -42,22 +41,27 @@ const slides = [
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0)
-  const [animating, setAnimating] = useState(false)
+  const currentRef = useRef(0)
 
-  const goTo = (index) => {
-    if (animating) return
-    setAnimating(true)
+  const goTo = useCallback((index) => {
+    currentRef.current = index
     setCurrent(index)
-    setTimeout(() => setAnimating(false), 600)
-  }
+  }, [])
 
-  const goPrev = () => goTo((current - 1 + slides.length) % slides.length)
-  const goNext = () => goTo((current + 1) % slides.length)
+  const goPrev = useCallback(() => {
+    goTo((currentRef.current - 1 + slides.length) % slides.length)
+  }, [goTo])
+
+  const goNext = useCallback(() => {
+    goTo((currentRef.current + 1) % slides.length)
+  }, [goTo])
 
   useEffect(() => {
-    const id = setInterval(goNext, 3000)
+    const id = setInterval(() => {
+      goTo((currentRef.current + 1) % slides.length)
+    }, 5000)
     return () => clearInterval(id)
-  }, [current])
+  }, [goTo])
 
   const slide = slides[current]
 
