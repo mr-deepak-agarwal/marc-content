@@ -15,7 +15,7 @@ const ServicesSection = () => {
         <div className="max-w-3xl mb-10">
           <h2
             data-testid="services-heading"
-            className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
+            className="text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
           >
             Our Core Expertise
           </h2>

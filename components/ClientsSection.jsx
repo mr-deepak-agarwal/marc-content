@@ -16,33 +16,24 @@ const clients = [
 
 const ClientsSection = () => {
   return (
-    <section id="clients" data-testid="clients-section" className="pt-2 pb-14 bg-white overflow-hidden">
+    <section id="clients" data-testid="clients-section" className="pt-6 pb-14 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* HEADER */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-14">
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-              <span className="w-12 h-[3px] bg-[#B45309]" />
-              <span className="text-[#1D342F] font-bold text-lg lg:text-xl uppercase tracking-[0.1em]">
-                Our Clients
-              </span>
-            </div>
-            <h2
-              data-testid="clients-heading"
-              className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-3 leading-[1.1] tracking-tight"
-            >
-              Trusted Partners in Business Consulting
-            </h2>
-            <p className="text-lg text-[#47635D]">
-              Organizations that rely on MARC for strategic clarity and execution.
-            </p>
-          </div>
+        {/* HEADER — same pattern as all other sections */}
+        <div className="mb-10">
+          <h2
+            data-testid="clients-heading"
+            className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-3 leading-[1.1] tracking-tight"
+          >
+            Trusted Partners in Business Consulting
+          </h2>
+          <p className="text-lg text-[#47635D]">
+            Organizations that rely on MARC for strategic clarity and execution.
+          </p>
         </div>
 
         {/* MARQUEE */}
         <div className="relative">
-          {/* Fade edges */}
           <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, white, transparent)' }} />
           <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, white, transparent)' }} />
 
