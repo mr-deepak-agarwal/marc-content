@@ -48,6 +48,10 @@ const IndustriesSection = () => {
           {/* Left Content */}
           <div className="lg:sticky lg:top-32">
             <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-[2px]" style={{ backgroundColor: '#F97316' }} />
+              
+            </div>
+
             <h2
               data-testid="industries-heading"
               className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] mb-6"
