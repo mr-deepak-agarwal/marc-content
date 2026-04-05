@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
 import { services } from '@/data/mock'
 
 const ServicesSection = () => {
@@ -18,23 +19,22 @@ const ServicesSection = () => {
           >
             Our Core Expertise
           </h2>
-
           <p className="text-lg text-[#47635D] leading-relaxed mb-4">
             We advise organisations at critical growth moments—market entry, expansion, transformation, and scale.
           </p>
-
           <p className="text-[#4E9141] font-semibold text-lg">
-            Our role: guidance and direction in our role to unlock growth levers and support execution.
+            Our role: guidance and direction to unlock growth levers and support execution.
           </p>
         </div>
 
         {/* SERVICES GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           {services.map((service, index) => (
-            <div
+            <Link
               key={service.id}
+              href={service.link || '/services'}
               data-testid={`service-card-${index}`}
-              className="card-grayscale group relative rounded-3xl overflow-hidden cursor-pointer"
+              className="card-grayscale group relative rounded-3xl overflow-hidden cursor-pointer block"
               onMouseEnter={() => setHoveredService(index)}
               onMouseLeave={() => setHoveredService(null)}
             >
@@ -85,19 +85,8 @@ const ServicesSection = () => {
                   />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <button
-            data-testid="services-view-all"
-            className="inline-flex items-center gap-2 text-[#4E9141] font-semibold text-lg hover:text-[#4E9141] transition-colors group"
-          >
-            View All Services
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-          </button>
         </div>
       </div>
     </section>

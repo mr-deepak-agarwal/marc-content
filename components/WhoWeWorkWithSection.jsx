@@ -40,7 +40,7 @@ const WhoWeWorkWithSection = () => {
             data-testid="who-we-work-with-heading"
             className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1D342F] mb-6 leading-[1.1] tracking-tight"
           >
-            Who We Partner With
+            Businesses We Work Best With
           </h2>
 
           <p className="text-lg text-[#47635D] leading-relaxed">
