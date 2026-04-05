@@ -11,7 +11,7 @@ const clients = [
   { name: 'Taj', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
   { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
   { name: 'Danlow', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-32.png' },
-  { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
+  { name: 'Marriott', logo: 'http://marcglocal.com/wp-content/uploads/2022/07/JW-Marriott.png' },
 ]
 
 const ClientsSection = () => {
@@ -47,13 +47,13 @@ const ClientsSection = () => {
                 <div
                   key={index}
                   data-testid={`client-tile-${index}`}
-                  className="flex-shrink-0 w-[220px] bg-white border border-[#C2DDB4]/30 rounded-xl p-5 flex flex-col items-center gap-3 transition-all duration-300 cursor-pointer hover:border-[#4E9141] hover:shadow-lg hover:shadow-[#4E9141]/15 hover:-translate-y-1"
+                  className="flex-shrink-0 w-[260px] bg-white border border-[#C2DDB4]/30 rounded-xl p-5 flex flex-col items-center gap-3 transition-all duration-300 cursor-pointer hover:border-[#4E9141] hover:shadow-lg hover:shadow-[#4E9141]/15 hover:-translate-y-1"
                 >
-                  <div className="w-full h-[70px] flex items-center justify-center p-2">
+                  <div className="w-full h-[100px] flex items-center justify-center p-3">
                     <img
                       src={client.logo}
                       alt={`${client.name} logo`}
-                      className="max-w-full max-h-full object-contain grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-105"
+                      className="max-w-full max-h-full object-contain grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-105"
                     />
                   </div>
                   <div className="text-sm font-semibold text-[#212427] text-center">
