@@ -98,8 +98,9 @@ const IndustriesSection = () => {
                     boxShadow: isHovered ? '0 20px 50px rgba(249,115,22,0.2)' : '0 4px 16px rgba(0,0,0,0.2)',
                   }}
                 >
-                  <div className="h-[4px] w-full" style={{ background: 'linear-gradient(to right, #F97316, #FDBA74)', opacity: isHovered ? 1 : 0.6 }} />
-                  <div className="p-6">
+                  {/* Orange top strip — absolutely pinned to top */}
+                  <div className="absolute top-0 left-0 right-0 h-[4px]" style={{ background: 'linear-gradient(to right, #F97316, #FDBA74)', opacity: isHovered ? 1 : 0.6 }} />
+                  <div className="p-6 pt-5">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
                       style={{ backgroundColor: isHovered ? 'rgba(255,255,255,0.2)' : 'rgba(78,145,65,0.18)' }}

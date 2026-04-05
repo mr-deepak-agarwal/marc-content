@@ -35,7 +35,7 @@ const WhyUsSection = () => {
     },
     {
       id: 6,
-      title: "Confidential Advisor",
+      title: "Trustworthy Partners",
       description: "To owners, founders and multi-generational home-grown businesses."
     }
   ]
