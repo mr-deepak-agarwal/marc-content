@@ -68,7 +68,7 @@ const ClientsSection = () => {
           100% { transform: translateX(-33.33%); }
         }
         .animate-marquee-clients {
-          animation: marquee-clients 30s linear infinite;
+          animation: marquee-clients 20s linear infinite;
         }
         .animate-marquee-clients:hover {
           animation-play-state: paused;
