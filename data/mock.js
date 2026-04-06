@@ -252,24 +252,36 @@ export const stats = [
 export const testimonials = [
   {
     id: 1,
+    content: "Your team's expertise in optimizing the survey of the Mangalore F&B scene and providing actionable insights on customer preferences impressed us. The way you analyzed our operational efficiency and offered tailored recommendations was outstanding. Your passion for the F&B industry is evident in the high-quality service you deliver.",
+    author: "Gaston Coutinho",
+    position: "Cluster Head (Restaurants) – Heritage Village Resorts"
+  },
+  {
+    id: 2,
+    content: "The MARC Team did an excellent job in analyzing our data and providing us with recommendations, which we incorporated into our daily operations, making a significant impact in the long run.",
+    author: "Vishwanath Pai Bir",
+    position: "Director / COO – Vishwamukta Group"
+  },
+  {
+    id: 3,
     content: "We appointed MARC to execute two very diverse tasks. One was into market research and the other was a premium inventory assessment and valuation. We were immensely satisfied with the attention to detailing in both the assignments. The team on both jobs were highly sensitive to our needs, very flexible and result oriented.",
     author: "Anand Chatterjee",
     position: "GM, Planet Hollywood - Beach Resort, Goa"
   },
   {
-    id: 2,
+    id: 4,
     content: "We had the opportunity to meet Ashutosh and utilize the services of MARC for a due diligence and internal audit. It was a good experience. MARC brings a unique blend of big 4 exposure with a local lineage. That gives him a unique perspective and insight to add value to Goan corporates.",
     author: "Deepak Tripathi",
     position: "President - Tulip Diagnostics Pvt. Ltd."
   },
   {
-    id: 3,
+    id: 5,
     content: "We have worked with MARC on several occasions and they have consistently surpassed our expectations with their analytical, professional and thorough approach delivered on time and within budget.",
     author: "Dale Menezes",
     position: "Director, CMM Group"
   },
   {
-    id: 4,
+    id: 6,
     content: "MARC is highly experienced and professional in the transaction advisory space. They have provided us with the ability to scale quickly, meet and exceed client deadlines and expectations. Ashutosh has been a great team member on call willing to go the extra mile.",
     author: "Rakesh Parikh",
     position: "Managing Director, Pivot Capital LLC"

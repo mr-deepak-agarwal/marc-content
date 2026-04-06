@@ -30,7 +30,11 @@ import {
   Wallet,
   Baby,
   Dumbbell,
-  Quote
+  Quote,
+  UtensilsCrossed,
+  PartyPopper,
+  Trophy,
+  Phone
 } from 'lucide-react'
 
 // Employee Testimonials Data
@@ -77,7 +81,7 @@ const employeeTestimonials = [
   }
 ]
 
-// Application Process Steps
+// Application Process Steps — updated labels
 const applicationSteps = [
   {
     step: 1,
@@ -95,15 +99,17 @@ const applicationSteps = [
   },
   {
     step: 3,
-    title: "Case Interview",
+    // CHANGED: "Case Interview" → "Assessment Test / Evaluation Exercise"
+    title: "Assessment Test / Evaluation Exercise",
     description: "Demonstrate your problem-solving skills through a business case.",
     duration: "Week 2",
     icon: MessageSquare
   },
   {
     step: 4,
+    // CHANGED: "Meet with" → "Connect with"
     title: "Panel Interview",
-    description: "Meet with senior team members to discuss experience and fit.",
+    description: "Connect with senior team members to discuss experience and fit.",
     duration: "Week 2-3",
     icon: UserCheck
   },
@@ -116,74 +122,109 @@ const applicationSteps = [
   }
 ]
 
-// Benefits Data
+// Benefits Data — removed Health Insurance & Wellness Programs, added 3 new ones
 const benefits = [
-  { icon: HeartPulse, title: "Health Insurance", description: "Comprehensive medical coverage for you and family" },
   { icon: GraduationCap, title: "Learning Budget", description: "Annual allowance for courses & certifications" },
   { icon: Wallet, title: "Performance Bonus", description: "Competitive bonuses tied to performance" },
   { icon: Plane, title: "Travel Opportunities", description: "Work with clients across India & abroad" },
   { icon: Baby, title: "Parental Leave", description: "Generous maternity and paternity leave" },
   { icon: Coffee, title: "Flexible Work", description: "Hybrid work model with WFH flexibility" },
   { icon: BookOpen, title: "Mentorship Program", description: "1-on-1 mentoring from senior consultants" },
-  { icon: Dumbbell, title: "Wellness Programs", description: "Gym memberships & mental health support" },
+  // NEW ADDITIONS
+  { icon: UtensilsCrossed, title: "Team Engagement Activities", description: "Organized team lunches and outings" },
+  { icon: PartyPopper, title: "Celebrations & Milestones", description: "Birthdays, festivals and milestone celebrations" },
+  { icon: Trophy, title: "Recognition & Rewards", description: "Quarterly awards acknowledging outstanding contributions" },
 ]
 
-// Job Openings Data
-const jobOpenings = [
+// Job Openings — grouped by department
+const jobDepartments = [
   {
-    id: "business-development-executive",
-    title: "Business Development Executive",
-    type: "Full-time",
-    location: "Goa, India",
-    department: "Sales",
-    experience: "2-4 years",
-    salary: "Competitive + Incentives",
-    posted: "2 days ago",
-    urgent: true
+    id: "market-research",
+    name: "Market Research & Financial Analysis",
+    openings: [
+      {
+        id: "manager-market-research",
+        title: "Manager",
+        type: "Full-time",
+        location: "Goa, India",
+        experience: "5-8 years",
+      },
+      {
+        id: "asst-manager-market-research",
+        title: "Assistant Manager",
+        type: "Full-time",
+        location: "Goa, India",
+        experience: "3-5 years",
+      },
+      {
+        id: "senior-analyst-market-research",
+        title: "Senior Analyst",
+        type: "Full-time",
+        location: "Goa, India",
+        experience: "2-4 years",
+      },
+      {
+        id: "intern-market-research",
+        title: "Intern",
+        type: "Internship",
+        location: "Goa, India",
+        experience: "Fresher / 0-1 year",
+      },
+    ]
   },
   {
-    id: "senior-research-analyst",
-    title: "Senior Research Analyst",
-    type: "Full-time",
-    location: "Mumbai, India",
-    department: "Market Research",
-    experience: "3-5 years",
-    salary: "₹8-12 LPA",
-    posted: "1 week ago",
-    urgent: false
+    id: "business-development",
+    name: "Business Development",
+    openings: [
+      {
+        id: "manager-bd",
+        title: "Manager",
+        type: "Full-time",
+        location: "Goa, India",
+        experience: "5-8 years",
+      },
+      {
+        id: "asst-manager-bd",
+        title: "Assistant Manager",
+        type: "Full-time",
+        location: "Goa, India",
+        experience: "3-5 years",
+      },
+      {
+        id: "executive-bd",
+        title: "Executive",
+        type: "Full-time",
+        location: "Goa, India",
+        experience: "1-3 years",
+      },
+      {
+        id: "intern-bd",
+        title: "Intern",
+        type: "Internship",
+        location: "Goa, India",
+        experience: "Fresher / 0-1 year",
+      },
+    ]
   },
   {
-    id: "project-manager",
-    title: "Project Manager",
-    type: "Full-time",
-    location: "Goa, India",
-    department: "Operations",
-    experience: "5-8 years",
-    salary: "₹12-18 LPA",
-    posted: "3 days ago",
-    urgent: true
-  },
-  {
-    id: "financial-analyst",
-    title: "Financial Analyst",
-    type: "Full-time",
-    location: "Pune, India",
-    department: "M&A Advisory",
-    experience: "2-4 years",
-    salary: "₹6-10 LPA",
-    posted: "5 days ago",
-    urgent: false
-  },
-  {
-    id: "associate-consultant",
-    title: "Associate Consultant",
-    type: "Full-time",
-    location: "Multiple Locations",
-    department: "Strategy",
-    experience: "0-2 years",
-    salary: "₹5-8 LPA",
-    posted: "1 week ago",
-    urgent: false
+    id: "others",
+    name: "Others — Human Resources & Administration / Accounts",
+    openings: [
+      {
+        id: "associate-hr-admin",
+        title: "Associate",
+        type: "Full-time",
+        location: "Goa, India",
+        experience: "1-3 years",
+      },
+      {
+        id: "intern-hr-admin",
+        title: "Intern",
+        type: "Internship",
+        location: "Goa, India",
+        experience: "Fresher / 0-1 year",
+      },
+    ]
   }
 ]
 
@@ -214,6 +255,7 @@ const cultureValues = [
 export default function CareersPage() {
   const [isVisible, setIsVisible] = useState({})
   const [visibleSteps, setVisibleSteps] = useState([])
+  const [expandedDept, setExpandedDept] = useState(null)
   const observerRefs = useRef([])
 
   useEffect(() => {
@@ -234,7 +276,6 @@ export default function CareersPage() {
     return () => observers.forEach(obs => obs?.disconnect())
   }, [])
 
-  // Animate application steps
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -258,7 +299,7 @@ export default function CareersPage() {
   return (
     <div className="min-h-screen bg-white" data-testid="careers-page">
 
-      {/* ==================== HERO SECTION - Matching About/Industries Style ==================== */}
+      {/* ==================== HERO SECTION ==================== */}
       <section className="relative pt-32 pb-20 bg-[#F7FFF5] overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
@@ -301,7 +342,6 @@ export default function CareersPage() {
               </div>
             </div>
 
-            {/* Stats Grid - Matching Industries Style */}
             <div className="hidden lg:grid grid-cols-2 gap-4">
               {[
                 { num: '500+', label: 'Projects Delivered' },
@@ -410,7 +450,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== APPLICATION PROCESS - Horizontal Steps ==================== */}
+      {/* ==================== APPLICATION PROCESS ==================== */}
       <section 
         id="process"
         ref={el => observerRefs.current[2] = el}
@@ -430,9 +470,7 @@ export default function CareersPage() {
             Our hiring process typically takes 3-4 weeks. Here's what to expect.
           </p>
 
-          {/* Horizontal Steps */}
           <div className="relative">
-            {/* Timeline Line - Hidden on mobile */}
             <div className="hidden lg:block absolute top-10 left-0 right-0 h-[2px] bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
             
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
@@ -449,7 +487,6 @@ export default function CareersPage() {
                   style={{ transitionDelay: `${index * 200}ms` }}
                   data-testid={`application-step-${index}`}
                 >
-                  {/* Step Circle with Icon */}
                   <div className="relative z-10 mx-auto mb-6">
                     <div className={`w-20 h-20 mx-auto rounded-full bg-[#4E9141] flex items-center justify-center shadow-lg transition-all duration-500 ${
                       visibleSteps.includes(index) ? 'shadow-[#4E9141]/30 scale-100' : 'shadow-none scale-90'
@@ -457,14 +494,12 @@ export default function CareersPage() {
                       <step.icon className="w-8 h-8 text-white" />
                     </div>
                     
-                    {/* Step Number Badge */}
                     <div className={`absolute -top-1 -right-1 w-7 h-7 rounded-full bg-[#1D342F] text-white text-xs font-bold flex items-center justify-center transition-all duration-500 ${
                       visibleSteps.includes(index) ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                     }`} style={{ transitionDelay: `${index * 200 + 300}ms` }}>
                       {step.step}
                     </div>
 
-                    {/* Pulse ring animation */}
                     {visibleSteps.includes(index) && (
                       <div className="absolute inset-0 flex items-center justify-center">
                         <span className="absolute w-20 h-20 rounded-full border-2 border-[#4E9141]/30 animate-ping" style={{ animationDuration: '2s' }} />
@@ -472,7 +507,6 @@ export default function CareersPage() {
                     )}
                   </div>
 
-                  {/* Content */}
                   <div className={`transition-all duration-500 ${
                     visibleSteps.includes(index) ? 'opacity-100' : 'opacity-0'
                   }`} style={{ transitionDelay: `${index * 200 + 200}ms` }}>
@@ -487,7 +521,6 @@ export default function CareersPage() {
             </div>
           </div>
 
-          {/* Tips Box */}
           <div className="mt-16 p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30">
             <h3 className="text-xl font-bold text-[#1D342F] mb-4">Tips for Success</h3>
             <div className="grid md:grid-cols-3 gap-6">
@@ -497,7 +530,7 @@ export default function CareersPage() {
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
-                <p className="text-[#47635D] text-sm">Prepare for case studies using structured frameworks (MECE, Porter's Five Forces).</p>
+                <p className="text-[#47635D] text-sm">Prepare for assessments using structured frameworks (MECE, Porter's Five Forces).</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
@@ -558,7 +591,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== JOB OPENINGS ==================== */}
+      {/* ==================== JOB OPENINGS — Grouped by Department ==================== */}
       <section 
         id="openings"
         ref={el => observerRefs.current[4] = el}
@@ -574,56 +607,66 @@ export default function CareersPage() {
           <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
             Current Openings
           </h2>
-          <p className="text-lg text-[#47635D] mb-12">
+          <p className="text-lg text-[#47635D] mb-4">
             Find your perfect role and take the next step in your career.
           </p>
 
-          <div className="space-y-4">
-            {jobOpenings.map((job, index) => (
-              <Link 
-                key={job.id}
-                href={`/career/${job.id}`}
-                className="group flex items-center justify-between p-6 rounded-2xl bg-[#F7FFF5] hover:bg-white border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300"
-                data-testid={`job-card-${index}`}
-              >
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-xl font-bold text-[#1D342F] group-hover:text-[#4E9141] transition-colors">
-                      {job.title}
-                    </h3>
-                    {job.urgent && (
-                      <span className="px-2 py-0.5 bg-red-100 text-red-600 text-xs font-semibold rounded-full">
-                        Urgent
-                      </span>
-                    )}
-                    <span className="px-3 py-1 rounded-full bg-[#4E9141]/10 text-[#4E9141] text-xs font-semibold">
-                      {job.department}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-[#47635D]">
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
-                      {job.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {job.type}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Briefcase className="w-4 h-4" />
-                      {job.experience}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Wallet className="w-4 h-4" />
-                      {job.salary}
-                    </span>
-                  </div>
+          {/* Positions contact note */}
+          <div className="flex items-center gap-2 mb-12 text-sm text-[#47635D]">
+            <Phone className="w-4 h-4 text-[#4E9141] flex-shrink-0" />
+            <span>For position-related queries, contact us at </span>
+            <a href="tel:+918956909545" className="text-[#4E9141] font-semibold hover:underline">
+              +91 89569 09545
+            </a>
+          </div>
+
+          {/* Departments */}
+          <div className="space-y-10">
+            {jobDepartments.map((dept) => (
+              <div key={dept.id}>
+                {/* Department Header */}
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-2 h-8 bg-[#4E9141] rounded-full flex-shrink-0" />
+                  <h3 className="text-xl lg:text-2xl font-bold text-[#1D342F]">{dept.name}</h3>
                 </div>
-                <div className="flex items-center gap-2 text-[#4E9141] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="hidden sm:inline">View Details</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+
+                {/* Openings under this department */}
+                <div className="space-y-3 pl-6">
+                  {dept.openings.map((job, index) => (
+                    <a
+                      key={job.id}
+                      href={`mailto:careers@marcglocal.com?subject=Application: ${job.title} – ${dept.name}`}
+                      className="group flex items-center justify-between p-5 rounded-2xl bg-[#F7FFF5] hover:bg-white border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
+                      data-testid={`job-card-${dept.id}-${index}`}
+                    >
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-1.5 flex-wrap">
+                          <h4 className="text-lg font-bold text-[#1D342F] group-hover:text-[#4E9141] transition-colors">
+                            {job.title}
+                          </h4>
+                          <span className="px-3 py-0.5 rounded-full bg-[#4E9141]/10 text-[#4E9141] text-xs font-semibold">
+                            {job.type}
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-[#47635D]">
+                          <span className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4" />
+                            {job.location}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Briefcase className="w-4 h-4" />
+                            {job.experience}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-[#4E9141] font-semibold ml-4 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                        <span className="hidden sm:inline text-sm">Apply Now</span>
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </a>
+                  ))}
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
@@ -631,7 +674,7 @@ export default function CareersPage() {
           <div className="mt-12 p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 text-center">
             <h3 className="text-2xl font-bold text-[#1D342F] mb-2">Don't see a role that fits?</h3>
             <p className="text-[#47635D] mb-6">
-              We're always looking for talented individuals. Send us your resume!
+              We're always looking for talented individuals. Send us your resume and we'll be in touch.
             </p>
             <a 
               href="mailto:careers@marcglocal.com" 

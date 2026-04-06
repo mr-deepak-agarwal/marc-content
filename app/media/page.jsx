@@ -480,7 +480,7 @@ export default function MediaPage() {
                 <span className="text-[#4E9141]"> taking the spotlight</span>
               </h1>
 
-              <p className="text-xl text-[#47635D] leading-relaxed mb-8">
+              <p className="text-xl font-semibold text-[#1D342F] leading-relaxed mb-8">
                 We are either brainstorming novel ways to execute strategies, or making headlines.
                 MARC finds relevance in reaching out to the general public, either through our social
                 outreach initiatives or simply because we are appreciated for our execution and insights.
