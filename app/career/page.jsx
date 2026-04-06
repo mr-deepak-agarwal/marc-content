@@ -4,125 +4,53 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { 
-  ArrowRight, 
-  Briefcase, 
-  Users, 
-  Heart, 
-  Shield, 
-  Sparkles, 
-  ChevronRight, 
-  MapPin, 
-  Clock, 
-  GraduationCap,
-  TrendingUp,
-  Globe,
-  Award,
-  CheckCircle,
-  Send,
-  FileText,
-  UserCheck,
-  MessageSquare,
-  Handshake,
-  Coffee,
-  BookOpen,
-  Plane,
-  HeartPulse,
-  Wallet,
-  Baby,
-  Dumbbell,
-  Quote,
-  UtensilsCrossed,
-  PartyPopper,
-  Trophy,
-  Phone
+  ArrowRight, Briefcase, Users, Heart, Shield, Sparkles,
+  MapPin, Clock, GraduationCap, Award, CheckCircle, Send,
+  FileText, UserCheck, MessageSquare, Handshake, Coffee,
+  BookOpen, Plane, Baby, Wallet, UtensilsCrossed, PartyPopper,
+  Trophy, Quote, Phone, ExternalLink
 } from 'lucide-react'
 
-// Employee Testimonials Data
+// ─── PDF mapping — place these files in your /public/jds/ folder ───────────
+// Filename must exactly match what you upload to /public/jds/
+const JD_PDFS = {
+  'manager-market-research':       '/jds/JD_-_M-_MR_FA.pdf',
+  'asst-manager-market-research':  '/jds/JD_-_AM-_MR_FA.pdf',
+  'senior-analyst-market-research':'/jds/JD_-_SA-_MR_FA.pdf',
+  'executive-bd':                  '/jds/JD_-_BDE_1.pdf',
+  'associate-hr-admin':            '/jds/JD_-_HR_Associate.pdf',
+}
+
+// ─── Employee Testimonials ────────────────────────────────────────────────────
 const employeeTestimonials = [
-  {
-    id: 1,
-    name: "Your Name Here",
-    role: "Senior Analyst",
-    department: "Market Research",
-    years: "3 years at MARC",
+  { id: 1, name: "Your Name Here", role: "Senior Analyst", department: "Market Research", years: "3 years at MARC",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80",
     quote: "Add your employee testimonial here. What do they love about working at MARC? What projects have they worked on? How have they grown?",
-    highlight: "Promoted twice in 3 years"
-  },
-  {
-    id: 2,
-    name: "Your Name Here",
-    role: "Project Manager",
-    department: "Strategy Consulting",
-    years: "5 years at MARC",
+    highlight: "Promoted twice in 3 years" },
+  { id: 2, name: "Your Name Here", role: "Project Manager", department: "Strategy Consulting", years: "5 years at MARC",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
     quote: "Add your employee testimonial here. Share their journey, the challenges they've overcome, and why they chose to stay at MARC.",
-    highlight: "Led 20+ client engagements"
-  },
-  {
-    id: 3,
-    name: "Your Name Here",
-    role: "Business Analyst",
-    department: "M&A Advisory",
-    years: "2 years at MARC",
+    highlight: "Led 20+ client engagements" },
+  { id: 3, name: "Your Name Here", role: "Business Analyst", department: "M&A Advisory", years: "2 years at MARC",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80",
     quote: "Add your employee testimonial here. Include specifics about the work culture, mentorship, or career development opportunities.",
-    highlight: "Worked on ₹200Cr+ deals"
-  },
-  {
-    id: 4,
-    name: "Your Name Here",
-    role: "Research Lead",
-    department: "Consumer & Retail",
-    years: "4 years at MARC",
+    highlight: "Worked on ₹200Cr+ deals" },
+  { id: 4, name: "Your Name Here", role: "Research Lead", department: "Consumer & Retail", years: "4 years at MARC",
     image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=400&q=80",
     quote: "Add your employee testimonial here. What makes MARC different from other firms? What advice would they give to candidates?",
-    highlight: "Built the retail practice"
-  }
+    highlight: "Built the retail practice" },
 ]
 
-// Application Process Steps — updated labels
+// ─── Application Process Steps ───────────────────────────────────────────────
 const applicationSteps = [
-  {
-    step: 1,
-    title: "Apply Online",
-    description: "Submit your resume and cover letter through our careers portal.",
-    duration: "Day 1",
-    icon: Send
-  },
-  {
-    step: 2,
-    title: "Initial Screening",
-    description: "Our HR team reviews your profile and reaches out for a brief call.",
-    duration: "Days 3-5",
-    icon: FileText
-  },
-  {
-    step: 3,
-    // CHANGED: "Case Interview" → "Assessment Test / Evaluation Exercise"
-    title: "Assessment Test / Evaluation Exercise",
-    description: "Demonstrate your problem-solving skills through a business case.",
-    duration: "Week 2",
-    icon: MessageSquare
-  },
-  {
-    step: 4,
-    // CHANGED: "Meet with" → "Connect with"
-    title: "Panel Interview",
-    description: "Connect with senior team members to discuss experience and fit.",
-    duration: "Week 2-3",
-    icon: UserCheck
-  },
-  {
-    step: 5,
-    title: "Final Decision",
-    description: "Receive your offer letter with compensation details.",
-    duration: "Week 3-4",
-    icon: Handshake
-  }
+  { step: 1, title: "Apply Online", description: "Submit your resume and cover letter through our careers portal.", duration: "Day 1", icon: Send },
+  { step: 2, title: "Initial Screening", description: "Our HR team reviews your profile and reaches out for a brief call.", duration: "Days 3-5", icon: FileText },
+  { step: 3, title: "Assessment Test / Evaluation Exercise", description: "Demonstrate your problem-solving skills through a business case.", duration: "Week 2", icon: MessageSquare },
+  { step: 4, title: "Panel Interview", description: "Connect with senior team members to discuss experience and fit.", duration: "Week 2-3", icon: UserCheck },
+  { step: 5, title: "Final Decision", description: "Receive your offer letter with compensation details.", duration: "Week 3-4", icon: Handshake },
 ]
 
-// Benefits Data — removed Health Insurance & Wellness Programs, added 3 new ones
+// ─── Benefits ────────────────────────────────────────────────────────────────
 const benefits = [
   { icon: GraduationCap, title: "Learning Budget", description: "Annual allowance for courses & certifications" },
   { icon: Wallet, title: "Performance Bonus", description: "Competitive bonuses tied to performance" },
@@ -130,149 +58,66 @@ const benefits = [
   { icon: Baby, title: "Parental Leave", description: "Generous maternity and paternity leave" },
   { icon: Coffee, title: "Flexible Work", description: "Hybrid work model with WFH flexibility" },
   { icon: BookOpen, title: "Mentorship Program", description: "1-on-1 mentoring from senior consultants" },
-  // NEW ADDITIONS
   { icon: UtensilsCrossed, title: "Team Engagement Activities", description: "Organized team lunches and outings" },
   { icon: PartyPopper, title: "Celebrations & Milestones", description: "Birthdays, festivals and milestone celebrations" },
   { icon: Trophy, title: "Recognition & Rewards", description: "Quarterly awards acknowledging outstanding contributions" },
 ]
 
-// Job Openings — grouped by department
+// ─── Job Openings ─────────────────────────────────────────────────────────────
 const jobDepartments = [
   {
     id: "market-research",
     name: "Market Research & Financial Analysis",
     openings: [
-      {
-        id: "manager-market-research",
-        title: "Manager",
-        type: "Full-time",
-        location: "Goa, India",
-        experience: "5-8 years",
-      },
-      {
-        id: "asst-manager-market-research",
-        title: "Assistant Manager",
-        type: "Full-time",
-        location: "Goa, India",
-        experience: "3-5 years",
-      },
-      {
-        id: "senior-analyst-market-research",
-        title: "Senior Analyst",
-        type: "Full-time",
-        location: "Goa, India",
-        experience: "2-4 years",
-      },
-      {
-        id: "intern-market-research",
-        title: "Intern",
-        type: "Internship",
-        location: "Goa, India",
-        experience: "Fresher / 0-1 year",
-      },
+      { id: "manager-market-research",        title: "Manager",          type: "Full-time",   location: "Goa, India", experience: "5-8 years" },
+      { id: "asst-manager-market-research",   title: "Assistant Manager",type: "Full-time",   location: "Goa, India", experience: "3-5 years" },
+      { id: "senior-analyst-market-research", title: "Senior Analyst",   type: "Full-time",   location: "Goa, India", experience: "2-4 years" },
+      { id: "intern-market-research",         title: "Intern",           type: "Internship",  location: "Goa, India", experience: "Fresher / 0-1 year" },
     ]
   },
   {
     id: "business-development",
     name: "Business Development",
     openings: [
-      {
-        id: "manager-bd",
-        title: "Manager",
-        type: "Full-time",
-        location: "Goa, India",
-        experience: "5-8 years",
-      },
-      {
-        id: "asst-manager-bd",
-        title: "Assistant Manager",
-        type: "Full-time",
-        location: "Goa, India",
-        experience: "3-5 years",
-      },
-      {
-        id: "executive-bd",
-        title: "Executive",
-        type: "Full-time",
-        location: "Goa, India",
-        experience: "1-3 years",
-      },
-      {
-        id: "intern-bd",
-        title: "Intern",
-        type: "Internship",
-        location: "Goa, India",
-        experience: "Fresher / 0-1 year",
-      },
+      { id: "manager-bd",      title: "Manager",          type: "Full-time",   location: "Goa, India", experience: "5-8 years" },
+      { id: "asst-manager-bd", title: "Assistant Manager",type: "Full-time",   location: "Goa, India", experience: "3-5 years" },
+      { id: "executive-bd",    title: "Executive",        type: "Full-time",   location: "Goa, India", experience: "1-3 years" },
+      { id: "intern-bd",       title: "Intern",           type: "Internship",  location: "Goa, India", experience: "Fresher / 0-1 year" },
     ]
   },
   {
     id: "others",
     name: "Others — Human Resources & Administration / Accounts",
     openings: [
-      {
-        id: "associate-hr-admin",
-        title: "Associate",
-        type: "Full-time",
-        location: "Goa, India",
-        experience: "1-3 years",
-      },
-      {
-        id: "intern-hr-admin",
-        title: "Intern",
-        type: "Internship",
-        location: "Goa, India",
-        experience: "Fresher / 0-1 year",
-      },
+      { id: "associate-hr-admin", title: "Associate", type: "Full-time",  location: "Goa, India", experience: "1-3 years" },
+      { id: "intern-hr-admin",    title: "Intern",    type: "Internship", location: "Goa, India", experience: "Fresher / 0-1 year" },
     ]
   }
 ]
 
-// Culture Values
+// ─── Culture Values ───────────────────────────────────────────────────────────
 const cultureValues = [
-  {
-    icon: Sparkles,
-    title: 'Adaptability',
-    description: 'Innovation thinking, self-learning, and always having a positive attitude.',
-  },
-  {
-    icon: Users,
-    title: 'Collaboration',
-    description: 'Knowledge sharing, frequent client interaction, and working as one team.',
-  },
-  {
-    icon: Heart,
-    title: 'Care',
-    description: 'Everyone can achieve their potential with the right backing and support.',
-  },
-  {
-    icon: Shield,
-    title: 'Accountability',
-    description: 'Being proactive, honest, committed, and communicative at all times.',
-  }
+  { icon: Sparkles, title: 'Adaptability', description: 'Innovation thinking, self-learning, and always having a positive attitude.' },
+  { icon: Users,    title: 'Collaboration', description: 'Knowledge sharing, frequent client interaction, and working as one team.' },
+  { icon: Heart,    title: 'Care',          description: 'Everyone can achieve their potential with the right backing and support.' },
+  { icon: Shield,   title: 'Accountability',description: 'Being proactive, honest, committed, and communicative at all times.' },
 ]
 
 export default function CareersPage() {
   const [isVisible, setIsVisible] = useState({})
   const [visibleSteps, setVisibleSteps] = useState([])
-  const [expandedDept, setExpandedDept] = useState(null)
   const observerRefs = useRef([])
 
   useEffect(() => {
     const observers = observerRefs.current.map((ref, index) => {
       if (!ref) return null
       const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(prev => ({ ...prev, [index]: true }))
-          }
-        },
+        ([entry]) => { if (entry.isIntersecting) setIsVisible(prev => ({ ...prev, [index]: true })) },
         { threshold: 0.1, rootMargin: '50px' }
       )
       observer.observe(ref)
       return observer
     })
-
     return () => observers.forEach(obs => obs?.disconnect())
   }, [])
 
@@ -288,60 +133,41 @@ export default function CareersPage() {
       },
       { threshold: 0.3 }
     )
-
-    document.querySelectorAll('[data-step-item]').forEach((el) => {
-      observer.observe(el)
-    })
-
+    document.querySelectorAll('[data-step-item]').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
 
   return (
     <div className="min-h-screen bg-white" data-testid="careers-page">
 
-      {/* ==================== HERO SECTION ==================== */}
+      {/* ==================== HERO ==================== */}
       <section className="relative pt-32 pb-20 bg-[#F7FFF5] overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
-
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <span className="w-12 h-[3px] bg-[#4E9141]" />
-                <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
-                  Careers
-                </span>
+                <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">Careers</span>
               </div>
-              
               <h1 className="text-4xl lg:text-6xl font-bold text-[#1D342F] leading-[1.1] mb-6">
-                Build Your Career
-                <span className="text-[#4E9141]"> With MARC</span>
+                Build Your Career<span className="text-[#4E9141]"> With MARC</span>
               </h1>
-              
               <p className="text-xl text-[#47635D] leading-relaxed mb-8 max-w-xl">
                 At MARC, you'll help clients expand across India, conduct due diligence 
                 for major acquisitions, and build market entry strategies—from day one.
               </p>
-
               <div className="flex flex-wrap gap-4">
-                <a 
-                  href="#openings" 
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-all group"
-                  data-testid="view-openings-btn"
-                >
+                <a href="#openings" className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-all group">
                   View Open Positions
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
-                <a 
-                  href="#process" 
-                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#4E9141] text-[#4E9141] font-semibold rounded-full hover:bg-[#4E9141] hover:text-white transition-all"
-                >
+                <a href="#process" className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#4E9141] text-[#4E9141] font-semibold rounded-full hover:bg-[#4E9141] hover:text-white transition-all">
                   How to Apply
                 </a>
               </div>
             </div>
-
             <div className="hidden lg:grid grid-cols-2 gap-4">
               {[
                 { num: '500+', label: 'Projects Delivered' },
@@ -349,10 +175,7 @@ export default function CareersPage() {
                 { num: '8', label: 'Offices in India' },
                 { num: '30+', label: 'Countries Served' }
               ].map((stat, i) => (
-                <div 
-                  key={i}
-                  className="aspect-square rounded-2xl bg-white border border-[#C2DDB4]/30 p-6 flex flex-col items-center justify-center hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
-                >
+                <div key={i} className="aspect-square rounded-2xl bg-white border border-[#C2DDB4]/30 p-6 flex flex-col items-center justify-center hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300">
                   <span className="text-4xl font-bold text-[#4E9141]">{stat.num}</span>
                   <span className="text-sm font-medium text-[#47635D] text-center mt-2">{stat.label}</span>
                 </div>
@@ -363,30 +186,17 @@ export default function CareersPage() {
       </section>
 
       {/* ==================== CULTURE VALUES ==================== */}
-      <section 
-        ref={el => observerRefs.current[0] = el}
-        className="py-16 bg-white"
-      >
+      <section ref={el => observerRefs.current[0] = el} className="py-16 bg-white">
         <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex items-center gap-4 mb-4">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
-            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
-              Our Culture
-            </span>
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">Our Culture</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
-            Built on <span className="text-[#4E9141]">4 Pillars</span>
-          </h2>
-          <p className="text-lg text-[#47635D] leading-relaxed max-w-3xl mb-12">
-            Our values guide everything we do—from how we work with clients to how we support each other.
-          </p>
-
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">Built on <span className="text-[#4E9141]">4 Pillars</span></h2>
+          <p className="text-lg text-[#47635D] leading-relaxed max-w-3xl mb-12">Our values guide everything we do—from how we work with clients to how we support each other.</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {cultureValues.map((value, index) => (
-              <div 
-                key={index}
-                className="group bg-[#F7FFF5] rounded-2xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300"
-              >
+              <div key={index} className="group bg-[#F7FFF5] rounded-2xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300">
                 <div className="w-14 h-14 rounded-2xl bg-[#4E9141] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <value.icon className="w-7 h-7 text-white" />
                 </div>
@@ -398,48 +208,27 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== EMPLOYEE TESTIMONIALS ==================== */}
-      <section 
-        ref={el => observerRefs.current[1] = el}
-        className="py-16 bg-[#F7FFF5]"
-      >
+      {/* ==================== TESTIMONIALS ==================== */}
+      <section ref={el => observerRefs.current[1] = el} className="py-16 bg-[#F7FFF5]">
         <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex items-center gap-4 mb-4">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
-            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
-              Our People
-            </span>
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">Our People</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
-            Hear From Our Team
-          </h2>
-
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">Hear From Our Team</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {employeeTestimonials.map((employee, index) => (
-              <div 
-                key={employee.id}
-                className="group relative bg-white rounded-2xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300"
-                data-testid={`employee-testimonial-${index}`}
-              >
+              <div key={employee.id} className="group relative bg-white rounded-2xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300">
                 <Quote className="absolute top-6 right-6 w-10 h-10 text-[#4E9141]/10" />
-                
                 <div className="flex items-start gap-4 mb-6">
-                  <img 
-                    src={employee.image} 
-                    alt={`${employee.name} - ${employee.role} at MARC`}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-[#4E9141]/20"
-                  />
+                  <img src={employee.image} alt={`${employee.name} at MARC`} className="w-16 h-16 rounded-full object-cover border-2 border-[#4E9141]/20" />
                   <div>
                     <h3 className="text-lg font-bold text-[#1D342F]">{employee.name}</h3>
                     <p className="text-[#4E9141] font-medium">{employee.role}</p>
                     <p className="text-sm text-[#47635D]">{employee.department} • {employee.years}</p>
                   </div>
                 </div>
-
-                <p className="text-[#47635D] leading-relaxed mb-4 italic">
-                  "{employee.quote}"
-                </p>
-
+                <p className="text-[#47635D] leading-relaxed mb-4 italic">"{employee.quote}"</p>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#4E9141]/10 rounded-full">
                   <Award className="w-4 h-4 text-[#4E9141]" />
                   <span className="text-sm font-medium text-[#4E9141]">{employee.highlight}</span>
@@ -451,70 +240,40 @@ export default function CareersPage() {
       </section>
 
       {/* ==================== APPLICATION PROCESS ==================== */}
-      <section 
-        id="process"
-        ref={el => observerRefs.current[2] = el}
-        className="py-20 bg-white overflow-hidden"
-      >
+      <section id="process" ref={el => observerRefs.current[2] = el} className="py-20 bg-white overflow-hidden">
         <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex items-center gap-4 mb-4">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
-            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
-              How To Apply
-            </span>
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">How To Apply</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
-            Your Journey Starts Here
-          </h2>
-          <p className="text-lg text-[#47635D] mb-16 max-w-2xl">
-            Our hiring process typically takes 3-4 weeks. Here's what to expect.
-          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">Your Journey Starts Here</h2>
+          <p className="text-lg text-[#47635D] mb-16 max-w-2xl">Our hiring process typically takes 3-4 weeks. Here's what to expect.</p>
 
           <div className="relative">
             <div className="hidden lg:block absolute top-10 left-0 right-0 h-[2px] bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
-            
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
               {applicationSteps.map((step, index) => (
-                <div 
-                  key={step.step}
-                  data-step-item
-                  data-index={index}
-                  className={`relative text-center transition-all duration-700 ${
-                    visibleSteps.includes(index)
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
-                  data-testid={`application-step-${index}`}
-                >
+                <div key={step.step} data-step-item data-index={index}
+                  className={`relative text-center transition-all duration-700 ${visibleSteps.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  style={{ transitionDelay: `${index * 200}ms` }}>
                   <div className="relative z-10 mx-auto mb-6">
-                    <div className={`w-20 h-20 mx-auto rounded-full bg-[#4E9141] flex items-center justify-center shadow-lg transition-all duration-500 ${
-                      visibleSteps.includes(index) ? 'shadow-[#4E9141]/30 scale-100' : 'shadow-none scale-90'
-                    }`}>
+                    <div className={`w-20 h-20 mx-auto rounded-full bg-[#4E9141] flex items-center justify-center shadow-lg transition-all duration-500 ${visibleSteps.includes(index) ? 'shadow-[#4E9141]/30 scale-100' : 'shadow-none scale-90'}`}>
                       <step.icon className="w-8 h-8 text-white" />
                     </div>
-                    
-                    <div className={`absolute -top-1 -right-1 w-7 h-7 rounded-full bg-[#1D342F] text-white text-xs font-bold flex items-center justify-center transition-all duration-500 ${
-                      visibleSteps.includes(index) ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-                    }`} style={{ transitionDelay: `${index * 200 + 300}ms` }}>
+                    <div className={`absolute -top-1 -right-1 w-7 h-7 rounded-full bg-[#1D342F] text-white text-xs font-bold flex items-center justify-center transition-all duration-500 ${visibleSteps.includes(index) ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+                      style={{ transitionDelay: `${index * 200 + 300}ms` }}>
                       {step.step}
                     </div>
-
                     {visibleSteps.includes(index) && (
                       <div className="absolute inset-0 flex items-center justify-center">
                         <span className="absolute w-20 h-20 rounded-full border-2 border-[#4E9141]/30 animate-ping" style={{ animationDuration: '2s' }} />
                       </div>
                     )}
                   </div>
-
-                  <div className={`transition-all duration-500 ${
-                    visibleSteps.includes(index) ? 'opacity-100' : 'opacity-0'
-                  }`} style={{ transitionDelay: `${index * 200 + 200}ms` }}>
+                  <div className={`transition-all duration-500 ${visibleSteps.includes(index) ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: `${index * 200 + 200}ms` }}>
                     <h3 className="text-lg font-bold text-[#1D342F] mb-2">{step.title}</h3>
                     <p className="text-sm text-[#47635D] leading-relaxed mb-3 min-h-[48px]">{step.description}</p>
-                    <span className="inline-block px-4 py-1.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-full text-xs font-semibold text-[#4E9141]">
-                      {step.duration}
-                    </span>
+                    <span className="inline-block px-4 py-1.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-full text-xs font-semibold text-[#4E9141]">{step.duration}</span>
                   </div>
                 </div>
               ))}
@@ -524,61 +283,43 @@ export default function CareersPage() {
           <div className="mt-16 p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30">
             <h3 className="text-xl font-bold text-[#1D342F] mb-4">Tips for Success</h3>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
-                <p className="text-[#47635D] text-sm">Research MARC's recent projects and industry focus areas before your interview.</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
-                <p className="text-[#47635D] text-sm">Prepare for assessments using structured frameworks (MECE, Porter's Five Forces).</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
-                <p className="text-[#47635D] text-sm">Be ready to discuss specific examples of problem-solving from your experience.</p>
-              </div>
+              {[
+                "Research MARC's recent projects and industry focus areas before your interview.",
+                "Prepare for assessments using structured frameworks (MECE, Porter's Five Forces).",
+                "Be ready to discuss specific examples of problem-solving from your experience.",
+              ].map((tip, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
+                  <p className="text-[#47635D] text-sm">{tip}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* ==================== BENEFITS ==================== */}
-      <section 
-        ref={el => observerRefs.current[3] = el}
-        className="py-16 bg-[#F7FFF5]"
-      >
+      <section ref={el => observerRefs.current[3] = el} className="py-16 bg-[#F7FFF5]">
         <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="flex items-center gap-4 mb-4">
                 <span className="w-12 h-[3px] bg-[#4E9141]" />
-                <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
-                  Benefits & Perks
-                </span>
+                <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">Benefits & Perks</span>
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-6">
-                We Take Care of Our People
-              </h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-6">We Take Care of Our People</h2>
               <p className="text-lg text-[#47635D] leading-relaxed mb-8">
                 Beyond competitive salaries, we invest in your growth, health, and happiness. 
                 Because when you thrive, we all thrive.
               </p>
-              
-              <a 
-                href="#openings"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300 group"
-              >
+              <a href="#openings" className="inline-flex items-center gap-3 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300 group">
                 Explore Opportunities
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-
             <div className="grid sm:grid-cols-2 gap-4">
               {benefits.map((benefit, index) => (
-                <div 
-                  key={index}
-                  className="group p-5 rounded-2xl bg-white border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
-                  data-testid={`benefit-${index}`}
-                >
+                <div key={index} className="group p-5 rounded-2xl bg-white border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300">
                   <div className="w-12 h-12 rounded-xl bg-[#4E9141] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <benefit.icon className="w-6 h-6 text-white" />
                   </div>
@@ -591,80 +332,79 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== JOB OPENINGS — Grouped by Department ==================== */}
-      <section 
-        id="openings"
-        ref={el => observerRefs.current[4] = el}
-        className="py-16 bg-white"
-      >
+      {/* ==================== JOB OPENINGS ==================== */}
+      <section id="openings" ref={el => observerRefs.current[4] = el} className="py-16 bg-white">
         <div className={`max-w-5xl mx-auto px-6 transition-all duration-1000 ${isVisible[4] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex items-center gap-4 mb-4">
             <span className="w-12 h-[3px] bg-[#4E9141]" />
-            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">
-              Open Positions
-            </span>
+            <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">Open Positions</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
-            Current Openings
-          </h2>
-          <p className="text-lg text-[#47635D] mb-4">
-            Find your perfect role and take the next step in your career.
-          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">Current Openings</h2>
+          <p className="text-lg text-[#47635D] mb-4">Find your perfect role and take the next step in your career.</p>
 
-          {/* Positions contact note */}
           <div className="flex items-center gap-2 mb-12 text-sm text-[#47635D]">
             <Phone className="w-4 h-4 text-[#4E9141] flex-shrink-0" />
             <span>For position-related queries, contact us at </span>
-            <a href="tel:+918956909545" className="text-[#4E9141] font-semibold hover:underline">
-              +91 89569 09545
-            </a>
+            <a href="tel:+918956909545" className="text-[#4E9141] font-semibold hover:underline">+91 89569 09545</a>
           </div>
 
-          {/* Departments */}
           <div className="space-y-10">
             {jobDepartments.map((dept) => (
               <div key={dept.id}>
-                {/* Department Header */}
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-2 h-8 bg-[#4E9141] rounded-full flex-shrink-0" />
                   <h3 className="text-xl lg:text-2xl font-bold text-[#1D342F]">{dept.name}</h3>
                 </div>
 
-                {/* Openings under this department */}
                 <div className="space-y-3 pl-6">
-                  {dept.openings.map((job, index) => (
-                    <a
-                      key={job.id}
-                      href={`mailto:careers@marcglocal.com?subject=Application: ${job.title} – ${dept.name}`}
-                      className="group flex items-center justify-between p-5 rounded-2xl bg-[#F7FFF5] hover:bg-white border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
-                      data-testid={`job-card-${dept.id}-${index}`}
-                    >
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-1.5 flex-wrap">
-                          <h4 className="text-lg font-bold text-[#1D342F] group-hover:text-[#4E9141] transition-colors">
-                            {job.title}
-                          </h4>
-                          <span className="px-3 py-0.5 rounded-full bg-[#4E9141]/10 text-[#4E9141] text-xs font-semibold">
-                            {job.type}
-                          </span>
+                  {dept.openings.map((job, index) => {
+                    const hasPdf = !!JD_PDFS[job.id]
+                    return (
+                      <div
+                        key={job.id}
+                        className="group flex items-center justify-between p-5 rounded-2xl bg-[#F7FFF5] hover:bg-white border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300"
+                      >
+                        {/* Job Info */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-3 mb-1.5 flex-wrap">
+                            <h4 className="text-lg font-bold text-[#1D342F]">{job.title}</h4>
+                            <span className="px-3 py-0.5 rounded-full bg-[#4E9141]/10 text-[#4E9141] text-xs font-semibold">{job.type}</span>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-[#47635D]">
+                            <span className="flex items-center gap-1"><MapPin className="w-4 h-4" />{job.location}</span>
+                            <span className="flex items-center gap-1"><Briefcase className="w-4 h-4" />{job.experience}</span>
+                          </div>
                         </div>
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-[#47635D]">
-                          <span className="flex items-center gap-1">
-                            <MapPin className="w-4 h-4" />
-                            {job.location}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Briefcase className="w-4 h-4" />
-                            {job.experience}
-                          </span>
+
+                        {/* Action Buttons */}
+                        <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+                          {/* View JD — only shown if PDF exists */}
+                          {hasPdf && (
+                            <a
+                              href={JD_PDFS[job.id]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={e => e.stopPropagation()}
+                              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#4E9141] text-[#4E9141] text-sm font-semibold hover:bg-[#4E9141]/5 transition-all"
+                              title="View Job Description PDF"
+                            >
+                              <FileText className="w-4 h-4" />
+                              <span className="hidden sm:inline">View JD</span>
+                            </a>
+                          )}
+
+                          {/* Apply Now */}
+                          <Link
+                            href={`/apply?role=${job.id}`}
+                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#4E9141] text-white text-sm font-semibold hover:bg-[#3d7334] transition-all"
+                          >
+                            <ArrowRight className="w-4 h-4" />
+                            <span className="hidden sm:inline">Apply Now</span>
+                          </Link>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 text-[#4E9141] font-semibold ml-4 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
-                        <span className="hidden sm:inline text-sm">Apply Now</span>
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </a>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             ))}
@@ -673,14 +413,9 @@ export default function CareersPage() {
           {/* Don't see a fit */}
           <div className="mt-12 p-8 rounded-2xl bg-[#F7FFF5] border border-[#C2DDB4]/30 text-center">
             <h3 className="text-2xl font-bold text-[#1D342F] mb-2">Don't see a role that fits?</h3>
-            <p className="text-[#47635D] mb-6">
-              We're always looking for talented individuals. Send us your resume and we'll be in touch.
-            </p>
-            <a 
-              href="mailto:careers@marcglocal.com" 
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300"
-              data-testid="send-resume-cta"
-            >
+            <p className="text-[#47635D] mb-6">We're always looking for talented individuals. Send us your resume and we'll be in touch.</p>
+            <a href="mailto:careers@marcglocal.com"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300">
               <Send className="w-5 h-5" />
               Send Your Resume
             </a>
@@ -688,28 +423,17 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ==================== CTA SECTION ==================== */}
+      {/* ==================== CTA ==================== */}
       <section className="py-20 bg-[#4E9141]">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            Ready to Make an Impact?
-          </h2>
-          <p className="text-xl text-white/80 mb-8">
-            Join MARC and be part of a team that's shaping business decisions across India.
-          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Ready to Make an Impact?</h2>
+          <p className="text-xl text-white/80 mb-8">Join MARC and be part of a team that's shaping business decisions across India.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="#openings" 
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#4E9141] font-semibold rounded-full hover:bg-[#C2DDB4] transition-all group"
-              data-testid="final-cta-explore"
-            >
+            <a href="#openings" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#4E9141] font-semibold rounded-full hover:bg-[#C2DDB4] transition-all group">
               Explore Opportunities
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a 
-              href="mailto:careers@marcglocal.com" 
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all"
-            >
+            <a href="mailto:careers@marcglocal.com" className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all">
               Contact Recruiting
             </a>
           </div>
