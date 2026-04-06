@@ -205,7 +205,7 @@ const timeline = [
   { year: '2012', title: 'First Office', desc: '3 employees, 1 office, 200 sq ft — the first brick-and-mortar presence' },
   { year: '2015', title: 'Growing Team', desc: '15 people, 600 sq ft office — expanding capabilities and client base' },
   { year: '2018', title: 'Multi-Office', desc: '25 people, 2 offices, 1,000 sq ft — deepening Pan-India reach' },
-  { year: '2026', title: 'And Growing', desc: '50 people, 100+ associates, 13 offices, 5,000 sq ft — a true global advisory firm' },
+  { year: '2026', title: 'And Growing', desc: '50 people, 100+ associates, 13 offices, 5,000 sq ft — global advisory firm' },
 ]
 
 const clientsRow1 = [
@@ -214,7 +214,7 @@ const clientsRow1 = [
   { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
   { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
   { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
-  { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
+  { name: 'Marriott', logo: 'http://marcglocal.com/wp-content/uploads/2022/07/JW-Marriott.png' },
 ]
 
 const clientsRow2 = [
@@ -222,7 +222,7 @@ const clientsRow2 = [
   { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
   { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
   { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
-  { name: 'Marriott', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Marriott.png' },
+  { name: 'Marriott', logo: 'http://marcglocal.com/wp-content/uploads/2022/07/JW-Marriott.png' },
   { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
 ]
 
@@ -546,27 +546,6 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* TRUSTED BY 500+ COMPANIES */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#1D342F] mb-8">
-              Trusted by 500+ Companies
-            </h2>
-            
-            <div className="flex flex-wrap justify-center gap-12 lg:gap-24 mb-16">
-              {stats.map((stat, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-5xl lg:text-6xl font-bold text-[#1D342F] mb-2">{stat.value}</div>
-                  <div className="text-[#47635D] font-medium">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <ClientMarquee />
-        </div>
-      </section>
 
       {/* VISION & MISSION */}
       <section className="py-20 bg-[#F7FFF5]">
@@ -603,6 +582,30 @@ export default function AboutPageClient() {
           </div>
         </div>
       </section>
+
+
+            {/* TRUSTED BY 500+ COMPANIES */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#1D342F] mb-8">
+              Trusted by 500+ Companies
+            </h2>
+            
+            <div className="flex flex-wrap justify-center gap-12 lg:gap-24 mb-16">
+              {stats.map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-5xl lg:text-6xl font-bold text-[#1D342F] mb-2">{stat.value}</div>
+                  <div className="text-[#47635D] font-medium">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <ClientMarquee />
+        </div>
+      </section>
+
 
       {/* JOURNEY TIMELINE — HORIZONTAL */}
       <section className="py-20 bg-white overflow-hidden">
@@ -776,10 +779,6 @@ export default function AboutPageClient() {
           <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
             Meet Our Directors
           </h2>
-          <p className="text-lg text-[#47635D] mb-12 max-w-3xl">
-            A family comprising of Chartered Accountants, Strategic Planners, Engineers, Company Secretaries, LLBs, and MBAs, 
-            each a stalwart in their respective fields with prior experience of working for globally acclaimed consulting firms.
-          </p>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {directors.map((director, i) => (
@@ -826,6 +825,11 @@ export default function AboutPageClient() {
             <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">
               Key Team Members
             </h2>
+
+             <p className="text-lg text-[#47635D] mb-12 max-w-3xl">
+            A family comprising of Chartered Accountants, Strategic Planners, CPAs, Engineers, Company Secretaries, LLBs, and MBAs, 
+            each a stalwart in their respective fields with prior experience of working for globally acclaimed consulting firms.
+          </p>
 
             <div className="grid md:grid-cols-4 gap-6">
               {keyTeam.map((member, i) => (
