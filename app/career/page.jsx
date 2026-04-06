@@ -12,33 +12,59 @@ import {
 } from 'lucide-react'
 
 // ─── PDF mapping — place these files in your /public/jds/ folder ───────────
-// Filename must exactly match what you upload to /public/jds/
+// IMPORTANT: Filenames must EXACTLY match what you uploaded to /public/jds/
+// If PDFs show 404, ensure they are committed to your Git repo under public/jds/
+// and redeployed on Vercel — files not in the repo won't be served.
 const JD_PDFS = {
-  'manager-market-research':       '/jds/JD_-_M-_MR_FA.pdf',
-  'asst-manager-market-research':  '/jds/JD_-_AM-_MR_FA.pdf',
-  'senior-analyst-market-research':'/jds/JD_-_SA-_MR_FA.pdf',
-  'executive-bd':                  '/jds/JD_-_BDE_1.pdf',
-  'associate-hr-admin':            '/jds/JD_-_HR_Associate.pdf',
+  'manager-market-research':       '/jds/JDMMRFA.pdf',
+  'asst-manager-market-research':  '/jds/JDAMMRFA.pdf',
+  'senior-analyst-market-research':'/jds/JDSAMRFA.pdf',
+  'executive-bd':                  '/jds/JDBDE1.pdf',
+  'associate-hr-admin':            '/jds/JDHRAssociate.pdf',
 }
 
-// ─── Employee Testimonials ────────────────────────────────────────────────────
+// ─── Employee Testimonials (from Testimonials.xlsx) ──────────────────────────
 const employeeTestimonials = [
-  { id: 1, name: "Your Name Here", role: "Senior Analyst", department: "Market Research", years: "3 years at MARC",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80",
-    quote: "Add your employee testimonial here. What do they love about working at MARC? What projects have they worked on? How have they grown?",
-    highlight: "Promoted twice in 3 years" },
-  { id: 2, name: "Your Name Here", role: "Project Manager", department: "Strategy Consulting", years: "5 years at MARC",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80",
-    quote: "Add your employee testimonial here. Share their journey, the challenges they've overcome, and why they chose to stay at MARC.",
-    highlight: "Led 20+ client engagements" },
-  { id: 3, name: "Your Name Here", role: "Business Analyst", department: "M&A Advisory", years: "2 years at MARC",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80",
-    quote: "Add your employee testimonial here. Include specifics about the work culture, mentorship, or career development opportunities.",
-    highlight: "Worked on ₹200Cr+ deals" },
-  { id: 4, name: "Your Name Here", role: "Research Lead", department: "Consumer & Retail", years: "4 years at MARC",
-    image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=400&q=80",
-    quote: "Add your employee testimonial here. What makes MARC different from other firms? What advice would they give to candidates?",
-    highlight: "Built the retail practice" },
+  {
+    id: 1,
+    name: "Suprita Mallya",
+    role: "Senior Analyst",
+    department: "Market Research & Analytics",
+    years: "Current Employee",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80",
+    quote: "My journey at MARC has been incredibly fulfilling. Starting as an intern and growing into my current role as Senior Analyst has given me the opportunity to learn, evolve, and take on diverse responsibilities across market research, analytics, and growth advisory. What makes MARC truly special is its young and vibrant team culture, strong team morale, and supportive, empathetic managers who genuinely encourage growth.",
+    highlight: "Grew from Intern to Senior Analyst"
+  },
+  {
+    id: 2,
+    name: "Vaishnavi Bhat",
+    role: "Analyst",
+    department: "Market Research",
+    years: "Current Employee",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
+    quote: "Working as an Analyst at MARC has been a highly enriching experience, offering strong exposure to real-world market research projects across industries. The role has helped me build robust analytical and problem-solving skills while working closely with experienced professionals. I've particularly valued the collaborative work environment and the opportunity to contribute meaningfully to client engagements.",
+    highlight: "Real-world exposure from day one"
+  },
+  {
+    id: 3,
+    name: "Yatin Tayal",
+    role: "Assistant Manager",
+    department: "Market Research & M&A",
+    years: "Ex-Team Member",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80",
+    quote: "My journey at MARC has been highly enriching, starting as a Senior Analyst and progressing to the role of Assistant Manager. I was entrusted with leading projects and exploring new service streams such as market research and financial due diligence, which broadened my expertise. The organization consistently provided opportunities for individual development, supported by a cohesive team and a positive culture that encouraged learning and ownership.",
+    highlight: "Promoted from Senior Analyst to AM"
+  },
+  {
+    id: 4,
+    name: "Myron D'Souza",
+    role: "Intern",
+    department: "Market Research & Financial Analysis",
+    years: "Current Intern",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
+    quote: "My internship at MARC has been a truly transformative experience. The breadth of projects in Market Research and Financial Analysis allowed me to move beyond theory and apply strategic thinking to real business challenges. MARC's fast-paced and collaborative environment fosters curiosity, accountability, and growth — qualities that have shaped my professional mindset and reinforced my passion for data-driven decision-making.",
+    highlight: "Real projects from day one"
+  },
 ]
 
 // ─── Application Process Steps ───────────────────────────────────────────────
@@ -217,11 +243,15 @@ export default function CareersPage() {
           </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-12">Hear From Our Team</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {employeeTestimonials.map((employee, index) => (
+            {employeeTestimonials.map((employee) => (
               <div key={employee.id} className="group relative bg-white rounded-2xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300">
                 <Quote className="absolute top-6 right-6 w-10 h-10 text-[#4E9141]/10" />
                 <div className="flex items-start gap-4 mb-6">
-                  <img src={employee.image} alt={`${employee.name} at MARC`} className="w-16 h-16 rounded-full object-cover border-2 border-[#4E9141]/20" />
+                  <img
+                    src={employee.image}
+                    alt={`${employee.name} at MARC`}
+                    className="w-16 h-16 rounded-full object-cover border-2 border-[#4E9141]/20"
+                  />
                   <div>
                     <h3 className="text-lg font-bold text-[#1D342F]">{employee.name}</h3>
                     <p className="text-[#4E9141] font-medium">{employee.role}</p>
@@ -357,7 +387,7 @@ export default function CareersPage() {
                 </div>
 
                 <div className="space-y-3 pl-6">
-                  {dept.openings.map((job, index) => {
+                  {dept.openings.map((job) => {
                     const hasPdf = !!JD_PDFS[job.id]
                     return (
                       <div
