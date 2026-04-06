@@ -5,8 +5,7 @@ import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } fro
 
 const pageData = {
   tagline: 'Market Research',
-  title: 'Market Research in',
-  titleHighlight: 'India',
+  title: 'Market Research',
   // ✅ KEYWORD: "market research in India" | "a leading market research firm in India" | "market research services in India"
   description: 'India is one of the world\'s fastest-growing economies—but also one of its most complex. Consumer behaviour, demand drivers, and regulations vary sharply across regions, making local market research in India critical for success. MARC is a leading market research firm in India, helping Indian and global businesses make confident decisions on market entry, expansion, and investment. Our market research services in India combine deep on-ground primary research with rigorous analysis to identify high-potential opportunities while reducing commercial, regulatory, and operational risk.',
 
