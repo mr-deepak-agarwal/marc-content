@@ -58,7 +58,7 @@ const industries = [
   {
     id: 'ecommerce',
     icon: ShoppingCart,
-    title: 'E-Commerce & Retail',
+    title: 'Retail',
     shortDesc: 'Unit economics, operational efficiency, and growth strategy for digital commerce ventures.',
     fullDesc: 'MARC equips e-commerce ventures with the strategic frameworks necessary to transition from rapid customer acquisition to profitable, compounding scale. By optimizing operational efficiency and unit economics, we focus on building digital platforms designed for long-term market leadership.',
     services: ['Unit Economics Analysis', 'Growth Strategy', 'Market Intelligence', 'Operational Efficiency'],
@@ -130,7 +130,7 @@ const industries = [
   {
     id: 'technology',
     icon: Cpu,
-    title: 'Technology',
+    title: 'Manufacturing Technology',
     shortDesc: 'Go-to-market strategy, investor readiness, and business valuation for tech companies.',
     fullDesc: 'MARC supports technology companies and SaaS businesses with go-to-market strategy, investor readiness, and business valuation for fundraising. We develop resilient tech strategies and review systems to streamline workflows and pivot businesses towards better performance.',
     services: ['Go-to-Market Strategy', 'Investor Readiness', 'Business Valuation', 'Due Diligence'],
@@ -144,8 +144,8 @@ const industries = [
 const caseHighlights = [
   { industry: 'Hospitality', client: 'Planet Hollywood', work: 'Market Research for new resort in Mumbai' },
   { industry: 'Healthcare', client: 'Madaus Pharma', work: 'Introduced Derma and Gynaec products to India' },
-  { industry: 'E-commerce', client: 'Magsons', work: 'Profitability analysis and MIS report' },
-  { industry: 'Technology', client: 'Optel Vision Inc', work: 'End to end advisory for India operations' },
+  { industry: 'Retail', client: 'Magsons', work: 'Profitability analysis and MIS report' },
+  { industry: 'Manufacturing Technology', client: 'Optel Vision Inc', work: 'End to end advisory for India operations' },
   { industry: 'Food & Beverage', client: 'Monginis', work: 'Identified new outlet locations through research' },
   { industry: 'Healthcare', client: "Dr. Batra's", work: 'Profitability Analysis to improve efficiency' }
 ]
