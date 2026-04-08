@@ -192,10 +192,10 @@ export default function CareersPage() {
           </div>
           <div className="hidden lg:grid grid-cols-2 gap-4">
             {[
-              { num: '500+', label: 'Projects Delivered' },
-              { num: '14+', label: 'Years Experience' },
-              { num: '8', label: 'Offices in India' },
-              { num: '30+', label: 'Countries Served' }
+              { num: '500+', label: 'Clients' },
+              { num: '15+', label: 'Years Experience' },
+              { num: '13', label: 'Offices in India' },
+              { num: '5', label: 'Continents Served' }
             ].map((stat, i) => (
               <div key={i} className="aspect-square rounded-2xl bg-white border border-[#C2DDB4]/30 p-6 flex flex-col items-center justify-center hover:border-[#4E9141]/50 hover:shadow-lg transition-all duration-300">
                 <span className="text-4xl font-bold text-[#4E9141]">{stat.num}</span>

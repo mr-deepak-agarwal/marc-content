@@ -81,7 +81,7 @@ const caseStudies = [
 const stats = [
   { value: '500+', label: 'Research Projects Delivered' },
   { value: '30+', label: 'Countries Covered' },
-  { value: '14+', label: 'Years of Excellence' },
+  { value: '15+', label: 'Years of Excellence' },
   { value: '98%', label: 'Client Satisfaction' },
 ]
 

@@ -23,8 +23,8 @@ const pageData = {
   stats: [
     { value: '360°', label: 'Research Coverage' },
     { value: '100+', label: 'Feasibility Studies' },
-    { value: '30+', label: 'Countries' },
-    { value: '14+', label: 'Years Experience' },
+    { value: '5', label: 'Continents served' },
+    { value: '15+', label: 'Years Experience' },
   ],
 
   valueProps: [

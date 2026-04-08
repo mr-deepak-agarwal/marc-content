@@ -129,13 +129,13 @@ const reasons = [
   { icon: CheckCircle, text: '24-hour response time' },
   { icon: CheckCircle, text: 'Free initial consultation' },
   { icon: CheckCircle, text: '100+ expert consultants' },
-  { icon: CheckCircle, text: '14+ years experience' },
+  { icon: CheckCircle, text: '15+ years experience' },
 ]
 
 const quickInfo = [
   { icon: Clock, title: 'Business Hours', value: 'Mon - Sat: 9:00 AM - 6:00 PM IST' },
   { icon: MessageCircle, title: 'Response Time', value: 'Within 24 hours' },
-  { icon: Globe, title: 'Global Presence', value: '10+ offices worldwide' },
+  { icon: Globe, title: 'Global Presence', value: '14 offices worldwide' },
 ]
 
 export default function ContactPage() {
@@ -232,7 +232,7 @@ export default function ContactPage() {
                 { icon: Globe, num: '10+', label: 'Offices', sublabel: 'India & USA' },
                 { icon: Users, num: '100+', label: 'Experts', sublabel: 'Ready to help' },
                 { icon: Clock, num: '24hr', label: 'Response', sublabel: 'Guaranteed' },
-                { icon: Award, num: '14+', label: 'Years', sublabel: 'Experience' }
+                { icon: Award, num: '15+', label: 'Years', sublabel: 'Experience' }
               ].map((item, i) => (
                 <div 
                   key={i}

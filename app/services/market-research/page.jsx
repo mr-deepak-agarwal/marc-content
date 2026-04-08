@@ -15,8 +15,8 @@ const pageData = {
 
   stats: [
     { value: '500+', label: 'Research Projects' },
-    { value: '30+', label: 'Countries Covered' },
-    { value: '14+', label: 'Years Experience' },
+    { value: '5', label: 'Continents served' },
+    { value: '15+', label: 'Years Experience' },
     { value: '98%', label: 'Client Satisfaction' },
   ],
 

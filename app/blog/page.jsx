@@ -77,12 +77,12 @@ export default function BlogPage() {
                   <div className="text-sm text-[#47635D] mt-1">Articles</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#4E9141]">15+</div>
+                  <div className="text-3xl font-bold text-[#4E9141]">10+</div>
                   <div className="text-sm text-[#47635D] mt-1">Authors</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#4E9141]">50k+</div>
-                  <div className="text-sm text-[#47635D] mt-1">Readers</div>
+                  <div className="text-3xl font-bold text-[#4E9141]">2023</div>
+                  <div className="text-sm text-[#47635D] mt-1">Publishing Since</div>
                 </div>
               </div>
             </div>

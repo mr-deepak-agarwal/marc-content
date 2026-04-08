@@ -55,8 +55,8 @@ const teamImages = [
 
 const stats = [
   { value: '15+', label: 'Partners Globally' },
-  { value: '5+', label: 'Continents Served' },
-  { value: '100+%', label: 'International Projects' },
+  { value: '5', label: 'Continents Served' },
+  { value: '100+', label: 'International Projects' },
 ]
 
 const directors = [
@@ -518,7 +518,7 @@ export default function AboutPageClient() {
               </p>
 
               <p className="text-lg text-[#47635D] leading-relaxed mb-8">
-                With presence across 14+ offices and 100+ associates worldwide, we partner with founders, 
+                With presence across 13 offices and 100+ associates worldwide, we partner with founders, 
                 leadership teams, and investors to build scalable, resilient businesses.
               </p>
 
