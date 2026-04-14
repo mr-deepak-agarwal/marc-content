@@ -29,6 +29,7 @@ const caseStudies = [
     outcomes: ['15% margin improvement', '20% cost reduction', 'Data-driven inventory'],
     image: 'https://images.pexels.com/photos/10983783/pexels-photo-10983783.jpeg?w=800',
     featured: true,
+    pdfPath: '/case-studies/Case-Study-Abharan.pdf',
   },
   {
     id: 2,
@@ -41,6 +42,7 @@ const caseStudies = [
     outcomes: ['20% revenue growth', '25% table turnover', 'Better retention'],
     image: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?w=800',
     featured: true,
+    pdfPath: '/case-studies/Case-Study-Copper-Leaf.pdf',
   },
   {
     id: 3,
@@ -52,6 +54,7 @@ const caseStudies = [
     solution: 'Seasonal pricing model, ancillary revenue development, and cost structure optimization.',
     outcomes: ['30% EBITDA boost', 'New revenue streams', 'Seasonal optimization'],
     image: 'https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?w=800',
+    pdfPath: '/case-studies/Case-Study-PH.pdf',
   },
   {
     id: 4,
@@ -63,28 +66,7 @@ const caseStudies = [
     solution: 'Competitive benchmarking, customer segmentation, and pricing strategy development.',
     outcomes: ['Clear positioning', '40% occupancy up', 'Premium pricing'],
     image: 'https://images.pexels.com/photos/7070/space-desk-workspace-coworking.jpg?w=800',
-  },
-  {
-    id: 5,
-    title: 'Regional Aviation Route Feasibility',
-    client: 'Fly91',
-    industry: 'aviation',
-    service: 'Feasibility Study',
-    challenge: 'Assess commercial viability of launching flights on four regional routes under UDAN scheme.',
-    solution: 'Demand-supply analysis, traveller profiling, competitor assessment, and route optimization.',
-    outcomes: ['Go/no-go clarity', 'Optimal frequency', 'Risk mitigation'],
-    image: 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?w=800',
-  },
-  {
-    id: 6,
-    title: 'Building Materials Market Entry',
-    client: 'ACC Alcon',
-    industry: 'manufacturing',
-    service: 'Market Entry Strategy',
-    challenge: 'Strategic market entry and location selection for gypsum plaster segment expansion in India.',
-    solution: 'Location scoring model, competitive intelligence, and go-to-market strategy development.',
-    outcomes: ['Best location found', 'Clear roadmap', '40% faster entry'],
-    image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?w=800',
+    pdfPath: '/case-studies/Case-Study-Vertex.pdf',
   },
 ]
 
@@ -134,14 +116,13 @@ export default function CaseStudiesPage() {
   return (
     <div className="bg-[#F0F4F0] min-h-screen" data-testid="case-studies-page">
 
-      {/* Hero Section - Clean Light Theme */}
+      {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-white border-b border-[#C2DDB4]/30 overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
             <div>
               <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50 mb-8">
                 <Lightbulb className="w-4 h-4 text-[#4E9141]" />
@@ -154,7 +135,7 @@ export default function CaseStudiesPage() {
               </h1>
 
               <p className="text-[#47635D] text-lg leading-relaxed mb-10 max-w-lg">
-                From challenge to triumph discover how we deliver measurable business impact through data-driven insights and strategic expertise.
+                From challenge to triumph — discover how we deliver measurable business impact through data-driven insights and strategic expertise.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -168,7 +149,7 @@ export default function CaseStudiesPage() {
               </div>
             </div>
 
-            {/* Right - Stats Grid */}
+            {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-5">
               {stats.map((stat, i) => (
                 <div 
@@ -198,10 +179,12 @@ export default function CaseStudiesPage() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
-            {featuredStudies.map((study, i) => (
-              <Link 
+            {featuredStudies.map((study) => (
+              <a 
                 key={study.id}
-                href="#"
+                href={study.pdfPath ?? '#'}
+                target={study.pdfPath ? '_blank' : undefined}
+                rel={study.pdfPath ? 'noopener noreferrer' : undefined}
                 className="group block bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] shadow-sm hover:shadow-xl transition-all duration-500"
               >
                 {/* Image */}
@@ -213,7 +196,6 @@ export default function CaseStudiesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/70 via-transparent to-transparent" />
                   
-                  {/* Badges */}
                   <div className="absolute top-4 left-4 flex gap-2">
                     <span className="px-4 py-1.5 bg-[#4E9141] text-white text-sm font-semibold rounded-full shadow-md">
                       Featured
@@ -223,12 +205,10 @@ export default function CaseStudiesPage() {
                     </span>
                   </div>
 
-                  {/* Arrow */}
                   <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-lg">
                     <ArrowUpRight className="w-5 h-5 text-[#4E9141]" />
                   </div>
 
-                  {/* Bottom content on image */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <p className="text-[#C2DDB4] font-medium mb-1">{study.client}</p>
                     <h3 className="text-xl lg:text-2xl font-bold text-white leading-tight">
@@ -241,7 +221,6 @@ export default function CaseStudiesPage() {
                 <div className="p-6">
                   <p className="text-[#47635D] mb-6">{study.challenge}</p>
                   
-                  {/* Outcomes */}
                   <div className="flex flex-wrap gap-3">
                     {study.outcomes.map((outcome, j) => (
                       <div key={j} className="flex items-center gap-2 px-4 py-2 bg-[#F7FFF5] rounded-full border border-[#C2DDB4]/50">
@@ -251,13 +230,13 @@ export default function CaseStudiesPage() {
                     ))}
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Filter & All Case Studies */}
+      {/* Filter Bar */}
       <section id="cases" className="py-8 bg-white border-y border-[#C2DDB4]/30 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap items-center justify-center gap-2">
@@ -294,12 +273,13 @@ export default function CaseStudiesPage() {
             </p>
           </div>
 
-          {/* Symmetrical Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredStudies.map((study, i) => (
-              <Link 
+              <a 
                 key={study.id}
-                href="#"
+                href={study.pdfPath ?? '#'}
+                target={study.pdfPath ? '_blank' : undefined}
+                rel={study.pdfPath ? 'noopener noreferrer' : undefined}
                 data-index={i}
                 className="group block"
                 data-testid={`case-study-${study.id}`}
@@ -318,52 +298,54 @@ export default function CaseStudiesPage() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     
-                    {/* Industry Badge */}
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1.5 bg-white text-[#4E9141] text-xs font-semibold rounded-full shadow-md capitalize">
                         {study.industry.replace('-', ' ')}
                       </span>
                     </div>
 
-                    {/* Service Badge */}
                     <div className="absolute top-4 right-4">
                       <span className="px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">
                         {study.service}
                       </span>
                     </div>
 
-                    {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
-                    {/* Arrow on hover */}
-                    <div className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                      <ArrowRight className="w-5 h-5 text-[#4E9141]" />
+                    {/* PDF indicator or Coming Soon badge */}
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      {study.pdfPath ? (
+                        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg">
+                          <ArrowRight className="w-4 h-4 text-[#4E9141]" />
+                          <span className="text-[#4E9141] text-xs font-semibold">View PDF</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 px-4 py-2 bg-white/90 rounded-full shadow-lg">
+                          <span className="text-[#47635D] text-xs font-semibold">Coming Soon</span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6">
-                    {/* Client */}
                     <p className="text-[#4E9141] font-semibold text-sm mb-2">{study.client}</p>
 
-                    {/* Title */}
                     <h3 className="text-lg font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors line-clamp-2">
                       {study.title}
                     </h3>
 
-                    {/* Challenge */}
                     <p className="text-[#47635D] text-sm leading-relaxed mb-4 line-clamp-2">
                       {study.challenge}
                     </p>
 
-                    {/* Key Outcome */}
                     <div className="flex items-center gap-2 px-4 py-2.5 bg-[#F7FFF5] rounded-xl border border-[#C2DDB4]/50">
                       <CheckCircle2 className="w-4 h-4 text-[#4E9141] flex-shrink-0" />
                       <span className="text-[#1D342F] text-sm font-medium">{study.outcomes[0]}</span>
                     </div>
                   </div>
                 </article>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
