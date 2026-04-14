@@ -147,14 +147,14 @@ export default function ContactPage() {
   useEffect(() => {
     const observers = observerRefs.current.map((ref, index) => {
       if (!ref) return null
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(prev => ({ ...prev, [index]: true }))
-          }
-        },
-        { threshold: 0.1, rootMargin: '50px' }
-      )
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setIsVisible(prev => ({ ...prev, [index]: true }))
+            }
+          },
+          { threshold: 0.1, rootMargin: '50px' }
+          )
       observer.observe(ref)
       return observer
     })
@@ -245,7 +245,7 @@ export default function ContactPage() {
                   <span className="text-sm font-medium text-[#1D342F]">{item.label}</span>
                   <span className="text-xs text-[#47635D]">{item.sublabel}</span>
                 </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
@@ -258,7 +258,7 @@ export default function ContactPage() {
       >
         <div className={`max-w-7xl mx-auto px-6 transition-all duration-1000 ${isVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="grid lg:grid-cols-5 gap-12">
-            
+
             {/* Contact Form */}
             <div className="lg:col-span-3">
               <div className="flex items-center gap-4 mb-4">
@@ -338,7 +338,7 @@ export default function ContactPage() {
                     <option value="">Select a service</option>
                     {services.map((service) => (
                       <option key={service} value={service}>{service}</option>
-                    ))}
+                      ))}
                   </select>
                 </div>
 
@@ -377,7 +377,7 @@ export default function ContactPage() {
                       <reason.icon className="w-5 h-5 text-[#C2DDB4] flex-shrink-0" />
                       <span className="text-white/90">{reason.text}</span>
                     </div>
-                  ))}
+                    ))}
                 </div>
               </div>
 
@@ -388,10 +388,15 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-bold text-[#1D342F] mb-2">Schedule a Call</h3>
                 <p className="text-[#47635D] mb-6">Book a 30-minute free consultation with our experts.</p>
-                <button className="w-full px-6 py-4 bg-white border border-[#C2DDB4]/50 text-[#1D342F] rounded-xl font-semibold hover:border-[#4E9141] hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                <a 
+                  href="https://calendly.com/deepakagarwalsrc/marc-road-to-success"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full px-6 py-4 bg-white border border-[#C2DDB4]/50 text-[#1D342F] rounded-xl font-semibold hover:border-[#4E9141] hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                >
                   Book Appointment
                   <ArrowUpRight className="w-4 h-4" />
-                </button>
+                </a>  
               </div>
 
               {/* Quick Info Card */}
@@ -408,7 +413,7 @@ export default function ContactPage() {
                         <p className="text-[#1D342F] font-medium">{info.value}</p>
                       </div>
                     </div>
-                  ))}
+                    ))}
                 </div>
               </div>
             </div>
@@ -446,8 +451,8 @@ export default function ContactPage() {
                 {/* Gradient accent bar */}
                 <div className={`absolute top-0 left-0 right-0 h-1 ${
                   office.type === 'Headquarters' 
-                    ? 'bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]' 
-                    : 'bg-gradient-to-r from-blue-500 via-blue-300 to-blue-500'
+                  ? 'bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]' 
+                  : 'bg-gradient-to-r from-blue-500 via-blue-300 to-blue-500'
                 }`} />
                 
                 <div className="p-8">
@@ -457,66 +462,66 @@ export default function ContactPage() {
                       <div>
                         <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 ${
                           office.type === 'Headquarters' 
-                            ? 'bg-[#4E9141] text-white' 
-                            : 'bg-blue-500 text-white'
+                          ? 'bg-[#4E9141] text-white' 
+                          : 'bg-blue-500 text-white'
                         }`}>
-                          {office.type}
-                        </span>
-                        <h3 className="text-2xl font-bold text-[#1D342F] group-hover:text-[#4E9141] transition-colors">
-                          {office.city}
-                        </h3>
-                        <p className="text-[#4E9141] font-medium">{office.state}</p>
-                      </div>
+                        {office.type}
+                      </span>
+                      <h3 className="text-2xl font-bold text-[#1D342F] group-hover:text-[#4E9141] transition-colors">
+                        {office.city}
+                      </h3>
+                      <p className="text-[#4E9141] font-medium">{office.state}</p>
                     </div>
                   </div>
+                </div>
 
                   {/* Address */}
-                  <div className="flex items-start gap-3 mb-6 p-4 bg-[#F7FFF5] rounded-xl">
-                    <MapPin className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
-                    <p className="text-[#47635D]">{office.address}</p>
-                  </div>
+                <div className="flex items-start gap-3 mb-6 p-4 bg-[#F7FFF5] rounded-xl">
+                  <MapPin className="w-5 h-5 text-[#4E9141] flex-shrink-0 mt-0.5" />
+                  <p className="text-[#47635D]">{office.address}</p>
+                </div>
 
                   {/* Contact Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <a 
-                      href={`tel:${office.phone.replace(/\s/g, '')}`}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-[#F7FFF5] hover:bg-[#4E9141]/10 transition-colors"
-                    >
-                      <Phone className="w-5 h-5 text-[#4E9141]" />
-                      <div>
-                        <p className="text-xs text-[#47635D]">Phone</p>
-                        <p className="text-sm font-medium text-[#1D342F]">{office.phone}</p>
-                      </div>
-                    </a>
-                    <a 
-                      href={`mailto:${office.email}`}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-[#F7FFF5] hover:bg-[#4E9141]/10 transition-colors"
-                    >
-                      <Mail className="w-5 h-5 text-[#4E9141]" />
-                      <div>
-                        <p className="text-xs text-[#47635D]">Email</p>
-                        <p className="text-sm font-medium text-[#1D342F]">{office.email}</p>
-                      </div>
-                    </a>
-                  </div>
-
-                  {/* Map Button */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
                   <a 
-                    href={office.mapLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-full flex items-center justify-center gap-2 px-6 py-4 font-semibold rounded-xl transition-all ${
-                      office.type === 'Headquarters'
-                        ? 'bg-[#4E9141] text-white hover:bg-[#3d7334]'
-                        : 'bg-blue-500 text-white hover:bg-blue-600'
-                    }`}
+                    href={`tel:${office.phone.replace(/\s/g, '')}`}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-[#F7FFF5] hover:bg-[#4E9141]/10 transition-colors"
                   >
-                    <MapPin className="w-5 h-5" />
-                    View on Google Maps
-                    <ArrowUpRight className="w-4 h-4" />
+                    <Phone className="w-5 h-5 text-[#4E9141]" />
+                    <div>
+                      <p className="text-xs text-[#47635D]">Phone</p>
+                      <p className="text-sm font-medium text-[#1D342F]">{office.phone}</p>
+                    </div>
+                  </a>
+                  <a 
+                    href={`mailto:${office.email}`}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-[#F7FFF5] hover:bg-[#4E9141]/10 transition-colors"
+                  >
+                    <Mail className="w-5 h-5 text-[#4E9141]" />
+                    <div>
+                      <p className="text-xs text-[#47635D]">Email</p>
+                      <p className="text-sm font-medium text-[#1D342F]">{office.email}</p>
+                    </div>
                   </a>
                 </div>
+
+                  {/* Map Button */}
+                <a 
+                  href={office.mapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full flex items-center justify-center gap-2 px-6 py-4 font-semibold rounded-xl transition-all ${
+                    office.type === 'Headquarters'
+                    ? 'bg-[#4E9141] text-white hover:bg-[#3d7334]'
+                    : 'bg-blue-500 text-white hover:bg-blue-600'
+                  }`}
+                >
+                  <MapPin className="w-5 h-5" />
+                  View on Google Maps
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
               </div>
+            </div>
             ))}
           </div>
 
@@ -557,7 +562,7 @@ export default function ContactPage() {
                       <Phone className="w-3 h-3" />
                       {office.phone2}
                     </a>
-                  )}
+                    )}
                 </div>
                 
                 <a 
@@ -570,7 +575,7 @@ export default function ContactPage() {
                   <ArrowUpRight className="w-4 h-4 text-[#4E9141] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
               </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>
@@ -681,5 +686,5 @@ export default function ContactPage() {
 
       <Footer />
     </div>
-  )
+    )
 }
