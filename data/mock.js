@@ -43,7 +43,7 @@ export const services = [
  description: "Market prioritisation, value proposition, pricing, channel strategy, market assessment, localisation, regulatory context.",
  image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=90",
  imageAlt: "Growth strategy analytics dashboard",
- link: "/services/growth-strategy"
+ link: "/services/strategy-consulting"
  },
  {
  id: 3,
@@ -51,7 +51,7 @@ export const services = [
  description: "Market assessment, partner strategy, localisation, regulatory context, and launch support for global businesses entering India.",
  image: "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=800&h=600&fit=crop&q=90",
  imageAlt: "India city skyline representing market entry",
- link: "/services/india-entry"
+ link: "/services/internationalization"
  },
  {
  id: 4,
@@ -59,7 +59,7 @@ export const services = [
  description: "Market selection, entry strategy, operating models, and early-stage execution support for Indian businesses going global.",
  image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=90",
  imageAlt: "Global expansion strategy and world map",
- link: "/services/international-expansion"
+ link: "/services/information-memorandum"
  },
  {
  id: 5,
@@ -67,7 +67,7 @@ export const services = [
  description: "Product-Market Fit assessment, competitive landscape, product viability, land utilisation and feasibility evaluation.",
  image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&q=90",
  imageAlt: "Feasibility study blueprints and architectural plans",
- link: "/services/feasibility-studies"
+ link: "/services/feasibility-study"
  },
  {
  id: 6,
@@ -75,7 +75,7 @@ export const services = [
  description: "Profitability analyses, industry and competitor benchmarking to guide strategic decisions.",
  image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=600&fit=crop&q=90",
  imageAlt: "Financial analytics and performance charts",
- link: "/services/financial-analytics"
+ link: "/services/financial-modelling"
  },
  {
  id: 7,
@@ -83,7 +83,7 @@ export const services = [
  description: "Process audits, SOP review and system optimization to sustain compounding growth.",
  image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&q=90",
  imageAlt: "Process optimization and system workflow",
- link: "/services/process-optimization"
+ link: "/services/mis"
  },
  {
  id: 8,
@@ -91,7 +91,7 @@ export const services = [
  description: "Deep consumer, B2B, and category insights to reduce risk and sharpen decisions.",
  image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=90",
  imageAlt: "Market intelligence analytics dashboard",
- link: "/services/market-intelligence"
+ link: "/services/market-research"
  }
 ];
 
