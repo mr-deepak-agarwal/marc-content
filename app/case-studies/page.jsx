@@ -9,12 +9,10 @@ import {
 } from 'lucide-react'
 
 const industries = [
-  { id: 'all', label: 'All', count: 6 },
+  { id: 'all', label: 'All', count: 4 },
   { id: 'hospitality', label: 'Hospitality', count: 2 },
   { id: 'retail', label: 'Retail', count: 1 },
   { id: 'real-estate', label: 'Real Estate', count: 1 },
-  { id: 'manufacturing', label: 'Manufacturing', count: 1 },
-  { id: 'aviation', label: 'Aviation', count: 1 },
 ]
 
 const caseStudies = [
