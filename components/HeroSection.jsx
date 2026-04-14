@@ -24,7 +24,7 @@ const slides = [
   {
     id: 3,
     heading: 'M&A, designed for growth.',
-    description: 'Strategic target identification, commercial diligence, and integration support — focused on value creation, not just deal completion.',
+    description: 'Strategic target identification, commercial diligence, and integration support focused on value creation, not just deal completion.',
     image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&h=1080&fit=crop&q=90',
     ctaPrimary: { label: 'Explore Services', href: '/services/mergers-acquisitions' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
@@ -110,7 +110,7 @@ const HeroSection = () => {
             </p>
           </div>
           <p className="text-white/65 text-sm pl-11 max-w-lg leading-relaxed">
-            Strategy and execution for Indian and global businesses that want to reimagine growth — year on year.
+            Strategy and execution for Indian and global businesses that want to reimagine growth year on year.
           </p>
         </div>
 

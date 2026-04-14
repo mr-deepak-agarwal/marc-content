@@ -265,7 +265,7 @@ export default function IndustriesPage() {
           </h2>
           <p className="text-lg text-[#47635D] leading-relaxed max-w-3xl">
             MARC brings expertise spanning every possible industry. We know the challenges faced
-            in business environments, hence we turn that challenge into a study—then into a solution
+            in business environments, hence we turn that challenge into a study, then into a solution
             for every client.
           </p>
         </div>

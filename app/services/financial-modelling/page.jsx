@@ -7,7 +7,7 @@ const pageData = {
   tagline: 'Growth Strategy',
   title: 'Financial Modelling &',
   titleHighlight: 'Project Reports',
-  description: 'Sound financial decisions require robust, reliable models. MARC builds financial models and project reports that go beyond spreadsheets — delivering structured, assumption-driven projections that support investment decisions, fundraising, expansion planning, and bank financing.',
+  description: 'Sound financial decisions require robust, reliable models. MARC builds financial models and project reports that go beyond spreadsheets delivering structured, assumption-driven projections that support investment decisions, fundraising, expansion planning, and bank financing.',
 
   stats: [
     { value: '250+', label: 'Models Built' },
@@ -31,24 +31,24 @@ const pageData = {
     { num: '05', title: 'Scenario & Sensitivity Analysis', desc: 'Build base, upside, and downside scenarios. Identify key sensitivities and break-even thresholds.' },
     { num: '06', title: 'Report Preparation', desc: 'Prepare structured project reports or investor-ready financial summaries aligned with lender or investor requirements.' },
   ],
-  methodologyDescription: 'We combine rigorous financial modelling with deep sector knowledge — building models that are not just mathematically sound but grounded in realistic market and operational assumptions.',
+  methodologyDescription: 'We combine rigorous financial modelling with deep sector knowledge building models that are not just mathematically sound but grounded in realistic market and operational assumptions.',
 
   services: [
     {
       title: 'Financial Modelling',
-      desc: 'Integrated three-statement financial models covering P&L, balance sheet, and cash flow — built on structured, transparent assumptions for any business or project.',
+      desc: 'Integrated three-statement financial models covering P&L, balance sheet, and cash flow built on structured, transparent assumptions for any business or project.',
       features: ['Three-Statement Model', 'Dynamic Assumptions', 'Scenario Analysis', 'Sensitivity Testing'],
       icon: BarChart3,
     },
     {
       title: 'Project Report (DPR)',
-      desc: 'Detailed Project Reports for bank financing, NBFC lending, and government scheme applications — covering project overview, financial projections, and returns analysis.',
+      desc: 'Detailed Project Reports for bank financing, NBFC lending, and government scheme applications covering project overview, financial projections, and returns analysis.',
       features: ['Project Overview', 'Capex & Opex Planning', 'DSCR Analysis', 'Bank-Ready Format'],
       icon: Calculator,
     },
     {
       title: 'Investment Feasibility',
-      desc: 'Assess the financial viability of new investments, expansions, or projects — with ROI, IRR, NPV, and payback analysis to support go / no-go decisions.',
+      desc: 'Assess the financial viability of new investments, expansions, or projects with ROI, IRR, NPV, and payback analysis to support go / no-go decisions.',
       features: ['ROI & IRR Analysis', 'NPV Calculation', 'Payback Period', 'Break-even Analysis'],
       icon: Target,
     },
@@ -88,11 +88,11 @@ const pageData = {
   ],
 
   faqs: [
-    { q: 'What is the difference between a financial model and a project report?', a: 'A financial model is an Excel-based tool with integrated projections and scenario analysis. A project report (DPR) is a structured document — typically required by banks or lenders — that includes the financial model alongside project description, market analysis, and management overview.' },
-    { q: 'What returns metrics do you calculate?', a: 'We typically calculate ROI, IRR, NPV, payback period, DSCR (debt service coverage ratio), and break-even analysis — tailored to the specific requirements of investors or lenders.' },
+    { q: 'What is the difference between a financial model and a project report?', a: 'A financial model is an Excel-based tool with integrated projections and scenario analysis. A project report (DPR) is a structured document typically required by banks or lenders that includes the financial model alongside project description, market analysis, and management overview.' },
+    { q: 'What returns metrics do you calculate?', a: 'We typically calculate ROI, IRR, NPV, payback period, DSCR (debt service coverage ratio), and break-even analysis tailored to the specific requirements of investors or lenders.' },
     { q: 'Can you prepare project reports for government scheme applications?', a: 'Yes. We prepare DPRs aligned with the documentation requirements of MSME schemes, SIDBI, NABARD, and various state government funding programs.' },
     { q: 'How long does financial modelling take?', a: 'A focused financial model typically takes 2–3 weeks. A full DPR with market analysis and financial projections typically takes 4–6 weeks.' },
-    { q: 'Do you provide sensitivity and scenario analysis?', a: 'Yes. We always include scenario analysis (base, upside, downside) and sensitivity tables showing the impact of key assumptions on returns — giving decision-makers a clear view of the range of outcomes.' },
+    { q: 'Do you provide sensitivity and scenario analysis?', a: 'Yes. We always include scenario analysis (base, upside, downside) and sensitivity tables showing the impact of key assumptions on returns giving decision-makers a clear view of the range of outcomes.' },
   ],
 
   ctaTitle: 'Ready to Build a Robust Financial Model?',

@@ -50,7 +50,7 @@ const globalServices = [
   {
     icon: Shield,
     title: 'Due Diligence & QoE Support',
-    tagline: 'Execution muscle for live deals—when timelines get brutal.',
+    tagline: 'Execution muscle for live deals, when timelines get brutal.',
     bullets: [
       'Commercial due diligence',
       'Financial Due Diligence (FDD) and Vendor Due Diligence (VDD) support',
@@ -90,7 +90,7 @@ const whyUs = [
   {
     icon: Eye,
     title: 'Built for Advisors, Not End Clients',
-    desc: 'We understand how US advisors work—deadlines, defensibility, and precision matter.',
+    desc: 'We understand how US advisors work, deadlines, defensibility, and precision matter.',
   },
   {
     icon: Lock,
@@ -105,7 +105,7 @@ const whyUs = [
   {
     icon: Zap,
     title: 'Flexible, On-Demand Engagements',
-    desc: 'Per-deal, retainer, or surge capacity—scale up or down without fixed costs.',
+    desc: 'Per-deal, retainer, or surge capacity, scale up or down without fixed costs.',
   },
 ]
 
@@ -152,7 +152,7 @@ export default function GlobalPage() {
             </h1>
 
             <p className="text-white/70 text-lg lg:text-xl font-light leading-relaxed mb-4 max-w-2xl">
-              MARC Glocal partners with small and mid-size global consulting firms, boutique investment banks, and independent advisors to deliver high-quality valuation, CIM, pitch deck, and due diligence support—reliably, confidentially, and at scale.
+              MARC Glocal partners with small and mid-size global consulting firms, boutique investment banks, and independent advisors to deliver high-quality valuation, CIM, pitch deck, and due diligence support, reliably, confidentially, and at scale.
             </p>
             <p className="text-[#C2DDB4] text-base font-medium mb-12">
               We work as your extended deal team, invisible to your client, accountable to your standards.
@@ -192,7 +192,7 @@ export default function GlobalPage() {
                 <span className="text-[#4E9141] font-semibold tracking-widest uppercase text-xs">Who We Work With</span>
               </div>
               <p className="text-[#47635D] text-sm max-w-xs">
-                If you're winning mandates but stretched on execution—we plug the gap.
+                If you're winning mandates but stretched on execution, we plug the gap.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -334,7 +334,7 @@ export default function GlobalPage() {
                 MARC Glocal is a growth and transaction advisory firm with deep experience across valuation, M&A, and diligence engagements globally. We support global and cross-border transactions, bringing together structured thinking, market insight, and execution discipline.
               </p>
               <p className="text-[#47635D] text-base leading-relaxed">
-                Our analysts are trained on international transactions, US GAAP standards, and global valuation norms. We've supported advisors across the US, UK, Middle East, and Southeast Asia—always white-labelled, always accountable.
+                Our analysts are trained on international transactions, US GAAP standards, and global valuation norms. We've supported advisors across the US, UK, Middle East, and Southeast Asia, always white-labelled, always accountable.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">

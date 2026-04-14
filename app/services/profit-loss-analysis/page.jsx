@@ -7,7 +7,7 @@ const pageData = {
   tagline: 'Growth Strategy',
   title: 'Profit & Loss',
   titleHighlight: 'Analysis',
-  description: 'A clear understanding of your P&L is the foundation of every sound business decision. MARC\'s P&L analysis services help businesses understand where they make money, where they lose it, and what levers drive profitability — enabling sharper decisions on pricing, costs, and growth investments.',
+  description: 'A clear understanding of your P&L is the foundation of every sound business decision. MARC\'s P&L analysis services help businesses understand where they make money, where they lose it, and what levers drive profitability enabling sharper decisions on pricing, costs, and growth investments.',
 
   stats: [
     { value: '200+', label: 'P&L Engagements' },
@@ -17,7 +17,7 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: BarChart3, title: 'Profitability Clarity', desc: 'Understand exactly where margins are made and lost — by product, channel, customer, or business unit.' },
+    { icon: BarChart3, title: 'Profitability Clarity', desc: 'Understand exactly where margins are made and lost by product, channel, customer, or business unit.' },
     { icon: Target, title: 'Cost Optimisation', desc: 'Identify cost overruns, inefficiencies, and underperforming areas with clear recommendations to reduce leakage.' },
     { icon: TrendingUp, title: 'Revenue Enhancement', desc: 'Identify pricing gaps, revenue mix opportunities, and undermonetised segments to improve top-line performance.' },
     { icon: ShieldCheck, title: 'Decision Support', desc: 'Management-ready P&L reports and dashboards that make financial performance visible and actionable.' },
@@ -31,7 +31,7 @@ const pageData = {
     { num: '05', title: 'Variance Analysis', desc: 'Compare actuals against budget and prior periods to identify deviations, root causes, and corrective actions.' },
     { num: '06', title: 'Recommendations & Reporting', desc: 'Deliver structured reports with prioritised recommendations on revenue, cost, and margin improvement levers.' },
   ],
-  methodologyDescription: 'We go beyond presenting numbers — we interpret them. Our P&L analysis translates financial data into clear insights on what is driving performance and what needs to change.',
+  methodologyDescription: 'We go beyond presenting numbers we interpret them. Our P&L analysis translates financial data into clear insights on what is driving performance and what needs to change.',
 
   services: [
     {
@@ -89,7 +89,7 @@ const pageData = {
 
   faqs: [
     { q: 'What is the difference between a P&L review and an audit?', a: 'A P&L review focuses on understanding profitability drivers, cost structure, and performance insights to support business decisions. An audit is a formal compliance exercise verifying the accuracy of financial statements.' },
-    { q: 'How granular can a P&L analysis go?', a: 'We can analyse P&L at any level — total company, business unit, product line, channel, customer segment, or individual outlet — depending on data availability and business needs.' },
+    { q: 'How granular can a P&L analysis go?', a: 'We can analyse P&L at any level total company, business unit, product line, channel, customer segment, or individual outlet depending on data availability and business needs.' },
     { q: 'Can you help set up a monthly P&L reporting process?', a: 'Yes. We design and implement monthly P&L reporting frameworks including actual vs budget tracking, variance analysis, and management dashboards that can be maintained by your internal team.' },
     { q: 'How long does a P&L analysis engagement take?', a: 'A focused P&L review typically takes 3–5 weeks. A full restructuring and reporting framework setup may take 6–8 weeks depending on complexity.' },
     { q: 'What data do you need to begin?', a: 'We typically start with historical financial statements, trial balances, and any existing management reports. We work with whatever is available and help structure data gaps during the engagement.' },

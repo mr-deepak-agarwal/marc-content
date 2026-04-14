@@ -202,7 +202,7 @@ At MARC, we partner with promoters to build IPO-ready companies. Based on our pr
 Early advisory is critical to avoid common pitfalls and ensure a smooth process.`,
         },
         {
-          heading: `Phase 1: Year 1 — Laying the Unshakable Foundation (Months 1-12)`,
+          heading: `Phase 1: Year 1 Laying the Unshakable Foundation (Months 1-12)`,
           content: `This initial stage involves introspection and establishing a robust operational foundation. It begins with a clear-eyed assessment of your company’s current standing.
 
 Conduct a Formal Business Readiness Assessment : Before diving in, you need a baseline. A thorough assessment evaluates your financial strength, market positioning, operational stability, and scalability. This diagnostic phase identifies critical gaps and provides a clear strategic direction for the years ahead.
@@ -212,7 +212,7 @@ Initiate a Comprehensive Internal Audit & Risk Review : This is a thorough exami
 Establish Foundational Internal Controls : Transparency is the currency of public markets. Implement robust financial reporting protocols, document management systems, and policies that support compliance. These internal controls create a reliable and audit-friendly environment, which is a fundamental requirement for both regulators and potential investors.`,
         },
         {
-          heading: `Phase 2: Year 2 — Building Strategic Compliance & Structure (Months 13-24)`,
+          heading: `Phase 2: Year 2 Building Strategic Compliance & Structure (Months 13-24)`,
           content: `With a strong foundation in place, the focus shifts to strategic alignment and meeting the specific SME listing requirements.
 
 Develop a Clear-Cut Listing Strategy : Why Are You Listing? Define the purpose, capital requirements, valuation expectations, and a realistic timeline. This master plan aligns all internal teams and serves as a north star throughout the IPO journey. A clearly defined listing plan supported by strategy management consulting ensures alignment between market expectations, valuation goals, and the company’s long-term roadmap.
@@ -222,8 +222,8 @@ Strengthen Financial Planning & Projections : Your financial story is paramount.
 Achieve SEBI Compliance Readiness : Begin the meticulous process of aligning with SEBI ICDR Regulations. This involves reviewing all annual filings, resolving any historical non-compliances, and standardising reporting formats. Simultaneously, corporate governance takes centre stage to formalise your Board, induct independent directors, and adopt governance policies befitting a listed company.`,
         },
         {
-          heading: `Phase 3: Year 3 — Execution, Due Diligence & Go-to-Market (Months 25-36)`,
-          content: `India’s SME capital markets operate through two vibrant platforms—NSE Emerge and BSE SME, both designed to help high-potential companies access public capital efficiently. Each platform has its own listing criteria, documentation standards, and valuation benchmarks, making structured preparation essential before engaging with the exchange.
+          heading: `Phase 3: Year 3 Execution, Due Diligence & Go-to-Market (Months 25-36)`,
+          content: `India’s SME capital markets operate through two vibrant platforms, NSE Emerge and BSE SME, both designed to help high-potential companies access public capital efficiently. Each platform has its own listing criteria, documentation standards, and valuation benchmarks, making structured preparation essential before engaging with the exchange.
 
 The final year is about transforming plans into action and navigating the final leg of the SME IPO process.
 
@@ -733,7 +733,7 @@ Schedule a consultation to discover how your property can thrive during its busi
     content: {
       introduction: `Studies show that businesses lose an average of 9% of annual revenue due to process leakages, missed billings, manual errors, inefficiencies, or compliance gaps.
 
-For a company with ₹100 crore in revenue, that’s ₹9 crore gone — not because of strategy, but because of broken processes.
+For a company with ₹100 crore in revenue, that’s ₹9 crore gone not because of strategy, but because of broken processes.
 
 At MARC, our business consulting services help companies identify inefficiencies and optimize workflows through in-depth process audits.`,
       sections: [
@@ -741,11 +741,11 @@ At MARC, our business consulting services help companies identify inefficiencies
           heading: `✅ Why Your Business Needs a Process Audit`,
           content: `Every successful business relies on efficient processes. But as operations grow and evolve, inefficiencies, outdated practices, and hidden risks can creep in unnoticed. A process audit helps you uncover what’s really happening inside your business and ensures that every step contributes to your bottom line.
 
-Here’s why a process audit isn’t just a nice-to-have — it’s a must for any organization that wants to operate smarter, leaner, and more competitively.
+Here’s why a process audit isn’t just a nice-to-have it’s a must for any organization that wants to operate smarter, leaner, and more competitively.
 
 • Spot Hidden Inefficiencies:Over time, businesses accumulate redundant steps, outdated systems, and manual tasks that slow everything down. A process audit identifies where time, effort, and money are being wasted. By streamlining workflows and automating repetitive tasks, you can improve productivity and redirect resources to what truly matters is growth and innovation.
 • Stay Compliant and Avoid PenaltiesRegulations and compliance standards are constantly changing. Without regular reviews, you risk falling behind and facing costly fines or reputational damage. A process audit ensures your operations meet current legal and industry standards, minimizing compliance risks and building stakeholder confidence.
-• Manage Risks ProactivelyEvery business faces risks — financial, operational, and reputational. A process audit helps you spot vulnerabilities before they become real problems. By identifying control gaps and weak links, you can implement stronger governance measures and reduce exposure to disruptions or fraud.
+• Manage Risks ProactivelyEvery business faces risks financial, operational, and reputational. A process audit helps you spot vulnerabilities before they become real problems. By identifying control gaps and weak links, you can implement stronger governance measures and reduce exposure to disruptions or fraud.
 • Make Smarter, Data-Driven DecisionsWhen processes are unclear, decision-making suffers. A process audit gives you visibility into how your organization actually runs, supported by data and performance metrics. With that clarity, leaders can make faster, more informed decisions that align with business goals and drive measurable results.
 • Scale Faster and More EfficientlyGrowth brings complexity. Without the right systems in place, scaling up can lead to chaos.`,
         },
@@ -759,7 +759,7 @@ Here’s why a process audit isn’t just a nice-to-have — it’s a must for a
         },
         {
           heading: `Manage Risks Proactively`,
-          content: `Every business faces risks — financial, operational, and reputational. A process audit helps you spot vulnerabilities before they become real problems. By identifying control gaps and weak links, you can implement stronger governance measures and reduce exposure to disruptions or fraud.`,
+          content: `Every business faces risks financial, operational, and reputational. A process audit helps you spot vulnerabilities before they become real problems. By identifying control gaps and weak links, you can implement stronger governance measures and reduce exposure to disruptions or fraud.`,
         },
         {
           heading: `Make Smarter, Data-Driven Decisions`,
@@ -775,7 +775,7 @@ Here’s why a process audit isn’t just a nice-to-have — it’s a must for a
 • Average loss = 9% of annual revenue.
 • Fixing it can add up to 5% back to the bottom line.
 
-For a mid-sized business, that could mean ₹5 crore+ recovered — simply by tightening workflows.
+For a mid-sized business, that could mean ₹5 crore+ recovered simply by tightening workflows.
 
 Beyond numbers, our profit and loss analysis reveals how inefficiencies quietly erode your margins.`,
         },
@@ -834,7 +834,7 @@ A robust process audit isn’t just operational; it’s part of strategy managem
           heading: `How Market Research Powers Businesses`,
           content: `• Know Your CustomersIt’s easy to assume what people want. It’s smarter to ask them. MR gives clarity on customer preferences and behaviors. (Qualtrics)
 • Turn Uncertainty into ConfidenceBig launches come with big risks. Research ensures decisions are grounded in data, not guesswork.With expert market research and consulting, businesses can transform risk into clarity and make confident, data-driven decisions.(Neric)
-• Spot Growth Before Your Competitors DoUntapped geographies, new product categories, emerging trends—MR shines a light on opportunities you might miss. (ADA Global)
+• Spot Growth Before Your Competitors DoUntapped geographies, new product categories, emerging trends, MR shines a light on opportunities you might miss. (ADA Global)
 • Outsmart the CompetitionWant to know where rivals are weak? Or how to differentiate your brand? MR provides that roadmap. (U.S. SBA)
 • Every Marketing Dollar CountsThe top market research companies ensure marketing investments are precise, measurable, and ROI-driven.Campaigns become sharper and more measurable, leading to stronger ROI. (Hubspot)
 • Shape Brand & Pricing StrategiesFrom brand positioning to pricing analysis, MR ensures you’re not leaving money (or loyalty) on the table.Paired with expert business consulting services, market research insights help organizations refine brand identity and pricing models for maximum impact.(Harvard Business School)
@@ -861,7 +861,7 @@ Leading market research companies in India are adopting similar agile research m
 • Real-time sentiment analysis
 • Faster and cheaper data collection
 
-This levels the playing field — giving startups and SMEs the same intelligence tools that Fortune 500 companies rely on. (Financial Times)
+This levels the playing field giving startups and SMEs the same intelligence tools that Fortune 500 companies rely on. (Financial Times)
 
 As market research firms in India evolve with technology, their insights continue to power business innovation and sustainable growth.`,
         },
@@ -1020,7 +1020,7 @@ The situation brings to mind the words of the great economist Adam Smith, who in
 
 Yet, in this crisis lies an opportunity for transformation. Industry bodies and the government are not standing idle. A multi-pronged strategy is being deployed to navigate these turbulent waters:
 
-• Market Diversification: A concerted push is underway to target 40 new countries, including the UK, Japan, Germany, and the UAE—markets with a combined import potential of over $590 billion, where India’s presence is currently a meager 5-6%. Business strategy consulting companies recommend targeting secondary markets like the UK, Japan, and the UAE to offset U.S. dependence.
+• Market Diversification: A concerted push is underway to target 40 new countries, including the UK, Japan, Germany, and the UAE, markets with a combined import potential of over $590 billion, where India’s presence is currently a meager 5-6%. Business strategy consulting companies recommend targeting secondary markets like the UK, Japan, and the UAE to offset U.S. dependence.
 • Leveraging Trade Agreements: Accelerating talks for a Free Trade Agreement with the EU and utilizing existing deals can provide duty-free access and stabilize exports.
 • Government Support & Sustainability: Securing financial aid for SMEs and extending duty-free cotton imports are crucial short-term fixes. Simultaneously, investing in sustainable and eco-certified products is a long-term play to attract value-conscious buyers in new markets who prioritize green sourcing. According to strategy consulting companies in India, a focus on sustainability can transform India’s textile image from volume-based to value-driven.
 
@@ -1462,7 +1462,7 @@ Also Read: Five stages of internationalization of business: From Domestic to Glo
         },
         {
           heading: `5. Forge Partnerships with Local Entities`,
-          content: `Localization is crucial for global expansion. Your product must align with local culture, language, market needs, purchasing habits, and legal requirements. A strong localization strategy is essential to ensure your product fits seamlessly into the local market. Collaborating with regional partners—such as regulators, distributors, retailers, and marketing agencies—can help you gain valuable insights, understand the local market better, and make data-driven decisions to minimize errors and adapt effectively.`,
+          content: `Localization is crucial for global expansion. Your product must align with local culture, language, market needs, purchasing habits, and legal requirements. A strong localization strategy is essential to ensure your product fits seamlessly into the local market. Collaborating with regional partners, such as regulators, distributors, retailers, and marketing agencies, can help you gain valuable insights, understand the local market better, and make data-driven decisions to minimize errors and adapt effectively.`,
         },
         {
           heading: `How can MARC help international business expansion?`,
@@ -1767,7 +1767,7 @@ In this blog, we’ll understand the key elements influencing healthcare valuati
           content: `Intangible assets are those things that don’t have a physical form but still add value to the business, including:
 
 • Reputation: How well-known and trusted the healthcare provider is. Because a good reputation brings more patients.
-• Intellectual Property: It can be inventions, medical treatments, or research the business owns—for example, patents for new treatments or technologies.
+• Intellectual Property: It can be inventions, medical treatments, or research the business owns, for example, patents for new treatments or technologies.
 • Patient Loyalty: If patients keep returning and trusting the provider, it adds value to the business.
 • Brand:How do people perceive the hospital, or do they consider it the best hospital in town?`,
         },
@@ -1901,7 +1901,7 @@ Read Here: Transforming Hospitality Businesses: Discover the Power of India’s 
     content: {
       introduction: `Despite a loyal customer base and owning multiple outlets, many businesses watch a continued decline in sales and an increase in complaints about stock availability. One of the main reasons is the lack of an effective Management Information System (MIS) . Without an MIS in place, you may find it difficult to monitor inventory levels in real-time and rely on outdated manual reports from store managers instead. This gradually leads to overstocking, stockouts, poor decision-making, inefficient resource allocation, and ultimately, declining sales and customer dissatisfaction.
 
-The truth is, without real-time insights into your operations and market trends, you’re navigating blindfolded. To harness data effectively, your enterprise would need —Management Information Systems (MIS).`,
+The truth is, without real-time insights into your operations and market trends, you’re navigating blindfolded. To harness data effectively, your enterprise would need , Management Information Systems (MIS).`,
       sections: [
         {
           heading: `Understanding Management Information Systems (MIS)`,
@@ -2003,7 +2003,7 @@ For more information, reach out to us , and our team of experts will be happy to
     id: 20,
     slug: 'feasibility-studies-and-financial-modelling-a-comprehensive-guide-for-project-financing',
     title: 'Feasibility Studies and Financial Modelling: A Comprehensive Guide for Project Financing',
-    excerpt: '[vc_row el_class=”style”][vc_column][vc_column_text]Imagine you have a groundbreaking project in mind—maybe a solar power plant or a new infrastructure venture. The initial idea looks promising, but a big question linger',
+    excerpt: '[vc_row el_class=”style”][vc_column][vc_column_text]Imagine you have a groundbreaking project in mind, maybe a solar power plant or a new infrastructure venture. The initial idea looks promising, but a big question linger',
     category: 'finance',
     categoryLabel: 'Finance',
     author: 'MARC Research Team',
@@ -2016,7 +2016,7 @@ For more information, reach out to us , and our team of experts will be happy to
     featured: false,
     tags: ['Consulting', 'Strategy', 'Growth'],
     content: {
-      introduction: `Imagine you have a groundbreaking project in mind—maybe a solar power plant or a new infrastructure venture. The initial idea looks promising, but a big question lingers: will it generate enough cash flow to cover debt and make a profit happen? In project financing feasibility, this question isn’t a minor detail; in fact, it’s the key to moving forward.
+      introduction: `Imagine you have a groundbreaking project in mind, maybe a solar power plant or a new infrastructure venture. The initial idea looks promising, but a big question lingers: will it generate enough cash flow to cover debt and make a profit happen? In project financing feasibility, this question isn’t a minor detail; in fact, it’s the key to moving forward.
 
 Lenders and investors won’t solely rely on an exciting pitch. They need solid evidence that your project is not only viable but also financially sound and resilient to risks. Without this, securing financing feasibility can feel like an impossible hurdle. This is where feasibility studies and financial modelling come into play.`,
       sections: [
@@ -2142,7 +2142,7 @@ Are you analyzing your fund requirements, projecting future revenues, or weighin
         },
         {
           heading: `3. Identify Revenue Streams`,
-          content: `Outline all your revenue streams—whether from product sales, subscriptions, or service fees. Identifying where the revenue is coming from is crucial to generating accurate forecasting results.`,
+          content: `Outline all your revenue streams, whether from product sales, subscriptions, or service fees. Identifying where the revenue is coming from is crucial to generating accurate forecasting results.`,
         },
         {
           heading: `4. Estimate Expenses`,
@@ -2262,7 +2262,7 @@ Take a moment to read this blog and understand how due diligence services can pa
       sections: [
         {
           heading: `What Is Due Diligence?`,
-          content: `Due diligence refers to the thorough investigation and analysis of a potential investment or transaction, typically conducted before finalizing an agreement. For any transaction to succeed—whether it’s a joint venture, merger, or acquisition, a thorough Due Diligence process is essential.
+          content: `Due diligence refers to the thorough investigation and analysis of a potential investment or transaction, typically conducted before finalizing an agreement. For any transaction to succeed, whether it’s a joint venture, merger, or acquisition, a thorough Due Diligence process is essential.
 
 This process involves reviewing financial records, legal compliance, operational metrics, and other critical information to check whether all relevant facts are taken into consideration.
 
@@ -2536,7 +2536,7 @@ Take a quick look at our insights report : Insights report curated by MARC`,
         },
         {
           heading: `2. Evaluating Targets on a Holistic Level`,
-          content: `Assessing an acquisition isn’t just about the numbers. With data-driven tools, companies can evaluate a target from all angles—its market position, digital presence, and growth potential, going beyond just financials.`,
+          content: `Assessing an acquisition isn’t just about the numbers. With data-driven tools, companies can evaluate a target from all angles, its market position, digital presence, and growth potential, going beyond just financials.`,
         },
         {
           heading: `3. Reducing Risk with Strategic Insights`,
@@ -2994,7 +2994,7 @@ By reading this entire blog, you’ll quickly discover how market research for n
       sections: [
         {
           heading: `1. Establishing Research Objectives:`,
-          content: `Setting clear and specific objectives for new product research is an important step for businesses to achieve meaningful results. By defining what you want to learn—whether it’s identifying target markets, understanding consumer needs, or determining market trends, you create a focused approach that guides your research efforts in the right direction.
+          content: `Setting clear and specific objectives for new product research is an important step for businesses to achieve meaningful results. By defining what you want to learn, whether it’s identifying target markets, understanding consumer needs, or determining market trends, you create a focused approach that guides your research efforts in the right direction.
 
 But how can you ensure your market research truly drives business growth?
 
@@ -3085,7 +3085,7 @@ Pro advice from team MARC : Patience is key. Although testing and refining your 
           heading: `Mark the Victory of Your New Product Launch with MARC:`,
           content: `Yes, conducting market research for a new product can be overwhelming with all the complex steps involved in the process, but at MARC , we make it a breeze while delivering excellent results.
 
-We specialize in creating research solutions for a wide range of industries such as, e-commerce, manufacturing, F&B, and healthcare—turning unique challenges into actionable insights. From identifying market demands to refining your product strategy, our expert insights guide you every step of the way.
+We specialize in creating research solutions for a wide range of industries such as, e-commerce, manufacturing, F&B, and healthcare, turning unique challenges into actionable insights. From identifying market demands to refining your product strategy, our expert insights guide you every step of the way.
 
 Want to make your new product a standout success? Join MARC today!
 

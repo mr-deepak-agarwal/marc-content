@@ -8,7 +8,7 @@ const pageData = {
   title: 'Standard Operating',
   titleHighlight: 'Procedures (SOPs)',
   // ✅ KEYWORD: "Standard Operating Procedures (SOPs)" — description updated to match doc exactly
-  description: 'Many businesses operate with informal processes, undocumented workflows, and unclear responsibilities across departments. Over time, this leads to delays, inconsistent execution, and high dependence on a few individuals. MARC helps organizations put structure in place by designing and implementing clear and practical Standard Operating Procedures (SOPs) across all departments. We develop SOPs supported by process flowcharts, RASIC (Responsible, Accountable, Support, Informed, Consulted) matrices, and role-wise job descriptions — creating a structured operating framework that makes daily operations smoother and easier to manage.',
+  description: 'Many businesses operate with informal processes, undocumented workflows, and unclear responsibilities across departments. Over time, this leads to delays, inconsistent execution, and high dependence on a few individuals. MARC helps organizations put structure in place by designing and implementing clear and practical Standard Operating Procedures (SOPs) across all departments. We develop SOPs supported by process flowcharts, RASIC (Responsible, Accountable, Support, Informed, Consulted) matrices, and role-wise job descriptions creating a structured operating framework that makes daily operations smoother and easier to manage.',
 
   stats: [
     { value: '100+', label: 'SOPs Delivered' },
@@ -18,7 +18,7 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: ClipboardList, title: 'Process Clarity', desc: 'Clearly defined how day-to-day work should be carried out — removing ambiguity and reducing dependence on individuals.' },
+    { icon: ClipboardList, title: 'Process Clarity', desc: 'Clearly defined how day-to-day work should be carried out removing ambiguity and reducing dependence on individuals.' },
     { icon: Users, title: 'Role Ownership', desc: 'RASIC matrices and job descriptions that define responsibilities, escalation paths, and accountability across every function.' },
     { icon: GitMerge, title: 'Consistent Execution', desc: 'Standardized workflows that ensure operations run the same way every time, regardless of who is doing the work.' },
     { icon: ShieldCheck, title: 'Foundation for Scale', desc: 'SOPs that create the structural foundation needed for growth, system implementation, and reduced founder dependency.' },
@@ -37,7 +37,7 @@ const pageData = {
   services: [
     {
       title: 'SOP Design & Documentation',
-      desc: 'End-to-end SOP writing covering all departments — operations, finance, HR, sales, and administration — with clear process flowcharts.',
+      desc: 'End-to-end SOP writing covering all departments operations, finance, HR, sales, and administration with clear process flowcharts.',
       features: ['Process Flowcharts', 'Approval Workflows', 'Control Checkpoints', 'All Departments'],
       icon: ClipboardList,
     },
@@ -49,7 +49,7 @@ const pageData = {
     },
     {
       title: 'Job Description Design',
-      desc: 'Draft clear, structured job descriptions aligned to SOP responsibilities — providing clarity on roles, KPIs, and reporting lines.',
+      desc: 'Draft clear, structured job descriptions aligned to SOP responsibilities providing clarity on roles, KPIs, and reporting lines.',
       features: ['Role Definitions', 'KPI Alignment', 'Reporting Structure', 'Accountability Framework'],
       icon: Users,
     },
@@ -89,15 +89,15 @@ const pageData = {
   ],
 
   faqs: [
-    { q: 'Are SOPs practical for day-to-day operations?', a: 'Absolutely. Our SOPs are designed for real-world use — not theoretical documents. They include process flowcharts, approval matrices, RASIC frameworks, and role-wise job descriptions that teams can actually follow.' },
+    { q: 'Are SOPs practical for day-to-day operations?', a: 'Absolutely. Our SOPs are designed for real-world use not theoretical documents. They include process flowcharts, approval matrices, RASIC frameworks, and role-wise job descriptions that teams can actually follow.' },
     { q: 'How long does an SOP engagement take?', a: 'Depending on the number of departments and complexity of operations, a full SOP engagement typically takes 6–10 weeks from assessment to final documentation.' },
     { q: 'Do you support implementation after the SOPs are prepared?', a: 'Yes. We support implementation through team training, follow-up reviews, and tracking of adoption to ensure the SOPs are actually being used and embedded into daily operations.' },
-    { q: 'What is a RASIC matrix?', a: 'A RASIC matrix defines who is Responsible, Accountable, Support, Informed, and Consulted for each process or decision — eliminating confusion about ownership and escalation paths.' },
+    { q: 'What is a RASIC matrix?', a: 'A RASIC matrix defines who is Responsible, Accountable, Support, Informed, and Consulted for each process or decision eliminating confusion about ownership and escalation paths.' },
     { q: 'What types of businesses benefit most from SOPs?', a: 'Businesses that are scaling, have high staff turnover, operate across multiple locations, or where founders are heavily involved in day-to-day operations benefit most from structured SOPs.' },
   ],
 
   ctaTitle: 'Ready to Build Structure for Scale?',
-  ctaDescription: 'Partner with MARC to design and implement SOPs that shift decision-making from individuals to systems — freeing founders to focus on growth.',
+  ctaDescription: 'Partner with MARC to design and implement SOPs that shift decision-making from individuals to systems freeing founders to focus on growth.',
 }
 
 export default function SOPPage() {

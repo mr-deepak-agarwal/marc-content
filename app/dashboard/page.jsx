@@ -114,7 +114,7 @@ export default function DashboardPage() {
               <Lock className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-2xl font-bold text-[#1D342F]">HR Dashboard</h1>
-            <p className="text-sm text-[#47635D] mt-1">MARC Careers — Internal Access</p>
+            <p className="text-sm text-[#47635D] mt-1">MARC Careers Internal Access</p>
           </div>
           <div className="bg-white rounded-2xl border border-[#C2DDB4]/30 p-8 shadow-sm">
             <label className="text-sm font-semibold text-[#1D342F] block mb-2">Password</label>
@@ -135,7 +135,7 @@ export default function DashboardPage() {
             </button>
           </div>
           <p className="text-center text-xs text-[#47635D]/50 mt-4">
-            Default password: <code className="font-mono">marc2025</code> — change in dashboard/page.jsx
+            Default password: <code className="font-mono">marc2025</code> change in dashboard/page.jsx
           </p>
         </div>
       </div>

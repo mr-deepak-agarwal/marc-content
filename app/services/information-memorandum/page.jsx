@@ -31,18 +31,18 @@ const pageData = {
     { num: '05', title: 'Financial Integration', desc: 'Integration of operating metrics, financial projections, return drivers, scalability levers, and potential exit pathways.' },
     { num: '06', title: 'Investor Readiness', desc: 'Preparation of investment teasers and support for targeted investor outreach and structured deal discussions.' },
   ],
-  methodologyDescription: 'From a transaction perspective, an IM serves as a decision-support tool. It reduces information asymmetry, builds credibility, and ensures consistent communication with investors and buyers — enabling structured, outcome-driven conversations.',
+  methodologyDescription: 'From a transaction perspective, an IM serves as a decision-support tool. It reduces information asymmetry, builds credibility, and ensures consistent communication with investors and buyers enabling structured, outcome-driven conversations.',
 
   services: [
     {
       title: 'Information Memorandum (IM)',
-      desc: 'Comprehensive IM for fundraising, M&A, and strategic partnerships — covering company overview, business plan, growth strategy, operating metrics, and investment highlights.',
+      desc: 'Comprehensive IM for fundraising, M&A, and strategic partnerships covering company overview, business plan, growth strategy, operating metrics, and investment highlights.',
       features: ['Company Overview', 'Business Plan & Growth Strategy', 'Financial Projections', 'Investment Highlights'],
       icon: FileText,
     },
     {
       title: 'Investor Pitch Deck',
-      desc: 'Compelling pitch deck presentations for investor meetings and roadshows — designed to communicate the opportunity quickly, clearly, and persuasively.',
+      desc: 'Compelling pitch deck presentations for investor meetings and roadshows designed to communicate the opportunity quickly, clearly, and persuasively.',
       features: ['Executive Summary', 'Market Opportunity', 'Business Model', 'Financial Highlights'],
       icon: Layers,
     },
@@ -70,7 +70,7 @@ const pageData = {
       result: 'An investor-ready IM that clearly communicated the brand\'s scalable operating model and expansion-led growth strategy, enabling active investor engagement.',
     },
     {
-      client: 'Private School — Capacity Expansion',
+      client: 'Private School Capacity Expansion',
       industry: 'Education',
       service: 'Institutional Funding IM',
       challenge: 'A private school planning capacity expansion needed a structured IM for discussions with investors and strategic education partners, covering academics, governance, and financial sustainability.',
@@ -82,16 +82,16 @@ const pageData = {
       industry: 'M&A / Strategic Partnerships',
       service: 'Transaction IM & Deal Support',
       challenge: 'Companies engaging in M&A, minority or majority stake sales, or strategic partnerships require consistent, credible documentation to support structured investor conversations and reduce information asymmetry.',
-      solution: 'End-to-end IM preparation covering competitive positioning, market analysis, operating metrics, financial projections, return considerations, and investment highlights — tailored to the specific transaction type and investor audience.',
+      solution: 'End-to-end IM preparation covering competitive positioning, market analysis, operating metrics, financial projections, return considerations, and investment highlights tailored to the specific transaction type and investor audience.',
       result: 'Investor-ready documentation that reduces information gaps, supports valuation expectations, and enables structured, outcome-driven discussions with investors and acquirers.',
     },
   ],
 
   faqs: [
     { q: 'When should a company prepare an Information Memorandum or Pitch Deck?', a: 'During fundraising, M&A, strategic partnerships, minority or majority stake sales, or any transaction involving external investors or acquirers.' },
-    { q: 'What is the difference between an investment teaser and an IM?', a: 'An investment teaser is a concise, high-level summary (typically 2–3 pages) designed to generate initial interest. An IM provides a detailed, comprehensive view of the business, financials, and investment rationale — typically 30–50 pages.' },
+    { q: 'What is the difference between an investment teaser and an IM?', a: 'An investment teaser is a concise, high-level summary (typically 2–3 pages) designed to generate initial interest. An IM provides a detailed, comprehensive view of the business, financials, and investment rationale typically 30–50 pages.' },
     { q: 'What does an Information Memorandum typically include?', a: 'Company overview, business model, products or services, market analysis, competitive positioning, growth strategy, operating metrics, financial projections, management team, and return considerations.' },
-    { q: 'How does an IM support investor discussions?', a: 'It ensures consistent communication, reduces information gaps, and enables structured discussions around growth, risk, and value creation — giving investors the confidence to move forward.' },
+    { q: 'How does an IM support investor discussions?', a: 'It ensures consistent communication, reduces information gaps, and enables structured discussions around growth, risk, and value creation giving investors the confidence to move forward.' },
     { q: 'How long does IM preparation typically take?', a: 'IM preparation typically takes 3–5 weeks depending on information availability, business complexity, and the level of financial modelling required.' },
     { q: 'Do you provide support during the fundraising process?', a: 'Yes. We provide ongoing support during investor discussions, help refine materials based on feedback, and assist with due diligence responses throughout the process.' },
   ],

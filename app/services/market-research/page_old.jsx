@@ -7,7 +7,7 @@ const pageData = {
   tagline: 'Market Research',
   title: 'Market Research in',
   titleHighlight: 'India',
-  description: 'India is one of the world\'s fastest-growing economies—but also one of its most complex. Consumer behaviour, demand drivers, and regulations vary sharply across regions, making local market research in India critical for success.',
+  description: 'India is one of the world\'s fastest-growing economies, but also one of its most complex. Consumer behaviour, demand drivers, and regulations vary sharply across regions, making local market research in India critical for success.',
 
   stats: [
     { value: '500+', label: 'Research Projects' },
@@ -31,7 +31,7 @@ const pageData = {
     { num: '05', title: 'Financial Feasibility', desc: 'Financial feasibility analysis including ROI, IRR, and NPV modelling.' },
     { num: '06', title: 'Go / No-Go Recommendation', desc: 'Clear go / no-go and market entry recommendations with measurable impact.' },
   ],
-  methodologyDescription: 'Our approach is designed to support real business decisions—not just reports. We deliver decision-ready market intelligence for India and global markets.',
+  methodologyDescription: 'Our approach is designed to support real business decisions, not just reports. We deliver decision-ready market intelligence for India and global markets.',
 
   services: [
     {
@@ -103,7 +103,7 @@ const pageData = {
 
   faqs: [
     { q: 'Why is local market research in India so important?', a: 'India is highly diverse, with consumer behaviour, demand drivers, and regulations varying across states and regions. Local market research ensures businesses make decisions based on accurate, on-ground realities rather than assumptions.' },
-    { q: 'What industries does MARC specialize in for market research?', a: 'We work across multiple sectors including real estate, aviation, agriculture, consumer goods, and retail—delivering sector-specific insights backed by primary research.' },
+    { q: 'What industries does MARC specialize in for market research?', a: 'We work across multiple sectors including real estate, aviation, agriculture, consumer goods, and retail, delivering sector-specific insights backed by primary research.' },
     { q: 'How does MARC conduct its market research?', a: 'Our approach combines primary research (interviews with customers, distributors, and industry experts) with secondary data analysis, competitive benchmarking, regulatory reviews, and financial feasibility studies to deliver decision-ready intelligence.' },
     { q: 'Can MARC support international companies entering India?', a: 'Yes. We specialize in market entry research and expansion strategies, helping global firms understand India\'s regulatory environment, consumer demand, and competitive landscape to successfully establish operations.' },
     { q: 'What makes MARC different from other market research firms?', a: 'Unlike generic reports, MARC delivers actionable insights with clear go/no-go recommendations, tailored strategies, and measurable impact. Our strength lies in combining deep local expertise with global standards of analysis.' },

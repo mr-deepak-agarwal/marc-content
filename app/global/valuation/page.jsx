@@ -75,7 +75,7 @@ const pageData = {
   ],
   methodologyTitle: 'Our Approach',
   methodologySubtitle: 'U.S. and Global Valuation Standards',
-  methodologyDescription: 'Business valuation plays a critical role when companies raise capital, acquire or divest businesses, restructure ownership, or engage with institutional investors and financing partners. At MARC, our valuation assignments follow accepted U.S. and global standards and are structured to support real-world transaction discussions, due diligence reviews, and capital raising decisions—not just compliance requirements.',
+  methodologyDescription: 'Business valuation plays a critical role when companies raise capital, acquire or divest businesses, restructure ownership, or engage with institutional investors and financing partners. At MARC, our valuation assignments follow accepted U.S. and global standards and are structured to support real-world transaction discussions, due diligence reviews, and capital raising decisions, not just compliance requirements.',
 
   servicesTitle: 'When Do You Need Business Valuation',
   services: [

@@ -201,11 +201,11 @@ const domainExperts = [
 ]
 
 const timeline = [
-  { year: '2010', title: 'Founded', desc: 'MARC established — beginning the advisory journey from home' },
-  { year: '2012', title: 'First Office', desc: '3 employees, 1 office, 200 sq ft — the first brick-and-mortar presence' },
-  { year: '2015', title: 'Growing Team', desc: '15 people, 600 sq ft office — expanding capabilities and client base' },
-  { year: '2018', title: 'Multi-Office', desc: '25 people, 2 offices, 1,000 sq ft — deepening Pan-India reach' },
-  { year: '2026', title: 'And Growing', desc: '50 people, 100+ associates, 13 offices, 5,000 sq ft — global advisory firm' },
+  { year: '2010', title: 'Founded', desc: 'MARC established beginning the advisory journey from home' },
+  { year: '2012', title: 'First Office', desc: '3 employees, 1 office, 200 sq ft the first brick-and-mortar presence' },
+  { year: '2015', title: 'Growing Team', desc: '15 people, 600 sq ft office expanding capabilities and client base' },
+  { year: '2018', title: 'Multi-Office', desc: '25 people, 2 offices, 1,000 sq ft deepening Pan-India reach' },
+  { year: '2026', title: 'And Growing', desc: '50 people, 100+ associates, 13 offices, 5,000 sq ft global advisory firm' },
 ]
 
 const clientsRow1 = [

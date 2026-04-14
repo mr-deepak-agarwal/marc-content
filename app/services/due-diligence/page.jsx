@@ -34,7 +34,7 @@ const pageData = {
     { num: '06', title: 'Reporting & Support', desc: 'Deliver actionable insights that directly support valuation, negotiations, and decision-making.' },
   ],
   // ✅ KEYWORD: "Due Diligence Services" (x2)
-  methodologyDescription: 'For any transaction to succeed—whether an acquisition, merger, joint venture, or investment—a thorough due diligence process is essential. This involves a detailed review of financial, operational, legal, and commercial records to confirm facts, assess risks, and evaluate value drivers. MARC delivers comprehensive Due Diligence Services across India, supporting domestic and international investors and acquirers across sectors.',
+  methodologyDescription: 'For any transaction to succeed, whether an acquisition, merger, joint venture, or investment, a thorough due diligence process is essential. This involves a detailed review of financial, operational, legal, and commercial records to confirm facts, assess risks, and evaluate value drivers. MARC delivers comprehensive Due Diligence Services across India, supporting domestic and international investors and acquirers across sectors.',
 
   // ✅ KEYWORD: "Our Due Diligence Services" — servicesTitle
   servicesTitle: 'Our Due Diligence Services',
@@ -75,7 +75,7 @@ const pageData = {
       service: 'Financial Due Diligence (Buy-Side)',
       challenge: 'XYZ (Buyer) engaged MARC to conduct financial due diligence on ABC Pvt. Ltd., a manufacturer of specialised industrial equipment, as part of a proposed acquisition. Objective: Assess the quality and sustainability of earnings and identify diligence adjustments to support valuation and transaction decisions.',
       solution: 'MARC reviewed historical financials, quality of earnings, tax and regulatory compliance, contracts, related-party transactions, debt and liabilities, and overall financial performance. Key Findings: Overstatement of export sales, misallocation of director remuneration inflating EBITDA, high-risk trade receivables, declining core product sales, MSME payment delays creating exposure, and raw material price volatility due to lack of long-term supplier contracts.',
-      result: 'The buyer received a clear, normalised view of sustainable earnings, identification of hidden liabilities, and risk-adjusted valuation insights—strengthening negotiation leverage on pricing and deal structure.',
+      result: 'The buyer received a clear, normalised view of sustainable earnings, identification of hidden liabilities, and risk-adjusted valuation insights, strengthening negotiation leverage on pricing and deal structure.',
     },
     {
       client: 'XYZ Pvt. Ltd.',
@@ -83,7 +83,7 @@ const pageData = {
       service: 'Financial Due Diligence (Sell-Side)',
       challenge: 'XYZ Pvt. Ltd., a medical firm, engaged MARC to conduct sell-side due diligence in preparation for a potential transaction. Objective: Present a transparent and normalised view of earnings by assessing revenue sustainability, underlying profitability, and key risk areas.',
       solution: 'MARC reviewed historical financials, segregated sustainable and non-sustainable revenues, normalised EBITDA, analysed working capital and cash flows, and identified quantifiable and non-quantifiable adjustments. Key Findings: Non-sustainable revenue streams, elevated employee and G&A costs impacting margins, related-party transactions requiring transparency, weak internal controls, declining customer acquisition, and non-operating balances within working capital.',
-      result: 'The sell-side diligence provided financial transparency, a credible EBITDA baseline, and early risk identification—allowing management to address issues upfront, support fair valuation, and enable a smoother transaction process.',
+      result: 'The sell-side diligence provided financial transparency, a credible EBITDA baseline, and early risk identification, allowing management to address issues upfront, support fair valuation, and enable a smoother transaction process.',
     },
     {
       client: 'Cross-Sector Transaction Clients',
@@ -91,7 +91,7 @@ const pageData = {
       service: 'Comprehensive Due Diligence',
       challenge: 'Due diligence is essential when expanding products or services through acquisitions, entering new markets by acquiring an existing business, or increasing geographic reach through acquisition of similar businesses.',
       solution: 'Comprehensive due diligence process involving detailed review of historical financial statements, validation of forward-looking projections, consumer and market analysis, identification of operating inefficiencies, litigation review, assessment of regulatory considerations, and evaluation of third-party relationships.',
-      result: 'Independent assessment of costs, benefits, assets, liabilities, and operating structure—supporting informed decision-making and successful transaction outcomes.',
+      result: 'Independent assessment of costs, benefits, assets, liabilities, and operating structure, supporting informed decision-making and successful transaction outcomes.',
     },
   ],
 

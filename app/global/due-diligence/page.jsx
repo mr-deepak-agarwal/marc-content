@@ -7,7 +7,7 @@ const pageData = {
   tagline: 'Due Diligence & Quality of Earnings | US & Global',
   title: 'Due Diligence Services and',
   titleHighlight: 'Quality of Earnings Analysis',
-  description: 'MARC provides Due Diligence Services and Quality of Earnings (QoE) Analysis for M&A and investment transactions across the US and global markets. Over the last five years, we have supported private equity firms, strategic acquirers, investors, and advisors in evaluating financial risk, validating earnings quality, and protecting transaction value. Our due diligence services go beyond reported numbers to assess the true sustainability, quality, and drivers of earnings—enabling confident decision-making across acquisitions, divestitures, and strategic investments.',
+  description: 'MARC provides Due Diligence Services and Quality of Earnings (QoE) Analysis for M&A and investment transactions across the US and global markets. Over the last five years, we have supported private equity firms, strategic acquirers, investors, and advisors in evaluating financial risk, validating earnings quality, and protecting transaction value. Our due diligence services go beyond reported numbers to assess the true sustainability, quality, and drivers of earnings, enabling confident decision-making across acquisitions, divestitures, and strategic investments.',
 
   heroImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
 
@@ -27,7 +27,7 @@ const pageData = {
     {
       icon: BarChart3,
       title: 'Clear Earnings Visibility',
-      desc: 'Clear visibility into sustainable earnings and cash flows—QoE analysis ensures reported EBITDA reflects true operating performance.',
+      desc: 'Clear visibility into sustainable earnings and cash flows, QoE analysis ensures reported EBITDA reflects true operating performance.',
     },
     {
       icon: Shield,
@@ -81,7 +81,7 @@ const pageData = {
   services: [
     {
       title: 'Buy-Side Due Diligence',
-      desc: 'Comprehensive financial and commercial diligence for acquirers and investors—focused on protecting deal value and informing transaction structuring.',
+      desc: 'Comprehensive financial and commercial diligence for acquirers and investors, focused on protecting deal value and informing transaction structuring.',
       features: [
         'Quality of Earnings (QoE) analysis',
         'Working capital and cash flow assessment',
@@ -92,7 +92,7 @@ const pageData = {
     },
     {
       title: 'Sell-Side Due Diligence',
-      desc: 'Prepare sellers for investor scrutiny—normalise earnings, improve financial transparency, and reduce buyer diligence friction before process launch.',
+      desc: 'Prepare sellers for investor scrutiny, normalise earnings, improve financial transparency, and reduce buyer diligence friction before process launch.',
       features: [
         'Vendor due diligence',
         'Earnings normalisation and SDE analysis',
@@ -165,7 +165,7 @@ const pageData = {
   ],
 
   ctaTitle: 'Ready to Bring in Execution Support?',
-  ctaDescription: 'Whether you need a QoE report, full financial due diligence, or support for a live deal, MARC delivers on your timelines—reliably and to US standards.',
+  ctaDescription: 'Whether you need a QoE report, full financial due diligence, or support for a live deal, MARC delivers on your timelines, reliably and to US standards.',
 }
 
 export default function GlobalDueDiligencePage() {

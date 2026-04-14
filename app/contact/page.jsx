@@ -192,7 +192,7 @@ export default function ContactPage() {
               
               <p className="text-xl text-[#47635D] leading-relaxed mb-8 max-w-xl">
                 Whether you're exploring new markets, evaluating investments, or seeking 
-                strategic clarity — our team is ready to help you make confident decisions.
+                strategic clarity our team is ready to help you make confident decisions.
               </p>
 
               {/* Quick contact buttons */}

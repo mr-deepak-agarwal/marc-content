@@ -58,7 +58,7 @@ const employeeTestimonials = [
     role: "Intern",
     department: "Market Research & Financial Analysis",
     years: "Current Intern",
-    quote: "My internship at MARC has been a truly transformative experience. The breadth of projects in Market Research and Financial Analysis allowed me to move beyond theory and apply strategic thinking to real business challenges. MARC's fast-paced and collaborative environment fosters curiosity, accountability, and growth — qualities that have shaped my professional mindset and reinforced my passion for data-driven decision-making.",
+    quote: "My internship at MARC has been a truly transformative experience. The breadth of projects in Market Research and Financial Analysis allowed me to move beyond theory and apply strategic thinking to real business challenges. MARC's fast-paced and collaborative environment fosters curiosity, accountability, and growth qualities that have shaped my professional mindset and reinforced my passion for data-driven decision-making.",
     highlight: "Real projects from day one"
   },
 ]
@@ -109,7 +109,7 @@ const jobDepartments = [
   },
   {
     id: "others",
-    name: "Others — Human Resources & Administration / Accounts",
+    name: "Others Human Resources & Administration / Accounts",
     openings: [
       { id: "associate-hr-admin", title: "Associate", type: "Full-time",  location: "Goa, India", experience: "1-3 years" },
       { id: "intern-hr-admin",    title: "Intern",    type: "Internship", location: "Goa, India", experience: "Fresher / 0-1 year" },
@@ -178,7 +178,7 @@ export default function CareersPage() {
               </h1>
               <p className="text-xl text-[#47635D] leading-relaxed mb-8 max-w-xl">
                 At MARC, you'll help clients expand across India, conduct due diligence 
-                for major acquisitions, and build market entry strategies—from day one.
+                for major acquisitions, and build market entry strategies, from day one.
               </p>
             <div className="flex flex-wrap gap-4">
               <a href="#openings" className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-all group">
@@ -215,7 +215,7 @@ export default function CareersPage() {
           <span className="text-[#4E9141] font-bold text-lg uppercase tracking-[0.1em]">Our Culture</span>
         </div>
         <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">Built on <span className="text-[#4E9141]">4 Pillars</span></h2>
-        <p className="text-lg text-[#47635D] leading-relaxed max-w-3xl mb-12">Our values guide everything we do—from how we work with clients to how we support each other.</p>
+        <p className="text-lg text-[#47635D] leading-relaxed max-w-3xl mb-12">Our values guide everything we do, from how we work with clients to how we support each other.</p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {cultureValues.map((value, index) => (
             <div key={index} className="group bg-[#F7FFF5] rounded-2xl p-8 border border-[#C2DDB4]/30 hover:border-[#4E9141]/50 hover:shadow-xl transition-all duration-300">

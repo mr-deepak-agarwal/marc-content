@@ -34,7 +34,7 @@ const pageData = {
     { num: '06', title: 'Weighted Valuation & Reporting', desc: 'Combine DCF and earnings multiple outcomes into a balanced, market-aligned valuation with investor-ready outputs.' },
   ],
   // ✅ KEYWORD: "Business Valuation Services"
-  methodologyDescription: 'Our Business Valuation Services cover the full spectrum of valuation needs — from M&A and fundraising to restructuring and dispute resolution. All valuations are conducted by experienced professionals in line with established valuation standards.',
+  methodologyDescription: 'Our Business Valuation Services cover the full spectrum of valuation needs from M&A and fundraising to restructuring and dispute resolution. All valuations are conducted by experienced professionals in line with established valuation standards.',
 
   // ✅ KEYWORD: "Our Business Valuation Services"
   servicesTitle: 'Our Business Valuation Services',
@@ -42,7 +42,7 @@ const pageData = {
   services: [
     {
       title: 'M&A & Strategic Transaction Valuation',
-      desc: 'Valuation for mergers, acquisitions, and strategic alliances — supporting both buyers and sellers with accurate, defensible pricing.',
+      desc: 'Valuation for mergers, acquisitions, and strategic alliances supporting both buyers and sellers with accurate, defensible pricing.',
       features: ['Buy-Side Valuation', 'Sell-Side Valuation', 'Strategic Alliance Pricing', 'Fairness Assessment'],
       icon: Building2,
     },
@@ -54,13 +54,13 @@ const pageData = {
     },
     {
       title: 'Restructuring & Reorganisation Valuation',
-      desc: 'Valuations to support business restructuring, reorganisation, and exit planning — including partial and full business assessments.',
+      desc: 'Valuations to support business restructuring, reorganisation, and exit planning including partial and full business assessments.',
       features: ['Full Business Valuation', 'Partial Stake Valuation', 'Exit Planning Support', 'Reorganisation Advisory'],
       icon: PieChart,
     },
     {
       title: 'Strategic Partner & JV Valuation',
-      desc: 'Valuations for introducing strategic investors, joint-venture partners, or new shareholders — ensuring fair and transparent deal terms.',
+      desc: 'Valuations for introducing strategic investors, joint-venture partners, or new shareholders ensuring fair and transparent deal terms.',
       features: ['JV Partner Valuation', 'Shareholder Entry Pricing', 'Contractual Valuations', 'Dispute-Related Assessments'],
       icon: Users,
     },
@@ -88,8 +88,8 @@ const pageData = {
       industry: 'Multiple Sectors',
       service: 'M&A & Strategic Valuation',
       challenge: 'Business valuation is critical when companies plan a merger or acquisition, raise equity or debt capital, bring in strategic partners or shareholders, or restructure and exit part or all of the business.',
-      solution: 'Comprehensive valuation combining financial performance analysis, growth potential assessment, management quality review, market positioning evaluation, and intangible value driver identification — using DCF, earnings multiples, and weighted average methodologies.',
-      result: 'Informed, confident decisions backed by clear financial and strategic insight — enabling promoters, investors, and stakeholders to negotiate and transact with conviction.',
+      solution: 'Comprehensive valuation combining financial performance analysis, growth potential assessment, management quality review, market positioning evaluation, and intangible value driver identification using DCF, earnings multiples, and weighted average methodologies.',
+      result: 'Informed, confident decisions backed by clear financial and strategic insight enabling promoters, investors, and stakeholders to negotiate and transact with conviction.',
     },
   ],
 
@@ -97,15 +97,15 @@ const pageData = {
     { q: 'When do businesses need a valuation?', a: 'For M&A, fundraising, investor entry or exit, restructuring, disputes, and financing decisions.' },
     { q: 'What information is required for a valuation?', a: 'Financial statements, projections, business plans, customer and product details, and market data.' },
     { q: 'Which valuation method is used?', a: 'The method depends on the business and transaction. Common approaches include DCF, earnings multiples, or a weighted combination of both.' },
-    { q: 'How does valuation help in fundraising?', a: 'It helps investors assess value, growth potential, risks, and expected returns — making discussions structured and credible.' },
-    { q: 'Why is business valuation important before M&A?', a: 'A robust valuation enables promoters, investors, and stakeholders to make informed, confident decisions backed by clear financial and strategic insight — protecting against mispricing and negotiation risk.' },
+    { q: 'How does valuation help in fundraising?', a: 'It helps investors assess value, growth potential, risks, and expected returns making discussions structured and credible.' },
+    { q: 'Why is business valuation important before M&A?', a: 'A robust valuation enables promoters, investors, and stakeholders to make informed, confident decisions backed by clear financial and strategic insight protecting against mispricing and negotiation risk.' },
     { q: 'What are the benefits of a professional business valuation?', a: 'Clear understanding of business value before negotiations, early identification of risks that may erode value, support for pricing decisions, better capital allocation, and critical input for return expectations and earnings optimisation.' },
-    { q: 'Do you support both buy-side and sell-side clients?', a: 'Yes. MARC supports both buy-side and sell-side clients — helping buyers validate target value and helping sellers present a credible, investor-ready valuation.' },
+    { q: 'Do you support both buy-side and sell-side clients?', a: 'Yes. MARC supports both buy-side and sell-side clients helping buyers validate target value and helping sellers present a credible, investor-ready valuation.' },
   ],
 
   // ✅ KEYWORD: "Business Valuation Firm in India" | "best business valuation firms in India"
   ctaTitle: 'Partner with a Trusted Business Valuation Firm in India',
-  ctaDescription: 'MARC is one of the best business valuation firms in India — helping you unlock your company\'s true value and support confident decision-making across fundraising, M&A, and strategic transactions.',
+  ctaDescription: 'MARC is one of the best business valuation firms in India helping you unlock your company\'s true value and support confident decision-making across fundraising, M&A, and strategic transactions.',
 }
 
 export default function BusinessValuationPage() {

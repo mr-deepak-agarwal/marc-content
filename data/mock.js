@@ -5,7 +5,7 @@ export const companyInfo = {
   fullName: "Mangal Analytics and Research Consulting",
   tagline: "Advisors for Compounding Growth",
   heroTitle: "Growth Advisory for Ambitious Indian & Global Businesses",
-  heroSubtitle: "Strategy and execution for Indian and global businesses that want growth to build—year after year.",
+  heroSubtitle: "Strategy and execution for Indian and global businesses that want growth to build, year after year.",
   phone: "+91 93596 28675",
   email: "contact@marcglocal.com",
   address: "Office No 202, Second Floor CMM Building Rua De Ourem Panaji Goa 403001",
