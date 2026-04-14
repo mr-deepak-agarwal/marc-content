@@ -46,8 +46,8 @@ const pageData = {
     {
       // ✅ KEYWORD: "Feasibility Study in India" | "land feasibility studies in India"
       title: 'Land Feasibility Study in India',
-      desc: 'Our land feasibility studies in India identify the most viable and profitable use of land by assessing market demand, demand–supply gaps, competition, regulatory constraints, and financial feasibility.',
-      features: ['Market Demand Assessment', 'Demand–Supply Gap Analysis', 'Financial Feasibility'],
+      desc: 'Our land feasibility studies in India identify the most viable and profitable use of land by assessing market demand, demand-supply gaps, competition, regulatory constraints, and financial feasibility.',
+      features: ['Market Demand Assessment', 'Demand-Supply Gap Analysis', 'Financial Feasibility'],
       icon: Building2,
     },
     {
@@ -58,7 +58,7 @@ const pageData = {
       icon: BarChart3,
     },
     {
-      title: 'Demand–Supply Gap Analysis',
+      title: 'Demand-Supply Gap Analysis',
       desc: 'Identify genuine, underserved market gaps using bottom-up and top-down demand modelling validated through primary research.',
       features: ['Bottom-up Modelling', 'Top-down Modelling', 'Primary Research Validation'],
       icon: PieChart,
@@ -88,9 +88,9 @@ const pageData = {
     {
       client: 'Fly91 Aviation',
       industry: 'Aviation',
-      service: 'Demand–Supply Gap Analysis',
+      service: 'Demand-Supply Gap Analysis',
       challenge: 'Assess the commercial viability of launching flights on four routes under India\'s UDAN scheme, including virgin routes with no existing air traffic data.',
-      solution: 'Demand–supply dynamics analysis, traveller profiling across road and rail alternatives, route-level passenger demand modelling, and pricing scenario planning.',
+      solution: 'Demand-supply dynamics analysis, traveller profiling across road and rail alternatives, route-level passenger demand modelling, and pricing scenario planning.',
       result: 'Clear go / no-go decisions with optimised flight frequency recommendations, enabling confident route launch planning.',
     },
     {

@@ -92,7 +92,7 @@ const pageData = {
   faqs: [
     { q: 'What does MIS setup typically include?', a: 'MIS setup includes defining KPIs, actual vs budget tracking, variance analysis, reporting structures, and monthly management dashboards aligned with decision-making needs.' },
     { q: 'Do you build the MIS in Excel or a specific software?', a: 'We design MIS frameworks that can be implemented in Excel, Google Sheets, or integrated with your existing ERP or accounting software depending on your current systems and preferences.' },
-    { q: 'How long does MIS setup take?', a: 'A typical MIS setup engagement takes 4–6 weeks from needs assessment to implementation, depending on business complexity and data availability.' },
+    { q: 'How long does MIS setup take?', a: 'A typical MIS setup engagement takes 4-6 weeks from needs assessment to implementation, depending on business complexity and data availability.' },
     { q: 'Can your MIS be maintained by our internal team?', a: 'Yes. We design for handover the MIS is built to be maintained by your internal finance team, with documentation and training provided as part of the engagement.' },
     { q: 'What sectors do you specialise in for MIS design?', a: 'We have deep experience designing MIS frameworks for hospitality, manufacturing, and education businesses sectors where multi-department operations and complex cost structures require tailored reporting approaches.' },
   ],

@@ -63,7 +63,7 @@ const pageData = {
   
   caseStudies: [
     {
-      title: 'Process Audit – Manufacturing Sector',
+      title: 'Process Audit - Manufacturing Sector',
       client: 'Mid-to-Large Manufacturing Company',
       desc: 'Comprehensive process audit across procurement, production planning, sales order management, and inventory identifying gaps in SOP adherence and process execution. Recommendations led to standardized documentation, clearer role ownership, streamlined dispatch and receivables, and increased ERP adoption reducing manual interventions.',
       tags: ['Manufacturing', 'Multi-Product Facility'],

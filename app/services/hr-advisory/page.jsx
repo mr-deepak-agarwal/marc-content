@@ -92,7 +92,7 @@ const pageData = {
     { q: 'Do you help with recruitment?', a: 'Our focus is on building the HR systems, structures, and frameworks that make recruitment and retention more effective rather than direct recruitment execution.' },
     { q: 'Can you work alongside our existing HR team?', a: 'Yes. We frequently work as an extension of internal HR teams providing specialist advisory, framework design, and implementation support while your team manages day-to-day HR operations.' },
     { q: 'What is the difference between an HR policy and an SOP?', a: 'HR policies define the rules and principles governing people-related decisions (leave, conduct, appraisals). SOPs define how specific operational tasks should be executed step by step. Both are complementary and often designed together.' },
-    { q: 'How long does an HR advisory engagement take?', a: 'A focused engagement such as policy design or performance framework typically takes 6–8 weeks. A full organisational design and job architecture project may take 10–14 weeks.' },
+    { q: 'How long does an HR advisory engagement take?', a: 'A focused engagement such as policy design or performance framework typically takes 6-8 weeks. A full organisational design and job architecture project may take 10-14 weeks.' },
   ],
 
   ctaTitle: 'Ready to Build Your People Infrastructure?',

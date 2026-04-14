@@ -18,16 +18,16 @@ import {
 } from 'lucide-react'
 
 const ALL_ROLES = [
-  { value: 'manager-market-research', label: 'Manager – Market Research & Financial Analysis' },
-  { value: 'asst-manager-market-research', label: 'Assistant Manager – Market Research & Financial Analysis' },
-  { value: 'senior-analyst-market-research', label: 'Senior Analyst – Market Research & Financial Analysis' },
-  { value: 'intern-market-research', label: 'Intern – Market Research & Financial Analysis' },
-  { value: 'manager-bd', label: 'Manager – Business Development' },
-  { value: 'asst-manager-bd', label: 'Assistant Manager – Business Development' },
-  { value: 'executive-bd', label: 'Executive – Business Development' },
-  { value: 'intern-bd', label: 'Intern – Business Development' },
-  { value: 'associate-hr-admin', label: 'Associate – Human Resources & Administration' },
-  { value: 'intern-hr-admin', label: 'Intern – Human Resources & Administration' },
+  { value: 'manager-market-research', label: 'Manager - Market Research & Financial Analysis' },
+  { value: 'asst-manager-market-research', label: 'Assistant Manager - Market Research & Financial Analysis' },
+  { value: 'senior-analyst-market-research', label: 'Senior Analyst - Market Research & Financial Analysis' },
+  { value: 'intern-market-research', label: 'Intern - Market Research & Financial Analysis' },
+  { value: 'manager-bd', label: 'Manager - Business Development' },
+  { value: 'asst-manager-bd', label: 'Assistant Manager - Business Development' },
+  { value: 'executive-bd', label: 'Executive - Business Development' },
+  { value: 'intern-bd', label: 'Intern - Business Development' },
+  { value: 'associate-hr-admin', label: 'Associate - Human Resources & Administration' },
+  { value: 'intern-hr-admin', label: 'Intern - Human Resources & Administration' },
 ]
 
 function ApplyForm() {
@@ -111,7 +111,7 @@ function ApplyForm() {
           </div>
           <h1 className="text-3xl font-bold text-[#1D342F] mb-3">Application Submitted!</h1>
           <p className="text-[#47635D] mb-8">
-            Thank you for applying to MARC. Our team will review your application and get back to you within 3–5 business days.
+            Thank you for applying to MARC. Our team will review your application and get back to you within 3-5 business days.
           </p>
           <Link
             href="/careers"

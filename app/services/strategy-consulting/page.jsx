@@ -89,7 +89,7 @@ const pageData = {
 
   faqs: [
     { q: 'How is strategy consulting different from management consulting?', a: 'Strategy consulting focuses on high-level decisions like market entry, growth direction, and competitive positioning, while management consulting often addresses operational improvements and execution.' },
-    { q: 'How long does a strategy engagement typically take?', a: 'Most strategy projects span 8–16 weeks depending on scope, though we also offer rapid strategy sprints for focused questions that can be completed in 4–6 weeks.' },
+    { q: 'How long does a strategy engagement typically take?', a: 'Most strategy projects span 8-16 weeks depending on scope, though we also offer rapid strategy sprints for focused questions that can be completed in 4-6 weeks.' },
     { q: 'Do you help with implementation after strategy formulation?', a: 'Yes. We offer implementation support to help translate strategy into action, track milestones, and course-correct based on market feedback.' },
     { q: 'What industries do you specialise in?', a: 'We work across industries including manufacturing, retail, healthcare, technology, hospitality, and financial services.' },
     { q: 'What makes MARC\'s strategy work different?', a: 'We combine deep market research capabilities with strategic advisory meaning every strategy is grounded in primary data, not just frameworks and assumptions.' },

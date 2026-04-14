@@ -48,7 +48,7 @@ const pageData = {
     },
     {
       title: 'Investment Teaser',
-      desc: 'Concise, high-level summaries (2–3 pages) designed to generate initial investor interest and support targeted outreach before sharing the detailed IM.',
+      desc: 'Concise, high-level summaries (2-3 pages) designed to generate initial investor interest and support targeted outreach before sharing the detailed IM.',
       features: ['Business Snapshot', 'Key Metrics', 'Investment Opportunity', 'Transaction Overview'],
       icon: Briefcase,
     },
@@ -89,10 +89,10 @@ const pageData = {
 
   faqs: [
     { q: 'When should a company prepare an Information Memorandum or Pitch Deck?', a: 'During fundraising, M&A, strategic partnerships, minority or majority stake sales, or any transaction involving external investors or acquirers.' },
-    { q: 'What is the difference between an investment teaser and an IM?', a: 'An investment teaser is a concise, high-level summary (typically 2–3 pages) designed to generate initial interest. An IM provides a detailed, comprehensive view of the business, financials, and investment rationale typically 30–50 pages.' },
+    { q: 'What is the difference between an investment teaser and an IM?', a: 'An investment teaser is a concise, high-level summary (typically 2-3 pages) designed to generate initial interest. An IM provides a detailed, comprehensive view of the business, financials, and investment rationale typically 30-50 pages.' },
     { q: 'What does an Information Memorandum typically include?', a: 'Company overview, business model, products or services, market analysis, competitive positioning, growth strategy, operating metrics, financial projections, management team, and return considerations.' },
     { q: 'How does an IM support investor discussions?', a: 'It ensures consistent communication, reduces information gaps, and enables structured discussions around growth, risk, and value creation giving investors the confidence to move forward.' },
-    { q: 'How long does IM preparation typically take?', a: 'IM preparation typically takes 3–5 weeks depending on information availability, business complexity, and the level of financial modelling required.' },
+    { q: 'How long does IM preparation typically take?', a: 'IM preparation typically takes 3-5 weeks depending on information availability, business complexity, and the level of financial modelling required.' },
     { q: 'Do you provide support during the fundraising process?', a: 'Yes. We provide ongoing support during investor discussions, help refine materials based on feedback, and assist with due diligence responses throughout the process.' },
   ],
 

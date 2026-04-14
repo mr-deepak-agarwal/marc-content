@@ -90,7 +90,7 @@ const pageData = {
 
   faqs: [
     { q: 'Are SOPs practical for day-to-day operations?', a: 'Absolutely. Our SOPs are designed for real-world use not theoretical documents. They include process flowcharts, approval matrices, RASIC frameworks, and role-wise job descriptions that teams can actually follow.' },
-    { q: 'How long does an SOP engagement take?', a: 'Depending on the number of departments and complexity of operations, a full SOP engagement typically takes 6–10 weeks from assessment to final documentation.' },
+    { q: 'How long does an SOP engagement take?', a: 'Depending on the number of departments and complexity of operations, a full SOP engagement typically takes 6-10 weeks from assessment to final documentation.' },
     { q: 'Do you support implementation after the SOPs are prepared?', a: 'Yes. We support implementation through team training, follow-up reviews, and tracking of adoption to ensure the SOPs are actually being used and embedded into daily operations.' },
     { q: 'What is a RASIC matrix?', a: 'A RASIC matrix defines who is Responsible, Accountable, Support, Informed, and Consulted for each process or decision eliminating confusion about ownership and escalation paths.' },
     { q: 'What types of businesses benefit most from SOPs?', a: 'Businesses that are scaling, have high staff turnover, operate across multiple locations, or where founders are heavily involved in day-to-day operations benefit most from structured SOPs.' },

@@ -33,16 +33,16 @@ const STATUS_STYLES = {
 }
 
 const ROLE_LABELS = {
-  'manager-market-research':       'Manager – MR & FA',
-  'asst-manager-market-research':  'Asst. Manager – MR & FA',
-  'senior-analyst-market-research':'Senior Analyst – MR & FA',
-  'intern-market-research':        'Intern – MR & FA',
-  'manager-bd':                    'Manager – BD',
-  'asst-manager-bd':               'Asst. Manager – BD',
-  'executive-bd':                  'Executive – BD',
-  'intern-bd':                     'Intern – BD',
-  'associate-hr-admin':            'Associate – HR & Admin',
-  'intern-hr-admin':               'Intern – HR & Admin',
+  'manager-market-research':       'Manager - MR & FA',
+  'asst-manager-market-research':  'Asst. Manager - MR & FA',
+  'senior-analyst-market-research':'Senior Analyst - MR & FA',
+  'intern-market-research':        'Intern - MR & FA',
+  'manager-bd':                    'Manager - BD',
+  'asst-manager-bd':               'Asst. Manager - BD',
+  'executive-bd':                  'Executive - BD',
+  'intern-bd':                     'Intern - BD',
+  'associate-hr-admin':            'Associate - HR & Admin',
+  'intern-hr-admin':               'Intern - HR & Admin',
 }
 
 function formatDate(iso) {

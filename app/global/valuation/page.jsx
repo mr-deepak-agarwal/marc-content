@@ -15,7 +15,7 @@ const pageData = {
     { value: 'DCF', label: 'Discounted Cash Flow' },
     { value: 'Multiples', label: 'Market & Transaction' },
     { value: 'Blended', label: 'Weighted Average Approach' },
-    { value: '2–3 Weeks', label: 'Typical Turnaround' },
+    { value: '2-3 Weeks', label: 'Typical Turnaround' },
   ],
 
   valueProps: [

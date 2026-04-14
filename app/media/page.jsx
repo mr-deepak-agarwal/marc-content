@@ -200,7 +200,7 @@ const newsArticles = [
   {
     date: 'Aug 10, 2021',
     source: 'Your Story',
-    title: '\'Your vibe attracts your tribe\' – 35 quotes from Indian startup journeys',
+    title: '\'Your vibe attracts your tribe\' - 35 quotes from Indian startup journeys',
     excerpt: 'Ashutosh Kharangate, Founder and MD of MARC was quoted among the top 35 Indian Startup Entrepreneurs. Get an insight into the memorable journeys of these entrepreneurs in the country.',
     link: 'https://yourstory.com/2021/08/quotes-entrepreneurship-vibe-leader-team/amp'
   },

@@ -91,7 +91,7 @@ const pageData = {
     { q: 'What is the difference between a P&L review and an audit?', a: 'A P&L review focuses on understanding profitability drivers, cost structure, and performance insights to support business decisions. An audit is a formal compliance exercise verifying the accuracy of financial statements.' },
     { q: 'How granular can a P&L analysis go?', a: 'We can analyse P&L at any level total company, business unit, product line, channel, customer segment, or individual outlet depending on data availability and business needs.' },
     { q: 'Can you help set up a monthly P&L reporting process?', a: 'Yes. We design and implement monthly P&L reporting frameworks including actual vs budget tracking, variance analysis, and management dashboards that can be maintained by your internal team.' },
-    { q: 'How long does a P&L analysis engagement take?', a: 'A focused P&L review typically takes 3–5 weeks. A full restructuring and reporting framework setup may take 6–8 weeks depending on complexity.' },
+    { q: 'How long does a P&L analysis engagement take?', a: 'A focused P&L review typically takes 3-5 weeks. A full restructuring and reporting framework setup may take 6-8 weeks depending on complexity.' },
     { q: 'What data do you need to begin?', a: 'We typically start with historical financial statements, trial balances, and any existing management reports. We work with whatever is available and help structure data gaps during the engagement.' },
   ],
 

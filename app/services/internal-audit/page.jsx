@@ -62,7 +62,7 @@ const pageData = {
   
   caseStudies: [
     {
-      title: 'Internal Audit – Hospitality Sector',
+      title: 'Internal Audit - Hospitality Sector',
       client: 'Leading 5-Star Hotel',
       desc: 'Comprehensive internal audit across room revenue, events, F&B, and HR identifying material control gaps including revenue leakages from unauthorized discounts, absence of SOPs, gaps in approval controls, and tax inefficiencies. Provided actionable recommendations strengthening internal controls and governance.',
       tags: ['Hospitality', 'India', '5-Star Hotel'],

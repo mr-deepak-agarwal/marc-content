@@ -91,7 +91,7 @@ const pageData = {
     { q: 'What is the difference between a financial model and a project report?', a: 'A financial model is an Excel-based tool with integrated projections and scenario analysis. A project report (DPR) is a structured document typically required by banks or lenders that includes the financial model alongside project description, market analysis, and management overview.' },
     { q: 'What returns metrics do you calculate?', a: 'We typically calculate ROI, IRR, NPV, payback period, DSCR (debt service coverage ratio), and break-even analysis tailored to the specific requirements of investors or lenders.' },
     { q: 'Can you prepare project reports for government scheme applications?', a: 'Yes. We prepare DPRs aligned with the documentation requirements of MSME schemes, SIDBI, NABARD, and various state government funding programs.' },
-    { q: 'How long does financial modelling take?', a: 'A focused financial model typically takes 2–3 weeks. A full DPR with market analysis and financial projections typically takes 4–6 weeks.' },
+    { q: 'How long does financial modelling take?', a: 'A focused financial model typically takes 2-3 weeks. A full DPR with market analysis and financial projections typically takes 4-6 weeks.' },
     { q: 'Do you provide sensitivity and scenario analysis?', a: 'Yes. We always include scenario analysis (base, upside, downside) and sensitivity tables showing the impact of key assumptions on returns giving decision-makers a clear view of the range of outcomes.' },
   ],
 
