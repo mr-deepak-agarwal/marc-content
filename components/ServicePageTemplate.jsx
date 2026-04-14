@@ -87,17 +87,6 @@ export default function ServicePageTemplateOption2({
                 </Link>
               </div>
 
-              {/* Stats inline */}
-              {stats && (
-                <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4">
-                  {stats.map((stat, i) => (
-                    <div key={i} className="text-center sm:text-left min-w-0">
-                      <div className="text-2xl lg:text-3xl font-bold text-[#4E9141] leading-tight break-words">{stat.value}</div>
-                      <div className="text-[#47635D] text-sm mt-1 leading-snug">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Right - Large Image */}
@@ -114,6 +103,18 @@ export default function ServicePageTemplateOption2({
               <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-[#C2DDB4] rounded-xl -z-10" />
             </div>
           </div>
+
+          {/* Stats - Full Width below the grid */}
+          {stats && (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-10 border-t border-[#C2DDB4]">
+              {stats.map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-2xl lg:text-3xl font-bold text-[#4E9141] leading-tight">{stat.value}</div>
+                  <div className="text-[#47635D] text-sm mt-1 leading-snug">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
