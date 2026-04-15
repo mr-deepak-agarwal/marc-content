@@ -16,12 +16,12 @@ const WhyUsSection = () => {
     {
       id: 2,
       title: "Custom-Built Solutions",
-      description: "No off-the-shelf answers."
+      description: "No off the shelf answers."
     },
     {
       id: 3,
       title: "Senior Involvement",
-      description: "Partner-led engagements."
+      description: "Partner led engagements."
     },
     {
       id: 4,
@@ -36,7 +36,7 @@ const WhyUsSection = () => {
     {
       id: 6,
       title: "Confidential Advisor",
-      description: "To owners, founders and multi-generational home-grown businesses."
+      description: "To owners, founders and multi generational home grown businesses."
     }
   ]
 

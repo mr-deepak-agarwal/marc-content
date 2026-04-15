@@ -27,7 +27,7 @@ const HowWeWorkSection = () => {
       id: 4,
       icon: Rocket,
       title: "Deliver Clarity & Momentum",
-      description: "Whether it's a 6-week strategic sprint or a multiphase growth mandate, our engagements are designed to deliver clarity, confidence, and momentum."
+      description: "Whether it's a 6 week strategic sprint or a multiphase growth mandate, our engagements are designed to deliver clarity, confidence, and momentum."
     }
   ]
 
@@ -43,7 +43,7 @@ const HowWeWorkSection = () => {
             How We Work
           </h2>
           <p className="text-base lg:text-lg text-[#47635D] leading-relaxed">
-            Our approach is hands-on, senior-led, and customised.
+            Our approach is hands on, senior led, and customised.
           </p>
         </div>
 
