@@ -3,33 +3,33 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Lightbulb, Globe2, Building2 } from 'lucide-react'
+import { ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Lightbulb, Globe2, Building2, Users, ClipboardList, ListChecks } from 'lucide-react'
 import { useLoading } from '@/components/loading-store'
 
 const serviceCategories = [
   {
     label: 'Market Research',
     services: [
-      { label: 'Market Research', href: '/services/market-research', icon: Search },
-      { label: 'Feasibility Study', href: '/services/feasibility-study', icon: FileCheck },
+      { label: 'Market Research', href: '/services/market-research-company-in-india', icon: Search },
+      { label: 'Feasibility Study', href: '/services/feasibility-study-service-in-india', icon: FileCheck },
     ]
   },
   {
     label: 'Growth Strategy',
     services: [
-      { label: 'Strategy Consulting', href: '/services/strategy-consulting', icon: Compass },
-      { label: 'Standard Operating Procedure', href: '/services/sop', icon: FileText },
-      { label: 'Profit & Loss Analysis', href: '/services/profit-loss-analysis', icon: TrendingUp },
-      { label: 'Management Information Systems', href: '/services/mis', icon: BarChart3 },
-      { label: 'Financial Modelling', href: '/services/financial-modelling', icon: Calculator },
+      { label: 'Strategy Consulting', href: '/services/strategy-consulting-companies-in-india', icon: Compass },
+      { label: 'Standard Operating Procedure', href: '/services/standard-operating-procedure-sop', icon: FileText },
+      { label: 'Profit & Loss Analysis', href: '/services/profit-and-loss-analysis-services-in-india', icon: TrendingUp },
+      { label: 'Management Information Systems', href: '/services/management-information-systems-mis', icon: BarChart3 },
+      { label: 'Financial Modelling', href: '/services/financial-and-project-report-consulting-services-in-india', icon: Calculator },
     ]
   },
   {
     label: 'Mergers & Acquisitions',
     services: [
-      { label: 'Due Diligence', href: '/services/due-diligence', icon: Shield },
-      { label: 'Valuation', href: '/services/valuation', icon: Scale },
-      { label: 'Deal Advisory', href: '/services/deal-advisory', icon: Handshake },
+      { label: 'Due Diligence', href: '/services/due-diligence-services-in-india', icon: Shield },
+      { label: 'Valuation', href: '/services/valuation-advisory-india', icon: Scale },
+      { label: 'Deal Advisory', href: '/services/deal-advisory-india', icon: Handshake },
     ]
   },
 ]
@@ -44,7 +44,7 @@ const globalServices = [
   { label: 'Business Valuation', href: '/global/valuation', icon: Scale, description: 'Defensible valuations for M&A & fundraising' },
   { label: 'CIM & Pitch Deck Advisory', href: '/global/cim-pitchdeck', icon: FileText, description: 'Investor-ready CIMs and pitch materials' },
   { label: 'Due Diligence & QoE', href: '/global/due-diligence', icon: Shield, description: 'QoE analysis and diligence execution' },
-  { label: 'Internationalization', href: '/services/internationalization', icon: Globe, description: 'Cross border expansion & India market entry' },
+  { label: 'Internationalization', href: '/services/internationalization-services-india', icon: Globe, description: 'Cross border expansion & India market entry' },
 ]
 
 const navLinks = [
