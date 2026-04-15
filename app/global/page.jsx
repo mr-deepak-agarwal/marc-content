@@ -65,12 +65,12 @@ const globalServices = [
   {
     icon: Globe,
     title: 'Internationalization',
-    tagline: 'End-to-end support for cross-border expansion and India market entry.',
+    tagline: 'End-to-end support for Cross border expansion and India market entry.',
     bullets: [
       'Market assessment & entry strategy',
       'Partner identification & evaluation',
       'Regulatory navigation & entity setup',
-      'Cross-border M&A advisory',
+      'Cross border M&A advisory',
     ],
     outcome: 'Navigate new markets with confidence and local expertise.',
     href: '/services/internationalization',
@@ -331,7 +331,7 @@ export default function GlobalPage() {
                 A deal team that operates in your shadow.
               </h2>
               <p className="text-[#47635D] text-lg leading-relaxed mb-6">
-                MARC Glocal is a growth and transaction advisory firm with deep experience across valuation, M&A, and diligence engagements globally. We support global and cross-border transactions, bringing together structured thinking, market insight, and execution discipline.
+                MARC Glocal is a growth and transaction advisory firm with deep experience across valuation, M&A, and diligence engagements globally. We support global and Cross border transactions, bringing together structured thinking, market insight, and execution discipline.
               </p>
               <p className="text-[#47635D] text-base leading-relaxed">
                 Our analysts are trained on international transactions, US GAAP standards, and global valuation norms. We've supported advisors across the US, UK, Middle East, and Southeast Asia, always white-labelled, always accountable.

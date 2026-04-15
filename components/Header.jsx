@@ -44,7 +44,7 @@ const globalServices = [
   { label: 'Business Valuation', href: '/global/valuation', icon: Scale, description: 'Defensible valuations for M&A & fundraising' },
   { label: 'CIM & Pitch Deck Advisory', href: '/global/cim-pitchdeck', icon: FileText, description: 'Investor-ready CIMs and pitch materials' },
   { label: 'Due Diligence & QoE', href: '/global/due-diligence', icon: Shield, description: 'QoE analysis and diligence execution' },
-  { label: 'Internationalization', href: '/services/internationalization', icon: Globe, description: 'Cross-border expansion & India market entry' },
+  { label: 'Internationalization', href: '/services/internationalization', icon: Globe, description: 'Cross border expansion & India market entry' },
 ]
 
 const navLinks = [

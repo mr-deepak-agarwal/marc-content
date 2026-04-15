@@ -76,16 +76,16 @@ const pageData = {
       image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?w=800',
     },
     {
-      title: 'Cross-border Transaction',
+      title: 'Cross border Transaction',
       client: 'International Investor',
       desc: 'Supported India entry through acquisition with comprehensive due diligence.',
-      tags: ['Cross-border', 'India Entry'],
+      tags: ['Cross border', 'India Entry'],
       image: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?w=800',
     },
   ],
   
   faqs: [
-    { q: 'What types of M&A transactions do you handle?', a: 'We advise on strategic acquisitions, PE/VC investments, divestitures, mergers, joint ventures, and cross-border transactions.' },
+    { q: 'What types of M&A transactions do you handle?', a: 'We advise on strategic acquisitions, PE/VC investments, divestitures, mergers, joint ventures, and Cross border transactions.' },
     { q: 'Do you work with private equity?', a: 'Yes, we have extensive experience supporting PE/VC funds with due diligence, valuation, and deal execution.' },
     { q: 'What industries do you cover?', a: 'We have M&A experience across manufacturing, consumer, healthcare, technology, infrastructure, and services sectors.' },
     { q: 'Can you help find acquisition targets?', a: 'Yes, we support buy-side clients with target identification, screening, and approach as part of our deal origination services.' },

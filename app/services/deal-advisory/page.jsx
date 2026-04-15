@@ -7,19 +7,19 @@ const pageData = {
   tagline: 'Deal Advisory Services | India & Global',
   title: 'Expert Guidance Across the',
   titleHighlight: 'Deal Life Cycle',
-  description: 'MARC is a trusted Deal Advisory and M&A consulting firm supporting domestic and cross-border transactions. We work closely with promoters, investors, family offices, private equity funds, and corporates to manage complexity, reduce execution risk, and deliver successful outcomes across mergers, acquisitions, divestments, joint ventures, and strategic investments.',
+  description: 'MARC is a trusted Deal Advisory and M&A consulting firm supporting domestic and Cross border transactions. We work closely with promoters, investors, family offices, private equity funds, and corporates to manage complexity, reduce execution risk, and deliver successful outcomes across mergers, acquisitions, divestments, joint ventures, and strategic investments.',
   
   stats: [
     { value: '100+', label: 'Deals Advised' },
     { value: '₹15,000Cr+', label: 'Deal Value' },
     { value: '85%', label: 'Deal Success Rate' },
-    { value: '50+', label: 'Cross-border Deals' },
+    { value: '50+', label: 'Cross border Deals' },
   ],
   
   valueProps: [
     { icon: Handshake, title: 'Holistic Approach', desc: 'Strong understanding of business fundamentals, industry dynamics, and regulatory frameworks across India and global markets.' },
     { icon: Target, title: 'Execution-First Mindset', desc: 'Focus on deal certainty and sustainable post-transaction outcomes with structured execution.' },
-    { icon: TrendingUp, title: 'Cross-Border Expertise', desc: 'Experience across sectors and transaction sizes in both domestic and international markets.' },
+    { icon: TrendingUp, title: 'Cross border Expertise', desc: 'Experience across sectors and transaction sizes in both domestic and international markets.' },
     { icon: Scale, title: 'Post-Closure Support', desc: 'Involvement extends beyond signing with transition and stabilisation support.' },
   ],
   
@@ -76,10 +76,10 @@ const pageData = {
       image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?w=800',
     },
     {
-      title: 'Cross-border M&A',
+      title: 'Cross border M&A',
       client: 'International Corporation',
-      desc: 'Supported cross-border acquisition of Indian company by international buyer.',
-      tags: ['Cross-border', 'FDI'],
+      desc: 'Supported Cross border acquisition of Indian company by international buyer.',
+      tags: ['Cross border', 'FDI'],
       image: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?w=800',
     },
   ],
@@ -88,7 +88,7 @@ const pageData = {
     { q: 'What is Deal Advisory?', a: 'Deal Advisory involves professional support for buying or selling a company\'s shares or assets. This includes mergers, acquisitions, divestments, strategic investments, and joint ventures.' },
     { q: 'Do you work on both buy-side and sell-side?', a: 'Yes, we provide advisory services to both buyers and sellers, though never on the same transaction to avoid conflicts.' },
     { q: 'What size deals do you handle?', a: 'We work on deals ranging from ₹10Cr to ₹1,000Cr+, with particular strength in mid-market and promoter-led transactions.' },
-    { q: 'What is M&A Readiness and why is it important?', a: 'M&A readiness is critical for Indian mid-market and promoter-led businesses where informal processes and key-person dependency are common. We help businesses prepare for buyer and investor scrutiny through early risk identification, proactive gap closure, and alignment with institutional and cross-border buyer expectations.' },
+    { q: 'What is M&A Readiness and why is it important?', a: 'M&A readiness is critical for Indian mid-market and promoter-led businesses where informal processes and key-person dependency are common. We help businesses prepare for buyer and investor scrutiny through early risk identification, proactive gap closure, and alignment with institutional and Cross border buyer expectations.' },
     { q: 'Do you help find targets or buyers?', a: 'Yes, we support target identification for acquirers and buyer identification for sellers as part of our deal origination services, both in India and overseas.' },
     { q: 'What industries do you cover?', a: 'We have deal experience across manufacturing, consumer, healthcare, technology, infrastructure, hospitality, and financial services sectors.' },
   ],

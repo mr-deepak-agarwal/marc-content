@@ -323,7 +323,7 @@ export const whyWorkWithUs = [
  },
  {
  id: 2,
- title: "Custom-Built Solutions",
+ title: "Custom Built Solutions",
  description: "No off-the-shelf answers. Every solution is tailored to your specific business context and goals."
  },
  {
@@ -338,7 +338,7 @@ export const whyWorkWithUs = [
  },
  {
  id: 5,
- title: "15 Years Cross-Industry Experience",
+ title: "15 Years Cross Industry Experience",
  description: "Proven track record across Manufacturing, F&B, Hospitality, Retail, Pharma, Real estate, and Education."
  }
 ];

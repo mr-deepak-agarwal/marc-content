@@ -15,7 +15,7 @@ const WhyUsSection = () => {
     },
     {
       id: 2,
-      title: "Custom-Built Solutions",
+      title: "Custom Built Solutions",
       description: "No off the shelf answers."
     },
     {
@@ -30,7 +30,7 @@ const WhyUsSection = () => {
     },
     {
       id: 5,
-      title: "15 Years of Cross-Industry Experience",
+      title: "15 Years of Cross Industry Experience",
       description: "In all sectors including Manufacturing, F&B, Hospitality, Retail, Pharma, Real estate, Education."
     },
     {

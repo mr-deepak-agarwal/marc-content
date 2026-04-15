@@ -8,10 +8,10 @@ const icons = [Award, Zap, UserCheck, Briefcase, TrendingUp]
 const WhyUsSection = () => {
   const whyMarcPoints = [
     { id:1, title:'Glocal Perspective',      description:'Deep India expertise with a global outlook.' },
-    { id:2, title:'Custom-Built Solutions',   description:'No off-the-shelf answers.' },
+    { id:2, title:'Custom Built Solutions',   description:'No off-the-shelf answers.' },
     { id:3, title:'Senior Involvement',       description:'Partner-led engagements.' },
     { id:4, title:'Insight to Impact',        description:'Strategy backed by execution support.' },
-    { id:5, title:'15 Years of Cross-Industry Experience',
+    { id:5, title:'15 Years of Cross Industry Experience',
              description:'In all sectors including Manufacturing, F&B, Hospitality, Retail, Pharma, Real estate, Education.' },
   ]
 

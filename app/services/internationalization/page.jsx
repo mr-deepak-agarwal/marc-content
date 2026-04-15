@@ -47,8 +47,8 @@ const pageData = {
       icon: Globe,
     },
     {
-      title: 'Cross-border M&A',
-      desc: 'Facilitate cross-border acquisitions and joint ventures through structured target identification, commercial and financial due diligence, and end-to-end deal execution',
+      title: 'Cross border M&A',
+      desc: 'Facilitate Cross border acquisitions and joint ventures through structured target identification, commercial and financial due diligence, and end-to-end deal execution',
       features: ['Target Search', 'Due Diligence', 'Deal Execution'],
       icon: Building2,
     },
@@ -76,10 +76,10 @@ const pageData = {
       image: 'https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?w=800',
     },
     {
-      title: 'Cross-border Acquisition',
+      title: 'Cross border Acquisition',
       client: 'European Industrial Group',
       desc: 'Advised on acquisition of Indian manufacturing company for market access.',
-      tags: ['Cross-border M&A', 'FDI'],
+      tags: ['Cross border M&A', 'FDI'],
       image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?w=800',
     },
   ],
