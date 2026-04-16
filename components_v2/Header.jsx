@@ -70,7 +70,7 @@ const insightsItems = [
 ]
 
 const navLinks = [
-  { label: 'About', href: '/about' },
+  { label: 'About', href: '/about-us' },
   { label: 'Services', href: '/services', hasServicesMenu: true },
   { label: 'Industries', href: '/industries' },
   { label: 'Insights', href: '/insights', hasInsightsMenu: true },

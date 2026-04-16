@@ -64,7 +64,7 @@ const CareersSection = () => {
                   <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
-              <Link href="/about">
+              <Link href="/about-us">
                 <Button
                   data-testid="careers-cta-culture"
                   variant="outline"

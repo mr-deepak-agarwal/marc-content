@@ -237,7 +237,7 @@ const ContactSection = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <a
-                  href="/about"
+                  href="/about-us"
                   className="inline-flex items-center gap-3 px-8 py-4 bg-transparent text-white font-semibold border-2 border-white/30 rounded-full hover:border-white/60 hover:bg-white/10 transition-all duration-300"
                 >
                   Learn More About Us

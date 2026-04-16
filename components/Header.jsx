@@ -48,7 +48,7 @@ const globalServices = [
 ]
 
 const navLinks = [
-  { label: 'About', href: '/about' },
+  { label: 'About', href: '/about-us' },
   { label: 'Services', href: '/services', hasServicesMenu: true },
   { label: 'Global', href: '/global', hasGlobalMenu: true },
   { label: 'Industries', href: '/industries' },

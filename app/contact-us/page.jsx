@@ -229,8 +229,8 @@ export default function ContactPage() {
             {/* Right Side - Info Cards Grid */}
             <div className="hidden lg:grid grid-cols-2 gap-4">
               {[
-                { icon: Globe, num: '10+', label: 'Offices', sublabel: 'India & USA' },
-                { icon: Users, num: '100+', label: 'Experts', sublabel: 'Ready to help' },
+                { icon: Globe, num: '13', label: 'Offices', sublabel: 'India & USA' },
+                { icon: Users, num: '100+', label: 'International Projects', sublabel: 'Ready to help' },
                 { icon: Clock, num: '24hr', label: 'Response', sublabel: 'Guaranteed' },
                 { icon: Award, num: '15+', label: 'Years', sublabel: 'Experience' }
               ].map((item, i) => (
