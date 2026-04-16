@@ -160,7 +160,7 @@ export default function GlobalPage() {
 
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/contact"
+                href="/contact-us"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-md hover:bg-[#3e7433] transition-all duration-300 shadow-lg shadow-[#4E9141]/30 group"
               >
                 Discuss a Pilot Engagement
@@ -371,7 +371,7 @@ export default function GlobalPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white text-[#3d7334] rounded-full font-semibold hover:bg-[#F7FFF5] transition-all group"
             >
               Start a Conversation

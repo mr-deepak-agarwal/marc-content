@@ -198,7 +198,7 @@ export default function Header() {
                           </div>
                           <div className="mt-6 pt-4 border-t border-[#C2DDB4]/30 flex items-center justify-between">
                             <span className="text-sm text-[#47635D]">Need help choosing the right service?</span>
-                            <Link href="/contact" onClick={() => handleClick('/contact')} className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E9141] hover:text-[#3d7334] transition-colors">
+                            <Link href="/contact-us" onClick={() => handleClick('/contact-us')} className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E9141] hover:text-[#3d7334] transition-colors">
                               Talk to an Expert <ArrowRight size={14} />
                             </Link>
                           </div>
@@ -309,7 +309,7 @@ export default function Header() {
               )}
 
               {/* CTA Button */}
-              <Link href="/contact" onClick={() => handleClick('/contact')}>
+              <Link href="/contact-us" onClick={() => handleClick('/contact-us')}>
                 <button
                   data-testid="header-cta"
                   className="ml-6 px-6 py-2.5 text-sm font-semibold rounded-full bg-[#4E9141] text-white hover:bg-[#3e7433] transition-colors duration-300"
@@ -427,7 +427,7 @@ export default function Header() {
               )
             )}
             <div className="pt-4">
-              <Link href="/contact" onClick={() => handleClick('/contact')}>
+              <Link href="/contact-us" onClick={() => handleClick('/contact-us')}>
                 <button className="w-full py-3.5 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300">
                   Get in Touch
                 </button>

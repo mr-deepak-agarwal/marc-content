@@ -129,7 +129,7 @@ export default function MarketResearchOptionA() {
                 Deep insights into customer behavior, market trends, competitive landscape, and commercial feasibility. We empower confident decisions for market entry, expansion, and long-term growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact" className="px-8 py-4 bg-#4E9141 text-white rounded-xl font-semibold hover:bg-#5FBB46 transition-all shadow-lg shadow-#4E9141/25 flex items-center justify-center gap-2 group">
+                <Link href="/contact-us" className="px-8 py-4 bg-#4E9141 text-white rounded-xl font-semibold hover:bg-#5FBB46 transition-all shadow-lg shadow-#4E9141/25 flex items-center justify-center gap-2 group">
                   Start Your Research
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -337,7 +337,7 @@ export default function MarketResearchOptionA() {
             Partner with MARC for data-driven clarity that powers confident business decisions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="px-10 py-4 bg-white text-#3d7334 rounded-xl font-semibold hover:bg-#F0F8F6 transition-all shadow-lg flex items-center justify-center gap-2 group">
+            <Link href="/contact-us" className="px-10 py-4 bg-white text-#3d7334 rounded-xl font-semibold hover:bg-#F0F8F6 transition-all shadow-lg flex items-center justify-center gap-2 group">
               Schedule Consultation
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>

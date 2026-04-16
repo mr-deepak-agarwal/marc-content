@@ -34,7 +34,7 @@ const slides = [
  heading: 'Your outsourcing partner for global mandates.',
  description: 'International consultants trust MARC for on-ground research, due diligence, and advisory execution across India and emerging markets.',
  image: '/about/IMG_0359.JPG',
- ctaPrimary: { label: 'Partner With Us', href: '/contact' },
+ ctaPrimary: { label: 'Partner With Us', href: '/contact-us' },
  ctaSecondary: { label: 'Our Capabilities', href: '/services' },
  },
 ]

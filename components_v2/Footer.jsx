@@ -28,9 +28,9 @@ const companyLinks = [
 ]
 
 const resourceLinks = [
-  { label: 'Locations', href: '/contact' },
+  { label: 'Locations', href: '/contact-us' },
   { label: 'Careers', href: '/career' },
-  { label: 'Contact Us', href: '/contact' },
+  { label: 'Contact Us', href: '/contact-us' },
 ]
 
 const socialLinks = [

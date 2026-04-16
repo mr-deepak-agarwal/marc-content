@@ -510,7 +510,7 @@ export default function AboutPageClient() {
 
               <div className="flex flex-wrap gap-4">
                 <Link 
-                  href="/contact"
+                  href="/contact-us"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all group"
                 >
                   Work With Us
@@ -841,7 +841,7 @@ export default function AboutPageClient() {
               Our Worldwide Offices
             </h2>
             <Link 
-              href="/contact"
+              href="/contact-us"
               className="hidden md:inline-flex items-center gap-2 text-[#4E9141] font-semibold hover:gap-3 transition-all"
             >
               View All Locations
@@ -854,7 +854,7 @@ export default function AboutPageClient() {
         
         <div className="max-w-7xl mx-auto px-6 mt-8 md:hidden">
           <Link 
-            href="/contact"
+            href="/contact-us"
             className="inline-flex items-center gap-2 text-[#4E9141] font-semibold"
           >
             View All Locations
@@ -927,7 +927,7 @@ export default function AboutPageClient() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#4E9141] font-semibold rounded-full hover:bg-[#C2DDB4] transition-all group"
             >
               Schedule a Consultation

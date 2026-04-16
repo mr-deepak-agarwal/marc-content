@@ -257,7 +257,7 @@ export default function BlogDetailPage() {
               </div>
             </div>
             <div className="flex flex-wrap gap-4 mt-6">
-              <Link href="/contact"
+              <Link href="/contact-us"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#4E9141] rounded-xl font-semibold hover:bg-gray-50 transition-all">
                 {cta.primaryButton}
                 <ChevronRight className="w-5 h-5" />

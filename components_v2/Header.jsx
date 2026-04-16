@@ -287,8 +287,8 @@ export default function Header() {
                           <div className="mt-6 pt-4 border-t border-[#C2DDB4]/30 flex items-center justify-between">
                             <span className="text-sm text-[#47635D]">Need help choosing the right service?</span>
                             <Link 
-                              href="/contact" 
-                              onClick={() => handleClick('/contact')}
+                              href="/contact-us" 
+                              onClick={() => handleClick('/contact-us')}
                               className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E9141] hover:text-[#3d7334] transition-colors"
                             >
                               Talk to an Expert
@@ -377,7 +377,7 @@ export default function Header() {
               )}
 
               {/* CTA Button */}
-              <Link href="/contact" onClick={() => handleClick('/contact')}>
+              <Link href="/contact-us" onClick={() => handleClick('/contact-us')}>
                 <button
                   data-testid="header-cta"
                   className={`relative ml-6 px-6 py-2.5 text-sm font-semibold rounded-full transition-all duration-500 overflow-hidden group ${
@@ -545,7 +545,7 @@ export default function Header() {
             )}
 
             <div className="pt-4">
-              <Link href="/contact" onClick={() => handleClick('/contact')}>
+              <Link href="/contact-us" onClick={() => handleClick('/contact-us')}>
                 <button className="w-full py-3.5 bg-[#4E9141] text-white font-semibold rounded-full hover:bg-[#3d7334] transition-all duration-300 shadow-lg shadow-[#4E9141]/20">
                   Get in Touch
                 </button>

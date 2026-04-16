@@ -141,7 +141,7 @@ export default function CaseStudiesPage() {
                   Explore Cases
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
-                <Link href="/contact" className="px-8 py-4 border-2 border-[#C2DDB4] text-[#1D342F] rounded-full font-semibold hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
+                <Link href="/contact-us" className="px-8 py-4 border-2 border-[#C2DDB4] text-[#1D342F] rounded-full font-semibold hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
                   Start Your Project
                 </Link>
               </div>
@@ -387,7 +387,7 @@ export default function CaseStudiesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/contact" 
+              href="/contact-us" 
               className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#5ba84d] transition-all group"
             >
               Start Your Project

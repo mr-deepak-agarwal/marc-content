@@ -185,7 +185,7 @@ const IndustriesSection = () => {
  )}
 
  <a
- href="/contact"
+ href="/contact-us"
  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all"
  style={{ backgroundColor: '#4E9141', color: '#ffffff' }}
  onMouseEnter={e => e.currentTarget.style.backgroundColor = '#3e7433'}

@@ -363,7 +363,7 @@ export default function IndustriesPage() {
  <div className="text-sm text-white/80 mt-1">{activeIndustryData.statLabel}</div>
  </div>
  <Link
- href="/contact"
+ href="/contact-us"
  className="inline-flex items-center gap-2 px-8 py-4 bg-[#4E9141] hover:bg-[#3d7334] text-white font-semibold rounded-full transition-all text-lg"
  >
  Get Consultation
@@ -462,7 +462,7 @@ export default function IndustriesPage() {
  </p>
  <div className="flex flex-col sm:flex-row gap-4 justify-center">
  <Link
- href="/contact"
+ href="/contact-us"
  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#4E9141] font-semibold rounded-full hover:bg-[#C2DDB4] transition-all group"
  data-testid="contact-cta-btn"
  >
