@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
+import CTAButton from '@/components/CTAButton'
 import { 
   ArrowRight, CheckCircle2, ChevronDown, ArrowUpRight, ExternalLink
 } from 'lucide-react'
@@ -39,6 +40,9 @@ export default function ServicePageTemplateOption2({
   // CTA
   ctaTitle = "Ready to Get Started?",
   ctaDescription,
+
+  // Source page name — passed from each service page for Supabase tracking
+  source = 'Service Page',
 }) {
   const [openFaq, setOpenFaq] = useState(null)
 
@@ -78,10 +82,7 @@ export default function ServicePageTemplateOption2({
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Link href="/contact-us" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#3d7334] transition-all group">
-                  Start Your Project
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                <CTAButton source={source} label="Start Your Project" variant="primary" />
                 <Link href="#methodology" className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#C2DDB4] text-[#47635D] rounded-full font-semibold hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
                   Our Approach
                 </Link>
@@ -441,10 +442,7 @@ export default function ServicePageTemplateOption2({
             <p className="text-[#C2DDB4] text-lg mb-10 max-w-2xl mx-auto">{ctaDescription}</p>
           )}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact-us" className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white text-[#3d7334] rounded-full font-semibold hover:bg-[#F7FFF5] transition-all group">
-              Get Started
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <CTAButton source={source} label="Get Started" variant="secondary" />
             <Link href="/insights" className="inline-flex items-center justify-center gap-2 px-10 py-4 border-2 border-white/30 text-white rounded-full font-semibold hover:bg-white/10 transition-all">
               View Our Insights
               <ExternalLink className="w-4 h-4" />
