@@ -69,7 +69,7 @@ const navLinks = [
   { label: 'Industries', href: '/industries' },
   { label: 'Insights', href: '/insights', hasInsightsMenu: true },
   { label: 'Media', href: '/media' },
-  { label: 'Careers', href: '/career' },
+  { label: 'Careers', href: '/careers' },
 ]
 
 export default function Header() {

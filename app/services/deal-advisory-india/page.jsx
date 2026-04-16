@@ -4,6 +4,7 @@ import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Handshake, Target, TrendingUp, Users, Search, FileText, Building2, Scale, CheckCircle, Award } from 'lucide-react'
 
 const pageData = {
+  source: 'Deal Advisory',
   tagline: 'Deal Advisory Services | India & Global',
   title: 'Expert Guidance Across the',
   titleHighlight: 'Deal Life Cycle',

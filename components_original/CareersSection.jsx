@@ -55,7 +55,7 @@ const CareersSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/career">
+              <Link href="/careers">
                 <Button
                   data-testid="careers-cta-openings"
                   className="bg-[#4E9141] hover:bg-[#4E9141] text-white px-8 py-6 text-lg shadow-lg shadow-[#4E9141]/25 transition-all duration-300 hover:shadow-[#4E9141]/40 hover:-translate-y-0.5 group"

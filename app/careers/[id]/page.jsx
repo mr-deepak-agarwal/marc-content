@@ -269,7 +269,7 @@ export default function JobDetailPage() {
           <h1 className="text-4xl font-bold text-[#1D342F] mb-4">Job Not Found</h1>
           <p className="text-[#47635D] mb-8">The position you're looking for doesn't exist or has been filled.</p>
           <Link 
-            href="/career" 
+            href="/careers" 
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#4E9141] text-white font-semibold rounded-full"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -288,7 +288,7 @@ export default function JobDetailPage() {
       <section className="bg-[#1D342F] pt-28 pb-16 px-6">
         <div className="max-w-5xl mx-auto">
           <Link 
-            href="/career" 
+            href="/careers" 
             className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
