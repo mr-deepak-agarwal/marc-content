@@ -4,7 +4,7 @@ import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } from 'lucide-react'
 
 const pageData = {
-  source="Market Research"
+  source="Market Research",
   tagline: 'Market Research',
   title: 'Market Research',
   // ✅ KEYWORD: "market research in India" | "a leading market research firm in India" | "market research services in India"
