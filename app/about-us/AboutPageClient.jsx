@@ -205,25 +205,26 @@ const timeline = [
  { year: '2012', title: 'First Office', desc: '3 employees, 1 office, 200 sq ft the first brick-and-mortar presence' },
  { year: '2015', title: 'Growing Team', desc: '15 people, 600 sq ft office expanding capabilities and client base' },
  { year: '2018', title: 'Multi-Office', desc: '25 people, 2 offices, 1,000 sq ft deepening Pan-India reach' },
+ { year: '2021', title: 'Going global', desc: 'Took the global leap — establishing our USA presence and welcoming our international clients' },
  { year: '2026', title: 'And Growing', desc: '50 people, 100+ associates, 13 offices, 5,000 sq ft global advisory firm' },
 ]
 
 const clientsRow1 = [
- { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
- { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
- { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
- { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
- { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
- { name: 'Marriott', logo: 'http://marcglocal.com/wp-content/uploads/2022/07/JW-Marriott.png' },
+ { name: 'The Park', logo: 'logos/The-park-hotels.png' },
+ { name: 'Kineco', logo: 'logos/logo5.png' },
+ { name: 'Magsons', logo: 'logos/logo6-6.png' },
+ { name: 'Taj Hotels', logo: 'logos/Taj-1.png' },
+ { name: 'Isha Yoga', logo: 'logos/logo6-6-223.png' },
+ { name: 'Marriott', logo: 'logos/JW-Marriott.png' },
 ]
 
 const clientsRow2 = [
- { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
- { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
- { name: 'The Park', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
- { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
- { name: 'Marriott', logo: 'http://marcglocal.com/wp-content/uploads/2022/07/JW-Marriott.png' },
- { name: 'Taj Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
+ { name: 'Magsons', logo: 'logos/logo6-6.png' },
+ { name: 'Kineco', logo: 'logos/logo5.png' },
+ { name: 'The Park', logo: 'logos/The-park-hotels.png' },
+ { name: 'Isha Yoga', logo: 'logos/logo6-6-223.png' },
+ { name: 'Marriott', logo: 'logos/JW-Marriott.png' },
+ { name: 'Taj Hotels', logo: 'logos/Taj-1.png' },
 ]
 
 const affiliations = [
