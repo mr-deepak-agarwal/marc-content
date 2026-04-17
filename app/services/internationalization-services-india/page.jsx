@@ -10,7 +10,7 @@ const pageData = {
   description: 'End-to-end support for Indian companies expanding internationally and global companies entering India, from market assessment through operational setup.',
   
   stats: [
-    { value: '30+', label: 'Countries Covered' },
+    { value: '5', label: 'Continents served' },
     { value: '100+', label: 'Market Entry Projects' },
     { value: '₹5,000Cr+', label: 'Investments Facilitated' },
     { value: '95%', label: 'Success Rate' },

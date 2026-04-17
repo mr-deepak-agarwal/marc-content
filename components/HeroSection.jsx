@@ -26,7 +26,7 @@ const slides = [
  heading: 'M&A, designed for growth.',
  description: 'Strategic target identification, commercial diligence, and integration support focused on value creation, not just deal completion.',
  image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&h=1080&fit=crop&q=90',
- ctaPrimary: { label: 'Explore Services', href: '/services/mergers-acquisitions' },
+ ctaPrimary: { label: 'Explore Services', href: '/services/mergers-and-acquisitions-india' },
  ctaSecondary: { label: 'Learn More', href: '/services' },
  },
  {

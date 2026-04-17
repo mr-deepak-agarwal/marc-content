@@ -35,7 +35,7 @@ export const services = [
  description: "Deal screening, commercial due diligence, growth thesis validation, synergy modelling, and post-merger value creation.",
  image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=90",
  imageAlt: "Corporate buildings representing M&A and strategic partnerships",
- link: "/services/mergers-acquisitions"
+ link: "/services/mergers-and-acquisitions-india"
  },
  {
  id: 2,

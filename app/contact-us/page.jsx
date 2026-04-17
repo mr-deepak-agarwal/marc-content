@@ -133,9 +133,9 @@ const reasons = [
 ]
 
 const quickInfo = [
-  { icon: Clock, title: 'Business Hours', value: 'Mon - Sat: 9:00 AM - 6:00 PM IST' },
+  { icon: Clock, title: 'Business Hours', value: 'Mon - Fri: 9:30 AM - 6:30 PM IST' },
   { icon: MessageCircle, title: 'Response Time', value: 'Within 24 hours' },
-  { icon: Globe, title: 'Global Presence', value: '14 offices worldwide' },
+  { icon: Globe, title: 'Global Presence', value: '13 offices worldwide' },
 ]
 
 export default function ContactPage() {

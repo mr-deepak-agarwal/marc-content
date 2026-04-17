@@ -20,14 +20,14 @@ const WhoWeWorkWithSection = () => {
     {
       id: 3,
       icon: TrendingUp,
-      title: "PE / VC Backed Businesses",
-      description: "PE / VC Backed businesses at inflection points."
+      title: "PE/VCs and their backed businesses",
+      description: "PE/VCs and their backed businesses at inflection points."
     },
     {
       id: 4,
       icon: Users,
-      title: "Family Owned & Founder Led Organizations",
-      description: "Family Owned and Founder Led organisations preparing for the next phase of growth."
+      title: "Family businesses & Founder Led Organizations",
+      description: "Family businesses and Founder Led organisations preparing for the next phase of growth."
     }
   ]
 

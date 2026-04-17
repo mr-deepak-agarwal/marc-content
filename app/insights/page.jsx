@@ -1041,8 +1041,8 @@ export default function InsightsPageV2() {
  <div className="text-sm text-[#47635D] mt-1">Industries</div>
  </div>
  <div>
- <div className="text-3xl font-bold text-[#4E9141]">30+</div>
- <div className="text-sm text-[#47635D] mt-1">Countries</div>
+ <div className="text-3xl font-bold text-[#4E9141]">5</div>
+ <div className="text-sm text-[#47635D] mt-1">Continents served</div>
  </div>
  </div>
  </div>

@@ -61,8 +61,7 @@ const IndustriesSection = () => {
  </h2>
 
  <p className="text-lg leading-relaxed mb-8 max-w-md" style={{ color: '#A8BFB8' }}>
- MARC combines strategy management consulting and market research
- to help businesses act with clarity and confidence across diverse sectors.
+Whether you're entering new markets, optimizing performance, or evaluating growth opportunities, MARC's integrated approach — spanning strategy consulting, market research, and profitability analysis — gives businesses the insights they need to act with clarity and confidence.
  </p>
 
  <a
