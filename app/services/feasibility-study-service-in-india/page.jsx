@@ -1,6 +1,6 @@
 'use client'
 
-import ServicePageTemplate2 from '@/components/ServicePageTemplate2'
+import ServicePageTemplate2 from '@/components/ServicePageTemplate'
 import { FileCheck, MapPin, Building2, TrendingUp, Calculator, Target, Shield, BarChart3, Users, Globe, PieChart } from 'lucide-react'
 
 const pageData = {
