@@ -97,7 +97,7 @@ const keyTeam = [
  name: 'Prajakta Rawool',
  role: 'Senior Associate - Human Capital and Administration',
  image: '/images/about/prajakta.jpeg',
- linkedin: null,
+ linkedin: 'https://www.linkedin.com/in/prajakta-rawool-ab835b29a/',
  },
  {
  name: 'Soham Shirodkar',
@@ -174,7 +174,7 @@ const associates = [
  name: 'CA, CPA Shrinidhi Rao',
  role: 'Associate Partner',
  image: '/images/about/shrinidhi-rao.jpg',
- linkedin: null,
+ linkedin: 'https://www.linkedin.com/in/shrinidhi-rao-3b470449/',
  location: 'Udupi',
  },
 ]
@@ -190,7 +190,7 @@ const domainExperts = [
  name: 'Dr. Tejas Kamat',
  role: 'Healthcare Sector Expert',
  image: '/images/about/tejas-kamat.jpg',
- linkedin: null,
+ linkedin: 'https://www.linkedin.com/in/dr-tejas-kamat-68799136/',
  },
  {
  name: 'Sonali Vartak',
