@@ -41,7 +41,7 @@ export const services = [
  id: 2,
  title: "Growth Strategy & GTM",
  description: "Market prioritisation, value proposition, pricing, channel strategy, market assessment, localisation, regulatory context.",
- image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=90",
+ image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80",
  imageAlt: "Growth strategy analytics dashboard",
  link: "/services/strategy-consulting-companies-in-india"
  },

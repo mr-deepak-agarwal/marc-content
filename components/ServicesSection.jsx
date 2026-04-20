@@ -28,7 +28,7 @@ const ServicesSection = () => {
         </div>
 
         {/* SERVICES GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <Link
               key={service.id}
@@ -39,7 +39,7 @@ const ServicesSection = () => {
               onMouseLeave={() => setHoveredService(null)}
             >
               {/* Background Image */}
-              <div className="relative h-[350px]">
+              <div className="relative h-[300px]">
                 <img
                   src={service.image}
                   alt={service.imageAlt || service.title}
