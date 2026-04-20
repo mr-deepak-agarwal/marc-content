@@ -91,25 +91,25 @@ const keyTeam = [
  name: 'Vaikunth Nadkarni',
  role: 'Manager - Market Research and Financial Analysis',
  image: '/images/about/vaikunth-nadkarni.jpg',
- linkedin: 'https://www.linkedin.com/in/vaikunth-nadkarni-b6626918a/',
+ linkedin: null,
  },
  {
- name: 'Avdhut Padwalkar',
- role: 'Assistant Manager - Market Research and Financial Analysis',
+ name: 'Prajakta Rawool',
+ role: 'Senior Associate - Human Capital and Administration',
  image: '/images/about/prajakta.jpeg',
- linkedin: 'https://www.linkedin.com/in/avdhut09/',
+ linkedin: null,
  },
  {
- name: 'Smriti Bhattacharya',
+ name: 'Soham Shirodkar',
  role: 'Assistant Manager - Market Research and Financial Analysis',
  image: '/images/about/soham.jpeg',
- linkedin: 'https://www.linkedin.com/in/smriti-bhattacharya-01b5b550/',
+ linkedin: null,
  },
  {
  name: 'Roopa Bhat Jacob',
  role: 'Head - Business Development',
  image: '/images/about/roopa-bhat-jacob.png',
- linkedin: 'https://www.linkedin.com/in/roopa-bhat-jacob-19192b36/',
+ linkedin: null,
  },
 ]
 
@@ -118,49 +118,49 @@ const associates = [
  name: 'Priyanka Kamat',
  role: 'Consultant - Human Capital',
  image: '/images/about/priyanka-kamat.jpeg',
- linkedin: 'https://www.linkedin.com/in/priyanka-kamat-833502120/',
+ linkedin: null,
  location: 'Goa',
  },
  {
  name: 'Karan Shah',
  role: 'Associate Partner',
  image: '/images/about/karan-shah.jpg',
- linkedin: 'https://www.linkedin.com/in/cakaranshah/',
+ linkedin: null,
  location: 'Mumbai',
  },
  {
  name: 'Manu Kurian',
  role: 'Associate Partner',
  image: '/images/about/manu-kurian.jpg',
- linkedin: 'https://www.linkedin.com/in/manu-kurian-6678a011b/',
+ linkedin: null,
  location: 'Kerala',
  },
  {
  name: 'Manas Joshi',
  role: 'Associate Partner',
  image: '/images/about/manas-joshi.jpg',
- linkedin: 'https://www.linkedin.com/in/manas-joshi-a361491a/',
+ linkedin: null,
  location: 'Pune',
  },
  {
  name: 'Varsha Chopra',
  role: 'Associate Partner',
  image: '/images/about/varsha-chopra.jpg',
- linkedin: 'https://www.linkedin.com/in/ca-varsha-chopra-92a349179/',
+ linkedin: null,
  location: 'North East',
  },
  {
  name: 'Ruchi Jindal',
  role: 'Associate Partner',
  image: '/images/about/ruchi-jindal.jpg',
- linkedin: 'https://www.linkedin.com/in/ruchi-jindal-98528b18a/',
+ linkedin: null,
  location: 'Indore',
  },
  {
  name: 'Atanu Sengupta',
  role: 'Associate Partner',
  image: '/images/about/atanu-sengupta.jpg',
- linkedin: 'https://www.linkedin.com/in/caatanusengupta/',
+ linkedin: null,
  location: 'Kolkata',
  },
  {
@@ -184,7 +184,7 @@ const domainExperts = [
  name: 'Anand Chatterjee',
  role: 'Hospitality Sector Expert',
  image: '/images/about/anand-chatterjee.jpg',
- linkedin: 'https://www.linkedin.com/in/anand-chatterjee-00668a8/',
+ linkedin: null,
  },
  {
  name: 'Dr. Tejas Kamat',
@@ -196,7 +196,7 @@ const domainExperts = [
  name: 'Sonali Vartak',
  role: 'Finance Expert',
  image: '/images/about/sonali-vartak.jpg',
- linkedin: 'https://www.linkedin.com/in/sonali-vartak-6686a114/',
+ linkedin: null,
  },
 ]
 
@@ -845,22 +845,20 @@ export default function AboutPageClient() {
  <div className="p-5">
  <h3 className="text-lg font-bold text-[#1D342F] mb-1">{member.name}</h3>
  <p className="text-[#47635D] text-sm mb-3">{member.role}</p>
- {member.linkedin ? (
  <a 
- href={member.linkedin}
- target="_blank"
+ href={member.linkedin || '#'}
+ target={member.linkedin ? "_blank" : "_self"}
  rel="noopener noreferrer"
- className="inline-flex items-center gap-1 text-sm text-[#4E9141] hover:text-[#3d7334] transition-colors"
+ className={`inline-flex items-center gap-1 text-sm ${
+ member.linkedin 
+ ? 'text-[#4E9141] hover:text-[#3d7334] cursor-pointer' 
+ : 'text-gray-400 cursor-not-allowed'
+ } transition-colors`}
+ onClick={!member.linkedin ? (e) => e.preventDefault() : undefined}
  >
  <Linkedin className="w-4 h-4" />
- <span>LinkedIn</span>
+ <span>{member.linkedin ? 'LinkedIn' : 'LinkedIn'}</span>
  </a>
- ) : (
- <span className="inline-flex items-center gap-1 text-sm text-gray-400 cursor-not-allowed">
- <Linkedin className="w-4 h-4" />
- <span>Coming Soon</span>
- </span>
- )}
  </div>
  </div>
  ))}
@@ -890,22 +888,20 @@ export default function AboutPageClient() {
  {member.location && (
  <p className="text-[#4E9141] text-xs font-medium mb-2">{member.location}</p>
  )}
- {member.linkedin ? (
  <a 
- href={member.linkedin}
- target="_blank"
+ href={member.linkedin || '#'}
+ target={member.linkedin ? "_blank" : "_self"}
  rel="noopener noreferrer"
- className="inline-flex items-center gap-1 text-xs text-[#4E9141] hover:text-[#3d7334] transition-colors"
+ className={`inline-flex items-center gap-1 text-xs ${
+ member.linkedin 
+ ? 'text-[#4E9141] hover:text-[#3d7334] cursor-pointer' 
+ : 'text-gray-400 cursor-not-allowed'
+ } transition-colors`}
+ onClick={!member.linkedin ? (e) => e.preventDefault() : undefined}
  >
  <Linkedin className="w-3 h-3" />
- <span>LinkedIn</span>
+ <span>{member.linkedin ? 'LinkedIn' : 'Coming Soon'}</span>
  </a>
- ) : (
- <span className="inline-flex items-center gap-1 text-xs text-gray-400 cursor-not-allowed">
- <Linkedin className="w-3 h-3" />
- <span>Coming Soon</span>
- </span>
- )}
  </div>
  </div>
  ))}
@@ -934,22 +930,22 @@ export default function AboutPageClient() {
  </div>
  </div>
  <div className="p-6">
- {expert.linkedin ? (
  <a 
- href={expert.linkedin}
- target="_blank"
+ href={expert.linkedin || '#'}
+ target={expert.linkedin ? "_blank" : "_self"}
  rel="noopener noreferrer"
- className="inline-flex items-center gap-2 text-[#4E9141] hover:text-[#3d7334] transition-colors"
+ className={`inline-flex items-center gap-2 ${
+ expert.linkedin 
+ ? 'text-[#4E9141] hover:text-[#3d7334] cursor-pointer' 
+ : 'text-gray-400 cursor-not-allowed'
+ } transition-colors`}
+ onClick={!expert.linkedin ? (e) => e.preventDefault() : undefined}
  >
  <Linkedin className="w-5 h-5" />
- <span className="text-sm font-medium">Connect on LinkedIn</span>
- </a>
- ) : (
- <span className="inline-flex items-center gap-2 text-gray-400 cursor-not-allowed">
- <Linkedin className="w-5 h-5" />
- <span className="text-sm font-medium">Coming Soon</span>
+ <span className="text-sm font-medium">
+ {expert.linkedin ? 'Connect on LinkedIn' : 'LinkedIn'}
  </span>
- )}
+ </a>
  </div>
  </div>
  ))}
