@@ -210,7 +210,7 @@ export default function ServicePageTemplate({
 
             {/*
             ═══════════════════════════════════════════════════════════════
-            OLD — image-based case study cards (replaced by cards below)
+            OLD  image-based case study cards (replaced by cards below)
             ═══════════════════════════════════════════════════════════════
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -244,14 +244,14 @@ export default function ServicePageTemplate({
 
             ═══════════════════════════════════════════════════════════════ */}
 
-            {/* NEW — Challenge / Solution / Result cards, unified orange accent */}
+            {/* NEW  Challenge / Solution / Result cards, unified orange accent */}
             <div className="grid md:grid-cols-3 gap-6">
               {caseStudies.map((study, i) => (
                 <div
                   key={i}
                   className="bg-[#162b23] rounded-2xl overflow-hidden border border-white/5 hover:border-[#F97316]/20 transition-all duration-300 group flex flex-col"
                 >
-                  {/* Orange gradient strip — same across all cards */}
+                  {/* Orange gradient strip  same across all cards */}
                   <div className="h-[3px] w-full bg-gradient-to-r from-[#F97316] to-[#FDBA74]" />
 
                   <div className="p-7 flex flex-col flex-1">

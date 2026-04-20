@@ -393,7 +393,7 @@ const ServicesSection = () => {
             Our Core Advisory Areas
           </h2>
           <p className="text-lg mb-4 leading-relaxed" style={{ color: '#33691E' }}>
-            We advise organisations at critical growth moments—market entry, expansion, transformation, and scale.
+            We advise organisations at critical growth momentsmarket entry, expansion, transformation, and scale.
           </p>
           <p className="font-semibold text-lg" style={{ color: '#2E7D32' }}>
             Our role: clarify direction, unlock growth levers, and support execution.
@@ -415,7 +415,7 @@ const ServicesSection = () => {
                   {SVG_ILLUSTRATIONS[index % SVG_ILLUSTRATIONS.length]}
                 </div>
 
-                {/* Hover overlay — vivid orange tint */}
+                {/* Hover overlay  vivid orange tint */}
                 <div
                   className={`absolute inset-0 transition-all duration-500 ${
                     hoveredService === index
@@ -448,7 +448,7 @@ const ServicesSection = () => {
                   </p>
                 </div>
 
-                {/* Arrow — orange on hover */}
+                {/* Arrow  orange on hover */}
                 <div
                   className={`absolute top-6 right-6 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                     hoveredService === index ? 'scale-110' : ''

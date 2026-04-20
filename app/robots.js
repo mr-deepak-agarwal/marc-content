@@ -12,7 +12,7 @@ export default function robots() {
           '/admin/',
           '/dashboard/',
           '/api/',
-          '/apply',         // job application form — usually not needed in index
+          '/apply',         // job application form  usually not needed in index
           '/global/',       // internal pages (CIM, due diligence, valuation tools)
         ],
       },

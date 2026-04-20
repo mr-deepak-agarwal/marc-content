@@ -133,7 +133,7 @@ export default function CaseStudiesPage() {
               </h1>
 
               <p className="text-[#47635D] text-lg leading-relaxed mb-10 max-w-lg">
-                From challenge to triumph — discover how we deliver measurable business impact through data-driven insights and strategic expertise.
+                From challenge to triumph  discover how we deliver measurable business impact through data-driven insights and strategic expertise.
               </p>
 
               <div className="flex flex-wrap gap-4">

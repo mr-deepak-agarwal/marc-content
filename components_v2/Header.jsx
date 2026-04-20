@@ -254,7 +254,7 @@ export default function Header() {
                             ))}
                           </div>
 
-                          {/* Bottom row — M&A, Global Expansion, Transactions side by side */}
+                          {/* Bottom row  M&A, Global Expansion, Transactions side by side */}
                           <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#C2DDB4]/30">
                             {serviceCategories.slice(2).map((category, catIdx) => (
                               <div key={catIdx}>

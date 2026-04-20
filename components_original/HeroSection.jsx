@@ -219,7 +219,7 @@ const HeroSection = () => {
           data-testid="hero-subheading"
           className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed"
         >
-          Strategy and execution for Indian and global businesses that want growth to build—year after year.
+          Strategy and execution for Indian and global businesses that want growth to buildyear after year.
         </p>
 
         {/* ===== 3 VALUE BLURBS ===== */}
@@ -256,7 +256,7 @@ const HeroSection = () => {
               M&A, designed for growth.
             </h3>
             <p className="text-white/70 text-sm leading-relaxed">
-              Strategic target identification, commercial diligence, and integration support—focused on value creation, not just deal completion.
+              Strategic target identification, commercial diligence, and integration supportfocused on value creation, not just deal completion.
             </p>
           </div>
         </div>

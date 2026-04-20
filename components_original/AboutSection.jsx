@@ -54,7 +54,7 @@ const AboutSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/50 to-transparent" />
             </div>
 
-            {/* Floating Mission Card — moved to bottom-0 so it sits within the padded area */}
+            {/* Floating Mission Card  moved to bottom-0 so it sits within the padded area */}
             <div className="absolute bottom-0 -right-4 bg-white rounded-2xl p-5 shadow-xl max-w-xs hidden lg:block border border-[#4E9141]/20">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-[#4E9141] rounded-xl flex items-center justify-center">

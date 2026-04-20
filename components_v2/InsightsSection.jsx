@@ -249,7 +249,7 @@ const InsightsSection = () => {
                   </div>
                 </div>
 
-                {/* Hover arrow — orange */}
+                {/* Hover arrow  orange */}
                 <div
                   className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
                   style={{ backgroundColor: '#E65100' }}

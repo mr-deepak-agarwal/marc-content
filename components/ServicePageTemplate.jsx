@@ -41,7 +41,7 @@ export default function ServicePageTemplateOption2({
   ctaTitle = "Ready to Get Started?",
   ctaDescription,
 
-  // Source page name — passed from each service page for Supabase tracking
+  // Source page name  passed from each service page for Supabase tracking
   source = 'Service Page',
 }) {
   const [openFaq, setOpenFaq] = useState(null)

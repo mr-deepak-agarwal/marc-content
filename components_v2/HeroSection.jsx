@@ -103,7 +103,7 @@ const HeroSection = () => {
             <line x1="1060" y1="130" x2="1060" y2="770" />
           </g>
 
-          {/* landmasses — bright fill */}
+          {/* landmasses  bright fill */}
           <g clipPath="url(#hClip)" fill="#66BB6A" fillOpacity="0.42">
             <polygon points="1074,332 1100,324 1122,340 1128,368 1120,400 1106,422 1082,440 1062,428 1054,402 1062,372 1072,344" />
             <ellipse cx="1166" cy="390" rx="30" ry="44" transform="rotate(18,1166,390)" />
@@ -184,15 +184,15 @@ const HeroSection = () => {
           className="text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
           style={{ color: 'rgba(255,255,255,0.85)' }}
         >
-          Strategy and execution for Indian and global businesses that want growth to build—year after year.
+          Strategy and execution for Indian and global businesses that want growth to buildyear after year.
         </p>
 
         {/* 3 value blurbs */}
         <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
           {[
-            { num: '01', title: 'Insights that sharpen growth bets.', body: 'Market, customer, and category intelligence — including Feasibility Studies, market assessment, and consumer insights — to reduce risk and guide compounding growth.' },
-            { num: '02', title: 'Numbers that guide growth.', body: 'Profitability Analyses, financial models, and focused diagnostics — plus Standard Operating Procedures (SOP) review and system optimisation — that translate data into clear priorities.' },
-            { num: '03', title: 'M&A, designed for growth.', body: 'Strategic target identification, commercial due diligence, growth thesis validation, and integration support — focused on value creation.' },
+            { num: '01', title: 'Insights that sharpen growth bets.', body: 'Market, customer, and category intelligence  including Feasibility Studies, market assessment, and consumer insights  to reduce risk and guide compounding growth.' },
+            { num: '02', title: 'Numbers that guide growth.', body: 'Profitability Analyses, financial models, and focused diagnostics  plus Standard Operating Procedures (SOP) review and system optimisation  that translate data into clear priorities.' },
+            { num: '03', title: 'M&A, designed for growth.', body: 'Strategic target identification, commercial due diligence, growth thesis validation, and integration support  focused on value creation.' },
           ].map((item) => (
             <div
               key={item.num}

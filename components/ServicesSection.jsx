@@ -60,7 +60,7 @@ const ServicesSection = () => {
                     hoveredService === index ? '-translate-y-4' : 'translate-y-0'
                   }`}
                 >
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 leading-snug tracking-tight">
+                  <h3 className="text-lg lg:text-xl font-bold text-white mb-3 leading-snug tracking-tight">
                     {service.title}
                   </h3>
                   <p

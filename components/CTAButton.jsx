@@ -3,16 +3,16 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // components/CTAButton.jsx
 //
-// USAGE — drop anywhere in any page with ONE line:
+// USAGE  drop anywhere in any page with ONE line:
 //
 //   import CTAButton from '@/components/CTAButton'
 //   <CTAButton source="Due Diligence Page" />
 //
 // PROPS:
-//   source      — page name saved to Supabase (e.g. "Homepage", "Blog: AI Article")
-//   label       — button text (default: "Get a Free Consultation")
-//   variant     — "primary" | "secondary" | "ghost"  (default: "primary")
-//   className   — extra tailwind classes on the button
+//   source       page name saved to Supabase (e.g. "Homepage", "Blog: AI Article")
+//   label        button text (default: "Get a Free Consultation")
+//   variant      "primary" | "secondary" | "ghost"  (default: "primary")
+//   className    extra tailwind classes on the button
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState } from 'react'
@@ -126,7 +126,7 @@ function CTAPopup({ isOpen, onClose, source }) {
                 <p className="text-[#47635D] text-sm">
                   Fill in your details and we&apos;ll reach out within 24 hours.
                 </p>
-                {/* Hidden source indicator — visible only in dev if you want */}
+                {/* Hidden source indicator  visible only in dev if you want */}
                 {process.env.NODE_ENV === 'development' && (
                   <p className="mt-1 text-[10px] text-[#47635D]/40 font-mono">source: {source}</p>
                 )}

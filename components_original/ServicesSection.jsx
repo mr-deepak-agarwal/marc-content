@@ -21,7 +21,7 @@ const ServicesSection = () => {
           </h2>
 
           <p className="text-lg text-[#47635D] leading-relaxed mb-4">
-            We advise organisations at critical growth moments—market entry, expansion, transformation, and scale.
+            We advise organisations at critical growth momentsmarket entry, expansion, transformation, and scale.
           </p>
 
           <p className="text-[#4E9141] font-semibold text-lg">

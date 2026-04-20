@@ -150,7 +150,7 @@ const nextConfig = {
       {
         source: '/thank-you',
         destination: '/',
-        permanent: false, // soft redirect — replace with a real /thank-you page later
+        permanent: false, // soft redirect  replace with a real /thank-you page later
       },
       {
         source: '/thank-you/',

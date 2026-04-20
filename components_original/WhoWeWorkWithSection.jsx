@@ -85,7 +85,7 @@ const WhoWeWorkWithSection = () => {
         {/* ================= ADDITIONAL INFO ================= */}
         <div className="mt-12 text-center">
           <p className="text-lg text-[#4E9141] font-semibold">
-            We provide complete, end-to-end solutions to businesses — guiding them through every stage of growth and expansion.
+            We provide complete, end-to-end solutions to businesses  guiding them through every stage of growth and expansion.
           </p>
         </div>
       </div>
