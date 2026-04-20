@@ -48,26 +48,31 @@ function MediaCarousel() {
           let transform = 'translateX(100%) scale(0.8)'
           let opacity = 0
           let zIndex = 0
+          // ── CHANGE: reduced opacity + blur for side images ──
+          let filter = 'none'
 
           if (isActive) {
             transform = 'translateX(0) scale(1)'
             opacity = 1
             zIndex = 30
+            filter = 'none'
           } else if (isPrev) {
             transform = 'translateX(-30%) scale(0.85) rotateY(15deg)'
-            opacity = 0.5
+            opacity = 0.25        // was 0.5
             zIndex = 20
+            filter = 'blur(4px)' // new: blur background slides
           } else if (isNext) {
             transform = 'translateX(30%) scale(0.85) rotateY(-15deg)'
-            opacity = 0.5
+            opacity = 0.25        // was 0.5
             zIndex = 20
+            filter = 'blur(4px)' // new: blur background slides
           }
 
           return (
             <div
               key={index}
               className="absolute inset-0 transition-all duration-700 ease-out"
-              style={{ transform, opacity, zIndex }}
+              style={{ transform, opacity, zIndex, filter }}
             >
               <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
                 <img
@@ -117,7 +122,7 @@ const newsArticles = [
     date: 'Dec 12, 2025',
     source: 'ET Now Business Conclave & Awards 2025',
     title: 'Excellence in Growth Advisory & Consulting',
-    excerpt: 'MARC was honoured with the ET Now Award for “Excellence in Growth Advisory & Consulting”  at the ET Now Business Conclave & Awards 2025',
+    excerpt: 'MARC was honoured with the ET Now Award for "Excellence in Growth Advisory & Consulting"  at the ET Now Business Conclave & Awards 2025',
     link: 'https://www.etnownews.com/hub/business-conclave-awards-2025/winners'
   },  
   {
