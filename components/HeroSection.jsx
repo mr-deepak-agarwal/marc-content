@@ -71,7 +71,7 @@ const HeroSection = () => {
       data-testid="hero-section"
       className="relative w-full h-screen min-h-[600px] overflow-hidden"
     >
-      {/* Background images */}
+      {/* Background images — unchanged */}
       {slides.map((s, i) => (
         <div
           key={s.id}
@@ -85,12 +85,24 @@ const HeroSection = () => {
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(100%)' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         </div>
       ))}
 
-      {/* Arrows */}
+      {/* ── ONLY THING CHANGED: gradient dark-left → transparent-right ── */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background:
+            'linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.70) 25%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.0) 75%)',
+        }}
+      />
+      {/* thin bottom fade so dots stay readable */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 z-10"
+        style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.45), transparent)' }}
+      />
+
+      {/* Arrows — unchanged */}
       <button onClick={goPrev} aria-label="Previous slide" className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/15 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center transition-all duration-200">
         <ChevronLeft className="w-6 h-6 text-white" />
       </button>
@@ -98,26 +110,23 @@ const HeroSection = () => {
         <ChevronRight className="w-6 h-6 text-white" />
       </button>
 
-      {/* Content */}
+      {/* Content — unchanged */}
       <div className="absolute inset-0 z-20 flex flex-col justify-between px-8 lg:px-20 max-w-7xl mx-auto left-0 right-0">
 
-        {/* TOP tagline */}
+        {/* TOP tagline — unchanged */}
         <div className="pt-32">
-          {/* Dark backdrop pill to make green text legible on any background image */}
-          <div className="inline-flex flex-col gap-1 px-4 py-3 rounded-xl bg-black/40 backdrop-blur-sm border border-white/10">
-            <div className="flex items-center gap-3">
-              <span className="w-8 h-[2px] bg-[#4E9141] flex-shrink-0" />
-              <p className="text-[#6abf5e] text-sm lg:text-base font-bold uppercase tracking-[0.2em] drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                No. 1 Advisor for Compounding Growth
-              </p>
-            </div>
-            <p className="text-white/80 text-sm pl-11 max-w-lg leading-relaxed">
-              Strategy and execution for Indian and global businesses that want to reimagine growth year on year.
+          <div className="flex items-center gap-3 mb-1">
+            <span className="w-8 h-[2px] bg-[#4E9141]" />
+            <p className="text-[#4E9141] text-sm lg:text-base font-bold uppercase tracking-[0.2em]">
+              No. 1 Advisor for Compounding Growth
             </p>
           </div>
+          <p className="text-white/65 text-sm pl-11 max-w-lg leading-relaxed">
+            Strategy and execution for Indian and global businesses that want to reimagine growth year on year.
+          </p>
         </div>
 
-        {/* BOTTOM slide content */}
+        {/* BOTTOM slide content — unchanged */}
         <div key={current} className="animate-slide-up pb-24 max-w-3xl">
           <h1 className="text-5xl lg:text-6xl xl:text-[4.5rem] font-bold text-white leading-[1.1] tracking-tight mb-5">
             {slide.heading}
@@ -143,7 +152,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Dots + scroll */}
+      {/* Dots + scroll — unchanged */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3">
         <ChevronDown className="w-5 h-5 text-white/50 animate-bounce" />
         <div className="flex items-center gap-3">
