@@ -83,7 +83,7 @@ export const services = [
  description: "Process audits, SOP review and system optimization to sustain compounding growth.",
  image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&q=90",
  imageAlt: "Process optimization and system workflow",
- link: "/services/management-information-systems-mis"
+ link: "/services/standard-operating-procedure-sop"
  },
  {
  id: 8,
