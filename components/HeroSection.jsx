@@ -10,7 +10,7 @@ const slides = [
     heading: 'Insights that sharpen growth bets.',
     description: 'Market, customer, and category intelligence to reduce risk and guide compounding growth.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop&q=90',
-    ctaPrimary: { label: 'Explore Services', href: '/services/market-research' },
+    ctaPrimary: { label: 'Explore Services', href: '/services/market-research-company-in-india' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
   },
   {
@@ -18,7 +18,7 @@ const slides = [
     heading: 'Numbers that guide growth.',
     description: 'Financial models, profitability analyses and focused financial diagnostics that translate data into clear growth priorities.',
     image: 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=1920&h=1080&fit=crop&q=90',
-    ctaPrimary: { label: 'Explore Services', href: '/services/financial-analytics' },
+    ctaPrimary: { label: 'Explore Services', href: '/services/financial-and-project-report-consulting-services-in-india' },
     ctaSecondary: { label: 'Learn More', href: '/services' },
   },
   {
