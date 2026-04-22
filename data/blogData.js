@@ -3,8 +3,8 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
- { id: 'all', label: 'All', count: 76 },
- { id: 'finance', label: 'Finance', count: 18 },
+ { id: 'all', label: 'All', count: 77 },
+ { id: 'finance', label: 'Finance', count: 19 },
  { id: 'market-research', label: 'Market Research', count: 16 },
  { id: 'strategy', label: 'Strategy', count: 14 },
  { id: 'due-diligence', label: 'Due Diligence', count: 6 },
@@ -18,6 +18,117 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		{
+  id: 77,
+  slug: 'msme-budgeting-cash-flow-survival-guide',
+  title: 'Budgeting for MSMEs and SMEs in Uncertain Times: A Practical Guide',
+  excerpt: 'MSMEs account for 90% of businesses globally, yet 60–82% of small business failures stem from poor cash flow management. Learn how rolling forecasts and 13-week cash tracking can protect your business in volatile times.',
+  category: 'finance',
+  categoryLabel: 'Finance',
+  author: 'MARC Research Team',
+  authorRole: 'Research & Advisory',
+  authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+  date: 'April 2026',
+  readTime: '9 min read',
+  image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop&q=90',
+  href: 'https://www.marcglocal.com/blog/msme-budgeting-cash-flow-survival-guide',
+  featured: false,
+  tags: ['Finance', 'MSME', 'Cash Flow', 'Budgeting', 'Strategy'],
+  content: {
+    introduction: `In April 2019, Jet Airways — once India's largest private airline with ₹24,000+ crore in annual revenue — grounded every single one of its planes. It was not a demand problem. Passenger volumes were growing. It was a cash problem. The airline had been burning through working capital faster than it could replenish it, relying on short-term debt to pay for long-term obligations, with no cushion for fuel cost volatility and currency fluctuations. By the time lenders pulled back credit, there was nothing left. Twenty-three thousand employees lost their jobs overnight.
+
+Jet Airways was not an MSME. But its core failure — the absence of an adaptive, forward-looking financial plan — plays out every day in micro, small, and medium enterprises across India and the world.
+
+MSMEs account for 90% of businesses globally, contribute over 70% of employment and nearly 50% of GDP in emerging economies (IFC, 2025). Yet studies consistently show that 60–82% of small business failures are rooted in poor financial management and cash flow mismanagement — not product failures, not bad markets, not competition.
+
+This guide breaks down practical financial disciplines every MSME and SME must build — not as theory, but as executable tools you can implement this quarter.`,
+    sections: [
+      {
+        heading: `Why the Annual Budget Is Not Enough for Uncertain Times`,
+        content: `A traditional static budget is built once a year using last year's data, fixed assumptions, and a single revenue forecast. It works reasonably well when markets are stable. In volatile environments, it is structurally inadequate. By the time Q2 arrives and conditions have changed, your budget is already wrong — but you have no mechanism to update it without starting over.
+
+The alternative is a Rolling Forecast: a financial plan that always looks 12 months ahead and is updated monthly or quarterly as actuals come in. Instead of comparing performance against a fixed annual target set in October, you compare it against a constantly refreshed forward view that reflects current reality.
+
+How Rolling Forecasts Work: Month 1 forecast covers Jan–Dec. Month 2: actual Jan is locked in, forecast rolls to Feb–Jan of next year. Each month, you add one new month ahead and drop one completed month behind. Your planning horizon never shrinks.
+
+A retail SME facing fluctuating seasonal demand adopted rolling quarterly budgets. During peak season, it allocated more resources proactively; during slow months, it conserved cash. The result was demonstrably better financial stability compared to competitors operating on fixed annual plans.`,
+      },
+      {
+        heading: `What the Industry Data Shows`,
+        content: `• The FP&A Trends Survey 2024 found that 49% of companies now use rolling forecasts, up from prior years, while 45% still rely primarily on static annual budgets.
+
+- 63% of finance teams struggle to forecast accurately beyond six months on static models, yet most annual budgets are built to cover 12 months.
+
+- Companies that adopt rolling forecasts and dynamic resource reallocation report up to 10% improvement in profitability linked to faster responses to change (CFO Bridge, 2025).
+
+- The U.S. Chamber of Commerce formally recommends flexible budgets adjusted monthly rather than rigid year-long plans for small businesses operating in 2025.`,
+      },
+      {
+        heading: `The 13-Week Cash Flow Tracker: Your Financial Early Warning System`,
+        content: `Cash flow and profit are not the same thing. A business can show a net profit on its P&L and still run out of cash if receivables are slow, inventory is overstocked, or payables come due faster than revenue arrives.
+
+The 13-week cash flow tracker (covering one full quarter in weekly buckets) is the operational tool that bridges this gap. It maps every expected cash inflow — customer payments, loan drawdowns, advances — and every expected outflow — salaries, vendor payments, rent, tax obligations, EMIs — on a week-by-week basis. The output is a weekly closing cash balance. Any week where that balance turns negative is a liquidity event you must plan for, not discover.
+
+The tracker structure:
+- Opening Cash Balance
+- (+) Customer Receipts
+- (+) Other Inflows
+- (-) Payroll & Benefits
+- (-) Rent/Lease/Other Costs
+- = Closing Cash Balance (weekly)
+
+[DOWNLOAD_TEMPLATE]
+
+Wayfair extended its Days Payable Outstanding (DPO) from 30 to 45 days in 2024, boosting quarterly cash flow by $18 million — without taking on additional debt or cutting staff. For an Indian SME paying vendors within 15 days when customers are paying on 45-day credit, this same logic applies. That mismatch is quietly killing working capital.`,
+        downloadLink: {
+          href: '/resources/cash_flow.xlsx',
+          label: 'Download Free 13-Week Cash Flow Template (.xlsx)',
+        },
+      },
+      {
+        heading: `Why MSMEs Run Out of Cash`,
+        content: `• 82% of small businesses report failure due to cash flow mismanagement, not product failure or market decline (IIFL Finance / MSME research, 2024).
+
+- 48% of SMEs expect access to liquidity within 24–48 hours when facing a cash crunch; 55% need it within a week, yet most have no pre-arranged credit facility in place (CredAble, 2025).
+
+- In India, working capital loans grew to 71% of total secured MSME debt in Q4 2023, reflecting how cash-constrained the sector has become (CredAble, 2025).
+
+The current macro environment makes this even more acute. With energy costs rising sharply and the rupee under pressure, MSMEs with tight margins and no cash buffer are the most exposed. This is not the environment for a static annual budget — it is the environment for a financial plan that thinks in scenarios, adapts by the week, and keeps cash at the centre of every decision.`,
+      },
+      {
+        heading: `How MARC Can Help`,
+        content: `Most MSMEs know they need better financial planning. The challenge is time, expertise, and the cost of in-house finance capability. A skilled CFO costs ₹30–60 lakhs per year — beyond the reach of most small businesses.
+
+At MARC, we provide the financial rigour of a senior finance function without the overhead of a full-time hire. From building your annual budget from scratch to designing rolling forecasts that actually keep pace with your business, our engagements are built around the practical tools this guide describes — applied to your specific business, sector, and financial position.
+
+Whether you are a manufacturing MSME managing seasonal demand, a services business navigating delayed receivables, or a growth-stage SME preparing for external funding, MARC's advisory is calibrated to your reality, not a generic framework.`,
+      },
+      {
+        heading: `1. What is MSME financial planning?`,
+        content: `MSME financial planning refers to structured budgeting, cash flow tracking, and working capital management to ensure business stability and growth.`,
+      },
+      {
+        heading: `2. What is a 13-week cash flow model?`,
+        content: `A 13-week cash flow model is a short-term weekly cash tracking tool that helps businesses anticipate liquidity gaps and manage working capital effectively.`,
+      },
+      {
+        heading: `3. Why do MSMEs fail due to cash flow issues?`,
+        content: `Many MSMEs fail because they run out of cash despite being profitable, often due to delayed receivables, high fixed costs, or poor financial planning.`,
+      },
+      {
+        heading: `4. What is the difference between rolling forecasts and annual budgets?`,
+        content: `Annual budgets are static and fixed, while rolling forecasts are continuously updated financial plans that adapt to changing business conditions.`,
+      },
+      {
+        heading: `5. How can SMEs manage cash flow in uncertain times?`,
+        content: `SMEs can manage cash flow by tracking weekly inflows and outflows, aligning receivables and payables, maintaining liquidity buffers, and using rolling forecasts.`,
+      },
+    ],
+    conclusion: `Let MARC build the financial foundation your business needs to navigate uncertainty and grow through it. contact@marcglocal.com | www.marcglocal.com`,
+  },
+},
+	},
  {
  id: 1,
  slug: 'financial-model-validation-2025',
