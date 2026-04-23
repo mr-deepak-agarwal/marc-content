@@ -1,5 +1,6 @@
 import './globals.css'
 import { Poppins } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import RouteLoader from '@/components/RouteLoader'
 import Header from '@/components/Header'
 import WhatsAppButton from '@/components/WhatsAppButton'
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
           <WhatsAppButton phoneNumber="919876543210" />
           <ChatbotWidget />
         </LoadingProvider>
+        <Analytics />
     </body>
     </html>
     )
