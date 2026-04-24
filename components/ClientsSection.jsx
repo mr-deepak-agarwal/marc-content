@@ -3,15 +3,15 @@
 import React from 'react'
 
 const clients = [
- { name: 'Maduas', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/06/maduas.png' },
- { name: 'E P Kamat', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Kamat.png' },
- { name: 'The Park Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
- { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
- { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
- { name: 'Taj', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
- { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
- { name: 'Danlow', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-32.png' },
- { name: 'Marriott', logo: 'http://marcglocal.com/wp-content/uploads/2022/07/JW-Marriott.png' },
+ { name: 'Maduas', logo: 'logos/maduas.png' },
+ { name: 'E P Kamat', logo: 'logos/Kamat.png' },
+ { name: 'The Park Hotels', logo: 'logos/The-park-hotels.png' },
+ { name: 'Kineco', logo: 'logos/logo5.png' },
+ { name: 'Magsons', logo: 'logos/logo6-6.png' },
+ { name: 'Taj', logo: 'logos/Taj-1.png' },
+ { name: 'Isha Yoga', logo: 'logos/logo6-6-223.png' },
+ { name: 'Danlow', logo: 'logos/logo6-6-32.png' },
+ { name: 'Marriott', logo: 'logos/JW-Marriott.png' },
 ]
 
 const ClientsSection = () => {
