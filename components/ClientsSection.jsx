@@ -3,14 +3,14 @@
 import React from 'react'
 
 const clients = [
- { name: 'Maduas', logo: 'logos/maduas.png' },
+ { name: 'Madaus', logo: 'logos/madaus.png' },
  { name: 'E P Kamat', logo: 'logos/Kamat.png' },
  { name: 'The Park Hotels', logo: 'logos/The-park-hotels.png' },
  { name: 'Kineco', logo: 'logos/logo5.png' },
  { name: 'Magsons', logo: 'logos/logo6-6.png' },
  { name: 'Taj', logo: 'logos/Taj-1.png' },
  { name: 'Isha Yoga', logo: 'logos/logo6-6-223.png' },
- { name: 'Danlow', logo: 'logos/logo6-6-32.png' },
+ { name: 'Dr. Batra`s', logo: 'logos/drbatras.png' },
  { name: 'Marriott', logo: 'logos/JW-Marriott.png' },
 ]
 
