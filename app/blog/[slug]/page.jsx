@@ -211,7 +211,7 @@ export default function BlogDetailPage() {
                 {section.content.replace('[DOWNLOAD_TEMPLATE]', '')}
               </p>
               {section.downloadLink && (
-                
+                <a
                 href={section.downloadLink.href}
                 download
                 className="inline-flex items-center gap-3 mt-6 px-6 py-4 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-all"
