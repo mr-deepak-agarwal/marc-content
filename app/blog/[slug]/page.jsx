@@ -278,10 +278,10 @@ export default function BlogDetailPage() {
               {cta.primaryButton}
               <ChevronRight className="w-5 h-5" />
             </Link>
-            <button className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white border-2 border-white/30 rounded-xl font-semibold hover:bg-white/20 transition-all">
+{/*            <button className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white border-2 border-white/30 rounded-xl font-semibold hover:bg-white/20 transition-all">
               <Download className="w-5 h-5" />
               {cta.secondaryButton}
-            </button>
+            </button>*/}
           </div>
         </div>
       </div>
