@@ -3,10 +3,10 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 77 },
+	{ id: 'all', label: 'All', count: 78 },
 	{ id: 'finance', label: 'Finance', count: 19 },
 	{ id: 'market-research', label: 'Market Research', count: 16 },
-	{ id: 'strategy', label: 'Strategy', count: 14 },
+	{ id: 'strategy', label: 'Strategy', count: 15 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
 	{ id: 'industry', label: 'Industry', count: 12 },
 	{ id: 'entrepreneurship', label: 'Entrepreneurship', count: 6 },
@@ -33,7 +33,7 @@ export const blogs = [
 		date: 'April 2026',
 		readTime: '7 min read',
 		image:
-		'https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&h=500&fit=crop&q=90',
+		'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=500&fit=crop&q=90',
 		featured: false,
 		tags: ['SOPs', 'Strategy', 'Operations', 'SME', 'Consulting'],
 		cta: {
@@ -41,6 +41,7 @@ export const blogs = [
 			description:
 			'MARC helps SMEs across India design, implement, and sustain SOPs that reduce operational risk and support scalable growth.',
 			primaryButton: 'Schedule Consultation',
+			primaryLink: 'https://calendly.com/YOUR_LINK_HERE',
 			secondaryButton: 'Download SOP Checklist',
 		},
 		content: {
