@@ -41,8 +41,7 @@ export const blogs = [
 			description:
 			'MARC helps SMEs across India design, implement, and sustain SOPs that reduce operational risk and support scalable growth.',
 			primaryButton: 'Schedule Consultation',
-			primaryLink: 'https://calendly.com/YOUR_LINK_HERE',
-			secondaryButton: 'Download SOP Checklist',
+			primaryLink: 'https://calendly.com/deepakagarwalsrc/marc-road-to-success',
 		},
 		content: {
 			introduction: `Every growing business reaches an inflection point where informal know-how stops being enough. Decisions that once lived in a founder's head, processes that worked fine with five people, and workflows that depended on one "reliable" employee — these cracks start to show the moment the business scales. The result? Inconsistency, errors, delays, and a leadership team that spends more time firefighting than steering.
