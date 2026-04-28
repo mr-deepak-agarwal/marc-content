@@ -18,16 +18,40 @@ const getPdfFilename = (title) => {
 }
 
 const categories = [
- { id: 'all', label: 'All Reports', count: 75 },
+ { id: 'all', label: 'All Reports', count: 77 },
  { id: 'healthcare', label: 'Healthcare', count: 11 },
  { id: 'hospitality', label: 'Hospitality', count: 13 },
- { id: 'manufacturing', label: 'Manufacturing', count: 14 },
+ { id: 'manufacturing', label: 'Manufacturing', count: 15 },
  { id: 'retail', label: 'Retail & FMCG', count: 13 },
  { id: 'energy', label: 'Energy', count: 5 },
- { id: 'other', label: 'Other', count: 19 },
+ { id: 'other', label: 'Other', count: 20 },
 ]
 
 const insights = [
+ {
+ title: "India's Logistics & Warehousing Expansion: Goa's Growth Driven by Verna",
+ category: "manufacturing",
+ image: "/images/insights/warehousing-logistics-goa-2026.png",
+ date: "April 2026",
+ downloads: "0",
+ readTime: "13 min read",
+ new: true,
+ featured: false,
+ pdfAvailable: true,
+ excerpt: "An in-depth look at India's INR 20.2 trillion logistics market, Goa's emergence as a multimodal warehousing hub, and Verna Industrial Estate's competitive landscape — with key data on e-commerce demand, cold chain growth, 3PL trends, and state policy incentives."
+ },
+ {
+ title: "Inside GIFT City: Transforming India into a Global Financial Hub",
+ category: "other",
+ image: "/images/insights/gift-city-2026.png",
+ date: "April 2026",
+ downloads: "0",
+ readTime: "10 min read",
+ new: true,
+ featured: false,
+ pdfAvailable: true,
+ excerpt: "A deep-dive into India's first IFSC greenfield smart city — covering its regulatory structure, growth drivers, corporate opportunities in capital access and tax efficiency, benchmarking against Dubai and Singapore, and future outlook to 2030."
+ },
  {
  title: "MSME Entry Opportunities in India's Medical Devices Sector",
  category: "healthcare",
@@ -1053,7 +1077,7 @@ export default function InsightsPageV2() {
  {/* Quick Stats Row */}
  <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
  <div>
- <div className="text-3xl font-bold text-[#4E9141]">75+</div>
+ <div className="text-3xl font-bold text-[#4E9141]">77+</div>
  <div className="text-sm text-[#47635D] mt-1">Research Reports</div>
  </div>
  <div>
