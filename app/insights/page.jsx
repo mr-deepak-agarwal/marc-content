@@ -18,16 +18,28 @@ const getPdfFilename = (title) => {
 }
 
 const categories = [
- { id: 'all', label: 'All Reports', count: 73 },
+ { id: 'all', label: 'All Reports', count: 74 },
  { id: 'healthcare', label: 'Healthcare', count: 10 },
  { id: 'hospitality', label: 'Hospitality', count: 13 },
  { id: 'manufacturing', label: 'Manufacturing', count: 14 },
- { id: 'retail', label: 'Retail & FMCG', count: 12 },
+ { id: 'retail', label: 'Retail & FMCG', count: 13 },
  { id: 'energy', label: 'Energy', count: 5 },
  { id: 'other', label: 'Other', count: 19 },
 ]
 
 const insights = [
+ {
+ title: "Jewellery Industry Overview 2026",
+ category: "retail",
+ image: "/images/insights/jewellery-industry-2026.png",
+ date: "April 2026",
+ downloads: "0",
+ readTime: "15 min read",
+ new: true,
+ featured: false,
+ pdfAvailable: true,
+ excerpt: "Comprehensive analysis of India's jewellery market, covering market size, regional consumption trends, KPIs, competitor benchmarking, and financial deep-dive on key players like Kalyan Jewellers."
+ },
  {
  title: "Overview of the Condiments Market",
  category: "retail",
@@ -1029,7 +1041,7 @@ export default function InsightsPageV2() {
  {/* Quick Stats Row */}
  <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
  <div>
- <div className="text-3xl font-bold text-[#4E9141]">73+</div>
+ <div className="text-3xl font-bold text-[#4E9141]">74+</div>
  <div className="text-sm text-[#47635D] mt-1">Research Reports</div>
  </div>
  <div>
