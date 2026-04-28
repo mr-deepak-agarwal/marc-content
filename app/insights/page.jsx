@@ -18,8 +18,8 @@ const getPdfFilename = (title) => {
 }
 
 const categories = [
- { id: 'all', label: 'All Reports', count: 74 },
- { id: 'healthcare', label: 'Healthcare', count: 10 },
+ { id: 'all', label: 'All Reports', count: 75 },
+ { id: 'healthcare', label: 'Healthcare', count: 11 },
  { id: 'hospitality', label: 'Hospitality', count: 13 },
  { id: 'manufacturing', label: 'Manufacturing', count: 14 },
  { id: 'retail', label: 'Retail & FMCG', count: 13 },
@@ -28,6 +28,18 @@ const categories = [
 ]
 
 const insights = [
+ {
+ title: "MSME Entry Opportunities in India's Medical Devices Sector",
+ category: "healthcare",
+ image: "/images/insights/medical-devices-2026.png",
+ date: "April 2026",
+ downloads: "0",
+ readTime: "12 min read",
+ new: true,
+ featured: false,
+ pdfAvailable: true,
+ excerpt: "A strategic guide for MSMEs looking to enter India's fast-growing medical devices sector — covering market sizing, import substitution opportunities, government schemes like PLI, competitor landscape, and an MSME entry strategy framework."
+ },
  {
  title: "Jewellery Industry Overview 2026",
  category: "retail",
@@ -1041,7 +1053,7 @@ export default function InsightsPageV2() {
  {/* Quick Stats Row */}
  <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
  <div>
- <div className="text-3xl font-bold text-[#4E9141]">74+</div>
+ <div className="text-3xl font-bold text-[#4E9141]">75+</div>
  <div className="text-sm text-[#47635D] mt-1">Research Reports</div>
  </div>
  <div>
