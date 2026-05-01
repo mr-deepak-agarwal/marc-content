@@ -5,6 +5,8 @@ import Header from '@/components/Header'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import ChatbotWidget from '@/components/ChatbotWidget'
 import { LoadingProvider } from '@/components/loading-store'
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -41,13 +43,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.variable}>
     <body className="antialiased font-sans">
+      <GoogleAnalytics gaId="G-Z54096J7T3" />
       <LoadingProvider>
-          <RouteLoader />
-          <Header />
-          {children}
-          <WhatsAppButton phoneNumber="919876543210" />
-          <ChatbotWidget />
-        </LoadingProvider>
+        <RouteLoader />
+        <Header />
+        {children}
+        <WhatsAppButton phoneNumber="919876543210" />
+        <ChatbotWidget />
+      </LoadingProvider>
     </body>
     </html>
     )
