@@ -1,10 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
+
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'marc-content.vercel.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.marcglocal.com',
       },
     ],
     unoptimized: false,
@@ -150,7 +161,7 @@ const nextConfig = {
       {
         source: '/thank-you',
         destination: '/',
-        permanent: false, // soft redirect  replace with a real /thank-you page later
+        permanent: false,
       },
       {
         source: '/thank-you/',
