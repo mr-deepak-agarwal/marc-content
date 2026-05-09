@@ -9,6 +9,26 @@ import {
  BookOpen, Sparkles, X, ChevronDown
 } from 'lucide-react'
 
+// ── Date parsing helper ───────────────────────────────────────────
+// Converts "May 2026", "April 2026", "December 2025" etc. to a Date
+const MONTHS = {
+  January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,
+  July: 6, August: 7, September: 8, October: 9, November: 10, December: 11,
+}
+function parseDate(dateStr) {
+  if (!dateStr) return new Date(0)
+  const [month, year] = dateStr.trim().split(' ')
+  const m = MONTHS[month]
+  const y = parseInt(year, 10)
+  if (m === undefined || isNaN(y)) return new Date(0)
+  return new Date(y, m, 1)
+}
+
+// Sort blogs newest first
+const sortedBlogs = [...blogs].sort(
+  (a, b) => parseDate(b.date) - parseDate(a.date)
+)
+
 export default function BlogPage() {
  const [activeCategory, setActiveCategory] = useState('all')
  const [searchQuery, setSearchQuery] = useState('')
@@ -30,7 +50,7 @@ export default function BlogPage() {
  return () => observer.disconnect()
  }, [activeCategory, searchQuery, showAllPosts])
 
- const filteredBlogs = blogs.filter(blog => {
+ const filteredBlogs = sortedBlogs.filter(blog => {
  const matchesCategory = activeCategory === 'all' || blog.category === activeCategory
  const matchesSearch =
  blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -39,7 +59,10 @@ export default function BlogPage() {
  return matchesCategory && matchesSearch
  })
 
- const featuredPosts = blogs.filter(b => b.featured).slice(0, 2)
+ // Always pick the 2 most recent featured posts (sorted newest first)
+ const featuredPosts = sortedBlogs.filter(b => b.featured).slice(0, 2)
+
+ // Grid = all non-featured filtered blogs (already sorted newest first)
  const gridPosts = filteredBlogs.filter(b => !b.featured)
  const displayedPosts = showAllPosts ? gridPosts : gridPosts.slice(0, 9)
 
@@ -52,10 +75,8 @@ export default function BlogPage() {
  <div className="max-w-7xl mx-auto px-6 relative z-10">
  <div className="grid lg:grid-cols-12 gap-12 items-center">
 
- {/* Left Insights-style header (line + label, no pill) */}
+ {/* Left */}
  <div className="lg:col-span-5 lg:sticky lg:top-32">
-
- {/* Label row matches insights page exactly */}
  <div className="flex items-center gap-3 mb-6">
  <span className="w-10 h-[2px] bg-[#4E9141]" />
  <span className="text-[#4E9141] font-medium text-sm uppercase tracking-widest">
@@ -70,7 +91,6 @@ export default function BlogPage() {
  Stay up-to-date with knowledgeable insights and the latest trends transforming industries and businesses across the world.
  </p>
 
- {/* Stats matches insights page style exactly */}
  <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
  <div>
  <div className="text-3xl font-bold text-[#4E9141]">75+</div>
@@ -87,7 +107,7 @@ export default function BlogPage() {
  </div>
  </div>
 
- {/* Right – Featured posts compact so both cards fit in viewport */}
+ {/* Right – 2 most recent featured posts */}
  <div className="lg:col-span-7 space-y-4">
  {featuredPosts.map((post, i) => (
  <Link
@@ -97,15 +117,15 @@ export default function BlogPage() {
  data-testid={`featured-post-${i}`}
  >
  <div className="flex gap-0">
- {/* Compact image fixed height so two cards stack neatly */}
  <div className="relative w-52 shrink-0 overflow-hidden">
  <img src={post.image} alt={post.title}
  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
  <div className="absolute top-3 left-3">
- <span className="px-2.5 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">Latest</span>
+ <span className="px-2.5 py-1 bg-[#4E9141] text-white text-xs font-semibold rounded-full shadow-md">
+ {i === 0 ? 'Latest' : 'Featured'}
+ </span>
  </div>
  </div>
- {/* Content */}
  <div className="p-5 flex flex-col justify-center flex-1">
  <div className="flex items-center gap-2 text-xs text-[#47635D] mb-2">
  <span className="text-[#4E9141] font-medium capitalize">{post.category.replace('-', ' ')}</span>

@@ -30,7 +30,7 @@ export const blogs = [
 		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
 		date: 'May 2026',
 		readTime: '8 min read',
-		image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop&q=75',
+		image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop&q=75',
 		featured: true,
 		tags: ['Manufacturing', 'Finance', 'Strategy', 'Capex', 'Growth'],
 		cta: {
