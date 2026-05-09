@@ -63,7 +63,8 @@ export default function BlogPage() {
  const featuredPosts = sortedBlogs.filter(b => b.featured).slice(0, 2)
 
  // Grid = all non-featured filtered blogs (already sorted newest first)
- const gridPosts = filteredBlogs.filter(b => !b.featured)
+ const gridPosts = filteredBlogs
+
  const displayedPosts = showAllPosts ? gridPosts : gridPosts.slice(0, 9)
 
  return (
