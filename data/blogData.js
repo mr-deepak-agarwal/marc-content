@@ -3,12 +3,12 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 78 },
+	{ id: 'all', label: 'All', count: 79 },
 	{ id: 'finance', label: 'Finance', count: 19 },
 	{ id: 'market-research', label: 'Market Research', count: 16 },
 	{ id: 'strategy', label: 'Strategy', count: 15 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
-	{ id: 'industry', label: 'Industry', count: 12 },
+	{ id: 'industry', label: 'Industry', count: 13 },
 	{ id: 'entrepreneurship', label: 'Entrepreneurship', count: 6 },
 ]
 
@@ -18,6 +18,107 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 79,
+		slug: 'capacity-expansion-without-financial-alignment-manufacturing-case-study',
+		title: 'Capacity Expansion Without Financial Alignment Can Suppress Returns: A Manufacturing Case Study',
+		excerpt: 'In the manufacturing sector, building a new facility or adding a production line is often celebrated as a sign of progress. But expansion can quickly become a drag on financial health when commercial execution and financial planning fall behind the pace of capital deployment.',
+		category: 'industry',
+		categoryLabel: 'Industry',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'May 2026',
+		readTime: '8 min read',
+		image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['Manufacturing', 'Finance', 'Strategy', 'Capex', 'Growth'],
+		cta: {
+			title: 'Bridge the Gap Between Capital Investment and Financial Performance',
+			description: 'MARC helps manufacturing businesses close the gap between capital investment and financial performance through performance diagnostics, strategic financial review, and actionable growth planning.',
+			primaryButton: 'Schedule Consultation',
+			primaryLink: 'https://calendly.com/deepakagarwalsrc/marc-road-to-success',
+		},
+		content: {
+			introduction: `In the manufacturing sector, building a new facility or adding a production line is often celebrated as a clear sign of progress. However, as we found in a recent engagement with a manufacturing client, expansion can quickly become a drag on financial health when commercial execution and financial planning fall behind the pace of capital deployment.
+
+The client had undertaken significant capital expenditure to expand capacity in a core product segment. Strategically, the investment was sound. But in the near term, the expanded asset base failed to produce a proportionate increase in revenue.
+
+This created pressure on two fronts:
+
+• Underutilized capacity suppressed asset turnover and overall return ratios.
+• High debt financing for the expansion increased finance costs and squeezed profitability.
+
+As our assessment showed, the capex decision itself was not the core problem. The issue was the lack of alignment between commercial execution, financial discipline, and the pace of expansion.`,
+
+			sections: [
+				{
+					heading: 'The Client Challenge: Capex Done, but Returns Missing',
+					content: `A mid-sized manufacturer invested heavily in a new facility to expand capacity in a core product segment. Strategically, the move was sound – it enabled market expansion and created a platform for growth.
+
+Below is a detailed look at the three most common problems revealed by MARC client engagement, backed by recent research, along with the measurable impact each problem creates on financial and operational health.`,
+				},
+				{
+					heading: 'Problem 1: The Lag Between Capex and Value Creation',
+					content: `A 2025 study of 982 Indian-listed firms found that manufacturing capex has a negligible short-term impact on firm value in the investment year, but a strong positive link develops over Years 1 to 3 post-investment.
+
+Without active post-investment commercial follow-through, the first 12–24 months can erode shareholder confidence and delay debt servicing. Key impacts include suppressed return ratios (ROCE, ROE) for 1–3 years, delayed payback on invested capital, and investor skepticism toward future funding requests.`,
+				},
+				{
+					heading: 'Problem 2: Underutilized Capacity – The Drag on Profitability',
+					content: `The 2025 Global Manufacturing Benchmarking Study found that companies expected to run at 63% capacity utilization in Q2, but actual performance came in at just 53% — the largest gap in recent years.
+
+However, manufacturers that capture machine utilization data typically achieve a 30% increase in output capacity within six months.
+
+You can't fix what you don't measure. Data-driven utilization tracking delivers rapid results. A 10-point utilization gap can reduce EBITDA margins by 2–4 percentage points in capital-intensive industries. Key impacts include lower asset turnover, fixed cost absorption failure causing margin compression, and idle machinery accelerating depreciation without revenue.`,
+				},
+				{
+					heading: 'Problem 3: Leverage and Liquidity Pressure',
+					content: `The 2025 Global Manufacturing Benchmarking Study found that 46% of manufacturers are "bankable," 23% are "somewhat bankable," and 31% are "questionably bankable."
+
+A leveraged balance sheet is a tool, not a strategy. Room to maneuver matters more than theoretical borrowing capacity. One in three manufacturers may struggle to secure additional financing when needed most — precisely because their balance sheet is already stretched by underperforming capacity. Key impacts include higher interest coverage ratio risk leading to covenant breaches, reduced financial flexibility for new opportunities, and working capital squeeze due to inventory build-up.`,
+				},
+				{
+					heading: 'What Do the Masters Say?',
+					content: `Warren Buffett warned: "Major additional investment in a terrible industry usually is about as rewarding as struggling in quicksand." Textile businesses and other producers of undifferentiated goods don't earn good returns unless supply is tight. When there is excess capacity, prices fall to meet operating costs, not capital invested. Discipline matters.
+
+Peter Lynch is blunt: "Overzealous and underfinanced" growth strategies are particularly risky for younger companies.
+
+Charlie Munger cautioned: "You can push credit too far, do a dumb acquisition, leverage yourself excessively — it's not just derivatives that can bring about your downfall."
+
+Ray Dalio explains why capacity economics matter: the market is self-correcting — if there is too much supply, prices fall, companies go out of business, and capacity is reduced until supply aligns with demand.`,
+				},
+				{
+					heading: '5 Proven Fixes: From Underperforming Assets to Sustainable Returns',
+					content: `MARC assessment led to a set of focused, actionable recommendations. Below are the five levers that made the biggest difference.
+
+1. Accelerate sales from the new capacity — fast: Once capex is already incurred, increasing utilisation is the quickest path to better returns. Sharpen focus on expanding sales in the relevant product line, enter select new markets with lower entry barriers, and improve throughput from the new infrastructure.
+
+2. Rebalance the capital structure: Debt can fuel growth, but too much leverage — especially when ramp-up takes time — crushes profitability and flexibility. Plan for gradual debt reduction, tighten working capital management, and take a more disciplined approach to future capital deployment.
+
+3. Institutionalize stronger financial planning & budgeting: Manufacturing investment cycles are long. Returns depend heavily on execution. You need forward visibility through multi-year rolling financial plans, annual operating budgets tied to capacity milestones, and quarterly variance reviews covering revenue, margins, cash flows, capex, and debt servicing.
+
+4. Shorten the cash conversion cycle (CCC): Even a profitable expansion can suffer from liquidity pressure. Improving CCC releases trapped cash through better inventory forecasting, stronger ERP-led planning, and renegotiating supplier credit terms.
+
+5. Align commercial execution with investment milestones: Don't just track when each machine is installed. Track when each unit of capacity starts generating revenue.
+
+The Golden Rule: Capital expenditure creates value only when sales conversion, leverage, and financial discipline move in lockstep.`,
+				},
+				{
+					heading: 'MARC Key Takeaways',
+					content: `Expansion enables growth — but monetizing it is what matters. Debt must be balanced with operating cash flow and ramp-up timelines. Financial planning should be rolling, dynamic, and integrated with operations. Utilisation requires active sales and throughput initiatives.
+
+The Broader Lesson for Manufacturing Leaders: Capacity expansion may be necessary for scale, but sustainable returns depend on how effectively you monetise that capacity.
+
+For promoters and management teams, the real question is not "Should we invest in growth?" It's "Is our business financially and operationally ready to convert that investment into real returns?"`,
+				},
+			],
+
+			conclusion: `At MARC, we help manufacturing businesses close the gap between capital investment and financial performance through performance diagnostics, strategic financial review, and actionable growth planning.
+
+If scaling capacity is straining your returns, now is the right time to take a closer look at the numbers behind your growth story.`,
+		},
+	},
 	{
 		id: 78,
 		slug: 'sops-backbone-of-a-well-run-business',
