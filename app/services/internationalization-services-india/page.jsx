@@ -60,29 +60,7 @@ const pageData = {
     },
   ],
   
-  caseStudies: [
-    {
-      title: 'European Market Entry',
-      client: 'Indian Manufacturer',
-      desc: 'Supported successful entry into European market through subsidiary setup and distributor network.',
-      tags: ['Global Expansion', 'Manufacturing'],
-      image: 'https://images.pexels.com/photos/1117452/pexels-photo-1117452.jpeg?w=800',
-    },
-    {
-      title: 'India Entry Strategy',
-      client: 'US Technology Company',
-      desc: 'Developed India market entry strategy and supported subsidiary establishment.',
-      tags: ['India Entry', 'Technology'],
-      image: 'https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?w=800',
-    },
-    {
-      title: 'Cross border Acquisition',
-      client: 'European Industrial Group',
-      desc: 'Advised on acquisition of Indian manufacturing company for market access.',
-      tags: ['Cross border M&A', 'FDI'],
-      image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?w=800',
-    },
-  ],
+  caseStudies: [],
   
   faqs: [
     { q: 'Which markets do you cover?', a: 'We have expertise across major markets including USA, Europe, Middle East, Southeast Asia, and Africa, with particular depth in markets relevant for Indian businesses.' },
