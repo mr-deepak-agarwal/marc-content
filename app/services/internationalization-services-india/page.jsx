@@ -60,7 +60,32 @@ const pageData = {
     },
   ],
   
-  caseStudies: [],
+  caseStudies: [
+  {
+    industry: 'Engineering Services',
+    service: 'Global Expansion',
+    client: 'India-Based Engineering Services Provider — International Expansion',
+    challenge: 'An India-based precast concrete design firm wanted to expand internationally but lacked clarity on which overseas markets to prioritise and how to structure entry.',
+    solution: 'MARC assessed regional demand across continents, built a structured rating matrix covering market landscape, regulatory environment, and commercial attractiveness to shortlist the top 3 markets. Designed country-specific go-to-market strategies and evaluated adjacent sectors for portfolio expansion.',
+    result: 'Delivered a clear primary launch market, a secondary expansion market, a sector-prioritisation matrix, and a list of probable customers — giving the client a decision-ready roadmap for international growth.',
+  },
+  {
+    industry: 'Electronics Manufacturing',
+    service: 'Market Entry Strategy',
+    client: 'India-Based Electronics Components Manufacturer — Global Market Entry',
+    challenge: 'An electronics manufacturing firm supplying automotive and industrial components wanted to establish an international manufacturing and market presence but needed data-backed country selection.',
+    solution: 'MARC assessed market size, tech adoption, and ease of doing business across regions; mapped global competitors, distributors, and key buyers; and developed a weighted scoring matrix to rank countries. Evaluated entity setup options, certifications, tax/tariff implications, and initial capital investment for shortlisted markets.',
+    result: 'Identified a Primary market for immediate entry and a Secondary market for near-term expansion, with recommended entry models (distributor, agent, JV, or direct sales) tailored to each market.',
+  },
+  {
+    industry: 'Defence',
+    service: 'Sector Research',
+    client: 'Global Defence Sector — Investment Opportunity Assessment',
+    challenge: 'A client evaluating the global defence sector as a potential investment opportunity needed a structured, decision-ready view of market sizing, growth potential, and emerging verticals.',
+    solution: 'MARC covered market sizing, military spending trends, and key global player mapping across the USA, Canada, and Israel. Identified high-growth verticals including AI/ML military devices, advanced air mobility, and robotics/automation.',
+    result: 'Delivered a comprehensive investment-ready analysis of the global defence sector with insights on rising defence budgets, emerging tech trends, and strategic developments shaping key regional markets.',
+  },
+],
   
   faqs: [
     { q: 'Which markets do you cover?', a: 'We have expertise across major markets including USA, Europe, Middle East, Southeast Asia, and Africa, with particular depth in markets relevant for Indian businesses.' },
