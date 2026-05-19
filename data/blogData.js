@@ -3,8 +3,8 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 80 },
-	{ id: 'finance', label: 'Finance', count: 20 },
+	{ id: 'all', label: 'All', count: 81 },
+	{ id: 'finance', label: 'Finance', count: 21 },
 	{ id: 'market-research', label: 'Market Research', count: 16 },
 	{ id: 'strategy', label: 'Strategy', count: 15 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
@@ -19,6 +19,58 @@ export const popularTags = [
 
 export const blogs = [
 	{
+		id: 81,
+		slug: 'venture-capital-trends-2026',
+		title: 'Venture Capital Trends 2026: What Investors Need to Know',
+		excerpt: 'Venture capital trends in 2026 show a clear shift toward selective investing and capital concentration. After two years of constrained funding, the market has moved from scarcity to selective abundance — discover what this means for founders and investors.',
+		category: 'finance',
+		categoryLabel: 'Finance',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'April 2026',
+		readTime: '7 min read',
+		image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['Venture Capital', 'Investment', 'AI Funding', 'IPO', 'Finance'],
+		cta: {
+			title: 'Let MARC Help You Navigate Your Next Investment Move',
+			description: 'MARC provides the market intelligence, financial rigour, and strategic advisory your investment decisions need to create lasting value.',
+			primaryButton: 'Schedule Consultation',
+			primaryLink: 'https://calendly.com/deepakagarwalsrc/marc-road-to-success',
+		},
+		content: {
+			introduction: `Venture capital trends in 2026 show a clear shift toward selective investing and capital concentration. After two years of constrained funding, the market has moved from scarcity to selective abundance. Startup funding is recovering, but capital is increasingly directed toward companies with strong unit economics, clear paths to profitability, and defensible business models.`,
+			sections: [
+				{
+					heading: '1. The Shift to Quality Over Quantity',
+					content: `The venture ecosystem has entered a phase where quality matters more than growth at all costs. Companies with strong fundamentals are raising capital at premium valuations, while weaker businesses face funding challenges.\n\nA clear example is the contrast between leading AI firms such as Anthropic, which raised large funding rounds backed by strong demand, versus companies like Hopin, which saw sharp valuation declines and was valued at over $7 billion during the pandemic boom. This reflects a broader market shift toward durability and sustainable growth.`,
+				},
+				{
+					heading: '2. Exit Markets Are Recovering, But Remain Selective',
+					content: `Exit markets have shown signs of recovery, but remain selective and valuation-sensitive.\n\nIPO volumes grew 20%, and proceeds increased 84% in the recent recovery phase. M&A activity is also gaining momentum, with deal activity expected to approach prior peak levels.`,
+				},
+				{
+					heading: '3. Secondary Markets Are Becoming Mainstream',
+					content: `Secondary markets have evolved into a key liquidity mechanism in venture capital. Transaction volumes are estimated to have exceeded $210 billion in 2025, up from $160 billion in the prior year.\n\nDespite this growth, only around 2% of the total unicorn market value is traded through secondary transactions, indicating significant room for expansion.`,
+				},
+				{
+					heading: '4. AI Funding Continues to Dominate',
+					content: `Artificial intelligence remains the primary driver of venture capital allocation. The United States captured approximately 85% of global AI funding and 53% of total AI deals.\n\nThis concentration reflects strong demand and monetization potential, but also creates a narrow funnel where only a few companies attract the majority of capital.`,
+				},
+				{
+					heading: '5. What This Means for Founders and Investors',
+					content: `For founders, raising capital now requires stronger fundamentals, longer fundraising cycles, and clearer profitability narratives. Down rounds remain common outside top-tier companies.\n\nFor investors, success depends on disciplined underwriting, sector expertise, and access to high-quality deal flow.`,
+				},
+				{
+					heading: 'FAQs on Venture Capital Trends 2026',
+					content: `Is venture capital recovering in 2026?\n\nYes, venture capital activity is recovering, but funding remains selective and concentrated among high-quality companies.\n\nWhy is AI attracting most venture funding?\n\nAI companies are demonstrating strong revenue potential and scalable business models, along with strong user demand, making them attractive to investors.\n\nWhat are secondary markets in venture capital?\n\nSecondary markets allow investors to buy and sell shares of private companies, providing liquidity without waiting for IPOs or acquisitions.`,
+				},
+			],
+			conclusion: `Let MARC help you navigate through your next investment move. contact@marcglocal.com | www.marcglocal.com`,
+		},
+	},
+	{
 		id: 80,
 		slug: 'ma-success-factors-value-creation-2025',
 		title: 'Why 70% of M&A Deals Fail to Create Value? M&A Trends 2025 and Post Merger Integration Strategy',
@@ -30,7 +82,7 @@ export const blogs = [
 		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
 		date: 'April 2026',
 		readTime: '9 min read',
-		image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop&q=75',
+		image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=500&fit=crop&q=75',
 		featured: true,
 		tags: ['M&A', 'Due Diligence', 'Strategy', 'Post-Merger Integration', 'Finance'],
 		cta: {
