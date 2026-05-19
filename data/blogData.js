@@ -22,7 +22,7 @@ export const blogs = [
 		id: 82,
 		slug: 'how-market-research-helps-you-choose-the-right-target-market',
 		title: 'How Market Research Helps You Choose the Right Target Market',
-		excerpt: 'What if your biggest growth opportunity isn't missing — but you're simply targeting the wrong customer segment? Market research doesn't just help you find customers; it helps you identify the right ones.',
+		excerpt: `What if your biggest growth opportunity isn't missing — but you're simply targeting the wrong customer segment? Market research doesn't just help you find customers; it helps you identify the right ones.`,
 		category: 'market-research',
 		categoryLabel: 'Market Research',
 		author: 'MARC Analytics Team',
