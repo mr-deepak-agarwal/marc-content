@@ -3,9 +3,9 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 81 },
+	{ id: 'all', label: 'All', count: 82 },
 	{ id: 'finance', label: 'Finance', count: 21 },
-	{ id: 'market-research', label: 'Market Research', count: 16 },
+	{ id: 'market-research', label: 'Market Research', count: 17 },
 	{ id: 'strategy', label: 'Strategy', count: 15 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
 	{ id: 'industry', label: 'Industry', count: 13 },
@@ -18,6 +18,50 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 82,
+		slug: 'how-market-research-helps-you-choose-the-right-target-market',
+		title: 'How Market Research Helps You Choose the Right Target Market',
+		excerpt: 'What if your biggest growth opportunity isn't missing — but you're simply targeting the wrong customer segment? Market research doesn't just help you find customers; it helps you identify the right ones.',
+		category: 'market-research',
+		categoryLabel: 'Market Research',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'May 2026',
+		readTime: '5 min read',
+		image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['Market Research', 'Target Market', 'Strategy', 'Growth', 'Consulting'],
+		cta: {
+			title: 'Ready to Identify Your Ideal Target Market?',
+			description: 'MARC\'s market research and consulting services help businesses uncover the most profitable customer segments and craft strategies that turn insights into measurable growth.',
+			primaryButton: 'Schedule Consultation',
+			primaryLink: 'https://calendly.com/deepakagarwalsrc/marc-road-to-success',
+		},
+		content: {
+			introduction: `What if your biggest growth opportunity isn't missing but you're simply targeting the wrong customer segment?\n\nMany businesses don't fail because their product is weak. They fail because they're selling to the wrong buyer persona.\n\nIn today's competitive environment, having a great offering isn't enough. You need to know who truly values it, who is willing to pay for it, and who is most likely to stay with you long term.\n\nThat's where market research becomes a powerful business tool. It doesn't just help you find customers; it helps you identify the right ones.\n\nBecause targeting everyone isn't a strategy; it's a sure way to drain your budget without delivering real results.`,
+			sections: [
+				{
+					heading: 'When You Target the Wrong Market, You Face the Consequences!',
+					content: `Many businesses believe their target market is "anyone who needs the product." But in reality, markets are shaped by behaviour, affordability, decision-making patterns, and preferences.\n\nWhen your market focus is not clear, the cost shows up everywhere:\n\n• Marketing campaigns generate leads but not conversions\n• Customer acquisition cost rises unnecessarily\n• Sales teams spend valuable time pursuing low-intent prospects\n• Pricing becomes difficult to align with customer expectations\n• Loss of revenue potential\n\nOverall, unclear market focus leads to misaligned decision-making, weakening overall business performance and slowing long-term scalability.`,
+				},
+				{
+					heading: 'The Real Purpose of Market Research: Finding the Market That Fits You',
+					content: `Market research goes beyond simply measuring demand. It enables you to identify the most strategic target segment, one that aligns strongly with your value proposition, pricing feasibility, and long-term business objectives.\n\nA strong target market is not necessarily the largest. It is the segment where your business can build a clear competitive advantage and achieve consistent results.\n\nMarket research helps you identify:\n• The segment with the highest need for your offering\n• The segment with the strongest willingness to pay\n• Customer groups that are currently overlooked by competitors\n• The segment that delivers the highest profitability and lifetime value\n• The market opportunity that is most feasible to enter and scale efficiently`,
+				},
+				{
+					heading: 'The Outcome: A Target Market That Drives "Growth, Not Inefficiency"',
+					content: `Choosing the right target market means your business gains:\n\n• Clearer marketing direction\n• Improved conversion rates\n• Stronger brand positioning\n• Higher customer retention\n• Faster market penetration\n• Increased profitability\n\nBecause market research helps you concentrate your efforts where demand is strongest so every rupee spent drives real returns.`,
+				},
+				{
+					heading: 'Before You Launch Your Next Campaign, Consider This:',
+					content: `Are you relying on assumptions about your customers or making decisions based on real data?\n\nAre you spreading your resources thin or concentrating on the audience that drives the highest ROI?\n\nIn today's competitive market, success isn't about being everywhere. It's about being seen and valued by the right customers.`,
+				},
+			],
+			conclusion: `At MARC, our market research and consulting services help businesses uncover the most profitable customer segments and craft strategies that turn insights into measurable growth. Let's define your market the right way.`,
+		},
+	},
 	{
 		id: 81,
 		slug: 'venture-capital-trends-2026',
