@@ -3,8 +3,8 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 82 },
-	{ id: 'finance', label: 'Finance', count: 21 },
+	{ id: 'all', label: 'All', count: 83 },
+	{ id: 'finance', label: 'Finance', count: 22 },
 	{ id: 'market-research', label: 'Market Research', count: 17 },
 	{ id: 'strategy', label: 'Strategy', count: 15 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
@@ -18,6 +18,58 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 83,
+		slug: 'dme-ebitda-why-the-number-may-be-telling-half-the-story',
+		title: 'DME EBITDA: Why the Number May Be Telling Half the Story',
+		excerpt: `In the DME rental model, depreciation is not just an accounting line. It is the real cost of revenue — and EBITDA without it can look considerably healthier than the underlying economics actually are.`,
+		category: 'finance',
+		categoryLabel: 'Finance',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'May 2026',
+		readTime: '6 min read',
+		image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['DME', 'EBITDA', 'Due Diligence', 'Healthcare', 'Finance'],
+		cta: {
+			title: 'Build a Financially Rigorous View of Your Next DME Investment',
+			description: 'Speak with our advisory team to build a financially rigorous, EBITDA-adjusted view of your next DME investment or acquisition.',
+			primaryButton: 'Schedule Consultation',
+			primaryLink: 'https://calendly.com/deepakagarwalsrc/marc-road-to-success',
+		},
+		content: {
+			introduction: `Lincare Holdings, one of the largest home oxygen and DME providers in the United States, was acquired by Linde in 2012 for approximately $4.6 billion. Analysts at the time debated whether the EBITDA multiple paid was justified. What made that debate difficult was not the size of the number. It was the question of what EBITDA was actually capturing in a business built entirely on renting out depreciating medical equipment. That question has never fully gone away.`,
+			sections: [
+				{
+					heading: 'The DME Business Is a Rental Business. That Changes Everything.',
+					content: `A durable medical equipment company does not primarily sell products. It rents them, wheelchairs, CPAP machines, hospital beds, oxygen concentrators, to patients, most of whom are covered by Medicare or private insurance.\n\nRevenue arrives monthly, typically over a capped rental period. Under Medicare's capped rental framework, for instance, the supplier offers the beneficiary a purchase option at month ten. Rental payments run to 13 months if the beneficiary elects to purchase, or up to 15 months if the beneficiary continues renting, after which the supplier provides the item without further charge. For oxygen equipment, the rental period extends to 36 months. The equipment company earns while the equipment is out on rent and stops earning once the cap is reached or the patient no longer needs it.\n\nThis is a capital-intensive, asset-driven business. Every dollar of rental revenue is made possible by a physical asset sitting in a patient's home.`,
+				},
+				{
+					heading: 'So, Where Does EBITDA Fall Short?',
+					content: `EBITDA, earnings before interest, taxes, depreciation, and amortisation, is a widely used measure of operating profitability. In most industries, adding back depreciation is reasonable. Depreciation on a factory, a building, or a software system is a sunk cost that does not vary with revenue in the short term.\n\nIn DME, the logic is worth pausing on.\n\nDepreciation on rental equipment is not a passive, background charge. It is the direct cost of the asset generating the rental income. Without that wheelchair or that CPAP machine, there is no revenue. The equipment depreciates because it is being used, returned, repaired, and eventually retired, all in service of earning that monthly rental cheque.\n\nLooked at this way, DME equipment depreciation behaves more like a cost of goods sold than a capital accounting entry. It is the input cost of the revenue-generating activity itself.\n\nWhen EBITDA adds back depreciation in this context, it removes what is arguably the most fundamental cost of the business from the profitability picture. The result is a margin that can look considerably healthier than the underlying economics actually are.`,
+				},
+				{
+					heading: 'A Numerical Illustration Worth Sitting With',
+					content: `Consider a simplified example. A DME company rents a hospital bed for USD 150 per month. The bed costs USD 1,200 and has a useful life of two years, after which it is retired or written off.\n\nOver its rental life, the bed generates approximately USD 1,800 in revenue and USD 1,200 in depreciation cost. Gross margin looks reasonable. But strip out depreciation to arrive at EBITDA, and suddenly the bed looks far more profitable than it is. The depreciation was not incidental to the revenue. It was the price of earning it.\n\nMultiply this across thousands of assets in a fleet, factor in servicing costs, failed rentals, early returns, and reimbursement denials, and the gap between reported EBITDA and actual cash-generating capacity widens considerably.`,
+				},
+				{
+					heading: 'This Is Not an Indictment of the Standard. It Is a Call for Context.',
+					content: `GAAP does not claim EBITDA is a perfect measure. It never has. The accounting treatment of DME depreciation is technically correct under the standard, and preparers have legitimate reasons for presenting EBITDA alongside other metrics.\n\nThe issue is not the standard. It is how investors, acquirers, and lenders apply the number without adjusting for industry-specific economics.\n\nIn a DME business, the more instructive question to ask alongside EBITDA is this: what does profitability look like after the full cost of maintaining and replacing the rental fleet is accounted for? That figure, most precisely referred to as EBITDA less sustaining fleet capex (depreciation charged on the rental equipment), tends to tell a more grounded story about what the business actually earns. It treats the ongoing cost of replenishing depreciating rental assets for what it economically is, an operating necessity.`,
+				},
+				{
+					heading: 'What Diligent Investors Tend to Look At Instead',
+					content: `Sophisticated buyers and lenders in the DME space typically look beyond reported EBITDA. The measures that carry more weight include:\n\nEBITDA less fleet replacement capex. This treats sustaining capex on rental assets as the operating cost it economically is, not a financing decision. It reflects what the business must spend simply to maintain its revenue base.\n\nRevenue per asset and asset utilisation rates. A fleet with low utilisation inflates reported assets and suppresses the effective return on capital. Understanding revenue generated per active asset separates productive fleet from balance sheet noise.\n\nCash conversion from EBITDA. In a healthy DME business, a significant portion of EBITDA should convert to operating cash flow. A persistent, wide gap between the two is a signal worth investigating, often traceable to fleet-building capex being classified outside operating costs.`,
+				},
+				{
+					heading: 'Where MARC Comes In',
+					content: `At MARC, we advise investors and acquirers conducting diligence on healthcare services and DME businesses, where the gap between reported profitability and economic reality tends to be widest.\n\nOur work in this space includes:\n\n• Rebuilding EBITDA to reflect fleet depreciation as an operating cost, not an add-back.\n• Normalising sustaining versus growth capex to isolate true business profitability.\n• Identifying reimbursement risk, payer concentration, and revenue quality flags that affect earnings sustainability.\n• Structuring a QoE-adjusted earnings view that investors and lenders can act on with confidence.\n\nIn DME, the standard metrics are a starting point. The real picture requires a layer of work that goes underneath them.`,
+				},
+			],
+			conclusion: `EBITDA is a useful lens. In DME, it is not a sufficient one. When the primary cost of generating revenue is depreciation on the very assets producing that revenue, adding it back and calling the result operating profit deserves scrutiny, not acceptance.\n\nThe businesses that understand this, and the investors who price for it, tend to avoid the valuation surprises that have characterised more than a few DME transactions over the past decade.`,
+		},
+	},
 	{
 		id: 82,
 		slug: 'how-market-research-helps-you-choose-the-right-target-market',
