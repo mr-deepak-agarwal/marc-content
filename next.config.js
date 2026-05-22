@@ -159,16 +159,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/thank-you',
-        destination: '/',
-        permanent: false,
-      },
-      {
-        source: '/thank-you/',
-        destination: '/',
-        permanent: false,
-      },
-      {
         source: '/contact-us-backup',
         destination: '/contact-us',
         permanent: true,
