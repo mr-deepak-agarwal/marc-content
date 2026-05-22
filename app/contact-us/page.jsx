@@ -4,17 +4,12 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '@/lib/supabase'
 import { 
   MapPin, Phone, Mail, Clock, Send, ArrowRight, Globe, ArrowUpRight,
   Building2, Users, Sparkles, MessageCircle, Calendar, CheckCircle,
   TrendingUp, Award, Target, Loader2
 } from 'lucide-react'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-)
 
 const offices = [
   { 
@@ -197,11 +192,16 @@ export default function ContactPage() {
           status: 'new',
         }])
 
-      if (sbError) throw sbError
+      if (sbError) {
+        console.error('Supabase error:', sbError)
+        setSubmitError(`Submission failed: ${sbError.message}`)
+        return
+      }
 
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' })
       router.push('/thank-you?source=Contact+Us+Page')
     } catch (err) {
+      console.error('Unexpected error:', err)
       setSubmitError('Something went wrong. Please try again or email us directly.')
     } finally {
       setIsSubmitting(false)

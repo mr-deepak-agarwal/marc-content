@@ -17,16 +17,11 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '@/lib/supabase'
 import {
   ArrowRight, X, Send, User, AtSign, Smartphone,
   MessageSquare, CheckCircle2, Loader2,
 } from 'lucide-react'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-)
 
 // ── Popup Modal ───────────────────────────────────────────────────────────────
 function CTAPopup({ isOpen, onClose, source }) {
@@ -53,17 +48,22 @@ function CTAPopup({ isOpen, onClose, source }) {
           email: formData.email,
           mobile: formData.mobile,
           message: formData.message,
-          source_page: source,           // ← tracks which page the form was submitted from
+          source_page: source,
           created_at: new Date().toISOString(),
           status: 'new',
         }])
 
-      if (sbError) throw sbError
+      if (sbError) {
+        console.error('Supabase error:', sbError)
+        setError(`Submission failed: ${sbError.message}`)
+        return
+      }
 
       setFormData({ name: '', email: '', mobile: '', message: '' })
       onClose()
       router.push(`/thank-you?source=${encodeURIComponent(source)}`)
     } catch (err) {
+      console.error('Unexpected error:', err)
       setError('Something went wrong. Please try again or email us directly.')
     } finally {
       setIsSubmitting(false)
