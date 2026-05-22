@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import {
-  LogOut, RefreshCw, Mail, Phone, MessageSquare, Clock,
-  CheckCircle2, Circle, Search, Filter, Eye, X, Lock, User, Loader2
+  LogOut, RefreshCw, Mail, Phone, MessageSquare, FileDown,
+  CheckCircle2, Circle, Search, Eye, X, Lock, User, Loader2,
+  Download, Calendar, FileText
 } from 'lucide-react'
 
 
@@ -108,13 +109,12 @@ const LoginScreen = ({ onLogin }) => {
   return (
     <div className="min-h-screen bg-[#F7FFF5] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
-        {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-[#4E9141] rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Lock className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-2xl font-bold text-[#1D342F]">MARC Admin</h1>
-          <p className="text-[#47635D] text-sm mt-1">Sign in to view contact submissions</p>
+          <p className="text-[#47635D] text-sm mt-1">Sign in to access the dashboard</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-[#C2DDB4]/30 p-8">
@@ -156,8 +156,78 @@ const LoginScreen = ({ onLogin }) => {
   )
 }
 
-// ── Dashboard ─────────────────────────────────────────────────────────────────
-const Dashboard = ({ onLogout }) => {
+// ── Reports View ──────────────────────────────────────────────────────────────
+const ReportsView = () => {
+  // Replace these with your actual report files / Supabase Storage URLs
+  const reports = [
+    {
+      id: 1,
+      title: 'Annual Report 2024',
+      description: 'Full-year summary including financials and project outcomes.',
+      date: '2025-01-15',
+      file: '/reports/annual-report-2024.pdf',
+    },
+    {
+      id: 2,
+      title: 'Q3 Report 2024',
+      description: 'Third-quarter review covering operations and milestones.',
+      date: '2024-10-10',
+      file: '/reports/q3-report-2024.pdf',
+    },
+    {
+      id: 3,
+      title: 'Impact Report 2023',
+      description: 'Community impact assessment for the 2023 financial year.',
+      date: '2024-03-20',
+      file: '/reports/impact-report-2023.pdf',
+    },
+  ]
+
+  return (
+    <div className="p-8">
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-[#1D342F]">Reports</h2>
+        <p className="text-[#47635D] text-sm mt-1">Download published reports below.</p>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {reports.map((r) => (
+          <div
+            key={r.id}
+            className="bg-white rounded-2xl border border-[#C2DDB4]/20 p-6 flex flex-col gap-4 hover:shadow-md transition-shadow"
+          >
+            <div className="w-10 h-10 rounded-xl bg-[#F7FFF5] border border-[#C2DDB4]/30 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-[#4E9141]" />
+            </div>
+
+            <div className="flex-1">
+              <h3 className="font-bold text-[#1D342F] text-sm">{r.title}</h3>
+              <p className="text-[#47635D] text-xs mt-1 leading-relaxed">{r.description}</p>
+            </div>
+
+            <div className="flex items-center justify-between pt-2 border-t border-[#C2DDB4]/20">
+              <div className="flex items-center gap-1.5 text-[#47635D] text-xs">
+                <Calendar className="w-3.5 h-3.5" />
+                {new Date(r.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+              </div>
+              <a
+                href={r.file}
+                download
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-[#4E9141] text-white text-xs font-semibold rounded-lg hover:bg-[#3d7334] transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Download
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ── Contacts View ─────────────────────────────────────────────────────────────
+const ContactsView = ({ onLogout }) => {
   const [submissions, setSubmissions] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -170,7 +240,7 @@ const Dashboard = ({ onLogout }) => {
       .from('contact_requests')
       .select('*')
       .order('created_at', { ascending: false })
-    setSubmissions(data || [])
+    setSubmissions(data ?? [])
     setLoading(false)
   }
 
@@ -197,37 +267,38 @@ const Dashboard = ({ onLogout }) => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F7FFF5]">
+    <div className="min-h-screen">
       <DetailModal entry={selected} onClose={() => setSelected(null)} onStatusChange={updateStatus} />
 
-      {/* Header */}
+      {/* Top bar */}
       <header className="bg-white border-b border-[#C2DDB4]/30 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="px-6 h-16 flex items-center justify-between">
+          <h2 className="font-bold text-[#1D342F]">Contact Submissions</h2>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-[#4E9141] rounded-lg flex items-center justify-center">
-              <MessageSquare className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-[#1D342F]">Contact Dashboard</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <button onClick={fetchSubmissions} className="w-9 h-9 rounded-full bg-[#F7FFF5] flex items-center justify-center text-[#47635D] hover:bg-[#C2DDB4] transition-colors">
+            <button
+              onClick={fetchSubmissions}
+              className="w-9 h-9 rounded-full bg-[#F7FFF5] flex items-center justify-center text-[#47635D] hover:bg-[#C2DDB4] transition-colors"
+            >
               <RefreshCw className="w-4 h-4" />
             </button>
-            <button onClick={onLogout} className="flex items-center gap-2 px-4 py-2 text-sm text-[#47635D] hover:text-[#1D342F] transition-colors">
+            <button
+              onClick={onLogout}
+              className="flex items-center gap-2 px-4 py-2 text-sm text-[#47635D] hover:text-[#1D342F] transition-colors"
+            >
               <LogOut className="w-4 h-4" /> Sign out
             </button>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        {/* Stats row */}
+      <div className="px-6 py-8">
+        {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {[
-            { label: 'Total', key: 'all', color: 'text-[#1D342F]' },
-            { label: 'New', key: 'new', color: 'text-blue-600' },
+            { label: 'Total',     key: 'all',       color: 'text-[#1D342F]'  },
+            { label: 'New',       key: 'new',       color: 'text-blue-600'   },
             { label: 'Contacted', key: 'contacted', color: 'text-yellow-600' },
-            { label: 'Closed', key: 'closed', color: 'text-[#4E9141]' },
+            { label: 'Closed',    key: 'closed',    color: 'text-[#4E9141]'  },
           ].map(({ label, key, color }) => (
             <div key={key} className="bg-white rounded-2xl p-5 border border-[#C2DDB4]/20">
               <p className="text-[#47635D] text-xs uppercase tracking-wider mb-1">{label}</p>
@@ -316,6 +387,26 @@ const Dashboard = ({ onLogout }) => {
       </div>
     </div>
   )
+}
+
+// ── Dashboard shell (reads sidebar selection from layout) ─────────────────────
+const Dashboard = ({ onLogout }) => {
+  const [section, setSection] = useState('contacts')
+
+  // Stay in sync with the sidebar in layout.jsx via the hidden input bridge
+  useEffect(() => {
+    const el = document.getElementById('__admin_section')
+    if (!el) return
+    setSection(el.value)
+
+    const observer = new MutationObserver(() => setSection(el.value))
+    observer.observe(el, { attributes: true, attributeFilter: ['value'] })
+    return () => observer.disconnect()
+  }, [])
+
+  return section === 'reports'
+    ? <ReportsView />
+    : <ContactsView onLogout={onLogout} />
 }
 
 // ── Page entry point ──────────────────────────────────────────────────────────
