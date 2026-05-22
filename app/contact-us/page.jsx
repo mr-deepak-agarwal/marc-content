@@ -199,7 +199,7 @@ export default function ContactPage() {
       }
 
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' })
-      router.push('/thank-you?source=Contact+Us+Page')
+      router.push('/thank-you')
     } catch (err) {
       console.error('Unexpected error:', err)
       setSubmitError('Something went wrong. Please try again or email us directly.')
