@@ -1,18 +1,17 @@
 'use client'
 
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import Footer from '@/components/Footer'
 import {
   CheckCircle2, ArrowRight, Phone, Mail, Calendar,
-  Globe, Clock, MessageCircle,
+  Clock, MessageCircle,
 } from 'lucide-react'
 
 const nextSteps = [
   {
     icon: Clock,
-    title: 'We`ll review your message',
+    title: 'We will review your message',
     desc: 'Our team reads every submission and routes it to the right expert.',
   },
   {
@@ -23,7 +22,7 @@ const nextSteps = [
   {
     icon: Calendar,
     title: 'Free initial consultation',
-    desc: 'Your first call is on us. Come with questions; we`ll come with answers.',
+    desc: 'Your first call is on us. Come with questions; we will come with answers.',
   },
 ]
 
@@ -31,19 +30,15 @@ const quickLinks = [
   { label: 'Our Services', href: '/services' },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'About MARC', href: '/about' },
-  { label: 'Contact Us', href: '/contact' },
+  { label: 'Contact Us', href: '/contact-us' },
 ]
 
 function ThankYouContent() {
-  const params = useSearchParams()
-  const source = params.get('source') || 'our team'
-
   return (
     <div className="min-h-screen bg-white flex flex-col">
 
       {/* Hero */}
       <section className="relative flex-1 flex items-center justify-center py-32 bg-[#F7FFF5] overflow-hidden">
-        {/* Background blobs */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4E9141]/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C2DDB4]/20 rounded-full blur-[120px]" />
 
@@ -65,7 +60,6 @@ function ThankYouContent() {
                 <CheckCircle2 className="w-12 h-12 text-[#4E9141]" />
               </div>
             </div>
-            {/* Ping animation ring */}
             <span className="absolute inset-0 rounded-full bg-[#4E9141]/20 animate-ping" style={{ animationDuration: '2s' }} />
           </div>
 
@@ -75,11 +69,8 @@ function ThankYouContent() {
           </h1>
 
           <p className="text-xl text-[#47635D] leading-relaxed mb-10 max-w-xl mx-auto">
-            We've received your message and will get back to you within{' '}
+            We have received your message and will get back to you within{' '}
             <span className="font-semibold text-[#1D342F]">24 hours</span>.
-            {source !== 'our team' && (
-              <> Your inquiry from <span className="font-semibold text-[#1D342F]">{source}</span> is in good hands.</>
-            )}
           </p>
 
           {/* CTA buttons */}
@@ -116,7 +107,6 @@ function ThankYouContent() {
                 key={i}
                 className="relative bg-[#F7FFF5] rounded-2xl p-7 border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300"
               >
-                {/* Step number */}
                 <span className="absolute top-5 right-5 w-7 h-7 bg-[#4E9141]/10 rounded-full flex items-center justify-center text-xs font-bold text-[#4E9141]">
                   {i + 1}
                 </span>
@@ -135,7 +125,7 @@ function ThankYouContent() {
       <section className="py-10 bg-[#4E9141]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-white font-semibold text-lg">Can't wait? Reach us directly.</p>
+            <p className="text-white font-semibold text-lg">{"Can't wait? Reach us directly."}</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:+919359628675"
