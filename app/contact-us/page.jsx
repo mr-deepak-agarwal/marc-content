@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { createClient } from '@supabase/supabase-js'
@@ -149,8 +150,8 @@ export default function ContactPage() {
   const [isVisible, setIsVisible] = useState({})
   const [selectedOffice, setSelectedOffice] = useState(0) // Default to headquarters
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState('')
+  const router = useRouter()
   const observerRefs = useRef([])
 
   useEffect(() => {
@@ -198,8 +199,8 @@ export default function ContactPage() {
 
       if (sbError) throw sbError
 
-      setSubmitted(true)
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' })
+      router.push('/thank-you?source=Contact+Us+Page')
     } catch (err) {
       setSubmitError('Something went wrong. Please try again or email us directly.')
     } finally {
@@ -399,14 +400,7 @@ export default function ContactPage() {
                   <p className="text-red-500 text-sm bg-red-50 px-4 py-3 rounded-xl">{submitError}</p>
                 )}
 
-                {submitted && (
-                  <div className="flex items-center gap-3 px-5 py-4 bg-[#F7FFF5] border border-[#4E9141]/30 rounded-xl">
-                    <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0" />
-                    <p className="text-[#1D342F] font-medium">Message received! We'll get back to you within 24 hours.</p>
-                  </div>
-                )}
-
-                <button
+<button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full px-8 py-5 bg-[#4E9141] text-white text-lg font-semibold rounded-full hover:bg-[#3d7334] transition-all shadow-lg shadow-[#4E9141]/20 hover:shadow-xl flex items-center justify-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed"

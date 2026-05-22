@@ -16,6 +16,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@supabase/supabase-js'
 import {
   ArrowRight, X, Send, User, AtSign, Smartphone,
@@ -31,8 +32,8 @@ const supabase = createClient(
 function CTAPopup({ isOpen, onClose, source }) {
   const [formData, setFormData] = useState({ name: '', email: '', mobile: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const router = useRouter()
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -59,8 +60,9 @@ function CTAPopup({ isOpen, onClose, source }) {
 
       if (sbError) throw sbError
 
-      setSubmitted(true)
       setFormData({ name: '', email: '', mobile: '', message: '' })
+      onClose()
+      router.push(`/thank-you?source=${encodeURIComponent(source)}`)
     } catch (err) {
       setError('Something went wrong. Please try again or email us directly.')
     } finally {
@@ -70,7 +72,6 @@ function CTAPopup({ isOpen, onClose, source }) {
 
   const handleClose = () => {
     onClose()
-    setTimeout(() => setSubmitted(false), 400)
   }
 
   if (!isOpen) return null
@@ -101,26 +102,8 @@ function CTAPopup({ isOpen, onClose, source }) {
         </button>
 
         <div className="p-8">
-          {submitted ? (
-            // ── Success ─────────────────────────────────────────────────────
-            <div className="text-center py-8">
-              <div className="w-20 h-20 bg-[#F7FFF5] rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle2 className="w-10 h-10 text-[#4E9141]" />
-              </div>
-              <h3 className="text-2xl font-bold text-[#1D342F] mb-3">Message Received!</h3>
-              <p className="text-[#47635D] mb-8 leading-relaxed">
-                Thank you for reaching out. Our team will get back to you within 24 hours.
-              </p>
-              <button
-                onClick={handleClose}
-                className="px-8 py-3 bg-[#4E9141] text-white rounded-full font-semibold hover:bg-[#3d7334] transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          ) : (
-            // ── Form ────────────────────────────────────────────────────────
-            <>
+          {/* ── Form ──────────────────────────────────────────────────── */}
+          <>
               <div className="mb-7">
                 <h3 className="text-2xl font-bold text-[#1D342F] mb-1">Start a Conversation</h3>
                 <p className="text-[#47635D] text-sm">
@@ -213,7 +196,6 @@ function CTAPopup({ isOpen, onClose, source }) {
                 </button>
               </form>
             </>
-          )}
         </div>
       </div>
     </div>
