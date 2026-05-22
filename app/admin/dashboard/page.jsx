@@ -97,7 +97,7 @@ const ReportModal = ({ entry, onClose }) => {
         <div className="p-7">
           <div className="mb-6">
             <h3 className="text-xl font-bold text-[#1D342F]">{entry.name}</h3>
-            <p className="text-[#47635D] text-sm mt-0.5">{new Date(entry.created_at).toLocaleString()}</p>
+            <p className="text-[#47635D] text-sm mt-0.5">{new Date(entry.downloaded_at).toLocaleString()}</p>
           </div>
           <div className="space-y-3">
             <div className="flex items-center gap-3 p-3 bg-[#F7FFF5] rounded-xl">
@@ -112,6 +112,12 @@ const ReportModal = ({ entry, onClose }) => {
               <div className="flex items-center gap-3 p-3 bg-[#F7FFF5] rounded-xl">
                 <Building2 className="w-4 h-4 text-[#4E9141] shrink-0" />
                 <span className="text-[#1D342F] text-sm font-medium">{entry.company}</span>
+              </div>
+            )}
+            {entry.report_name && (
+              <div className="flex items-center gap-3 p-3 bg-[#F7FFF5] rounded-xl">
+                <FileDown className="w-4 h-4 text-[#4E9141] shrink-0" />
+                <span className="text-[#1D342F] text-sm font-medium">{entry.report_name}</span>
               </div>
             )}
           </div>
@@ -311,7 +317,7 @@ const ContactsView = ({ onLogout }) => {
 }
 
 // ── Reports View ──────────────────────────────────────────────────────────────
-// Reads from report_downloads table: id, name, email, mobile, company, created_at
+// Reads from report_downloads table: id, name, email, mobile, company, report_name, downloaded_at
 const ReportsView = ({ onLogout }) => {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
@@ -320,7 +326,7 @@ const ReportsView = ({ onLogout }) => {
 
   const fetch = async () => {
     setLoading(true)
-    const { data } = await supabase.from('report_downloads').select('*').order('created_at', { ascending: false })
+    const { data, error } = await supabase.from('report_downloads').select('*').order('downloaded_at', { ascending: false })
     setRows(data ?? [])
     setLoading(false)
   }
@@ -371,7 +377,7 @@ const ReportsView = ({ onLogout }) => {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-[#C2DDB4]/20">
-                    {['Name', 'Email', 'Mobile', 'Company', 'Date', ''].map((h) => (
+                    {['Name', 'Email', 'Mobile', 'Company', 'Report', 'Downloaded', ''].map((h) => (
                       <th key={h} className="text-left px-6 py-4 text-xs font-semibold text-[#47635D] uppercase tracking-wider">{h}</th>
                     ))}
                   </tr>
@@ -383,8 +389,9 @@ const ReportsView = ({ onLogout }) => {
                       <td className="px-6 py-4 text-[#47635D] text-sm">{row.email}</td>
                       <td className="px-6 py-4 text-[#47635D] text-sm">{row.mobile}</td>
                       <td className="px-6 py-4 text-[#47635D] text-sm">{row.company ?? '—'}</td>
+                      <td className="px-6 py-4 text-[#47635D] text-sm max-w-[200px] truncate">{row.report_name ?? '—'}</td>
                       <td className="px-6 py-4 text-[#47635D] text-sm whitespace-nowrap">
-                        {new Date(row.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                        {new Date(row.downloaded_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                       </td>
                       <td className="px-6 py-4">
                         <button onClick={() => setSelected(row)}
