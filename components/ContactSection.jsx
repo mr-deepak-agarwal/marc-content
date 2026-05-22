@@ -3,12 +3,8 @@
 import React, { useState } from 'react'
 import { Send, MapPin, Phone, Mail, ArrowRight, X, User, AtSign, Smartphone, MessageSquare, CheckCircle2, Loader2 } from 'lucide-react'
 import { companyInfo } from '@/data/mock'
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '@/lib/supabase'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-)
 
 // ── Popup Form Modal ─────────────────────────────────────────────────────────
 const ContactPopup = ({ isOpen, onClose }) => {
