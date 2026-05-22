@@ -12,7 +12,7 @@ import {
 const nextSteps = [
   {
     icon: Clock,
-    title: 'We'll review your message',
+    title: 'We`ll review your message',
     desc: 'Our team reads every submission and routes it to the right expert.',
   },
   {
@@ -23,7 +23,7 @@ const nextSteps = [
   {
     icon: Calendar,
     title: 'Free initial consultation',
-    desc: 'Your first call is on us. Come with questions; we'll come with answers.',
+    desc: 'Your first call is on us. Come with questions; we`ll come with answers.',
   },
 ]
 
