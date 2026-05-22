@@ -1073,66 +1073,18 @@ const insights = [
  }
 ]
 
-// Card stack data for hero animation - these will match actual insights
-const getStackedCards = () => {
- return [
- insights[3], // Indian Nutraceuticals and OTC Pharmaceutical Market Entry
- insights[4], // Digital Healthcare Report
- insights[5], // GST 2.0: Key Reforms and Sectoral Impact
- insights[6], // Contract Manufacturing in India
- ]
-}
-
-const stackedCardsColors = ['#E8F5E3', '#FEF3C7', '#DBEAFE', '#FCE7F3']
-
-const trendingTopics = [
- 'Artificial Intelligence',
- 'Market Entry Strategy',
- 'Digital Transformation',
- 'Sustainability',
- 'M&A Advisory'
-]
-
-export default function InsightsPageV2() {
- const [activeCategory, setActiveCategory] = useState('all')
- const [searchQuery, setSearchQuery] = useState('')
- const [activeCard, setActiveCard] = useState(0)
- 
- // Get stacked cards from insights
- const stackedCards = getStackedCards()
-
- // Auto-rotate cards
- useEffect(() => {
- const interval = setInterval(() => {
- setActiveCard((prev) => (prev + 1) % stackedCards.length)
- }, 3000)
- return () => clearInterval(interval)
- }, [])
-
- const filteredInsights = insights.filter(insight => {
- const matchesCategory = activeCategory === 'all' || insight.category === activeCategory
- const matchesSearch = insight.title.toLowerCase().includes(searchQuery.toLowerCase())
- return matchesCategory && matchesSearch
- })
-
- const featuredInsight = insights.find(i => i.featured && i.new) || insights[0]
- const latestInsights = insights.filter(i => i !== featuredInsight).slice(0, 4)
-
- // Component for rendering report card — opens download popup instead of direct download
- const ReportCard = ({ insight, featured = false }) => {
+// ─────────────────────────────────────────────────────────────────────────────
+// ReportCard
+// Defined OUTSIDE the page component so React doesn't remount it on every
+// parent re-render (which would reset local state and close the popup).
+// onDownloadClick is passed down from the parent's single popup state.
+// ─────────────────────────────────────────────────────────────────────────────
+function ReportCard({ insight, featured = false, onDownloadClick }) {
  const pdfUrl = `/pdfs/${getPdfFilename(insight.title)}`
- const [popupOpen, setPopupOpen] = useState(false)
 
  if (featured) {
  return (
- <>
- <ReportDownloadPopup
-   isOpen={popupOpen}
-   onClose={() => setPopupOpen(false)}
-   reportTitle={insight.title}
-   pdfUrl={pdfUrl}
- />
- <div onClick={() => setPopupOpen(true)} className="group block h-full cursor-pointer">
+ <div onClick={() => onDownloadClick(insight.title, pdfUrl)} className="group block h-full cursor-pointer">
  <article className="h-full bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500 flex flex-col">
  <div className="relative aspect-[16/9] overflow-hidden">
  <Image 
@@ -1178,19 +1130,11 @@ export default function InsightsPageV2() {
  </div>
  </article>
  </div>
- </>
  )
  }
 
  return (
- <>
- <ReportDownloadPopup
-   isOpen={popupOpen}
-   onClose={() => setPopupOpen(false)}
-   reportTitle={insight.title}
-   pdfUrl={pdfUrl}
- />
- <div onClick={() => setPopupOpen(true)} className="group block cursor-pointer">
+ <div onClick={() => onDownloadClick(insight.title, pdfUrl)} className="group block cursor-pointer">
  <article className="h-full bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300 overflow-hidden">
  <div className="relative aspect-[16/10] overflow-hidden">
  <Image 
@@ -1242,12 +1186,67 @@ export default function InsightsPageV2() {
  </div>
  </article>
  </div>
- </>
  )
+}
+
+// Card stack data for hero animation - these will match actual insights
+const getStackedCards = () => {
+ return [
+ insights[3], // Indian Nutraceuticals and OTC Pharmaceutical Market Entry
+ insights[4], // Digital Healthcare Report
+ insights[5], // GST 2.0: Key Reforms and Sectoral Impact
+ insights[6], // Contract Manufacturing in India
+ ]
+}
+
+const stackedCardsColors = ['#E8F5E3', '#FEF3C7', '#DBEAFE', '#FCE7F3']
+
+const trendingTopics = [
+ 'Artificial Intelligence',
+ 'Market Entry Strategy',
+ 'Digital Transformation',
+ 'Sustainability',
+ 'M&A Advisory'
+]
+
+export default function InsightsPageV2() {
+ const [activeCategory, setActiveCategory] = useState('all')
+ const [searchQuery, setSearchQuery] = useState('')
+ const [activeCard, setActiveCard] = useState(0)
+ const [popup, setPopup] = useState({ isOpen: false, title: '', pdfUrl: '' })
+
+ const handleDownloadClick = (title, pdfUrl) => {
+   setPopup({ isOpen: true, title, pdfUrl })
  }
+ 
+ // Get stacked cards from insights
+ const stackedCards = getStackedCards()
+
+ // Auto-rotate cards
+ useEffect(() => {
+ const interval = setInterval(() => {
+ setActiveCard((prev) => (prev + 1) % stackedCards.length)
+ }, 3000)
+ return () => clearInterval(interval)
+ }, [])
+
+ const filteredInsights = insights.filter(insight => {
+ const matchesCategory = activeCategory === 'all' || insight.category === activeCategory
+ const matchesSearch = insight.title.toLowerCase().includes(searchQuery.toLowerCase())
+ return matchesCategory && matchesSearch
+ })
+
+ const featuredInsight = insights.find(i => i.featured && i.new) || insights[0]
+ const latestInsights = insights.filter(i => i !== featuredInsight).slice(0, 4)
 
  return (
  <div className="bg-white min-h-screen" data-testid="insights-page-v2">
+ <ReportDownloadPopup
+   isOpen={popup.isOpen}
+   onClose={() => setPopup(p => ({ ...p, isOpen: false }))}
+   reportTitle={popup.title}
+   pdfUrl={popup.pdfUrl}
+ />
  
  {/* ==================== HERO with Animated Card Stack ==================== */}
  <section className="pt-20 pb-16 bg-white border-b border-gray-100 overflow-hidden">
@@ -1406,12 +1405,12 @@ export default function InsightsPageV2() {
 
  <div className="grid lg:grid-cols-2 gap-6">
  {/* Main Featured */}
- <ReportCard insight={featuredInsight} featured={true} />
+ <ReportCard insight={featuredInsight} featured={true} onDownloadClick={handleDownloadClick} />
 
  {/* Right Side - 4 Reports in 2x2 Grid */}
  <div className="grid grid-cols-2 gap-4">
  {latestInsights.map((insight, i) => (
- <ReportCard key={i} insight={insight} />
+ <ReportCard key={i} insight={insight} onDownloadClick={handleDownloadClick} />
  ))}
  </div>
  </div>
@@ -1487,7 +1486,7 @@ export default function InsightsPageV2() {
  {/* Reports Grid */}
  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
  {filteredInsights.map((insight, i) => (
- <ReportCard key={i} insight={insight} />
+ <ReportCard key={i} insight={insight} onDownloadClick={handleDownloadClick} />
  ))}
  </div>
 
