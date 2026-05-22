@@ -4,11 +4,191 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
+import { supabase } from '@/lib/supabase'
 import { 
  Download, Search, ArrowRight, FileText, TrendingUp, ArrowUpRight,
  Building2, Heart, Plane, ShoppingBag, Factory, Zap, Filter,
- BookOpen, BarChart3, Clock, ChevronRight, X
+ BookOpen, BarChart3, Clock, ChevronRight, X,
+ User, AtSign, Smartphone, Building, Send, Loader2,
 } from 'lucide-react'
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ReportDownloadPopup
+// Shows a lead-capture form before allowing PDF download.
+// On success: logs to `report_downloads` in Supabase, then triggers the download.
+// ─────────────────────────────────────────────────────────────────────────────
+function ReportDownloadPopup({ isOpen, onClose, reportTitle, pdfUrl }) {
+ const [formData, setFormData] = useState({ name: '', email: '', mobile: '', company: '' })
+ const [isSubmitting, setIsSubmitting] = useState(false)
+ const [error, setError] = useState('')
+
+ const handleChange = (e) => {
+   setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+   setError('')
+ }
+
+ const handleSubmit = async (e) => {
+   e.preventDefault()
+   setIsSubmitting(true)
+   setError('')
+
+   try {
+     const { error: sbError } = await supabase
+       .from('report_downloads')
+       .insert([{
+         name: formData.name,
+         email: formData.email,
+         mobile: formData.mobile,
+         company: formData.company,
+         report_name: reportTitle,
+         downloaded_at: new Date().toISOString(),
+       }])
+
+     if (sbError) {
+       console.error('Supabase error:', sbError)
+       setError(`Submission failed: ${sbError.message}`)
+       return
+     }
+
+     // Trigger the actual PDF download
+     const link = document.createElement('a')
+     link.href = pdfUrl
+     link.download = pdfUrl.split('/').pop()
+     document.body.appendChild(link)
+     link.click()
+     document.body.removeChild(link)
+
+     setFormData({ name: '', email: '', mobile: '', company: '' })
+     onClose()
+   } catch (err) {
+     console.error('Unexpected error:', err)
+     setError('Something went wrong. Please try again.')
+   } finally {
+     setIsSubmitting(false)
+   }
+ }
+
+ if (!isOpen) return null
+
+ return (
+   <div
+     className="fixed inset-0 z-50 flex items-center justify-center p-4"
+     onClick={(e) => e.target === e.currentTarget && onClose()}
+   >
+     {/* Backdrop */}
+     <div className="absolute inset-0 bg-[#1D342F]/80 backdrop-blur-sm" onClick={onClose} />
+
+     {/* Modal */}
+     <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+
+       {/* Top accent bar */}
+       <div className="h-1.5 w-full bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
+
+       {/* Close */}
+       <button
+         onClick={onClose}
+         className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#F7FFF5] flex items-center justify-center text-[#47635D] hover:bg-[#C2DDB4] hover:text-[#1D342F] transition-all z-10"
+       >
+         <X className="w-4 h-4" />
+       </button>
+
+       <div className="p-8">
+         <div className="mb-7">
+           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-full mb-4">
+             <Download className="w-3.5 h-3.5 text-[#4E9141]" />
+             <span className="text-xs font-medium text-[#47635D]">Free Download</span>
+           </div>
+           <h3 className="text-2xl font-bold text-[#1D342F] mb-1">Get the Report</h3>
+           <p className="text-[#47635D] text-sm leading-relaxed">
+             <span className="font-medium text-[#1D342F]">{reportTitle}</span>
+             <br />Fill in your details and the PDF will download instantly.
+           </p>
+         </div>
+
+         <form onSubmit={handleSubmit} className="space-y-4">
+           {/* Name */}
+           <div className="relative">
+             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#4E9141]">
+               <User className="w-4 h-4" />
+             </div>
+             <input
+               name="name"
+               value={formData.name}
+               onChange={handleChange}
+               placeholder="Full Name *"
+               required
+               className="w-full pl-11 pr-4 py-3.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-xl text-[#1D342F] placeholder-[#47635D]/50 text-sm focus:outline-none focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 transition-all"
+             />
+           </div>
+
+           {/* Email */}
+           <div className="relative">
+             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#4E9141]">
+               <AtSign className="w-4 h-4" />
+             </div>
+             <input
+               name="email"
+               type="email"
+               value={formData.email}
+               onChange={handleChange}
+               placeholder="Email Address *"
+               required
+               className="w-full pl-11 pr-4 py-3.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-xl text-[#1D342F] placeholder-[#47635D]/50 text-sm focus:outline-none focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 transition-all"
+             />
+           </div>
+
+           {/* Mobile */}
+           <div className="relative">
+             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#4E9141]">
+               <Smartphone className="w-4 h-4" />
+             </div>
+             <input
+               name="mobile"
+               type="tel"
+               value={formData.mobile}
+               onChange={handleChange}
+               placeholder="Mobile Number *"
+               required
+               className="w-full pl-11 pr-4 py-3.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-xl text-[#1D342F] placeholder-[#47635D]/50 text-sm focus:outline-none focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 transition-all"
+             />
+           </div>
+
+           {/* Company */}
+           <div className="relative">
+             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#4E9141]">
+               <Building className="w-4 h-4" />
+             </div>
+             <input
+               name="company"
+               value={formData.company}
+               onChange={handleChange}
+               placeholder="Company Name *"
+               required
+               className="w-full pl-11 pr-4 py-3.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-xl text-[#1D342F] placeholder-[#47635D]/50 text-sm focus:outline-none focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 transition-all"
+             />
+           </div>
+
+           {error && (
+             <p className="text-red-500 text-sm bg-red-50 px-4 py-2 rounded-lg">{error}</p>
+           )}
+
+           <button
+             type="submit"
+             disabled={isSubmitting}
+             className="w-full py-4 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+           >
+             {isSubmitting ? (
+               <><Loader2 className="w-4 h-4 animate-spin" /> Processing...</>
+             ) : (
+               <><Download className="w-4 h-4" /> Download PDF</>
+             )}
+           </button>
+         </form>
+       </div>
+     </div>
+   </div>
+ )
+}
 
 // Helper function to generate PDF filename from title
 const getPdfFilename = (title) => {
@@ -938,13 +1118,21 @@ export default function InsightsPageV2() {
  const featuredInsight = insights.find(i => i.featured && i.new) || insights[0]
  const latestInsights = insights.filter(i => i !== featuredInsight).slice(0, 4)
 
- // Component for rendering report card with PDF download
+ // Component for rendering report card — opens download popup instead of direct download
  const ReportCard = ({ insight, featured = false }) => {
  const pdfUrl = `/pdfs/${getPdfFilename(insight.title)}`
- 
+ const [popupOpen, setPopupOpen] = useState(false)
+
  if (featured) {
  return (
- <a href={pdfUrl} download className="group block h-full">
+ <>
+ <ReportDownloadPopup
+   isOpen={popupOpen}
+   onClose={() => setPopupOpen(false)}
+   reportTitle={insight.title}
+   pdfUrl={pdfUrl}
+ />
+ <div onClick={() => setPopupOpen(true)} className="group block h-full cursor-pointer">
  <article className="h-full bg-white rounded-2xl overflow-hidden border border-[#C2DDB4]/30 hover:border-[#4E9141]/40 hover:shadow-xl transition-all duration-500 flex flex-col">
  <div className="relative aspect-[16/9] overflow-hidden">
  <Image 
@@ -989,12 +1177,20 @@ export default function InsightsPageV2() {
  </div>
  </div>
  </article>
- </a>
+ </div>
+ </>
  )
  }
 
  return (
- <a href={pdfUrl} download className="group block">
+ <>
+ <ReportDownloadPopup
+   isOpen={popupOpen}
+   onClose={() => setPopupOpen(false)}
+   reportTitle={insight.title}
+   pdfUrl={pdfUrl}
+ />
+ <div onClick={() => setPopupOpen(true)} className="group block cursor-pointer">
  <article className="h-full bg-white rounded-xl border border-gray-100 hover:border-[#4E9141]/40 hover:shadow-lg transition-all duration-300 overflow-hidden">
  <div className="relative aspect-[16/10] overflow-hidden">
  <Image 
@@ -1045,7 +1241,8 @@ export default function InsightsPageV2() {
  </div>
  </div>
  </article>
- </a>
+ </div>
+ </>
  )
  }
 
