@@ -3,11 +3,17 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
+import { createClient } from '@supabase/supabase-js'
 import { 
   MapPin, Phone, Mail, Clock, Send, ArrowRight, Globe, ArrowUpRight,
   Building2, Users, Sparkles, MessageCircle, Calendar, CheckCircle,
-  TrendingUp, Award, Target
+  TrendingUp, Award, Target, Loader2
 } from 'lucide-react'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+)
 
 const offices = [
   { 
@@ -142,6 +148,9 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', service: '', message: '' })
   const [isVisible, setIsVisible] = useState({})
   const [selectedOffice, setSelectedOffice] = useState(0) // Default to headquarters
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const observerRefs = useRef([])
 
   useEffect(() => {
@@ -162,9 +171,40 @@ export default function ContactPage() {
     return () => observers.forEach(obs => obs?.disconnect())
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+    setSubmitError('')
+
+    // Build the message string, appending extra fields to match Supabase schema
+    const fullMessage = [
+      formData.message,
+      formData.company ? `Company: ${formData.company}` : '',
+      formData.service ? `Service: ${formData.service}` : '',
+    ].filter(Boolean).join('\n')
+
+    try {
+      const { error: sbError } = await supabase
+        .from('contact_requests')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.phone,
+          message: fullMessage,
+          source_page: 'Contact Us Page',
+          created_at: new Date().toISOString(),
+          status: 'new',
+        }])
+
+      if (sbError) throw sbError
+
+      setSubmitted(true)
+      setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' })
+    } catch (err) {
+      setSubmitError('Something went wrong. Please try again or email us directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -355,13 +395,28 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {submitError && (
+                  <p className="text-red-500 text-sm bg-red-50 px-4 py-3 rounded-xl">{submitError}</p>
+                )}
+
+                {submitted && (
+                  <div className="flex items-center gap-3 px-5 py-4 bg-[#F7FFF5] border border-[#4E9141]/30 rounded-xl">
+                    <CheckCircle className="w-5 h-5 text-[#4E9141] flex-shrink-0" />
+                    <p className="text-[#1D342F] font-medium">Message received! We'll get back to you within 24 hours.</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full px-8 py-5 bg-[#4E9141] text-white text-lg font-semibold rounded-full hover:bg-[#3d7334] transition-all shadow-lg shadow-[#4E9141]/20 hover:shadow-xl flex items-center justify-center gap-3 group"
+                  disabled={isSubmitting}
+                  className="w-full px-8 py-5 bg-[#4E9141] text-white text-lg font-semibold rounded-full hover:bg-[#3d7334] transition-all shadow-lg shadow-[#4E9141]/20 hover:shadow-xl flex items-center justify-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed"
                   data-testid="submit-btn"
                 >
-                  Send Message
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {isSubmitting ? (
+                    <><Loader2 className="w-5 h-5 animate-spin" /> Sending...</>
+                  ) : (
+                    <>Send Message <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>
+                  )}
                 </button>
               </form>
             </div>
