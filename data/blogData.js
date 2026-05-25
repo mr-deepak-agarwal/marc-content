@@ -3,10 +3,10 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 83 },
+	{ id: 'all', label: 'All', count: 84 },
 	{ id: 'finance', label: 'Finance', count: 22 },
 	{ id: 'market-research', label: 'Market Research', count: 17 },
-	{ id: 'strategy', label: 'Strategy', count: 15 },
+	{ id: 'strategy', label: 'Strategy', count: 16 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
 	{ id: 'industry', label: 'Industry', count: 13 },
 	{ id: 'entrepreneurship', label: 'Entrepreneurship', count: 6 },
@@ -18,6 +18,108 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 84,
+		slug: 'from-oversight-to-advantage-how-internal-audit-drives-business-performance',
+		title: 'From Oversight to Advantage: How Internal Audit Drives Business Performance',
+		excerpt: `Most business owners think of an internal audit the way they think of a dental check-up. Necessary. Slightly uncomfortable. Something to get through and move on from. That perception is costing them money.`,
+		category: 'strategy',
+		categoryLabel: 'Strategy',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'May 2026',
+		readTime: '7 min read',
+		image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=500&fit=crop&q=75',
+		featured: false,
+		tags: ['Internal Audit', 'Strategy', 'Consulting', 'Finance', 'Compliance'],
+		cta: {
+			title: 'Structure an Internal Audit Program for Your Business',
+			description: 'To explore how MARC can structure an internal audit program for your business, write to us at bd@marcglocal.com or visit www.marcglocal.com.',
+			primaryButton: 'Get in Touch',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `Most business owners think of an internal audit the way they think of a dental check-up. Necessary. Slightly uncomfortable. Something to get through and move on from.
+
+That perception is costing them money.
+
+For SMEs and growing businesses in India, internal audit is one of the most underused levers for protecting margins, improving controls, and preparing for scale. The companies that treat it as a strategic function rather than a compliance formality consistently outperform those that do not.`,
+			sections: [
+				{
+					heading: 'What Internal Audit Actually Does',
+					content: `An internal audit is a structured review of how a business operates: its financial controls, operational processes, compliance posture, and risk exposure. It is not the same as a statutory audit, which is backward-looking and focused on reporting accuracy for external stakeholders.
+
+Internal audit looks inward and forward. It asks whether the controls in place are working, whether processes are being followed, and where the gaps are before regulators, auditors, or losses surface them.
+
+For Indian businesses, this typically covers:
+
+• Finance and Accounts: Payment approvals, bank reconciliations, vendor invoice processing, cash handling
+
+• Procurement: Vendor selection, purchase order compliance, pricing adherence, three-way matching
+
+• HR and Payroll: Attendance records, payroll accuracy, PF and ESI compliance
+
+• Revenue and Collections: Billing accuracy, credit terms, receivables ageing, advance adjustments
+
+• Operations: Inventory movement, order fulfilment, production controls
+
+• Compliance: GST reconciliations, TDS filings, statutory registers, and regulatory obligations
+
+The scope is not fixed. Effective internal audit programs are risk-based, prioritising the areas where errors or leakages are most likely and most costly.`,
+				},
+				{
+					heading: 'The Gaps That Go Unaddressed',
+					content: `Most businesses that lack a structured internal audit function share common vulnerabilities.
+
+Process drift. Documented procedures exist, but actual practice has moved on. Manual workarounds, system overrides, and informal approvals become routine. Controls that look functional on paper are not functioning in practice.
+
+No follow-through. Audit observations are raised, reports are filed, and findings sit unresolved. The cycle repeats. Without accountability and tracking, internal audit produces paperwork rather than improvement.
+
+Year-end compression. When review is deferred to year-end, the volume of corrections, adjustments, and reconciliation work overwhelms the finance team. Errors that could have been caught in Q2 require significant rework in March, often under time pressure that increases the risk of further mistakes.`,
+				},
+				{
+					heading: 'How to Build an Effective Internal Audit Function',
+					content: `A practical internal audit program does not require a large team or expensive software. What it requires is structure, consistency, and follow-through.
+
+Start with a risk assessment. Identify the five to seven processes in the business that carry the highest financial exposure or operational risk. These become the initial audit scope. Procurement, payroll, and revenue recognition are common starting points for SMEs.
+
+Establish a review frequency. Monthly or quarterly cycles work better than annual reviews. High-risk areas warrant more frequent attention. Lower-risk processes can be reviewed bi-annually.
+
+Use a structured reporting format. Each audit observation should include the finding, root cause (process, people, or system), financial or operational impact, and a specific recommendation with an owner and deadline. Vague observations without ownership do not get resolved.
+
+Track corrective actions. The audit report is not the end of the process. A tracking mechanism, whether in an MIS dashboard or a simple log, ensures that findings are closed and that repeat observations are escalated.
+
+Separate the audit function from the process being reviewed. Whether internal audit is conducted by a dedicated team member or outsourced to an advisory firm, independence matters. Self-review rarely surfaces the controls that need attention.`,
+				},
+				{
+					heading: 'Mandatory or Voluntary: Both Have a Strong Case',
+					content: `Under the Companies Act, 2013, internal audit is mandatory for listed companies, unlisted public companies with turnover exceeding INR 200 crore or outstanding loans above INR 100 crore, and private companies where both thresholds are crossed. Many SMEs fall below these thresholds.
+
+SMEs that are preparing to raise funding, onboard institutional investors, or pursue acquisitions will face scrutiny of their financial controls and compliance track record. Businesses that have invested in a structured internal audit function are better positioned for due diligence. Those that have not often discover gaps at the worst possible time.
+
+Voluntary adoption of internal audit is, in practical terms, advance preparation for the next stage of growth.`,
+				},
+				{
+					heading: 'How MARC Approaches Internal Audit',
+					content: `At MARC, internal audit is structured as a business improvement exercise, not a compliance formality.
+
+Our approach is risk-based, meaning we prioritise the areas that carry the most exposure for each client's specific business model. Observations are rated High, Medium, or Low, with root causes identified across process, people, and system dimensions. Recommendations are specific and actionable, not generic.
+
+We work with SMEs across sectors in India, covering procurement, payroll, finance, revenue, operations, and statutory compliance. Our reporting links audit findings to financial impact, so leadership can see what each gap is actually costing the business.
+
+Year-end readiness reviews, GST and income tax compliance checks, and ERP or system control reviews are integrated into the audit program where relevant.`,
+				},
+				{
+					heading: 'The Strategic Case',
+					content: `Internal audit is a control function, but its value is ultimately commercial. Businesses with strong internal controls carry lower risk, manage costs better, and are more defensible under regulatory scrutiny. They also tend to grow more efficiently because the processes supporting growth are sound.
+
+The question for most SME owners is not whether they can afford to invest in internal audit. It is whether they can afford to keep operating without it.`,
+				},
+			],
+			conclusion: `To explore how MARC can structure an internal audit program for your business, write to us at bd@marcglocal.com or visit www.marcglocal.com.`,
+		},
+	},
 	{
 		id: 83,
 		slug: 'dme-ebitda-why-the-number-may-be-telling-half-the-story',
