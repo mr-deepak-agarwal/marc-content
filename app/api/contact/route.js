@@ -45,7 +45,7 @@ export async function POST(request) {
 
     // ── 2. Send notification email to the team ────────────────────────────────
     await resend.emails.send({
-      from: 'MARC Glocal Website <onboarding@resend.dev>', // change after verifying your domain
+      from: 'MARC Glocal <noreply@marcglocal.com>', // change after verifying your domain
       to: NOTIFY_EMAILS,
       subject: `New Lead from Website – ${name}`,
       html: `
