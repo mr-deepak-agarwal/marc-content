@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { supabase } from '@/lib/supabase'
+
 import { 
   MapPin, Phone, Mail, Clock, Send, ArrowRight, Globe, ArrowUpRight,
   Building2, Users, Sparkles, MessageCircle, Calendar, CheckCircle,
@@ -172,31 +172,23 @@ export default function ContactPage() {
     setIsSubmitting(true)
     setSubmitError('')
 
-    // Build the message string, appending extra fields to match Supabase schema
-    const fullMessage = [
-      formData.message,
-      formData.company ? `Company: ${formData.company}` : '',
-      formData.service ? `Service: ${formData.service}` : '',
-    ].filter(Boolean).join('\n')
-
     try {
-      const { error: sbError } = await supabase
-        .from('contact_requests')
-        .insert([{
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           mobile: formData.phone,
-          message: fullMessage,
+          company: formData.company,
+          service: formData.service,
+          message: formData.message,
           source_page: 'Contact Us Page',
-          created_at: new Date().toISOString(),
-          status: 'new',
-        }])
+        }),
+      })
 
-      if (sbError) {
-        console.error('Supabase error:', sbError)
-        setSubmitError(`Submission failed: ${sbError.message}`)
-        return
-      }
+      const data = await res.json()
+      if (!res.ok || !data.success) throw new Error(data.error || 'Failed')
 
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' })
       router.push('/thank-you')

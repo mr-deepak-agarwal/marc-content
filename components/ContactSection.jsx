@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import { Send, MapPin, Phone, Mail, ArrowRight, X, User, AtSign, Smartphone, MessageSquare, CheckCircle2, Loader2 } from 'lucide-react'
 import { companyInfo } from '@/data/mock'
-import { supabase } from '@/lib/supabase'
 
 
 // ── Popup Form Modal ─────────────────────────────────────────────────────────
@@ -24,18 +23,20 @@ const ContactPopup = ({ isOpen, onClose }) => {
     setError('')
 
     try {
-      const { error: sbError } = await supabase
-        .from('contact_requests')
-        .insert([{
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           mobile: formData.mobile,
           message: formData.message,
-          created_at: new Date().toISOString(),
-          status: 'new',
-        }])
+          source_page: 'Contact Popup',
+        }),
+      })
 
-      if (sbError) throw sbError
+      const data = await res.json()
+      if (!res.ok || !data.success) throw new Error(data.error || 'Failed')
 
       setSubmitted(true)
       setFormData({ name: '', email: '', mobile: '', message: '' })
