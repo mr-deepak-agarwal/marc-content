@@ -337,12 +337,13 @@ export default function ContactPage() {
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-[#1D342F] text-sm font-medium mb-2">Phone Number</label>
+                    <label className="block text-[#1D342F] text-sm font-medium mb-2">Phone Number *</label>
                     <input
                       type="tel"
                       className="w-full px-5 py-4 bg-[#F7FFF5] border border-[#C2DDB4]/30 rounded-xl text-[#1D342F] placeholder-[#47635D]/50 focus:border-[#4E9141] focus:ring-4 focus:ring-[#4E9141]/10 focus:outline-none transition-all"
                       placeholder="+91 98765 43210"
                       value={formData.phone}
+                      required
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
                       data-testid="input-phone"
                     />
