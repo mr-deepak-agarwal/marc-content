@@ -111,7 +111,7 @@ export async function POST(request) {
 
     // ── 3. Send auto-reply to the lead ────────────────────────────────────────
     await resend.emails.send({
-      from: 'MARC Glocal <onboarding@resend.dev>', // change after verifying your domain
+      from: 'MARC Glocal <noreply@marcglocal.com>', // change after verifying your domain
       to: email,
       subject: `Thank you for reaching out, ${name}!`,
       html: `
