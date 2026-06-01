@@ -3,8 +3,8 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 84 },
-	{ id: 'finance', label: 'Finance', count: 22 },
+	{ id: 'all', label: 'All', count: 85 },
+	{ id: 'finance', label: 'Finance', count: 23 },
 	{ id: 'market-research', label: 'Market Research', count: 17 },
 	{ id: 'strategy', label: 'Strategy', count: 16 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
@@ -18,6 +18,115 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 85,
+		slug: 'ai-valuation-risks-2026-us-tech-ma',
+		title: 'AI Valuation Risks in 2026 US Tech M&A',
+		excerpt: `Michael Burry's largest short bet since 2008 is against the AI sector. Burry's argument is not that AI fails. It is that the financial engineering currently making AI look more profitable than it is will eventually meet economic reality. Here is what M&A buyers need to understand before closing an AI deal in 2026.`,
+		category: 'finance',
+		categoryLabel: 'Finance',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'June 2026',
+		readTime: '8 min read',
+		image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['M&A', 'Finance', 'Due Diligence', 'Strategy', 'AI'],
+		seo: {
+			title: 'AI Company Valuations in 2026: Diligence Before You Buy',
+			description: "Burry's AI short reveals real valuation risks in tech M&A. MARC breaks down what is inflating AI earnings and what buyers must check before closing a deal.",
+		},
+		cta: {
+			title: 'Stress-Test Your Next AI Transaction Before You Close',
+			description: 'Speak with MARC\'s advisory team to stress-test your next AI transaction before you close.',
+			primaryButton: 'Speak with MARC',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `In 2008, Michael Burry famously shorted the US housing market when everyone else believed the good times would last. He was right. In late 2025, he placed his largest bet since then, this time against the AI sector.
+
+According to regulatory filings, Burry's fund, Scion Asset Management, took put option positions worth roughly $912 million against Palantir and approximately $187 million against Nvidia. A put option is simply a financial contract that profits when a stock price falls. His message was straightforward: AI companies are more expensive than their real financial performance justifies.
+
+This blog breaks down what is behind that bet, how AI companies are actually being valued today, and what MARC believes buyers need to watch before entering an AI-related deal.`,
+			sections: [
+				{
+					heading: 'The Problem Burry Is Pointing At: A Simple Explanation',
+					content: `Imagine you buy a company car for $50,000. The car will genuinely be useful for only two years before a far superior model makes it economically obsolete. Honest accounting would spread that $50,000 cost over two years, charging $25,000 as an expense each year. That $25,000 hits your profit and loss statement and reduces your reported profit accordingly.
+
+Now imagine the company instead declares on paper that the car will last six years, spreading the same $50,000 over six years and charging only $8,333 as an expense per year. The annual expense is lower, so the reported profit is higher. The cost has not disappeared. It has simply been deferred. When the car needs replacing after two years, the company faces a large bill that the income statement never adequately reflected. Investors looking at the reported profits during those two years were seeing a number that was better than economic reality.
+
+This is exactly what Burry is arguing the biggest AI companies are doing with their technology hardware. They are writing off the cost of expensive AI computing equipment over five to six years on paper, when in practice that equipment becomes economically obsolete in two to three years because new, far more powerful versions are released almost annually.
+
+According to Burry's analysis, this practice means major AI companies are understating their costs and overstating their profits by significant margins. His estimates suggest this accounting gap will amount to approximately $176 billion in understated costs across the industry between 2026 and 2028. He specifically named Oracle's profits as potentially overstated by around 27% and Meta's by around 21% by 2028.
+
+It is important to note that CNBC, having reviewed his claims, stated it was not independently able to confirm the practice was being carried out as described. GAAP accounting rules do permit companies discretion in setting depreciation schedules, so this remains a contested but serious argument.`,
+				},
+				{
+					heading: 'Why This Matters for M&A Buyers in 2026',
+					content: `This is not just an abstract accounting debate. It has a direct bearing on how AI companies are being bought and sold.
+
+Global deal value reached approximately $4.8 to $4.9 trillion in 2025, the second-highest year on record, with technology and AI deals driving a large share of that activity. Almost half of strategic technology deal value for transactions above $500 million involved AI-related companies, up from roughly one quarter in 2024.
+
+The average revenue multiple paid for AI companies in M&A transactions in 2025 was approximately 25.8x. In plain terms, buyers were paying roughly $26 for every $1 of annual revenue an AI company generated. For context, that is an exceptionally high price, justified only if the company's future profitability is genuinely strong.
+
+If the profits underpinning those valuations are inflated by the kind of accounting distortions Burry describes, acquirers are effectively paying premium prices for businesses that are not as profitable as they appear. The gap between what is written on paper and what the business actually earns will surface post-acquisition, often painfully.`,
+				},
+				{
+					heading: 'What Actually Drives AI Company Valuations: Four Key Factors',
+					content: `Understanding where the valuation premium comes from helps acquirers identify where the risk is concentrated.
+
+1. Revenue growth and customer retention. AI companies commanding premium valuations typically demonstrate not just high revenue growth but also strong customer retention, meaning customers spend more over time rather than cancelling.
+
+2. Data ownership and defensibility. The most valuable AI companies have proprietary data that competitors cannot easily replicate. If an AI company's edge depends on a dataset it owns and controls, that is a genuine moat.
+
+3. Gross margin quality. Running AI services at scale is genuinely expensive. A company can appear profitable at a small scale but see margins compress significantly as it grows, because the cost of computing power grows alongside the revenue.
+
+4. Whether the AI is real or cosmetic. This is the most important distinction in 2026. Buyers are increasingly sophisticated about distinguishing companies where AI is genuinely embedded in the core product from companies that have added an AI feature to an otherwise conventional business. The valuation differential between the two has widened to 3 to 4 times the revenue multiple.`,
+				},
+				{
+					heading: "MARC's View: Rigour Is Not Optional at These Prices",
+					content: `At 25x revenue, there is very little room for error. A business that appears profitable but carries inflated earnings from the kind of depreciation distortions Burry describes can destroy deal value quickly once a buyer integrates it and the real costs surface.
+
+MARC's position is that the current AI M&A environment rewards speed over discipline, and that discipline is precisely where value is protected or lost. Buyers who rely on headline earnings figures without normalising for accounting choices are not taking a calculated risk.
+
+The companies that will sustain their valuations over the next two to three years are those that can demonstrate genuine earnings quality, not just earnings optics. Burry may or may not be right on the precise timing of a correction.`,
+				},
+				{
+					heading: 'Where MARC Comes In',
+					content: `MARC brings Quality of Earnings discipline to AI-driven M&A, examining what is genuinely happening inside the numbers rather than accepting reported figures at face value.
+
+In every AI-related transaction, MARC's process covers:
+
+• Earnings normalisation. Reviewing depreciation policies, identifying where accounting choices inflate reported profits, and restating earnings to an economically defensible baseline.
+
+• Revenue quality review. Distinguishing between genuine recurring revenue, one-time implementation fees, and inflated top-line figures that will not repeat.
+
+• Margin stress-testing. Modelling what gross margins look like at scale, not just at the company's current size.
+
+• AI defensibility assessment. Determining whether the AI capability is genuinely proprietary or whether a well-funded competitor could replicate it within 18 months.
+
+At 25x revenue multiples, missing any one of these is not a small error. It is the difference between a value-creating acquisition and a structurally mispriced one.`,
+				},
+				{
+					heading: 'FAQs',
+					content: `What is Michael Burry's argument against AI companies?
+Burry argues that major AI companies are spreading the cost of expensive technology hardware over too many years on paper, making their profits appear higher than they actually are. He estimates this will result in approximately $176 billion in understated costs across the industry between 2026 and 2028. CNBC noted it could not independently verify this claim, but the accounting mechanism he describes is permitted under GAAP.
+
+What are companies paying for AI businesses in M&A today?
+The average revenue multiple for AI M&A transactions in 2025 was approximately 25.8x, meaning buyers paid around $26 for every $1 of annual revenue, according to Finro's January 2026 analysis. That figure reflects the significant premium investors place on AI-native companies with strong growth and defensible data advantages.
+
+What should M&A buyers check before acquiring an AI company?
+Four things matter most: whether the AI capability is genuinely embedded or cosmetic, whether reported profits reflect real economics or accounting choices, whether gross margins hold at scale, and whether customer revenue is genuinely recurring. Skipping any of these at current price levels creates material post-acquisition risk.`,
+				},
+			],
+			conclusion: `Burry's bet is not a prediction that AI fails. It is a prediction that the financial engineering currently making AI look more profitable than it is will eventually meet economic reality. Whether that correction arrives in 2026 or 2027, the direction is clear.
+
+For acquirers, the lesson is simple: the AI sector contains genuine, valuable businesses alongside a significant cohort of overstated ones. At current multiples, the analytical work to tell them apart is not a luxury. It is the job.
+
+Speak with MARC's advisory team to stress-test your next AI transaction before you close.`,
+		},
+	},
 	{
 		id: 84,
 		slug: 'from-oversight-to-advantage-how-internal-audit-drives-business-performance',
