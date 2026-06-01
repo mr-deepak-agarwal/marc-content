@@ -45,7 +45,7 @@ export async function POST(request) {
 
     // ── 2. Send notification email to the team ────────────────────────────────
     await resend.emails.send({
-      from: 'MARC Glocal <noreply@marcglocal.com>', // change after verifying your domain
+      from: 'MARC Glocal <contact@marcglocal.com>', // change after verifying your domain
       to: NOTIFY_EMAILS,
       subject: `New Lead from Website – ${name}`,
       html: `
@@ -111,7 +111,7 @@ export async function POST(request) {
 
     // ── 3. Send auto-reply to the lead ────────────────────────────────────────
     await resend.emails.send({
-      from: 'MARC Glocal <noreply@marcglocal.com>', // change after verifying your domain
+      from: 'MARC Glocal <contact@marcglocal.com>', // change after verifying your domain
       to: email,
       subject: `Thank you for reaching out, ${name}!`,
       html: `
