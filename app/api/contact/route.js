@@ -52,13 +52,11 @@ export async function POST(request) {
       return Response.json({ success: true })
     }
 
-    // ── 2. Time check (bots submit instantly) ─────────────────────────────────
-    if (formLoadedAt) {
-      const elapsed = Date.now() - Number(formLoadedAt)
-      if (elapsed < 3000) {
-        // Submitted in under 3 seconds — almost certainly a bot
-        return Response.json({ success: true })
-      }
+    // ── 2. Time check (bots submit instantly; missing = direct API call) ────────
+    const elapsed = formLoadedAt ? Date.now() - Number(formLoadedAt) : 0
+    if (elapsed < 3000) {
+      // Under 3 s or no timestamp — almost certainly a bot or raw API call
+      return Response.json({ success: true })
     }
 
     // ── 3. Rate limit by IP ───────────────────────────────────────────────────

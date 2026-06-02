@@ -7,7 +7,8 @@ import { companyInfo } from '@/data/mock'
 
 // ── Popup Form Modal ─────────────────────────────────────────────────────────
 const ContactPopup = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', mobile: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', mobile: '', message: '', website: '' })
+  const [formLoadedAt] = useState(() => Date.now())
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -32,6 +33,8 @@ const ContactPopup = ({ isOpen, onClose }) => {
           mobile: formData.mobile,
           message: formData.message,
           source_page: 'Contact Popup',
+          website: formData.website,   // honeypot — bots fill this, humans don't
+          formLoadedAt,                // time check — bots submit instantly
         }),
       })
 
@@ -39,7 +42,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
       if (!res.ok || !data.success) throw new Error(data.error || 'Failed')
 
       setSubmitted(true)
-      setFormData({ name: '', email: '', mobile: '', message: '' })
+      setFormData({ name: '', email: '', mobile: '', message: '', website: '' })
     } catch (err) {
       setError('Something went wrong. Please try again or email us directly.')
     } finally {
@@ -163,6 +166,18 @@ const ContactPopup = ({ isOpen, onClose }) => {
                     required
                     rows={4}
                     className="w-full pl-11 pr-4 py-3.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-xl text-[#1D342F] placeholder-[#47635D]/50 text-sm focus:outline-none focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 transition-all resize-none"
+                  />
+                </div>
+
+                {/* Honeypot — hidden from humans, bots will fill this */}
+                <div style={{ display: 'none' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
                 </div>
 
