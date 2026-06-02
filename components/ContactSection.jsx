@@ -149,9 +149,13 @@ const ContactPopup = ({ isOpen, onClose }) => {
                     name="mobile"
                     type="tel"
                     value={formData.mobile}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9+\-\s()]/g, '')
+                      setFormData((prev) => ({ ...prev, mobile: val }))
+                    }}
                     placeholder="Mobile Number *"
                     required
+                    maxLength={15}
                     className="w-full pl-11 pr-4 py-3.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-xl text-[#1D342F] placeholder-[#47635D]/50 text-sm focus:outline-none focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 transition-all"
                   />
                 </div>

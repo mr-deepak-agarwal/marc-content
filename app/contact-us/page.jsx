@@ -350,7 +350,11 @@ export default function ContactPage() {
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       required
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      maxLength={15}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9+\-\s()]/g, '')
+                        setFormData({...formData, phone: val})
+                      }}
                       data-testid="input-phone"
                     />
                   </div>
