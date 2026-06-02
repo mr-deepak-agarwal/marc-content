@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
+import { Turnstile } from '@marsidev/react-turnstile'
 
 import { 
   MapPin, Phone, Mail, Clock, Send, ArrowRight, Globe, ArrowUpRight,
@@ -147,6 +148,7 @@ export default function ContactPage() {
   const [selectedOffice, setSelectedOffice] = useState(0) // Default to headquarters
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState(null)
   const router = useRouter()
   const observerRefs = useRef([])
 
@@ -187,6 +189,7 @@ export default function ContactPage() {
           source_page: 'Contact Us Page',
           website: formData.website,
           formLoadedAt,
+          turnstileToken,              // Cloudflare Turnstile verification token
         }),
       })
 
@@ -404,13 +407,22 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {/* Cloudflare Turnstile */}
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken(null)}
+                  onError={() => setTurnstileToken(null)}
+                  options={{ theme: 'light', size: 'flexible' }}
+                />
+
                 {submitError && (
                   <p className="text-red-500 text-sm bg-red-50 px-4 py-3 rounded-xl">{submitError}</p>
                 )}
 
 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !turnstileToken}
                   className="w-full px-8 py-5 bg-[#4E9141] text-white text-lg font-semibold rounded-full hover:bg-[#3d7334] transition-all shadow-lg shadow-[#4E9141]/20 hover:shadow-xl flex items-center justify-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed"
                   data-testid="submit-btn"
                 >

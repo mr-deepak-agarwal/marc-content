@@ -42,9 +42,36 @@ export async function POST(request) {
     const {
       name, email, mobile, message, company, service, source_page,
       // Anti-spam fields
-      website,       // honeypot — must be empty
-      formLoadedAt,  // timestamp when form loaded
+      website,          // honeypot — must be empty
+      formLoadedAt,     // timestamp when form loaded
+      turnstileToken,   // Cloudflare Turnstile token
     } = body
+
+    // ── 0. Cloudflare Turnstile verification ──────────────────────────────────
+    if (!turnstileToken) {
+      return Response.json(
+        { success: false, error: 'Bot verification missing. Please complete the challenge.' },
+        { status: 400 }
+      )
+    }
+    const turnstileRes = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          secret: process.env.TURNSTILE_SECRET_KEY,
+          response: turnstileToken,
+        }),
+      }
+    )
+    const turnstileData = await turnstileRes.json()
+    if (!turnstileData.success) {
+      return Response.json(
+        { success: false, error: 'Bot verification failed. Please try again.' },
+        { status: 400 }
+      )
+    }
 
     // ── 1. Honeypot check ─────────────────────────────────────────────────────
     if (website && website.trim() !== '') {

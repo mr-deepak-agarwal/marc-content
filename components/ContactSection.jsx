@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { Send, MapPin, Phone, Mail, ArrowRight, X, User, AtSign, Smartphone, MessageSquare, CheckCircle2, Loader2 } from 'lucide-react'
+import { Turnstile } from '@marsidev/react-turnstile'
 import { companyInfo } from '@/data/mock'
 
 
@@ -12,6 +13,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState(null)
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -35,6 +37,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
           source_page: 'Contact Popup',
           website: formData.website,   // honeypot — bots fill this, humans don't
           formLoadedAt,                // time check — bots submit instantly
+          turnstileToken,              // Cloudflare Turnstile verification token
         }),
       })
 
@@ -181,13 +184,22 @@ const ContactPopup = ({ isOpen, onClose }) => {
                   />
                 </div>
 
+                {/* Cloudflare Turnstile */}
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken(null)}
+                  onError={() => setTurnstileToken(null)}
+                  options={{ theme: 'light', size: 'flexible' }}
+                />
+
                 {error && (
                   <p className="text-red-500 text-sm bg-red-50 px-4 py-2 rounded-lg">{error}</p>
                 )}
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !turnstileToken}
                   className="w-full py-4 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
