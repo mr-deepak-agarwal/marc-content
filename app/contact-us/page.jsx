@@ -141,7 +141,8 @@ const quickInfo = [
 ]
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', service: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', service: '', message: '', website: '' })
+  const [formLoadedAt] = useState(() => Date.now())
   const [isVisible, setIsVisible] = useState({})
   const [selectedOffice, setSelectedOffice] = useState(0) // Default to headquarters
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -184,13 +185,15 @@ export default function ContactPage() {
           service: formData.service,
           message: formData.message,
           source_page: 'Contact Us Page',
+          website: formData.website,
+          formLoadedAt,
         }),
       })
 
       const data = await res.json()
       if (!res.ok || !data.success) throw new Error(data.error || 'Failed')
 
-      setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' })
+      setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '', website: '' })
       router.push('/thank-you')
     } catch (err) {
       console.error('Unexpected error:', err)
@@ -386,6 +389,18 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     data-testid="input-message"
+                  />
+                </div>
+
+                {/* Honeypot — hidden from humans, bots will fill this */}
+                <div style={{ display: 'none' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={(e) => setFormData({...formData, website: e.target.value})}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
                 </div>
 

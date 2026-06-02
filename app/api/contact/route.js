@@ -3,7 +3,7 @@ import { Resend } from 'resend'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY  // use service role key on server side
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 )
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -14,12 +14,82 @@ const NOTIFY_EMAILS = [
   'digitalinfusive@gmail.com',
 ]
 
+// ── In-memory rate limiter (resets on cold start, good enough for edge bots) ──
+const rateLimitMap = new Map()
+
+function isRateLimited(ip) {
+  const now = Date.now()
+  const windowMs = 15 * 60 * 1000 // 15 minutes
+  const maxRequests = 3
+
+  const record = rateLimitMap.get(ip) || { count: 0, start: now }
+
+  // Reset window if expired
+  if (now - record.start > windowMs) {
+    rateLimitMap.set(ip, { count: 1, start: now })
+    return false
+  }
+
+  if (record.count >= maxRequests) return true
+
+  rateLimitMap.set(ip, { count: record.count + 1, start: record.start })
+  return false
+}
+
 export async function POST(request) {
   try {
     const body = await request.json()
-    const { name, email, mobile, message, company, service, source_page } = body
+    const {
+      name, email, mobile, message, company, service, source_page,
+      // Anti-spam fields
+      website,       // honeypot — must be empty
+      formLoadedAt,  // timestamp when form loaded
+    } = body
 
-    // ── 1. Save to Supabase ───────────────────────────────────────────────────
+    // ── 1. Honeypot check ─────────────────────────────────────────────────────
+    if (website && website.trim() !== '') {
+      // Bot filled the hidden field — silently accept (don't tip off bots)
+      return Response.json({ success: true })
+    }
+
+    // ── 2. Time check (bots submit instantly) ─────────────────────────────────
+    if (formLoadedAt) {
+      const elapsed = Date.now() - Number(formLoadedAt)
+      if (elapsed < 3000) {
+        // Submitted in under 3 seconds — almost certainly a bot
+        return Response.json({ success: true })
+      }
+    }
+
+    // ── 3. Rate limit by IP ───────────────────────────────────────────────────
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown'
+
+    if (isRateLimited(ip)) {
+      return Response.json(
+        { success: false, error: 'Too many submissions. Please try again later.' },
+        { status: 429 }
+      )
+    }
+
+    // ── 4. Basic field validation ─────────────────────────────────────────────
+    if (!name || !email || !mobile || !message) {
+      return Response.json(
+        { success: false, error: 'Missing required fields.' },
+        { status: 400 }
+      )
+    }
+
+    // Reject obviously fake names/emails (all random chars, no spaces or dots)
+    const looksLikeName = /^[a-zA-Z\s'-]{2,}$/.test(name.trim())
+    const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())
+    if (!looksLikeName || !looksLikeEmail) {
+      return Response.json({ success: true }) // silent reject
+    }
+
+    // ── 5. Save to Supabase ───────────────────────────────────────────────────
     const fullMessage = [
       message,
       company ? `Company: ${company}` : '',
@@ -43,9 +113,9 @@ export async function POST(request) {
       return Response.json({ success: false, error: 'Database error' }, { status: 500 })
     }
 
-    // ── 2. Send notification email to the team ────────────────────────────────
+    // ── 6. Send notification email to the team ────────────────────────────────
     await resend.emails.send({
-      from: 'MARC Glocal <contact@marcglocal.com>', // change after verifying your domain
+      from: 'MARC Glocal <contact@marcglocal.com>',
       to: NOTIFY_EMAILS,
       subject: `New Lead from Website – ${name}`,
       html: `
@@ -105,13 +175,12 @@ export async function POST(request) {
           </p>
         </div>
       `,
-      // Makes "Reply" in Gmail go directly to the lead
       replyTo: email,
     })
 
-    // ── 3. Send auto-reply to the lead ────────────────────────────────────────
+    // ── 7. Send auto-reply to the lead ────────────────────────────────────────
     await resend.emails.send({
-      from: 'MARC Glocal <contact@marcglocal.com>', // change after verifying your domain
+      from: 'MARC Glocal <contact@marcglocal.com>',
       to: email,
       subject: `Thank you for reaching out, ${name}!`,
       html: `
