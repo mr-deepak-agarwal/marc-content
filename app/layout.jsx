@@ -44,6 +44,13 @@ export default function RootLayout({ children }) {
     <html lang="en" className={poppins.variable}>
     <body className="antialiased font-sans">
       <GoogleAnalytics gaId="G-Z54096J7T3" />
+      <script id="gtag-phone-conversion" strategy="afterInteractive">
+        {`
+          gtag('config', 'AW-928957158/CFbwCOnJubccEOaF-7oD', {
+            'phone_conversion_number': '+91 93596 28675'
+          });
+        `}
+      </script>
       <LoadingProvider>
         <RouteLoader />
         <Header />
