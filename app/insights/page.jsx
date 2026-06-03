@@ -211,7 +211,7 @@ const insights = [
 {
   title: "Electronic Manufacturing Services (EMS)",
   category: "other",
-  image: "/images/insights/ems_report_2026.png",
+  image: "/images/insights/ems2026.png",
   date: "May 2026",
   downloads: "0",
   readTime: "10 min read",
