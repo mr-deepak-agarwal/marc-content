@@ -209,9 +209,21 @@ const categories = [
 
 const insights = [
 {
+  title: "The Rise in Destination Weddings and its Impact on Hotels",
+  category: "other",
+  image: "/images/insights/destinationwedding.png",
+  date: "May 2026",
+  downloads: "0",
+  readTime: "10 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "The Rise in Destination Weddings and its Impact on Hotels"
+},
+{
   title: "Education Sector",
   category: "other",
-  image: "/images/insights/educationsector.png",
+  image: "/images/insights/educationsector2026.png",
   date: "May 2026",
   downloads: "0",
   readTime: "10 min read",
