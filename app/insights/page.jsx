@@ -209,9 +209,21 @@ const categories = [
 
 const insights = [
 {
+  title: "Electronic Manufacturing Services (EMS)",
+  category: "other",
+  image: "/images/insights/ems_report_2026.png",
+  date: "May 2026",
+  downloads: "0",
+  readTime: "10 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "Marc Insights on EMS 2026"
+},
+{
   title: "The Rise in Destination Weddings and its Impact on Hotels",
   category: "other",
-  image: "/images/insights/destinationwedding.png",
+  image: "/images/insights/destinationwedding2026.png",
   date: "May 2026",
   downloads: "0",
   readTime: "10 min read",
