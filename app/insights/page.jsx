@@ -198,7 +198,7 @@ const getPdfFilename = (title) => {
 }
 
 const categories = [
- { id: 'all', label: 'All Reports', count: 77 },
+ { id: 'all', label: 'All Reports', count: 82 },
  { id: 'healthcare', label: 'Healthcare', count: 11 },
  { id: 'hospitality', label: 'Hospitality', count: 13 },
  { id: 'manufacturing', label: 'Manufacturing', count: 15 },
