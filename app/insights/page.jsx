@@ -208,6 +208,42 @@ const categories = [
 ]
 
 const insights = [
+{
+  title: "Education Sector",
+  category: "other",
+  image: "/images/insights/educationsector.png",
+  date: "May 2026",
+  downloads: "0",
+  readTime: "10 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "A comprehensive analysis of India's education sector."
+},
+{
+  title: "Healthcare Sector",
+  category: "other",
+  image: "/images/insights/healthcare2026.png",
+  date: "May 2026",
+  downloads: "0",
+  readTime: "10 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "A comprehensive analysis of India's healthcare sector."
+},
+{
+  title: "Indian Gaming Industry",
+  category: "other",
+  image: "/images/insights/games.png",
+  date: "May 2026",
+  downloads: "0",
+  readTime: "10 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "A comprehensive analysis of India's gaming market — covering market size growth to INR 1,91,000 Cr by 2034, key segments (mobile, PC & console, esports), monetization frameworks, the PROG Act 2025 regulatory environment, emerging technologies, and competitive landscape featuring Nazara, Dream11, and MPL."
+},
  {
  title: "India's Logistics & Warehousing Expansion: Goa's Growth Driven by Verna",
  category: "manufacturing",
