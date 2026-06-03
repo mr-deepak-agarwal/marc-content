@@ -209,7 +209,7 @@ const categories = [
 
 const insights = [
 {
-  title: "Electronic Manufacturing Services (EMS)",
+  title: "Electronic Manufacturing Services 2026",
   category: "other",
   image: "/images/insights/ems2026.png",
   date: "May 2026",
@@ -233,7 +233,7 @@ const insights = [
   excerpt: "The Rise in Destination Weddings and its Impact on Hotels"
 },
 {
-  title: "Education Sector",
+  title: "Education Sector 2026",
   category: "other",
   image: "/images/insights/educationsector2026.png",
   date: "May 2026",
@@ -245,7 +245,7 @@ const insights = [
   excerpt: "A comprehensive analysis of India's education sector."
 },
 {
-  title: "Healthcare Sector",
+  title: "Healthcare Sector 2026",
   category: "other",
   image: "/images/insights/healthcare2026.png",
   date: "May 2026",
@@ -257,7 +257,7 @@ const insights = [
   excerpt: "A comprehensive analysis of India's healthcare sector."
 },
 {
-  title: "Indian Gaming Industry",
+  title: "Indian Gaming Industry 2026",
   category: "other",
   image: "/images/insights/games.png",
   date: "May 2026",
