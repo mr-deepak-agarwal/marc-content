@@ -209,6 +209,17 @@ const categories = [
 
 const insights = [
 {
+  title: "From Batteries to World Domination",
+  category: "other",
+  image: "/images/insights/byd.png",
+  date: "June 2026",
+  downloads: "0",
+  readTime: "11 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "How BYD Went from a Shenzhen Workshop to the World's #1 Electric Vehicle Maker Company "
+},{
   title: "Electronic Manufacturing Services 2026",
   category: "other",
   image: "/images/insights/ems2026.png",
