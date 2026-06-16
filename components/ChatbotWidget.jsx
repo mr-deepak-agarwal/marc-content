@@ -93,12 +93,34 @@ export default function ChatbotWidget() {
  setStepIdx(nextIdx)
  pushBot(interpolate(steps[nextIdx].question, newData))
  } else {
- // All collected ask WhatsApp
+ // All collected — save to backend then ask WhatsApp
+ submitToBackend(newData)
  setPhase('whatsapp')
  pushBot(
  `Thanks ${newData.name}! 🎉 We've got your details and someone from ${COMPANY_NAME} will be in touch.\n\nWould you also like to connect with us directly on WhatsApp for a faster response?`,
  800
  )
+ }
+ }
+
+ async function submitToBackend(data) {
+ try {
+ await fetch('/api/contact', {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+ name: data.name,
+ email: data.email,
+ mobile: data.phone,
+ message: `Chatbot enquiry from ${data.name} at ${data.company}.`,
+ company: data.company,
+ source_page: 'Chatbot Widget',
+ formLoadedAt: Date.now() - 5000, // satisfies the 3 s time-check
+ }),
+ })
+ } catch (err) {
+ // Silently fail — don't disrupt the chat UX
+ console.error('Chatbot submit error:', err)
  }
  }
 

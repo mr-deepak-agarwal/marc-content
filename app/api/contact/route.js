@@ -42,36 +42,9 @@ export async function POST(request) {
     const {
       name, email, mobile, message, company, service, source_page,
       // Anti-spam fields
-      website,          // honeypot — must be empty
-      formLoadedAt,     // timestamp when form loaded
-      turnstileToken,   // Cloudflare Turnstile token
+      website,       // honeypot — must be empty
+      formLoadedAt,  // timestamp when form loaded
     } = body
-
-    // ── 0. Cloudflare Turnstile verification ──────────────────────────────────
-    if (!turnstileToken) {
-      return Response.json(
-        { success: false, error: 'Bot verification missing. Please complete the challenge.' },
-        { status: 400 }
-      )
-    }
-    const turnstileRes = await fetch(
-      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          secret: process.env.TURNSTILE_SECRET_KEY,
-          response: turnstileToken,
-        }),
-      }
-    )
-    const turnstileData = await turnstileRes.json()
-    if (!turnstileData.success) {
-      return Response.json(
-        { success: false, error: 'Bot verification failed. Please try again.' },
-        { status: 400 }
-      )
-    }
 
     // ── 1. Honeypot check ─────────────────────────────────────────────────────
     if (website && website.trim() !== '') {
@@ -138,16 +111,25 @@ export async function POST(request) {
       return Response.json({ success: false, error: 'Database error' }, { status: 500 })
     }
 
+    const isChatbot = source_page === 'Chatbot Widget'
+
     // ── 6. Send notification email to the team ────────────────────────────────
     await resend.emails.send({
       from: 'MARC Glocal <contact@marcglocal.com>',
       to: NOTIFY_EMAILS,
-      subject: `New Lead from Website – ${name}`,
+      subject: isChatbot
+        ? `💬 New Chatbot Lead – ${name} (${company || 'Unknown Company'})`
+        : `New Lead from Website – ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e0e0e0; border-radius: 8px;">
           <h2 style="color: #1D342F; border-bottom: 2px solid #4E9141; padding-bottom: 12px; margin-top: 0;">
-            New Contact Form Submission
+            ${isChatbot ? '💬 New Chatbot Enquiry' : 'New Contact Form Submission'}
           </h2>
+
+          ${isChatbot ? `
+          <div style="margin-bottom: 16px; padding: 10px 14px; background: #EAF5E6; border-left: 4px solid #4E9141; border-radius: 4px; font-size: 13px; color: #1D342F;">
+            This lead came through the <strong>chatbot widget</strong> on the website.
+          </div>` : ''}
 
           <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
             <tr>
@@ -207,17 +189,27 @@ export async function POST(request) {
     await resend.emails.send({
       from: 'MARC Glocal <contact@marcglocal.com>',
       to: email,
-      subject: `Thank you for reaching out, ${name}!`,
+      subject: isChatbot
+        ? `Great speaking with you, ${name}! We'll be in touch soon.`
+        : `Thank you for reaching out, ${name}!`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e0e0e0; border-radius: 8px;">
           <h2 style="color: #1D342F; border-bottom: 2px solid #4E9141; padding-bottom: 12px; margin-top: 0;">
-            We've received your message
+            ${isChatbot ? "Thanks for chatting with us! 👋" : "We've received your message"}
           </h2>
 
           <p style="color: #1D342F; line-height: 1.6;">Dear ${name},</p>
+          ${isChatbot ? `
+          <p style="color: #1D342F; line-height: 1.6;">
+            It was great connecting with you through our chat! We've saved your details and a member of the MARC Glocal team will reach out to you within <strong>1–2 business days</strong>.
+          </p>
+          <p style="color: #1D342F; line-height: 1.6;">
+            If you'd like to get in touch sooner, feel free to WhatsApp us or drop an email at
+            <a href="mailto:contact@marcglocal.com" style="color: #4E9141;">contact@marcglocal.com</a>.
+          </p>` : `
           <p style="color: #1D342F; line-height: 1.6;">
             Thank you for contacting MARC Glocal. We have received your enquiry and our team will get back to you within <strong>1–2 business days</strong>.
-          </p>
+          </p>`}
           <p style="color: #1D342F; line-height: 1.6;">
             In the meantime, feel free to explore our services at
             <a href="https://marcglocal.com" style="color: #4E9141;">marcglocal.com</a>.
