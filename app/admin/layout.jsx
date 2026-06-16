@@ -1,11 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { MessageSquare, FileDown, ChevronRight } from 'lucide-react'
+import { MessageSquare, FileDown, ChevronRight, Bot } from 'lucide-react'
 
 const NAV = [
   { key: 'contacts', label: 'Contact Submissions', icon: MessageSquare },
-  { key: 'reports',  label: 'Reports Download',    icon: FileDown },
+  { key: 'chatbot',  label: 'Chatbot Submissions',  icon: Bot },
+  { key: 'reports',  label: 'Reports Download',     icon: FileDown },
 ]
 
 export default function AdminLayout({ children }) {

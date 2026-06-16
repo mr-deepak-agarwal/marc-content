@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import {
   LogOut, RefreshCw, Mail, Phone, MessageSquare, Building2,
-  Search, Eye, X, Lock, User, Loader2, FileDown
+  Search, Eye, X, Lock, User, Loader2, FileDown, Bot
 } from 'lucide-react'
 
 
@@ -197,8 +197,11 @@ const TopBar = ({ title, icon: Icon, onRefresh, onLogout }) => (
   </header>
 )
 
-// ── Contacts View ─────────────────────────────────────────────────────────────
-const ContactsView = ({ onLogout }) => {
+// ── Contacts Table View ───────────────────────────────────────────────────────
+// Shared by "Contact Submissions" and "Chatbot Submissions" — both read from the
+// same contact_requests table, distinguished only by the source_page column.
+// sourceFilter(sp) decides whether a row belongs in this particular view.
+const ContactsTableView = ({ onLogout, title, icon: Icon, emptyLabel, sourceFilter }) => {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -208,7 +211,7 @@ const ContactsView = ({ onLogout }) => {
   const fetch = async () => {
     setLoading(true)
     const { data } = await supabase.from('contact_requests').select('*').order('created_at', { ascending: false })
-    setRows(data ?? [])
+    setRows((data ?? []).filter((s) => sourceFilter(s.source_page)))
     setLoading(false)
   }
   useEffect(() => { fetch() }, [])
@@ -235,7 +238,7 @@ const ContactsView = ({ onLogout }) => {
   return (
     <div className="min-h-screen">
       <ContactModal entry={selected} onClose={() => setSelected(null)} onStatusChange={updateStatus} />
-      <TopBar title="Contact Submissions" icon={MessageSquare} onRefresh={fetch} onLogout={onLogout} />
+      <TopBar title={title} icon={Icon} onRefresh={fetch} onLogout={onLogout} />
 
       <div className="px-6 py-8">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
@@ -275,8 +278,8 @@ const ContactsView = ({ onLogout }) => {
             <div className="flex items-center justify-center py-20"><Loader2 className="w-8 h-8 text-[#4E9141] animate-spin" /></div>
           ) : filtered.length === 0 ? (
             <div className="text-center py-20 text-[#47635D]">
-              <MessageSquare className="w-10 h-10 mx-auto mb-3 opacity-30" />
-              <p className="font-medium">No submissions found</p>
+              <Icon className="w-10 h-10 mx-auto mb-3 opacity-30" />
+              <p className="font-medium">{emptyLabel}</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -315,6 +318,28 @@ const ContactsView = ({ onLogout }) => {
     </div>
   )
 }
+
+// ── Contact Submissions (direct site enquiries — excludes chatbot leads) ───────
+const ContactsView = ({ onLogout }) => (
+  <ContactsTableView
+    onLogout={onLogout}
+    title="Contact Submissions"
+    icon={MessageSquare}
+    emptyLabel="No submissions found"
+    sourceFilter={(sp) => sp !== 'Chatbot Widget'}
+  />
+)
+
+// ── Chatbot Submissions (leads captured by the ChatbotWidget) ──────────────────
+const ChatbotView = ({ onLogout }) => (
+  <ContactsTableView
+    onLogout={onLogout}
+    title="Chatbot Submissions"
+    icon={Bot}
+    emptyLabel="No chatbot leads yet"
+    sourceFilter={(sp) => sp === 'Chatbot Widget'}
+  />
+)
 
 // ── Reports View ──────────────────────────────────────────────────────────────
 // Reads from report_downloads table: id, name, email, mobile, company, report_name, downloaded_at
@@ -426,6 +451,8 @@ const Dashboard = ({ onLogout }) => {
 
   return section === 'reports'
     ? <ReportsView onLogout={onLogout} />
+    : section === 'chatbot'
+    ? <ChatbotView onLogout={onLogout} />
     : <ContactsView onLogout={onLogout} />
 }
 
