@@ -40,6 +40,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/contact',
+        destination: '/contact-us',
+        permanent: true,
+      },
+      {
         source: '/marc-team',
         destination: '/about-us',
         permanent: true,
