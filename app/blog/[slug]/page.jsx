@@ -212,16 +212,16 @@ export default function BlogDetailPage() {
               </p>
               {section.downloadLink && (
                 <a
-                href={section.downloadLink.href}
-                download
-                className="inline-flex items-center gap-3 mt-6 px-6 py-4 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-all"
+                  href={section.downloadLink.href}
+                  download
+                  className="inline-flex items-center gap-3 mt-6 px-6 py-4 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-all"
                 >
-                <Download className="w-5 h-5" />
-                {section.downloadLink.label}
+                  <Download className="w-5 h-5" />
+                  {section.downloadLink.label}
                 </a>
                 )}
-              </div>
-              ))}
+            </div>
+            ))}
 
           {/* Conclusion */}
           <div className="mb-12 p-8 bg-[#F7FFF5] rounded-2xl border-l-4 border-[#4E9141]">
@@ -270,83 +270,91 @@ export default function BlogDetailPage() {
             </div>
           </div>
           <div className="flex flex-wrap gap-4 mt-6">
-            <Link
+            <a>
+             href={cta.primaryLink ?? '/contact-us'}
+             target="_blank"
+             rel="noopener noreferrer"
+             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#4E9141] rounded-xl font-semibold hover:bg-gray-50 transition-all">
+             {cta.primaryButton}
+             <ChevronRight className="w-5 h-5" />
+           </a>
+            {/*<Link
               href={cta.primaryLink ?? '/contact-us'}
               target={cta.primaryLink ? '_blank' : undefined}
               rel={cta.primaryLink ? 'noopener noreferrer' : undefined}
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#4E9141] rounded-xl font-semibold hover:bg-gray-50 transition-all">
               {cta.primaryButton}
               <ChevronRight className="w-5 h-5" />
-            </Link>
+            </Link>*/}
 {/*            <button className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white border-2 border-white/30 rounded-xl font-semibold hover:bg-white/20 transition-all">
               <Download className="w-5 h-5" />
               {cta.secondaryButton}
             </button>*/}
-          </div>
-        </div>
-      </div>
-      </article>
+         </div>
+       </div>
+     </div>
+   </article>
 
     {/* Related Articles */}
-    {relatedPosts.length > 0 && (
-      <section className="bg-[#F7FFF5] py-16 border-t border-gray-100">
+   {relatedPosts.length > 0 && (
+    <section className="bg-[#F7FFF5] py-16 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6">
-      <div className="flex items-center justify-between mb-8">
-      <h2 className="text-3xl font-bold text-[#1D342F]">Related Articles</h2>
-      <Link href="/blog" className="text-[#4E9141] font-medium hover:underline flex items-center gap-2">
-      View all articles <ChevronRight className="w-5 h-5" />
-      </Link>
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold text-[#1D342F]">Related Articles</h2>
+          <Link href="/blog" className="text-[#4E9141] font-medium hover:underline flex items-center gap-2">
+          View all articles <ChevronRight className="w-5 h-5" />
+        </Link>
       </div>
       <div className="grid md:grid-cols-3 gap-6">
-      {relatedPosts.map(article => (
-        <Link key={article.id} href={`/blog/${article.slug}`}
-        className="group bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#4E9141]/40 hover:shadow-lg transition-all">
-        <div className="relative aspect-[16/10] overflow-hidden">
-        <img src={article.image} alt={article.title}
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-        </div>
-        <div className="p-6">
-        <div className="flex items-center gap-3 text-xs text-[#47635D] mb-3">
-        <span className="px-2 py-1 bg-[#F7FFF5] text-[#4E9141] rounded uppercase font-medium">
-        {article.category.replace('-', ' ')}
-        </span>
-        <span>{article.date}</span>
-        <span>·</span>
-        <span>{article.readTime}</span>
-        </div>
-        <h3 className="font-semibold text-[#1D342F] group-hover:text-[#4E9141] transition-colors line-clamp-2">
-        {article.title}
-        </h3>
-        </div>
-        </Link>
-        ))}
-        </div>
-        </div>
-        </section>
-        )}
+        {relatedPosts.map(article => (
+          <Link key={article.id} href={`/blog/${article.slug}`}
+            className="group bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#4E9141]/40 hover:shadow-lg transition-all">
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <img src={article.image} alt={article.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 text-xs text-[#47635D] mb-3">
+                  <span className="px-2 py-1 bg-[#F7FFF5] text-[#4E9141] rounded uppercase font-medium">
+                    {article.category.replace('-', ' ')}
+                  </span>
+                  <span>{article.date}</span>
+                  <span>·</span>
+                  <span>{article.readTime}</span>
+                </div>
+                <h3 className="font-semibold text-[#1D342F] group-hover:text-[#4E9141] transition-colors line-clamp-2">
+                  {article.title}
+                </h3>
+              </div>
+            </Link>
+            ))}
+      </div>
+    </div>
+  </section>
+  )}
 
       {/* Newsletter */}
-      <section className="bg-white py-16">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+   <section className="bg-white py-16">
+    <div className="max-w-4xl mx-auto px-6 text-center">
       <div className="w-16 h-16 bg-[#4E9141] rounded-2xl flex items-center justify-center mx-auto mb-6">
-      <Mail className="w-8 h-8 text-white" />
-    </div>
-    <h2 className="text-3xl font-bold text-[#1D342F] mb-4">Never Miss an Insight</h2>
-    <p className="text-lg text-[#47635D] mb-8">
-    Get expert analysis, industry trends, and exclusive insights delivered to your inbox every week.
-  </p>
-  <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-    <input type="email" placeholder="Enter your email"
-      className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none" />
-      <button className="px-6 py-3 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-colors">
-        Subscribe
-      </button>
-    </div>
-    <p className="text-sm text-[#47635D] mt-4">Join 10,000+ professionals. Unsubscribe anytime.</p>
-  </div>
-</section>
+        <Mail className="w-8 h-8 text-white" />
+      </div>
+      <h2 className="text-3xl font-bold text-[#1D342F] mb-4">Never Miss an Insight</h2>
+      <p className="text-lg text-[#47635D] mb-8">
+        Get expert analysis, industry trends, and exclusive insights delivered to your inbox every week.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+        <input type="email" placeholder="Enter your email"
+          className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:border-[#4E9141] focus:ring-2 focus:ring-[#4E9141]/10 focus:outline-none" />
+          <button className="px-6 py-3 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-colors">
+            Subscribe
+          </button>
+        </div>
+        <p className="text-sm text-[#47635D] mt-4">Join 10,000+ professionals. Unsubscribe anytime.</p>
+      </div>
+    </section>
 
-<Footer />
-</div>
-)
+    <Footer />
+  </div>
+  )
 }
