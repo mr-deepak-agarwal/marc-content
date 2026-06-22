@@ -270,7 +270,7 @@ export default function BlogDetailPage() {
             </div>
           </div>
           <div className="flex flex-wrap gap-4 mt-6">
-            <a>
+            <a
              href={cta.primaryLink ?? '/contact-us'}
              target="_blank"
              rel="noopener noreferrer"
