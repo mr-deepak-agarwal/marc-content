@@ -3,12 +3,12 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 86 },
+	{ id: 'all', label: 'All', count: 87 },
 	{ id: 'finance', label: 'Finance', count: 24 },
 	{ id: 'market-research', label: 'Market Research', count: 17 },
 	{ id: 'strategy', label: 'Strategy', count: 16 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
-	{ id: 'industry', label: 'Industry', count: 13 },
+	{ id: 'industry', label: 'Industry', count: 14 },
 	{ id: 'entrepreneurship', label: 'Entrepreneurship', count: 6 },
 ]
 
@@ -18,6 +18,84 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 87,
+		slug: 'dawn-of-urban-mining-india-lib-recycling-market',
+		title: "The Dawn of Urban Mining: Why India's LiB Recycling Market Is Set for Explosive Growth",
+		excerpt: `Battery demand is set to rise fivefold by 2030. The waste it leaves behind is the next strategic resource. India imported nearly USD 2.8 billion of lithium-ion batteries in 2023 — yet it is on track to generate roughly 128 GWh of end-of-life batteries by 2030. India is paying a premium to import the very minerals it is preparing to throw away. That gap is the opportunity.`,
+		category: 'industry',
+		categoryLabel: 'Industry',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Strategy',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'June 2026',
+		readTime: '6 min read',
+		image: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['Industry', 'Battery Recycling', 'Urban Mining', 'EV', 'Critical Minerals', 'India'],
+		seo: {
+			title: "The Dawn of Urban Mining: Why India's LiB Recycling Market Is Set for Explosive Growth",
+			description: "India's lithium-ion battery recycling market is set to grow at 9–18% CAGR. Discover why urban mining is shifting from an environmental footnote to a supply-security strategy — and where the investable opportunity lies.",
+		},
+		cta: {
+			title: 'Size the Opportunity and Structure Your Entry',
+			description: 'Speak with MARC to size the opportunity and structure your entry into India\'s battery recycling market.',
+			primaryButton: 'Speak with MARC',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `India imported nearly USD 2.8 billion of lithium-ion batteries in 2023, up from USD 385 million in 2019. The country buys almost all of its lithium, cobalt, and nickel from abroad, yet it is on track to generate roughly 128 GWh of end-of-life batteries by 2030. India is paying a premium to import the very minerals it is preparing to throw away. That gap is the opportunity.
+
+The demand curve is steep. NITI Aayog projects annual lithium-ion battery demand rising from about 40 GWh in 2025 to roughly 210 GWh by 2030, driven by electric vehicles, grid storage, and industrial use. Every gigawatt-hour deployed today becomes recyclable feedstock tomorrow. Urban mining — the recovery of critical minerals from spent batteries and e-waste — is shifting from an environmental footnote to a supply-security strategy.`,
+			sections: [
+				{
+					heading: '1. The Recycling Market Is Scaling Faster Than the Headlines Suggest',
+					content: `India's battery recycling market is estimated at USD 152.7 million in 2025, growing at a 9.1% CAGR to USD 235.6 million by 2030. Forecasts that isolate the lithium-ion segment run hotter still. Inkwood Research pegs the broader market near USD 532 million in 2026, expanding at almost 18% annually. The spread reflects an immature market, not a weak one.
+
+What this means: the headline numbers are small today precisely because the feedstock wave has not yet arrived. The investable window is now, ahead of the volume.`,
+				},
+				{
+					heading: '2. Policy Has Turned Recycling Into a Mandate, Not a Choice',
+					content: `The Battery Waste Management Rules 2022 introduced Extended Producer Responsibility, making manufacturers accountable for end-of-life collection and recycling. The framework has already routed about 15,370 tonnes of lithium-ion waste into formal recycling. The Union Budget 2025-26 removed basic customs duty on lithium-ion battery scrap and critical-mineral waste, cutting feedstock costs, while the National Critical Minerals Mission positions recycling as a primary sourcing strategy alongside mining.
+
+What this means: regulation is creating guaranteed demand and subsidised supply at the same time. That combination is rare.`,
+				},
+				{
+					heading: '3. The Economics Favour Domestic Value Addition',
+					content: `Modern hydrometallurgical plants recover 85% to 95% of lithium, cobalt, and nickel from black mass. Recycled content could meet 15% to 25% of India's cobalt and nickel demand by 2035. The catch: India still exports an estimated 3,000 to 5,000 tonnes of black mass annually because domestic refining capacity lags collection. The government is weighing export curbs to force value addition at home.
+
+What this means: the margin sits in refining, not collection. Capital that builds end-to-end capacity will capture the spread.`,
+				},
+				{
+					heading: 'Four Forces Driving the Urban Mining Thesis',
+					content: `• Supply security. Every kilogram of lithium recovered domestically is a kilogram India does not import, cutting forex outflow and strategic exposure.
+
+• A feedstock wave. Roughly 128 GWh of end-of-life batteries by 2030 creates a structural, recurring raw-material stream that mining cannot match for predictability.
+
+• Consolidation underway. Lohum (~20,000 TPA), Attero (~17,500 TPA), and Rubamin (~10,000 TPA) anchor roughly 60,000 TPA of capacity, signalling an early-mover, scale-driven market.
+
+• A low base. Globally only 5% to 10% of lithium-ion batteries are recycled, leaving substantial headroom as collection formalises.`,
+				},
+				{
+					heading: 'Where MARC Comes In',
+					content: `Explosive markets reward disciplined entry, not enthusiasm. MARC helps investors, recyclers, and corporates separate the recoverable economics from the hype.
+
+• Market sizing and segmentation that reconcile conflicting third-party forecasts into a defensible view of addressable feedstock and revenue.
+
+• Entry and partnership strategy across collection, black-mass processing, and refining, mapped to where margin actually accrues.
+
+• Financial model validation and Quality of Earnings analysis to test recovery-rate, capex, and commodity-price assumptions before capital commits.
+
+• Investor-ready CIM and narrative development for recyclers raising growth capital in a policy-driven sector.
+
+In a market where feedstock timing, refining capacity, and regulation move quarterly, assumptions decide returns. MARC stress-tests them.`,
+				},
+			],
+			conclusion: `India's mineral self-reliance will be built as much in recycling plants as in mines. The capital that moves while the feedstock wave is still forming — and that builds refining depth rather than chasing collection volume — will own the next decade of urban mining. Those who wait for the market to look obvious will pay mining prices for what recyclers already recover.
+
+Speak with MARC to size the opportunity and structure your entry into India's battery recycling market.`,
+		},
+	},
 	{
 		id: 86,
 		slug: 'internal-audit-compliance-to-business-advantage',
