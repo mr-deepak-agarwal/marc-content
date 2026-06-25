@@ -12,5 +12,5 @@ export const metadata = {
 }
 
 export default function VyaparPage() {
-  return <MsmePage />
+  return <MARCVyaparPage />
 }
