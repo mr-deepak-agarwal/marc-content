@@ -1,17 +1,36 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  Activity,
+  TrendingUp,
+  Settings,
+  IndianRupee,
+  Users,
+  ArrowRight,
+  ArrowLeft,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 
 // In production: set NEXT_PUBLIC_GEMINI_API_KEY in Vercel env vars
-// For this demo: paste your key below temporarily
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "YOUR_GEMINI_KEY_HERE";
 
+/* ────────────────────────────────────────────────────────────────────────
+   MARC brand palette (from tailwind.config.js → theme.colors.marc)
+   Deep green #1B5E20 / mid #2E7D32 / bright #4E9141 / light #81C784
+   Turquoise #5D9F94, turquoise-1 #287565, deep-turquoise #1D342F
+   Saffron #FF9933, warm neutral #F7FFF5
+   Four dimensions get four distinct, brand-native accent colors instead
+   of generic blue/purple/red — same approach as your real services grid,
+   just enough separation to read on a chart, never decorative.
+   ──────────────────────────────────────────────────────────────────────── */
 const SECTIONS = [
   {
     id: "sales",
     label: "Sales & Revenue",
-    icon: "📈",
-    color: "#2563eb",
-    bg: "#eff6ff",
+    icon: TrendingUp,
+    color: "#2E7D32",
+    bg: "#E0EFD6",
     questions: [
       { id: "s1", text: "How consistent is your monthly revenue?", options: ["Very inconsistent", "Somewhat inconsistent", "Mostly stable", "Very stable and growing"] },
       { id: "s2", text: "Do you have a defined sales process?", options: ["No process at all", "Informal / ad hoc", "Documented but not followed", "Clear process followed by team"] },
@@ -23,9 +42,9 @@ const SECTIONS = [
   {
     id: "operations",
     label: "Operations",
-    icon: "⚙️",
-    color: "#7c3aed",
-    bg: "#f5f3ff",
+    icon: Settings,
+    color: "#287565",
+    bg: "#DCEFEA",
     questions: [
       { id: "o1", text: "Are your core business processes documented?", options: ["Nothing documented", "Some key processes", "Most processes", "All processes with SOPs"] },
       { id: "o2", text: "How often do operational bottlenecks slow delivery?", options: ["Almost always", "Frequently", "Occasionally", "Rarely"] },
@@ -37,9 +56,9 @@ const SECTIONS = [
   {
     id: "finance",
     label: "Finance & Cash Flow",
-    icon: "💰",
-    color: "#059669",
-    bg: "#ecfdf5",
+    icon: IndianRupee,
+    color: "#C77700",
+    bg: "#FFF1DC",
     questions: [
       { id: "f1", text: "Do you maintain monthly P&L statements?", options: ["Never", "Occasionally", "Quarterly", "Monthly"] },
       { id: "f2", text: "How would you describe your cash flow situation?", options: ["Always tight / crisis mode", "Often tight", "Generally manageable", "Healthy buffer always"] },
@@ -51,9 +70,9 @@ const SECTIONS = [
   {
     id: "team",
     label: "Team & HR",
-    icon: "👥",
-    color: "#dc2626",
-    bg: "#fef2f2",
+    icon: Users,
+    color: "#1D342F",
+    bg: "#E3E9E7",
     questions: [
       { id: "t1", text: "How clear are roles and responsibilities in your team?", options: ["Very unclear / overlap", "Somewhat clear", "Mostly clear", "Fully defined with JDs"] },
       { id: "t2", text: "What is your approximate team attrition rate per year?", options: ["More than 40%", "20–40%", "10–20%", "Less than 10%"] },
@@ -64,11 +83,44 @@ const SECTIONS = [
   }
 ];
 
+const ANALYSIS_STEPS = [
+  "Reading your responses…",
+  "Benchmarking against MSMEs in your industry…",
+  "Scoring sales, operations, finance & team…",
+  "Building your prioritised action plan…",
+];
+
+const LEAD_FIELDS = [
+  { key: "name", label: "What's your name?", placeholder: "Aarav Sharma", type: "text" },
+  { key: "company", label: "And your company?", placeholder: "Sharma Textiles Pvt. Ltd.", type: "text" },
+  { key: "industry", label: "What industry are you in?", placeholder: "Retail, Manufacturing, IT Services…", type: "text" },
+  { key: "email", label: "Where should we send your report?", placeholder: "you@company.com", type: "email" },
+];
+
 const scoreLabel = (score) => {
-  if (score >= 80) return { label: "Healthy", color: "#059669", bg: "#ecfdf5" };
-  if (score >= 55) return { label: "Average", color: "#d97706", bg: "#fffbeb" };
-  return { label: "Critical", color: "#dc2626", bg: "#fef2f2" };
+  if (score >= 80) return { label: "Healthy", color: "#2E7D32", bg: "#E0EFD6" };
+  if (score >= 55) return { label: "Average", color: "#C77700", bg: "#FFF1DC" };
+  return { label: "Critical", color: "#B3261E", bg: "#FBE9E7" };
 };
+
+/* Signature mark — a pulsating live-graph icon, replacing the hospital emoji.
+   Concentric rings echo a heartbeat/market-pulse monitor: appropriate for an
+   AI diagnostic tool, on-brand in MARC green, no stock iconography. */
+const PulseMark = ({ size = 64 }) => (
+  <div
+    className="relative flex items-center justify-center"
+    style={{ width: size, height: size }}
+  >
+    <span className="pulse-ring" style={{ animationDelay: "0s" }} />
+    <span className="pulse-ring" style={{ animationDelay: "0.6s" }} />
+    <span
+      className="relative z-10 flex items-center justify-center rounded-full"
+      style={{ width: size * 0.62, height: size * 0.62, backgroundColor: "#1B5E20" }}
+    >
+      <Activity className="text-white" style={{ width: size * 0.34, height: size * 0.34 }} strokeWidth={2.4} />
+    </span>
+  </div>
+);
 
 const RadarChart = ({ scores }) => {
   const cx = 120, cy = 120, r = 85;
@@ -89,16 +141,16 @@ const RadarChart = ({ scores }) => {
   return (
     <svg width="240" height="240" viewBox="0 0 240 240">
       {[0.25, 0.5, 0.75, 1].map(f => (
-        <polygon key={f} points={gridPoints(f)} fill="none" stroke="#e5e7eb" strokeWidth="1" />
+        <polygon key={f} points={gridPoints(f)} fill="none" stroke="#E0EFD6" strokeWidth="1" />
       ))}
       {SECTIONS.map((_, i) => {
         const angle = (i * 2 * Math.PI) / n - Math.PI / 2;
-        return <line key={i} x1={cx} y1={cy} x2={cx + r * Math.cos(angle)} y2={cy + r * Math.sin(angle)} stroke="#e5e7eb" strokeWidth="1" />;
+        return <line key={i} x1={cx} y1={cy} x2={cx + r * Math.cos(angle)} y2={cy + r * Math.sin(angle)} stroke="#E0EFD6" strokeWidth="1" />;
       })}
-      <polygon points={points.map(p => `${p.x},${p.y}`).join(" ")} fill="rgba(37,99,235,0.15)" stroke="#2563eb" strokeWidth="2" />
+      <polygon points={points.map(p => `${p.x},${p.y}`).join(" ")} fill="rgba(27,94,32,0.14)" stroke="#1B5E20" strokeWidth="2" />
       {points.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="4" fill={SECTIONS[i].color} />)}
       {labelPos.map((p, i) => (
-        <text key={i} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fontSize="9" fill="#374151" fontWeight="600">
+        <text key={i} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fontSize="9" fill="#1D342F" fontWeight="600">
           {SECTIONS[i].label.split(" ")[0]}
         </text>
       ))}
@@ -113,6 +165,23 @@ export default function App() {
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState(null);
   const [error, setError] = useState("");
+  const [analysisStep, setAnalysisStep] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const [leadStep, setLeadStep] = useState(0);
+  const [leadDirection, setLeadDirection] = useState("next");
+
+  useEffect(() => { setMounted(true); }, []);
+
+  // cycle the "AI thinking" messages while loading, for a genuine feel of
+  // staged analysis rather than a static spinner
+  useEffect(() => {
+    if (step !== "loading") return;
+    setAnalysisStep(0);
+    const interval = setInterval(() => {
+      setAnalysisStep((s) => (s < ANALYSIS_STEPS.length - 1 ? s + 1 : s));
+    }, 1100);
+    return () => clearInterval(interval);
+  }, [step]);
 
   const totalQuestions = SECTIONS.reduce((a, s) => a + s.questions.length, 0);
   const answeredCount = Object.keys(answers).length;
@@ -171,111 +240,300 @@ export default function App() {
     }
   };
 
-  // LEAD SCREEN
-  if (step === "lead") return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Inter', sans-serif", padding: "24px" }}>
-      <div style={{ background: "#fff", borderRadius: "20px", padding: "48px 40px", maxWidth: "460px", width: "100%", boxShadow: "0 25px 60px rgba(0,0,0,0.3)" }}>
-        <div style={{ textAlign: "center", marginBottom: "32px" }}>
-          <div style={{ fontSize: "40px", marginBottom: "12px" }}>🏥</div>
-          <h1 style={{ fontSize: "24px", fontWeight: "800", color: "#0f172a", margin: "0 0 8px" }}>Business Health Checkup</h1>
-          <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>Get an AI-powered score across 4 business dimensions — free, in under 10 minutes.</p>
-        </div>
-        {["name", "email", "company", "industry"].map(field => (
-          <div key={field} style={{ marginBottom: "16px" }}>
-            <label style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#374151", marginBottom: "6px" }}>
-              {field === "name" ? "Your Name" : field === "email" ? "Work Email" : field === "company" ? "Company Name" : "Industry"}
-            </label>
-            <input
-              type={field === "email" ? "email" : "text"}
-              placeholder={field === "industry" ? "e.g. Real Estate, Retail, IT Services" : ""}
-              value={lead[field]}
-              onChange={e => setLead(prev => ({ ...prev, [field]: e.target.value }))}
-              style={{ width: "100%", padding: "12px 16px", borderRadius: "10px", border: "1.5px solid #e2e8f0", fontSize: "14px", outline: "none", boxSizing: "border-box", fontFamily: "inherit" }}
-            />
-          </div>
-        ))}
-        <button
-          onClick={() => Object.values(lead).every(v => v.trim()) && setStep("checkup")}
-          disabled={!Object.values(lead).every(v => v.trim())}
-          style={{ width: "100%", marginTop: "8px", padding: "14px", background: Object.values(lead).every(v => v.trim()) ? "linear-gradient(135deg, #2563eb, #7c3aed)" : "#e2e8f0", color: Object.values(lead).every(v => v.trim()) ? "#fff" : "#94a3b8", border: "none", borderRadius: "10px", fontWeight: "700", fontSize: "15px", cursor: Object.values(lead).every(v => v.trim()) ? "pointer" : "not-allowed", fontFamily: "inherit" }}
-        >
-          Begin Assessment →
-        </button>
-        <p style={{ textAlign: "center", fontSize: "11px", color: "#94a3b8", marginTop: "16px", marginBottom: 0 }}>Powered by MARC Glocal × AI · Your data is never shared</p>
-      </div>
-    </div>
+  const baseFont = { fontFamily: "'Poppins', system-ui, sans-serif" };
+
+  /* ── Shared keyframes for this page only ────────────────────────────── */
+  const GlobalStyles = () => (
+    <style>{`
+      @keyframes pulseRing {
+        0%   { transform: scale(0.6); opacity: 0.55; }
+        80%  { transform: scale(1.6); opacity: 0; }
+        100% { transform: scale(1.6); opacity: 0; }
+      }
+      .pulse-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 9999px;
+        background: rgba(129, 199, 132, 0.45);
+        animation: pulseRing 2.2s cubic-bezier(0.4,0,0.3,1) infinite;
+      }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(14px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .fade-up { animation: fadeUp 0.5s cubic-bezier(0.2,0.7,0.3,1) both; }
+      @keyframes dotFlow {
+        0% { background-position: 0 0; }
+        100% { background-position: 40px 40px; }
+      }
+      .dot-grid {
+        background-image: radial-gradient(circle, rgba(129,199,132,0.5) 1px, transparent 1px);
+        background-size: 28px 28px;
+        animation: dotFlow 14s linear infinite;
+      }
+      @keyframes barGrow { from { width: 0%; } }
+      .bar-grow { animation: barGrow 0.9s cubic-bezier(0.2,0.7,0.3,1) both; }
+      @keyframes slideInNext {
+        from { opacity: 0; transform: translateX(28px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes slideInBack {
+        from { opacity: 0; transform: translateX(-28px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      .slide-next { animation: slideInNext 0.38s cubic-bezier(0.2,0.7,0.3,1) both; }
+      .slide-back { animation: slideInBack 0.38s cubic-bezier(0.2,0.7,0.3,1) both; }
+    `}</style>
   );
+
+  // LEAD SCREEN — one question at a time, Typeform-style, so the card
+  // height never depends on how many fields are left to fill.
+  if (step === "lead") {
+    const field = LEAD_FIELDS[leadStep];
+    const value = lead[field.key];
+    const isLast = leadStep === LEAD_FIELDS.length - 1;
+    const canAdvance = value.trim().length > 0;
+
+    const goNext = () => {
+      if (!canAdvance) return;
+      if (isLast) { setStep("checkup"); return; }
+      setLeadDirection("next");
+      setLeadStep((s) => s + 1);
+    };
+    const goBack = () => {
+      if (leadStep === 0) return;
+      setLeadDirection("back");
+      setLeadStep((s) => s - 1);
+    };
+
+    return (
+      <div style={baseFont} className="h-screen relative flex items-center justify-center p-6 overflow-hidden">
+        <GlobalStyles />
+        <div className="absolute inset-0" style={{ backgroundColor: "#1B5E20" }} />
+        <div className="absolute inset-0 opacity-20 dot-grid" />
+        <div className="absolute -top-32 -right-24 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: "rgba(255,153,51,0.12)" }} />
+
+        <div
+          className={`relative z-10 bg-white rounded-[28px] p-9 max-w-[440px] w-full shadow-2xl flex flex-col ${mounted ? "fade-up" : ""}`}
+          style={{ boxShadow: "0 30px 70px rgba(0,0,0,0.35)", minHeight: "420px" }}
+        >
+          {/* header: mark + step progress (replaces 4 stacked fields) */}
+          <div className="flex flex-col items-center text-center mb-2">
+            <PulseMark size={52} />
+            <h1 className="mt-3 text-[19px] font-bold leading-tight" style={{ color: "#1B5E20" }}>
+              Business Health Checkup
+            </h1>
+          </div>
+
+          <div className="flex justify-center gap-1.5 my-5">
+            {LEAD_FIELDS.map((_, i) => (
+              <span
+                key={i}
+                className="h-1.5 rounded-full transition-all duration-300"
+                style={{
+                  width: i === leadStep ? "26px" : "10px",
+                  backgroundColor: i <= leadStep ? "#1B5E20" : "#E0EFD6",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* one field, centered, full attention */}
+          <div className="flex-1 flex flex-col justify-center">
+            <div key={field.key} className={leadDirection === "next" ? "slide-next" : "slide-back"}>
+              <label className="block text-center text-lg font-semibold mb-4" style={{ color: "#1D342F" }}>
+                {field.label}
+              </label>
+              <input
+                autoFocus
+                type={field.type}
+                placeholder={field.placeholder}
+                value={value}
+                onChange={(e) => setLead((prev) => ({ ...prev, [field.key]: e.target.value }))}
+                onKeyDown={(e) => { if (e.key === "Enter") goNext(); }}
+                className="w-full px-4 py-3.5 rounded-xl text-base text-center outline-none transition-colors"
+                style={{ border: "1.5px solid #E0EFD6", fontFamily: "inherit" }}
+                onFocus={(e) => (e.target.style.borderColor = "#2E7D32")}
+                onBlur={(e) => (e.target.style.borderColor = "#E0EFD6")}
+              />
+            </div>
+          </div>
+
+          {/* nav: back + next/begin, in one row so the footer height is fixed */}
+          <div className="flex items-center gap-3 mt-6">
+            <button
+              onClick={goBack}
+              disabled={leadStep === 0}
+              className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl transition-colors"
+              style={{
+                border: "1.5px solid #E0EFD6",
+                color: leadStep === 0 ? "#D9E5D5" : "#1B5E20",
+                cursor: leadStep === 0 ? "default" : "pointer",
+              }}
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={goNext}
+              disabled={!canAdvance}
+              className="flex-1 py-3.5 rounded-xl font-semibold text-[15px] flex items-center justify-center gap-2 transition-all"
+              style={
+                canAdvance
+                  ? { backgroundColor: "#1B5E20", color: "#fff", cursor: "pointer" }
+                  : { backgroundColor: "#E0EFD6", color: "#9CB996", cursor: "not-allowed" }
+              }
+            >
+              {isLast ? "Begin Assessment" : "Continue"} <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+          <p className="text-center text-[11px] mt-4" style={{ color: "#9CA3AF" }}>
+            Step {leadStep + 1} of {LEAD_FIELDS.length} · Your data is never shared
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   // CHECKUP SCREEN
   if (step === "checkup") {
     const section = SECTIONS[currentSection];
+    const SectionIcon = section.icon;
     const progress = (answeredCount / totalQuestions) * 100;
     return (
-      <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: "'Inter', sans-serif" }}>
-        <div style={{ background: "#fff", borderBottom: "1px solid #e2e8f0", padding: "16px 24px", position: "sticky", top: 0, zIndex: 10 }}>
-          <div style={{ maxWidth: "680px", margin: "0 auto" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-              <span style={{ fontWeight: "800", fontSize: "15px", color: "#0f172a" }}>🏥 Business Health Checkup</span>
-              <span style={{ fontSize: "12px", color: "#64748b" }}>{answeredCount}/{totalQuestions} answered</span>
+      <div style={baseFont} className="min-h-screen" >
+        <GlobalStyles />
+        <div className="bg-white sticky top-0 z-10" style={{ borderBottom: "1px solid #EDF3EA" }}>
+          <div className="max-w-[700px] mx-auto px-6 py-4">
+            <div className="flex justify-between items-center mb-2.5">
+              <span className="flex items-center gap-2 font-bold text-[15px]" style={{ color: "#1B5E20" }}>
+                <Activity className="w-4 h-4" style={{ color: "#2E7D32" }} />
+                Business Health Checkup
+              </span>
+              <span className="text-xs" style={{ color: "#7A8C75" }}>{answeredCount}/{totalQuestions} answered</span>
             </div>
-            <div style={{ height: "6px", background: "#e2e8f0", borderRadius: "99px", overflow: "hidden" }}>
-              <div style={{ height: "100%", width: `${progress}%`, background: "linear-gradient(90deg, #2563eb, #7c3aed)", borderRadius: "99px", transition: "width 0.3s" }} />
+            <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "#EDF3EA" }}>
+              <div className="h-full rounded-full transition-all duration-500" style={{ width: `${progress}%`, backgroundColor: "#1B5E20" }} />
             </div>
           </div>
         </div>
 
-        <div style={{ background: "#fff", borderBottom: "1px solid #e2e8f0", padding: "0 24px" }}>
-          <div style={{ maxWidth: "680px", margin: "0 auto", display: "flex" }}>
-            {SECTIONS.map((s, i) => (
-              <button key={s.id} onClick={() => setCurrentSection(i)}
-                style={{ padding: "12px 14px", border: "none", background: "none", cursor: "pointer", fontSize: "13px", fontWeight: "600", color: currentSection === i ? s.color : "#94a3b8", borderBottom: currentSection === i ? `2px solid ${s.color}` : "2px solid transparent", display: "flex", alignItems: "center", gap: "5px", whiteSpace: "nowrap", fontFamily: "inherit" }}>
-                {s.icon} <span>{s.label.split(" ")[0]}</span>
-                {sectionComplete(s) && <span style={{ fontSize: "10px", color: "#059669" }}>✓</span>}
-              </button>
-            ))}
+        <div className="bg-white" style={{ borderBottom: "1px solid #EDF3EA" }}>
+          <div className="max-w-[700px] mx-auto px-6 flex overflow-x-auto">
+            {SECTIONS.map((s, i) => {
+              const TabIcon = s.icon;
+              const active = currentSection === i;
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => setCurrentSection(i)}
+                  className="px-3.5 py-3 flex items-center gap-1.5 text-[13px] font-semibold whitespace-nowrap transition-colors"
+                  style={{
+                    color: active ? s.color : "#9CA3AF",
+                    borderBottom: active ? `2px solid ${s.color}` : "2px solid transparent",
+                  }}
+                >
+                  <TabIcon className="w-3.5 h-3.5" />
+                  {s.label.split(" ")[0]}
+                  {sectionComplete(s) && <CheckCircle2 className="w-3 h-3" style={{ color: "#2E7D32" }} />}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        <div style={{ maxWidth: "680px", margin: "32px auto", padding: "0 24px" }}>
-          <div style={{ background: section.bg, borderRadius: "12px", padding: "20px 24px", marginBottom: "24px", borderLeft: `4px solid ${section.color}` }}>
-            <h2 style={{ margin: 0, fontSize: "18px", fontWeight: "800", color: "#0f172a" }}>{section.icon} {section.label}</h2>
-            <p style={{ margin: "4px 0 0", fontSize: "13px", color: "#64748b" }}>Answer all {section.questions.length} questions to get your score</p>
+        <div className="max-w-[700px] mx-auto px-6 py-8">
+          <div
+            key={section.id}
+            className="fade-up rounded-2xl p-5 mb-6"
+            style={{ backgroundColor: section.bg, borderLeft: `4px solid ${section.color}` }}
+          >
+            <h2 className="flex items-center gap-2 text-lg font-bold" style={{ color: "#1B5E20" }}>
+              <SectionIcon className="w-5 h-5" style={{ color: section.color }} />
+              {section.label}
+            </h2>
+            <p className="mt-1 text-[13px]" style={{ color: "#5D7A52" }}>
+              Answer all {section.questions.length} questions to get your score
+            </p>
           </div>
 
           {section.questions.map((q, qi) => (
-            <div key={q.id} style={{ background: "#fff", borderRadius: "12px", padding: "20px 24px", marginBottom: "16px", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}>
-              <p style={{ margin: "0 0 14px", fontWeight: "600", color: "#1e293b", fontSize: "14px", lineHeight: "1.5" }}>
-                <span style={{ color: section.color, fontWeight: "700" }}>{qi + 1}. </span>{q.text}
+            <div
+              key={q.id}
+              className="fade-up bg-white rounded-2xl p-5 mb-4"
+              style={{ boxShadow: "0 1px 4px rgba(27,94,32,0.06)", animationDelay: `${qi * 60}ms` }}
+            >
+              <p className="mb-3.5 font-semibold text-sm leading-relaxed" style={{ color: "#1D342F" }}>
+                <span style={{ color: section.color, fontWeight: 700 }}>{qi + 1}. </span>{q.text}
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                {q.options.map((opt, oi) => (
-                  <button key={oi} onClick={() => handleAnswer(q.id, opt)}
-                    style={{ padding: "10px 16px", borderRadius: "8px", border: `1.5px solid ${answers[q.id] === opt ? section.color : "#e2e8f0"}`, background: answers[q.id] === opt ? section.bg : "#fff", color: answers[q.id] === opt ? section.color : "#374151", fontWeight: answers[q.id] === opt ? "700" : "400", fontSize: "13px", cursor: "pointer", textAlign: "left", transition: "all 0.15s", fontFamily: "inherit" }}>
-                    {opt}
-                  </button>
-                ))}
+              <div className="flex flex-col gap-2">
+                {q.options.map((opt, oi) => {
+                  const selected = answers[q.id] === opt;
+                  return (
+                    <button
+                      key={oi}
+                      onClick={() => handleAnswer(q.id, opt)}
+                      className="px-4 py-2.5 rounded-lg text-[13px] text-left transition-all duration-150"
+                      style={{
+                        border: `1.5px solid ${selected ? section.color : "#E5E9E2"}`,
+                        backgroundColor: selected ? section.bg : "#fff",
+                        color: selected ? section.color : "#374151",
+                        fontWeight: selected ? 700 : 400,
+                      }}
+                    >
+                      {opt}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           ))}
 
-          {error && <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: "10px", padding: "14px 18px", color: "#dc2626", fontSize: "13px", marginBottom: "16px" }}>{error}</div>}
+          {error && (
+            <div className="rounded-xl px-4.5 py-3.5 text-[13px] mb-4" style={{ backgroundColor: "#FBE9E7", border: "1px solid #F3C5C0", color: "#B3261E" }}>
+              {error}
+            </div>
+          )}
 
-          <div style={{ display: "flex", gap: "12px", marginTop: "8px", paddingBottom: "40px" }}>
+          <div className="flex gap-3 mt-2 pb-10">
             {currentSection > 0 && (
-              <button onClick={() => setCurrentSection(i => i - 1)}
-                style={{ flex: 1, padding: "14px", background: "#fff", border: "1.5px solid #e2e8f0", borderRadius: "10px", fontWeight: "600", fontSize: "14px", cursor: "pointer", color: "#374151", fontFamily: "inherit" }}>
-                ← Previous
+              <button
+                onClick={() => setCurrentSection(i => i - 1)}
+                className="flex-1 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2"
+                style={{ backgroundColor: "#fff", border: "1.5px solid #E5E9E2", color: "#374151" }}
+              >
+                <ArrowLeft className="w-4 h-4" /> Previous
               </button>
             )}
             {currentSection < SECTIONS.length - 1 ? (
-              <button onClick={() => setCurrentSection(i => i + 1)}
-                style={{ flex: 2, padding: "14px", background: sectionComplete(section) ? `linear-gradient(135deg, ${section.color}, #7c3aed)` : "#e2e8f0", color: sectionComplete(section) ? "#fff" : "#94a3b8", border: "none", borderRadius: "10px", fontWeight: "700", fontSize: "14px", cursor: sectionComplete(section) ? "pointer" : "not-allowed", fontFamily: "inherit" }}>
-                Next Section →
+              <button
+                onClick={() => setCurrentSection(i => i + 1)}
+                disabled={!sectionComplete(section)}
+                className="py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-colors"
+                style={{
+                  flex: 2,
+                  backgroundColor: sectionComplete(section) ? "#1B5E20" : "#E5E9E2",
+                  color: sectionComplete(section) ? "#fff" : "#9CA3AF",
+                  cursor: sectionComplete(section) ? "pointer" : "not-allowed",
+                }}
+              >
+                Next Section <ArrowRight className="w-4 h-4" />
               </button>
             ) : (
-              <button onClick={runAnalysis} disabled={answeredCount < totalQuestions}
-                style={{ flex: 2, padding: "14px", background: answeredCount >= totalQuestions ? "linear-gradient(135deg, #059669, #2563eb)" : "#e2e8f0", color: answeredCount >= totalQuestions ? "#fff" : "#94a3b8", border: "none", borderRadius: "10px", fontWeight: "700", fontSize: "15px", cursor: answeredCount >= totalQuestions ? "pointer" : "not-allowed", fontFamily: "inherit" }}>
-                {answeredCount >= totalQuestions ? "🚀 Get My Report" : `Complete all questions (${totalQuestions - answeredCount} left)`}
+              <button
+                onClick={runAnalysis}
+                disabled={answeredCount < totalQuestions}
+                className="py-3.5 rounded-xl font-bold text-[15px] flex items-center justify-center gap-2 transition-colors"
+                style={{
+                  flex: 2,
+                  backgroundColor: answeredCount >= totalQuestions ? "#1B5E20" : "#E5E9E2",
+                  color: answeredCount >= totalQuestions ? "#fff" : "#9CA3AF",
+                  cursor: answeredCount >= totalQuestions ? "pointer" : "not-allowed",
+                }}
+              >
+                {answeredCount >= totalQuestions
+                  ? (<>Get My Report <Sparkles className="w-4 h-4" /></>)
+                  : `Complete all questions (${totalQuestions - answeredCount} left)`}
               </button>
             )}
           </div>
@@ -286,12 +544,30 @@ export default function App() {
 
   // LOADING SCREEN
   if (step === "loading") return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Inter', sans-serif" }}>
-      <div style={{ textAlign: "center", color: "#fff" }}>
-        <div style={{ fontSize: "60px", marginBottom: "24px", animation: "pulse 1.5s infinite" }}>🧠</div>
-        <h2 style={{ fontSize: "22px", fontWeight: "700", margin: "0 0 12px" }}>Analyzing {lead.company}...</h2>
-        <p style={{ color: "#94a3b8", fontSize: "14px", margin: 0 }}>AI is reviewing your responses across all 4 dimensions</p>
-        <style>{`@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }`}</style>
+    <div style={baseFont} className="min-h-screen relative flex items-center justify-center overflow-hidden">
+      <GlobalStyles />
+      <div className="absolute inset-0" style={{ backgroundColor: "#1B5E20" }} />
+      <div className="absolute inset-0 opacity-20 dot-grid" />
+      <div className="relative z-10 text-center px-6">
+        <div className="flex justify-center mb-7">
+          <PulseMark size={84} />
+        </div>
+        <h2 className="text-white text-xl font-bold mb-2">Analyzing {lead.company}…</h2>
+        <p className="text-sm transition-opacity duration-300" style={{ color: "#A5D6A7" }}>
+          {ANALYSIS_STEPS[analysisStep]}
+        </p>
+        <div className="flex justify-center gap-1.5 mt-6">
+          {ANALYSIS_STEPS.map((_, i) => (
+            <span
+              key={i}
+              className="h-1.5 rounded-full transition-all duration-300"
+              style={{
+                width: i === analysisStep ? "22px" : "8px",
+                backgroundColor: i <= analysisStep ? "#81C784" : "rgba(255,255,255,0.2)",
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -301,40 +577,60 @@ export default function App() {
     const overall = scoreLabel(results.overall_score);
     const dimScores = SECTIONS.map(s => results.dimensions[s.id]?.score || 0);
     return (
-      <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: "'Inter', sans-serif" }}>
-        <div style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)", padding: "40px 24px", color: "#fff", textAlign: "center" }}>
-          <p style={{ margin: "0 0 8px", fontSize: "13px", color: "#94a3b8", fontWeight: "600", textTransform: "uppercase", letterSpacing: "1px" }}>Business Health Report</p>
-          <h1 style={{ margin: "0 0 4px", fontSize: "28px", fontWeight: "800" }}>{lead.company}</h1>
-          <p style={{ margin: "0 0 28px", color: "#94a3b8", fontSize: "14px" }}>{lead.industry} · Prepared for {lead.name}</p>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "20px", background: "rgba(255,255,255,0.1)", borderRadius: "20px", padding: "24px 40px" }}>
-            <div>
-              <div style={{ fontSize: "56px", fontWeight: "900", lineHeight: 1 }}>{results.overall_score}</div>
-              <div style={{ fontSize: "16px", color: "#94a3b8" }}>/100</div>
+      <div className="min-h-screen" style={{ ...baseFont, backgroundColor: "#F7FFF5" }}>
+        <GlobalStyles />
+        <div className="relative overflow-hidden px-6 py-12 text-center" style={{ backgroundColor: "#1B5E20" }}>
+          <div className="absolute inset-0 opacity-20 dot-grid" />
+          <div className="relative z-10">
+            <p className="mb-2 text-[13px] font-semibold uppercase tracking-wider" style={{ color: "#A5D6A7" }}>
+              Business Health Report
+            </p>
+            <h1 className="mb-1 text-[28px] font-bold text-white">{lead.company}</h1>
+            <p className="mb-7 text-sm" style={{ color: "#A5D6A7" }}>{lead.industry} · Prepared for {lead.name}</p>
+
+            <div
+              className="fade-up inline-flex items-center gap-5 rounded-[24px] px-10 py-6"
+              style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+            >
+              <div>
+                <div className="text-[56px] font-extrabold leading-none text-white">{results.overall_score}</div>
+                <div className="text-base" style={{ color: "#A5D6A7" }}>/100</div>
+              </div>
+              <div className="text-left">
+                <div className="mb-1 text-[11px] font-bold uppercase tracking-wider" style={{ color: "#A5D6A7" }}>
+                  Overall Health
+                </div>
+                <div className="text-[22px] font-extrabold" style={{ color: overall.label === "Healthy" ? "#81C784" : overall.label === "Average" ? "#FFC078" : "#F4A19C" }}>
+                  {overall.label}
+                </div>
+              </div>
             </div>
-            <div style={{ textAlign: "left" }}>
-              <div style={{ fontSize: "11px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "4px" }}>Overall Health</div>
-              <div style={{ fontSize: "22px", fontWeight: "800", color: overall.color === "#059669" ? "#4ade80" : overall.color === "#d97706" ? "#fbbf24" : "#f87171" }}>{overall.label}</div>
-            </div>
+            <p className="mx-auto mt-6 max-w-[560px] text-sm leading-relaxed" style={{ color: "#C2DDB4" }}>
+              {results.overall_summary}
+            </p>
           </div>
-          <p style={{ margin: "24px auto 0", maxWidth: "560px", fontSize: "14px", color: "#cbd5e1", lineHeight: "1.7" }}>{results.overall_summary}</p>
         </div>
 
-        <div style={{ maxWidth: "720px", margin: "0 auto", padding: "32px 24px" }}>
-          <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", marginBottom: "24px", boxShadow: "0 1px 6px rgba(0,0,0,0.08)", display: "flex", alignItems: "center", gap: "32px", flexWrap: "wrap" }}>
+        <div className="max-w-[720px] mx-auto px-6 py-8">
+          <div className="mb-6 flex flex-wrap items-center gap-8 rounded-2xl bg-white p-7" style={{ boxShadow: "0 1px 8px rgba(27,94,32,0.08)" }}>
             <RadarChart scores={dimScores} />
-            <div style={{ flex: 1, minWidth: "200px" }}>
-              <h3 style={{ margin: "0 0 16px", fontSize: "15px", fontWeight: "700", color: "#0f172a" }}>Dimension Scores</h3>
+            <div className="min-w-[200px] flex-1">
+              <h3 className="mb-4 text-[15px] font-bold" style={{ color: "#1B5E20" }}>Dimension Scores</h3>
               {SECTIONS.map((s) => {
+                const Icon = s.icon;
                 const sc = results.dimensions[s.id]?.score || 0;
                 const lbl = scoreLabel(sc);
                 return (
-                  <div key={s.id} style={{ marginBottom: "12px" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                      <span style={{ fontSize: "13px", fontWeight: "600", color: "#374151" }}>{s.icon} {s.label}</span>
-                      <span style={{ fontSize: "13px", fontWeight: "700", color: lbl.color }}>{sc}/100</span>
+                  <div key={s.id} className="mb-3">
+                    <div className="mb-1 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: "#374151" }}>
+                        <Icon className="w-3.5 h-3.5" style={{ color: s.color }} />
+                        {s.label}
+                      </span>
+                      <span className="text-[13px] font-bold" style={{ color: lbl.color }}>{sc}/100</span>
                     </div>
-                    <div style={{ height: "6px", background: "#e2e8f0", borderRadius: "99px", overflow: "hidden" }}>
-                      <div style={{ height: "100%", width: `${sc}%`, background: s.color, borderRadius: "99px" }} />
+                    <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "#EDF3EA" }}>
+                      <div className="bar-grow h-full rounded-full" style={{ width: `${sc}%`, backgroundColor: s.color }} />
                     </div>
                   </div>
                 );
@@ -344,26 +640,39 @@ export default function App() {
 
           {SECTIONS.map(s => {
             const dim = results.dimensions[s.id];
+            const Icon = s.icon;
             if (!dim) return null;
             const lbl = scoreLabel(dim.score);
             return (
-              <div key={s.id} style={{ background: "#fff", borderRadius: "16px", padding: "24px", marginBottom: "20px", boxShadow: "0 1px 6px rgba(0,0,0,0.08)", borderTop: `4px solid ${s.color}` }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "14px" }}>
-                  <div style={{ flex: 1, paddingRight: "16px" }}>
-                    <h3 style={{ margin: "0 0 4px", fontSize: "16px", fontWeight: "800", color: "#0f172a" }}>{s.icon} {s.label}</h3>
-                    <p style={{ margin: 0, fontSize: "13px", color: "#64748b", lineHeight: "1.5" }}>{dim.diagnosis}</p>
+              <div
+                key={s.id}
+                className="mb-5 rounded-2xl bg-white p-6"
+                style={{ boxShadow: "0 1px 8px rgba(27,94,32,0.08)", borderTop: `4px solid ${s.color}` }}
+              >
+                <div className="mb-3.5 flex items-start justify-between">
+                  <div className="flex-1 pr-4">
+                    <h3 className="mb-1 flex items-center gap-2 text-base font-extrabold" style={{ color: "#1B5E20" }}>
+                      <Icon className="w-4 h-4" style={{ color: s.color }} />
+                      {s.label}
+                    </h3>
+                    <p className="text-[13px] leading-relaxed" style={{ color: "#64748b" }}>{dim.diagnosis}</p>
                   </div>
-                  <div style={{ textAlign: "center", minWidth: "60px" }}>
-                    <div style={{ fontSize: "24px", fontWeight: "900", color: lbl.color }}>{dim.score}</div>
-                    <div style={{ fontSize: "10px", fontWeight: "700", color: lbl.color, background: lbl.bg, borderRadius: "99px", padding: "2px 8px" }}>{lbl.label}</div>
+                  <div className="min-w-[60px] text-center">
+                    <div className="text-2xl font-black" style={{ color: lbl.color }}>{dim.score}</div>
+                    <div className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ color: lbl.color, backgroundColor: lbl.bg }}>{lbl.label}</div>
                   </div>
                 </div>
-                <div style={{ borderTop: "1px solid #f1f5f9", paddingTop: "14px" }}>
-                  <p style={{ margin: "0 0 10px", fontSize: "11px", fontWeight: "700", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "1px" }}>Recommendations</p>
+                <div className="pt-3.5" style={{ borderTop: "1px solid #F1F5F9" }}>
+                  <p className="mb-2.5 text-[11px] font-bold uppercase tracking-wider" style={{ color: "#9CA3AF" }}>Recommendations</p>
                   {dim.recommendations.map((rec, ri) => (
-                    <div key={ri} style={{ display: "flex", gap: "10px", marginBottom: "8px", alignItems: "flex-start" }}>
-                      <span style={{ background: s.bg, color: s.color, borderRadius: "50%", width: "20px", height: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: "700", flexShrink: 0, marginTop: "1px" }}>{ri + 1}</span>
-                      <span style={{ fontSize: "13px", color: "#374151", lineHeight: "1.5" }}>{rec}</span>
+                    <div key={ri} className="mb-2 flex items-start gap-2.5">
+                      <span
+                        className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold"
+                        style={{ backgroundColor: s.bg, color: s.color }}
+                      >
+                        {ri + 1}
+                      </span>
+                      <span className="text-[13px] leading-relaxed" style={{ color: "#374151" }}>{rec}</span>
                     </div>
                   ))}
                 </div>
@@ -371,13 +680,23 @@ export default function App() {
             );
           })}
 
-          <div style={{ background: "linear-gradient(135deg, #0f172a, #1e3a5f)", borderRadius: "16px", padding: "32px", textAlign: "center", color: "#fff" }}>
-            <h3 style={{ margin: "0 0 8px", fontSize: "20px", fontWeight: "800" }}>Ready to fix these gaps?</h3>
-            <p style={{ margin: "0 0 20px", color: "#94a3b8", fontSize: "14px" }}>MARC Glocal's consultants can build a 90-day action plan based on this report.</p>
-            <a href="https://marcglocal.com" target="_blank" rel="noreferrer"
-              style={{ display: "inline-block", padding: "14px 32px", background: "linear-gradient(135deg, #2563eb, #7c3aed)", color: "#fff", borderRadius: "10px", fontWeight: "700", fontSize: "14px", textDecoration: "none" }}>
-              Talk to MARC Glocal →
-            </a>
+          <div className="relative overflow-hidden rounded-2xl p-8 text-center" style={{ backgroundColor: "#1B5E20" }}>
+            <div className="absolute inset-0 opacity-15 dot-grid" />
+            <div className="relative z-10">
+              <h3 className="mb-2 text-xl font-extrabold text-white">Ready to fix these gaps?</h3>
+              <p className="mb-5 text-sm" style={{ color: "#A5D6A7" }}>
+                MARC's advisors can build a 90-day action plan based on this report.
+              </p>
+              <a
+                href="https://marcglocal.com/contact-us"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white"
+                style={{ backgroundColor: "#FF9933" }}
+              >
+                Talk to MARC <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
