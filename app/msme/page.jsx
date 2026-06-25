@@ -4,8 +4,9 @@ import {
   VyaparServices,
   BusinessCheckupSection,
   VyaparPricing,
-  MsmePage,
 } from '@/components/MsmeSection'
+
+import MsmePage from '@/components/MsmeSection'
 
 export const metadata = {
   title: 'MARC Vyapar — Business Consulting for MSMEs in India',
