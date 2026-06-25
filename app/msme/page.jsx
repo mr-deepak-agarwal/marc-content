@@ -4,6 +4,7 @@ import {
   VyaparServices,
   BusinessCheckupSection,
   VyaparPricing,
+  MsmePage,
 } from '@/components/MsmeSection'
 
 export const metadata = {
@@ -12,5 +13,5 @@ export const metadata = {
 }
 
 export default function VyaparPage() {
-  return <MARCVyaparPage />
+  return <MsmePage />
 }
