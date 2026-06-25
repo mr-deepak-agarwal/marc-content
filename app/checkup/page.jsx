@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react";
 
 // In production: set NEXT_PUBLIC_GEMINI_API_KEY in Vercel env vars

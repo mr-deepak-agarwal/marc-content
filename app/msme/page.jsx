@@ -12,13 +12,5 @@ export const metadata = {
 }
 
 export default function VyaparPage() {
-  return (
-    <main>
-      <VyaparHero />
-      <MSMEIndustrySection />
-      <VyaparServices />
-      <BusinessCheckupSection />
-      <VyaparPricing />
-    </main>
-  )
+  return <MsmePage />
 }
