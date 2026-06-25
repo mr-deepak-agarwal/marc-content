@@ -90,6 +90,13 @@ const ANALYSIS_STEPS = [
   "Building your prioritised action plan…",
 ];
 
+const LEAD_FIELDS = [
+  { key: "name", label: "What's your name?", placeholder: "Aarav Sharma", type: "text" },
+  { key: "company", label: "And your company?", placeholder: "Sharma Textiles Pvt. Ltd.", type: "text" },
+  { key: "industry", label: "What industry are you in?", placeholder: "Retail, Manufacturing, IT Services…", type: "text" },
+  { key: "email", label: "Where should we send your report?", placeholder: "you@company.com", type: "email" },
+];
+
 const scoreLabel = (score) => {
   if (score >= 80) return { label: "Healthy", color: "#2E7D32", bg: "#E0EFD6" };
   if (score >= 55) return { label: "Average", color: "#C77700", bg: "#FFF1DC" };
@@ -160,6 +167,8 @@ export default function App() {
   const [error, setError] = useState("");
   const [analysisStep, setAnalysisStep] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [leadStep, setLeadStep] = useState(0);
+  const [leadDirection, setLeadDirection] = useState("next");
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -252,67 +261,126 @@ export default function App() {
       }
       @keyframes barGrow { from { width: 0%; } }
       .bar-grow { animation: barGrow 0.9s cubic-bezier(0.2,0.7,0.3,1) both; }
+      @keyframes slideInNext {
+        from { opacity: 0; transform: translateX(28px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes slideInBack {
+        from { opacity: 0; transform: translateX(-28px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      .slide-next { animation: slideInNext 0.38s cubic-bezier(0.2,0.7,0.3,1) both; }
+      .slide-back { animation: slideInBack 0.38s cubic-bezier(0.2,0.7,0.3,1) both; }
     `}</style>
   );
 
-  // LEAD SCREEN
-  if (step === "lead") return (
-    <div style={baseFont} className="min-h-screen relative flex items-center justify-center p-6 overflow-hidden" >
-      <GlobalStyles />
-      <div className="absolute inset-0" style={{ backgroundColor: "#1B5E20" }} />
-      <div className="absolute inset-0 opacity-20 dot-grid" />
-      <div className="absolute -top-32 -right-24 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: "rgba(255,153,51,0.12)" }} />
+  // LEAD SCREEN — one question at a time, Typeform-style, so the card
+  // height never depends on how many fields are left to fill.
+  if (step === "lead") {
+    const field = LEAD_FIELDS[leadStep];
+    const value = lead[field.key];
+    const isLast = leadStep === LEAD_FIELDS.length - 1;
+    const canAdvance = value.trim().length > 0;
 
-      <div
-        className={`relative z-10 bg-white rounded-[28px] p-10 max-w-[460px] w-full shadow-2xl ${mounted ? "fade-up" : ""}`}
-        style={{ boxShadow: "0 30px 70px rgba(0,0,0,0.35)" }}
-      >
-        <div className="flex flex-col items-center text-center mb-9">
-          <PulseMark size={68} />
-          <h1 className="mt-5 text-[26px] font-bold leading-tight" style={{ color: "#1B5E20" }}>
-            Business Health Checkup
-          </h1>
-          <p className="mt-2 text-sm leading-relaxed" style={{ color: "#5D7A52" }}>
-            An AI-scored read on Sales, Operations, Finance & Team — free, in under 10 minutes.
+    const goNext = () => {
+      if (!canAdvance) return;
+      if (isLast) { setStep("checkup"); return; }
+      setLeadDirection("next");
+      setLeadStep((s) => s + 1);
+    };
+    const goBack = () => {
+      if (leadStep === 0) return;
+      setLeadDirection("back");
+      setLeadStep((s) => s - 1);
+    };
+
+    return (
+      <div style={baseFont} className="h-screen relative flex items-center justify-center p-6 overflow-hidden">
+        <GlobalStyles />
+        <div className="absolute inset-0" style={{ backgroundColor: "#1B5E20" }} />
+        <div className="absolute inset-0 opacity-20 dot-grid" />
+        <div className="absolute -top-32 -right-24 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: "rgba(255,153,51,0.12)" }} />
+
+        <div
+          className={`relative z-10 bg-white rounded-[28px] p-9 max-w-[440px] w-full shadow-2xl flex flex-col ${mounted ? "fade-up" : ""}`}
+          style={{ boxShadow: "0 30px 70px rgba(0,0,0,0.35)", minHeight: "420px" }}
+        >
+          {/* header: mark + step progress (replaces 4 stacked fields) */}
+          <div className="flex flex-col items-center text-center mb-2">
+            <PulseMark size={52} />
+            <h1 className="mt-3 text-[19px] font-bold leading-tight" style={{ color: "#1B5E20" }}>
+              Business Health Checkup
+            </h1>
+          </div>
+
+          <div className="flex justify-center gap-1.5 my-5">
+            {LEAD_FIELDS.map((_, i) => (
+              <span
+                key={i}
+                className="h-1.5 rounded-full transition-all duration-300"
+                style={{
+                  width: i === leadStep ? "26px" : "10px",
+                  backgroundColor: i <= leadStep ? "#1B5E20" : "#E0EFD6",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* one field, centered, full attention */}
+          <div className="flex-1 flex flex-col justify-center">
+            <div key={field.key} className={leadDirection === "next" ? "slide-next" : "slide-back"}>
+              <label className="block text-center text-lg font-semibold mb-4" style={{ color: "#1D342F" }}>
+                {field.label}
+              </label>
+              <input
+                autoFocus
+                type={field.type}
+                placeholder={field.placeholder}
+                value={value}
+                onChange={(e) => setLead((prev) => ({ ...prev, [field.key]: e.target.value }))}
+                onKeyDown={(e) => { if (e.key === "Enter") goNext(); }}
+                className="w-full px-4 py-3.5 rounded-xl text-base text-center outline-none transition-colors"
+                style={{ border: "1.5px solid #E0EFD6", fontFamily: "inherit" }}
+                onFocus={(e) => (e.target.style.borderColor = "#2E7D32")}
+                onBlur={(e) => (e.target.style.borderColor = "#E0EFD6")}
+              />
+            </div>
+          </div>
+
+          {/* nav: back + next/begin, in one row so the footer height is fixed */}
+          <div className="flex items-center gap-3 mt-6">
+            <button
+              onClick={goBack}
+              disabled={leadStep === 0}
+              className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl transition-colors"
+              style={{
+                border: "1.5px solid #E0EFD6",
+                color: leadStep === 0 ? "#D9E5D5" : "#1B5E20",
+                cursor: leadStep === 0 ? "default" : "pointer",
+              }}
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={goNext}
+              disabled={!canAdvance}
+              className="flex-1 py-3.5 rounded-xl font-semibold text-[15px] flex items-center justify-center gap-2 transition-all"
+              style={
+                canAdvance
+                  ? { backgroundColor: "#1B5E20", color: "#fff", cursor: "pointer" }
+                  : { backgroundColor: "#E0EFD6", color: "#9CB996", cursor: "not-allowed" }
+              }
+            >
+              {isLast ? "Begin Assessment" : "Continue"} <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+          <p className="text-center text-[11px] mt-4" style={{ color: "#9CA3AF" }}>
+            Step {leadStep + 1} of {LEAD_FIELDS.length} · Your data is never shared
           </p>
         </div>
-
-        {["name", "email", "company", "industry"].map((field, i) => (
-          <div key={field} className="mb-4">
-            <label className="block text-xs font-semibold mb-1.5" style={{ color: "#1D342F" }}>
-              {field === "name" ? "Your Name" : field === "email" ? "Work Email" : field === "company" ? "Company Name" : "Industry"}
-            </label>
-            <input
-              type={field === "email" ? "email" : "text"}
-              placeholder={field === "industry" ? "e.g. Retail, Manufacturing, IT Services" : ""}
-              value={lead[field]}
-              onChange={e => setLead(prev => ({ ...prev, [field]: e.target.value }))}
-              className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-colors"
-              style={{ border: "1.5px solid #E0EFD6", fontFamily: "inherit" }}
-              onFocus={(e) => (e.target.style.borderColor = "#2E7D32")}
-              onBlur={(e) => (e.target.style.borderColor = "#E0EFD6")}
-            />
-          </div>
-        ))}
-
-        <button
-          onClick={() => Object.values(lead).every(v => v.trim()) && setStep("checkup")}
-          disabled={!Object.values(lead).every(v => v.trim())}
-          className="w-full mt-2 py-3.5 rounded-xl font-semibold text-[15px] flex items-center justify-center gap-2 transition-all"
-          style={
-            Object.values(lead).every(v => v.trim())
-              ? { backgroundColor: "#1B5E20", color: "#fff", cursor: "pointer" }
-              : { backgroundColor: "#E0EFD6", color: "#9CB996", cursor: "not-allowed" }
-          }
-        >
-          Begin Assessment <ArrowRight className="w-4 h-4" />
-        </button>
-        <p className="text-center text-[11px] mt-4" style={{ color: "#9CA3AF" }}>
-          Powered by MARC Vyapar AI · Your data is never shared
-        </p>
       </div>
-    </div>
-  );
+    );
+  }
 
   // CHECKUP SCREEN
   if (step === "checkup") {
