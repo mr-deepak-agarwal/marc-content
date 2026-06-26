@@ -241,166 +241,371 @@ export function MSMEIndustrySection() {
 }
 
 /* ----------------------------------------------------------------------- */
-/* 2. REPOSITIONING HERO — MARC Biz-Dost                                   */
-/* SEO intent: primary keyword "business growth consultant for MSMEs in    */
-/* India" placed naturally in H1 + supporting copy.                        */
-/*                                                                          */
-/* SIGNATURE ELEMENT — the "vitals strip": a small, self-drawing line      */
-/* graph above the headline. Left half is jagged and orange ("Before      */
-/* MARC"), right half resolves into a steady climb and green ("With       */
-/* MARC"). It's not decoration — it's the brief's entire pitch (raw       */
-/* numbers turned into a confident read) rendered as one literal, legible */
-/* instrument, so the page leads with a thesis instead of a generic dark  */
-/* gradient hero. No dot-grid, no parallax blobs.                         */
+/* 2. HERO — MARC Biz-Dost                                                 */
+/* Split layout: left = copy + CTAs, right = animated growth chart panel  */
+/* Signature element: self-drawing "Before / With MARC" line chart inside */
+/* a floating dashboard card, surrounded by orbiting KPI pills.           */
 /* ----------------------------------------------------------------------- */
-function VitalsStrip() {
+
+function useCountUp(target, duration = 1800, start = false) {
+  const [value, setValue] = React.useState(0)
+  React.useEffect(() => {
+    if (!start) return
+    let startTime = null
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp
+      const progress = Math.min((timestamp - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setValue(Math.floor(eased * target))
+      if (progress < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [target, duration, start])
+  return value
+}
+
+function HeroChartPanel() {
+  const shouldReduceMotion = useReducedMotion()
   const pathRef = React.useRef(null)
   const [pathLength, setPathLength] = React.useState(0)
-  const [ready, setReady] = React.useState(false)
+  const [drawn, setDrawn] = React.useState(false)
+  const [inView, setInView] = React.useState(false)
+  const panelRef = React.useRef(null)
+
+  const revenue = useCountUp(284, 1600, drawn)
+  const clients = useCountUp(47, 1400, drawn)
+  const growth = useCountUp(31, 1200, drawn)
 
   React.useEffect(() => {
-    if (pathRef.current) {
-      setPathLength(pathRef.current.getTotalLength())
-      // double rAF guarantees the browser paints the dashed (hidden) state
-      // first, so the transition to dashoffset 0 is guaranteed to animate
-      requestAnimationFrame(() => requestAnimationFrame(() => setReady(true)))
-    }
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true) },
+      { threshold: 0.3 }
+    )
+    if (panelRef.current) observer.observe(panelRef.current)
+    return () => observer.disconnect()
   }, [])
 
+  React.useEffect(() => {
+    if (!inView) return
+    if (pathRef.current) {
+      setPathLength(pathRef.current.getTotalLength())
+      requestAnimationFrame(() => requestAnimationFrame(() => setDrawn(true)))
+    }
+  }, [inView])
+
+  const floatingPills = [
+    { label: '7.34 Cr MSMEs', color: '#81C784', bg: 'rgba(129,199,132,0.12)', top: '8%', right: '-4%', delay: 0.4 },
+    { label: '45.7% of Exports', color: '#FFAB76', bg: 'rgba(255,171,118,0.12)', top: '72%', right: '-6%', delay: 0.7 },
+    { label: '26 Cr Jobs', color: '#80DEEA', bg: 'rgba(128,222,234,0.12)', top: '88%', left: '2%', delay: 1.0 },
+  ]
+
   return (
-    <div className="inline-flex flex-col items-center">
-      <svg viewBox="0 0 360 90" className="w-[280px] sm:w-[340px] h-auto" aria-hidden="true">
-        <defs>
-          <linearGradient id="vitalsFade" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#FF6D00" />
-            <stop offset="48%" stopColor="#FF6D00" />
-            <stop offset="58%" stopColor="#81C784" />
-            <stop offset="100%" stopColor="#81C784" />
-          </linearGradient>
-        </defs>
-        <line x1="0" y1="45" x2="360" y2="45" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-        <path
-          ref={pathRef}
-          d="M 0 50 L 16 30 L 32 62 L 48 22 L 64 55 L 80 18 L 96 48
-             L 112 30 L 128 50
-             C 160 58, 185 50, 205 42
-             C 235 30, 265 24, 300 16
-             C 320 12, 340 10, 360 8"
-          fill="none"
-          stroke="url(#vitalsFade)"
-          strokeWidth="3"
-          strokeLinecap="round"
+    <motion.div
+      ref={panelRef}
+      className="relative flex-shrink-0 hidden lg:block"
+      style={{ width: 420, height: 420 }}
+      initial={{ opacity: 0, x: 40 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
+    >
+      {/* Glow blob */}
+      <div
+        className="absolute inset-0 rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 60% 40%, rgba(46,125,50,0.35) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+        }}
+      />
+
+      {/* Main dashboard card */}
+      <motion.div
+        className="absolute inset-8 rounded-3xl overflow-hidden"
+        style={{
+          background: 'rgba(255,255,255,0.04)',
+          border: '1px solid rgba(255,255,255,0.1)',
+          backdropFilter: 'blur(12px)',
+        }}
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
+      >
+        {/* Card header */}
+        <div className="px-5 pt-5 pb-3 flex items-center justify-between">
+          <div>
+            <p className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: '#81C784' }}>
+              Business Growth
+            </p>
+            <p className="text-xs font-medium mt-0.5" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              After MARC engagement
+            </p>
+          </div>
+          <div
+            className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold"
+            style={{ backgroundColor: 'rgba(129,199,132,0.15)', color: '#81C784' }}
+          >
+            <span>↑</span> {growth}%
+          </div>
+        </div>
+
+        {/* Chart */}
+        <div className="px-4 pb-2">
+          <svg viewBox="0 0 320 130" className="w-full h-auto" aria-hidden="true">
+            <defs>
+              <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#FF6D00" />
+                <stop offset="42%" stopColor="#FF6D00" />
+                <stop offset="55%" stopColor="#FF9800" />
+                <stop offset="100%" stopColor="#66BB6A" />
+              </linearGradient>
+              <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#66BB6A" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#66BB6A" stopOpacity="0" />
+              </linearGradient>
+              <clipPath id="areaClip">
+                <rect x="160" y="0" width="160" height="130" />
+              </clipPath>
+            </defs>
+
+            {/* Grid lines */}
+            {[30, 60, 90].map(y => (
+              <line key={y} x1="0" y1={y} x2="320" y2={y}
+                stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            ))}
+
+            {/* Area fill (green side only) */}
+            <path
+              d="M160,72 C185,65 210,55 235,42 C260,30 285,20 320,12 L320,130 L160,130 Z"
+              fill="url(#areaGrad)"
+              clipPath="url(#areaClip)"
+              style={{ opacity: drawn ? 1 : 0, transition: 'opacity 0.8s ease 1.4s' }}
+            />
+
+            {/* The line */}
+            <path
+              ref={pathRef}
+              d="M 0,95 L 20,78 L 40,105 L 60,60 L 80,88 L 100,50 L 120,80
+                 L 140,68 L 160,72
+                 C 185,65 210,55 235,42
+                 C 260,30 285,20 320,12"
+              fill="none"
+              stroke="url(#heroGrad)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{
+                strokeDasharray: pathLength || 800,
+                strokeDashoffset: drawn ? 0 : (pathLength || 800),
+                transition: shouldReduceMotion ? 'none' : 'stroke-dashoffset 1.8s cubic-bezier(0.65,0,0.35,1)',
+              }}
+            />
+
+            {/* Inflection dot */}
+            <circle
+              cx="160" cy="72" r="4" fill="#FF9800"
+              style={{ opacity: drawn ? 1 : 0, transition: 'opacity 0.3s ease 1.2s' }}
+            />
+            <line x1="160" y1="0" x2="160" y2="130"
+              stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="3 3"
+              style={{ opacity: drawn ? 1 : 0, transition: 'opacity 0.3s ease 1.2s' }}
+            />
+
+            {/* Labels */}
+            <text x="70" y="125" textAnchor="middle" fontSize="9" fill="rgba(255,107,0,0.7)" fontFamily="system-ui">Before MARC</text>
+            <text x="245" y="125" textAnchor="middle" fontSize="9" fill="rgba(102,187,106,0.8)" fontFamily="system-ui">With MARC</text>
+          </svg>
+        </div>
+
+        {/* KPI row */}
+        <div className="px-5 pb-5 grid grid-cols-3 gap-3">
+          {[
+            { label: 'Revenue ↑', value: `₹${revenue}L`, color: '#81C784' },
+            { label: 'Clients', value: clients, color: '#FFAB76' },
+            { label: 'GDP Share', value: `${growth}%`, color: '#80DEEA' },
+          ].map((k) => (
+            <div
+              key={k.label}
+              className="rounded-2xl px-3 py-2.5 text-center"
+              style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}
+            >
+              <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.45)' }}>{k.label}</p>
+              <p className="text-base font-bold mt-0.5" style={{ color: k.color }}>{k.value}</p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Floating KPI pills */}
+      {floatingPills.map((pill, i) => (
+        <motion.div
+          key={pill.label}
+          className="absolute px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap"
           style={{
-            strokeDasharray: pathLength,
-            strokeDashoffset: ready ? 0 : pathLength,
-            transition: 'stroke-dashoffset 1.6s cubic-bezier(0.65, 0, 0.35, 1)',
+            top: pill.top,
+            left: pill.left,
+            right: pill.right,
+            color: pill.color,
+            backgroundColor: pill.bg,
+            border: `1px solid ${pill.color}30`,
+            backdropFilter: 'blur(8px)',
           }}
-        />
-      </svg>
-      <div className="flex items-center justify-between w-[280px] sm:w-[340px] mt-1.5">
-        <span className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: '#FFAB76' }}>
-          Before MARC
-        </span>
-        <span className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: '#81C784' }}>
-          With MARC
-        </span>
-      </div>
-    </div>
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            y: shouldReduceMotion ? 0 : [0, -6, 0],
+          }}
+          transition={{
+            opacity: { delay: pill.delay, duration: 0.4 },
+            scale: { delay: pill.delay, duration: 0.4 },
+            y: { delay: pill.delay + 0.4, duration: 3 + i * 0.5, repeat: Infinity, ease: 'easeInOut' },
+          }}
+        >
+          {pill.label}
+        </motion.div>
+      ))}
+    </motion.div>
   )
 }
 
 export function VyaparHero() {
+  const item = {
+    hidden: { opacity: 0, y: 18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  }
   const container = {
     hidden: {},
-    show: {
-      // delayChildren is timed to start once the vitals strip has mostly
-      // finished drawing (~1.5s in), so the page reads as one sequence:
-      // line resolves → copy follows → CTAs land — not two unrelated effects.
-      transition: { staggerChildren: 0.1, delayChildren: 1.5 },
-    },
-  }
-  const item = {
-    hidden: { opacity: 0, y: 14 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+    show: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
   }
 
   return (
     <section
-      className="relative overflow-hidden font-sans"
+      className="relative overflow-hidden font-sans min-h-[90vh] flex items-center"
       style={{
-        background: 'linear-gradient(170deg, #133d16 0%, #0f3812 55%, #0a280c 100%)',
+        background: 'radial-gradient(ellipse at 20% 50%, #1a4a1e 0%, #0d280f 50%, #081508 100%)',
       }}
     >
-      {/* quiet paper-grain texture, replaces the dot-grid + blob-glow pattern
-          used elsewhere on the page — kept deliberately subtle since the
-          vitals strip is doing the visual work here */}
+      {/* Subtle grid */}
       <div
-        className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
         style={{
           backgroundImage:
-            'repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, transparent 1px, transparent 3px)',
+            'linear-gradient(rgba(129,199,132,1) 1px, transparent 1px), linear-gradient(90deg, rgba(129,199,132,1) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+        }}
+      />
+      {/* Left edge glow */}
+      <div
+        className="absolute -left-40 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(46,125,50,0.3) 0%, transparent 70%)',
+          filter: 'blur(60px)',
         }}
       />
 
-      <div className="relative max-w-5xl mx-auto px-6 pt-24 pb-28 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="flex justify-center mb-8"
-        >
-          <VitalsStrip />
-        </motion.div>
+      <div className="relative w-full max-w-7xl mx-auto px-6 py-24 flex flex-col lg:flex-row lg:items-center lg:gap-16">
 
-        <motion.div variants={container} initial="hidden" animate="show">
+        {/* Left: copy */}
+        <motion.div
+          className="flex-1 min-w-0"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
           <motion.span
             variants={item}
-            className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full"
-            style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#C2DDB4' }}
+            className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-8"
+            style={{ backgroundColor: 'rgba(129,199,132,0.12)', color: '#81C784', border: '1px solid rgba(129,199,132,0.25)' }}
           >
-            <Briefcase className="w-3.5 h-3.5" />
-            MARC Biz-Dost · Growth Advisory for Business Owners
+            <Briefcase className="w-3 h-3" />
+            MARC Biz-Dost · World MSME Day · 27 June
           </motion.span>
 
           <motion.h1
             variants={item}
-            className="mt-7 text-4xl md:text-6xl font-bold text-white leading-[1.08] tracking-tight"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-[1.08] tracking-tight"
           >
-            A Business Growth Consultant for MSMEs, Built for India's Owner-Run Businesses
+            Your Business,{' '}
+            <span
+              className="relative inline-block"
+              style={{
+                background: 'linear-gradient(90deg, #66BB6A, #81C784)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              Finally
+            </span>{' '}
+            with the Advisory it Deserves
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-lg leading-relaxed max-w-xl"
             style={{ color: '#C2DDB4' }}
           >
-            The same strategy, financial and operations advisory MARC brings to large
-            enterprises — scoped, priced and explained for MSME owners who need clear
-            answers this quarter, not a 60-page corporate deck.
+            MARC's 15 years of enterprise growth advisory — scoped, priced and explained for
+            India's 7.34 crore MSME owners who need clear answers this quarter, not a
+            60-page corporate deck.
           </motion.p>
 
-          <motion.div variants={item} className="mt-10 flex flex-wrap justify-center gap-4">
+          {/* Trust signals */}
+          <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
+            {[
+              { icon: CheckCircle2, text: 'No jargon. Plain language.' },
+              { icon: CheckCircle2, text: 'MSME-first pricing.' },
+              { icon: CheckCircle2, text: '15 years of MARC expertise.' },
+            ].map((t) => (
+              <div key={t.text} className="flex items-center gap-2 text-sm" style={{ color: '#A5D6A7' }}>
+                <t.icon className="w-4 h-4 flex-shrink-0" style={{ color: '#66BB6A' }} />
+                {t.text}
+              </div>
+            ))}
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
             <motion.a
               href="/checkup"
-              whileHover={{ y: -2, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white"
+              whileHover={{ y: -2, scale: 1.02, boxShadow: '0 12px 32px rgba(255,109,0,0.35)' }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-semibold text-white text-base"
               style={{ backgroundColor: '#FF6D00' }}
             >
-              Take the Free Business Health Check
+              Free Business Health Check
               <ArrowRight className="w-4 h-4" />
             </motion.a>
             <motion.a
               href="/contact"
-              whileHover={{ y: -2, backgroundColor: 'rgba(255,255,255,0.1)' }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold border"
-              style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}
+              whileHover={{ y: -2, backgroundColor: 'rgba(255,255,255,0.08)' }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-semibold text-base transition-colors"
+              style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.85)' }}
             >
               Talk to an Advisor
             </motion.a>
           </motion.div>
+
+          {/* Social proof strip */}
+          <motion.div
+            variants={item}
+            className="mt-12 pt-8 flex items-center gap-8 flex-wrap"
+            style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
+          >
+            {[
+              { value: '7.34 Cr', label: 'Active MSMEs served by sector' },
+              { value: '15 yrs', label: 'MARC advisory experience' },
+              { value: '₹0', label: 'Cost for the Health Check' },
+            ].map((s) => (
+              <div key={s.label}>
+                <p className="text-2xl font-bold text-white">{s.value}</p>
+                <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.4)' }}>{s.label}</p>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
+
+        {/* Right: animated chart panel */}
+        <HeroChartPanel />
       </div>
     </section>
   )
