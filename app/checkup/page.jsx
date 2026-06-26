@@ -16,6 +16,62 @@ import {
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "YOUR_GEMINI_KEY_HERE";
 
 /* ────────────────────────────────────────────────────────────────────────
+   SUPABASE CONFIG
+   Set these in .env.local (and Vercel env vars for production):
+     NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+     NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+
+   Required table — run this once in the Supabase SQL editor:
+
+   create table checkup_responses (
+     id           uuid default gen_random_uuid() primary key,
+     session_id   text unique not null,
+     lead         jsonb,
+     answers      jsonb,
+     results      jsonb,
+     step         text,          -- 'lead' | 'checkup' | 'results'
+     completed    boolean default false,
+     created_at   timestamptz default now(),
+     updated_at   timestamptz default now()
+   );
+   ──────────────────────────────────────────────────────────────────────── */
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+/** Upsert a checkup row — safe to call on every state change (debounced). */
+async function persistCheckup(sessionId, payload) {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/checkup_responses`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        Prefer: "resolution=merge-duplicates",
+      },
+      body: JSON.stringify({
+        session_id: sessionId,
+        ...payload,
+        updated_at: new Date().toISOString(),
+      }),
+    });
+  } catch (err) {
+    console.warn("[MARC checkup] Supabase persist failed:", err);
+  }
+}
+
+/** Stable session ID for this browser tab. */
+function useSessionId() {
+  const ref = useState(() =>
+    typeof crypto !== "undefined"
+      ? crypto.randomUUID()
+      : Math.random().toString(36).slice(2)
+  )[0];
+  return ref;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
    MARC brand palette (from tailwind.config.js → theme.colors.marc)
    Deep green #1B5E20 / mid #2E7D32 / bright #4E9141 / light #81C784
    Turquoise #5D9F94, turquoise-1 #287565, deep-turquoise #1D342F
@@ -170,7 +226,28 @@ export default function App() {
   const [leadStep, setLeadStep] = useState(0);
   const [leadDirection, setLeadDirection] = useState("next");
 
+  const sessionId = useSessionId();
+
   useEffect(() => { setMounted(true); }, []);
+
+  // ── Auto-save: partial lead data as soon as any field is filled ──────
+  useEffect(() => {
+    const hasAny = Object.values(lead).some(Boolean);
+    if (!hasAny) return;
+    const timer = setTimeout(() => {
+      persistCheckup(sessionId, { lead, answers, step, completed: false });
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [lead]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Auto-save: answers as the user taps through questions ────────────
+  useEffect(() => {
+    if (Object.keys(answers).length === 0) return;
+    const timer = setTimeout(() => {
+      persistCheckup(sessionId, { lead, answers, step: "checkup", completed: false });
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [answers]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // cycle the "AI thinking" messages while loading, for a genuine feel of
   // staged analysis rather than a static spinner
@@ -233,6 +310,14 @@ export default function App() {
         throw new Error("Couldn't read the AI's response. Please try again.");
       }
       setResults(parsed);
+      // Save completed results to Supabase
+      await persistCheckup(sessionId, {
+        lead,
+        answers,
+        results: parsed,
+        step: "results",
+        completed: true,
+      });
       setStep("results");
     } catch (e) {
       setError("Analysis failed: " + e.message);

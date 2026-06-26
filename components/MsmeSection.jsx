@@ -15,6 +15,85 @@ import {
   Factory,
 } from 'lucide-react'
 
+/* ----------------------------------------------------------------------- */
+/* SUPABASE CONFIG                                                          */
+/* Replace these two values with your project's URL and anon key.         */
+/* Create a table called `checkup_responses` with columns:                 */
+/*   id          uuid default gen_random_uuid() primary key               */
+/*   session_id  text                                                       */
+/*   data        jsonb                                                      */
+/*   completed   boolean default false                                      */
+/*   created_at  timestamptz default now()                                 */
+/*   updated_at  timestamptz default now()                                 */
+/* ----------------------------------------------------------------------- */
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+
+/**
+ * Upsert checkup data to Supabase.
+ * Merges partial data into an existing row (keyed by sessionId) or creates one.
+ * Safe to call on every step change — low-overhead upsert.
+ */
+async function persistCheckup(sessionId, data, completed = false) {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/checkup_responses`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        Prefer: 'resolution=merge-duplicates',
+      },
+      body: JSON.stringify({
+        session_id: sessionId,
+        data,
+        completed,
+        updated_at: new Date().toISOString(),
+      }),
+    })
+  } catch (err) {
+    // Non-blocking — don't surface network errors to the user
+    console.warn('[MARC checkup] Supabase persist failed:', err)
+  }
+}
+
+/**
+ * Hook: call inside any multi-step checkup form.
+ * Saves partial state automatically as the user progresses.
+ * Returns { save, sessionId } — call save(data, completed) manually on submit.
+ *
+ * Usage:
+ *   const { save, sessionId } = useCheckupPersist()
+ *   // on each step change:
+ *   React.useEffect(() => { save(formState) }, [formState])
+ *   // on final submit:
+ *   save(finalState, true)
+ */
+function useCheckupPersist() {
+  const sessionId = React.useRef(
+    typeof crypto !== 'undefined'
+      ? crypto.randomUUID()
+      : Math.random().toString(36).slice(2)
+  )
+  const timerRef = React.useRef(null)
+
+  const save = React.useCallback((data, completed = false) => {
+    // Debounce partial saves by 800 ms; flush immediately when completed
+    if (completed) {
+      clearTimeout(timerRef.current)
+      persistCheckup(sessionId.current, data, true)
+    } else {
+      clearTimeout(timerRef.current)
+      timerRef.current = setTimeout(() => {
+        persistCheckup(sessionId.current, data, false)
+      }, 800)
+    }
+  }, [])
+
+  return { save, sessionId: sessionId.current }
+}
+
 /*
   MARC Biz-Dost — MSME vertical landing sections
   --------------------------------------------
@@ -895,6 +974,31 @@ export function VyaparContactCTA() {
 /* family rather than a generic dark SaaS template.                        */
 /* ----------------------------------------------------------------------- */
 export function BusinessCheckupSection() {
+  // Mini inline lead form — captures partial data to Supabase before
+  // redirecting to the full /checkup flow.
+  const [form, setForm] = React.useState({ name: '', phone: '', type: '' })
+  const [submitted, setSubmitted] = React.useState(false)
+  const { save } = useCheckupPersist()
+
+  // Save partial data whenever the user fills any field
+  React.useEffect(() => {
+    const hasAny = Object.values(form).some(Boolean)
+    if (hasAny) save(form, false)
+  }, [form]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  function handleChange(e) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  async function handleStart(e) {
+    e.preventDefault()
+    // Save as completed lead before redirect
+    await save({ ...form, started_full_checkup: true }, true)
+    setSubmitted(true)
+    // Small delay so the save fires, then redirect
+    setTimeout(() => { window.location.href = '/checkup' }, 400)
+  }
+
   const pills = [
     { icon: TrendingUp, label: 'Sales' },
     { icon: Settings, label: 'Operations' },
@@ -957,14 +1061,64 @@ export function BusinessCheckupSection() {
             })}
           </div>
 
-          <a
-            href="/checkup"
-            className="mt-10 inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5"
-            style={{ background: 'linear-gradient(90deg, #2563eb, #7c3aed)' }}
-          >
-            Take the Free Checkup
-            <ArrowRight className="w-4 h-4" />
-          </a>
+          {/* Inline mini-form — partial data saved to Supabase on each keystroke */}
+          <div className="mt-10 w-full max-w-sm space-y-3">
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Your name"
+              className="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                color: 'white',
+              }}
+            />
+            <input
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              placeholder="Mobile number"
+              type="tel"
+              className="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                color: 'white',
+              }}
+            />
+            <select
+              name="type"
+              value={form.type}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all"
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                color: form.type ? 'white' : 'rgba(255,255,255,0.4)',
+              }}
+            >
+              <option value="" style={{ color: '#334155' }}>Business type</option>
+              <option value="manufacturing" style={{ color: '#334155' }}>Manufacturing</option>
+              <option value="services" style={{ color: '#334155' }}>Services</option>
+              <option value="trade" style={{ color: '#334155' }}>Trade / Retail</option>
+              <option value="exports" style={{ color: '#334155' }}>Exports</option>
+              <option value="other" style={{ color: '#334155' }}>Other</option>
+            </select>
+            <button
+              onClick={handleStart}
+              disabled={submitted}
+              className="w-full flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5 disabled:opacity-60"
+              style={{ background: submitted ? '#2E7D32' : 'linear-gradient(90deg, #2E7D32, #43A047)' }}
+            >
+              {submitted ? 'Starting…' : 'Take the Free Checkup'}
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <p className="text-xs text-center" style={{ color: 'rgba(255,255,255,0.3)' }}>
+              No sign-up needed · 10 minutes · Free
+            </p>
+          </div>
         </div>
 
         {/* RIGHT — mock score card */}
