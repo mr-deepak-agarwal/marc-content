@@ -10,7 +10,7 @@ import {
 import MsmePage from '@/components/MsmeSection'
 
 export const metadata = {
-  title: 'MARC Vyapar — Business Consulting for MSMEs in India',
+  title: 'MARC Biz-Dost — Business Consulting for MSMEs in India',
   description: '...',
 }
 
