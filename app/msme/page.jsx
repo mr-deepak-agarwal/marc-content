@@ -4,6 +4,7 @@ import {
   VyaparServices,
   BusinessCheckupSection,
   VyaparPricing,
+  MarcMarketPulseSection,
 } from '@/components/MsmeSection'
 
 import MsmePage from '@/components/MsmeSection'

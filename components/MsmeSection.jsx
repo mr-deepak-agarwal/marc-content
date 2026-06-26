@@ -542,15 +542,169 @@ export function BusinessCheckupSection() {
 }
 
 /* ----------------------------------------------------------------------- */
-/* Combined page (optional — for quick preview)                            */
+/* 6. MARC MARKET PULSE — Teaser / Coming Soon                            */
+/* External intelligence layer for MSMEs. Founders ask a plain-English    */
+/* question about market size, demographics, or competition and get an    */
+/* investor-ready report in minutes. Launching July — teased here.       */
+/* Design: stays in-family (deep green bg, green/orange accents) but uses */
+/* a subtle "signal / radar" visual language to distinguish it from the   */
+/* diagnostic section above.                                               */
+/* ----------------------------------------------------------------------- */
+export function MarcMarketPulseSection() {
+  const features = [
+    {
+      icon: TrendingUp,
+      headline: 'Market Size & Demand',
+      desc: 'Ask how large a market is — get a validated TAM/SAM/SOM breakdown, not a consultancy estimate padded with caveats.',
+    },
+    {
+      icon: Users,
+      headline: 'Customer Demographics',
+      desc: 'Understand who actually buys in your target segment: age, income, geography, behaviour — pulled from live data sources.',
+    },
+    {
+      icon: Building2,
+      headline: 'Competitive Landscape',
+      desc: 'See who is already in the space, what they charge, and where the white space is — before you commit budget.',
+    },
+  ]
+
+  return (
+    <section
+      className="relative py-24 px-6 overflow-hidden font-sans"
+      style={{ backgroundColor: '#1B5E20' }}
+    >
+      {/* Dot grid texture — same language as VyaparHero */}
+      <div
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #4CAF50 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+      {/* Orange glow — bottom-left, opposite to hero so it doesn't feel repeated */}
+      <div
+        className="absolute -bottom-32 -left-32 w-[26rem] h-[26rem] rounded-full blur-3xl"
+        style={{ backgroundColor: 'rgba(255,109,0,0.14)' }}
+      />
+
+      <div className="relative max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="max-w-3xl mb-16">
+          <div className="flex items-center gap-3 mb-5">
+            <span
+              className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full"
+              style={{ backgroundColor: 'rgba(255,109,0,0.18)', color: '#FFAB76' }}
+            >
+              Launching July 2025 · Teaser
+            </span>
+          </div>
+
+          <h2 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight">
+            MARC Market Pulse
+            <span className="block mt-1" style={{ color: '#81C784' }}>
+              Know the Market Before You Move
+            </span>
+          </h2>
+
+          <p className="mt-6 text-lg leading-relaxed" style={{ color: '#C2DDB4' }}>
+            A tech-driven market intelligence tool built for India's owner-run businesses.
+            Type a plain-English question about market size, demographics, or competition
+            and get a validated, investor-ready report in minutes — not weeks.
+          </p>
+
+          <p className="mt-3 text-sm" style={{ color: '#81C784' }}>
+            While the Business Health Check diagnoses your <em>internal</em> operations,
+            Market Pulse tackles <em>external</em> uncertainty — so you know exactly what
+            opportunity you are stepping into.
+          </p>
+        </div>
+
+        {/* Feature cards */}
+        <div className="grid md:grid-cols-3 gap-5 mb-14">
+          {features.map((f, i) => {
+            const Icon = f.icon
+            return (
+              <div
+                key={f.headline}
+                className="rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  backgroundColor: 'rgba(255,255,255,0.07)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                }}
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div
+                    className="w-11 h-11 rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: 'rgba(129,199,132,0.15)' }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: '#81C784' }} />
+                  </div>
+                  <span className="text-xs font-semibold" style={{ color: '#A5D6A7' }}>
+                    0{i + 1}
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3 tracking-tight">
+                  {f.headline}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: '#C2DDB4' }}>
+                  {f.desc}
+                </p>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* CTA bar */}
+        <div
+          className="rounded-3xl px-8 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          style={{
+            backgroundColor: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.1)',
+          }}
+        >
+          <div>
+            <p className="font-semibold text-white text-lg">
+              Be first to access MARC Market Pulse.
+            </p>
+            <p className="mt-1 text-sm" style={{ color: '#A5D6A7' }}>
+              Join the early-access list — free for MSME owners during the launch window.
+            </p>
+          </div>
+          <a
+            href="https://launch.marcglocal.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5 whitespace-nowrap"
+            style={{ backgroundColor: '#FF6D00' }}
+          >
+            Get Early Access
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ----------------------------------------------------------------------- */
+/* Combined page                                                            */
+/* New order per brief:                                                     */
+/*   1. Hero banner (VyaparHero)                                           */
+/*   2. MSME overview / stats (MSMEIndustrySection)                       */
+/*   3. Diagnostic / health check (BusinessCheckupSection)                */
+/*   4. MSME Pulse teaser (MarcMarketPulseSection)                        */
+/*   5. MARC Services in plain language (VyaparServices)                  */
+/*   6. Pricing (VyaparPricing)                                            */
 /* ----------------------------------------------------------------------- */
 export default function MARCVyaparPage() {
   return (
     <main>
       <VyaparHero />
       <MSMEIndustrySection />
-      <VyaparServices />
       <BusinessCheckupSection />
+      <MarcMarketPulseSection />
+      <VyaparServices />
       <VyaparPricing />
     </main>
   )
