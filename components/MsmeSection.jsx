@@ -517,14 +517,14 @@ export function VyaparHero() {
             style={{ backgroundColor: 'rgba(129,199,132,0.12)', color: '#81C784', border: '1px solid rgba(129,199,132,0.25)' }}
           >
             <Briefcase className="w-3 h-3" />
-            MARC Biz-Dost · Growth Advisory Friend for MSME · Mission: Service in India
+            MARC Biz-Dost · Growth Advisory Friend for MSME
           </motion.span>
 
           <motion.h1
             variants={item}
             className="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-[1.08] tracking-tight"
           >
-            The Same Advisory Large Enterprises Get —{' '}
+            MSME Business Consulting in India,{' '}
             <span
               className="relative inline-block"
               style={{
@@ -533,7 +533,7 @@ export function VyaparHero() {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Built for India's Owner-Run MSMEs
+              Tailored to MSME Needs
             </span>
           </motion.h1>
 
@@ -542,17 +542,15 @@ export function VyaparHero() {
             className="mt-6 text-lg leading-relaxed max-w-xl"
             style={{ color: '#C2DDB4' }}
           >
-            MARC's 15 years of enterprise growth advisory — strategy, financial and
-            operations consulting — scoped, priced and explained for India's MSME owners
-            who need clear answers this quarter, not a 60-page corporate deck.
+            The same strategy, financial and operations advisory MARC brings to large enterprises — scoped, priced and explained for MSME owners who need clear answers real time, not a 60-page corporate deck.
           </motion.p>
 
           {/* Trust signals */}
           <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
             {[
-              { icon: CheckCircle2, text: 'MSME-first pricing. Not enterprise rates.' },
-              { icon: CheckCircle2, text: 'Plain language. Zero jargon.' },
-              { icon: CheckCircle2, text: '15 years of MARC enterprise expertise.' },
+              { icon: CheckCircle2, text: 'A Business Growth Advisor for MSMEs' },
+              { icon: CheckCircle2, text: 'Built for India\'s Owner-Run MSME Businesses' },
+              { icon: CheckCircle2, text: 'Under the Mission - Service in India' },
             ].map((t) => (
               <div key={t.text} className="flex items-center gap-2 text-sm" style={{ color: '#A5D6A7' }}>
                 <t.icon className="w-4 h-4 flex-shrink-0" style={{ color: '#66BB6A' }} />
