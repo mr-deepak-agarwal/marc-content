@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 
 /*
-  MARC Vyapar — MSME vertical landing sections
+  MARC Biz-Dost — MSME vertical landing sections
   --------------------------------------------
   Rebuilt to match marcglocal.com's actual design system, pulled from your
   components_v2 reference (ServicesSection.jsx, WhyUsSection.jsx, tailwind.config.js):
@@ -31,7 +31,7 @@ import {
   Icons: lucide-react only — no emoji, matching the rest of the site.
   Card pattern: rounded-3xl, numbered "0X" eyebrow + hairline, arrow-up-right
   on hover — same pattern as ServicesSection.jsx, applied here instead of a
-  generic Tailwind card so MARC Vyapar reads as the same brand, not a knockoff.
+  generic Tailwind card so MARC Biz-Dost reads as the same brand, not a knockoff.
 */
 
 /* ----------------------------------------------------------------------- */
@@ -91,7 +91,7 @@ export function MSMEIndustrySection() {
             India's 7.8 crore+ registered micro, small and medium enterprises contribute over
             31% of national GDP and nearly half of the country's exports — yet most operate
             without the financial visibility, growth planning or process discipline that larger
-            companies take for granted. MARC Vyapar brings MARC's 15 years of growth advisory
+            companies take for granted. MARC Biz-Dost brings MARC's 15 years of growth advisory
             experience to business owners directly, in plain language and at a price built for
             MSMEs.
             <span className="block mt-2 text-sm" style={{ color: '#5D7A52' }}>
@@ -132,7 +132,7 @@ export function MSMEIndustrySection() {
 }
 
 /* ----------------------------------------------------------------------- */
-/* 2. REPOSITIONING HERO — MARC Vyapar                                     */
+/* 2. REPOSITIONING HERO — MARC Biz-Dost                                   */
 /* SEO intent: primary keyword "business growth consultant for MSMEs in    */
 /* India" placed naturally in H1 + supporting copy.                        */
 /* ----------------------------------------------------------------------- */
@@ -158,7 +158,7 @@ export function VyaparHero() {
           style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#C2DDB4' }}
         >
           <Briefcase className="w-3.5 h-3.5" />
-          MARC Vyapar · Growth Advisory for Business Owners
+          MARC Biz-Dost · Growth Advisory for Business Owners
         </span>
 
         <h1 className="mt-7 text-4xl md:text-6xl font-bold text-white leading-[1.08] tracking-tight">
@@ -291,6 +291,7 @@ export function VyaparServices() {
 /* "MSME advisory cost" — pricing shown transparently, which both serves   */
 /* the price-sensitive MSME buyer and reads well for "cost" search intent. */
 /* ----------------------------------------------------------------------- */
+/* Pricing section commented out for now — replaced with a contact CTA below.
 export function VyaparPricing() {
   const tiers = [
     {
@@ -407,6 +408,45 @@ export function VyaparPricing() {
               </a>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+*/
+
+/* ----------------------------------------------------------------------- */
+/* 4b. CONTACT CTA — replaces pricing for now                              */
+/* ----------------------------------------------------------------------- */
+export function VyaparContactCTA() {
+  return (
+    <section className="relative overflow-hidden py-24 font-sans" style={{ backgroundColor: '#1B5E20' }}>
+      <div
+        className="absolute inset-0 opacity-[0.18] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #4CAF50 1px, transparent 1px)',
+          backgroundSize: '38px 38px',
+        }}
+      />
+      <div className="relative max-w-3xl mx-auto px-6 text-center">
+        <h2 className="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-[1.15]">
+          Ready to Grow Your Business with MARC Biz-Dost?
+        </h2>
+        <p className="mt-5 text-lg leading-relaxed" style={{ color: '#C2DDB4' }}>
+          Tell us where your business stands today, and we'll get back to you with the right
+          starting point — no jargon, no long lock-ins.
+        </p>
+        <div className="mt-9">
+          <a
+            href="https://www.marcglocal.com/contact-us"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5"
+            style={{ backgroundColor: '#FF6D00' }}
+          >
+            Talk to MARC Biz-Dost
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </section>
@@ -532,7 +572,7 @@ export function BusinessCheckupSection() {
             </div>
 
             <div className="mt-7 pt-5 text-xs text-slate-400" style={{ borderTop: '1px solid #F1F5F9' }}>
-              Based on 32 data points across your business · Scored by MARC Vyapar AI
+              Based on 32 data points across your business · Scored by MARC Biz-Dost AI
             </div>
           </div>
         </div>
@@ -906,7 +946,7 @@ export function MarcMarketPulseSection() {
 /*   3. Diagnostic / health check (BusinessCheckupSection)                */
 /*   4. MSME Pulse teaser (MarcMarketPulseSection)                        */
 /*   5. MARC Services in plain language (VyaparServices)                  */
-/*   6. Pricing (VyaparPricing)                                            */
+/*   6. Contact CTA (VyaparContactCTA, replaces pricing for now)           */
 /* ----------------------------------------------------------------------- */
 export default function MARCVyaparPage() {
   return (
@@ -916,7 +956,7 @@ export default function MARCVyaparPage() {
       <BusinessCheckupSection />
       <MarcMarketPulseSection />
       <VyaparServices />
-      <VyaparPricing />
+      <VyaparContactCTA />
     </main>
   )
 }
