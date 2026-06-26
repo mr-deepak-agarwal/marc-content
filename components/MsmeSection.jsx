@@ -591,6 +591,7 @@ export function BusinessCheckupSection() {
 /* ----------------------------------------------------------------------- */
 export function MarcMarketPulseSection() {
   const [active, setActive] = React.useState(0)
+  const [paused, setPaused] = React.useState(false)
 
   const slides = [
     /* SLIDE 1 — Announcement / hero */
@@ -803,6 +804,14 @@ export function MarcMarketPulseSection() {
   const prev = () => setActive((a) => (a === 0 ? slides.length - 1 : a - 1))
   const next = () => setActive((a) => (a === slides.length - 1 ? 0 : a + 1))
 
+  React.useEffect(() => {
+    if (paused) return
+    const id = setInterval(() => {
+      setActive((a) => (a === slides.length - 1 ? 0 : a + 1))
+    }, 5000)
+    return () => clearInterval(id)
+  }, [paused, slides.length])
+
   return (
     <section
       className="relative overflow-hidden font-sans"
@@ -881,9 +890,14 @@ export function MarcMarketPulseSection() {
         </div>
 
         {/* Slide panel */}
-        <div className="overflow-hidden rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+        <div
+          className="overflow-hidden rounded-3xl"
+          style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
           <div
-            className="flex transition-transform duration-500 ease-in-out"
+            className="flex items-start transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${active * 100}%)` }}
           >
             {slides.map((slide, i) => (
