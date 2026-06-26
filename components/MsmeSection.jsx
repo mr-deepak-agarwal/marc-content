@@ -542,140 +542,351 @@ export function BusinessCheckupSection() {
 }
 
 /* ----------------------------------------------------------------------- */
-/* 6. MARC MARKET PULSE — Teaser / Coming Soon                            */
-/* External intelligence layer for MSMEs. Founders ask a plain-English    */
-/* question about market size, demographics, or competition and get an    */
-/* investor-ready report in minutes. Launching July — teased here.       */
-/* Design: stays in-family (deep green bg, green/orange accents) but uses */
-/* a subtle "signal / radar" visual language to distinguish it from the   */
-/* diagnostic section above.                                               */
+/* 6. MARC MARKET PULSE — Carousel Teaser                                 */
+/* Three slides mirroring the actual launch deck:                         */
+/*   Slide 1 — Announcing: India market intelligence you can rely on      */
+/*   Slide 2 — How it works: Four steps. One number you can rely on.      */
+/*   Slide 3 — Generic AI vs MARC: Same question. Two answers.            */
+/* Client-side carousel, no external dep — useState + translate trick.    */
 /* ----------------------------------------------------------------------- */
 export function MarcMarketPulseSection() {
-  const features = [
+  const [active, setActive] = React.useState(0)
+
+  const slides = [
+    /* SLIDE 1 — Announcement / hero */
     {
-      icon: TrendingUp,
-      headline: 'Market Size & Demand',
-      desc: 'Ask how large a market is — get a validated TAM/SAM/SOM breakdown, not a consultancy estimate padded with caveats.',
+      eyebrow: 'ANNOUNCING',
+      label: '01 / 03',
+      content: (
+        <div className="flex flex-col justify-end h-full">
+          <h2 className="text-4xl md:text-6xl font-bold text-white leading-[1.05] tracking-tight">
+            India market intelligence
+            <br />
+            <em className="not-italic font-bold" style={{ color: '#81C784', fontStyle: 'italic' }}>
+              you can rely on.
+            </em>
+          </h2>
+          <p className="mt-6 text-lg leading-relaxed max-w-xl" style={{ color: '#C2DDB4' }}>
+            Analyst-validated market sizing and full strategy reports, in minutes.
+            Built for India's founders and MSME owners.
+          </p>
+          {/* TAM / SAM / SOM bar visual — from linkedin image */}
+          <div className="mt-10 space-y-3 max-w-sm">
+            {[
+              { label: 'TAM', w: '100%' },
+              { label: 'SAM', w: '55%' },
+              { label: 'SOM', w: '28%' },
+            ].map((b) => (
+              <div key={b.label} className="flex items-center gap-4">
+                <span className="w-10 text-xs font-semibold tracking-widest" style={{ color: '#A5D6A7' }}>
+                  {b.label}
+                </span>
+                <div className="flex-1 h-2.5 rounded-full" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}>
+                  <div
+                    className="h-full rounded-full"
+                    style={{ width: b.w, backgroundColor: '#4CAF50' }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-10 text-sm font-semibold italic" style={{ color: '#81C784' }}>
+            Studio opens 31 July 2026 · MARC's 16th anniversary
+          </p>
+        </div>
+      ),
     },
+
+    /* SLIDE 2 — How it works */
     {
-      icon: Users,
-      headline: 'Customer Demographics',
-      desc: 'Understand who actually buys in your target segment: age, income, geography, behaviour — pulled from live data sources.',
+      eyebrow: 'HOW IT WORKS',
+      label: '02 / 03',
+      content: (
+        <div className="flex flex-col justify-end h-full">
+          <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.08] tracking-tight">
+            Four steps. One number{' '}
+            <br className="hidden md:block" />
+            you can{' '}
+            <em style={{ color: '#81C784', fontStyle: 'italic' }}>rely on.</em>
+          </h2>
+          <div className="mt-10 space-y-3">
+            {[
+              {
+                n: '01',
+                title: 'Ask',
+                desc: 'Describe your market in one plain-English line. No spreadsheet, no template.',
+                highlight: false,
+              },
+              {
+                n: '02',
+                title: 'Size',
+                desc: 'MARC sizes it from sourced anchors, with every assumption on the table.',
+                highlight: false,
+              },
+              {
+                n: '03',
+                title: 'Validate',
+                desc: 'A senior MARC analyst signs off before any number is released.',
+                highlight: true,
+                badge: 'THE MARC DIFFERENCE',
+              },
+              {
+                n: '04',
+                title: 'Deliver',
+                desc: 'A defensible number, ready to act on as a PDF or a board-ready deck.',
+                highlight: false,
+              },
+            ].map((step) => (
+              <div
+                key={step.n}
+                className="flex items-start gap-5 rounded-2xl px-6 py-4"
+                style={{
+                  backgroundColor: step.highlight
+                    ? 'rgba(129,199,132,0.1)'
+                    : 'rgba(255,255,255,0.05)',
+                  border: step.highlight
+                    ? '1px solid rgba(129,199,132,0.25)'
+                    : '1px solid rgba(255,255,255,0.07)',
+                }}
+              >
+                <span
+                  className="text-2xl font-bold italic flex-shrink-0 w-8"
+                  style={{ color: '#81C784', fontStyle: 'italic' }}
+                >
+                  {step.n}
+                </span>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-bold text-white">{step.title}</span>
+                    {step.badge && (
+                      <span
+                        className="text-[10px] font-semibold tracking-widest uppercase px-2 py-0.5 rounded"
+                        style={{ color: '#81C784', backgroundColor: 'rgba(129,199,132,0.12)' }}
+                      >
+                        {step.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-0.5 text-sm leading-relaxed" style={{ color: '#C2DDB4' }}>
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
     },
+
+    /* SLIDE 3 — Generic AI vs MARC */
     {
-      icon: Building2,
-      headline: 'Competitive Landscape',
-      desc: 'See who is already in the space, what they charge, and where the white space is — before you commit budget.',
+      eyebrow: 'GENERIC AI VS MARC',
+      label: '03 / 03',
+      content: (
+        <div className="flex flex-col justify-end h-full">
+          <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.08] tracking-tight">
+            Same question.
+            <br />
+            <em style={{ color: '#81C784', fontStyle: 'italic' }}>Two answers.</em>
+          </h2>
+          <p className="mt-4 text-sm" style={{ color: '#C2DDB4' }}>
+            "How big is the EV-charging market in India?"
+          </p>
+
+          {/* Generic AI box */}
+          <div
+            className="mt-8 rounded-2xl p-5"
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+            }}
+          >
+            <p
+              className="text-[10px] font-semibold tracking-widest uppercase mb-3"
+              style={{ color: '#94A3B8' }}
+            >
+              A Generic AI Tool
+            </p>
+            <p className="text-sm leading-relaxed" style={{ color: '#94A3B8' }}>
+              "The India EV-charging market is large and growing rapidly. It is expected to
+              be worth billions in the coming years, with many players competing. Overall, a
+              promising space with strong potential."
+            </p>
+          </div>
+
+          {/* MARC box */}
+          <div
+            className="mt-3 rounded-2xl p-5"
+            style={{
+              backgroundColor: 'rgba(129,199,132,0.08)',
+              border: '1px solid rgba(129,199,132,0.25)',
+            }}
+          >
+            <p
+              className="text-[10px] font-semibold tracking-widest uppercase mb-3"
+              style={{ color: '#81C784' }}
+            >
+              MARC Market Pulse
+            </p>
+            <p className="text-sm leading-relaxed text-white">
+              <span
+                className="inline-block px-2 py-0.5 rounded font-semibold mr-1"
+                style={{ backgroundColor: 'rgba(129,199,132,0.2)', color: '#81C784' }}
+              >
+                ₹14,200 Cr
+              </span>
+              today, growing ~24% a year [IBEF, MoSPI]. Serviceable now:{' '}
+              <span
+                className="inline-block px-2 py-0.5 rounded font-semibold mx-1"
+                style={{ backgroundColor: 'rgba(129,199,132,0.2)', color: '#81C784' }}
+              >
+                ₹3,800 Cr
+              </span>
+              . Near-term obtainable:{' '}
+              <span
+                className="inline-block px-2 py-0.5 rounded font-semibold mx-1"
+                style={{ backgroundColor: 'rgba(129,199,132,0.2)', color: '#81C784' }}
+              >
+                ₹620 Cr
+              </span>
+              . Verdict: real, win on speed. Signed off by a MARC analyst.
+            </p>
+            <p className="mt-3 text-xs italic" style={{ color: '#81C784' }}>
+              Illustrative example. Every live figure is sourced and confidence-flagged.
+            </p>
+          </div>
+        </div>
+      ),
     },
   ]
 
+  const prev = () => setActive((a) => (a === 0 ? slides.length - 1 : a - 1))
+  const next = () => setActive((a) => (a === slides.length - 1 ? 0 : a + 1))
+
   return (
     <section
-      className="relative py-24 px-6 overflow-hidden font-sans"
-      style={{ backgroundColor: '#1B5E20' }}
+      className="relative overflow-hidden font-sans"
+      style={{
+        background: 'radial-gradient(ellipse at top right, #1a3a1a 0%, #0d2010 60%, #081408 100%)',
+      }}
     >
-      {/* Dot grid texture — same language as VyaparHero */}
+      {/* Dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.12]"
+        className="absolute inset-0 opacity-[0.08]"
         style={{
           backgroundImage: 'radial-gradient(circle, #4CAF50 1px, transparent 1px)',
           backgroundSize: '32px 32px',
         }}
       />
-      {/* Orange glow — bottom-left, opposite to hero so it doesn't feel repeated */}
+      {/* Bottom-left glow */}
       <div
-        className="absolute -bottom-32 -left-32 w-[26rem] h-[26rem] rounded-full blur-3xl"
-        style={{ backgroundColor: 'rgba(255,109,0,0.14)' }}
+        className="absolute -bottom-40 -left-40 w-[30rem] h-[30rem] rounded-full blur-3xl pointer-events-none"
+        style={{ backgroundColor: 'rgba(255,109,0,0.1)' }}
       />
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="flex items-center gap-3 mb-5">
+      <div className="relative max-w-7xl mx-auto px-6 py-24">
+        {/* Section header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+          <div>
             <span
-              className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full"
+              className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4"
               style={{ backgroundColor: 'rgba(255,109,0,0.18)', color: '#FFAB76' }}
             >
-              Launching July 2025 · Teaser
+              Launching 31 July 2026
             </span>
+            <h2 className="text-3xl font-bold text-white tracking-tight">
+              <span style={{ color: '#81C784' }}>MARC</span> Market Pulse
+            </h2>
+            <p className="mt-2 text-sm max-w-md" style={{ color: '#C2DDB4' }}>
+              While the Business Health Check reads your <em>internal</em> operations,
+              Market Pulse tackles <em>external</em> uncertainty — market size, competition,
+              and demographics in minutes.
+            </p>
           </div>
 
-          <h2 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight">
-            MARC Market Pulse
-            <span className="block mt-1" style={{ color: '#81C784' }}>
-              Know the Market Before You Move
-            </span>
-          </h2>
-
-          <p className="mt-6 text-lg leading-relaxed" style={{ color: '#C2DDB4' }}>
-            A tech-driven market intelligence tool built for India's owner-run businesses.
-            Type a plain-English question about market size, demographics, or competition
-            and get a validated, investor-ready report in minutes — not weeks.
-          </p>
-
-          <p className="mt-3 text-sm" style={{ color: '#81C784' }}>
-            While the Business Health Check diagnoses your <em>internal</em> operations,
-            Market Pulse tackles <em>external</em> uncertainty — so you know exactly what
-            opportunity you are stepping into.
-          </p>
+          {/* Carousel nav */}
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <button
+              onClick={prev}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/10"
+              style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
+              aria-label="Previous slide"
+            >
+              ←
+            </button>
+            <div className="flex gap-1.5">
+              {slides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className="rounded-full transition-all"
+                  style={{
+                    width: active === i ? '20px' : '8px',
+                    height: '8px',
+                    backgroundColor: active === i ? '#81C784' : 'rgba(255,255,255,0.25)',
+                  }}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={next}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/10"
+              style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'white' }}
+              aria-label="Next slide"
+            >
+              →
+            </button>
+          </div>
         </div>
 
-        {/* Feature cards */}
-        <div className="grid md:grid-cols-3 gap-5 mb-14">
-          {features.map((f, i) => {
-            const Icon = f.icon
-            return (
+        {/* Slide panel */}
+        <div className="overflow-hidden rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+          <div
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${active * 100}%)` }}
+          >
+            {slides.map((slide, i) => (
               <div
-                key={f.headline}
-                className="rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.07)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                }}
+                key={i}
+                className="w-full flex-shrink-0 p-8 md:p-12"
+                style={{ minWidth: '100%', backgroundColor: 'rgba(255,255,255,0.03)' }}
               >
-                <div className="flex items-center justify-between mb-6">
-                  <div
-                    className="w-11 h-11 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: 'rgba(129,199,132,0.15)' }}
+                {/* Slide eyebrow + counter */}
+                <div className="flex items-center justify-between mb-8">
+                  <span
+                    className="text-xs font-semibold tracking-widest uppercase"
+                    style={{ color: '#81C784' }}
                   >
-                    <Icon className="w-5 h-5" style={{ color: '#81C784' }} />
-                  </div>
-                  <span className="text-xs font-semibold" style={{ color: '#A5D6A7' }}>
-                    0{i + 1}
+                    {slide.eyebrow}
+                  </span>
+                  <span className="text-xs font-semibold" style={{ color: '#4a7a4a' }}>
+                    {slide.label}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3 tracking-tight">
-                  {f.headline}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#C2DDB4' }}>
-                  {f.desc}
-                </p>
+                {slide.content}
               </div>
-            )
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* CTA bar */}
+        {/* Bottom CTA bar */}
         <div
-          className="rounded-3xl px-8 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          className="mt-8 rounded-2xl px-7 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
           style={{
-            backgroundColor: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            backgroundColor: 'rgba(255,255,255,0.04)',
+            border: '1px solid rgba(255,255,255,0.08)',
           }}
         >
-          <div>
-            <p className="font-semibold text-white text-lg">
-              Be first to access MARC Market Pulse.
-            </p>
-            <p className="mt-1 text-sm" style={{ color: '#A5D6A7' }}>
-              Join the early-access list — free for MSME owners during the launch window.
-            </p>
-          </div>
+          <p className="text-sm font-medium" style={{ color: '#C2DDB4' }}>
+            Be first in. Free for MSME owners during the launch window.{' '}
+            <span className="text-white font-semibold">Studio opens 31 July 2026.</span>
+          </p>
           <a
             href="https://launch.marcglocal.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5 whitespace-nowrap"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5 whitespace-nowrap text-sm"
             style={{ backgroundColor: '#FF6D00' }}
           >
             Get Early Access
