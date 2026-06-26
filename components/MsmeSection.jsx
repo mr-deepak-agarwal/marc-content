@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import {
   TrendingUp,
   Settings,
@@ -137,58 +138,110 @@ export function MSMEIndustrySection() {
 /* India" placed naturally in H1 + supporting copy.                        */
 /* ----------------------------------------------------------------------- */
 export function VyaparHero() {
+  const sectionRef = React.useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  // Background blobs drift at different speeds as the user scrolls past —
+  // gives the hero some depth without relying on a heavy parallax library.
+  const yBlob1 = useTransform(scrollYProgress, [0, 1], [0, 140])
+  const yBlob2 = useTransform(scrollYProgress, [0, 1], [0, -90])
+  const yDots = useTransform(scrollYProgress, [0, 1], [0, 50])
+
+  const container = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+    },
+  }
+  const item = {
+    hidden: { opacity: 0, y: 18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  }
+
   return (
-    <section className="relative overflow-hidden font-sans" style={{ backgroundColor: '#1B5E20' }}>
-      {/* signature dot grid, same texture language as WhyUsSection's globe panel */}
-      <div
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden font-sans"
+      style={{
+        background:
+          'radial-gradient(ellipse 80% 60% at 15% 0%, #2E7D32 0%, transparent 55%), radial-gradient(ellipse 70% 50% at 100% 100%, #0d2e10 0%, transparent 60%), linear-gradient(160deg, #1B5E20 0%, #184f1c 45%, #0f3812 100%)',
+      }}
+    >
+      {/* signature dot grid, same texture language as WhyUsSection's globe panel — drifts slowly on scroll */}
+      <motion.div
         className="absolute inset-0 opacity-[0.18]"
         style={{
           backgroundImage: 'radial-gradient(circle, #4CAF50 1px, transparent 1px)',
           backgroundSize: '38px 38px',
+          y: yDots,
         }}
       />
-      <div
+      <motion.div
         className="absolute -top-24 -right-24 w-[32rem] h-[32rem] rounded-full blur-3xl"
-        style={{ backgroundColor: 'rgba(255,109,0,0.12)' }}
+        style={{ backgroundColor: 'rgba(255,109,0,0.14)', y: yBlob1 }}
+      />
+      <motion.div
+        className="absolute -bottom-32 -left-24 w-[28rem] h-[28rem] rounded-full blur-3xl"
+        style={{ backgroundColor: 'rgba(76,175,80,0.18)', y: yBlob2 }}
       />
 
-      <div className="relative max-w-5xl mx-auto px-6 py-28 text-center">
-        <span
+      <motion.div
+        className="relative max-w-5xl mx-auto px-6 py-28 text-center"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.span
+          variants={item}
           className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full"
           style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#C2DDB4' }}
         >
           <Briefcase className="w-3.5 h-3.5" />
           MARC Biz-Dost · Growth Advisory for Business Owners
-        </span>
+        </motion.span>
 
-        <h1 className="mt-7 text-4xl md:text-6xl font-bold text-white leading-[1.08] tracking-tight">
+        <motion.h1
+          variants={item}
+          className="mt-7 text-4xl md:text-6xl font-bold text-white leading-[1.08] tracking-tight"
+        >
           A Business Growth Consultant for MSMEs, Built for India's Owner-Run Businesses
-        </h1>
+        </motion.h1>
 
-        <p className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: '#C2DDB4' }}>
+        <motion.p
+          variants={item}
+          className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+          style={{ color: '#C2DDB4' }}
+        >
           The same strategy, financial and operations advisory MARC brings to large
           enterprises — scoped, priced and explained for MSME owners who need clear
           answers this quarter, not a 60-page corporate deck.
-        </p>
+        </motion.p>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <a
+        <motion.div variants={item} className="mt-10 flex flex-wrap justify-center gap-4">
+          <motion.a
             href="/checkup"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white"
             style={{ backgroundColor: '#FF6D00' }}
           >
             Take the Free Business Health Check
             <ArrowRight className="w-4 h-4" />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold border transition-colors hover:bg-white/10"
+            whileHover={{ y: -2, backgroundColor: 'rgba(255,255,255,0.1)' }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold border"
             style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}
           >
             Talk to an Advisor
-          </a>
-        </div>
-      </div>
+          </motion.a>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
@@ -420,7 +473,13 @@ export function VyaparPricing() {
 /* ----------------------------------------------------------------------- */
 export function VyaparContactCTA() {
   return (
-    <section className="relative overflow-hidden py-24 font-sans" style={{ backgroundColor: '#1B5E20' }}>
+    <section
+      className="relative overflow-hidden py-24 font-sans"
+      style={{
+        background:
+          'radial-gradient(ellipse 70% 60% at 50% 0%, #2E7D32 0%, transparent 60%), linear-gradient(160deg, #1B5E20 0%, #133d16 100%)',
+      }}
+    >
       <div
         className="absolute inset-0 opacity-[0.18] pointer-events-none"
         style={{
@@ -428,7 +487,17 @@ export function VyaparContactCTA() {
           backgroundSize: '38px 38px',
         }}
       />
-      <div className="relative max-w-3xl mx-auto px-6 text-center">
+      <div
+        className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[36rem] h-[20rem] rounded-full blur-3xl pointer-events-none"
+        style={{ backgroundColor: 'rgba(255,109,0,0.1)' }}
+      />
+      <motion.div
+        className="relative max-w-3xl mx-auto px-6 text-center"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
         <h2 className="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-[1.15]">
           Ready to Grow Your Business with MARC Biz-Dost?
         </h2>
@@ -437,18 +506,20 @@ export function VyaparContactCTA() {
           starting point — no jargon, no long lock-ins.
         </p>
         <div className="mt-9">
-          <a
+          <motion.a
             href="https://www.marcglocal.com/contact-us"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white"
             style={{ backgroundColor: '#FF6D00' }}
           >
             Talk to MARC Biz-Dost
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </motion.a>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
