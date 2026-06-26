@@ -517,14 +517,14 @@ export function VyaparHero() {
             style={{ backgroundColor: 'rgba(129,199,132,0.12)', color: '#81C784', border: '1px solid rgba(129,199,132,0.25)' }}
           >
             <Briefcase className="w-3 h-3" />
-            MARC Biz-Dost · World MSME Day · 27 June
+            MARC Biz-Dost · Growth Advisory Friend for MSME · Mission: Service in India
           </motion.span>
 
           <motion.h1
             variants={item}
             className="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-[1.08] tracking-tight"
           >
-            Your Business,{' '}
+            The Same Advisory Large Enterprises Get —{' '}
             <span
               className="relative inline-block"
               style={{
@@ -533,9 +533,8 @@ export function VyaparHero() {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Finally
-            </span>{' '}
-            with the Advisory it Deserves
+              Built for India's Owner-Run MSMEs
+            </span>
           </motion.h1>
 
           <motion.p
@@ -543,17 +542,17 @@ export function VyaparHero() {
             className="mt-6 text-lg leading-relaxed max-w-xl"
             style={{ color: '#C2DDB4' }}
           >
-            MARC's 15 years of enterprise growth advisory — scoped, priced and explained for
-            India's 7.34 crore MSME owners who need clear answers this quarter, not a
-            60-page corporate deck.
+            MARC's 15 years of enterprise growth advisory — strategy, financial and
+            operations consulting — scoped, priced and explained for India's MSME owners
+            who need clear answers this quarter, not a 60-page corporate deck.
           </motion.p>
 
           {/* Trust signals */}
           <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
             {[
-              { icon: CheckCircle2, text: 'No jargon. Plain language.' },
-              { icon: CheckCircle2, text: 'MSME-first pricing.' },
-              { icon: CheckCircle2, text: '15 years of MARC expertise.' },
+              { icon: CheckCircle2, text: 'MSME-first pricing. Not enterprise rates.' },
+              { icon: CheckCircle2, text: 'Plain language. Zero jargon.' },
+              { icon: CheckCircle2, text: '15 years of MARC enterprise expertise.' },
             ].map((t) => (
               <div key={t.text} className="flex items-center gap-2 text-sm" style={{ color: '#A5D6A7' }}>
                 <t.icon className="w-4 h-4 flex-shrink-0" style={{ color: '#66BB6A' }} />
@@ -592,8 +591,8 @@ export function VyaparHero() {
             style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
           >
             {[
-              { value: '7.34 Cr', label: 'Active MSMEs served by sector' },
-              { value: '15 yrs', label: 'MARC advisory experience' },
+              { value: '15 yrs', label: 'MARC enterprise advisory' },
+              { value: '7.34 Cr', label: 'MSMEs we\'re building for' },
               { value: '₹0', label: 'Cost for the Health Check' },
             ].map((s) => (
               <div key={s.label}>
