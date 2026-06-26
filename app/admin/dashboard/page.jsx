@@ -128,22 +128,68 @@ const ReportModal = ({ entry, onClose }) => {
   )
 }
 
+// ── MSME Checkup question reference ───────────────────────────────────────────
+// Mirrors SECTIONS in the /checkup form so answer keys (s1, o2, f3, t4...) can
+// be shown with their actual question text instead of raw ids.
+const MSME_CHECKUP_SECTIONS = [
+  {
+    id: 'sales', label: 'Sales & Revenue',
+    questions: [
+      { id: 's1', text: 'How consistent is your monthly revenue?', options: ['Very inconsistent', 'Somewhat inconsistent', 'Mostly stable', 'Very stable and growing'] },
+      { id: 's2', text: 'Do you have a defined sales process?', options: ['No process at all', 'Informal / ad hoc', 'Documented but not followed', 'Clear process followed by team'] },
+      { id: 's3', text: 'What % of leads convert to paying customers?', options: ['Less than 5%', '5–15%', '15–30%', 'More than 30%'] },
+      { id: 's4', text: 'Do you track sales KPIs (pipeline, CAC, LTV)?', options: ['Never', 'Occasionally', 'Monthly', 'Weekly or daily'] },
+      { id: 's5', text: 'How dependent are you on 1–2 clients for revenue?', options: ['90%+ from 1–2 clients', '60–90% from top clients', '30–60% spread', 'Well diversified'] },
+    ]
+  },
+  {
+    id: 'operations', label: 'Operations',
+    questions: [
+      { id: 'o1', text: 'Are your core business processes documented?', options: ['Nothing documented', 'Some key processes', 'Most processes', 'All processes with SOPs'] },
+      { id: 'o2', text: 'How often do operational bottlenecks slow delivery?', options: ['Almost always', 'Frequently', 'Occasionally', 'Rarely'] },
+      { id: 'o3', text: 'Do you use any tools/software to manage operations?', options: ['Spreadsheets only', '1–2 basic tools', 'Integrated tools', 'Full ERP/automation'] },
+      { id: 'o4', text: 'How is quality control handled?', options: ['No formal QC', 'Ad hoc checks', 'Some checklists', 'Systematic QC process'] },
+      { id: 'o5', text: 'Can your business run smoothly without you for 2 weeks?', options: ['Absolutely not', 'Would struggle', 'Mostly yes', 'Yes, fully'] },
+    ]
+  },
+  {
+    id: 'finance', label: 'Finance & Cash Flow',
+    questions: [
+      { id: 'f1', text: 'Do you maintain monthly P&L statements?', options: ['Never', 'Occasionally', 'Quarterly', 'Monthly'] },
+      { id: 'f2', text: 'How would you describe your cash flow situation?', options: ['Always tight / crisis mode', 'Often tight', 'Generally manageable', 'Healthy buffer always'] },
+      { id: 'f3', text: 'Do you have a budget for the next 12 months?', options: ['No budget at all', 'Rough mental estimate', 'Informal spreadsheet', 'Formal budget reviewed regularly'] },
+      { id: 'f4', text: 'How quickly do clients typically pay you?', options: ['60+ days', '30–60 days', '15–30 days', 'Within 15 days or upfront'] },
+      { id: 'f5', text: 'Do you have financial reserves for 3+ months of expenses?', options: ['No reserves', 'Less than 1 month', '1–3 months', '3+ months'] },
+    ]
+  },
+  {
+    id: 'team', label: 'Team & HR',
+    questions: [
+      { id: 't1', text: 'How clear are roles and responsibilities in your team?', options: ['Very unclear / overlap', 'Somewhat clear', 'Mostly clear', 'Fully defined with JDs'] },
+      { id: 't2', text: 'What is your approximate team attrition rate per year?', options: ['More than 40%', '20–40%', '10–20%', 'Less than 10%'] },
+      { id: 't3', text: 'Do you conduct regular performance reviews?', options: ['Never', 'Ad hoc only', 'Annually', 'Quarterly or more'] },
+      { id: 't4', text: 'How would you rate team morale and motivation?', options: ['Low / disengaged', 'Mixed', 'Generally positive', 'High energy and aligned'] },
+      { id: 't5', text: 'Do you have a hiring process for new roles?', options: ['No process', 'Informal referrals only', 'Basic JD + interview', 'Structured hiring funnel'] },
+    ]
+  },
+]
+
 // ── MSME Checkup Detail Modal ─────────────────────────────────────────────────
-// entry.data is the raw jsonb blob from checkup_responses — shape isn't fixed,
-// so we surface any obvious name/email/phone-like keys up top and pretty-print
-// the rest of the payload below.
+// Real checkup_responses schema: lead (jsonb: name/company/industry/email),
+// answers (jsonb: question id -> selected option text), results (jsonb: AI
+// report), step ('lead' | 'checkup' | 'results'), completed (boolean).
 const MsmeModal = ({ entry, onClose }) => {
   if (!entry) return null
-  const data = entry.data ?? {}
-  const pick = (keys) => keys.map((k) => data[k]).find((v) => v !== undefined && v !== null && v !== '')
-  const name = pick(['name', 'fullName', 'full_name', 'businessName', 'business_name'])
-  const email = pick(['email', 'emailAddress', 'email_address'])
-  const phone = pick(['phone', 'mobile', 'phoneNumber', 'phone_number'])
+  const lead = entry.lead ?? {}
+  const answers = entry.answers ?? {}
+  const results = entry.results ?? null
+  const answeredCount = Object.keys(answers).length
+  const totalQuestions = MSME_CHECKUP_SECTIONS.reduce((a, s) => a + s.questions.length, 0)
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="absolute inset-0 bg-[#1D342F]/70 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden">
         <div className="h-1 w-full bg-gradient-to-r from-[#4E9141] to-[#C2DDB4]" />
         <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
           <X className="w-4 h-4 text-gray-500" />
@@ -151,8 +197,9 @@ const MsmeModal = ({ entry, onClose }) => {
         <div className="p-7 max-h-[80vh] overflow-y-auto">
           <div className="flex items-start justify-between mb-6">
             <div>
-              <h3 className="text-xl font-bold text-[#1D342F]">{name ?? `Session ${entry.session_id ?? entry.id}`}</h3>
-              <p className="text-[#47635D] text-sm mt-0.5">{new Date(entry.created_at).toLocaleString()}</p>
+              <h3 className="text-xl font-bold text-[#1D342F]">{lead.name || `Session ${entry.session_id ?? entry.id}`}</h3>
+              <p className="text-[#47635D] text-sm mt-0.5">{lead.company || '—'}{lead.industry ? ` · ${lead.industry}` : ''}</p>
+              <p className="text-[#47635D] text-xs mt-1">{new Date(entry.created_at).toLocaleString()}</p>
             </div>
             <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border flex items-center gap-1.5 shrink-0 ${
               entry.completed ? 'bg-green-50 text-[#4E9141] border-green-200' : 'bg-yellow-50 text-yellow-600 border-yellow-200'
@@ -162,38 +209,80 @@ const MsmeModal = ({ entry, onClose }) => {
             </span>
           </div>
 
-          {(email || phone) && (
+          {/* Lead contact info */}
+          {(lead.email) && (
             <div className="space-y-3 mb-6">
-              {email && (
-                <div className="flex items-center gap-3 p-3 bg-[#F7FFF5] rounded-xl">
-                  <Mail className="w-4 h-4 text-[#4E9141] shrink-0" />
-                  <a href={`mailto:${email}`} className="text-[#1D342F] hover:text-[#4E9141] text-sm font-medium transition-colors">{email}</a>
-                </div>
-              )}
-              {phone && (
-                <div className="flex items-center gap-3 p-3 bg-[#F7FFF5] rounded-xl">
-                  <Phone className="w-4 h-4 text-[#4E9141] shrink-0" />
-                  <a href={`tel:${phone}`} className="text-[#1D342F] hover:text-[#4E9141] text-sm font-medium transition-colors">{phone}</a>
-                </div>
-              )}
+              <div className="flex items-center gap-3 p-3 bg-[#F7FFF5] rounded-xl">
+                <Mail className="w-4 h-4 text-[#4E9141] shrink-0" />
+                <a href={`mailto:${lead.email}`} className="text-[#1D342F] hover:text-[#4E9141] text-sm font-medium transition-colors">{lead.email}</a>
+              </div>
             </div>
           )}
 
-          <div>
-            <p className="text-xs font-semibold text-[#47635D] uppercase tracking-wider mb-2">Checkup Response</p>
-            <pre className="p-4 bg-[#F7FFF5] rounded-xl text-[#1D342F] text-xs leading-relaxed whitespace-pre-wrap break-words overflow-x-auto">
-{JSON.stringify(data, null, 2)}
-            </pre>
+          {/* Answers, grouped by section, with actual question text */}
+          <div className="mb-6">
+            <p className="text-xs font-semibold text-[#47635D] uppercase tracking-wider mb-3">
+              Checkup Answers ({answeredCount}/{totalQuestions} answered)
+            </p>
+            {answeredCount === 0 ? (
+              <p className="text-sm text-[#47635D] italic">No questions answered yet — lead info only.</p>
+            ) : (
+              <div className="space-y-5">
+                {MSME_CHECKUP_SECTIONS.map((section) => {
+                  const sectionAnswers = section.questions.filter((q) => answers[q.id] !== undefined)
+                  if (sectionAnswers.length === 0) return null
+                  return (
+                    <div key={section.id}>
+                      <p className="text-xs font-bold text-[#4E9141] uppercase tracking-wider mb-2">{section.label}</p>
+                      <div className="space-y-2">
+                        {sectionAnswers.map((q) => (
+                          <div key={q.id} className="p-3 bg-[#F7FFF5] rounded-xl">
+                            <p className="text-xs text-[#47635D] mb-1">{q.text}</p>
+                            <p className="text-sm font-medium text-[#1D342F]">{answers[q.id]}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
           </div>
 
-          <div className="mt-4 text-xs text-[#47635D] flex flex-wrap gap-x-4 gap-y-1">
-            <span><span className="font-semibold">Session ID:</span> {entry.session_id ?? '—'}</span>
-            <span><span className="font-semibold">Last Updated:</span> {new Date(entry.updated_at).toLocaleString()}</span>
-          </div>
+          {/* AI results, if the checkup was completed */}
+          {results && (
+            <div>
+              <p className="text-xs font-semibold text-[#47635D] uppercase tracking-wider mb-3">AI Health Report</p>
+              <div className="p-4 bg-[#F7FFF5] rounded-xl mb-3">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm font-semibold text-[#1D342F]">Overall Score</span>
+                  <span className="text-lg font-bold text-[#4E9141]">{results.overall_score}/100</span>
+                </div>
+                <p className="text-sm text-[#47635D] leading-relaxed">{results.overall_summary}</p>
+              </div>
+              <div className="space-y-2">
+                {Object.entries(results.dimensions ?? {}).map(([key, dim]) => (
+                  <div key={key} className="p-3 bg-[#F7FFF5] rounded-xl">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm font-semibold text-[#1D342F] capitalize">{key}</span>
+                      <span className="text-sm font-bold text-[#4E9141]">{dim.score}/100</span>
+                    </div>
+                    <p className="text-xs text-[#47635D] mb-2">{dim.diagnosis}</p>
+                    {Array.isArray(dim.recommendations) && (
+                      <ul className="text-xs text-[#1D342F] list-disc pl-4 space-y-0.5">
+                        {dim.recommendations.map((rec, i) => <li key={i}>{rec}</li>)}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
   )
+
 }
 
 // ── Login Screen ──────────────────────────────────────────────────────────────
@@ -508,8 +597,11 @@ const ReportsView = ({ onLogout }) => {
 // ── MSME Checkup View ─────────────────────────────────────────────────────────
 // Reads from checkup_responses table: id, session_id, data (jsonb), completed,
 // created_at, updated_at. `data` shape isn't fixed, so the table shows a
-// derived summary (name/email if present) plus status, and "View" opens the
-// full jsonb payload in a modal — same summary+view pattern as Reports.
+// ── MSME Checkup View ─────────────────────────────────────────────────────────
+// Reads from checkup_responses table: id, session_id, lead (jsonb),
+// answers (jsonb), results (jsonb), step, completed, created_at, updated_at.
+// Table shows lead name/email + answer progress; "View" opens the full
+// breakdown (lead, all answers, AI results) in a modal.
 const MsmeView = ({ onLogout }) => {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
@@ -525,22 +617,15 @@ const MsmeView = ({ onLogout }) => {
   }
   useEffect(() => { fetch() }, [])
 
-  const summarize = (row) => {
-    const d = row.data ?? {}
-    const pick = (keys) => keys.map((k) => d[k]).find((v) => v !== undefined && v !== null && v !== '')
-    return {
-      name: pick(['name', 'fullName', 'full_name', 'businessName', 'business_name']),
-      email: pick(['email', 'emailAddress', 'email_address']),
-      phone: pick(['phone', 'mobile', 'phoneNumber', 'phone_number']),
-    }
-  }
+  const totalQuestions = 20 // 4 sections x 5 questions, see MSME_CHECKUP_SECTIONS
 
   const filtered = rows.filter((row) => {
-    const { name, email } = summarize(row)
+    const lead = row.lead ?? {}
     const q = search.toLowerCase()
     const matchesSearch = !q ||
-      (name ?? '').toLowerCase().includes(q) ||
-      (email ?? '').toLowerCase().includes(q) ||
+      (lead.name ?? '').toLowerCase().includes(q) ||
+      (lead.email ?? '').toLowerCase().includes(q) ||
+      (lead.company ?? '').toLowerCase().includes(q) ||
       (row.session_id ?? '').toLowerCase().includes(q)
     const matchesFilter = filter === 'all' ||
       (filter === 'completed' ? row.completed : !row.completed)
@@ -579,7 +664,7 @@ const MsmeView = ({ onLogout }) => {
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#47635D]" />
-            <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search by name, email, or session ID..."
+            <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search by name, email, company, or session ID..."
               className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#C2DDB4]/40 rounded-xl text-sm text-[#1D342F] focus:outline-none focus:border-[#4E9141] transition-all" />
           </div>
           <div className="flex gap-2">
@@ -612,20 +697,23 @@ const MsmeView = ({ onLogout }) => {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-[#C2DDB4]/20">
-                    {['Name / Session', 'Email', 'Status', 'Submitted', 'Last Updated', ''].map((h) => (
+                    {['Name / Session', 'Email', 'Company', 'Progress', 'Status', 'Submitted', ''].map((h) => (
                       <th key={h} className="text-left px-6 py-4 text-xs font-semibold text-[#47635D] uppercase tracking-wider">{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#C2DDB4]/10">
                   {filtered.map((row) => {
-                    const { name, email } = summarize(row)
+                    const lead = row.lead ?? {}
+                    const answeredCount = Object.keys(row.answers ?? {}).length
                     return (
                       <tr key={row.id} className="hover:bg-[#F7FFF5] transition-colors">
                         <td className="px-6 py-4 font-medium text-[#1D342F] text-sm">
-                          {name ?? <span className="text-[#47635D] font-normal">{row.session_id ?? row.id}</span>}
+                          {lead.name || <span className="text-[#47635D] font-normal">{row.session_id ?? row.id}</span>}
                         </td>
-                        <td className="px-6 py-4 text-[#47635D] text-sm">{email ?? '—'}</td>
+                        <td className="px-6 py-4 text-[#47635D] text-sm">{lead.email || '—'}</td>
+                        <td className="px-6 py-4 text-[#47635D] text-sm">{lead.company || '—'}</td>
+                        <td className="px-6 py-4 text-[#47635D] text-sm whitespace-nowrap">{answeredCount}/{totalQuestions}</td>
                         <td className="px-6 py-4">
                           <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border inline-flex items-center gap-1.5 ${
                             row.completed ? 'bg-green-50 text-[#4E9141] border-green-200' : 'bg-yellow-50 text-yellow-600 border-yellow-200'
@@ -636,9 +724,6 @@ const MsmeView = ({ onLogout }) => {
                         </td>
                         <td className="px-6 py-4 text-[#47635D] text-sm whitespace-nowrap">
                           {new Date(row.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
-                        </td>
-                        <td className="px-6 py-4 text-[#47635D] text-sm whitespace-nowrap">
-                          {new Date(row.updated_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                         </td>
                         <td className="px-6 py-4">
                           <button onClick={() => setSelected(row)}
