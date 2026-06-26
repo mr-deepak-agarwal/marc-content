@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   TrendingUp,
   Settings,
@@ -41,33 +41,138 @@ import {
 /* "small business advisory India" — keyword-bearing H1/H2, descriptive    */
 /* stat labels (not just numbers) so the section carries on-page text.     */
 /* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
+/* MSME ORBIT GRAPHIC — companion visual for the industry-context section. */
+/* Six sector icons (manufacturing, services, trade, exports, employment,  */
+/* growth) revolve slowly around a pulsing "share of GDP" core — a quiet,  */
+/* literal read of "every kind of small business orbiting the economy."   */
+/* Icons are counter-rotated so they stay upright while the ring turns,    */
+/* and the whole thing respects prefers-reduced-motion.                    */
+/* ----------------------------------------------------------------------- */
+function MSMEOrbitGraphic() {
+  const shouldReduceMotion = useReducedMotion()
+
+  const nodes = [
+    { icon: Factory, label: 'Manufacturing' },
+    { icon: Briefcase, label: 'Services' },
+    { icon: Building2, label: 'Trade & Retail' },
+    { icon: IndianRupee, label: 'Exports' },
+    { icon: Users, label: 'Employment' },
+    { icon: CheckCircle2, label: 'Growth' },
+  ]
+
+  const size = 340
+  const radius = 125
+
+  const ringSpin = shouldReduceMotion
+    ? {}
+    : { animate: { rotate: 360 }, transition: { duration: 48, repeat: Infinity, ease: 'linear' } }
+  const counterSpin = shouldReduceMotion
+    ? {}
+    : { animate: { rotate: -360 }, transition: { duration: 48, repeat: Infinity, ease: 'linear' } }
+  const pulse = shouldReduceMotion
+    ? {}
+    : { animate: { scale: [1, 1.06, 1] }, transition: { duration: 4, repeat: Infinity, ease: 'easeInOut' } }
+
+  return (
+    <motion.div
+      className="relative hidden lg:flex items-center justify-center flex-shrink-0"
+      style={{ width: size, height: size }}
+      initial={{ opacity: 0, scale: 0.85 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+    >
+      {/* Ambient glow */}
+      <div
+        className="absolute inset-8 rounded-full blur-3xl opacity-25 pointer-events-none"
+        style={{ backgroundColor: '#81C784' }}
+      />
+
+      {/* Orbit guide rings */}
+      <div
+        className="absolute inset-0 rounded-full"
+        style={{ border: '1.5px dashed rgba(46,125,50,0.18)' }}
+      />
+      <div
+        className="absolute rounded-full"
+        style={{ inset: (size - radius * 2) / 2, border: '1.5px dashed rgba(46,125,50,0.3)' }}
+      />
+
+      {/* Center node — headline GDP stat */}
+      <motion.div
+        className="relative z-10 flex flex-col items-center justify-center rounded-full text-center"
+        style={{ width: 116, height: 116, backgroundColor: '#1B5E20', boxShadow: '0 0 0 10px rgba(27,94,32,0.08)' }}
+        {...pulse}
+      >
+        <TrendingUp className="w-5 h-5 mb-1" style={{ color: '#81C784' }} />
+        <span className="text-xl font-bold text-white leading-none">31.1%</span>
+        <span className="text-[10px] mt-1 px-3" style={{ color: '#A5D6A7' }}>
+          of India's GDP
+        </span>
+      </motion.div>
+
+      {/* Revolving ring of sector icons */}
+      <motion.div className="absolute inset-0" {...ringSpin}>
+        {nodes.map((n, i) => {
+          const angle = (360 / nodes.length) * i
+          const rad = (angle * Math.PI) / 180
+          const x = Math.cos(rad) * radius
+          const y = Math.sin(rad) * radius
+          const Icon = n.icon
+          return (
+            <div
+              key={n.label}
+              className="absolute"
+              style={{ left: '50%', top: '50%', transform: `translate(${x}px, ${y}px) translate(-50%, -50%)` }}
+            >
+              <motion.div {...counterSpin} title={n.label}>
+                <div
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center"
+                  style={{
+                    backgroundColor: 'white',
+                    border: '1px solid rgba(46,125,50,0.15)',
+                    boxShadow: '0 4px 14px rgba(27,94,32,0.08)',
+                  }}
+                >
+                  <Icon className="w-5 h-5" style={{ color: '#2E7D32' }} />
+                </div>
+              </motion.div>
+            </div>
+          )
+        })}
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export function MSMEIndustrySection() {
-  // Verified, citable figures as of Feb 2026 — Ministry of MSME (PIB) / IBEF.
-  // Source line is rendered below the grid; update yearly when the Ministry
-  // publishes its next official release.
+  // Verified, citable figures pulled from the MARC MSME Report 2026
+  // (Industry Outlook & Financial Benchmarks, Jan 2026). Update when MARC
+  // publishes its next annual report.
   const stats = [
     {
-      value: '7.8 Cr+',
-      label: 'MSMEs registered on Udyam',
-      sub: 'Ministry of MSME, as of Feb 2026',
+      value: '7.34 Cr',
+      label: 'Active MSMEs in India',
+      sub: 'As of 2025 — GramPro, BlueWeave, Deloitte Insights',
       icon: Factory,
     },
     {
       value: '31.1%',
       label: "Share of India's GDP",
-      sub: 'MSME Gross Value Added, Ministry of MSME',
+      sub: 'MSME Gross Value Added, FY24 — Ministry of MSME',
       icon: TrendingUp,
     },
     {
-      value: '32.8 Cr',
-      label: 'People employed by MSMEs',
-      sub: 'Udyam-reported employment, second-largest after agriculture',
+      value: '26 Cr',
+      label: 'Jobs generated by MSMEs',
+      sub: "India's 2nd-largest employer, after agriculture",
       icon: Users,
     },
     {
-      value: '48.6%',
+      value: '45.7%',
       label: "Share of India's exports",
-      sub: 'MSME-specified products, Ministry of MSME',
+      sub: 'Merchandise export contribution, FY25',
       icon: Building2,
     },
   ]
@@ -89,14 +194,14 @@ export function MSMEIndustrySection() {
             MSME Business Consulting in India, Built for How You Actually Run Your Business
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: '#33691E' }}>
-            India's 7.8 crore+ registered micro, small and medium enterprises contribute over
-            31% of national GDP and nearly half of the country's exports — yet most operate
+            India's 7.34 crore+ active micro, small and medium enterprises contribute over
+            31% of national GDP and 45.7% of the country's exports — yet most operate
             without the financial visibility, growth planning or process discipline that larger
             companies take for granted. MARC Biz-Dost brings MARC's 15 years of growth advisory
             experience to business owners directly, in plain language and at a price built for
             MSMEs.
             <span className="block mt-2 text-sm" style={{ color: '#5D7A52' }}>
-              Source: Ministry of MSME (Press Information Bureau), figures as of February 2026.
+              Source: MARC MSME Report 2026 — Ministry of MSME, GramPro, Deloitte Insights, BlueWeave (data as of 2025).
             </span>
           </p>
         </div>
