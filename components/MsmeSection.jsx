@@ -180,30 +180,33 @@ export function MSMEIndustrySection() {
   return (
     <section className="py-24 bg-[#F7FFF5] font-sans">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-3xl mb-14">
-          <div className="flex items-center gap-2 mb-5">
-            <span className="text-sm font-semibold tracking-tight" style={{ color: '#2E7D32' }}>
-              World MSME Day · 27 June
-            </span>
-            <span className="w-8 h-px" style={{ backgroundColor: '#81C784' }} />
+        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16 mb-14">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="text-sm font-semibold tracking-tight" style={{ color: '#2E7D32' }}>
+                World MSME Day · 27 June
+              </span>
+              <span className="w-8 h-px" style={{ backgroundColor: '#81C784' }} />
+            </div>
+            <h1
+              className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-[1.1] tracking-tight"
+              style={{ color: '#1B5E20' }}
+            >
+              MSME Business Consulting in India, Built for How You Actually Run Your Business
+            </h1>
+            <p className="text-lg leading-relaxed" style={{ color: '#33691E' }}>
+              India's 7.34 crore+ active micro, small and medium enterprises contribute over
+              31% of national GDP and 45.7% of the country's exports — yet most operate
+              without the financial visibility, growth planning or process discipline that larger
+              companies take for granted. MARC Biz-Dost brings MARC's 15 years of growth advisory
+              experience to business owners directly, in plain language and at a price built for
+              MSMEs.
+              <span className="block mt-2 text-sm" style={{ color: '#5D7A52' }}>
+                Source: MARC MSME Report 2026 — Ministry of MSME, GramPro, Deloitte Insights, BlueWeave (data as of 2025).
+              </span>
+            </p>
           </div>
-          <h1
-            className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-[1.1] tracking-tight"
-            style={{ color: '#1B5E20' }}
-          >
-            MSME Business Consulting in India, Built for How You Actually Run Your Business
-          </h1>
-          <p className="text-lg leading-relaxed" style={{ color: '#33691E' }}>
-            India's 7.34 crore+ active micro, small and medium enterprises contribute over
-            31% of national GDP and 45.7% of the country's exports — yet most operate
-            without the financial visibility, growth planning or process discipline that larger
-            companies take for granted. MARC Biz-Dost brings MARC's 15 years of growth advisory
-            experience to business owners directly, in plain language and at a price built for
-            MSMEs.
-            <span className="block mt-2 text-sm" style={{ color: '#5D7A52' }}>
-              Source: MARC MSME Report 2026 — Ministry of MSME, GramPro, Deloitte Insights, BlueWeave (data as of 2025).
-            </span>
-          </p>
+          <MSMEOrbitGraphic />
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
