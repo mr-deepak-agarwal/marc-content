@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   TrendingUp,
   Settings,
@@ -136,112 +136,164 @@ export function MSMEIndustrySection() {
 /* 2. REPOSITIONING HERO — MARC Biz-Dost                                   */
 /* SEO intent: primary keyword "business growth consultant for MSMEs in    */
 /* India" placed naturally in H1 + supporting copy.                        */
+/*                                                                          */
+/* SIGNATURE ELEMENT — the "vitals strip": a small, self-drawing line      */
+/* graph above the headline. Left half is jagged and orange ("Before      */
+/* MARC"), right half resolves into a steady climb and green ("With       */
+/* MARC"). It's not decoration — it's the brief's entire pitch (raw       */
+/* numbers turned into a confident read) rendered as one literal, legible */
+/* instrument, so the page leads with a thesis instead of a generic dark  */
+/* gradient hero. No dot-grid, no parallax blobs.                         */
 /* ----------------------------------------------------------------------- */
+function VitalsStrip() {
+  const pathRef = React.useRef(null)
+  const [pathLength, setPathLength] = React.useState(0)
+  const [ready, setReady] = React.useState(false)
+
+  React.useEffect(() => {
+    if (pathRef.current) {
+      setPathLength(pathRef.current.getTotalLength())
+      // double rAF guarantees the browser paints the dashed (hidden) state
+      // first, so the transition to dashoffset 0 is guaranteed to animate
+      requestAnimationFrame(() => requestAnimationFrame(() => setReady(true)))
+    }
+  }, [])
+
+  return (
+    <div className="inline-flex flex-col items-center">
+      <svg viewBox="0 0 360 90" className="w-[280px] sm:w-[340px] h-auto" aria-hidden="true">
+        <defs>
+          <linearGradient id="vitalsFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#FF6D00" />
+            <stop offset="48%" stopColor="#FF6D00" />
+            <stop offset="58%" stopColor="#81C784" />
+            <stop offset="100%" stopColor="#81C784" />
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="45" x2="360" y2="45" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+        <path
+          ref={pathRef}
+          d="M 0 50 L 16 30 L 32 62 L 48 22 L 64 55 L 80 18 L 96 48
+             L 112 30 L 128 50
+             C 160 58, 185 50, 205 42
+             C 235 30, 265 24, 300 16
+             C 320 12, 340 10, 360 8"
+          fill="none"
+          stroke="url(#vitalsFade)"
+          strokeWidth="3"
+          strokeLinecap="round"
+          style={{
+            strokeDasharray: pathLength,
+            strokeDashoffset: ready ? 0 : pathLength,
+            transition: 'stroke-dashoffset 1.6s cubic-bezier(0.65, 0, 0.35, 1)',
+          }}
+        />
+      </svg>
+      <div className="flex items-center justify-between w-[280px] sm:w-[340px] mt-1.5">
+        <span className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: '#FFAB76' }}>
+          Before MARC
+        </span>
+        <span className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: '#81C784' }}>
+          With MARC
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export function VyaparHero() {
-  const sectionRef = React.useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
-
-  // Background blobs drift at different speeds as the user scrolls past —
-  // gives the hero some depth without relying on a heavy parallax library.
-  const yBlob1 = useTransform(scrollYProgress, [0, 1], [0, 140])
-  const yBlob2 = useTransform(scrollYProgress, [0, 1], [0, -90])
-  const yDots = useTransform(scrollYProgress, [0, 1], [0, 50])
-
   const container = {
     hidden: {},
     show: {
-      transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+      // delayChildren is timed to start once the vitals strip has mostly
+      // finished drawing (~1.5s in), so the page reads as one sequence:
+      // line resolves → copy follows → CTAs land — not two unrelated effects.
+      transition: { staggerChildren: 0.1, delayChildren: 1.5 },
     },
   }
   const item = {
-    hidden: { opacity: 0, y: 18 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    hidden: { opacity: 0, y: 14 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
   }
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden font-sans"
       style={{
-        background:
-          'radial-gradient(ellipse 80% 60% at 15% 0%, #2E7D32 0%, transparent 55%), radial-gradient(ellipse 70% 50% at 100% 100%, #0d2e10 0%, transparent 60%), linear-gradient(160deg, #1B5E20 0%, #184f1c 45%, #0f3812 100%)',
+        background: 'linear-gradient(170deg, #133d16 0%, #0f3812 55%, #0a280c 100%)',
       }}
     >
-      {/* signature dot grid, same texture language as WhyUsSection's globe panel — drifts slowly on scroll */}
-      <motion.div
-        className="absolute inset-0 opacity-[0.18]"
+      {/* quiet paper-grain texture, replaces the dot-grid + blob-glow pattern
+          used elsewhere on the page — kept deliberately subtle since the
+          vitals strip is doing the visual work here */}
+      <div
+        className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, #4CAF50 1px, transparent 1px)',
-          backgroundSize: '38px 38px',
-          y: yDots,
+          backgroundImage:
+            'repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, transparent 1px, transparent 3px)',
         }}
       />
-      <motion.div
-        className="absolute -top-24 -right-24 w-[32rem] h-[32rem] rounded-full blur-3xl"
-        style={{ backgroundColor: 'rgba(255,109,0,0.14)', y: yBlob1 }}
-      />
-      <motion.div
-        className="absolute -bottom-32 -left-24 w-[28rem] h-[28rem] rounded-full blur-3xl"
-        style={{ backgroundColor: 'rgba(76,175,80,0.18)', y: yBlob2 }}
-      />
 
-      <motion.div
-        className="relative max-w-5xl mx-auto px-6 py-28 text-center"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        <motion.span
-          variants={item}
-          className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full"
-          style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#C2DDB4' }}
+      <div className="relative max-w-5xl mx-auto px-6 pt-24 pb-28 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="flex justify-center mb-8"
         >
-          <Briefcase className="w-3.5 h-3.5" />
-          MARC Biz-Dost · Growth Advisory for Business Owners
-        </motion.span>
-
-        <motion.h1
-          variants={item}
-          className="mt-7 text-4xl md:text-6xl font-bold text-white leading-[1.08] tracking-tight"
-        >
-          A Business Growth Consultant for MSMEs, Built for India's Owner-Run Businesses
-        </motion.h1>
-
-        <motion.p
-          variants={item}
-          className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-          style={{ color: '#C2DDB4' }}
-        >
-          The same strategy, financial and operations advisory MARC brings to large
-          enterprises — scoped, priced and explained for MSME owners who need clear
-          answers this quarter, not a 60-page corporate deck.
-        </motion.p>
-
-        <motion.div variants={item} className="mt-10 flex flex-wrap justify-center gap-4">
-          <motion.a
-            href="/checkup"
-            whileHover={{ y: -2, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white"
-            style={{ backgroundColor: '#FF6D00' }}
-          >
-            Take the Free Business Health Check
-            <ArrowRight className="w-4 h-4" />
-          </motion.a>
-          <motion.a
-            href="/contact"
-            whileHover={{ y: -2, backgroundColor: 'rgba(255,255,255,0.1)' }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold border"
-            style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}
-          >
-            Talk to an Advisor
-          </motion.a>
+          <VitalsStrip />
         </motion.div>
-      </motion.div>
+
+        <motion.div variants={container} initial="hidden" animate="show">
+          <motion.span
+            variants={item}
+            className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full"
+            style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#C2DDB4' }}
+          >
+            <Briefcase className="w-3.5 h-3.5" />
+            MARC Biz-Dost · Growth Advisory for Business Owners
+          </motion.span>
+
+          <motion.h1
+            variants={item}
+            className="mt-7 text-4xl md:text-6xl font-bold text-white leading-[1.08] tracking-tight"
+          >
+            A Business Growth Consultant for MSMEs, Built for India's Owner-Run Businesses
+          </motion.h1>
+
+          <motion.p
+            variants={item}
+            className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            style={{ color: '#C2DDB4' }}
+          >
+            The same strategy, financial and operations advisory MARC brings to large
+            enterprises — scoped, priced and explained for MSME owners who need clear
+            answers this quarter, not a 60-page corporate deck.
+          </motion.p>
+
+          <motion.div variants={item} className="mt-10 flex flex-wrap justify-center gap-4">
+            <motion.a
+              href="/checkup"
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-white"
+              style={{ backgroundColor: '#FF6D00' }}
+            >
+              Take the Free Business Health Check
+              <ArrowRight className="w-4 h-4" />
+            </motion.a>
+            <motion.a
+              href="/contact"
+              whileHover={{ y: -2, backgroundColor: 'rgba(255,255,255,0.1)' }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold border"
+              style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}
+            >
+              Talk to an Advisor
+            </motion.a>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   )
 }
