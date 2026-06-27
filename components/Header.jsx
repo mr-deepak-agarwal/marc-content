@@ -54,6 +54,7 @@ const navLinks = [
   { label: 'Industries', href: '/industries' },
   { label: 'Insights', href: '/insights', hasInsightsMenu: true },
   { label: 'Media', href: '/media' },
+  { label: 'MSME', href: '/msme' },
   { label: 'Careers', href: '/careers' },
 ]
 
