@@ -16,48 +16,43 @@ import {
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "YOUR_GEMINI_KEY_HERE";
 
 /* ────────────────────────────────────────────────────────────────────────
-   SUPABASE CONFIG
-   Set these in .env.local (and Vercel env vars for production):
-     NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-     NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   SAVING RESPONSES
+   Progress is saved via our own API route (/api/checkup) instead of
+   hitting Supabase directly from the browser, so the anon key never has
+   to write straight from the client and we don't depend on a
+   client-writable RLS policy on checkup_responses.
 
-   Required table — run this once in the Supabase SQL editor:
+   Actual table (Supabase SQL editor):
 
-   create table checkup_responses (
-     id           uuid default gen_random_uuid() primary key,
-     session_id   text unique not null,
-     lead         jsonb,
-     answers      jsonb,
-     results      jsonb,
-     step         text,          -- 'lead' | 'checkup' | 'results'
-     completed    boolean default false,
-     created_at   timestamptz default now(),
-     updated_at   timestamptz default now()
+   create table public.checkup_responses (
+     id uuid not null default gen_random_uuid (),
+     session_id text null,
+     data jsonb null,
+     completed boolean null default false,
+     created_at timestamp with time zone null default now(),
+     updated_at timestamp with time zone null default now(),
+     constraint checkup_responses_pkey primary key (id),
+     constraint checkup_responses_session_id_key unique (session_id)
    );
-   ──────────────────────────────────────────────────────────────────────── */
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
-/** Upsert a checkup row — safe to call on every state change (debounced). */
+   lead / answers / results / step are all stored together inside the
+   single `data` jsonb column (see app/api/checkup/route.js).
+   ──────────────────────────────────────────────────────────────────────── */
+
+/** Save checkup progress — safe to call on every state change (debounced). */
 async function persistCheckup(sessionId, payload) {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
   try {
-    await fetch(`${SUPABASE_URL}/rest/v1/checkup_responses`, {
+    const res = await fetch("/api/checkup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-        Prefer: "resolution=merge-duplicates",
-      },
-      body: JSON.stringify({
-        session_id: sessionId,
-        ...payload,
-        updated_at: new Date().toISOString(),
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId, ...payload }),
     });
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      console.warn("[MARC checkup] persist failed:", body.error || res.status);
+    }
   } catch (err) {
-    console.warn("[MARC checkup] Supabase persist failed:", err);
+    console.warn("[MARC checkup] persist failed:", err);
   }
 }
 

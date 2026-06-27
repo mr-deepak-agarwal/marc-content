@@ -175,14 +175,17 @@ const MSME_CHECKUP_SECTIONS = [
 ]
 
 // ── MSME Checkup Detail Modal ─────────────────────────────────────────────────
-// Real checkup_responses schema: lead (jsonb: name/company/industry/email),
-// answers (jsonb: question id -> selected option text), results (jsonb: AI
-// report), step ('lead' | 'checkup' | 'results'), completed (boolean).
+// Real checkup_responses schema: id, session_id, data (jsonb), completed,
+// created_at, updated_at. Everything the form collects — lead (name/company/
+// industry/email), answers (question id -> selected option text), results
+// (AI report), and step ('lead' | 'checkup' | 'results') — lives inside the
+// single `data` jsonb column.
 const MsmeModal = ({ entry, onClose }) => {
   if (!entry) return null
-  const lead = entry.lead ?? {}
-  const answers = entry.answers ?? {}
-  const results = entry.results ?? null
+  const data = entry.data ?? {}
+  const lead = data.lead ?? {}
+  const answers = data.answers ?? {}
+  const results = data.results ?? null
   const answeredCount = Object.keys(answers).length
   const totalQuestions = MSME_CHECKUP_SECTIONS.reduce((a, s) => a + s.questions.length, 0)
 
@@ -596,12 +599,10 @@ const ReportsView = ({ onLogout }) => {
 
 // ── MSME Checkup View ─────────────────────────────────────────────────────────
 // Reads from checkup_responses table: id, session_id, data (jsonb), completed,
-// created_at, updated_at. `data` shape isn't fixed, so the table shows a
-// ── MSME Checkup View ─────────────────────────────────────────────────────────
-// Reads from checkup_responses table: id, session_id, lead (jsonb),
-// answers (jsonb), results (jsonb), step, completed, created_at, updated_at.
-// Table shows lead name/email + answer progress; "View" opens the full
-// breakdown (lead, all answers, AI results) in a modal.
+// created_at, updated_at. `data` holds { lead, answers, results, step } —
+// see app/api/checkup/route.js for how it's written. Table shows lead
+// name/email + answer progress; "View" opens the full breakdown (lead, all
+// answers, AI results) in a modal.
 const MsmeView = ({ onLogout }) => {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
@@ -620,7 +621,7 @@ const MsmeView = ({ onLogout }) => {
   const totalQuestions = 20 // 4 sections x 5 questions, see MSME_CHECKUP_SECTIONS
 
   const filtered = rows.filter((row) => {
-    const lead = row.lead ?? {}
+    const lead = row.data?.lead ?? {}
     const q = search.toLowerCase()
     const matchesSearch = !q ||
       (lead.name ?? '').toLowerCase().includes(q) ||
@@ -704,8 +705,8 @@ const MsmeView = ({ onLogout }) => {
                 </thead>
                 <tbody className="divide-y divide-[#C2DDB4]/10">
                   {filtered.map((row) => {
-                    const lead = row.lead ?? {}
-                    const answeredCount = Object.keys(row.answers ?? {}).length
+                    const lead = row.data?.lead ?? {}
+                    const answeredCount = Object.keys(row.data?.answers ?? {}).length
                     return (
                       <tr key={row.id} className="hover:bg-[#F7FFF5] transition-colors">
                         <td className="px-6 py-4 font-medium text-[#1D342F] text-sm">
