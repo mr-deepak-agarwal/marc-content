@@ -3,8 +3,8 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 87 },
-	{ id: 'finance', label: 'Finance', count: 24 },
+	{ id: 'all', label: 'All', count: 89 },
+	{ id: 'finance', label: 'Finance', count: 26 },
 	{ id: 'market-research', label: 'Market Research', count: 17 },
 	{ id: 'strategy', label: 'Strategy', count: 16 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
@@ -18,6 +18,206 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 89,
+		slug: 'concierge-medicine-quality-of-earnings',
+		title: 'Concierge Medicine: What Quality of Earnings Reveals Before You Invest',
+		excerpt: `Forward Health raised roughly USD 650 million, reached a USD 1 billion valuation, and shut down almost overnight. In membership healthcare, funding and sign-ups are not the same as durable, recognised earnings — and that distinction is the whole game for any investor or acquirer in the sector.`,
+		category: 'finance',
+		categoryLabel: 'Finance',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'June 2026',
+		readTime: '6 min read',
+		image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['Finance', 'Quality of Earnings', 'Due Diligence', 'Healthcare', 'M&A'],
+		seo: {
+			title: 'Concierge Medicine: A QoE Lens for Investors',
+			description: 'Concierge medicine is growing fast, but membership growth can hide weak earnings quality. The QoE checks investors need before they buy.',
+		},
+		cta: {
+			title: 'Test Earnings Quality Before You Close',
+			description: 'Let MARC power your next diligence move in subscription healthcare.',
+			primaryButton: 'Speak with MARC',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `Forward Health raised roughly USD 650 million, reached a USD 1 billion valuation, and built tech-enabled clinics across major US cities. It generated less than USD 100 million in total revenue over eight years, and in November 2024 it shut down almost overnight (Maginative; ICT&health, 2024). Forward sold the same core promise concierge medicine is built on: premium subscription-based access to a doctor. Its collapse is a reminder that in membership healthcare, funding and sign-ups are not the same as durable, recognised earnings. For any investor or acquirer in the sector, that distinction is the whole game.`,
+			sections: [
+				{
+					heading: 'Why the Sector Is Attracting Capital Now',
+					content: `The category is expanding quickly. The US concierge medicine market was valued at USD 7.35 billion in 2024 and is forecast to grow at a 10.33% CAGR to USD 13.23 billion by 2030, according to Grand View Research (2025). Capital has followed: private equity backs the larger platforms, and Amazon acquired One Medical for roughly USD 3.9 billion in 2023 (Fierce Healthcare, 2023).
+
+The drivers are structural: physician burnout, long wait times, an aging population, and rising willingness among higher-income patients and employers to pay for access. Rising valuations, combined with the accounting quirks of upfront membership fees, make earnings quality the variable that decides whether a deal is sound or a write-down in waiting.`,
+				},
+				{
+					heading: 'Deferred Revenue Sits at the Heart of the Model',
+					content: `Members typically pay an annual fee upfront, often USD 2,000 to USD 5,000, with premium plans exceeding USD 10,000. Under ASC 606, that cash cannot be booked as revenue on day one. The fee is recorded as deferred revenue, a contract liability, and recognised ratably as care is delivered.
+
+This creates large deferred-revenue balances and a structural gap between cash collected and revenue earned. A business that recognises upfront fees faster than it delivers service reports stronger current revenue and thinner future revenue than reality supports. What this means: confirm that recognition tracks the service period, and reconcile the deferred-revenue roll-forward against cash collections and membership counts.`,
+				},
+				{
+					heading: 'Retention Is the Entire Investment Thesis',
+					content: `A membership business is only a recurring-revenue business if members renew. Retention, not sign-ups, determines the durability of the earnings a buyer is acquiring. The metrics that matter are member retention, churn, average revenue per member, and members per physician panel.
+
+Growth bought through discounting is the warning sign. After acquiring One Medical, Amazon cut first-year membership pricing to USD 144 from the standard USD 199 to drive sign-ups (Fierce Healthcare, 2023). One Medical itself grew 2022 revenue to USD 1.05 billion, up 68%, while posting a net loss of roughly USD 398 million (One Medical FY2022 results). Scale did not equal profitability. What this means: test renewal cohorts at standard pricing, not gross sign-ups, and separate durable members from promotional ones.`,
+				},
+				{
+					heading: 'Business Model Dictates the Earnings Profile',
+					content: `Concierge medicine is not one model. Independent physician-owned practices are small and asset-light. Management platforms supply technology, billing, and patient acquisition across many affiliated physicians; MDVIP, the largest US network, affiliates well over a thousand. Employer-sponsored models sell per-member-per-month access as a corporate benefit. Vertically integrated operators own the clinics, employ the physicians, and carry the full cost base: higher fixed costs, depreciation, lease expense, and mixed subscription and fee-for-service recognition. Forward and Sollis Health sit at this capital-heavy end.
+
+The error buyers make is pricing a capital-intensive integrated operator as if it were an asset-light platform. What this means: the multiple and the QoE scope must match the structure, not the sector label.`,
+				},
+				{
+					heading: 'Six Red Flags in a Concierge Medicine QoE',
+					content: `• Revenue recognised ahead of service. Upfront annual fees booked faster than care is delivered overstate current revenue and understate the deferred-revenue liability. Confirm ratable recognition against the membership period.
+
+• Growth driven by discounts, not renewals. Member counts inflated by promotional pricing do not prove durable demand. Amazon's USD 144 first-year One Medical pricing shows how headline membership growth can be price-bought (Fierce Healthcare, 2023).
+
+• Capital intensity hidden behind a subscription story. A membership label does not make a clinic-heavy operator asset-light. Forward pitched subscription access while carrying the cost of tech-enabled clinics and CarePod kiosks, and burned through roughly USD 650 million before closing in 2024 (ICT&health, 2024).
+
+• Physician concentration and unsustainable compensation. Reliance on a few high-volume physicians, or above-market pay to retain them, threatens both revenue and margin if they leave. Test concentration and benchmark compensation.
+
+• EBITDA add-backs that never end. Recurring "expansion," "recruiting," and "technology" costs added back as one-time items inflate normalised EBITDA. Scrutinise whether each add-back is genuinely non-recurring.
+
+• Refund liabilities and related-party arrangements. Cancellation policies create real liabilities on early termination, and physician-ownership or management agreements can obscure related-party economics. Both deserve forensic review.`,
+				},
+				{
+					heading: 'How MARC Adds Value',
+					content: `MARC applies institutional-grade Quality of Earnings analysis to subscription healthcare businesses, where the gap between cash collected and revenue earned is wide and easy to misread.
+
+• Deferred-revenue and revenue-recognition testing that reconciles upfront collections to the service period and to membership counts.
+
+• Retention and cohort analysis that separates durable members from discount-driven sign-ups.
+
+• EBITDA normalisation that challenges add-backs for expansion, recruiting, and technology.
+
+• Sector benchmarking that prices each target to its actual business model, not the headline category.
+
+In a market drawing capital at a double-digit growth rate, that discipline is the difference between a defensible valuation and an impairment.`,
+				},
+				{
+					heading: 'FAQs',
+					content: `What is concierge medicine?
+A membership-based care model where patients pay a recurring fee, typically USD 2,000 to USD 5,000 a year, for enhanced access such as same-day appointments, longer consultations, and 24/7 physician availability. It complements rather than replaces traditional insurance, which still covers hospitalisation and catastrophic costs.
+
+Why does deferred revenue matter in concierge medicine?
+Members pay annual fees upfront, but service is delivered over twelve months. Under ASC 606, the fee is booked as deferred revenue and recognised gradually as care is provided, so recognition timing is one of the most important things to verify in diligence.
+
+How do investors assess a concierge medicine business?
+The priority areas are revenue-recognition timing, member retention and churn, average revenue per member, physician concentration and compensation, EBITDA add-backs, and the cost structure implied by the business model. Durable renewals at standard pricing matter far more than gross sign-ups.
+
+How large is the concierge medicine market?
+The US market was valued at about USD 7.35 billion in 2024 and is forecast to reach USD 13.23 billion by 2030 at a 10.33% CAGR, according to Grand View Research (2025). Growth is driven by physician shortages, long wait times, and rising demand for preventive, personalised care.`,
+				},
+			],
+			conclusion: `The future of concierge medicine belongs to investors who underwrite membership durability and recognition integrity, not sign-up velocity. The buyers who interrogate deferred revenue, retention, and cost structure will price deals to economic reality. Those who pay an asset-light subscription multiple for a capital-heavy or discount-driven business will learn the lesson Forward's backers did. In membership healthcare, the quality of earnings, not the speed of growth, decides who wins.
+
+Let MARC power your next diligence move.`,
+		},
+	},
+	{
+		id: 88,
+		slug: 'qoe-ai-revenue-checks-buyers-miss',
+		title: 'QoE for AI Revenue: The Diligence Checks Buyers Miss in US Tech Deals',
+		excerpt: `Venture funding to AI reached USD 212 billion in 2025, up 85% year over year, and many AI companies are posting triple-digit growth on "AI ARR" that may not behave like recurring revenue at all. The headline number and the durable number are increasingly two different things — and QoE for AI revenue is where that gap gets tested.`,
+		category: 'finance',
+		categoryLabel: 'Finance',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'June 2026',
+		readTime: '7 min read',
+		image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['Finance', 'Quality of Earnings', 'Due Diligence', 'AI', 'M&A', 'Tech'],
+		seo: {
+			title: 'QoE for AI Revenue: Checks Buyers Miss in Tech Deals',
+			description: 'AI ARR can hide weak revenue quality. See the QoE for AI revenue checks buyers miss in US tech deals before they overpay.',
+		},
+		cta: {
+			title: 'Test What Sits Beneath the ARR',
+			description: 'Let MARC power your next diligence move in AI and usage-based tech deals.',
+			primaryButton: 'Speak with MARC',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `Hewlett-Packard paid over USD 11 billion for Autonomy in 2011. A year later, it wrote down USD 8.8 billion, much of it tied to how Autonomy had recognised and presented its revenue. The deal failed on revenue quality, not strategy. That lesson is resurfacing in a new form. Venture funding to AI reached USD 212 billion in 2025, up 85% year over year, according to Crunchbase, and many AI companies are posting triple-digit growth on "AI ARR" that may not behave like recurring revenue at all. This is where QoE for AI revenue earns its keep, because the headline number and the durable number are increasingly two different things.`,
+			sections: [
+				{
+					heading: 'Why AI Revenue Breaks the Old ARR Playbook',
+					content: `For two decades, SaaS valuation rested on a simple assumption: annual recurring revenue was contracted, sticky, and predictable, so a multiple on ARR was a reasonable proxy for enterprise value. AI-native businesses are dismantling that assumption. Usage-based pricing has moved from niche to default, with 85% of surveyed SaaS companies already using or adopting it and 77% of the largest software firms embedding consumption pricing, per Metronome and Greyhound Capital's 2025 survey.
+
+When revenue is metered, credit-funded, and tied to experimental projects, the line between recurring and one-time income blurs. A buyer who underwrites the reported ARR multiple without testing what sits beneath it is buying HP-Autonomy risk in a new wrapper.`,
+				},
+				{
+					heading: 'Check 1: Separate Experimental Revenue from Recurring Revenue',
+					content: `The most expensive mistake in AI deals is treating experimental spend as recurring income. Investor Jamin Ball labelled this "experimental run-rate revenue" in 2024, and Primary Venture Partners' Cassie Young has warned of an impending "gross retention apocalypse" as AI pilots fail to renew. The data supports the concern: AI-native companies showed median gross retention of 40% and net retention of 48% in 2025, against a B2B SaaS median net retention of 82%, according to ChartMogul's SaaS Retention Report (2025).
+
+Much of that gap is experimental budget. Customers run a model on proprietary data for a quarter, then stop. RAND Corporation (2024) found that more than 80% of AI projects fail to reach meaningful production, twice the rate of non-AI IT projects, which means a large share of early AI revenue never converts to a production workload. What this means: reclassify revenue by commitment type, multi-year contracted, budgeted-and-renewing, or pilot, before applying any multiple.`,
+				},
+				{
+					heading: 'Check 2: Stress-Test the Revenue Recognition Policy',
+					content: `Usage-based pricing complicates revenue recognition in ways a standard audit can wave through. Under ASC 606, variable consideration and performance obligations require judgment, and judgment is where presentation drifts from economics. KPMG's Software and SaaS Revenue Handbook (December 2025) flags contract modifications and evolving consumption models as a persistent source of recognition questions for the sector.
+
+In AI deals, the risks are concentrated: overage and consumption fees booked as committed ARR, multi-year deals recognised on optimistic ramp assumptions, and proof-of-concept consumption recognised before a customer is contractually committed. What this means: reconcile the revenue recognition memo against actual contract terms and billing data, not the policy statement at face value.`,
+				},
+				{
+					heading: 'Check 3: Strip Out Model-Led Discounts and Free Credits',
+					content: `AI go-to-market is built on free credits and aggressive promotional pricing, which inflates both usage and reported revenue. As Oxx general partner Mikael Johnsson told PitchBook (December 2025), AI-native ARR is frequently a mix of one-off, credits-based, performance-based, and outcome-based contracts rather than clean subscriptions. FPV Ventures' Nikunj Kothari titled his December 2025 critique of these practices "Liar's Valuation."
+
+The QoE task is to rebuild revenue on a gross-to-net basis, stripping promotional credits, discount ramps, and outcome-based clawbacks to reveal the true run-rate at standard pricing. What this means: the number that matters is net revenue at sustainable pricing, not gross consumption propped up by free credits that expire after the next funding round.`,
+				},
+				{
+					heading: 'Check 4: Reconcile Cash Against Reported Growth',
+					content: `The oldest QoE discipline is the most useful here. Operating cash flow should track reported earnings over time, and a persistent gap is a warning. Many AI companies present optimistic, back-loaded contracts as today's recurring revenue, making growth look stronger than the cash collected. What this means: build a bridge from reported ARR to billed revenue to cash collected. Where the three diverge sharply, the recurring story is weaker than the deck claims.`,
+				},
+				{
+					heading: 'Four Red Flags in AI Revenue Quality',
+					content: `• Short opt-out windows with high exit rates. Contracts with three-month opt-outs where most customers leave are momentum, not recurring revenue. Case in point: Jasper, valued at USD 1.5 billion, cut its 2023 ARR forecast by at least 30% and lowered its internal valuation by about 20% once ChatGPT gave customers a low-cost substitute (The Information, 2023).
+
+• ARR built on credits and pilots. If a material share of revenue comes from promotional credits or proof-of-concept budgets, the run-rate is overstated. Case in point: Builder.ai, once valued at USD 1.5 billion and backed by Microsoft, was alleged to have inflated revenue through improper billing practices, including invoice exchanges with a partner firm, and filed for bankruptcy in May 2025 (Bloomberg; Financial Times, 2025).
+
+• Recognition policy changes timed to a raise. A policy that shifted shortly before a fundraise deserves forensic attention. Case in point: Outcome Health recognised revenue on under-delivered advertising campaigns, overstated its 2015 and 2016 revenue, and used the inflated audited financials to raise USD 487.5 million in early 2017. Three executives were convicted of fraud in 2023 (US Department of Justice, 2023).
+
+• High ARR, low cash conversion. Reported growth that does not convert to cash signals back-loaded or experimental revenue dressed as recurring income. Case in point: WeWork reported rapid revenue growth while burning billions in cash, leaning on a self-defined "community-adjusted EBITDA" metric. Its 2019 IPO collapsed once investors focused on the cash reality.`,
+				},
+				{
+					heading: 'How MARC Adds Value',
+					content: `MARC applies institutional-grade Quality of Earnings analysis to the specific economics of AI and usage-based businesses, separating durable revenue from experimental spend before a buyer commits capital.
+
+• QoE-level depth on revenue quality. We reclassify revenue by commitment type and rebuild it on a gross-to-net, sustainable-pricing basis.
+
+• Independent validation. A third-party view that tests the recognition policy against contracts and billing data, free of management bias.
+
+• Working capital and cash flow diagnostics. We reconcile reported ARR to billed revenue and cash collected to expose the growth that is real.
+
+• Fast turnaround without sacrificing depth. Built for deal timelines where AI valuations move quickly and rigour cannot be the bottleneck.
+
+In a market where AI multiples are set on metrics that are getting harder to trust, that discipline is the difference between a defensible price and a write-down.`,
+				},
+				{
+					heading: 'FAQs',
+					content: `What is QoE for AI revenue?
+A Quality of Earnings analysis adapted to AI and usage-based businesses. It tests whether reported ARR reflects durable, recurring income or a mix of experimental spend, credits, and one-time consumption, establishing the true run-rate revenue a buyer is actually acquiring.
+
+Why is AI ARR considered unreliable?
+AI ARR often blends pilots, free credits, and usage-based consumption that does not renew. AI-native companies showed median gross retention of 40% in 2025 (ChartMogul), well below the SaaS norm, so reported ARR can overstate committed, recurring revenue.
+
+How does usage-based pricing complicate due diligence?
+It introduces variable consideration and performance-obligation judgment under ASC 606. Overage fees, credits, and back-loaded ramps can be recognised in ways that flatter growth, so diligence teams must reconcile the recognition policy against contracts, billing data, and cash collections.
+
+What are the biggest red flags in AI revenue quality?
+Short opt-out contracts with high exit rates, revenue built on promotional credits and pilots, customer concentration above 40%, recognition policy changes timed to a fundraise, and high reported ARR with weak cash conversion.`,
+				},
+			],
+			conclusion: `The future of tech M&A belongs to buyers who underwrite revenue durability, not revenue velocity. As consumption pricing becomes universal, the firms that interrogate what sits beneath reported ARR will price deals correctly and protect their downside. Those that keep paying a clean SaaS multiple for experimental revenue will repeat the Autonomy lesson at AI speed. Revenue quality, not growth speed, is now the deciding variable.
+
+Let MARC power your next diligence move.`,
+		},
+	},
 	{
 		id: 87,
 		slug: 'dawn-of-urban-mining-india-lib-recycling-market',
