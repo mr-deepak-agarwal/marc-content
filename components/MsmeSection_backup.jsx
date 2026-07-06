@@ -13,8 +13,6 @@ import {
   Building2,
   Briefcase,
   Factory,
-  Rocket,
-  BookOpen,
 } from 'lucide-react'
 
 /*
@@ -234,130 +232,6 @@ export function MSMEIndustrySection() {
                   {s.sub}
                 </div>
               </div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ----------------------------------------------------------------------- */
-/* 1b. JOURNEY PICKER — "which stage are you at?"                          */
-/* Three doors that swing open on hover to preview what's behind them,     */
-/* then route to a dedicated page: pre-launch setup, an already-running    */
-/* business, or the always-available knowledge hub (schemes, capital,     */
-/* finance literacy). Doors use a real CSS 3D rotateY on hover, hinged on  */
-/* the left edge, so the room behind is only revealed once you engage —    */
-/* not a scroll section, a decision point.                                 */
-/* ----------------------------------------------------------------------- */
-export function MSMEJourneyPicker() {
-  const [hovered, setHovered] = React.useState(null)
-
-  const doors = [
-    {
-      key: 'new',
-      icon: Rocket,
-      title: 'New MSME',
-      subtitle: 'Just starting up',
-      desc: 'Form of organisation, compliances, choosing a state, industrial land',
-      href: '/msme/new',
-      accent: '#2E7D32',
-    },
-    {
-      key: 'running',
-      icon: Factory,
-      title: 'Already Running',
-      subtitle: 'Check and grow',
-      desc: 'Free Business Health Check, strategy, financial modelling, SOPs',
-      href: '/checkup',
-      accent: '#1B5E20',
-    },
-    {
-      key: 'hub',
-      icon: BookOpen,
-      title: 'Knowledge Hub',
-      subtitle: 'Schemes, capital, terms',
-      desc: 'MSME schemes, NBFC & SIDBI funding, working capital, IPO readiness',
-      href: '/msme/knowledge-hub',
-      accent: '#43A047',
-    },
-  ]
-
-  return (
-    <section className="py-20 font-sans" style={{ backgroundColor: '#F7FFF5' }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <span className="text-sm font-semibold tracking-tight" style={{ color: '#2E7D32' }}>
-            Wherever you are, start here
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 tracking-tight" style={{ color: '#1B5E20' }}>
-            Which stage are you at?
-          </h2>
-        </div>
-
-        <div
-          className="grid md:grid-cols-3 gap-6"
-          style={{ perspective: '1400px' }}
-        >
-          {doors.map((d, i) => {
-            const Icon = d.icon
-            const isOpen = hovered === i
-            return (
-              <a
-                key={d.key}
-                href={d.href}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
-                className="relative block"
-                style={{ aspectRatio: '3 / 4', textDecoration: 'none' }}
-              >
-                {/* Room behind the door — always rendered, revealed on open */}
-                <div
-                  className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 rounded-3xl"
-                  style={{ backgroundColor: 'white', border: '1px solid rgba(46,125,50,0.15)' }}
-                >
-                  <Icon className="w-7 h-7 mb-3" style={{ color: d.accent }} />
-                  <p className="text-sm leading-relaxed" style={{ color: '#33691E' }}>
-                    {d.desc}
-                  </p>
-                  <span
-                    className="mt-4 inline-flex items-center gap-1 text-sm font-semibold"
-                    style={{ color: d.accent }}
-                  >
-                    Explore
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-
-                {/* Door panel — hinged on the left, swings open on hover */}
-                <div
-                  className="absolute inset-0 flex flex-col items-center justify-center rounded-3xl"
-                  style={{
-                    backgroundColor: d.accent,
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    transformOrigin: 'left center',
-                    transform: isOpen ? 'rotateY(-68deg)' : 'rotateY(0deg)',
-                    transition: 'transform 0.5s ease',
-                    backfaceVisibility: 'hidden',
-                    boxShadow: isOpen
-                      ? '12px 0 24px rgba(0,0,0,0.18)'
-                      : 'none',
-                  }}
-                >
-                  <span className="text-lg font-bold text-white text-center px-4">
-                    {d.title}
-                  </span>
-                  <span className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.75)' }}>
-                    {d.subtitle}
-                  </span>
-                  {/* Handle */}
-                  <span
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}
-                  />
-                </div>
-              </a>
             )
           })}
         </div>
@@ -1532,7 +1406,6 @@ export default function MARCVyaparPage() {
     <main>
       <VyaparHero />
       <MSMEIndustrySection />
-      <MSMEJourneyPicker />
       <BusinessCheckupSection />
       <MarcMarketPulseSection />
       <VyaparServices />
