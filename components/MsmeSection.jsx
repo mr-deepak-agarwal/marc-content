@@ -372,22 +372,61 @@ export function MSMEJourneyPicker() {
                     </div>
 
                     {/* BACK — description + Explore CTA */}
-                    <div className="jp-face jp-back rounded-3xl flex flex-col items-center justify-center text-center px-7">
+                    <div className="jp-face jp-back rounded-3xl flex flex-col items-center justify-center text-center px-7 overflow-hidden">
+                      {/* Top accent bar in the card's own color, ties this
+                          face back to the front instead of reading as a
+                          generic white panel */}
                       <div
-                        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
-                        style={{ backgroundColor: `${d.accent}15` }}
+                        className="absolute inset-x-0 top-0 h-1.5 rounded-t-3xl"
+                        style={{ background: `linear-gradient(90deg, ${d.accent}, ${d.shade})` }}
+                      />
+                      {/* Faint dot-grid texture so the white isn't flat */}
+                      <div
+                        className="absolute inset-0 pointer-events-none opacity-[0.35]"
+                        style={{
+                          backgroundImage: `radial-gradient(${d.accent}22 1px, transparent 1px)`,
+                          backgroundSize: '16px 16px',
+                        }}
+                      />
+                      {/* Step number, top-right */}
+                      <span
+                        className="absolute top-5 right-6 text-4xl font-extrabold select-none"
+                        style={{ color: `${d.accent}14` }}
                       >
-                        <Icon className="w-6 h-6" style={{ color: d.accent }} />
+                        0{i + 1}
+                      </span>
+
+                      {/* Icon with a soft color glow behind it */}
+                      <div className="relative mb-4">
+                        <div
+                          className="absolute inset-0 rounded-full blur-xl scale-150 pointer-events-none"
+                          style={{ backgroundColor: `${d.accent}25` }}
+                        />
+                        <div
+                          className="relative w-14 h-14 rounded-2xl flex items-center justify-center"
+                          style={{
+                            background: `linear-gradient(155deg, ${d.accent}1f, ${d.accent}0d)`,
+                            boxShadow: `inset 0 0 0 1px ${d.accent}33`,
+                          }}
+                        >
+                          <Icon className="w-6 h-6" style={{ color: d.accent }} />
+                        </div>
                       </div>
-                      <h3 className="text-base font-bold mb-2" style={{ color: '#1B5E20' }}>
+
+                      <h3 className="relative text-lg font-bold mb-2 tracking-tight" style={{ color: '#1B5E20' }}>
                         {d.title}
                       </h3>
-                      <p className="text-sm leading-relaxed max-w-[230px]" style={{ color: '#33691E' }}>
+                      <p className="relative text-sm leading-relaxed max-w-[230px]" style={{ color: '#33691E' }}>
                         {d.desc}
                       </p>
+
+                      {/* Solid pill CTA instead of a plain text link */}
                       <span
-                        className="mt-5 inline-flex items-center gap-1 text-sm font-semibold"
-                        style={{ color: d.accent }}
+                        className="relative mt-6 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-transform duration-300 group-hover:scale-[1.04]"
+                        style={{
+                          background: `linear-gradient(135deg, ${d.accent}, ${d.shade})`,
+                          boxShadow: `0 8px 18px -6px ${d.accent}80`,
+                        }}
                       >
                         Explore
                         <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
