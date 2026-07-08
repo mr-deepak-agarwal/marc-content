@@ -264,6 +264,7 @@ export function MSMEJourneyPicker() {
       desc: 'Form of organisation, compliances, choosing a state, industrial land',
       href: '/msme/new',
       accent: '#2E7D32',
+      shade: '#1F5522',
     },
     {
       key: 'running',
@@ -273,6 +274,7 @@ export function MSMEJourneyPicker() {
       desc: 'Free Business Health Check, strategy, financial modelling, SOPs',
       href: '/checkup',
       accent: '#1B5E20',
+      shade: '#124016',
     },
     {
       key: 'hub',
@@ -282,11 +284,17 @@ export function MSMEJourneyPicker() {
       desc: 'MSME schemes, NBFC & SIDBI funding, working capital, IPO readiness',
       href: '/msme/knowledge-hub',
       accent: '#43A047',
+      shade: '#2E6D30',
     },
   ]
 
   return (
-    <section className="py-20 font-sans" style={{ backgroundColor: '#F7FFF5' }}>
+    // overflow-x-hidden here is a safety net: the 3D rotateY flip can report
+    // a sub-pixel-wider layout box on some browsers mid-transition, which
+    // otherwise shows up as a page-wide horizontal scrollbar during/after
+    // the animation. Clipping at the section level costs nothing visually
+    // since the cards never need to render outside this section anyway.
+    <section className="py-20 font-sans overflow-x-hidden" style={{ backgroundColor: '#F7FFF5' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-14">
           <span className="text-sm font-semibold tracking-tight" style={{ color: '#2E7D32' }}>
@@ -301,13 +309,16 @@ export function MSMEJourneyPicker() {
           {cards.map((d, i) => {
             const Icon = d.icon
             const isFlipped = flipped === i
-            const backShade = `color-mix(in srgb, ${d.accent} 100%, black 32%)`
 
             return (
               <div
                 key={d.key}
-                className="relative h-72 md:h-auto md:aspect-[3/4] md:min-h-[380px]"
-                style={{ perspective: '1600px' }}
+                className="jp-card relative h-72 md:h-auto md:aspect-[3/4] md:min-h-[380px]"
+                data-flipped={isFlipped && !shouldReduceMotion ? 'true' : 'false'}
+                style={{
+                  '--jp-accent': d.accent,
+                  '--jp-shade': d.shade,
+                }}
                 onMouseEnter={() => setFlipped(i)}
                 onMouseLeave={() => setFlipped((h) => (h === i ? null : h))}
                 onFocus={() => setFlipped(i)}
@@ -324,39 +335,18 @@ export function MSMEJourneyPicker() {
                       setFlipped(i)
                     }
                   }}
-                  className="group relative block w-full h-full rounded-3xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2"
+                  className="jp-card-link group relative block w-full h-full rounded-3xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2"
                   style={{
                     textDecoration: 'none',
                     '--tw-ring-color': d.accent,
                     boxShadow: isFlipped ? '0 20px 36px -14px rgba(27,94,32,0.35)' : '0 4px 14px rgba(27,94,32,0.08)',
                     transform: isFlipped && !shouldReduceMotion ? 'translateY(-4px)' : 'translateY(0)',
-                    transition: shouldReduceMotion
-                      ? 'box-shadow 0.4s ease'
-                      : 'box-shadow 0.4s ease, transform 0.4s ease',
+                    transition: 'box-shadow 0.4s ease, transform 0.4s ease',
                   }}
                 >
-                  {/* Card flipper — both faces live inside this, rotated together */}
-                  <div
-                    className="absolute inset-0 rounded-3xl"
-                    style={{
-                      transformStyle: 'preserve-3d',
-                      WebkitTransformStyle: 'preserve-3d',
-                      transform: isFlipped && !shouldReduceMotion ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                      transition: 'transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)',
-                    }}
-                  >
+                  <div className="jp-inner">
                     {/* FRONT — icon, title, subtitle */}
-                    <div
-                      className="absolute inset-0 rounded-3xl flex flex-col items-center justify-center px-6 overflow-hidden"
-                      style={{
-                        background: `linear-gradient(155deg, ${d.accent} 0%, ${backShade} 100%)`,
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
-                        transform: 'translateZ(0.01px)',
-                        opacity: shouldReduceMotion && isFlipped ? 0 : 1,
-                        transition: 'opacity 0.35s ease',
-                      }}
-                    >
+                    <div className="jp-face jp-front rounded-3xl flex flex-col items-center justify-center px-6">
                       <div
                         className="absolute inset-4 rounded-2xl pointer-events-none"
                         style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.14)' }}
@@ -382,18 +372,7 @@ export function MSMEJourneyPicker() {
                     </div>
 
                     {/* BACK — description + Explore CTA */}
-                    <div
-                      className="absolute inset-0 rounded-3xl flex flex-col items-center justify-center text-center px-7"
-                      style={{
-                        background: 'linear-gradient(180deg, #FFFFFF 0%, #F1FAEF 100%)',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
-                        transform: shouldReduceMotion ? 'none' : 'rotateY(180.01deg) translateZ(0.01px)',
-                        opacity: shouldReduceMotion ? (isFlipped ? 1 : 0) : 1,
-                        transition: 'opacity 0.35s ease',
-                        boxShadow: 'inset 0 0 0 1px rgba(27,94,32,0.08)',
-                      }}
-                    >
+                    <div className="jp-face jp-back rounded-3xl flex flex-col items-center justify-center text-center px-7">
                       <div
                         className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
                         style={{ backgroundColor: `${d.accent}15` }}
@@ -421,6 +400,99 @@ export function MSMEJourneyPicker() {
           })}
         </div>
       </div>
+
+      {/*
+        All 3D-flip mechanics live here as real CSS classes (not inline
+        styles) specifically so the @supports fallback below can override
+        them. Inline styles can't be overridden by @supports rules, which is
+        why colors previously vanished / stayed washed out on older
+        browsers — this version degrades to a plain opacity crossfade
+        instead of a broken 3D flip on any browser that doesn't fully
+        support backface-visibility.
+      */}
+      <style jsx>{`
+        .jp-card {
+          perspective: 1600px;
+        }
+        .jp-card-link {
+          overflow: hidden; /* clips the flip to the card's rounded corners, no bleed */
+        }
+        .jp-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          -webkit-transform-style: preserve-3d;
+          transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .jp-card[data-flipped='true'] .jp-inner {
+          transform: rotateY(180deg);
+        }
+        .jp-face {
+          position: absolute;
+          inset: 0;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+        .jp-front {
+          background: linear-gradient(155deg, var(--jp-accent) 0%, var(--jp-shade) 100%);
+        }
+        .jp-back {
+          background: linear-gradient(180deg, #ffffff 0%, #f1faef 100%);
+          transform: rotateY(180deg);
+          box-shadow: inset 0 0 0 1px rgba(27, 94, 32, 0.08);
+        }
+
+        /* Fallback for browsers without reliable backface-visibility support
+           (older Chrome/Edge/WebView builds): skip the 3D flip entirely and
+           crossfade between faces instead. Never shows a blank/washed card. */
+        @supports not (backface-visibility: hidden) {
+          .jp-inner {
+            transition: none;
+          }
+          .jp-card[data-flipped='true'] .jp-inner {
+            transform: none;
+          }
+          .jp-face {
+            transition: opacity 0.35s ease;
+            opacity: 1;
+          }
+          .jp-back {
+            position: absolute;
+            transform: none;
+            opacity: 0;
+          }
+          .jp-card[data-flipped='true'] .jp-front {
+            opacity: 0;
+          }
+          .jp-card[data-flipped='true'] .jp-back {
+            opacity: 1;
+          }
+        }
+
+        /* Respect reduced-motion the same way: crossfade, no rotation */
+        @media (prefers-reduced-motion: reduce) {
+          .jp-inner {
+            transition: none;
+            transform: none !important;
+          }
+          .jp-face {
+            transition: opacity 0.35s ease;
+            opacity: 1;
+          }
+          .jp-back {
+            position: absolute;
+            transform: none;
+            opacity: 0;
+          }
+          .jp-card[data-flipped='true'] .jp-front {
+            opacity: 0;
+          }
+          .jp-card[data-flipped='true'] .jp-back {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </section>
   )
 }
