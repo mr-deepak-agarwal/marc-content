@@ -244,18 +244,18 @@ export function MSMEIndustrySection() {
 
 /* ----------------------------------------------------------------------- */
 /* 1b. JOURNEY PICKER — "which stage are you at?"                          */
-/* Three doors that swing open on hover to preview what's behind them,     */
-/* then route to a dedicated page: pre-launch setup, an already-running    */
-/* business, or the always-available knowledge hub (schemes, capital,     */
-/* finance literacy). Doors use a real CSS 3D rotateY on hover, hinged on  */
-/* the left edge, so the room behind is only revealed once you engage —    */
-/* not a scroll section, a decision point.                                 */
+/* Three flip cards: front shows icon + title + subtitle, back reveals the */
+/* description and an Explore CTA. Flips on hover (desktop) or tap         */
+/* (touch/mobile), then routes to a dedicated page: pre-launch setup, an   */
+/* already-running business, or the always-available knowledge hub        */
+/* (schemes, capital, finance literacy). Real CSS 3D rotateY, both faces   */
+/* backface-hidden so nothing bleeds through mid-flip.                     */
 /* ----------------------------------------------------------------------- */
 export function MSMEJourneyPicker() {
-  const [hovered, setHovered] = React.useState(null)
+  const [flipped, setFlipped] = React.useState(null)
   const shouldReduceMotion = useReducedMotion()
 
-  const doors = [
+  const cards = [
     {
       key: 'new',
       icon: Rocket,
@@ -297,133 +297,126 @@ export function MSMEJourneyPicker() {
           </h2>
         </div>
 
-        {/*
-          Cards are a fixed height (not aspect-ratio) so the room copy always
-          has enough room, on every breakpoint — that's what was clipping
-          text before. `overflow:hidden` on the outer wrapper gives the 3D
-          door a clean edge to swing inside instead of bleeding past the
-          rounded corners.
-        */}
-        <div className="grid md:grid-cols-3 gap-6 items-stretch" style={{ perspective: '1600px' }}>
-          {doors.map((d, i) => {
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+          {cards.map((d, i) => {
             const Icon = d.icon
-            const isOpen = hovered === i
-            const doorShade = `color-mix(in srgb, ${d.accent} 100%, black 32%)`
-            const kickplateShade = `color-mix(in srgb, ${d.accent} 100%, black 55%)`
+            const isFlipped = flipped === i
+            const backShade = `color-mix(in srgb, ${d.accent} 100%, black 32%)`
 
             return (
-              <a
+              <div
                 key={d.key}
-                href={d.href}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
-                onFocus={() => setHovered(i)}
-                onBlur={() => setHovered((h) => (h === i ? null : h))}
-                className="group relative block rounded-3xl h-72 md:h-auto md:aspect-[3/4] md:min-h-[380px] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2"
-                style={{
-                  textDecoration: 'none',
-                  overflow: 'hidden',
-                  '--tw-ring-color': d.accent,
-                  boxShadow: isOpen ? '0 20px 36px -14px rgba(27,94,32,0.35)' : '0 4px 14px rgba(27,94,32,0.08)',
-                  transform: isOpen && !shouldReduceMotion ? 'translateY(-4px)' : 'translateY(0)',
-                  transition: 'box-shadow 0.4s ease, transform 0.4s ease',
-                }}
+                className="relative h-72 md:h-auto md:aspect-[3/4] md:min-h-[380px]"
+                style={{ perspective: '1600px' }}
+                onMouseEnter={() => setFlipped(i)}
+                onMouseLeave={() => setFlipped((h) => (h === i ? null : h))}
+                onFocus={() => setFlipped(i)}
+                onBlur={() => setFlipped((h) => (h === i ? null : h))}
               >
-                {/* Room behind the door — always rendered, revealed on open */}
-                <div
-                  className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
-                  style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F1FAEF 100%)' }}
-                >
-                  {/* light spilling in from the open door */}
-                  <div
-                    className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
-                    style={{
-                      background: `radial-gradient(70% 100% at 50% 100%, ${d.accent}26, transparent)`,
-                      opacity: isOpen ? 1 : 0,
-                      transition: 'opacity 0.6s ease 0.1s',
-                    }}
-                  />
-                  <div
-                    className="relative w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
-                    style={{ backgroundColor: `${d.accent}15` }}
-                  >
-                    <Icon className="w-6 h-6" style={{ color: d.accent }} />
-                  </div>
-                  <p className="relative text-sm leading-relaxed max-w-[230px]" style={{ color: '#33691E' }}>
-                    {d.desc}
-                  </p>
-                  <span
-                    className="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold"
-                    style={{ color: d.accent }}
-                  >
-                    Explore
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-
-                {/* Door panel — hinged on the left, swings open on hover/focus */}
-                <div
-                  className="absolute inset-0 flex flex-col items-center justify-center"
+                <a
+                  href={d.href}
+                  onClick={(e) => {
+                    // On touch devices, first tap flips the card to preview
+                    // the back; second tap (already flipped) follows through.
+                    const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
+                    if (isTouch && flipped !== i) {
+                      e.preventDefault()
+                      setFlipped(i)
+                    }
+                  }}
+                  className="group relative block w-full h-full rounded-3xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2"
                   style={{
-                    background: `linear-gradient(155deg, ${d.accent} 0%, ${doorShade} 100%)`,
-                    transformOrigin: 'left center',
-                    transform: isOpen ? 'rotateY(-72deg)' : 'rotateY(0deg)',
+                    textDecoration: 'none',
+                    '--tw-ring-color': d.accent,
+                    boxShadow: isFlipped ? '0 20px 36px -14px rgba(27,94,32,0.35)' : '0 4px 14px rgba(27,94,32,0.08)',
+                    transform: isFlipped && !shouldReduceMotion ? 'translateY(-4px)' : 'translateY(0)',
                     transition: shouldReduceMotion
-                      ? 'opacity 0.35s ease'
-                      : 'transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)',
-                    opacity: shouldReduceMotion && isOpen ? 0 : 1,
-                    backfaceVisibility: 'hidden',
+                      ? 'box-shadow 0.4s ease'
+                      : 'box-shadow 0.4s ease, transform 0.4s ease',
                   }}
                 >
-                  {/* raised-panel grooves so it actually reads as a door */}
+                  {/* Card flipper — both faces live inside this, rotated together */}
                   <div
-                    className="absolute inset-4 rounded-2xl pointer-events-none"
-                    style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.14)' }}
-                  />
-                  <div
-                    className="absolute left-7 right-7 top-9 pointer-events-none rounded-lg"
+                    className="absolute inset-0 rounded-3xl"
                     style={{
-                      height: '36%',
-                      boxShadow: 'inset 0 2px 5px rgba(0,0,0,0.22), inset 0 -1px 0 rgba(255,255,255,0.08)',
+                      transformStyle: 'preserve-3d',
+                      WebkitTransformStyle: 'preserve-3d',
+                      transform: isFlipped && !shouldReduceMotion ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                      transition: 'transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)',
                     }}
-                  />
-                  <div
-                    className="absolute left-7 right-7 bottom-9 pointer-events-none rounded-lg"
-                    style={{
-                      height: '22%',
-                      boxShadow: 'inset 0 2px 5px rgba(0,0,0,0.22), inset 0 -1px 0 rgba(255,255,255,0.08)',
-                    }}
-                  />
-
-                  <div
-                    className="relative w-11 h-11 rounded-full flex items-center justify-center mb-3"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}
                   >
-                    <Icon className="w-5 h-5 text-white" />
+                    {/* FRONT — icon, title, subtitle */}
+                    <div
+                      className="absolute inset-0 rounded-3xl flex flex-col items-center justify-center px-6 overflow-hidden"
+                      style={{
+                        background: `linear-gradient(155deg, ${d.accent} 0%, ${backShade} 100%)`,
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'translateZ(0.01px)',
+                        opacity: shouldReduceMotion && isFlipped ? 0 : 1,
+                        transition: 'opacity 0.35s ease',
+                      }}
+                    >
+                      <div
+                        className="absolute inset-4 rounded-2xl pointer-events-none"
+                        style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.14)' }}
+                      />
+                      <div
+                        className="relative w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}
+                      >
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <span className="relative text-xl font-bold text-white text-center">
+                        {d.title}
+                      </span>
+                      <span className="relative text-sm mt-1.5" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                        {d.subtitle}
+                      </span>
+                      <span
+                        className="relative mt-6 inline-flex items-center gap-1 text-xs font-semibold tracking-wide uppercase"
+                        style={{ color: 'rgba(255,255,255,0.6)' }}
+                      >
+                        Hover to see more
+                      </span>
+                    </div>
+
+                    {/* BACK — description + Explore CTA */}
+                    <div
+                      className="absolute inset-0 rounded-3xl flex flex-col items-center justify-center text-center px-7"
+                      style={{
+                        background: 'linear-gradient(180deg, #FFFFFF 0%, #F1FAEF 100%)',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: shouldReduceMotion ? 'none' : 'rotateY(180.01deg) translateZ(0.01px)',
+                        opacity: shouldReduceMotion ? (isFlipped ? 1 : 0) : 1,
+                        transition: 'opacity 0.35s ease',
+                        boxShadow: 'inset 0 0 0 1px rgba(27,94,32,0.08)',
+                      }}
+                    >
+                      <div
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
+                        style={{ backgroundColor: `${d.accent}15` }}
+                      >
+                        <Icon className="w-6 h-6" style={{ color: d.accent }} />
+                      </div>
+                      <h3 className="text-base font-bold mb-2" style={{ color: '#1B5E20' }}>
+                        {d.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed max-w-[230px]" style={{ color: '#33691E' }}>
+                        {d.desc}
+                      </p>
+                      <span
+                        className="mt-5 inline-flex items-center gap-1 text-sm font-semibold"
+                        style={{ color: d.accent }}
+                      >
+                        Explore
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
                   </div>
-                  <span className="relative text-lg font-bold text-white text-center px-4">
-                    {d.title}
-                  </span>
-                  <span className="relative text-xs mt-1" style={{ color: 'rgba(255,255,255,0.75)' }}>
-                    {d.subtitle}
-                  </span>
-
-                  {/* Handle / knob */}
-                  <span
-                    className="absolute right-5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full"
-                    style={{
-                      background: 'radial-gradient(circle at 35% 35%, #ffffff, rgba(255,255,255,0.45))',
-                      boxShadow: '0 1px 3px rgba(0,0,0,0.35)',
-                    }}
-                  />
-
-                  {/* Kickplate */}
-                  <div
-                    className="absolute inset-x-0 bottom-0 h-2"
-                    style={{ backgroundColor: kickplateShade }}
-                  />
-                </div>
-              </a>
+                </a>
+              </div>
             )
           })}
         </div>
