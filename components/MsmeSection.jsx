@@ -371,66 +371,74 @@ export function MSMEJourneyPicker() {
                       </span>
                     </div>
 
-                    {/* BACK — description + Explore CTA */}
-                    <div className="jp-face jp-back rounded-3xl flex flex-col items-center justify-center text-center px-7 overflow-hidden">
-                      {/* Top accent bar in the card's own color, ties this
-                          face back to the front instead of reading as a
-                          generic white panel */}
-                      <div
-                        className="absolute inset-x-0 top-0 h-1.5 rounded-t-3xl"
-                        style={{ background: `linear-gradient(90deg, ${d.accent}, ${d.shade})` }}
+                    {/* BACK — glassmorphic continuation of the front's green,
+                        not a flip-to-white. Big ghost icon watermark for
+                        depth, frosted glass content panel, bright white
+                        pill CTA that actually pops against the green. */}
+                    <div className="jp-face jp-back rounded-3xl overflow-hidden">
+                      {/* Giant decorative icon bleeding off the corner —
+                          brand-watermark depth, not just flat color */}
+                      <Icon
+                        className="absolute -right-6 -top-6 w-32 h-32 pointer-events-none"
+                        style={{ color: 'rgba(255,255,255,0.08)' }}
+                        strokeWidth={1.2}
                       />
-                      {/* Faint dot-grid texture so the white isn't flat */}
+                      {/* Radial glow sweeping from bottom-left, echoes the
+                          front face's light so the two faces feel related */}
                       <div
-                        className="absolute inset-0 pointer-events-none opacity-[0.35]"
+                        className="absolute inset-0 pointer-events-none"
                         style={{
-                          backgroundImage: `radial-gradient(${d.accent}22 1px, transparent 1px)`,
-                          backgroundSize: '16px 16px',
+                          background: `radial-gradient(120% 90% at 15% 110%, rgba(255,255,255,0.16) 0%, transparent 55%)`,
                         }}
                       />
-                      {/* Step number, top-right */}
+                      {/* Ghost step number */}
                       <span
-                        className="absolute top-5 right-6 text-4xl font-extrabold select-none"
-                        style={{ color: `${d.accent}14` }}
+                        className="absolute top-5 left-6 text-5xl font-extrabold select-none"
+                        style={{ color: 'rgba(255,255,255,0.12)' }}
                       >
                         0{i + 1}
                       </span>
 
-                      {/* Icon with a soft color glow behind it */}
-                      <div className="relative mb-4">
+                      {/* Frosted glass content panel */}
+                      <div
+                        className="relative h-full flex flex-col items-center justify-center text-center px-7"
+                      >
                         <div
-                          className="absolute inset-0 rounded-full blur-xl scale-150 pointer-events-none"
-                          style={{ backgroundColor: `${d.accent}25` }}
-                        />
-                        <div
-                          className="relative w-14 h-14 rounded-2xl flex items-center justify-center"
+                          className="relative w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
                           style={{
-                            background: `linear-gradient(155deg, ${d.accent}1f, ${d.accent}0d)`,
-                            boxShadow: `inset 0 0 0 1px ${d.accent}33`,
+                            backgroundColor: 'rgba(255,255,255,0.16)',
+                            boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.28)',
+                            backdropFilter: 'blur(6px)',
                           }}
                         >
-                          <Icon className="w-6 h-6" style={{ color: d.accent }} />
+                          <Icon className="w-6 h-6 text-white" />
                         </div>
+
+                        <h3 className="text-lg font-bold mb-2 tracking-tight text-white">
+                          {d.title}
+                        </h3>
+                        <p
+                          className="text-sm leading-relaxed max-w-[230px]"
+                          style={{ color: 'rgba(255,255,255,0.82)' }}
+                        >
+                          {d.desc}
+                        </p>
+
+                        {/* Bright white pill — the one element that breaks
+                            from green, so it reads unmistakably as the
+                            action to take */}
+                        <span
+                          className="mt-6 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-bold transition-transform duration-300 group-hover:scale-[1.05]"
+                          style={{
+                            backgroundColor: '#FFFFFF',
+                            color: d.accent,
+                            boxShadow: '0 10px 22px -8px rgba(0,0,0,0.35)',
+                          }}
+                        >
+                          Explore
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                        </span>
                       </div>
-
-                      <h3 className="relative text-lg font-bold mb-2 tracking-tight" style={{ color: '#1B5E20' }}>
-                        {d.title}
-                      </h3>
-                      <p className="relative text-sm leading-relaxed max-w-[230px]" style={{ color: '#33691E' }}>
-                        {d.desc}
-                      </p>
-
-                      {/* Solid pill CTA instead of a plain text link */}
-                      <span
-                        className="relative mt-6 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-transform duration-300 group-hover:scale-[1.04]"
-                        style={{
-                          background: `linear-gradient(135deg, ${d.accent}, ${d.shade})`,
-                          boxShadow: `0 8px 18px -6px ${d.accent}80`,
-                        }}
-                      >
-                        Explore
-                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                      </span>
                     </div>
                   </div>
                 </a>
@@ -477,9 +485,8 @@ export function MSMEJourneyPicker() {
           background: linear-gradient(155deg, var(--jp-accent) 0%, var(--jp-shade) 100%);
         }
         .jp-back {
-          background: linear-gradient(180deg, #ffffff 0%, #f1faef 100%);
+          background: linear-gradient(200deg, var(--jp-shade) 0%, var(--jp-accent) 100%);
           transform: rotateY(180deg);
-          box-shadow: inset 0 0 0 1px rgba(27, 94, 32, 0.08);
         }
 
         /* Fallback for browsers without reliable backface-visibility support
