@@ -3,9 +3,9 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 89 },
+	{ id: 'all', label: 'All', count: 90 },
 	{ id: 'finance', label: 'Finance', count: 26 },
-	{ id: 'market-research', label: 'Market Research', count: 17 },
+	{ id: 'market-research', label: 'Market Research', count: 18 },
 	{ id: 'strategy', label: 'Strategy', count: 16 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
 	{ id: 'industry', label: 'Industry', count: 14 },
@@ -18,6 +18,128 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 90,
+		slug: 'harnessing-location-intelligence-smarter-business-decisions',
+		title: 'Harnessing Location Intelligence for Smarter Business Decisions',
+		excerpt: `Location intelligence stands out by uniquely connecting the digital and physical worlds, enabling smarter, spatially informed decisions — from choosing the next store location to predicting customer behaviour.`,
+		category: 'market-research',
+		categoryLabel: 'Market Research',
+		author: 'MARC Analytics Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'July 2026',
+		readTime: '7 min read',
+		image: 'https://images.unsplash.com/photo-1746619129315-3c6df9240d09?w=800&h=500&fit=crop&q=75',
+		featured: true,
+		tags: ['Location Intelligence', 'Market Research', 'GIS', 'Geospatial Data', 'Retail Strategy'],
+		seo: {
+			title: 'Location Intelligence: A Guide to Smarter Business Decisions',
+			description: 'What location intelligence is, its benefits and use cases across industries, the leading tools, and how GeoIQ helped Lenskart scale to 2000+ stores.',
+		},
+		cta: {
+			title: 'Bring Location Intelligence into Your Strategy',
+			description: 'Let MARC help you turn geospatial data into decisions.',
+			primaryButton: 'Speak with MARC',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `In today's business landscape, data is no longer a supporting tool it is the foundation of every critical decision. From choosing the next store location to predicting customer behaviour, companies thrive when they can transform information into insight. Among the many forms of data, location intelligence stands out by uniquely connecting the digital and physical worlds, enabling smarter, spatially informed decisions.`,
+			sections: [
+				{
+					heading: 'What is Location Intelligence?',
+					content: `Location intelligence is the method of gaining insights from geospatial data. These insights help identify patterns, make predictions and provide real-time understanding of location-specific questions. Location intelligence is often visualized with maps, graphs, statistics and cartograms.
+
+Layering location-specific data such as demographics, traffic, environment, economics, and weather on a smart map or dashboard reveals unique insights. These insights help organizations understand complex patterns and make strategic decisions based on comprehensive geospatial analysis.`,
+				},
+				{
+					heading: 'What are the Benefits of Location Intelligence?',
+					content: `Location intelligence has a huge competitive advantage, enabling more accurate and timely data-driven decisions than those without location data. Using location data, companies can identify new opportunities, optimize business operations, and create better and more efficient customer experiences.
+
+Enhanced Decision Making:
+• Location intelligence provides data-driven insights for strategic planning and resource allocation.
+• It helps identify trends and patterns that are not evident from non-geospatial data.
+
+Cost Efficiency:
+• Location Intelligence reduces the need for extensive field research and surveys.
+• Optimizes logistics and supply chain operations, leading to cost savings.
+
+Personalization:
+• Location Intelligence allows for more targeted marketing campaigns based on regional preferences.
+• Enhances customer experience by offering location-specific products and services.
+
+Competitive Advantage:
+• Enables businesses to understand market dynamics and consumer behavior in specific locations.
+• Location Intelligence facilitates the discovery of untapped markets and growth opportunities.`,
+				},
+				{
+					heading: 'What are the Use Cases of Location Intelligence?',
+					content: `Location intelligence is widely used across various industries to enhance decision-making and operational efficiency by leveraging geospatial data. It is useful in multiple industries, such as real estate, retail and e-commerce, travel and hospitality, urban planning, logistics and supply chain, healthcare, telecommunications, and insurance.
+
+Real Estate:
+• Market analysis: LI visualizes geospatial data from real estate listings to help analyze property prices, trends, and demand in specific areas.
+• Property Valuation: By integrating data such as amenities, neighborhood demographics, and historical property values, LI provides accurate property valuations and identifies high-demand areas.
+
+Retail and E-commerce:
+• Site Selection: Optimal site selection for new stores as retailers can use LI to determine store locations by analyzing foot traffic, demographics, and competition in different areas, ensuring new stores are strategically placed to attract maximum customers.
+• Customer Behavior: Understanding regional preferences and customer behavior by analyzing regional preferences and trends through customer reviews and social media mentions. Retailers can tailor their marketing strategies and product offerings to meet specific needs.
+
+Travel and Hospitality:
+• Tourism Insights & Competitor Performance: LI helps track tourist movement patterns and identify popular destinations and emerging travel trends. Businesses could compare pricing, occupancy rates, and competitors' customer feedback in various locations.
+• Tourism Areas Identification: LI could help entrepreneurs identify popular destinations and attractions.
+
+Logistics and Supply Chain:
+• Route Optimization: Logistics and supply chain companies use LI to analyze traffic patterns, road conditions, and delivery locations, optimizing routes to reduce delivery times and costs.
+• Warehouse Location: Companies can strategically place warehouses to improve supply chain efficiency by evaluating proximity to major transportation hubs, customer locations, and regional demand.
+
+Healthcare:
+• Resource Allocation: Healthcare providers use LI to map the distribution of healthcare facilities, patient demographics, and disease outbreaks, ensuring resources are allocated where they are most needed.
+• Emergency Response: LI helps plan and optimize emergency response strategies by analyzing the geographic distribution of incidents and response times.
+
+Telecommunications:
+• Network Optimization: In the telecommunications industry, companies use LI to analyze network performance, customer distribution, and service demand, optimizing the placement of cell towers and network infrastructure.
+• Service Expansion: Companies and businesses can identify underserved areas with high potential demand, and telecom providers can strategically expand their services to new regions.`,
+				},
+				{
+					heading: 'What are the Location Intelligence Tools?',
+					content: `Location Intelligence tools are essential for analyzing and visualizing geospatial data, enabling organizations to make informed decisions based on geographic insights. Some of the most recognized location intelligence tools include Google Earth Engine, Google Maps Scraper, Esri ArcGIS, Quantum GIS (QGIS), Mapbox, Geopandas, Carto, MapInfo Professional, and Outscraper's Traffic Extractor.
+
+The LI tools provide essential functionalities for collecting, analyzing, visualizing, and sharing geospatial data, empowering organizations to utilize location for informed decision-making and problem-solving.
+
+• Google Earth Engine: A cloud-based platform for large-scale geospatial data analysis and visualization.
+• Google Maps Scrapper: One of Outscraper's most popular scraping tools, it enables businesses to easily access and analyze location data, providing location intelligence insights.
+• Esri ArcGIS: A comprehensive GIS suite for mapping, spatial analysis, and sharing geospatial information.
+• QGIS (Quantum GIS): Open-source GIS application offering robust data visualization, editing, and analysis capabilities.
+• Mapbox: Platform for building custom maps and spatial applications, providing tools for designing maps, visualizing location data, and integrating geospatial features into web and mobile apps.
+• Geopandas: A Python library that extends pandas for geospatial data operations.
+• Carto: A location intelligence platform for creating interactive maps and performing spatial analysis.
+• MapInfo Professional: A desktop GIS software solution for mapping and spatial analysis.
+• Google Maps Traffic Extractor: This is a service from Outscraper that will gives traffic related data from two points in Google Maps.`,
+				},
+				{
+					heading: 'The Lenskart Case Study: Confidence at Scale',
+					content: `One of the most compelling stories from GeoIQ's journey is its collaboration with Lenskart, one of India's largest eyewear retailers.
+
+According to the GeoIQ team, they started working with Lenskart when they had around 500 stores across the country. Their solutions supported Lenskart in their journey to having 2000+ stores by pinpointing high-potential micro-locations with untapped demand. By combining Lenskart's internal performance data—such as historical revenue—with external indicators like mobility patterns, income distribution, and surrounding retail presence, GeoIQ was able to predict store-level revenue with up to 95% accuracy.
+
+The success of this engagement played a direct role in Lenskart's $2 million pre-Series A investment in GeoIQ, reinforcing the value of precision-led expansion planning powered by location intelligence.`,
+				},
+				{
+					heading: 'Sources',
+					content: `Location Intelligence Guide: Uses, Benefits, and Data Providers — https://www.safegraph.com/guides/location-intelligence/
+
+https://www.esri.com/en-us/location-intelligence/overview
+
+https://outscraper.com/location-intelligence-guide/
+
+How Subway, The Sleep Company, and Lenskart Use GeoIQ's Location Intelligence to Make Smarter Expansion Decisions | LinkedIn — https://www.linkedin.com/pulse/how-subway-sleep-company-lenskart-use-geoiqs-location-madiraju-unzdc/
+
+Lenskart's $2 million pre-Series A investment in GeoIQ — https://www.entrepreneur.com/en-in/news-and-trends/lenskart-invests-2-million-in-geoiq/427889`,
+				},
+			],
+			conclusion: ``,
+		},
+	},
 	{
 		id: 89,
 		slug: 'concierge-medicine-quality-of-earnings',
