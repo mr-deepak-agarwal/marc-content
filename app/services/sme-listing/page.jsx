@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { TrendingUp, FileCheck, Users, Award, Building2, Scale, Target, BarChart3 } from 'lucide-react'
+
+export const metadata = {
+  title: 'SME Listing Advisory Services in India',
+  description: 'Navigate the SME listing journey with confidence, regulatory preparedness, financial discipline and end-to-end support from MARC.',
+  alternates: { canonical: 'https://marcglocal.com/services/sme-listing' },
+  openGraph: {
+    title: 'SME Listing Advisory Services in India',
+    description: 'Navigate the SME listing journey with confidence, regulatory preparedness, financial discipline and end-to-end support from MARC.',
+    url: 'https://marcglocal.com/services/sme-listing',
+  },
+}
 
 const pageData = {
  // ✅ KEYWORD: "SME Listing Advisory Services"
@@ -99,6 +108,8 @@ const pageData = {
  
  ctaTitle: 'Considering SME Listing?',
  ctaDescription: 'Partner with MARC to navigate your listing journey with comprehensive advisory from readiness assessment through successful market entry.',
+  ctaLabel: 'Discuss Your Listing Readiness',
+  midPageCtaText: 'Considering an SME listing? Discuss your listing readiness with our team.',
 }
 
 export default function SMEListingPage() {

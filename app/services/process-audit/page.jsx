@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { GitBranch, Search, FileCheck, AlertCircle, BarChart3, Award, Target, Workflow } from 'lucide-react'
+
+export const metadata = {
+  title: 'Process Audit Services in India | Workflow Review',
+  description: 'Identify inefficiencies, undocumented workflows and control gaps. MARC\'s process audits reveal how work actually happens.',
+  alternates: { canonical: 'https://marcglocal.com/services/process-audit' },
+  openGraph: {
+    title: 'Process Audit Services in India | Workflow Review',
+    description: 'Identify inefficiencies, undocumented workflows and control gaps. MARC\'s process audits reveal how work actually happens.',
+    url: 'https://marcglocal.com/services/process-audit',
+  },
+}
 
 const pageData = {
  tagline: 'Process Audit Services',
@@ -96,6 +105,8 @@ const pageData = {
  
  ctaTitle: 'Ready to Optimize Your Processes?',
  ctaDescription: 'Partner with MARC for process audits that identify inefficiencies, strengthen controls, and drive operational excellence across your organization.',
+  ctaLabel: 'Request a Process Audit Scope Call',
+  midPageCtaText: 'Suspect inefficiencies in your workflows? Request a process audit scope call.',
 }
 
 export default function ProcessAuditPage() {

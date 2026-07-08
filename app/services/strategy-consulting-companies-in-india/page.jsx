@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Compass, Target, TrendingUp, Lightbulb, BarChart3, Rocket, Award, GitMerge } from 'lucide-react'
+
+export const metadata = {
+  title: 'Strategy Consulting Companies in India | Growth Advisory',
+  description: 'One of India\'s strategy consulting companies helping organizations define their growth path, optimize operations and build lasting advantage.',
+  alternates: { canonical: 'https://marcglocal.com/services/strategy-consulting-companies-in-india' },
+  openGraph: {
+    title: 'Strategy Consulting Companies in India | Growth Advisory',
+    description: 'One of India\'s strategy consulting companies helping organizations define their growth path, optimize operations and build lasting advantage.',
+    url: 'https://marcglocal.com/services/strategy-consulting-companies-in-india',
+  },
+}
 
 const pageData = {
   tagline: 'Growth Strategy',
@@ -97,6 +106,8 @@ const pageData = {
 
   ctaTitle: 'Ready to Chart Your Growth Path?',
   ctaDescription: 'Partner with MARC to develop strategies that drive sustainable growth, sharpen competitive positioning, and create long-term value.',
+  ctaLabel: 'Talk to a Strategy Advisor',
+  midPageCtaText: 'Need a clearer growth path? Talk to a strategy advisor.',
 }
 
 export default function StrategyConsultingPage() {

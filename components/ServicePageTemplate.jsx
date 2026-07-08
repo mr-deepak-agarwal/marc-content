@@ -40,6 +40,8 @@ export default function ServicePageTemplateOption2({
   // CTA
   ctaTitle = "Ready to Get Started?",
   ctaDescription,
+  ctaLabel = "Get a Free Consultation", // intent-matched primary action, set per service page
+  midPageCtaText, // short one-line prompt shown in the mid-page CTA after Methodology
 
   // Source page name  passed from each service page for Supabase tracking
   source = 'Service Page',
@@ -82,7 +84,7 @@ export default function ServicePageTemplateOption2({
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <CTAButton source={source} label="Start Your Project" variant="primary" />
+                <CTAButton source={source} label={ctaLabel} variant="primary" />
                 <Link href="#methodology" className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#C2DDB4] text-[#47635D] rounded-full font-semibold hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
                   Our Approach
                 </Link>
@@ -167,6 +169,20 @@ export default function ServicePageTemplateOption2({
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Mid-Page CTA (placed right after Methodology, per conversion architecture) ──── */}
+      {midPageCtaText && (
+        <section className="py-10 bg-white border-y border-[#C2DDB4]/40">
+          <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <p className="text-[#1D342F] text-lg font-semibold text-center sm:text-left">
+              {midPageCtaText}
+            </p>
+            <div className="flex-shrink-0">
+              <CTAButton source={`${source} - Mid Page`} label={ctaLabel} variant="primary" />
             </div>
           </div>
         </section>
@@ -442,7 +458,7 @@ export default function ServicePageTemplateOption2({
             <p className="text-[#C2DDB4] text-lg mb-10 max-w-2xl mx-auto">{ctaDescription}</p>
           )}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <CTAButton source={source} label="Get Started" variant="secondary" />
+            <CTAButton source={source} label={ctaLabel} variant="secondary" />
             <Link href="/insights" className="inline-flex items-center justify-center gap-2 px-10 py-4 border-2 border-white/30 text-white rounded-full font-semibold hover:bg-white/10 transition-all">
               View Our Insights
               <ExternalLink className="w-4 h-4" />

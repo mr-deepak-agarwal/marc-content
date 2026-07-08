@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { ClipboardList, GitMerge, Users, ShieldCheck, BarChart3, Layers } from 'lucide-react'
+
+export const metadata = {
+  title: 'SOP Consulting Services in India | Process Docs',
+  description: 'Replace informal, undocumented workflows with clear, structured SOPs, reducing delays, inconsistency and key-person dependence.',
+  alternates: { canonical: 'https://marcglocal.com/services/standard-operating-procedure-sop' },
+  openGraph: {
+    title: 'SOP Consulting Services in India | Process Docs',
+    description: 'Replace informal, undocumented workflows with clear, structured SOPs, reducing delays, inconsistency and key-person dependence.',
+    url: 'https://marcglocal.com/services/standard-operating-procedure-sop',
+  },
+}
 
 const pageData = {
  tagline: 'Growth Strategy',
@@ -98,6 +107,8 @@ const pageData = {
 
  ctaTitle: 'Ready to Build Structure for Scale?',
  ctaDescription: 'Partner with MARC to design and implement SOPs that shift decision-making from individuals to systems freeing founders to focus on growth.',
+  ctaLabel: 'Request an SOP Scoping Call',
+  midPageCtaText: 'Still running on tribal knowledge? Request an SOP scoping call.',
 }
 
 export default function SOPPage() {

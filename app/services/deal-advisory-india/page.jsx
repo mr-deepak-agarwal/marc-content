@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Handshake, Target, TrendingUp, Users, Search, FileText, Building2, Scale, CheckCircle, Award } from 'lucide-react'
+
+export const metadata = {
+  title: 'Deal Advisory Services in India | Cross-Border M&A',
+  description: 'Trusted deal advisory for promoters, investors, family offices and PE funds. Reduce execution risk and close complex transactions with MARC.',
+  alternates: { canonical: 'https://marcglocal.com/services/deal-advisory-india' },
+  openGraph: {
+    title: 'Deal Advisory Services in India | Cross-Border M&A',
+    description: 'Trusted deal advisory for promoters, investors, family offices and PE funds. Reduce execution risk and close complex transactions with MARC.',
+    url: 'https://marcglocal.com/services/deal-advisory-india',
+  },
+}
 
 const pageData = {
   source: 'Deal Advisory',
@@ -96,6 +105,8 @@ const pageData = {
   
   ctaTitle: 'Planning a Transaction?',
   ctaDescription: 'Partner with MARC for expert deal advisory that reduces execution risk and delivers successful outcomes across mergers, acquisitions, and strategic investments.',
+  ctaLabel: 'Book a Confidential Discussion',
+  midPageCtaText: 'Weighing a transaction or exit? Let\'s talk through the deal specifics, confidentially.',
 }
 
 export default function DealAdvisoryPage() {

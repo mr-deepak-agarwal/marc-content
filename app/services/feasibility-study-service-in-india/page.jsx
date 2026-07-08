@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate2 from '@/components/ServicePageTemplate'
 import { FileCheck, MapPin, Building2, TrendingUp, Calculator, Target, Shield, BarChart3, Users, Globe, PieChart } from 'lucide-react'
+
+export const metadata = {
+  title: 'Feasibility Study Consultant in India | Market & Financial',
+  description: 'Work with a trusted feasibility study consultant in India for market, technical and financial assessment before you invest. 360-degree research from MARC.',
+  alternates: { canonical: 'https://marcglocal.com/services/feasibility-study-service-in-india' },
+  openGraph: {
+    title: 'Feasibility Study Consultant in India | Market & Financial',
+    description: 'Work with a trusted feasibility study consultant in India for market, technical and financial assessment before you invest. 360-degree research from MARC.',
+    url: 'https://marcglocal.com/services/feasibility-study-service-in-india',
+  },
+}
 
 const pageData = {
   tagline: 'Feasibility Study for Business in India',
@@ -122,6 +131,8 @@ const pageData = {
 
   ctaTitle: 'Planning a Feasibility Study for Business in India?',
   ctaDescription: 'Make informed decisions with MARC\'s expert-led Feasibility Study for Business, backed by market insight, financial analysis, and execution clarity.',
+  ctaLabel: 'Get a Free Scope Call',
+  midPageCtaText: 'Not sure if your idea is viable yet? Get a free scope call before you commit capital.',
 }
 
 export default function FeasibilityStudyPageOption2() {

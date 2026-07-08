@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { BarChart3, TrendingUp, Target, PieChart, Calculator, ShieldCheck } from 'lucide-react'
+
+export const metadata = {
+  title: 'Project Report Consulting Services in India | Financial Modelling',
+  description: 'Bank-ready project reports and financial models built on structured, assumption-driven projections for fundraising, expansion and financing.',
+  alternates: { canonical: 'https://marcglocal.com/services/financial-and-project-report-consulting-services-in-india' },
+  openGraph: {
+    title: 'Project Report Consulting Services in India | Financial Modelling',
+    description: 'Bank-ready project reports and financial models built on structured, assumption-driven projections for fundraising, expansion and financing.',
+    url: 'https://marcglocal.com/services/financial-and-project-report-consulting-services-in-india',
+  },
+}
 
 const pageData = {
   tagline: 'Growth Strategy',
@@ -97,6 +106,8 @@ const pageData = {
 
   ctaTitle: 'Ready to Build a Robust Financial Model?',
   ctaDescription: 'Partner with MARC to prepare financial models and project reports that support investment decisions, funding applications, and strategic planning.',
+  ctaLabel: 'Request a Financial Model Consultation',
+  midPageCtaText: 'Need a bank-ready financial model? Let\'s scope your project report requirements.',
 }
 
 export default function FinancialModellingPage() {

@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Shield, Search, FileCheck, AlertTriangle, BarChart3, Award, CheckCircle2, TrendingUp } from 'lucide-react'
+
+export const metadata = {
+  title: 'Internal Audit Services in India | Governance & Controls',
+  description: 'Independent, risk-based internal audits that strengthen governance, close control gaps and improve compliance discipline for your business.',
+  alternates: { canonical: 'https://marcglocal.com/services/internal-audit' },
+  openGraph: {
+    title: 'Internal Audit Services in India | Governance & Controls',
+    description: 'Independent, risk-based internal audits that strengthen governance, close control gaps and improve compliance discipline for your business.',
+    url: 'https://marcglocal.com/services/internal-audit',
+  },
+}
 
 const pageData = {
   tagline: 'Internal Audit Services',
@@ -95,6 +104,8 @@ const pageData = {
   
   ctaTitle: 'Need to Strengthen Your Internal Controls?',
   ctaDescription: 'Partner with MARC for risk-based internal audits that identify control gaps, prevent revenue leakages, and strengthen governance across your organization.',
+  ctaLabel: 'Request an Internal Audit Scope Call',
+  midPageCtaText: 'Unsure where your control gaps are? Request an internal audit scope call.',
 }
 
 export default function InternalAuditPage() {

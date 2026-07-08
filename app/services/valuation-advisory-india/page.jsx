@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { BarChart3, TrendingUp, Scale, Building2, Target, Users, PieChart, DollarSign } from 'lucide-react'
+
+export const metadata = {
+  title: 'Business Valuation Firm in India | M&A & Fundraising',
+  description: 'Work with a leading business valuation firm in India for accurate, defensible valuations across M&A, fundraising and strategic transactions.',
+  alternates: { canonical: 'https://marcglocal.com/services/valuation-advisory-india' },
+  openGraph: {
+    title: 'Business Valuation Firm in India | M&A & Fundraising',
+    description: 'Work with a leading business valuation firm in India for accurate, defensible valuations across M&A, fundraising and strategic transactions.',
+    url: 'https://marcglocal.com/services/valuation-advisory-india',
+  },
+}
 
 const pageData = {
   // ✅ KEYWORD: "Business Valuation Services in India"
@@ -106,6 +115,8 @@ const pageData = {
   // ✅ KEYWORD: "Business Valuation Firm in India" | "best business valuation firms in India"
   ctaTitle: 'Partner with a Trusted Business Valuation Firm in India',
   ctaDescription: 'MARC is one of the best business valuation firms in India helping you unlock your company\'s true value and support confident decision-making across fundraising, M&A, and strategic transactions.',
+  ctaLabel: 'Get an Indicative Valuation',
+  midPageCtaText: 'Need a defensible number for a deal or raise? Get an indicative valuation.',
 }
 
 export default function BusinessValuationPage() {

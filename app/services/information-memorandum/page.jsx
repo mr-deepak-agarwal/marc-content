@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { FileText, TrendingUp, Target, BarChart3, Briefcase, Layers, ShieldCheck } from 'lucide-react'
+
+export const metadata = {
+  title: 'Information Memorandum & Pitch Deck Services India',
+  description: 'Investor-ready Information Memorandums and Pitch Decks that present your business clearly for fundraising and M&A transactions.',
+  alternates: { canonical: 'https://marcglocal.com/services/information-memorandum' },
+  openGraph: {
+    title: 'Information Memorandum & Pitch Deck Services India',
+    description: 'Investor-ready Information Memorandums and Pitch Decks that present your business clearly for fundraising and M&A transactions.',
+    url: 'https://marcglocal.com/services/information-memorandum',
+  },
+}
 
 const pageData = {
   tagline: 'Information Memorandum & Pitch Deck',
@@ -98,6 +107,8 @@ const pageData = {
 
   ctaTitle: 'Ready to Raise Capital or Execute a Transaction?',
   ctaDescription: 'Partner with MARC to build clear, credible, and investor-ready Information Memorandums and Pitch Decks that articulate your business story and support confident investor engagement.',
+  ctaLabel: 'Get Your IM / Pitch Deck Scoped',
+  midPageCtaText: 'Raising capital soon? Get your Information Memorandum or Pitch Deck scoped.',
 }
 
 export default function InformationMemorandumPage() {

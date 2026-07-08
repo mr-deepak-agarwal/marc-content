@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Globe, Plane, Building2, FileCheck, MapPin, Users, TrendingUp, Shield } from 'lucide-react'
+
+export const metadata = {
+  title: 'India Market Entry Consulting | Internationalization Services',
+  description: 'End-to-end India market entry consulting for global companies, and internationalization support for Indian companies expanding abroad.',
+  alternates: { canonical: 'https://marcglocal.com/services/internationalization-services-india' },
+  openGraph: {
+    title: 'India Market Entry Consulting | Internationalization Services',
+    description: 'End-to-end India market entry consulting for global companies, and internationalization support for Indian companies expanding abroad.',
+    url: 'https://marcglocal.com/services/internationalization-services-india',
+  },
+}
 
 const pageData = {
   tagline: 'Internationalization',
@@ -96,6 +105,8 @@ const pageData = {
   
   ctaTitle: 'Ready to Go Global?',
   ctaDescription: 'Partner with MARC to navigate international expansion with confidence and expert support.',
+  ctaLabel: 'Discuss Your Expansion Plan',
+  midPageCtaText: 'Planning a cross-border move? Discuss your expansion plan with our team.',
 }
 
 export default function InternationalizationPage() {

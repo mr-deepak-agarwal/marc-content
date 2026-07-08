@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Handshake, TrendingUp, Building2, Globe, Search, Scale, FileCheck, Users } from 'lucide-react'
+
+export const metadata = {
+  title: 'M&A Advisory Firm in India | Deal Execution & Strategy',
+  description: 'Work with an experienced M&A advisory firm in India covering due diligence, valuation and deal execution for complex transactions.',
+  alternates: { canonical: 'https://marcglocal.com/services/mergers-and-acquisitions-india' },
+  openGraph: {
+    title: 'M&A Advisory Firm in India | Deal Execution & Strategy',
+    description: 'Work with an experienced M&A advisory firm in India covering due diligence, valuation and deal execution for complex transactions.',
+    url: 'https://marcglocal.com/services/mergers-and-acquisitions-india',
+  },
+}
 
 const pageData = {
   tagline: 'Mergers & Acquisitions',
@@ -93,6 +102,8 @@ const pageData = {
   
   ctaTitle: 'Planning a Transaction?',
   ctaDescription: 'Partner with MARC for M&A advisory that protects your interests and maximizes transaction value.',
+  ctaLabel: 'Book a Confidential Discussion',
+  midPageCtaText: 'Exploring a merger or acquisition? Book a confidential discussion.',
 }
 
 export default function MergersAcquisitionsPage() {

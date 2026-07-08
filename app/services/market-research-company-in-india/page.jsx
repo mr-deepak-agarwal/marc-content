@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } from 'lucide-react'
+
+export const metadata = {
+  title: 'Market Research Firm in India | B2B & Consumer Insights',
+  description: 'MARC is a leading market research firm in India, decoding regional consumer behaviour and demand drivers for SMEs, investors and global brands.'s complex regional consumer behaviour and demand drivers, trusted by global brands.',
+  alternates: { canonical: 'https://marcglocal.com/services/market-research-company-in-india' },
+  openGraph: {
+    title: 'Market Research Firm in India | B2B & Consumer Insights',
+    description: 'MARC is a leading market research firm in India, decoding regional consumer behaviour and demand drivers for SMEs, investors and global brands.'s complex regional consumer behaviour and demand drivers, trusted by global brands.',
+    url: 'https://marcglocal.com/services/market-research-company-in-india',
+  },
+}
 
 const pageData = {
   source: 'Market Research',
@@ -123,6 +132,8 @@ const pageData = {
   // ✅ KEYWORD: "Market Research Partner in India"
   ctaTitle: 'Ready to Make Confident Market Decisions?',
   ctaDescription: 'Choose MARC as your Market Research Partner in India. We\'re ready to help you navigate India\'s complex markets with decision-ready intelligence, clear go/no-go recommendations, and strategies built for long-term growth.',
+  ctaLabel: 'Request a Research Proposal in 24 Hours',
+  midPageCtaText: 'Need data before you decide? Request a research proposal in 24 hours.',
 }
 
 export default function MarketResearchPageOption1() {

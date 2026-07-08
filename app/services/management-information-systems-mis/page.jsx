@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { LayoutDashboard, BarChart3, TrendingUp, ShieldCheck, Database, Target } from 'lucide-react'
+
+export const metadata = {
+  title: 'MIS Consulting & Setup Services in India',
+  description: 'Design and implement structured management information systems that turn raw data into reliable, decision-ready reporting.',
+  alternates: { canonical: 'https://marcglocal.com/services/management-information-systems-mis' },
+  openGraph: {
+    title: 'MIS Consulting & Setup Services in India',
+    description: 'Design and implement structured management information systems that turn raw data into reliable, decision-ready reporting.',
+    url: 'https://marcglocal.com/services/management-information-systems-mis',
+  },
+}
 
 const pageData = {
  // ✅ KEYWORD: "MIS Setup Services" tagline corrected from 'Growth Strategy'
@@ -99,6 +108,8 @@ const pageData = {
 
  ctaTitle: 'Ready for Clear, Reliable Management Reporting?',
  ctaDescription: 'Partner with MARC to design and implement an MIS that gives leadership the visibility they need to manage performance, control costs, and drive growth.',
+  ctaLabel: 'Request an MIS Assessment',
+  midPageCtaText: 'Flying blind on reporting? Request an MIS assessment.',
 }
 
 export default function MISPage() {

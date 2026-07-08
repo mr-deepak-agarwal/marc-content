@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { BarChart3, TrendingUp, Target, DollarSign, PieChart, ShieldCheck } from 'lucide-react'
+
+export const metadata = {
+  title: 'Profit & Loss Analysis Services in India',
+  description: 'Understand where you make money and where you lose it. MARC\'s P&L analysis sharpens decisions on pricing, cost and growth investment.',
+  alternates: { canonical: 'https://marcglocal.com/services/profit-and-loss-analysis-services-in-india' },
+  openGraph: {
+    title: 'Profit & Loss Analysis Services in India',
+    description: 'Understand where you make money and where you lose it. MARC\'s P&L analysis sharpens decisions on pricing, cost and growth investment.',
+    url: 'https://marcglocal.com/services/profit-and-loss-analysis-services-in-india',
+  },
+}
 
 const pageData = {
   tagline: 'Growth Strategy',
@@ -97,6 +106,8 @@ const pageData = {
 
   ctaTitle: 'Ready to Take Control of Your Profitability?',
   ctaDescription: 'Partner with MARC to gain clear visibility into your P&L, identify what is driving performance, and build the financial discipline needed for sustainable growth.',
+  ctaLabel: 'Get a P&L Diagnostic Call',
+  midPageCtaText: 'Not sure where your margin is leaking? Get a P&L diagnostic call.',
 }
 
 export default function ProfitLossPage() {

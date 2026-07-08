@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Users, Target, TrendingUp, Award, ClipboardList, ShieldCheck } from 'lucide-react'
+
+export const metadata = {
+  title: 'HR Consulting Services in India | People Strategy',
+  description: 'Build the people structures, processes and policies you need to attract, retain and scale talent, without losing culture. HR advisory by MARC.',
+  alternates: { canonical: 'https://marcglocal.com/services/human-resource-hr-consulting' },
+  openGraph: {
+    title: 'HR Consulting Services in India | People Strategy',
+    description: 'Build the people structures, processes and policies you need to attract, retain and scale talent, without losing culture. HR advisory by MARC.',
+    url: 'https://marcglocal.com/services/human-resource-hr-consulting',
+  },
+}
 
 const pageData = {
   tagline: 'Growth Strategy',
@@ -97,6 +106,8 @@ const pageData = {
 
   ctaTitle: 'Ready to Build Your People Infrastructure?',
   ctaDescription: 'Partner with MARC to design the HR systems, structures, and processes that support sustainable growth and a high-performing organisation.',
+  ctaLabel: 'Talk to an HR Advisor',
+  midPageCtaText: 'Scaling fast and feeling the people-strategy gaps? Talk to an HR advisor.',
 }
 
 export default function HRAdvisoryPage() {

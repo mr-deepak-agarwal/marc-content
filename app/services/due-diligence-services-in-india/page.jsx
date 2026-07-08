@@ -1,7 +1,16 @@
-'use client'
-
 import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Search, FileCheck, Shield, Eye, BarChart3, Building2, Scale, AlertTriangle, TrendingUp, Users } from 'lucide-react'
+
+export const metadata = {
+  title: 'Due Diligence Services in India | Financial & Commercial DD',
+  description: 'Expert due diligence for investors, acquirers and corporates across India. Validate financials, uncover risks early, decide with confidence.',
+  alternates: { canonical: 'https://marcglocal.com/services/due-diligence-services-in-india' },
+  openGraph: {
+    title: 'Due Diligence Services in India | Financial & Commercial DD',
+    description: 'Expert due diligence for investors, acquirers and corporates across India. Validate financials, uncover risks early, decide with confidence.',
+    url: 'https://marcglocal.com/services/due-diligence-services-in-india',
+  },
+}
 
 const pageData = {
  // ✅ KEYWORD: "Due Diligence Services in India"
@@ -110,6 +119,8 @@ const pageData = {
  // ✅ KEYWORD: "trusted due diligence firm in India"
  ctaTitle: 'Partner with MARC, a Trusted Due Diligence Firm in India',
  ctaDescription: 'Protect value, reduce risk, and execute transactions with confidence through comprehensive due diligence services.',
+  ctaLabel: 'Discuss Your Deal Confidentially',
+  midPageCtaText: 'Mid-deal and need clarity fast? Discuss your due diligence requirements with our team.',
 }
 
 export default function DueDiligencePage() {
