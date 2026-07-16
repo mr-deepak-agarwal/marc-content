@@ -3,11 +3,11 @@ import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } fro
 
 export const metadata = {
   title: 'Market Research Firm in India | B2B & Consumer Insights',
-  description: 'MARC is a leading market research firm in India, decoding the country\'s complex regional consumer behaviour and demand drivers, trusted by global brands, SMEs, and investors.',
+  description: 'MARC is a leading market research firm in India, decoding regional consumer behaviour and demand drivers for SMEs, investors and global brands.'s complex regional consumer behaviour and demand drivers, trusted by global brands.',
   alternates: { canonical: 'https://marcglocal.com/services/market-research-company-in-india' },
   openGraph: {
     title: 'Market Research Firm in India | B2B & Consumer Insights',
-    description: 'MARC is a leading market research firm in India, decoding the country\'s complex regional consumer behaviour and demand drivers, trusted by global brands, SMEs, and investors.',
+    description: 'MARC is a leading market research firm in India, decoding regional consumer behaviour and demand drivers for SMEs, investors and global brands.'s complex regional consumer behaviour and demand drivers, trusted by global brands.',
     url: 'https://marcglocal.com/services/market-research-company-in-india',
   },
 }
