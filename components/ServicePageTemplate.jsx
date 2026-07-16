@@ -5,8 +5,30 @@ import Link from 'next/link'
 import Footer from '@/components/Footer'
 import CTAButton from '@/components/CTAButton'
 import { 
-  ArrowRight, CheckCircle2, ChevronDown, ArrowUpRight, ExternalLink
+  ArrowRight, CheckCircle2, ChevronDown, ArrowUpRight, ExternalLink,
+  Award, BarChart3, Briefcase, Building2, Calculator, CheckCircle,
+  ClipboardList, Compass, Database, DollarSign, Eye, FileCheck, FileText,
+  GitBranch, GitMerge, Globe, Handshake, Layers, LayoutDashboard, MapPin,
+  PieChart, Rocket, Scale, Search, Shield, ShieldCheck, Target, TrendingUp,
+  Users, Workflow
 } from 'lucide-react'
+
+// Data files pass icon as a string name (e.g. 'Handshake') instead of the
+// component itself, since Server Components can't pass functions as props
+// to Client Components. This map resolves the name back to the component.
+const ICON_MAP = {
+  Award, BarChart3, Briefcase, Building2, Calculator, CheckCircle,
+  ClipboardList, Compass, Database, DollarSign, Eye, FileCheck, FileText,
+  GitBranch, GitMerge, Globe, Handshake, Layers, LayoutDashboard, MapPin,
+  PieChart, Rocket, Scale, Search, Shield, ShieldCheck, Target, TrendingUp,
+  Users, Workflow,
+}
+
+function resolveIcon(icon) {
+  // Backwards-compatible: if something still passes a component directly, use it as-is.
+  if (typeof icon === 'function') return icon
+  return ICON_MAP[icon] || CheckCircle2
+}
 
 export default function ServicePageTemplateOption2({
   // Hero Section
@@ -126,15 +148,18 @@ export default function ServicePageTemplateOption2({
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {valueProps.map((item, i) => (
+              {valueProps.map((item, i) => {
+                const Icon = resolveIcon(item.icon)
+                return (
                 <div key={i} className="group">
                   <div className="w-14 h-14 bg-[#F7FFF5] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#C2DDB4] transition-colors">
-                    <item.icon className="w-7 h-7 text-[#4E9141]" />
+                    <Icon className="w-7 h-7 text-[#4E9141]" />
                   </div>
                   <h3 className="text-xl font-bold text-[#1D342F] mb-2">{item.title}</h3>
                   <p className="text-[#47635D] text-sm leading-relaxed">{item.desc}</p>
                 </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
@@ -204,6 +229,7 @@ export default function ServicePageTemplateOption2({
             <div className="grid md:grid-cols-2 gap-8">
               {services.map((service, i) => {
                 const serviceImage = serviceImages[i] || defaultServiceImages[i % defaultServiceImages.length]
+                const ServiceIcon = resolveIcon(service.icon)
                 
                 return (
                   <div key={i} className="group cursor-pointer">
@@ -219,7 +245,7 @@ export default function ServicePageTemplateOption2({
                       {/* Icon overlay */}
                       <div className="absolute top-6 left-6">
                         <div className="w-14 h-14 bg-white/90 rounded-xl shadow-lg flex items-center justify-center group-hover:bg-[#4E9141] transition-colors">
-                          <service.icon className="w-7 h-7 text-[#4E9141] group-hover:text-white transition-colors" />
+                          <ServiceIcon className="w-7 h-7 text-[#4E9141] group-hover:text-white transition-colors" />
                         </div>
                       </div>
 

@@ -27,10 +27,10 @@ const pageData = {
   ],
   
   valueProps: [
-    { icon: Handshake, title: 'Holistic Approach', desc: 'Strong understanding of business fundamentals, industry dynamics, and regulatory frameworks across India and global markets.' },
-    { icon: Target, title: 'Execution-First Mindset', desc: 'Focus on deal certainty and sustainable post-transaction outcomes with structured execution.' },
-    { icon: TrendingUp, title: 'Cross border Expertise', desc: 'Experience across sectors and transaction sizes in both domestic and international markets.' },
-    { icon: Scale, title: 'Post-Closure Support', desc: 'Involvement extends beyond signing with transition and stabilisation support.' },
+    { icon: 'Handshake', title: 'Holistic Approach', desc: 'Strong understanding of business fundamentals, industry dynamics, and regulatory frameworks across India and global markets.' },
+    { icon: 'Target', title: 'Execution-First Mindset', desc: 'Focus on deal certainty and sustainable post-transaction outcomes with structured execution.' },
+    { icon: 'TrendingUp', title: 'Cross border Expertise', desc: 'Experience across sectors and transaction sizes in both domestic and international markets.' },
+    { icon: 'Scale', title: 'Post-Closure Support', desc: 'Involvement extends beyond signing with transition and stabilisation support.' },
   ],
   
   methodology: [
@@ -48,25 +48,25 @@ const pageData = {
       title: 'M&A Readiness',
       desc: 'Prepare businesses for buyer and investor scrutiny before entering transaction process.',
       features: ['Financial & Earnings Readiness', 'Working Capital & Cash Flow Discipline', 'Operational & Organisational Readiness', 'Documentation & Diligence Preparedness'],
-      icon: CheckCircle,
+      icon: 'CheckCircle',
     },
     {
       title: 'Buy-side Advisory',
       desc: 'Support acquirers through target identification, due diligence, and deal execution.',
       features: ['Target Screening', 'Deal Structuring', 'Negotiation Support', 'Integration Planning'],
-      icon: Search,
+      icon: 'Search',
     },
     {
       title: 'Sell-side Advisory',
       desc: 'Help sellers achieve optimal outcomes through structured sale processes.',
       features: ['Buyer Identification', 'Process Management', 'Value Maximization', 'Transaction Documentation'],
-      icon: Building2,
+      icon: 'Building2',
     },
     {
       title: 'Transaction Structuring',
       desc: 'Design optimal deal structures considering tax, legal, and commercial aspects.',
       features: ['Structure Optimization', 'Tax Planning', 'Risk Allocation', 'Documentation Review'],
-      icon: FileText,
+      icon: 'FileText',
     },
   ],
   

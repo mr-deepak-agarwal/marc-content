@@ -28,10 +28,10 @@ const pageData = {
  ],
 
  valueProps: [
- { icon: LayoutDashboard, title: 'Single Source of Truth', desc: 'One reliable view of financial and operational performance on a monthly basis replacing fragmented spreadsheets and manual reports.' },
- { icon: BarChart3, title: 'Variance Visibility', desc: 'Actual vs budget tracking that identifies deviations early and supports timely corrective actions before they escalate.' },
- { icon: TrendingUp, title: 'Better Decisions', desc: 'Management-ready dashboards and reports that make performance data accessible and actionable for leadership teams.' },
- { icon: ShieldCheck, title: 'Financial Discipline', desc: 'Structured reporting that strengthens financial controls, improves cost management, and builds planning capabilities.' },
+ { icon: 'LayoutDashboard', title: 'Single Source of Truth', desc: 'One reliable view of financial and operational performance on a monthly basis replacing fragmented spreadsheets and manual reports.' },
+ { icon: 'BarChart3', title: 'Variance Visibility', desc: 'Actual vs budget tracking that identifies deviations early and supports timely corrective actions before they escalate.' },
+ { icon: 'TrendingUp', title: 'Better Decisions', desc: 'Management-ready dashboards and reports that make performance data accessible and actionable for leadership teams.' },
+ { icon: 'ShieldCheck', title: 'Financial Discipline', desc: 'Structured reporting that strengthens financial controls, improves cost management, and builds planning capabilities.' },
  ],
 
  methodology: [
@@ -49,25 +49,25 @@ const pageData = {
  title: 'MIS Framework Design',
  desc: 'Build a fully customised MIS structure covering all relevant revenue streams, cost centres, and business units specific to your operations.',
  features: ['Revenue Tracking', 'Cost Centre Design', 'Business Unit Reporting', 'Custom KPI Framework'],
- icon: LayoutDashboard,
+ icon: 'LayoutDashboard',
  },
  {
  title: 'Actual vs Budget Reporting',
  desc: 'Establish structured budgeting and monthly actual vs budget comparison frameworks with variance analysis and corrective action tracking.',
  features: ['Budget Templates', 'Monthly Variance Reports', 'Deviation Alerts', 'Corrective Action Logs'],
- icon: BarChart3,
+ icon: 'BarChart3',
  },
  {
  title: 'Management Dashboards',
  desc: 'Develop clear, decision-ready monthly management dashboards focused on usability giving leadership the right information at a glance.',
  features: ['Visual Dashboards', 'Executive Summaries', 'Trend Analysis', 'Performance Highlights'],
- icon: TrendingUp,
+ icon: 'TrendingUp',
  },
  {
  title: 'ERP & System Integration',
  desc: 'Align the MIS with existing accounting systems, ERP platforms, and operational data sources to ensure consistency and eliminate manual data entry.',
  features: ['ERP Alignment', 'Data Validation', 'Automated Feeds', 'System Reconciliation'],
- icon: Database,
+ icon: 'Database',
  },
  ],
 

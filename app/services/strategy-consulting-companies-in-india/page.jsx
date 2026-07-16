@@ -26,10 +26,10 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: Compass, title: 'Strategic Direction', desc: 'Clear roadmaps that align business objectives with market opportunities and competitive realities.' },
-    { icon: Target, title: 'Focused Execution', desc: 'Actionable plans with defined milestones, KPIs, and accountability frameworks.' },
-    { icon: TrendingUp, title: 'Sustainable Growth', desc: 'Strategies designed for long-term value creation and market leadership.' },
-    { icon: Award, title: 'Competitive Edge', desc: 'Build differentiated positioning and defensible market advantages.' },
+    { icon: 'Compass', title: 'Strategic Direction', desc: 'Clear roadmaps that align business objectives with market opportunities and competitive realities.' },
+    { icon: 'Target', title: 'Focused Execution', desc: 'Actionable plans with defined milestones, KPIs, and accountability frameworks.' },
+    { icon: 'TrendingUp', title: 'Sustainable Growth', desc: 'Strategies designed for long-term value creation and market leadership.' },
+    { icon: 'Award', title: 'Competitive Edge', desc: 'Build differentiated positioning and defensible market advantages.' },
   ],
 
   methodology: [
@@ -47,25 +47,25 @@ const pageData = {
       title: 'Corporate Strategy',
       desc: 'Define long-term strategic direction, portfolio strategy, and capital allocation priorities aligned with market opportunity.',
       features: ['Vision & Mission', 'Portfolio Strategy', 'Growth Roadmap'],
-      icon: Compass,
+      icon: 'Compass',
     },
     {
       title: 'Growth Strategy',
       desc: 'Identify and prioritize growth opportunities including market expansion, new products, and inorganic growth options.',
       features: ['Market Expansion', 'New Products', 'Inorganic Growth'],
-      icon: TrendingUp,
+      icon: 'TrendingUp',
     },
     {
       title: 'Go-to-Market Strategy',
       desc: 'Develop market entry and expansion strategies with channel, pricing, and positioning plans tailored to your market.',
       features: ['Channel Strategy', 'Pricing Strategy', 'Market Entry'],
-      icon: Rocket,
+      icon: 'Rocket',
     },
     {
       title: 'Business Transformation',
       desc: 'Drive organizational transformation to improve performance and build future-ready capabilities for sustainable growth.',
       features: ['Operating Model', 'Process Excellence', 'Change Management'],
-      icon: GitMerge,
+      icon: 'GitMerge',
     },
   ],
 

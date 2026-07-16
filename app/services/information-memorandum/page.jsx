@@ -26,10 +26,10 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: Target, title: 'Clear Positioning', desc: 'Position the company effectively, highlighting core value drivers and differentiation for investors and acquirers.' },
-    { icon: TrendingUp, title: 'Compelling Investment Thesis', desc: 'Articulate growth story and investment rationale aligned with investor expectations and deal objectives.' },
-    { icon: BarChart3, title: 'Credible Financials', desc: 'Integration of operating metrics and financial projections that support valuation expectations and deal discussions.' },
-    { icon: ShieldCheck, title: 'Reduced Information Asymmetry', desc: 'Build credibility and ensure consistent communication with investors and buyers throughout the process.' },
+    { icon: 'Target', title: 'Clear Positioning', desc: 'Position the company effectively, highlighting core value drivers and differentiation for investors and acquirers.' },
+    { icon: 'TrendingUp', title: 'Compelling Investment Thesis', desc: 'Articulate growth story and investment rationale aligned with investor expectations and deal objectives.' },
+    { icon: 'BarChart3', title: 'Credible Financials', desc: 'Integration of operating metrics and financial projections that support valuation expectations and deal discussions.' },
+    { icon: 'ShieldCheck', title: 'Reduced Information Asymmetry', desc: 'Build credibility and ensure consistent communication with investors and buyers throughout the process.' },
   ],
 
   methodology: [
@@ -47,25 +47,25 @@ const pageData = {
       title: 'Information Memorandum (IM)',
       desc: 'Comprehensive IM for fundraising, M&A, and strategic partnerships covering company overview, business plan, growth strategy, operating metrics, and investment highlights.',
       features: ['Company Overview', 'Business Plan & Growth Strategy', 'Financial Projections', 'Investment Highlights'],
-      icon: FileText,
+      icon: 'FileText',
     },
     {
       title: 'Investor Pitch Deck',
       desc: 'Compelling pitch deck presentations for investor meetings and roadshows designed to communicate the opportunity quickly, clearly, and persuasively.',
       features: ['Executive Summary', 'Market Opportunity', 'Business Model', 'Financial Highlights'],
-      icon: Layers,
+      icon: 'Layers',
     },
     {
       title: 'Investment Teaser',
       desc: 'Concise, high-level summaries (2-3 pages) designed to generate initial investor interest and support targeted outreach before sharing the detailed IM.',
       features: ['Business Snapshot', 'Key Metrics', 'Investment Opportunity', 'Transaction Overview'],
-      icon: Briefcase,
+      icon: 'Briefcase',
     },
     {
       title: 'Returns & Exit Analysis',
       desc: 'Return drivers, value-creation roadmap, scalability levers, and potential exit pathways aligned with sector dynamics and investor expectations.',
       features: ['Return Drivers', 'Value-Creation Roadmap', 'Scalability Levers', 'Exit Pathways'],
-      icon: BarChart3,
+      icon: 'BarChart3',
     },
   ],
 

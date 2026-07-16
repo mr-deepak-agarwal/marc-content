@@ -28,10 +28,10 @@ const pageData = {
  ],
 
  valueProps: [
- { icon: Search, title: 'Early Risk Identification', desc: 'Early identification of key red flags, normalised earnings, and transaction sensitivities.' },
- { icon: Shield, title: 'Effective Risk Mitigation', desc: 'Clear view of sustainable earnings with effective risk mitigation and downside protection.' },
- { icon: Eye, title: 'Stronger Negotiation Leverage', desc: 'Independent assessment providing stronger negotiation leverage and deal protection.' },
- { icon: Scale, title: 'True Business Performance', desc: 'Accurate reflection of true business performance beyond surface-level financial reviews.' },
+ { icon: 'Search', title: 'Early Risk Identification', desc: 'Early identification of key red flags, normalised earnings, and transaction sensitivities.' },
+ { icon: 'Shield', title: 'Effective Risk Mitigation', desc: 'Clear view of sustainable earnings with effective risk mitigation and downside protection.' },
+ { icon: 'Eye', title: 'Stronger Negotiation Leverage', desc: 'Independent assessment providing stronger negotiation leverage and deal protection.' },
+ { icon: 'Scale', title: 'True Business Performance', desc: 'Accurate reflection of true business performance beyond surface-level financial reviews.' },
  ],
 
  methodology: [
@@ -54,26 +54,26 @@ const pageData = {
  desc: 'Comprehensive support for acquirers throughout the acquisition process.',
  // ✅ KEYWORD: "Financial modelling and valuation"
  features: ['Target screening aligned with acquisition criteria', 'Financial modelling and valuation support', 'Cash proof and working capital assessment', 'Commercial and operational diligence', 'Coordination of diligence streams and negotiations'],
- icon: BarChart3,
+ icon: 'BarChart3',
  },
  {
  title: 'Sell-Side Due Diligence',
  desc: 'Prepare sellers for investor scrutiny and optimize transaction readiness.',
  features: ['Business positioning for investors', 'Preparation of teasers and pitch decks', 'Vendor due diligence and earnings normalisation', 'Management readiness support', 'Data room management and execution support'],
- icon: Building2,
+ icon: 'Building2',
  },
  {
  // ✅ KEYWORD: "financial due diligence services"
  title: 'Financial Due Diligence',
  desc: 'Our financial due diligence services focus on quality of earnings, working capital, cash flows, liabilities, and accounting policies.',
  features: ['Quality of Earnings analysis', 'Working Capital assessment', 'Debt and liability analysis', 'Financial risk evaluation'],
- icon: TrendingUp,
+ icon: 'TrendingUp',
  },
  {
  title: 'Commercial Due Diligence',
  desc: 'Assessment of market position, competitive dynamics, and growth potential.',
  features: ['Consumer and market analysis', 'Competitive positioning review', 'Growth drivers assessment', 'Regulatory compliance review'],
- icon: Users,
+ icon: 'Users',
  },
  ],
 

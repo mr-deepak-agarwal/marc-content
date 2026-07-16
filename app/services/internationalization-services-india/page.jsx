@@ -26,10 +26,10 @@ const pageData = {
   ],
   
   valueProps: [
-    { icon: Globe, title: 'Global Reach', desc: 'Deep expertise across major markets in Americas, Europe, Asia, and Middle East.' },
-    { icon: MapPin, title: 'Local Knowledge', desc: 'On-ground intelligence and local partner networks in target markets.' },
-    { icon: Shield, title: 'Risk Mitigation', desc: 'Navigate regulatory, cultural, and operational complexities.' },
-    { icon: TrendingUp, title: 'Growth Enablement', desc: 'Structured approach to international expansion success.' },
+    { icon: 'Globe', title: 'Global Reach', desc: 'Deep expertise across major markets in Americas, Europe, Asia, and Middle East.' },
+    { icon: 'MapPin', title: 'Local Knowledge', desc: 'On-ground intelligence and local partner networks in target markets.' },
+    { icon: 'Shield', title: 'Risk Mitigation', desc: 'Navigate regulatory, cultural, and operational complexities.' },
+    { icon: 'TrendingUp', title: 'Growth Enablement', desc: 'Structured approach to international expansion success.' },
   ],
   
   methodology: [
@@ -47,25 +47,25 @@ const pageData = {
       title: 'India Entry Services',
       desc: 'Support international companies in entering and scaling in India through data-backed market assessment, regulatory navigation, partner identification, and on-ground setup execution.',
       features: ['Market Assessment', 'Partner Search', 'Setup Support'],
-      icon: MapPin,
+      icon: 'MapPin',
     },
     {
       title: 'Global Expansion',
       desc: 'Enable Indian companies to expand into global markets through structured market selection, entry strategy design, and execution support.',
       features: ['Market Selection', 'Entry Strategy', 'Execution Support'],
-      icon: Globe,
+      icon: 'Globe',
     },
     {
       title: 'Cross border M&A',
       desc: 'Facilitate Cross border acquisitions and joint ventures through structured target identification, commercial and financial due diligence, and end-to-end deal execution',
       features: ['Target Search', 'Due Diligence', 'Deal Execution'],
-      icon: Building2,
+      icon: 'Building2',
     },
     {
       title: 'Regulatory & Compliance',
       desc: 'Support international operations by navigating regulatory frameworks, FDI norms, and entity setup requirements.',
       features: ['FDI Compliance', 'Entity Setup', 'Ongoing Compliance'],
-      icon: FileCheck,
+      icon: 'FileCheck',
     },
   ],
   

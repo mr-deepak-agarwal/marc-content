@@ -26,10 +26,10 @@ const pageData = {
   ],
   
   valueProps: [
-    { icon: Search, title: 'Due Diligence', desc: 'Thorough investigation to uncover risks and validate assumptions.' },
-    { icon: Scale, title: 'Valuation', desc: 'Independent, defensible valuations supporting deal decisions.' },
-    { icon: Handshake, title: 'Deal Advisory', desc: 'End-to-end transaction support from strategy to closure.' },
-    { icon: TrendingUp, title: 'Value Creation', desc: 'Focus on deals that create genuine strategic value.' },
+    { icon: 'Search', title: 'Due Diligence', desc: 'Thorough investigation to uncover risks and validate assumptions.' },
+    { icon: 'Scale', title: 'Valuation', desc: 'Independent, defensible valuations supporting deal decisions.' },
+    { icon: 'Handshake', title: 'Deal Advisory', desc: 'End-to-end transaction support from strategy to closure.' },
+    { icon: 'TrendingUp', title: 'Value Creation', desc: 'Focus on deals that create genuine strategic value.' },
   ],
   
   methodology: [
@@ -47,25 +47,25 @@ const pageData = {
       title: 'Due Diligence',
       desc: 'Financial, commercial, and operational due diligence for informed decisions.',
       features: ['Financial DD', 'Commercial DD', 'Operational Review'],
-      icon: Search,
+      icon: 'Search',
     },
     {
       title: 'Valuation Advisory',
       desc: 'Independent valuations for transactions, disputes, and compliance.',
       features: ['Business Valuation', 'Intangible Assets', 'Fairness Opinion'],
-      icon: Scale,
+      icon: 'Scale',
     },
     {
       title: 'Deal Advisory',
       desc: 'Buy-side and sell-side advisory through complete transaction lifecycle.',
       features: ['Buy-side', 'Sell-side', 'Deal Structuring'],
-      icon: Handshake,
+      icon: 'Handshake',
     },
     {
       title: 'Integration Support',
       desc: 'Post-merger integration planning and synergy realization.',
       features: ['Integration Planning', '100-Day Plan', 'Synergy Tracking'],
-      icon: Users,
+      icon: 'Users',
     },
   ],
   

@@ -26,10 +26,10 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: BarChart3, title: 'Profitability Clarity', desc: 'Understand exactly where margins are made and lost by product, channel, customer, or business unit.' },
-    { icon: Target, title: 'Cost Optimisation', desc: 'Identify cost overruns, inefficiencies, and underperforming areas with clear recommendations to reduce leakage.' },
-    { icon: TrendingUp, title: 'Revenue Enhancement', desc: 'Identify pricing gaps, revenue mix opportunities, and undermonetised segments to improve top-line performance.' },
-    { icon: ShieldCheck, title: 'Decision Support', desc: 'Management-ready P&L reports and dashboards that make financial performance visible and actionable.' },
+    { icon: 'BarChart3', title: 'Profitability Clarity', desc: 'Understand exactly where margins are made and lost by product, channel, customer, or business unit.' },
+    { icon: 'Target', title: 'Cost Optimisation', desc: 'Identify cost overruns, inefficiencies, and underperforming areas with clear recommendations to reduce leakage.' },
+    { icon: 'TrendingUp', title: 'Revenue Enhancement', desc: 'Identify pricing gaps, revenue mix opportunities, and undermonetised segments to improve top-line performance.' },
+    { icon: 'ShieldCheck', title: 'Decision Support', desc: 'Management-ready P&L reports and dashboards that make financial performance visible and actionable.' },
   ],
 
   methodology: [
@@ -47,25 +47,25 @@ const pageData = {
       title: 'P&L Structuring & Review',
       desc: 'Build or restructure P&L statements to ensure accurate, consistent reporting across business units, cost centres, and product lines.',
       features: ['Multi-unit P&L Design', 'Cost Centre Mapping', 'Revenue Attribution', 'Reporting Framework'],
-      icon: BarChart3,
+      icon: 'BarChart3',
     },
     {
       title: 'Profitability Analysis',
       desc: 'Deep-dive into margin performance at the product, channel, customer, or geography level to identify what is truly profitable.',
       features: ['Gross Margin Analysis', 'Unit Economics', 'Contribution Margin', 'Segment Profitability'],
-      icon: PieChart,
+      icon: 'PieChart',
     },
     {
       title: 'Cost Optimisation',
       desc: 'Identify and quantify cost inefficiencies, leakages, and overruns with prioritised recommendations for cost reduction.',
       features: ['Fixed vs Variable Analysis', 'Overhead Review', 'Benchmarking', 'Savings Identification'],
-      icon: Target,
+      icon: 'Target',
     },
     {
       title: 'Budgeting & Variance Analysis',
       desc: 'Build structured budgets and establish monthly variance analysis frameworks to maintain financial discipline and enable early corrective action.',
       features: ['Budget Preparation', 'Actual vs Budget', 'Variance Reporting', 'Corrective Action Tracking'],
-      icon: TrendingUp,
+      icon: 'TrendingUp',
     },
   ],
 

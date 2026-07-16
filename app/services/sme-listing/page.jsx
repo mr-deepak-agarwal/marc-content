@@ -28,10 +28,10 @@ const pageData = {
  ],
  
  valueProps: [
- { icon: Target, title: 'Listing Readiness', desc: 'Comprehensive assessment of eligibility, suitability, and readiness for SME exchanges.' },
- { icon: FileCheck, title: 'Regulatory Preparation', desc: 'Ensure businesses are well-prepared to meet all regulatory requirements.' },
- { icon: Award, title: 'Governance Strengthening', desc: 'Strengthen financial and governance frameworks for market credibility.' },
- { icon: Scale, title: 'Transaction Support', desc: 'Coordinate with legal advisors, merchant bankers, auditors, and stakeholders.' },
+ { icon: 'Target', title: 'Listing Readiness', desc: 'Comprehensive assessment of eligibility, suitability, and readiness for SME exchanges.' },
+ { icon: 'FileCheck', title: 'Regulatory Preparation', desc: 'Ensure businesses are well-prepared to meet all regulatory requirements.' },
+ { icon: 'Award', title: 'Governance Strengthening', desc: 'Strengthen financial and governance frameworks for market credibility.' },
+ { icon: 'Scale', title: 'Transaction Support', desc: 'Coordinate with legal advisors, merchant bankers, auditors, and stakeholders.' },
  ],
  
  methodology: [
@@ -49,25 +49,25 @@ const pageData = {
  title: 'Listing Readiness Assessment',
  desc: 'Comprehensive evaluation of eligibility and preparedness for SME listing.',
  features: ['Eligibility Assessment', 'Financial Review', 'Compliance Check', 'Readiness Gap Analysis'],
- icon: Target,
+ icon: 'Target',
  },
  {
  title: 'Financial Preparation',
  desc: 'Prepare financial statements, projections, and disclosures for listing.',
  features: ['Financial Statement Review', 'Projection Preparation', 'Disclosure Documentation', 'Audit Coordination'],
- icon: BarChart3,
+ icon: 'BarChart3',
  },
  {
  title: 'Governance & Controls',
  desc: 'Strengthen governance frameworks and internal controls for listed entity.',
  features: ['Board Structure', 'Internal Controls', 'MIS Implementation', 'Policy Framework'],
- icon: Building2,
+ icon: 'Building2',
  },
  {
  title: 'Transaction Coordination',
  desc: 'Manage coordination with merchant bankers, lawyers, and regulators.',
  features: ['Advisor Coordination', 'Documentation Support', 'Regulatory Filings', 'Investor Relations'],
- icon: Users,
+ icon: 'Users',
  },
  ],
  

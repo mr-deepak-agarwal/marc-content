@@ -27,10 +27,10 @@ const pageData = {
  ],
 
  valueProps: [
- { icon: ClipboardList, title: 'Process Clarity', desc: 'Clearly defined how day-to-day work should be carried out removing ambiguity and reducing dependence on individuals.' },
- { icon: Users, title: 'Role Ownership', desc: 'RASIC matrices and job descriptions that define responsibilities, escalation paths, and accountability across every function.' },
- { icon: GitMerge, title: 'Consistent Execution', desc: 'Standardized workflows that ensure operations run the same way every time, regardless of who is doing the work.' },
- { icon: ShieldCheck, title: 'Foundation for Scale', desc: 'SOPs that create the structural foundation needed for growth, system implementation, and reduced founder dependency.' },
+ { icon: 'ClipboardList', title: 'Process Clarity', desc: 'Clearly defined how day-to-day work should be carried out removing ambiguity and reducing dependence on individuals.' },
+ { icon: 'Users', title: 'Role Ownership', desc: 'RASIC matrices and job descriptions that define responsibilities, escalation paths, and accountability across every function.' },
+ { icon: 'GitMerge', title: 'Consistent Execution', desc: 'Standardized workflows that ensure operations run the same way every time, regardless of who is doing the work.' },
+ { icon: 'ShieldCheck', title: 'Foundation for Scale', desc: 'SOPs that create the structural foundation needed for growth, system implementation, and reduced founder dependency.' },
  ],
 
  methodology: [
@@ -48,25 +48,25 @@ const pageData = {
  title: 'SOP Design & Documentation',
  desc: 'End-to-end SOP writing covering all departments operations, finance, HR, sales, and administration with clear process flowcharts.',
  features: ['Process Flowcharts', 'Approval Workflows', 'Control Checkpoints', 'All Departments'],
- icon: ClipboardList,
+ icon: 'ClipboardList',
  },
  {
  title: 'RASIC Matrix Development',
  desc: 'Define who is Responsible, Accountable, Support, Informed, and Consulted for every key process and decision across the organization.',
  features: ['Role Clarity', 'Escalation Paths', 'Decision Ownership', 'Cross-functional Alignment'],
- icon: GitMerge,
+ icon: 'GitMerge',
  },
  {
  title: 'Job Description Design',
  desc: 'Draft clear, structured job descriptions aligned to SOP responsibilities providing clarity on roles, KPIs, and reporting lines.',
  features: ['Role Definitions', 'KPI Alignment', 'Reporting Structure', 'Accountability Framework'],
- icon: Users,
+ icon: 'Users',
  },
  {
  title: 'Implementation & Training',
  desc: 'Support teams through the transition from informal practices to structured SOPs, with training, monitoring, and follow-up audits.',
  features: ['Team Training', 'Change Management', 'Adoption Monitoring', 'Follow-up Reviews'],
- icon: Layers,
+ icon: 'Layers',
  },
  ],
 

@@ -27,10 +27,10 @@ const pageData = {
  ],
  
  valueProps: [
- { icon: Search, title: 'End-to-End Assessment', desc: 'Evaluate workflows across operational, financial, and compliance functions.' },
- { icon: Target, title: 'Gap Identification', desc: 'Identify inefficiencies, control gaps, and deviations from SOPs with quantified impact.' },
- { icon: Award, title: 'Sector Expertise', desc: 'Strong understanding of hospitality, manufacturing, and education environments.' },
- { icon: Workflow, title: 'Practical Improvements', desc: 'Recommendations to streamline operations, standardize processes, and reinforce accountability.' },
+ { icon: 'Search', title: 'End-to-End Assessment', desc: 'Evaluate workflows across operational, financial, and compliance functions.' },
+ { icon: 'Target', title: 'Gap Identification', desc: 'Identify inefficiencies, control gaps, and deviations from SOPs with quantified impact.' },
+ { icon: 'Award', title: 'Sector Expertise', desc: 'Strong understanding of hospitality, manufacturing, and education environments.' },
+ { icon: 'Workflow', title: 'Practical Improvements', desc: 'Recommendations to streamline operations, standardize processes, and reinforce accountability.' },
  ],
  
  methodology: [
@@ -48,25 +48,25 @@ const pageData = {
  title: 'Operational Process Audit',
  desc: 'Review of operational workflows, efficiency, and control effectiveness.',
  features: ['Workflow Analysis', 'Efficiency Assessment', 'Bottleneck Identification', 'Process Optimization'],
- icon: GitBranch,
+ icon: 'GitBranch',
  },
  {
  title: 'Financial Process Audit',
  desc: 'Audit of financial processes including procurement, billing, and collections.',
  features: ['Procurement Process', 'Billing Accuracy', 'Collection Efficiency', 'Payment Controls'],
- icon: BarChart3,
+ icon: 'BarChart3',
  },
  {
  title: 'Compliance Process Audit',
  desc: 'Assessment of compliance with internal policies and regulatory requirements.',
  features: ['Policy Adherence', 'Approval Controls', 'Documentation Compliance', 'SOP Validation'],
- icon: FileCheck,
+ icon: 'FileCheck',
  },
  {
  title: 'Supply Chain Process Audit',
  desc: 'End-to-end review of supply chain processes from procurement to delivery.',
  features: ['Vendor Management', 'Inventory Controls', 'Logistics Efficiency', 'Quality Checks'],
- icon: Workflow,
+ icon: 'Workflow',
  },
  ],
  

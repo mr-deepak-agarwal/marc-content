@@ -26,10 +26,10 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: Users, title: 'Organisational Design', desc: 'Structure your organisation for the next phase of growth with the right roles, reporting lines, and spans of control.' },
-    { icon: Target, title: 'Talent Frameworks', desc: 'Build competency frameworks, job families, and grading structures that attract and retain the right people at every level.' },
-    { icon: TrendingUp, title: 'Performance Management', desc: 'Design KPI-linked appraisal systems that drive accountability, reward performance, and support career development.' },
-    { icon: ShieldCheck, title: 'HR Process & Compliance', desc: 'Establish compliant, documented HR processes covering onboarding, policies, exit management, and statutory requirements.' },
+    { icon: 'Users', title: 'Organisational Design', desc: 'Structure your organisation for the next phase of growth with the right roles, reporting lines, and spans of control.' },
+    { icon: 'Target', title: 'Talent Frameworks', desc: 'Build competency frameworks, job families, and grading structures that attract and retain the right people at every level.' },
+    { icon: 'TrendingUp', title: 'Performance Management', desc: 'Design KPI-linked appraisal systems that drive accountability, reward performance, and support career development.' },
+    { icon: 'ShieldCheck', title: 'HR Process & Compliance', desc: 'Establish compliant, documented HR processes covering onboarding, policies, exit management, and statutory requirements.' },
   ],
 
   methodology: [
@@ -47,25 +47,25 @@ const pageData = {
       title: 'Organisational Design',
       desc: 'Design the right organisational structure for your current stage and growth ambitions with clear reporting lines, role clarity, and defined spans of control.',
       features: ['Org Structure Design', 'Manpower Planning', 'Reporting Lines', 'Role Clarity'],
-      icon: Users,
+      icon: 'Users',
     },
     {
       title: 'Job Architecture & Grading',
       desc: 'Build structured job families, role descriptions, and grading frameworks that provide career pathways and support equitable compensation decisions.',
       features: ['Job Family Design', 'Role Descriptions', 'Grading Structure', 'Compensation Bands'],
-      icon: ClipboardList,
+      icon: 'ClipboardList',
     },
     {
       title: 'Performance Management',
       desc: 'Design and implement KPI-linked performance management systems from goal-setting to appraisal that drive accountability and reward the right behaviours.',
       features: ['KPI Framework', 'Goal Setting Process', 'Appraisal Design', 'Feedback Mechanisms'],
-      icon: Target,
+      icon: 'Target',
     },
     {
       title: 'HR Policies & Compliance',
       desc: 'Develop comprehensive HR policy manuals, employee handbooks, and compliance frameworks covering all statutory and regulatory requirements.',
       features: ['HR Policy Manual', 'Employee Handbook', 'Statutory Compliance', 'Onboarding Framework'],
-      icon: ShieldCheck,
+      icon: 'ShieldCheck',
     },
   ],
 

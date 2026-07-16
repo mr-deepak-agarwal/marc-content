@@ -26,10 +26,10 @@ const pageData = {
   ],
   
   valueProps: [
-    { icon: Shield, title: 'Risk-Based Approach', desc: 'Risk-based, insight-led approach beyond checklist-based compliance.' },
-    { icon: Search, title: 'Deep Investigation', desc: 'Evaluate financial records, internal controls, statutory compliance, and policy adherence.' },
-    { icon: TrendingUp, title: 'Early Risk Identification', desc: 'Identify control gaps and take corrective action before issues escalate.' },
-    { icon: Award, title: 'Sector Expertise', desc: 'Deep experience across hospitality, manufacturing, and education sectors.' },
+    { icon: 'Shield', title: 'Risk-Based Approach', desc: 'Risk-based, insight-led approach beyond checklist-based compliance.' },
+    { icon: 'Search', title: 'Deep Investigation', desc: 'Evaluate financial records, internal controls, statutory compliance, and policy adherence.' },
+    { icon: 'TrendingUp', title: 'Early Risk Identification', desc: 'Identify control gaps and take corrective action before issues escalate.' },
+    { icon: 'Award', title: 'Sector Expertise', desc: 'Deep experience across hospitality, manufacturing, and education sectors.' },
   ],
   
   methodology: [
@@ -47,25 +47,25 @@ const pageData = {
       title: 'Financial Controls Audit',
       desc: 'Comprehensive review of financial processes, controls, and reporting accuracy.',
       features: ['Revenue Verification', 'Expense Controls', 'Financial Reporting', 'Reconciliation Review'],
-      icon: BarChart3,
+      icon: 'BarChart3',
     },
     {
       title: 'Compliance Audit',
       desc: 'Assessment of statutory compliance and adherence to internal policies.',
       features: ['Regulatory Compliance', 'Policy Adherence', 'Statutory Requirements', 'Documentation Review'],
-      icon: FileCheck,
+      icon: 'FileCheck',
     },
     {
       title: 'Operational Audit',
       desc: 'Evaluate operational processes, efficiency, and control effectiveness.',
       features: ['Process Efficiency', 'Control Testing', 'SOP Compliance', 'Operational Risk Assessment'],
-      icon: Search,
+      icon: 'Search',
     },
     {
       title: 'Revenue Assurance',
       desc: 'Identify and prevent revenue leakages through systematic testing.',
       features: ['Revenue Reconciliation', 'Discount Controls', 'Pricing Compliance', 'Leakage Identification'],
-      icon: TrendingUp,
+      icon: 'TrendingUp',
     },
   ],
   

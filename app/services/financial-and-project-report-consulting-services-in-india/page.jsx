@@ -26,10 +26,10 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: BarChart3, title: 'Decision-Ready Models', desc: 'Integrated financial models with P&L, balance sheet, and cash flow projections built on transparent, auditable assumptions.' },
-    { icon: Target, title: 'Scenario Planning', desc: 'Base, upside, and downside scenarios that help management and investors understand the range of outcomes and key sensitivities.' },
-    { icon: TrendingUp, title: 'Investment Returns', desc: 'ROI, IRR, NPV, and payback period analysis to evaluate investment attractiveness and support go / no-go decisions.' },
-    { icon: ShieldCheck, title: 'Lender & Investor Ready', desc: 'Structured project reports and financial models prepared to meet the requirements of banks, NBFCs, and institutional investors.' },
+    { icon: 'BarChart3', title: 'Decision-Ready Models', desc: 'Integrated financial models with P&L, balance sheet, and cash flow projections built on transparent, auditable assumptions.' },
+    { icon: 'Target', title: 'Scenario Planning', desc: 'Base, upside, and downside scenarios that help management and investors understand the range of outcomes and key sensitivities.' },
+    { icon: 'TrendingUp', title: 'Investment Returns', desc: 'ROI, IRR, NPV, and payback period analysis to evaluate investment attractiveness and support go / no-go decisions.' },
+    { icon: 'ShieldCheck', title: 'Lender & Investor Ready', desc: 'Structured project reports and financial models prepared to meet the requirements of banks, NBFCs, and institutional investors.' },
   ],
 
   methodology: [
@@ -47,25 +47,25 @@ const pageData = {
       title: 'Financial Modelling',
       desc: 'Integrated three-statement financial models covering P&L, balance sheet, and cash flow built on structured, transparent assumptions for any business or project.',
       features: ['Three-Statement Model', 'Dynamic Assumptions', 'Scenario Analysis', 'Sensitivity Testing'],
-      icon: BarChart3,
+      icon: 'BarChart3',
     },
     {
       title: 'Project Report (DPR)',
       desc: 'Detailed Project Reports for bank financing, NBFC lending, and government scheme applications covering project overview, financial projections, and returns analysis.',
       features: ['Project Overview', 'Capex & Opex Planning', 'DSCR Analysis', 'Bank-Ready Format'],
-      icon: Calculator,
+      icon: 'Calculator',
     },
     {
       title: 'Investment Feasibility',
       desc: 'Assess the financial viability of new investments, expansions, or projects with ROI, IRR, NPV, and payback analysis to support go / no-go decisions.',
       features: ['ROI & IRR Analysis', 'NPV Calculation', 'Payback Period', 'Break-even Analysis'],
-      icon: Target,
+      icon: 'Target',
     },
     {
       title: 'Valuation Support',
       desc: 'Build valuation models using DCF, comparable company analysis, or precedent transaction approaches to support fundraising, M&A, and strategic decisions.',
       features: ['DCF Valuation', 'Comparable Analysis', 'Transaction Benchmarks', 'Valuation Summary'],
-      icon: PieChart,
+      icon: 'PieChart',
     },
   ],
 

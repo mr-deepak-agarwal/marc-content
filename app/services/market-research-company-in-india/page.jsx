@@ -32,10 +32,10 @@ const pageData = {
 
   valueProps: [
     // ✅ KEYWORD: "market research services in India"
-    { icon: Search, title: 'Decision-Ready Intelligence', desc: 'Our market research services in India combine deep on-ground primary research with rigorous analysis to identify high-potential opportunities.' },
-    { icon: Target, title: 'Risk Reduction', desc: 'We reduce commercial, regulatory, and operational risk so you can enter and expand in Indian markets with confidence.' },
-    { icon: TrendingUp, title: 'Local Expertise, Global Standards', desc: 'We work with investors, developers, manufacturers, and brands across sectors, delivering actionable market intelligence.' },
-    { icon: BarChart3, title: 'Financial Feasibility', desc: 'Financial feasibility analysis including ROI, IRR, and NPV modelling to support go / no-go decisions.' },
+    { icon: 'Search', title: 'Decision-Ready Intelligence', desc: 'Our market research services in India combine deep on-ground primary research with rigorous analysis to identify high-potential opportunities.' },
+    { icon: 'Target', title: 'Risk Reduction', desc: 'We reduce commercial, regulatory, and operational risk so you can enter and expand in Indian markets with confidence.' },
+    { icon: 'TrendingUp', title: 'Local Expertise, Global Standards', desc: 'We work with investors, developers, manufacturers, and brands across sectors, delivering actionable market intelligence.' },
+    { icon: 'BarChart3', title: 'Financial Feasibility', desc: 'Financial feasibility analysis including ROI, IRR, and NPV modelling to support go / no-go decisions.' },
   ],
 
   methodology: [
@@ -58,39 +58,39 @@ const pageData = {
       title: 'Land Feasibility Study in India',
       desc: 'Our land feasibility studies in India identify the most viable and profitable use of land by assessing market demand, demand-supply gaps, competition, regulatory constraints, and financial feasibility.',
       features: ['Market Demand Assessment', 'Demand-Supply Gap Analysis', 'Financial Feasibility'],
-      icon: Building2,
+      icon: 'Building2',
     },
     {
       // ✅ KEYWORD: "product feasibility studies in India"
       title: 'Product Feasibility Study',
       desc: 'Launching products without validation increases risk. Our product feasibility studies in India assess demand potential, pricing, competitor benchmarks, distribution fit, and scalability across regions.',
       features: ['Demand Validation', 'Pricing Benchmarks', 'Scalability Analysis'],
-      icon: BarChart3,
+      icon: 'BarChart3',
     },
     {
       title: 'Demand-Supply Gap Analysis',
       desc: 'Identify genuine, underserved market gaps using bottom-up and top-down demand modelling validated through primary research.',
       features: ['Bottom-up Modelling', 'Top-down Modelling', 'Primary Research Validation'],
-      icon: PieChart,
+      icon: 'PieChart',
     },
     {
       title: 'Market Expansion Research',
       desc: 'Help businesses identify where to expand in India, at what scale, and with what strategy using precision research and location scoring.',
       features: ['Location Scoring', 'Scale Assessment', 'Expansion Strategy'],
-      icon: TrendingUp,
+      icon: 'TrendingUp',
     },
     {
       title: 'Market Entry Research',
       desc: 'Competitive and pricing landscape analysis, regulatory environment review, and market entry feasibility for new markets.',
       features: ['Competitor Benchmarking', 'Regulatory Review', 'Entry Feasibility'],
-      icon: Target,
+      icon: 'Target',
     },
     {
       // ✅ KEYWORD: "global consulting firms" | "international market research services"
       title: 'International Market Research',
       desc: 'We support Indian companies expanding globally and act as a research backend for global consulting firms. Our international market research services include global market sizing, competitive landscape analysis, and market entry feasibility across multiple countries.',
       features: ['Global Market Sizing', 'Country Prioritisation', 'Go-to-Market Strategy'],
-      icon: Globe,
+      icon: 'Globe',
     },
   ],
 

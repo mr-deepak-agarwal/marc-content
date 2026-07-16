@@ -37,10 +37,10 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: PieChart, title: 'Market Feasibility', desc: 'We analyse the target market by evaluating competitors, estimated sales, market constraints, and market potential.' },
-    { icon: Shield, title: 'Technical Feasibility', desc: 'We analyse technical factors such as labour laws, legal compliance, and relevant regulations.' },
-    { icon: Calculator, title: 'Financial Feasibility', desc: 'Capital requirements, and potential financial returns for the project with detailed projections.' },
-    { icon: Target, title: '360-Degree Research', desc: 'We provide you with 360-degree research services that cover global, national, and local markets.' },
+    { icon: 'PieChart', title: 'Market Feasibility', desc: 'We analyse the target market by evaluating competitors, estimated sales, market constraints, and market potential.' },
+    { icon: 'Shield', title: 'Technical Feasibility', desc: 'We analyse technical factors such as labour laws, legal compliance, and relevant regulations.' },
+    { icon: 'Calculator', title: 'Financial Feasibility', desc: 'Capital requirements, and potential financial returns for the project with detailed projections.' },
+    { icon: 'Target', title: '360-Degree Research', desc: 'We provide you with 360-degree research services that cover global, national, and local markets.' },
   ],
 
   methodology: [
@@ -58,37 +58,37 @@ const pageData = {
       title: 'Market Demand Assessment',
       desc: 'Evaluate market demand, customer profiling, and growth potential before committing capital.',
       features: ['Demand Analysis', 'Customer Profiling', 'Growth Potential', 'Market Trends'],
-      icon: Target,
+      icon: 'Target',
     },
     {
       title: 'Location Feasibility',
       desc: 'Business location & feasibility advisory services to identify optimal geographies and operating models.',
       features: ['Geographic Viability', 'Infrastructure Readiness', 'Demographic Demand', 'Cost Factors'],
-      icon: MapPin,
+      icon: 'MapPin',
     },
     {
       title: 'Financial Viability',
       desc: 'Comprehensive analysis of capital requirements, ROI projections, and financial sustainability.',
       features: ['Capital Requirements', 'ROI Analysis', 'Financial Projections', 'Sustainability Assessment'],
-      icon: Calculator,
+      icon: 'Calculator',
     },
     {
       title: 'Risk Analysis',
       desc: 'Identify potential risks, regulatory factors, and execution challenges before investment.',
       features: ['Risk Identification', 'Regulatory Review', 'Execution Challenges', 'Mitigation Strategies'],
-      icon: Shield,
+      icon: 'Shield',
     },
     {
       title: 'Competitive Benchmarking',
       desc: 'Market sizing, entry barriers, pricing analysis, and competitive landscape mapping.',
       features: ['Market Sizing', 'Entry Barriers', 'Pricing Analysis', 'Competitive Mapping'],
-      icon: BarChart3,
+      icon: 'BarChart3',
     },
     {
       title: 'Business Planning',
       desc: 'Integrated feasibility study and business planning services for structured execution roadmaps.',
       features: ['Execution Roadmap', 'Growth Strategy', 'Operational Planning', 'Implementation Support'],
-      icon: FileCheck,
+      icon: 'FileCheck',
     },
   ],
 

@@ -28,10 +28,10 @@ const pageData = {
   ],
 
   valueProps: [
-    { icon: Scale, title: 'Defensible Valuations', desc: 'Rigorous, data-backed valuations that hold up to investor and regulatory scrutiny.' },
-    { icon: Target, title: 'Transaction-Ready', desc: 'Valuation outputs structured to directly support negotiations, fundraising, and deal execution.' },
-    { icon: TrendingUp, title: 'Growth Potential Assessed', desc: 'We assess financial performance, growth potential, management quality, and intangible value drivers.' },
-    { icon: BarChart3, title: 'Sector-Informed', desc: 'Deep sector understanding enabling realistic, market-aligned valuations across industries.' },
+    { icon: 'Scale', title: 'Defensible Valuations', desc: 'Rigorous, data-backed valuations that hold up to investor and regulatory scrutiny.' },
+    { icon: 'Target', title: 'Transaction-Ready', desc: 'Valuation outputs structured to directly support negotiations, fundraising, and deal execution.' },
+    { icon: 'TrendingUp', title: 'Growth Potential Assessed', desc: 'We assess financial performance, growth potential, management quality, and intangible value drivers.' },
+    { icon: 'BarChart3', title: 'Sector-Informed', desc: 'Deep sector understanding enabling realistic, market-aligned valuations across industries.' },
   ],
 
   methodology: [
@@ -53,25 +53,25 @@ const pageData = {
       title: 'M&A & Strategic Transaction Valuation',
       desc: 'Valuation for mergers, acquisitions, and strategic alliances supporting both buyers and sellers with accurate, defensible pricing.',
       features: ['Buy-Side Valuation', 'Sell-Side Valuation', 'Strategic Alliance Pricing', 'Fairness Assessment'],
-      icon: Building2,
+      icon: 'Building2',
     },
     {
       title: 'Fundraising Valuation',
       desc: 'Investor-ready valuations for equity and debt fundraising, structured to support credible investor discussions and capital raising.',
       features: ['Equity Fundraising', 'Debt & Asset-Backed Financing', 'Information Memorandum Support', 'Investor Return Scenarios'],
-      icon: DollarSign,
+      icon: 'DollarSign',
     },
     {
       title: 'Restructuring & Reorganisation Valuation',
       desc: 'Valuations to support business restructuring, reorganisation, and exit planning including partial and full business assessments.',
       features: ['Full Business Valuation', 'Partial Stake Valuation', 'Exit Planning Support', 'Reorganisation Advisory'],
-      icon: PieChart,
+      icon: 'PieChart',
     },
     {
       title: 'Strategic Partner & JV Valuation',
       desc: 'Valuations for introducing strategic investors, joint-venture partners, or new shareholders ensuring fair and transparent deal terms.',
       features: ['JV Partner Valuation', 'Shareholder Entry Pricing', 'Contractual Valuations', 'Dispute-Related Assessments'],
-      icon: Users,
+      icon: 'Users',
     },
   ],
 
