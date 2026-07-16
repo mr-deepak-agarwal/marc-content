@@ -10,7 +10,9 @@ import {
   ArrowLeft,
   CheckCircle2,
   Sparkles,
+  Download,
 } from "lucide-react";
+import jsPDF from "jspdf";
 
 // In production: set NEXT_PUBLIC_GEMINI_API_KEY in Vercel env vars
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "YOUR_GEMINI_KEY_HERE";
@@ -148,6 +150,9 @@ const LEAD_FIELDS = [
   { key: "email", label: "Where should we send your report?", placeholder: "you@company.com", type: "email" },
 ];
 
+const REPORT_DISCLAIMER =
+  "Disclaimer: This analysis and the accompanying recommendations are generated based solely on the responses provided by the participant during the assessment. The accuracy and usefulness of this report may vary depending on how accurate and complete the submitted information is, and should not be considered a substitute for professional advice.";
+
 const scoreLabel = (score) => {
   if (score >= 80) return { label: "Healthy", color: "#2E7D32", bg: "#E0EFD6" };
   if (score >= 55) return { label: "Average", color: "#C77700", bg: "#FFF1DC" };
@@ -255,6 +260,14 @@ export default function App() {
     return () => clearInterval(interval);
   }, [step]);
 
+  // ── Scroll back to top whenever the section changes, so the next set
+  // of questions always opens at the top instead of wherever the user
+  // last scrolled to in the previous section ───────────────────────────
+  useEffect(() => {
+    if (step !== "checkup") return;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentSection, step]);
+
   const totalQuestions = SECTIONS.reduce((a, s) => a + s.questions.length, 0);
   const answeredCount = Object.keys(answers).length;
   const handleAnswer = (qid, val) => setAnswers(prev => ({ ...prev, [qid]: val }));
@@ -318,6 +331,83 @@ export default function App() {
       setError("Analysis failed: " + e.message);
       setStep("checkup");
     }
+  };
+
+  // ── Build and download the full report as a PDF ──────────────────────
+  const downloadReportPDF = () => {
+    if (!results) return;
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 48;
+    const contentWidth = pageWidth - margin * 2;
+    let y = margin;
+
+    const ensureSpace = (needed) => {
+      if (y + needed > pageHeight - margin) {
+        doc.addPage();
+        y = margin;
+      }
+    };
+
+    const writeLines = (text, { size = 10, gap = 14, color = "#374151", bold = false } = {}) => {
+      doc.setFont("helvetica", bold ? "bold" : "normal");
+      doc.setFontSize(size);
+      doc.setTextColor(color);
+      const lines = doc.splitTextToSize(text, contentWidth);
+      lines.forEach((line) => {
+        ensureSpace(gap);
+        doc.text(line, margin, y);
+        y += gap;
+      });
+    };
+
+    // Header
+    doc.setFillColor("#1B5E20");
+    doc.rect(0, 0, pageWidth, 90, "F");
+    doc.setTextColor("#FFFFFF");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("Business Health Report", margin, 40);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.text(`${lead.company} — ${lead.industry}`, margin, 60);
+    doc.text(`Prepared for ${lead.name}`, margin, 76);
+    y = 118;
+
+    // Overall score
+    const overall = scoreLabel(results.overall_score);
+    writeLines(`Overall Health Score: ${results.overall_score}/100 (${overall.label})`, {
+      size: 13, bold: true, color: "#1B5E20", gap: 18,
+    });
+    y += 4;
+    writeLines(results.overall_summary || "", { size: 10.5, gap: 14 });
+    y += 10;
+
+    // Per-dimension breakdown
+    SECTIONS.forEach((s) => {
+      const dim = results.dimensions[s.id];
+      if (!dim) return;
+      ensureSpace(30);
+      writeLines(`${s.label} — ${dim.score}/100`, { size: 12.5, bold: true, color: s.color, gap: 16 });
+      writeLines(dim.diagnosis || "", { size: 10, gap: 13 });
+      y += 2;
+      writeLines("Recommendations:", { size: 10, bold: true, color: "#1D342F", gap: 13 });
+      (dim.recommendations || []).forEach((rec, ri) => {
+        writeLines(`${ri + 1}. ${rec}`, { size: 10, gap: 13 });
+      });
+      y += 12;
+    });
+
+    // Disclaimer
+    ensureSpace(50);
+    y += 6;
+    doc.setDrawColor("#E5E9E2");
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 16;
+    writeLines(REPORT_DISCLAIMER, { size: 8.5, gap: 11, color: "#6B7280" });
+
+    doc.save(`Business-Health-Report-${(lead.company || "MARC").replace(/\s+/g, "-")}.pdf`);
   };
 
   const baseFont = { fontFamily: "'Poppins', system-ui, sans-serif" };
@@ -655,7 +745,6 @@ export default function App() {
   // RESULTS SCREEN
   if (step === "results" && results) {
     const overall = scoreLabel(results.overall_score);
-    const dimScores = SECTIONS.map(s => results.dimensions[s.id]?.score || 0);
     return (
       <div className="min-h-screen" style={{ ...baseFont, backgroundColor: "#F7FFF5" }}>
         <GlobalStyles />
@@ -692,73 +781,28 @@ export default function App() {
         </div>
 
         <div className="max-w-[720px] mx-auto px-6 py-8">
-          <div className="mb-6 flex flex-wrap items-center gap-8 rounded-2xl bg-white p-7" style={{ boxShadow: "0 1px 8px rgba(27,94,32,0.08)" }}>
-            <RadarChart scores={dimScores} />
-            <div className="min-w-[200px] flex-1">
-              <h3 className="mb-4 text-[15px] font-bold" style={{ color: "#1B5E20" }}>Dimension Scores</h3>
-              {SECTIONS.map((s) => {
-                const Icon = s.icon;
-                const sc = results.dimensions[s.id]?.score || 0;
-                const lbl = scoreLabel(sc);
-                return (
-                  <div key={s.id} className="mb-3">
-                    <div className="mb-1 flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: "#374151" }}>
-                        <Icon className="w-3.5 h-3.5" style={{ color: s.color }} />
-                        {s.label}
-                      </span>
-                      <span className="text-[13px] font-bold" style={{ color: lbl.color }}>{sc}/100</span>
-                    </div>
-                    <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "#EDF3EA" }}>
-                      <div className="bar-grow h-full rounded-full" style={{ width: `${sc}%`, backgroundColor: s.color }} />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          {/* Brief overview — full dimension-by-dimension breakdown lives in
+              the downloadable PDF, not inline on the page. */}
+          <div className="mb-6 rounded-2xl bg-white p-7 text-center" style={{ boxShadow: "0 1px 8px rgba(27,94,32,0.08)" }}>
+            <h3 className="mb-2 text-[15px] font-bold" style={{ color: "#1B5E20" }}>Report Overview</h3>
+            <p className="mx-auto max-w-[520px] text-sm leading-relaxed" style={{ color: "#374151" }}>
+              {results.overall_summary}
+            </p>
+            <button
+              onClick={downloadReportPDF}
+              className="mt-6 inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white"
+              style={{ backgroundColor: "#1B5E20" }}
+            >
+              <Download className="w-4 h-4" /> Download Report
+            </button>
+            <p className="mt-3 text-[11px]" style={{ color: "#9CA3AF" }}>
+              Your full scored report, including dimension breakdowns and recommendations, as a PDF.
+            </p>
           </div>
 
-          {SECTIONS.map(s => {
-            const dim = results.dimensions[s.id];
-            const Icon = s.icon;
-            if (!dim) return null;
-            const lbl = scoreLabel(dim.score);
-            return (
-              <div
-                key={s.id}
-                className="mb-5 rounded-2xl bg-white p-6"
-                style={{ boxShadow: "0 1px 8px rgba(27,94,32,0.08)", borderTop: `4px solid ${s.color}` }}
-              >
-                <div className="mb-3.5 flex items-start justify-between">
-                  <div className="flex-1 pr-4">
-                    <h3 className="mb-1 flex items-center gap-2 text-base font-extrabold" style={{ color: "#1B5E20" }}>
-                      <Icon className="w-4 h-4" style={{ color: s.color }} />
-                      {s.label}
-                    </h3>
-                    <p className="text-[13px] leading-relaxed" style={{ color: "#64748b" }}>{dim.diagnosis}</p>
-                  </div>
-                  <div className="min-w-[60px] text-center">
-                    <div className="text-2xl font-black" style={{ color: lbl.color }}>{dim.score}</div>
-                    <div className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ color: lbl.color, backgroundColor: lbl.bg }}>{lbl.label}</div>
-                  </div>
-                </div>
-                <div className="pt-3.5" style={{ borderTop: "1px solid #F1F5F9" }}>
-                  <p className="mb-2.5 text-[11px] font-bold uppercase tracking-wider" style={{ color: "#9CA3AF" }}>Recommendations</p>
-                  {dim.recommendations.map((rec, ri) => (
-                    <div key={ri} className="mb-2 flex items-start gap-2.5">
-                      <span
-                        className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold"
-                        style={{ backgroundColor: s.bg, color: s.color }}
-                      >
-                        {ri + 1}
-                      </span>
-                      <span className="text-[13px] leading-relaxed" style={{ color: "#374151" }}>{rec}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+          <p className="mb-6 text-center text-[11px] leading-relaxed" style={{ color: "#9CA3AF" }}>
+            {REPORT_DISCLAIMER}
+          </p>
 
           <div className="relative overflow-hidden rounded-2xl p-8 text-center" style={{ backgroundColor: "#1B5E20" }}>
             <div className="absolute inset-0 opacity-15 dot-grid" />
