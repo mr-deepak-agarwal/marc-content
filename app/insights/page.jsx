@@ -198,16 +198,28 @@ const getPdfFilename = (title) => {
 }
 
 const categories = [
- { id: 'all', label: 'All Reports', count: 82 },
+ { id: 'all', label: 'All Reports', count: 83 },
  { id: 'healthcare', label: 'Healthcare', count: 11 },
  { id: 'hospitality', label: 'Hospitality', count: 13 },
- { id: 'manufacturing', label: 'Manufacturing', count: 15 },
+ { id: 'manufacturing', label: 'Manufacturing', count: 16 },
  { id: 'retail', label: 'Retail & FMCG', count: 13 },
  { id: 'energy', label: 'Energy', count: 5 },
  { id: 'other', label: 'Other', count: 20 },
 ]
 
 const insights = [
+{
+  title: "Packaged Spices & Ethnic Condiments Processing in Western India",
+  category: "manufacturing",
+  image: "/images/insights/packaged-spices-ethnic-condiments-western-india.png",
+  date: "July 2026",
+  downloads: "0",
+  readTime: "12 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "India's MSME spice sector combines strong consumer demand, regional specialization, and value-addition opportunities — covering the Western India spice processing corridor, branded vs. unbranded economics, packaging strategy, benchmarking against Everest, MDH, Aachi, Suhana and Eastern, and the government schemes de-risking entry."
+},
 {
   title: "From Batteries to World Domination",
   category: "other",

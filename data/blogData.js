@@ -3,10 +3,10 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 90 },
+	{ id: 'all', label: 'All', count: 91 },
 	{ id: 'finance', label: 'Finance', count: 26 },
 	{ id: 'market-research', label: 'Market Research', count: 18 },
-	{ id: 'strategy', label: 'Strategy', count: 16 },
+	{ id: 'strategy', label: 'Strategy', count: 17 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
 	{ id: 'industry', label: 'Industry', count: 14 },
 	{ id: 'entrepreneurship', label: 'Entrepreneurship', count: 6 },
@@ -18,6 +18,119 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 91,
+		slug: 'silent-killer-of-business-growth-no-sops',
+		title: 'The Silent Killer of Business Growth: No Standard Operating Procedures',
+		excerpt: `Most businesses don't fail overnight — they slow down quietly, one small mistake at a time. Here's why missing SOPs stay invisible as a root cause, and what it actually costs a growing business to leave them unwritten.`,
+		category: 'strategy',
+		categoryLabel: 'Strategy',
+		author: 'MARC Research Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'July 2026',
+		readTime: '5 min read',
+		// TODO(Deepak): needs its own header photo before publishing — placeholder only, don't reuse the id:78 SOP image
+		image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=500&fit=crop&q=90',
+		featured: false,
+		tags: ['SOPs', 'Operations', 'Business Growth', 'Process Documentation', 'SME'],
+		seo: {
+			title: 'The Silent Killer of Business Growth: No Standard Operating Procedures',
+			description: `Why missing SOPs are the most invisible constraint on business growth, how they quietly cap scale, and how MARC approaches building SOPs that actually work.`,
+		},
+		cta: {
+			title: 'Build the SOPs Your Business Is Missing',
+			description: 'MARC helps SMEs across India design, implement, and sustain SOPs that reduce operational risk and support scalable growth.',
+			primaryButton: 'Schedule Consultation',
+			primaryLink: 'https://calendly.com/deepakagarwalsrc/marc-road-to-success',
+		},
+		content: {
+			introduction: `"If you can't describe what you are doing as a process, you don't know what you're doing." — W. Edwards Deming
+
+Most businesses don't fail overnight. They slow down quietly, one small mistake at a time. There's no single crisis, no warning sign on the balance sheet, no line item that says "cost of not having SOPs." And that's exactly what makes this so dangerous: it never feels urgent enough to fix.
+
+Ask any business owner what's holding their growth back, and you'll rarely hear "we don't have SOPs." You'll hear about hiring, cash flow, or competition instead. But look closer at most of these problems, and you'll usually find the same root cause underneath: work that depends on what's in people's heads instead of what's written down.`,
+			sections: [
+				{
+					heading: 'Why This Threat Stays Invisible',
+					content: `Here's the tricky part: problems caused by missing SOPs never look like an SOP problem.
+
+A late delivery looks like a logistics issue. A frustrated customer looks like a service issue. A slow new hire looks like a hiring issue. Each one gets fixed on its own, so no one notices they're all connected.
+
+A few habits keep this blind spot alive:
+
+• Owners step in personally whenever something goes wrong, which fixes the moment but hides the gap
+• People get blamed, not the missing standard they were never given
+• There's no visible cost until growth actually slows down, so it never feels urgent enough to fix today`,
+				},
+				{
+					heading: 'What This Actually Looks Like',
+					content: `Picture this: two employees doing the same job, but getting two different results. A new hire taking much longer than necessary because there isn't a documented process to learn from. The same mistake happening for the third time this quarter, because the fix from last time was never written down anywhere.
+
+This is what a business running on memory instead of a system looks like — quality that changes depending on who's working, mistakes that keep repeating because no one wrote down the fix, and the same questions being asked again and again with no clear answer to point to.
+
+It works. Until it doesn't.`,
+				},
+				{
+					heading: 'Where It Quietly Caps Your Growth',
+					content: `You become the bottleneck. Without clear steps written down, every decision comes back to you. But growing a business means the opposite — a business that reduces dependency on individual employees and management involvement.
+
+Customers stop trusting you. People don't just remember what you gave them. They remember whether they could count on getting the same thing again. When things are inconsistent, customers quietly lose trust — and trust is what keeps them coming back.
+
+Hiring slows everything down. Without clear steps, every new hire has to learn by trial and error. How fast your business can grow gets limited by how fast you can personally train each new person, and that's usually not fast enough.
+
+None of this looks like an SOP problem on the surface. It looks like a hiring problem, a quality problem, or just "we're too busy." But underneath, it's almost always the same missing piece.`,
+				},
+				{
+					heading: 'Turning the Silent Threat Into a Visible Fix',
+					content: `The good news: you don't need to fix your whole business overnight. Start with the few tasks that happen most often and matter most to your customers — things like handling orders, onboarding new clients, or delivering your service.
+
+For each one, write down:
+
+• The exact steps, in order, and who's responsible for each one
+• What "done correctly" looks like
+• What to do when something doesn't go as planned
+• How the task gets handed off if the usual person isn't around
+
+Once it's written down, the knowledge stops belonging to one person. It becomes something the whole business can rely on.`,
+				},
+				{
+					heading: 'The Cost of Waiting',
+					content: `Left unaddressed, inconsistent processes don't stay small — they add up.
+
+• Every new hire brings their own version of "how things are done."
+• Every new client adds more room for mistakes.
+• Every employee who leaves takes knowledge with them that was never written down.
+• Every missed handover creates a new mistake a customer might notice.
+
+This rarely shows up as one big failure. Instead, the business just starts to feel harder to run, even at the same size it was last year.`,
+				},
+				{
+					heading: 'What Businesses Gain When You Fix It',
+					content: `Businesses often experience improvements such as greater consistency, smoother onboarding, and fewer recurring errors after implementing SOPs.
+
+Overall, it shifts a business from reactive, memory-based operations to a proactive, documented system built for growth.`,
+				},
+				{
+					heading: 'How MARC Approaches This',
+					content: `We treat SOP building as a way to help your business grow, not just paperwork to file away.
+
+We begin by understanding and prioritizing the critical business processes that have the greatest impact on operations, customers, compliance, and profitability. We first understand how work happens today, identify improvement opportunities, and then develop practical SOPs that support efficient future operations. We recommend periodic reviews to ensure SOPs remain aligned with changing business requirements.
+
+At MARC, SOP development goes beyond documenting existing processes. We begin by understanding how work is currently performed, identify operational gaps, eliminate inefficiencies, define clear ownership and controls, and then develop practical SOPs that support consistency, compliance, and scalable growth.`,
+				},
+				{
+					heading: 'The Strategic Case',
+					content: `The real question isn't "are SOPs worth the time?" It's "how much longer can we afford to grow without them?"
+
+Businesses with clear, written processes onboard people faster, keep quality high as they grow, and stop relying on any one person to keep things running. That's not just good practice — it's a real advantage.`,
+				},
+			],
+			conclusion: `The absence of SOPs rarely causes one big failure. It causes a hundred small ones — quiet enough to ignore, frequent enough to add up.
+
+The shift starts the moment you stop asking, "What's broken right now?" and start asking: "What's inconsistent, and what is that quietly costing us?"`,
+		},
+	},
 	{
 		id: 90,
 		slug: 'harnessing-location-intelligence-smarter-business-decisions',
