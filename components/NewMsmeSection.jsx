@@ -119,9 +119,11 @@ function FoundationsGrid() {
       tag: 'Form of organisation',
       headline: 'Choose a structure that matches how you actually plan to grow',
       points: [
-        'Sole proprietorship vs partnership vs LLP vs private limited — liability, tax, and fundraising differences',
-        'What Udyam / MSME registration actually unlocks once you\'re registered',
-        'When it makes sense to convert structure later, and what that involves',
+        'Sole Proprietorship — you and the business are legally one. Cheapest, fastest to start, but unlimited personal liability and hardest to raise outside money. Best if you\'re solo and starting small.',
+        'Partnership Firm — two or more owners share profit and liability per your partnership deed. Good for family or co-founder businesses not planning to raise outside capital; liability is still personal.',
+        'LLP — partners\' liability is limited to what they put in. More credible with lenders than a proprietorship, moderate yearly compliance, but you can\'t issue equity shares to raise VC funding.',
+        'Private Limited Company — full limited liability and the only structure that can easily raise equity from investors. Highest compliance and cost (ROC filings, audits, board meetings) — worth it once you\'re actively planning to scale or raise funding.',
+        'Quick read: solo + low-risk → proprietorship. Sharing with partners, no outside funding planned → partnership or LLP. Planning to raise money or scale fast → Pvt Ltd. Udyam/MSME registration sits on top of any of these and doesn\'t change which one to pick.',
       ],
     },
     {
@@ -129,9 +131,9 @@ function FoundationsGrid() {
       tag: 'Compliances',
       headline: 'Know the paperwork before it becomes a fire to put out',
       points: [
-        'The core registrations most new MSMEs need in year one',
-        'Recurring filings and renewals to build into your calendar, not discover late',
-        'A simple compliance checklist you can hand to your accountant or CA',
+        'Year-one registrations to expect: Udyam Registration (MSME status), GST (once you cross the turnover threshold or sell across states), Shops & Establishment / trade licence (state-specific), Professional Tax where applicable, and EPFO/ESIC once staff strength crosses the threshold.',
+        'Recurring filings to put on a calendar: GST returns (monthly or quarterly), income tax return plus advance tax, TDS returns if you deduct tax at source, and — for LLP/Pvt Ltd only — annual ROC filings.',
+        'Hand your CA a simple checklist rather than discovering a lapsed filing at renewal time: what\'s registered, what\'s due when, and who owns each filing.',
       ],
     },
     {
@@ -139,9 +141,9 @@ function FoundationsGrid() {
       tag: 'Choosing a state',
       headline: 'Compare states before you sign anything, not after',
       points: [
-        'What actually varies by state: incentives, cost of doing business, approval timelines',
-        'Questions to ask a state industrial department before committing',
-        'How to weigh "closer to home" against "better terms elsewhere"',
+        'What actually varies by state: capital subsidies, SGST reimbursement, land cost and availability, power tariff concessions, how fast the single-window clearance actually moves, and whether there\'s a cluster for your specific sector.',
+        'Before committing, ask the state industrial department for the real disbursement timeline on any promised subsidy — not just the eligibility criteria — and whether the incentive has a sunset clause.',
+        '"Closer to home" has a real cost too: factor in the time and money of managing a unit remotely against the value of the incentives on offer, since owners often underweight this until they\'re living it.',
       ],
     },
     {
@@ -149,9 +151,9 @@ function FoundationsGrid() {
       tag: 'Industrial land',
       headline: 'Get land without getting stuck in it for a year',
       points: [
-        'State industrial corporation allotments vs open-market purchase vs leasing',
-        'Where SIDBI and state schemes can offset land or setup cost',
-        'Red flags that predict a slow approval before you commit a deposit',
+        'Three routes: a state industrial corporation allotment (e.g. RIICO, MIDC) is usually cheaper but slower and comes with development conditions; open-market purchase is faster and unrestricted but costlier, including stamp duty; leasing has the lowest upfront cost and is a good way to test a location before committing.',
+        'Capital subsidy schemes from SIDBI or the state can meaningfully offset land or shed cost in many states — check what you qualify for before assuming the market price is the real cost.',
+        'Red flags before you put down a deposit: an allotment letter with no clear possession date, an industrial area where roads/power/water aren\'t actually built yet, or land with any pending litigation.',
       ],
     },
   ]

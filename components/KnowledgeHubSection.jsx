@@ -213,6 +213,21 @@ function CapitalSources() {
 
 /* ---- MSME schemes — simplified explainer, not an exhaustive/authoritative list ---- */
 function SchemesSection() {
+  const namedSchemes = [
+    {
+      title: 'NeSL Core Registration',
+      desc: 'Free registration on India\'s first Information Utility under the IBC. Creates a verified, tamper-proof record of your business\'s debts and liabilities — better credit monitoring for lenders, more transparency for you. Register at iu.nesl.co.in with Aadhaar e-Sign or DSC.',
+    },
+    {
+      title: 'e-BG (Electronic Bank Guarantee)',
+      desc: 'Paperless bank guarantees issued, amended and cancelled digitally on NeSL\'s platform instead of the usual paper trail. Near-instant activation versus days for a physical BG — ask your bank if they\'re integrated yet.',
+    },
+    {
+      title: 'Corporate Mitra Scheme',
+      desc: 'A government-backed pool of trained, certified paraprofessionals — backed by ICAI, ICSI, ICMAI and IIT Madras — that MSMEs can hire affordably for compliance, accounting and governance work. Built specifically to make this kind of help affordable outside the metros.',
+    },
+  ]
+
   return (
     <section className="py-20 font-sans bg-white">
       <div className="max-w-5xl mx-auto px-6">
@@ -225,11 +240,11 @@ function SchemesSection() {
               MSME schemes, without the fine-print maze
             </h2>
             <p className="text-base leading-relaxed" style={{ color: '#33691E' }}>
-              Government and SIDBI-backed schemes generally fall into a few broad categories —
+              Government and SIDBI-backed support generally falls into a few broad categories —
               collateral-free credit, interest subvention, and capital or technology subsidies.
-              Eligibility and terms change, so we don't publish specific scheme names or amounts
-              here. Tell us your sector and stage, and we'll tell you which categories are
-              realistically worth applying for.
+              A full state-by-state scheme comparison is still being compiled, but three schemes
+              worth knowing about right now are digital-first, apply nationally, and are free or
+              low-cost to use.
             </p>
             <div className="mt-8">
               <a
@@ -247,19 +262,18 @@ function SchemesSection() {
 
           <div className="rounded-3xl p-8" style={{ backgroundColor: '#1B5E20' }}>
             <FileSearch className="w-6 h-6 mb-4" style={{ color: '#81C784' }} />
-            <p className="text-sm font-semibold tracking-wide uppercase mb-3" style={{ color: '#A5D6A7' }}>
-              Broad scheme categories
+            <p className="text-sm font-semibold tracking-wide uppercase mb-4" style={{ color: '#A5D6A7' }}>
+              Worth knowing about today
             </p>
-            <ul className="space-y-3">
-              {[
-                'Collateral-free credit guarantee schemes',
-                'Interest subvention on working capital loans',
-                'Capital and technology-upgrade subsidies',
-                'Export promotion and market-access support',
-              ].map((s) => (
-                <li key={s} className="flex items-start gap-2.5 text-sm leading-relaxed" style={{ color: '#C2DDB4' }}>
-                  <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: '#81C784' }} />
-                  {s}
+            <ul className="space-y-5">
+              {namedSchemes.map((s) => (
+                <li key={s.title}>
+                  <p className="text-sm font-semibold mb-1" style={{ color: 'white' }}>
+                    {s.title}
+                  </p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#C2DDB4' }}>
+                    {s.desc}
+                  </p>
                 </li>
               ))}
             </ul>
