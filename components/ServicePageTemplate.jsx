@@ -80,8 +80,47 @@ export default function ServicePageTemplateOption2({
     'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=80', // server/tech infrastructure
   ]
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: title,
+    name: title,
+    description,
+    provider: {
+      '@type': 'Organization',
+      name: 'MARC Glocal',
+      url: 'https://marcglocal.com',
+    },
+    areaServed: 'IN',
+  }
+
+  const faqSchema =
+    faqs && faqs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.q,
+            acceptedAnswer: { '@type': 'Answer', text: faq.a },
+          })),
+        }
+      : null
+
   return (
     <div className="bg-white min-h-screen">
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* ── Hero Split Layout ────────────────────────────────────────────── */}
       <section className="relative pt-32 pb-20 bg-[#F7FFF5] overflow-hidden">

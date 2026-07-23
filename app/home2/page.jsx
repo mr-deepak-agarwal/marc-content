@@ -17,6 +17,8 @@ export const metadata = {
   title: 'MARC - Growth Advisory for Indian & Global Businesses | Business Consulting India',
   description: 'MARC is a growth advisory firm partnering with founders and investors to build scalable businesses. Specializing in India market entry, international expansion, M&A, and growth strategy consulting.',
   keywords: ['growth advisory India', 'business consulting India', 'India market entry', 'international expansion', 'M&A advisory', 'growth strategy', 'market intelligence', 'MARC Glocal', 'compounding growth'],
+  // Design iteration, not the live homepage — must not compete with "/" for the same keywords.
+  robots: { index: false, follow: false },
 }
 
 export default function Home() {
