@@ -6,6 +6,9 @@ import { X, MessageCircle, ArrowRight, Check, Mail } from 'lucide-react'
 // ── CONFIG update these ─────────────────────────────────────
 const WHATSAPP_NUMBER = '919359628675' // country code + number, no + or spaces
 const COMPANY_NAME = 'MARC'
+const AUTO_OPEN_SESSION_KEY = 'marc_chat_auto_opened' // once per browser tab session
+const AUTO_OPEN_DELAY_MS = 1500  // peek open ~1.5s after landing
+const AUTO_CLOSE_DELAY_MS = 3000 // collapse back after 3s if the visitor hasn't engaged
 // ─────────────────────────────────────────────────────────────
 
 // ── Intent options (Week 2 qualification step) ──────────────
@@ -79,13 +82,41 @@ export default function ChatbotWidget() {
   const [messages, setMessages] = useState([])
   const [typing, setTyping] = useState(false)
   const [inputError, setInputError] = useState('')
+  const [unread, setUnread] = useState(false) // small dot on the bubble after an ignored auto-peek
   const bottomRef = useRef(null)
   const inputRef = useRef(null)
+  const hasInteractedRef = useRef(false) // set true the moment the visitor does anything
 
   // Scroll to bottom whenever messages change
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, typing])
+
+  // ── Auto-peek: open briefly on arrival, then collapse if ignored ─────
+  // Fires once per browser tab session (not on every client-side page change,
+  // since this component lives in the root layout and stays mounted).
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (sessionStorage.getItem(AUTO_OPEN_SESSION_KEY)) return
+    sessionStorage.setItem(AUTO_OPEN_SESSION_KEY, '1')
+
+    const openTimer = setTimeout(() => {
+      setOpen(true)
+      track('chatbot_auto_opened')
+
+      const closeTimer = setTimeout(() => {
+        if (!hasInteractedRef.current) {
+          setOpen(false)
+          setUnread(true)
+          track('chatbot_auto_closed_ignored')
+        }
+      }, AUTO_CLOSE_DELAY_MS)
+
+      return () => clearTimeout(closeTimer)
+    }, AUTO_OPEN_DELAY_MS)
+
+    return () => clearTimeout(openTimer)
+  }, [])
 
   // Focus input when it's a text-collecting step
   useEffect(() => {
@@ -110,6 +141,7 @@ export default function ChatbotWidget() {
   }
 
   function pushUser(text) {
+    hasInteractedRef.current = true // cancels the auto-close — they're genuinely engaging
     setMessages(prev => [...prev, { from: 'user', text }])
   }
 
@@ -244,7 +276,7 @@ export default function ChatbotWidget() {
     <>
       {/* ── Floating toggle button ─────────────────────────── */}
       <button
-        onClick={() => setOpen(o => !o)}
+        onClick={() => { setOpen(o => !o); setUnread(false) }}
         aria-label="Open chat"
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 ${
           open
@@ -259,6 +291,10 @@ export default function ChatbotWidget() {
         {/* Pulse ring when closed */}
         {!open && (
           <span className="absolute inset-0 rounded-full bg-[#4E9141] animate-ping opacity-30" />
+        )}
+        {/* Unread dot — shown after an auto-peek the visitor didn't respond to */}
+        {!open && unread && (
+          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-red-500 border-2 border-white" />
         )}
       </button>
 

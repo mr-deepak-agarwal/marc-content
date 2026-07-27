@@ -5,6 +5,8 @@ import RouteLoader from '@/components/RouteLoader'
 import Header from '@/components/Header'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import ChatbotWidget from '@/components/ChatbotWidget'
+import CookieConsentBanner from '@/components/CookieConsentBanner'
+import LeadCapturePopup from '@/components/LeadCapturePopup'
 import { LoadingProvider } from '@/components/loading-store'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
@@ -85,6 +87,22 @@ export default function RootLayout({ children }) {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
+      {/* Google Consent Mode v2 — must be set BEFORE gtag.js loads, so it starts
+          every visit fully denied until CookieConsentBanner tells it otherwise. */}
+      <Script id="consent-default" strategy="beforeInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'wait_for_update': 500
+          });
+        `}
+      </Script>
       <GoogleAnalytics gaId="G-Z54096J7T3" />
       <Script id="gtag-phone-conversion" strategy="afterInteractive">
         {`
@@ -99,6 +117,8 @@ export default function RootLayout({ children }) {
         {children}
         <WhatsAppButton phoneNumber="919876543210" />
         <ChatbotWidget />
+        <LeadCapturePopup />
+        <CookieConsentBanner />
       </LoadingProvider>
     </body>
     </html>
