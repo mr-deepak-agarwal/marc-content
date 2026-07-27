@@ -44,6 +44,14 @@ export default function sitemap() {
     { url: `${BASE_URL}/checkup`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.6 },
   ]
 
+  // ── City location pages (Week 8) ────────────────────────────────────────
+  const locationPages = ['mumbai', 'pune', 'kolkata'].map((city) => ({
+    url: `${BASE_URL}/locations/${city}`,
+    lastModified: SITE_LAST_UPDATED,
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  }))
+
   // ── Service pages ─────────────────────────────────────────────────────────
   const servicePages = [
     'deal-advisory-india',
@@ -78,5 +86,5 @@ export default function sitemap() {
     priority: 0.6,
   }))
 
-  return [...staticPages, ...servicePages, ...blogPages]
+  return [...staticPages, ...locationPages, ...servicePages, ...blogPages]
 }

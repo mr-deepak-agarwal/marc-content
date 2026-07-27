@@ -43,6 +43,7 @@ const offices = [
     address: 'B/509, Satyam Apartments, Link Road, Near Don Bosco School, Borivali West, Mumbai, Maharashtra 400091', 
     phone: '+91-90295 03690', 
     email: 'mumbai@marcglocal.com', 
+    locationSlug: 'mumbai',
     /*flag: '🇮🇳',*/
     mapLink: 'https://goo.gl/maps/jmu1AvPqTXbxGTpd9'
   },
@@ -55,6 +56,7 @@ const offices = [
     phone: '+91-91194 59098', 
     phone2: '+91-96500 68123',
     email: 'pune@marcglocal.com', 
+    locationSlug: 'pune',
     /*flag: '🇮🇳',*/
     mapLink: 'https://goo.gl/maps/k58iKNPJ99NcEzh89'
   },
@@ -66,6 +68,7 @@ const offices = [
     address: 'Ramakrishna Palli, VIP Road, Kaikhali, 2nd Floor, Office No. 10, Kolkata, West Bengal 700052', 
     phone: '+91-83368 25469', 
     email: 'kolkata@marcglocal.com', 
+    locationSlug: 'kolkata',
     /*flag: '🇮🇳',*/
     mapLink: 'https://g.page/Income-tax-service-North-Kolkata'
   },
@@ -647,6 +650,16 @@ export default function ContactPage() {
                   <span className="text-xs font-semibold text-[#4E9141]">View Map</span>
                   <ArrowUpRight className="w-4 h-4 text-[#4E9141] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
+
+                {office.locationSlug && (
+                  <Link
+                    href={`/locations/${office.locationSlug}`}
+                    className="flex items-center justify-between pt-3 mt-1 border-t border-[#C2DDB4]/30"
+                  >
+                    <span className="text-xs font-semibold text-[#4E9141]">{office.city} Services &amp; Team</span>
+                    <ArrowUpRight className="w-4 h-4 text-[#4E9141] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </Link>
+                )}
               </div>
               ))}
           </div>
