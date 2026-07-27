@@ -11,7 +11,6 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 const NOTIFY_EMAILS = [
   'svastekgoa@gmail.com',
   'vindhya@marcglocal.com',
-  'digitalinfusive@gmail.com',
 ]
 
 // ── In-memory rate limiter (resets on cold start, good enough for edge bots) ──
