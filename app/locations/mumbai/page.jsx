@@ -1,5 +1,4 @@
 import CityPageTemplate from '@/components/CityPageTemplate'
-import { TrendingUp, Building2, Users, Globe } from 'lucide-react'
 
 export const metadata = {
   title: 'Market Research & Business Consulting Firm in Mumbai | MARC Glocal',
@@ -38,10 +37,10 @@ export default function MumbaiLocationPage() {
         ],
       }}
       whyMarc={[
-        { icon: TrendingUp, title: 'Capital-Markets Fluent', desc: 'We speak the language of Mumbai\u2019s PE/VC and investment-banking ecosystem — deal-ready deliverables, not generic reports.' },
-        { icon: Building2, title: 'Sector Breadth', desc: 'Retail, hospitality, real estate, manufacturing and FMCG experience across the wider Mumbai Metropolitan Region.' },
-        { icon: Users, title: 'Senior-Led Engagements', desc: 'You work directly with experienced consultants — no handoff to a junior team after the pitch.' },
-        { icon: Globe, title: 'Local + Global Reach', desc: 'A Mumbai presence backed by MARC\u2019s pan-India and US office network for cross-border mandates.' },
+        { icon: 'TrendingUp', title: 'Capital-Markets Fluent', desc: 'We speak the language of Mumbai\u2019s PE/VC and investment-banking ecosystem — deal-ready deliverables, not generic reports.' },
+        { icon: 'Building2', title: 'Sector Breadth', desc: 'Retail, hospitality, real estate, manufacturing and FMCG experience across the wider Mumbai Metropolitan Region.' },
+        { icon: 'Users', title: 'Senior-Led Engagements', desc: 'You work directly with experienced consultants — no handoff to a junior team after the pitch.' },
+        { icon: 'Globe', title: 'Local + Global Reach', desc: 'A Mumbai presence backed by MARC\u2019s pan-India and US office network for cross-border mandates.' },
       ]}
       services={[
         { title: 'Market Research', desc: 'B2B and consumer research, primary and secondary, sized for PE due diligence or GTM planning.', href: '/services/market-research-company-in-india' },

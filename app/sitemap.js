@@ -42,7 +42,6 @@ export default function sitemap() {
     { url: `${BASE_URL}/msme`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/msme/knowledge-hub`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE_URL}/checkup`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/scorecard`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.75 },
   ]
 
   // ── City location pages (Week 8) ────────────────────────────────────────

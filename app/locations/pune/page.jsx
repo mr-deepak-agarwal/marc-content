@@ -1,5 +1,4 @@
 import CityPageTemplate from '@/components/CityPageTemplate'
-import { Factory, GraduationCap, Users, Globe } from 'lucide-react'
 
 export const metadata = {
   title: 'Feasibility Study & Business Consulting Firm in Pune | MARC Glocal',
@@ -38,10 +37,10 @@ export default function PuneLocationPage() {
         ],
       }}
       whyMarc={[
-        { icon: Factory, title: 'Manufacturing & Auto-Ancillary Depth', desc: 'Feasibility, process audit, and SOP work suited to Pune\u2019s plant and supply-chain-heavy businesses.' },
-        { icon: GraduationCap, title: 'Education & Services Sector Experience', desc: 'Consulting for Pune\u2019s large education and IT-services base, not just manufacturing.' },
-        { icon: Users, title: 'Senior-Led Engagements', desc: 'Direct access to experienced consultants throughout the engagement.' },
-        { icon: Globe, title: 'Local + Global Reach', desc: 'A Pune presence backed by MARC\u2019s pan-India and US office network.' },
+        { icon: 'Factory', title: 'Manufacturing & Auto-Ancillary Depth', desc: 'Feasibility, process audit, and SOP work suited to Pune\u2019s plant and supply-chain-heavy businesses.' },
+        { icon: 'GraduationCap', title: 'Education & Services Sector Experience', desc: 'Consulting for Pune\u2019s large education and IT-services base, not just manufacturing.' },
+        { icon: 'Users', title: 'Senior-Led Engagements', desc: 'Direct access to experienced consultants throughout the engagement.' },
+        { icon: 'Globe', title: 'Local + Global Reach', desc: 'A Pune presence backed by MARC\u2019s pan-India and US office network.' },
       ]}
       services={[
         { title: 'Feasibility Study', desc: 'Market, technical, and financial feasibility for new plants, product lines, or locations.', href: '/services/feasibility-study-service-in-india' },

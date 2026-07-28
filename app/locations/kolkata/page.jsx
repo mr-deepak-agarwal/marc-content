@@ -1,5 +1,4 @@
 import CityPageTemplate from '@/components/CityPageTemplate'
-import { MapPinned, ShoppingBag, Users, Globe } from 'lucide-react'
 
 export const metadata = {
   title: 'Business Consulting Firm in Kolkata | Market Research & Feasibility | MARC Glocal',
@@ -38,10 +37,10 @@ export default function KolkataLocationPage() {
         ],
       }}
       whyMarc={[
-        { icon: MapPinned, title: 'East India & Northeast Gateway', desc: 'On-ground understanding of Kolkata as a base for wider East India and Northeast market entry.' },
-        { icon: ShoppingBag, title: 'FMCG & Trading Sector Experience', desc: 'Market research and feasibility work suited to distribution-heavy, relationship-driven business models.' },
-        { icon: Users, title: 'Senior-Led Engagements', desc: 'Direct access to experienced consultants throughout the engagement.' },
-        { icon: Globe, title: 'Local + Global Reach', desc: 'A Kolkata presence backed by MARC\u2019s pan-India and US office network.' },
+        { icon: 'MapPinned', title: 'East India & Northeast Gateway', desc: 'On-ground understanding of Kolkata as a base for wider East India and Northeast market entry.' },
+        { icon: 'ShoppingBag', title: 'FMCG & Trading Sector Experience', desc: 'Market research and feasibility work suited to distribution-heavy, relationship-driven business models.' },
+        { icon: 'Users', title: 'Senior-Led Engagements', desc: 'Direct access to experienced consultants throughout the engagement.' },
+        { icon: 'Globe', title: 'Local + Global Reach', desc: 'A Kolkata presence backed by MARC\u2019s pan-India and US office network.' },
       ]}
       services={[
         { title: 'Market Research', desc: 'Consumer and B2B research sized for East India\u2019s distribution and FMCG landscape.', href: '/services/market-research-company-in-india' },

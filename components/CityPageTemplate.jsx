@@ -7,7 +7,19 @@ import CTAButton from '@/components/CTAButton'
 import {
   MapPin, Phone, Mail, ArrowRight, ChevronDown, ExternalLink,
   Building2, Users, TrendingUp, Award, CheckCircle2,
+  Globe, Factory, GraduationCap, MapPinned, ShoppingBag,
 } from 'lucide-react'
+
+// City page.jsx files are Server Components (they export `metadata`), and
+// this template is a Client Component ('use client' above) — a Server
+// Component can't pass a function (like an imported icon component) as a
+// prop to a Client Component, only serializable values. So `whyMarc[].icon`
+// is passed as a STRING (e.g. 'TrendingUp') and resolved back to the real
+// component here. Same pattern already used in ServicePageTemplate.jsx —
+// see its ICON_MAP comment for the same rationale.
+const ICON_MAP = {
+  TrendingUp, Building2, Users, Globe, Factory, GraduationCap, MapPinned, ShoppingBag,
+}
 
 /**
  * CityPageTemplate
@@ -163,7 +175,7 @@ export default function CityPageTemplate({
             <h2 className="text-3xl font-bold text-[#1D342F] mb-12 text-center">Why {city} Businesses Work With MARC</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {whyMarc.map((item, i) => {
-                const Icon = item.icon
+                const Icon = ICON_MAP[item.icon]
                 return (
                   <div key={i} className="bg-white rounded-xl p-6 group">
                     <div className="w-14 h-14 bg-[#F7FFF5] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#C2DDB4] transition-colors">
