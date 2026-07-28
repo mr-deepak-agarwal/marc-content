@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Footer from '@/components/Footer'
 import CTAButton from '@/components/CTAButton'
 import ScorecardBanner from '@/components/ScorecardBanner'
+import SocialProofBar from '@/components/SocialProofBar'
+import ChecklistDownloadCTA from '@/components/ChecklistDownloadCTA'
 import { 
   ArrowRight, CheckCircle2, ChevronDown, ArrowUpRight, ExternalLink,
   Award, BarChart3, Briefcase, Building2, Calculator, CheckCircle,
@@ -70,6 +72,13 @@ export default function ServicePageTemplateOption2({
   // Market Research pages per the programme's 5-point placement spec
   showScorecardBanner = false,
   scorecardBannerContext,
+
+  // Week 4 — real testimonial/outcome proof, set only where the
+  // underlying data is real (see SocialProofBar.jsx for detail)
+  socialProof,
+
+  // Week 1 — second CTA on the Feasibility Study page only
+  showChecklistCTA = false,
 
   // Source page name  passed from each service page for Supabase tracking
   source = 'Service Page',
@@ -150,8 +159,11 @@ export default function ServicePageTemplateOption2({
                 {description}
               </p>
 
+              <SocialProofBar stat={stats?.[0]} proof={socialProof} />
+
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
                 <CTAButton source={source} label={ctaLabel} variant="primary" />
+                {showChecklistCTA && <ChecklistDownloadCTA source={`${source} - Hero`} />}
                 <Link href="#methodology" className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#C2DDB4] text-[#47635D] rounded-full font-semibold hover:border-[#4E9141] hover:text-[#4E9141] transition-all">
                   Our Approach
                 </Link>
@@ -247,12 +259,15 @@ export default function ServicePageTemplateOption2({
       {/* ── Mid-Page CTA (placed right after Methodology, per conversion architecture) ──── */}
       {midPageCtaText && (
         <section className="py-10 bg-white border-y border-[#C2DDB4]/40">
-          <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <p className="text-[#1D342F] text-lg font-semibold text-center sm:text-left">
-              {midPageCtaText}
-            </p>
-            <div className="flex-shrink-0">
-              <CTAButton source={`${source} - Mid Page`} label={ctaLabel} variant="primary" />
+          <div className="max-w-5xl mx-auto px-6">
+            <SocialProofBar stat={stats?.[1] || stats?.[0]} proof={socialProof} />
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+              <p className="text-[#1D342F] text-lg font-semibold text-center sm:text-left">
+                {midPageCtaText}
+              </p>
+              <div className="flex-shrink-0">
+                <CTAButton source={`${source} - Mid Page`} label={ctaLabel} variant="primary" />
+              </div>
             </div>
           </div>
         </section>

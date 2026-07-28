@@ -136,6 +136,12 @@ const pageData = {
   midPageCtaText: 'Need data before you decide? Request a research proposal in 24 hours.',
   showScorecardBanner: true,
   scorecardBannerContext: 'Before commissioning custom research, see where you stand with a free instant readiness score across market, regulatory, financial, and operational dimensions.',
+  socialProof: {
+    type: 'quote',
+    text: 'We appointed MARC to execute two very diverse tasks. One was into market research and the other was a premium inventory assessment and valuation. We were immensely satisfied with the attention to detailing in both the assignments.',
+    author: 'Anand Chatterjee',
+    role: 'GM, Planet Hollywood - Beach Resort, Goa',
+  },
 }
 
 export default function MarketResearchPageOption1() {

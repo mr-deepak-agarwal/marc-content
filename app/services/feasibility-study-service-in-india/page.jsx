@@ -135,6 +135,12 @@ const pageData = {
   midPageCtaText: 'Not sure if your idea is viable yet? Get a free scope call before you commit capital.',
   showScorecardBanner: true,
   scorecardBannerContext: 'Not ready for a full study yet? Get an instant readiness score across market, regulatory, financial, and operational dimensions first — free, 4 minutes.',
+  showChecklistCTA: true,
+  socialProof: {
+    type: 'outcome',
+    client: 'Fly91 Aviation',
+    result: 'Route-level demand-supply modelling gave Fly91 clear go/no-go decisions on four UDAN routes, including virgin routes with no prior air-traffic data.',
+  },
 }
 
 export default function FeasibilityStudyPageOption2() {
