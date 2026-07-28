@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import Footer from '@/components/Footer'
+import ScorecardBanner from '@/components/ScorecardBanner'
 import { blogs, categories, popularTags } from '@/data/blogData'
 import {
  Search, Calendar, Clock, ArrowRight, ArrowUpRight, User,
@@ -314,7 +315,14 @@ export default function BlogPage() {
  </div>
  </section>
 
- {/* ── CTA ───────────────────────────────────────────────────────── */}
+       {/* ── Scorecard banner (Week 3 placement) ──────────────────── */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <ScorecardBanner source="Blog Index" />
+        </div>
+      </section>
+
+{/* ── CTA ───────────────────────────────────────────────────────── */}
  <section className="py-20 bg-[#1D342F]">
  <div className="max-w-4xl mx-auto px-6 text-center">
  <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Need Expert Consultation?</h2>

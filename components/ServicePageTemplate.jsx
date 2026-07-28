@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import CTAButton from '@/components/CTAButton'
+import ScorecardBanner from '@/components/ScorecardBanner'
 import { 
   ArrowRight, CheckCircle2, ChevronDown, ArrowUpRight, ExternalLink,
   Award, BarChart3, Briefcase, Building2, Calculator, CheckCircle,
@@ -64,6 +65,11 @@ export default function ServicePageTemplateOption2({
   ctaDescription,
   ctaLabel = "Get a Free Consultation", // intent-matched primary action, set per service page
   midPageCtaText, // short one-line prompt shown in the mid-page CTA after Methodology
+
+  // Week 3 lead-magnet placement — set true only on Feasibility Study &
+  // Market Research pages per the programme's 5-point placement spec
+  showScorecardBanner = false,
+  scorecardBannerContext,
 
   // Source page name  passed from each service page for Supabase tracking
   source = 'Service Page',
@@ -314,6 +320,15 @@ export default function ServicePageTemplateOption2({
                 )
               })}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Scorecard lead-magnet banner (Week 3 placement) ─────────────── */}
+      {showScorecardBanner && (
+        <section className="py-16 bg-white">
+          <div className="max-w-5xl mx-auto px-6">
+            <ScorecardBanner context={scorecardBannerContext} source={`${source} - Service Page`} />
           </div>
         </section>
       )}

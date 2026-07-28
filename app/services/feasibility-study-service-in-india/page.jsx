@@ -133,6 +133,8 @@ const pageData = {
   ctaDescription: 'Make informed decisions with MARC\'s expert-led Feasibility Study for Business, backed by market insight, financial analysis, and execution clarity.',
   ctaLabel: 'Get a Free Scope Call',
   midPageCtaText: 'Not sure if your idea is viable yet? Get a free scope call before you commit capital.',
+  showScorecardBanner: true,
+  scorecardBannerContext: 'Not ready for a full study yet? Get an instant readiness score across market, regulatory, financial, and operational dimensions first — free, 4 minutes.',
 }
 
 export default function FeasibilityStudyPageOption2() {

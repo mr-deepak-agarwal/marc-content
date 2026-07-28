@@ -134,6 +134,8 @@ const pageData = {
   ctaDescription: 'Choose MARC as your Market Research Partner in India. We\'re ready to help you navigate India\'s complex markets with decision-ready intelligence, clear go/no-go recommendations, and strategies built for long-term growth.',
   ctaLabel: 'Request a Research Proposal in 24 Hours',
   midPageCtaText: 'Need data before you decide? Request a research proposal in 24 hours.',
+  showScorecardBanner: true,
+  scorecardBannerContext: 'Before commissioning custom research, see where you stand with a free instant readiness score across market, regulatory, financial, and operational dimensions.',
 }
 
 export default function MarketResearchPageOption1() {

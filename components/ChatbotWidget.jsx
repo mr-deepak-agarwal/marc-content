@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
+import Link from 'next/link'
 import { X, MessageCircle, ArrowRight, Check, Mail } from 'lucide-react'
 
 // ── CONFIG update these ─────────────────────────────────────
@@ -389,6 +390,18 @@ export default function ChatbotWidget() {
                 <Mail className="w-3.5 h-3.5" />
                 Email is fine
               </button>
+            </div>
+          )}
+
+          {/* Week 3 placement: alternative to direct enquiry for early-stage/low-intent leads */}
+          {phase === 'routing' && !typing && !intent?.highIntent && (
+            <div className="pl-9 mt-2">
+              <Link
+                href="/scorecard"
+                className="text-xs text-[#4E9141] underline underline-offset-2 hover:text-[#3e7433] transition-colors"
+              >
+                Not ready to talk yet? Try our free Scorecard instead →
+              </Link>
             </div>
           )}
 

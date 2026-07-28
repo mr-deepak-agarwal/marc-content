@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
+import ScorecardBanner from '@/components/ScorecardBanner'
 import {
   ArrowRight,
   Scale,
@@ -206,6 +207,16 @@ export default function GlobalPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Scorecard entry CTA (Week 3 placement — targeted at intl visitors) ── */}
+      <section className="py-14 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <ScorecardBanner
+            context="Evaluating India as a market? Get an instant readiness score across market, regulatory, financial, and operational dimensions before you engage a full study."
+            source="Global Hub"
+          />
         </div>
       </section>
 
