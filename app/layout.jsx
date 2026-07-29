@@ -3,11 +3,8 @@ import Script from 'next/script'
 import { Poppins } from 'next/font/google'
 import RouteLoader from '@/components/RouteLoader'
 import Header from '@/components/Header'
-import WhatsAppButton from '@/components/WhatsAppButton'
-import ChatbotWidget from '@/components/ChatbotWidget'
-import CookieConsentBanner from '@/components/CookieConsentBanner'
-import LeadCapturePopup from '@/components/LeadCapturePopup'
 import AttributionTracker from '@/components/AttributionTracker'
+import DeferredWidgets from '@/components/DeferredWidgets'
 import { LoadingProvider } from '@/components/loading-store'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
@@ -15,7 +12,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 const poppins = Poppins({ 
   subsets: ['latin'],
   variable: '--font-poppins',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 })
 
@@ -139,10 +136,7 @@ export default function RootLayout({ children }) {
         <RouteLoader />
         <Header />
         {children}
-        <WhatsAppButton phoneNumber="919876543210" />
-        <ChatbotWidget />
-        <LeadCapturePopup />
-        <CookieConsentBanner />
+        <DeferredWidgets phoneNumber="919876543210" />
       </LoadingProvider>
     </body>
     </html>

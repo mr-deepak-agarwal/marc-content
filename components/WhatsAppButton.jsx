@@ -30,8 +30,14 @@ const WhatsAppButton = () => {
 
   // Show button after scrolling (optional - remove if you want it always visible)
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300)
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(() => {
+        setIsVisible(window.scrollY > 300)
+        ticking = false
+      })
     }
 
     // Always show on mobile
@@ -39,7 +45,7 @@ const WhatsAppButton = () => {
       setIsVisible(true)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 

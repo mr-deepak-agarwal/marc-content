@@ -764,14 +764,14 @@ export default function App() {
               style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
             >
               <div>
-                <div className="text-[56px] font-extrabold leading-none text-white">{results.overall_score}</div>
+                <div className="text-[56px] font-bold leading-none text-white">{results.overall_score}</div>
                 <div className="text-base" style={{ color: "#A5D6A7" }}>/100</div>
               </div>
               <div className="text-left">
                 <div className="mb-1 text-[11px] font-bold uppercase tracking-wider" style={{ color: "#A5D6A7" }}>
                   Overall Health
                 </div>
-                <div className="text-[22px] font-extrabold" style={{ color: overall.label === "Healthy" ? "#81C784" : overall.label === "Average" ? "#FFC078" : "#F4A19C" }}>
+                <div className="text-[22px] font-bold" style={{ color: overall.label === "Healthy" ? "#81C784" : overall.label === "Average" ? "#FFC078" : "#F4A19C" }}>
                   {overall.label}
                 </div>
               </div>
@@ -809,7 +809,7 @@ export default function App() {
           <div className="relative overflow-hidden rounded-2xl p-8 text-center" style={{ backgroundColor: "#1B5E20" }}>
             <div className="absolute inset-0 opacity-15 dot-grid" />
             <div className="relative z-10">
-              <h3 className="mb-2 text-xl font-extrabold text-white">Ready to fix these gaps?</h3>
+              <h3 className="mb-2 text-xl font-bold text-white">Ready to fix these gaps?</h3>
               <p className="mb-5 text-sm" style={{ color: "#A5D6A7" }}>
                 MARC's advisors can build a 90-day action plan based on this report.
               </p>

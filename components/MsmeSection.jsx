@@ -393,7 +393,7 @@ export function MSMEJourneyPicker() {
                       />
                       {/* Ghost step number */}
                       <span
-                        className="absolute top-5 left-6 text-5xl font-extrabold select-none"
+                        className="absolute top-5 left-6 text-5xl font-bold select-none"
                         style={{ color: 'rgba(255,255,255,0.12)' }}
                       >
                         0{i + 1}
