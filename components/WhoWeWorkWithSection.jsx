@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import { Building2, Globe, TrendingUp, Users } from 'lucide-react'
 

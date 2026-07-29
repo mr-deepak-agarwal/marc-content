@@ -18,13 +18,31 @@ const NOTIFY_EMAILS = [
 //   name text null,
 //   email text null,
 //   source text null,
+//   utm_source text null,
+//   utm_medium text null,
+//   utm_campaign text null,
+//   utm_term text null,
+//   utm_content text null,
+//   gclid text null,
+//   fbclid text null,
 //   created_at timestamp with time zone null default now(),
 //   constraint checklist_leads_pkey primary key (id)
 // );
+//
+// Already created this table from an earlier delivery without the utm_*/
+// gclid/fbclid columns? Run this instead:
+//   alter table public.checklist_leads
+//     add column if not exists utm_source text,
+//     add column if not exists utm_medium text,
+//     add column if not exists utm_campaign text,
+//     add column if not exists utm_term text,
+//     add column if not exists utm_content text,
+//     add column if not exists gclid text,
+//     add column if not exists fbclid text;
 
 export async function POST(request) {
   try {
-    const { lead, source } = await request.json()
+    const { lead, source, attribution } = await request.json()
 
     if (!lead?.email) {
       return Response.json({ success: false, error: 'Missing email' }, { status: 400 })
@@ -34,6 +52,13 @@ export async function POST(request) {
       name: lead.name || null,
       email: lead.email,
       source: source || 'Feasibility Page',
+      utm_source: attribution?.utm_source || null,
+      utm_medium: attribution?.utm_medium || null,
+      utm_campaign: attribution?.utm_campaign || null,
+      utm_term: attribution?.utm_term || null,
+      utm_content: attribution?.utm_content || null,
+      gclid: attribution?.gclid || null,
+      fbclid: attribution?.fbclid || null,
     })
 
     if (error) {

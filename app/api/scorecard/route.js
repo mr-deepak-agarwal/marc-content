@@ -46,7 +46,7 @@ function addDays(date, days) {
 export async function POST(request) {
   try {
     const body = await request.json()
-    const { sessionId, lead, answers, score, category, dimensionScores, completed, source } = body
+    const { sessionId, lead, answers, score, category, dimensionScores, completed, source, attribution } = body
 
     if (!sessionId) {
       return Response.json({ success: false, error: 'Missing sessionId' }, { status: 400 })
@@ -69,6 +69,7 @@ export async function POST(request) {
       ...(category !== undefined ? { category } : {}),
       ...(dimensionScores !== undefined ? { dimensionScores } : {}),
       ...(source !== undefined ? { source } : {}),
+      ...(attribution !== undefined ? { attribution } : {}),
     }
 
     // Schedule the nurture sequence the moment the lead completes the

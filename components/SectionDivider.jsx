@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 
 const SectionDivider = ({ title, variant = 'default' }) => {

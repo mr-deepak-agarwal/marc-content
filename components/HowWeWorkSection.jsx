@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import { Lightbulb, Target, Rocket, Users } from 'lucide-react'
 

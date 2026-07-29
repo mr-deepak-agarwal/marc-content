@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const slides = [
   {
@@ -42,10 +43,15 @@ const slides = [
 const HeroSection = () => {
   const [current, setCurrent] = useState(0)
   const currentRef = useRef(0)
+  // Only the slide actually shown loads its image; later slides are added
+  // to this set the moment the user reaches them, so slides 2-4 never
+  // compete with the LCP image for bandwidth on first paint.
+  const [loadedSlides, setLoadedSlides] = useState(() => new Set([0]))
 
   const goTo = useCallback((index) => {
     currentRef.current = index
     setCurrent(index)
+    setLoadedSlides((prev) => (prev.has(index) ? prev : new Set(prev).add(index)))
   }, [])
 
   const goPrev = useCallback(() => {
@@ -71,7 +77,8 @@ const HeroSection = () => {
       data-testid="hero-section"
       className="relative w-full h-screen min-h-[600px] overflow-hidden"
     >
-      {/* Background images — unchanged */}
+      {/* Background images — only mount a slide once it's been shown, so we
+          ship one hero image on first paint instead of all four */}
       {slides.map((s, i) => (
         <div
           key={s.id}
@@ -79,12 +86,19 @@ const HeroSection = () => {
             i === current ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <img
-            src={s.image}
-            alt=""
-            className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(100%)' }}
-          />
+          {loadedSlides.has(i) && (
+            <Image
+              src={s.image}
+              alt=""
+              fill
+              sizes="100vw"
+              quality={70}
+              priority={i === 0}
+              fetchPriority={i === 0 ? 'high' : 'auto'}
+              className="object-cover"
+              style={{ filter: 'grayscale(100%)' }}
+            />
+          )}
         </div>
       ))}
 

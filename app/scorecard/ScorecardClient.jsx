@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import jsPDF from 'jspdf'
 import Footer from '@/components/Footer'
+import { getAttribution } from '@/lib/attribution'
+import { trackConversion } from '@/lib/analytics'
 import {
   TrendingUp, ShieldCheck, IndianRupee, Settings, ArrowRight, ArrowLeft,
   CheckCircle2, Download, Lock, Sparkles,
@@ -232,13 +233,23 @@ export default function ScorecardClient({ source = 'Scorecard Page' }) {
       dimensionScores,
       completed: true,
       source,
+      attribution: getAttribution(),
+    })
+    trackConversion('scorecard_complete', {
+      email: lead.email,
+      phone: undefined,
+      source,
+      score: overallScore,
     })
     setSubmitting(false)
     setStep('results')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  function downloadPDF() {
+  async function downloadPDF() {
+    // jsPDF is ~350KB — loaded only when the user clicks download, not on
+    // every visit to the scorecard.
+    const { default: jsPDF } = await import('jspdf')
     const doc = new jsPDF()
     let y = 20
 

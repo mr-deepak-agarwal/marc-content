@@ -43,6 +43,8 @@ export async function POST(request) {
       // Anti-spam fields
       website,       // honeypot — must be empty
       formLoadedAt,  // timestamp when form loaded
+      // Attribution (see lib/attribution.js) — null when absent, that's fine
+      utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, fbclid,
     } = body
 
     // ── 1. Honeypot check ─────────────────────────────────────────────────────
@@ -103,6 +105,13 @@ export async function POST(request) {
         source_page: source_page || 'Website',
         created_at: new Date().toISOString(),
         status: 'new',
+        utm_source: utm_source || null,
+        utm_medium: utm_medium || null,
+        utm_campaign: utm_campaign || null,
+        utm_term: utm_term || null,
+        utm_content: utm_content || null,
+        gclid: gclid || null,
+        fbclid: fbclid || null,
       }])
 
     if (sbError) {

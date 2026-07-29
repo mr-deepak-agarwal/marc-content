@@ -1,7 +1,6 @@
-'use client'
-
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Facebook,
   Instagram,
@@ -51,10 +50,13 @@ const Footer = () => {
           {/* Logo & Description */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6">
-              <img 
-                src="/marc_logo.png" 
-                alt="MARC Glocal - Business Consulting Services" 
-                className="h-12"
+              <Image
+                src="/marc_logo.png"
+                alt="MARC Glocal - Business Consulting Services"
+                width={192}
+                height={48}
+                loading="lazy"
+                className="h-12 w-auto"
               />
             </Link>
             <p className="text-[#47635D] text-sm leading-relaxed mb-6">

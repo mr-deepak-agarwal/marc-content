@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import jsPDF from 'jspdf'
 import { Download, X } from 'lucide-react'
+import { getAttribution } from '@/lib/attribution'
+import { trackConversion } from '@/lib/analytics'
 
 // The actual checklist content — a genuine, useful reference, not filler.
 // Organised the same way the Scorecard's 4 dimensions are, so the two
@@ -51,14 +52,17 @@ async function persistChecklistLead(lead, source) {
     await fetch('/api/checklist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ lead, source }),
+      body: JSON.stringify({ lead, source, attribution: getAttribution() }),
     })
   } catch (err) {
     console.warn('[ChecklistCTA] persist failed:', err)
   }
 }
 
-function generateChecklistPDF(name) {
+async function generateChecklistPDF(name) {
+  // jsPDF is ~350KB — dynamically imported so it never ships in the initial
+  // bundle for every visitor, only for the ones who actually click download.
+  const { default: jsPDF } = await import('jspdf')
   const doc = new jsPDF()
   let y = 20
 
@@ -122,7 +126,8 @@ export default function ChecklistDownloadCTA({ source = 'Feasibility Page' }) {
     }
     setSubmitting(true)
     await persistChecklistLead(lead, source)
-    generateChecklistPDF(lead.name)
+    trackConversion('checklist_download', { email: lead.email, source })
+    await generateChecklistPDF(lead.name)
     setSubmitting(false)
     setOpen(false)
     setLead({ name: '', email: '' })

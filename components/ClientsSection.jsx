@@ -1,6 +1,5 @@
-'use client'
-
 import React from 'react'
+import Image from 'next/image'
 
 const clients = [
  { name: 'Madaus', logo: 'logos/madaus.png' },
@@ -46,9 +45,12 @@ const ClientsSection = () => {
  className="flex-shrink-0 w-[200px] bg-white border border-[#C2DDB4]/40 rounded-2xl p-5 flex flex-col items-center gap-3 transition-all duration-300 cursor-pointer hover:border-[#4E9141] hover:shadow-lg hover:shadow-[#4E9141]/15 hover:-translate-y-1"
  >
  <div className="w-full h-[80px] flex items-center justify-center">
- <img
- src={client.logo}
+ <Image
+ src={`/${client.logo}`}
  alt={`${client.name} logo`}
+ width={140}
+ height={70}
+ loading="lazy"
  className="max-w-[140px] max-h-[70px] w-auto h-auto object-contain grayscale opacity-65 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
  />
  </div>

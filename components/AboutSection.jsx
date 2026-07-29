@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import {
  ArrowRight,
  Target,
@@ -45,11 +46,15 @@ const AboutSection = () => {
  {/* ================= IMAGE SIDE ================= */}
  {/* pb-10 gives room for the floating card so it doesn't overflow the grid */}
  <div className="relative pb-10 lg:pb-12">
- <div className="card-grayscale relative rounded-3xl overflow-hidden shadow-2xl">
- <img
+ <div className="card-grayscale relative rounded-3xl overflow-hidden shadow-2xl h-[480px]">
+ <Image
  src={aboutSection.image}
  alt={aboutSection.imageAlt}
- className="w-full h-[480px] object-cover transition-all duration-500"
+ fill
+ sizes="(max-width: 1024px) 100vw, 50vw"
+ quality={70}
+ loading="lazy"
+ className="object-cover transition-all duration-500"
  />
  <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/50 to-transparent" />
  </div>

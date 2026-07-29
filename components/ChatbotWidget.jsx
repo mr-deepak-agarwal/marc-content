@@ -3,6 +3,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { X, MessageCircle, ArrowRight, Check, Mail } from 'lucide-react'
+import { getAttribution } from '@/lib/attribution'
+import { trackConversion } from '@/lib/analytics'
 
 // ── CONFIG update these ─────────────────────────────────────
 const WHATSAPP_NUMBER = '919359628675' // country code + number, no + or spaces
@@ -193,6 +195,11 @@ export default function ChatbotWidget() {
       // All collected — save to backend, then route based on intent
       submitToBackend(newData)
       track('chatbot_lead_qualified', { intent_id: intent?.id, high_intent: intent?.highIntent })
+      trackConversion(intent?.highIntent ? 'chatbot_high_intent' : 'chatbot_low_intent', {
+        email: newData.email,
+        phone: newData.phone,
+        source: 'Chatbot Widget',
+      })
       setPhase('routing')
 
       if (intent?.highIntent) {
@@ -228,6 +235,7 @@ export default function ChatbotWidget() {
           service: intent?.service || undefined,
           source_page: 'Chatbot Widget',
           formLoadedAt: Date.now() - 5000, // satisfies the 3 s time-check
+          ...getAttribution(),
         }),
       })
     } catch (err) {
@@ -239,6 +247,7 @@ export default function ChatbotWidget() {
   function handleWhatsApp() {
     pushUser('Continue on WhatsApp')
     track('chatbot_whatsapp_click', { intent_id: intent?.id, high_intent: intent?.highIntent })
+    trackConversion('whatsapp_click', { email: formData.email, phone: formData.phone, source: 'Chatbot Widget' })
     const text = intent
       ? intent.waMessage(formData.name, formData.company)
       : `Hi MARC! I'm ${formData.name} from ${formData.company}. I'd like to explore how MARC can help us grow.`

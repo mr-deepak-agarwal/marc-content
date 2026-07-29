@@ -12,7 +12,6 @@ import {
   Sparkles,
   Download,
 } from "lucide-react";
-import jsPDF from "jspdf";
 
 // In production: set NEXT_PUBLIC_GEMINI_API_KEY in Vercel env vars
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "YOUR_GEMINI_KEY_HERE";
@@ -334,8 +333,11 @@ export default function App() {
   };
 
   // ── Build and download the full report as a PDF ──────────────────────
-  const downloadReportPDF = () => {
+  const downloadReportPDF = async () => {
     if (!results) return;
+    // jsPDF is ~350KB — loaded only when the user actually requests the
+    // report, instead of shipping with every visit to this page.
+    const { default: jsPDF } = await import("jspdf");
     const doc = new jsPDF({ unit: "pt", format: "a4" });
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();

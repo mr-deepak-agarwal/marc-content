@@ -1,6 +1,5 @@
-'use client'
-
 import React from 'react'
+import Image from 'next/image'
 import { Award, Zap, UserCheck, Briefcase, TrendingUp, Lock } from 'lucide-react'
 import { whyWorkWithUs } from '@/data/mock'
 
@@ -59,12 +58,15 @@ const WhyUsSection = () => {
             </p>
 
             {/* Image fills remaining space to match right column height */}
-            <div className="card-grayscale relative rounded-3xl overflow-hidden shadow-2xl flex-1">
-              <img
-                src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=500&fit=crop&q=90"
+            <div className="card-grayscale relative rounded-3xl overflow-hidden shadow-2xl flex-1 h-[360px]">
+              <Image
+                src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=500&fit=crop&q=75"
                 alt="MARC Strategy - Modern Architecture"
-                className="w-full h-[360px] object-cover transition-all duration-500"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
                 loading="lazy"
+                className="object-cover transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/40 to-transparent" />
             </div>

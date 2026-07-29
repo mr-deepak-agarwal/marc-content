@@ -4,6 +4,10 @@ const nextConfig = {
 
   images: {
     formats: ['image/avif', 'image/webp'],
+    // How long Next caches the optimized output on disk/CDN before re-checking
+    // the source. Default is 60s; bump to 30 days since these are static
+    // marketing assets, not content that changes minute to minute.
+    minimumCacheTTL: 2592000,
     remotePatterns: [
       {
         protocol: 'https',
@@ -19,6 +23,35 @@ const nextConfig = {
       },
     ],
     unoptimized: false,
+  },
+
+  async headers() {
+    return [
+      {
+        // Next's own build output (JS/CSS chunks) is already content-hashed,
+        // so it's safe to cache "forever" — a new deploy ships new filenames.
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        // Optimized images served through the Next image endpoint.
+        source: '/_next/image',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        // Static files in /public (logos, fonts, favicons, etc.) rarely
+        // change; give browsers a long cache with a short revalidation
+        // window instead of the framework's conservative default.
+        source: '/:path*.(png|jpg|jpeg|webp|avif|svg|ico|woff|woff2|ttf)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' },
+        ],
+      },
+    ]
   },
 
   async redirects() {

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { companyInfo } from '@/data/mock'
+import { trackConversion } from '@/lib/analytics'
 
 const WhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -48,6 +49,7 @@ const WhatsAppButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       data-testid="whatsapp-cta"
+      onClick={() => trackConversion('whatsapp_click', { source: 'Floating Button' })}
       className={`fixed bottom-6 right-6 z-50 group transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'
       }`}

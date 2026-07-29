@@ -18,6 +18,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { getAttribution } from '@/lib/attribution'
+import { trackConversion } from '@/lib/analytics'
 import {
   ArrowRight, X, Send, User, AtSign, Smartphone,
   MessageSquare, CheckCircle2, Loader2,
@@ -51,6 +53,7 @@ function CTAPopup({ isOpen, onClose, source }) {
           source_page: source,
           created_at: new Date().toISOString(),
           status: 'new',
+          ...getAttribution(),
         }])
 
       if (sbError) {
@@ -58,6 +61,12 @@ function CTAPopup({ isOpen, onClose, source }) {
         setError(`Submission failed: ${sbError.message}`)
         return
       }
+
+      trackConversion('form_submit', {
+        email: formData.email,
+        phone: formData.mobile,
+        source,
+      })
 
       setFormData({ name: '', email: '', mobile: '', message: '' })
       onClose()

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, ArrowRight, Search, FileCheck, Compass, FileText, TrendingUp, BarChart3, Calculator, Shield, Scale, Handshake, Globe, BookOpen, FileBarChart, Lightbulb, Globe2, Building2, Users, ClipboardList, ListChecks } from 'lucide-react'
 import { useLoading } from '@/components/loading-store'
@@ -127,10 +128,13 @@ export default function Header() {
 
             {/* Logo */}
             <Link href="/" onClick={() => handleClick('/')} data-testid="header-logo">
-              <img
+              <Image
                 src="/marc_logo.png"
                 alt="MARC - Business Consulting Services"
-                className="h-10 hover:scale-105 transition-transform duration-300 no-grayscale"
+                width={160}
+                height={40}
+                priority
+                className="h-10 w-auto hover:scale-105 transition-transform duration-300 no-grayscale"
               />
             </Link>
 
