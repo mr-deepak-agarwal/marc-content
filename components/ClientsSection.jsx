@@ -64,18 +64,6 @@ const ClientsSection = () => {
  </div>
  </div>
 
- <style jsx>{`
- @keyframes marquee-clients {
- 0% { transform: translateX(0); }
- 100% { transform: translateX(-33.33%); }
- }
- .animate-marquee-clients {
- animation: marquee-clients 20s linear infinite;
- }
- .animate-marquee-clients:hover {
- animation-play-state: paused;
- }
- `}</style>
  </section>
  )
 }
