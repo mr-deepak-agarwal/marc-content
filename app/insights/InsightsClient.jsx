@@ -198,16 +198,40 @@ const getPdfFilename = (title) => {
 }
 
 const categories = [
- { id: 'all', label: 'All Reports', count: 83 },
+ { id: 'all', label: 'All Reports', count: 85 },
  { id: 'healthcare', label: 'Healthcare', count: 11 },
  { id: 'hospitality', label: 'Hospitality', count: 13 },
- { id: 'manufacturing', label: 'Manufacturing', count: 16 },
- { id: 'retail', label: 'Retail & FMCG', count: 13 },
+ { id: 'manufacturing', label: 'Manufacturing', count: 17 },
+ { id: 'retail', label: 'Retail & FMCG', count: 14 },
  { id: 'energy', label: 'Energy', count: 5 },
  { id: 'other', label: 'Other', count: 20 },
 ]
 
 const insights = [
+{
+  title: "Indian Packaging Manufacturing Industry",
+  category: "manufacturing",
+  image: "/images/insights/indian-packaging-manufacturing-industry.png",
+  date: "July 2026",
+  downloads: "0",
+  readTime: "10 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "India's packaging industry is projected to grow from INR 10 lakh crore in 2025 to INR 27 lakh crore by 2035 — covering the flexible vs. rigid packaging split, EPR and PLI policy support, technology adoption, global benchmark gaps, and financial benchmarking of UFlex, EPL, Time Technoplast, AGI Greenpac and TCPL Packaging."
+},
+{
+  title: "Instant Noodles in the Indian Market",
+  category: "retail",
+  image: "/images/insights/instant-noodles-in-the-indian-market.png",
+  date: "July 2026",
+  downloads: "0",
+  readTime: "9 min read",
+  new: true,
+  featured: false,
+  pdfAvailable: true,
+  excerpt: "India is the world's third-largest consumer of instant noodles, with Maggi holding 60% share — covering the Comfort, Discovery and Wellness consumer economies, brand-by-brand competitive benchmarking, white-space mapping, and a Gimi Michi market-entry case study."
+},
 {
   title: "Packaged Spices & Ethnic Condiments Processing in Western India",
   category: "manufacturing",
