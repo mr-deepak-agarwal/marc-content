@@ -3,11 +3,11 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 91 },
+	{ id: 'all', label: 'All', count: 93 },
 	{ id: 'finance', label: 'Finance', count: 26 },
 	{ id: 'market-research', label: 'Market Research', count: 18 },
 	{ id: 'strategy', label: 'Strategy', count: 17 },
-	{ id: 'due-diligence', label: 'Due Diligence', count: 6 },
+	{ id: 'due-diligence', label: 'Due Diligence', count: 8 },
 	{ id: 'industry', label: 'Industry', count: 14 },
 	{ id: 'entrepreneurship', label: 'Entrepreneurship', count: 6 },
 ]
@@ -7770,5 +7770,156 @@ https://www.nytimes.com/2023/01/23/business/microsoft-chatgpt-artificial-intelli
 			],
 			conclusion: ``,
 		},
-	}
+	},
+	{
+		id: 92,
+		slug: 'staffing-industry-ma-gross-margin-quality-of-earnings',
+		title: 'Staffing Industry M&A: Why Gross Margin Hides the Real Story',
+		excerpt: `Most of what a staffing company bills isn't its own profit — it's wages, taxes, and insurance meant to pass straight through to the worker and the government. A USD 90 million fraud case shows how a compliance gap can hide behind years of clean-looking books, and what buyers need to check before it becomes their liability.`,
+		category: 'due-diligence',
+		categoryLabel: 'Due Diligence',
+		author: 'MARC Research Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'July 2026',
+		readTime: '4 min read',
+		// TODO(Deepak): needs its own header photo before publishing — placeholder only
+		image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=500&fit=crop&q=75',
+		featured: false,
+		tags: ['M&A', 'Due Diligence', 'Staffing', 'Quality of Earnings', 'Fraud'],
+		seo: {
+			title: 'Staffing Industry M&A: Why Gross Margin Hides the Real Story',
+			description: `Most of a staffing company's revenue is pass-through payroll, not profit. MARC explains why that matters when buying one, using a real fraud case as an example.`,
+		},
+		cta: {
+			title: 'Protect Your Next Staffing Acquisition',
+			description: 'MARC verifies payroll tax compliance, worker classification, and EBITDA add-backs before you close on a staffing company.',
+			primaryButton: 'Speak with MARC',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `The staffing industry is made up of companies that hire workers and place them at other businesses on a temporary or contract basis — think of firms that supply warehouse staff, nurses, or office workers to a client company. Because the staffing firm, not the client, handles payroll and taxes for these workers, a hidden compliance gap can be easy for a buyer to miss.
+
+In November 2025, Californian prosecutors charged the owner of a group of staffing companies with a USD 90 million tax fraud. For over a decade, the companies told clients they were paying payroll taxes and workers' comp insurance on every worker placed. They weren't — federal taxes were underpaid by over USD 44 million between 2020 and 2025 alone.
+
+This shows a problem that comes up in every staffing company sale: most of what a staffing company bills isn't its own profit. It's wages, taxes, and insurance meant to pass straight through to the worker and the government. If a company quietly stops paying its share to the government, its books can look fine for years.`,
+			sections: [
+				{
+					heading: 'Where the Risk Hides',
+					content: `A staffing company's bill rate covers the worker's pay, plus payroll taxes and insurance, plus a small margin for the company. Because most of it passes straight through, even giant staffing firms run thin profits. ManpowerGroup billed about USD 4.5 billion in a single quarter in early 2026, yet its gross margin was only around 17%, and its operating margin was under 2%.
+
+Most staffing deals work on "co-employment": the staffing company is the official employer, handling payroll and insurance, while the client just directs the day-to-day work. If the staffing company cuts corners on taxes or insurance, that liability sits with it, and can surface long after a buyer has taken over. That's exactly what the California case shows: clients believed their vendor was compliant for years before anyone found out otherwise.`,
+				},
+				{
+					heading: 'What a Basic Review Can Miss',
+					content: `• Proof that payroll taxes and workers' comp were actually paid, not just claimed.
+
+• How workers are classified, and any liability that could carry over to a new owner.
+
+• Whether "one-time" profit add-backs are really one-time, or hiding an ongoing shortfall.`,
+				},
+				{
+					heading: "MARC's View",
+					content: `Staffing runs on high volume and thin margins, so a small tax or insurance gap doesn't stay small. It builds up quietly until it becomes a liability bigger than the profit the business ever made. A standard profit-and-loss review isn't enough on its own — it doesn't confirm the taxes and insurance behind those numbers were actually paid. A dedicated Quality of Earnings analysis is what closes that gap.`,
+				},
+				{
+					heading: 'Where MARC Comes In',
+					content: `• Verifying payroll tax and workers' comp filings against official records.
+
+• Reviewing worker classification and flagging liability that could transfer to a new owner.
+
+• Reviewing and validating the EBITDA add-backs to derive real profitability.
+
+Speak with MARC's advisory team before your next staffing acquisition closes.`,
+				},
+			],
+			conclusion: ``,
+		},
+	},
+	{
+		id: 93,
+		slug: 'private-credit-mid-market-diligence',
+		title: "Private Credit Is Now Funding the Deals Banks Won't: What That Means for Diligence",
+		excerpt: `Private credit now funds about 90% of US mid-market buyouts, closing faster than a bank loan but with fewer built-in checks. Two 2025 bankruptcies — First Brands and Tricolor — show what happens when collateral isn't independently verified, and what lenders are checking more closely now.`,
+		category: 'due-diligence',
+		categoryLabel: 'Due Diligence',
+		author: 'MARC Research Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'July 2026',
+		readTime: '5 min read',
+		// TODO(Deepak): needs its own header photo before publishing — placeholder only
+		image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=500&fit=crop&q=75',
+		featured: false,
+		tags: ['Private Credit', 'Due Diligence', 'M&A', 'Mid-Market', 'Lending'],
+		seo: {
+			title: 'Private Credit in Mid-Market M&A: What Lenders Now Demand in Diligence',
+			description: `Private credit now funds most US mid-market buyouts banks have stepped back from. MARC breaks down why lender checks have tightened, using two real bankruptcies as examples.`,
+		},
+		cta: {
+			title: 'Stress-Test Your Next Private Credit Deal',
+			description: 'MARC independently verifies earnings, collateral, and true debt load before your mid-market financing closes.',
+			primaryButton: 'Speak with MARC',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `Private credit is money lent to companies by investment firms instead of banks. It has become one of the biggest ways mid-sized US companies now borrow money to buy other companies, moving faster than a bank loan but with fewer built-in checks.
+
+When a mid-sized US company borrows money to buy another company, it usually isn't a bank writing the check anymore. It's a private credit firm — a non-bank lender that raises money from investors and lends it directly. Two recent bankruptcies show why the checks on that lending matter.
+
+In September 2025, auto parts company First Brands Group collapsed owing about USD 11.5 billion, with only USD 12 million left in cash. It had pledged the same unpaid customer invoices to several lenders at once. Around the same time, Dallas lender Tricolor Holdings failed the same way, claiming USD 2.2 billion of collateral when only about USD 1.4 billion actually existed. Neither was financed by a bank. Both were financed by private credit.`,
+			sections: [
+				{
+					heading: 'Why Private Credit Took Over from Banks',
+					content: `After 2008, regulators — through rules known as Basel III, and later tightened further — said banks must hold extra capital in reserve for riskier loans, essentially a cushion of the bank's own money that just sits there and doesn't earn anything, in case the loan goes bad. The new rules made it costlier for banks to lend to mid-sized companies, so many pulled back.
+
+The riskier the loan is considered, the more capital the bank has to set aside against it. Private credit filled that gap: the US market has grown from about USD 500 billion to roughly USD 1.3 trillion in five years. By 2024, private credit funded about 90% of mid-market buyouts in the US.
+
+These deals move fast, often closing in weeks, compared to four to eight weeks for a bank-led deal, but they cost more.`,
+				},
+				{
+					heading: 'What Went Wrong at First Brands and Tricolor',
+					content: `Both companies used the same collateral — the outstanding receivables, some of which turned out to be fabricated — to borrow from multiple lenders who never properly checked with each other. Because much of this debt was hidden off the books, lenders who thought they were exposed to about 5 times First Brands' earnings were really exposed to closer to 20 times once the truth came out.
+
+Cambridge Associates calls these company-specific frauds, not a sign private credit itself is broken, and points out that overall loan performance has actually been improving. Still, regulators are now watching private lenders more closely.`,
+				},
+				{
+					heading: 'What Lenders Are Checking More Closely Now',
+					content: `• An independent review of the company's real earnings, instead of just trusting the seller's numbers.
+
+• Direct proof that collateral and unpaid invoices actually exist, and aren't already pledged elsewhere.
+
+• Regular check-ins and reporting after the deal closes, not just before.
+
+• A cap on how much revenue can come from any one customer, so one lost account can't sink repayment.`,
+				},
+				{
+					heading: "MARC's View",
+					content: `Speed is private credit's whole appeal. But a fast deal is only a good deal if the numbers behind it were properly checked. Companies that can prove their earnings and collateral are real get financed quickly and cheaply. Companies that can't find it slower, costlier, or impossible.`,
+				},
+				{
+					heading: 'Where MARC Comes In',
+					content: `• Independently reviewing a company's earnings and testing its add-backs.
+
+• Confirming collateral and invoices are real and not pledged elsewhere.
+
+• Modelling the company's true debt load, including anything hidden off the balance sheet.
+
+Speak with MARC's advisory team to stress-test your next mid-market financing before you close.`,
+				},
+				{
+					heading: 'FAQs',
+					content: `Why has private credit replaced banks in mid-market deals?
+Banks pulled back after new capital rules made mid-market lending costlier. Private credit now funds about 90% of these deals, closing faster than a bank-led deal, though at a higher cost.
+
+What did First Brands and Tricolor reveal?
+Both pledged the same collateral to multiple lenders without proper checks. First Brands owed USD 11.5 billion against just USD 12 million in cash when it collapsed, and its real debt load was far higher than lenders believed.
+
+What should borrowers prepare before a private credit deal?
+An independently reviewed set of earnings and clearly verified collateral. Companies that show up with this get priced and closed faster.`,
+				},
+			],
+			conclusion: ``,
+		},
+	},
 ]
