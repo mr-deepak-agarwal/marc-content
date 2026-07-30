@@ -26,10 +26,13 @@ function parseDate(dateStr) {
   return new Date(y, m, 1)
 }
 
-// Sort blogs newest first
-const sortedBlogs = [...blogs].sort(
-  (a, b) => parseDate(b.date) - parseDate(a.date)
-)
+// Sort blogs newest first (date desc, then id desc as tiebreaker so
+// same-month posts still show newest-created first)
+const sortedBlogs = [...blogs].sort((a, b) => {
+  const dateDiff = parseDate(b.date) - parseDate(a.date)
+  if (dateDiff !== 0) return dateDiff
+  return b.id - a.id
+})
 
 export default function BlogPage() {
  const searchParams = useSearchParams()
