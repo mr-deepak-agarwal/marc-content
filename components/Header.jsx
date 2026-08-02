@@ -54,6 +54,7 @@ const navLinks = [
   { label: 'Global', href: '/global', hasGlobalMenu: true },
   { label: 'Industries', href: '/industries' },
   { label: 'Insights', href: '/insights', hasInsightsMenu: true },
+  { label: 'Pulse', href: 'https://pulse.marcglocal.com/' },
   { label: 'Media', href: '/media' },
   { label: 'MSME', href: '/msme' },
   { label: 'Careers', href: '/careers' },
