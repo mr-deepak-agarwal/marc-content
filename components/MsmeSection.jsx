@@ -1374,7 +1374,7 @@ export function MarcMarketPulseSection() {
             ))}
           </div>
           <p className="mt-10 text-sm font-semibold italic" style={{ color: '#81C784' }}>
-            Studio opens 31 July 2026 · MARC's 16th anniversary
+            Now live · MARC's 16th anniversary
           </p>
         </div>
       ),
@@ -1583,7 +1583,7 @@ export function MarcMarketPulseSection() {
               className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4"
               style={{ backgroundColor: 'rgba(255,109,0,0.18)', color: '#FFAB76' }}
             >
-              Launching 31 July 2026
+              Now Live
             </span>
             <h2 className="text-3xl font-bold text-white tracking-tight">
               <span style={{ color: '#81C784' }}>MARC</span> Market Pulse
@@ -1675,17 +1675,17 @@ export function MarcMarketPulseSection() {
           }}
         >
           <p className="text-sm font-medium" style={{ color: '#C2DDB4' }}>
-            Be first in. Free for MSME owners during the launch window.{' '}
-            <span className="text-white font-semibold">Studio opens 31 July 2026.</span>
+            Free for MSME owners during the launch window.{' '}
+            <span className="text-white font-semibold">Try it now.</span>
           </p>
           <a
-            href="https://launch.marcglocal.com"
+            href="https://pulse.marcglocal.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white transition-all hover:-translate-y-0.5 whitespace-nowrap text-sm"
             style={{ backgroundColor: '#FF6D00' }}
           >
-            Get Early Access
+            Get Started
             <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
