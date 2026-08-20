@@ -52,12 +52,12 @@ const navLinks = [
   { label: 'About', href: '/about-us' },
   { label: 'Services', href: '/services', hasServicesMenu: true },
   { label: 'Global', href: '/global', hasGlobalMenu: true },
+  { label: 'MSME', href: '/msme' },
+  { label: 'Pulse', href: 'https://pulse.marcglocal.com/' },
   { label: 'Industries', href: '/industries' },
   { label: 'Insights', href: '/insights', hasInsightsMenu: true },
-  { label: 'Pulse', href: 'https://pulse.marcglocal.com/' },
-  { label: 'Media', href: '/media' },
-  { label: 'MSME', href: '/msme' },
   { label: 'Careers', href: '/careers' },
+  { label: 'Media', href: '/media' },
 ]
 
 export default function Header() {
