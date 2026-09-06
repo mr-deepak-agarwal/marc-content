@@ -198,16 +198,28 @@ const getPdfFilename = (title) => {
 }
 
 const categories = [
- { id: 'all', label: 'All Reports', count: 85 },
+ { id: 'all', label: 'All Reports', count: 86 },
  { id: 'healthcare', label: 'Healthcare', count: 11 },
  { id: 'hospitality', label: 'Hospitality', count: 13 },
  { id: 'manufacturing', label: 'Manufacturing', count: 17 },
  { id: 'retail', label: 'Retail & FMCG', count: 14 },
  { id: 'energy', label: 'Energy', count: 5 },
- { id: 'other', label: 'Other', count: 20 },
+ { id: 'other', label: 'Other', count: 21 },
 ]
 
 const insights = [
+{
+  title: "The AI Capex Paradox",
+  category: "other",
+  image: "/images/insights/the-ai-capex-paradox.png",
+  date: "September 2026",
+  downloads: "0",
+  readTime: "15 min read",
+  new: true,
+  featured: true,
+  pdfAvailable: true,
+  excerpt: "Is the 2026 hyperscaler buildout durable structural growth or a classic capital cycle heading for overbuild? A case study covering the $725 billion buildout, the $600 billion gap between required and actual AI revenue, enterprise ROI failure rates, and the closest historical parallel — the 1996-2002 fibre-optic crash."
+},
 {
   title: "Indian Packaging Manufacturing Industry",
   category: "manufacturing",

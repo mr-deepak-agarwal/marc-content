@@ -3,9 +3,9 @@
 // ─────────────────────────────────────────────────────────────────
 
 export const categories = [
-	{ id: 'all', label: 'All', count: 93 },
+	{ id: 'all', label: 'All', count: 94 },
 	{ id: 'finance', label: 'Finance', count: 26 },
-	{ id: 'market-research', label: 'Market Research', count: 18 },
+	{ id: 'market-research', label: 'Market Research', count: 19 },
 	{ id: 'strategy', label: 'Strategy', count: 17 },
 	{ id: 'due-diligence', label: 'Due Diligence', count: 8 },
 	{ id: 'industry', label: 'Industry', count: 14 },
@@ -18,6 +18,89 @@ export const popularTags = [
 ]
 
 export const blogs = [
+	{
+		id: 94,
+		slug: 'expansion-mistakes-nobody-admits-to-until-too-late',
+		title: "The Expansion Mistakes Nobody Admits To Until It's Too Late",
+		excerpt: `Most expansion failures aren't one bad decision — they're four or five reasonable-looking assumptions that go unchecked and compound. Here are the ones that come up most often: mistaking population for demand, copying the wrong playbook, pricing by arithmetic instead of research, and building the case on secondary data alone.`,
+		category: 'market-research',
+		categoryLabel: 'Market Research',
+		author: 'MARC Research Team',
+		authorRole: 'Research & Advisory',
+		authorBio: 'Our research team comprises experienced financial analysts and consultants with over 50+ years of combined experience.',
+		date: 'September 2026',
+		readTime: '6 min read',
+		// TODO(Deepak): needs its own header photo before publishing — placeholder only
+		image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop&q=75',
+		featured: false,
+		tags: ['Market Entry', 'Market Research', 'Expansion', 'Pricing Strategy', 'Primary Research'],
+		seo: {
+			title: "The Expansion Mistakes Nobody Admits To Until It's Too Late",
+			description: `The four assumptions that quietly sink market expansion plans — market sizing, regional copy-paste, arithmetic-based pricing, and secondary-data-only research — and how to catch them before you commit.`,
+		},
+		cta: {
+			title: 'Test Your Expansion Plan Before You Commit',
+			description: 'MARC runs the primary research and market sizing that expansion plans usually skip — before the capital is committed, not after.',
+			primaryButton: 'Speak with MARC',
+			primaryLink: 'mailto:bd@marcglocal.com',
+		},
+		content: {
+			introduction: `Every company that has been around long enough has an expansion story it does not put on the website. The state it entered and quietly exited eighteen months later. The country office that never made payroll on its own. The product launch that looked inevitable on the deck and confusing on the shelf.
+
+These failures are rarely dramatic. Nobody makes one catastrophic decision. What usually happens is that four or five small assumptions go unchecked, each of them reasonable on its own, and the compounding does the damage. Below are the ones that come up most often.`,
+			sections: [
+				{
+					heading: 'Confusing a Big Market With a Buying Market',
+					content: `Population is not demand. It is the easiest number to find, which is exactly why it ends up doing more work in a business case than it should.
+
+A city of nine million people does not mean nine million buyers. It means some fraction that has the income, some smaller fraction that has the need, a smaller fraction still that can actually reach you, and then whatever is left after the incumbents have taken their share. By the time you have honestly worked through that chain, the number that started at nine million often lands somewhere far less exciting.
+
+The tell is usually in the language. When a plan says the market "represents an opportunity of" some large figure, that figure is almost always the top of the funnel dressed up as the bottom. Ask a blunter question instead: how many customers do we need in year one to cover the cost of being here at all? That number is small, specific, and much harder to fool yourself about.
+
+The other half of this mistake is timing. Companies routinely get the size roughly right and the speed badly wrong. Demand that takes three years to build will still bankrupt a plan that assumed eighteen months.`,
+				},
+				{
+					heading: 'Treating a Region as a Copy of the One You Already Won',
+					content: `Expansion plans love the phrase "same playbook, new geography." It is comforting and it is usually wrong.
+
+Regional difference is not only about language or culture, though those matter. It shows up in the plumbing. Distribution works differently. Payment behaviour is different — sixty-day credit is normal in one market and an insult in another. Local competitors you have never heard of already own the shelf, the contractor relationships, or the WhatsApp group where the actual buying decisions happen. Regulation that was a formality at home becomes a nine-month licensing exercise.
+
+In India this is visible within a single country. What sells in Pune does not automatically sell in Coimbatore, and the difference is rarely the product. It is the distributor structure, the price point people are anchored to, and who they trust to install or service the thing.
+
+The companies that get this right tend to do something unglamorous first: they hire or partner with someone who has actually operated in that market, and they let that person contradict the plan. The ones that get it wrong send someone from head office to "replicate the model."`,
+				},
+				{
+					heading: 'Pricing by Arithmetic Instead of by Research',
+					content: `Pricing is where good expansion plans quietly turn into bad ones, because it looks like a finance question and it is really a market question.
+
+The common approach is to take the home price, adjust for currency, add freight and duty, apply the usual margin, and call it done. The number that comes out has never been tested against a single real buyer. It carries a cost structure the new market does not care about, and it ignores what customers there are already paying for the alternative — including the informal, cheaper, good-enough alternative that never shows up in any industry report.
+
+What is usually missing is any sense of the shape of the demand curve. Not "will they pay this," but what happens at fifteen percent lower and fifteen percent higher. Where does the volume actually sit. Which segment is price-sensitive and which one is buying on service or reliability and would happily pay more.
+
+There is a second-order problem too. A price set too low to win early volume is very difficult to raise later, and it can anchor an entire market's expectations against you for years. Discounting into a new market is easy. Climbing back out is not.`,
+				},
+				{
+					heading: 'Building the Whole Case on Secondary Data',
+					content: `Reports, databases and published studies are useful. They are a starting point, and they are cheap relative to what they tell you. The mistake is stopping there.
+
+Secondary data has three structural problems. It is old — often eighteen months to three years behind by the time it reaches you. It is generic, written for everyone rather than for your specific product and segment. And a surprising amount of it is recycled: three reports citing what turns out to be the same original survey, which creates a comforting illusion of corroboration.
+
+Most importantly, it tells you what the market looks like in aggregate. It does not tell you why a particular buyer in a particular city chose someone else last quarter.
+
+That answer only comes from primary work, and primary work does not have to be expensive. Twenty honest conversations with distributors, channel partners and buyers who have no reason to flatter you will usually reshape a business case more than a stack of purchased reports. So will a small pilot — one city, one channel, one quarter — where the objective is learning rather than revenue.
+
+The uncomfortable part is that primary research often kills or reshapes the plan. That is the value of it, though it rarely feels that way in the room.`,
+				},
+				{
+					heading: 'The Pattern Underneath All Four',
+					content: `Each of these mistakes shares a common root: the plan gets built first, and the evidence gets gathered afterwards to support it. Once a leadership team has publicly committed to a market, research stops being a test and starts being a formality.
+
+The correction is not more analysis. It is deciding, before the work begins, what finding would make you walk away. Write it down. If the honest answer is that nothing would change the decision, then what follows is not research, and it should not be budgeted as such.`,
+				},
+			],
+			conclusion: `Expansion is genuinely hard, and plenty of well-run companies get it wrong for reasons nobody could have predicted. But the four failures above are not unpredictable. They are just uncomfortable to look for.`,
+		},
+	},
 	{
 		id: 91,
 		slug: 'silent-killer-of-business-growth-no-sops',
