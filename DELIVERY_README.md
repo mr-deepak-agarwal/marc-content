@@ -125,3 +125,52 @@ no honeypot, no timing check, no rate limit, no Turnstile. It's used on nearly e
 it's a wider-open door than the Contact Us form was. Worth a follow-up pass if you want it
 routed through `/api/contact` (or a similarly protected endpoint) instead.
 
+---
+
+# Batch 3 — Real Turnstile site key + hardened verification (2026-10-01)
+
+You provided the real site key from your Cloudflare dashboard (`0x4AAAAAABlQJazeiHbIHwa_`) and
+pointed me at Cloudflare's own "Turnstile Spin" integration prompt.
+
+**What that prompt actually is:** it's an agentic workflow meant for a CLI-based coding agent
+(e.g. Claude Code running on your own machine) with a real Cloudflare API token, Wrangler
+installed, and direct access to your deployed backend — it walks that kind of agent through
+requesting account access, creating/retrieving widgets via the Cloudflare API, and writing the
+secret into your platform's secret store. I'm running in a sandboxed chat environment with no
+access to your Cloudflare account, no network path to `api.cloudflare.com`, and no connection to
+your live deployment — so I can't (and, per that prompt's own rules, shouldn't) run that part of
+the flow, and I won't ask you to paste an API token into chat either.
+
+**What I could do, and did — the actual substance of the integration:**
+
+1. **Wired the real site key.** Both Turnstile widgets already read from
+   `process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY` (unchanged) — just set that env var to
+   `0x4AAAAAABlQJazeiHbIHwa_` in your deployment platform. Site keys aren't secret, so this one
+   is safe to have in plain sight.
+2. **Added a distinct `action` to each widget** — `contact_page` on the Contact Us page,
+   `contact_popup` on the Contact Popup — so a solved token can't be replayed from one form to
+   the other.
+3. **Hardened `verifyTurnstile()` in `app/api/contact/route.js`** to match Cloudflare's own
+   canonical pattern, which goes further than a bare `success === true` check:
+   - validates the token's `action` matches the surface it was meant for,
+   - validates the response's `hostname` is one of yours (`marcglocal.com` by default —
+     override with a comma-separated `TURNSTILE_HOSTNAMES` env var if you also serve
+     `www.marcglocal.com` or similar),
+   - rejects a missing/oversized token outright before even calling Cloudflare,
+   - times the Cloudflare request out at 10s instead of hanging indefinitely.
+
+**Your dashboard screenshot, explained:**
+- *"Siteverify isn't being called for marcglocal.com"* — this was Cloudflare confirming exactly
+  what we found in Batch 2: the token was being generated but never checked server-side. It
+  should clear once this code is deployed with `TURNSTILE_SECRET_KEY` set in production —
+  Cloudflare will start seeing real siteverify calls from your server.
+- *"Likely human: 22.22%"* — of everyone who's loaded the widget so far, Cloudflare's own
+  scoring thinks only about 1 in 5 looked human. That lines up with the bot volume you saw in
+  Batch 2 — most of the traffic hitting that form isn't a person.
+
+**Verified:** full `npm ci` + `next build` with the real site key and the hardened route — clean,
+all 164 routes build. `node --check` on the route file. Can't verify an actual live siteverify
+round-trip or the real "Likely human" number moving from this sandbox — that needs your
+`TURNSTILE_SECRET_KEY` and a production deploy.
+
+

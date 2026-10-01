@@ -194,7 +194,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                   onSuccess={(token) => setTurnstileToken(token)}
                   onExpire={() => setTurnstileToken(null)}
                   onError={() => setTurnstileToken(null)}
-                  options={{ theme: 'light', size: 'flexible' }}
+                  options={{ theme: 'light', size: 'flexible', action: 'contact_popup' }}
                 />
 
                 {error && (

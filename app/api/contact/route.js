@@ -14,12 +14,28 @@ const NOTIFY_EMAILS = [
 ]
 
 // ── Forms that render the Turnstile widget ──────────────────────────────────
-// A submission from one of these source pages MUST carry a verified token.
-// Chatbot Widget and Lead Capture Popup don't render the widget (awkward fit
-// in a chat bubble / small popup), so they aren't required to — they still
-// get every other check below. Add a source_page here once you add the
-// widget to one of those flows too.
-const TURNSTILE_REQUIRED_SOURCES = new Set(['Contact Us Page', 'Contact Popup'])
+// A submission from one of these source pages MUST carry a verified token,
+// AND the token's `action` (set via the widget's `options.action`) must match
+// the value here — this stops a token solved on one surface from being
+// replayed against another. Chatbot Widget and Lead Capture Popup don't
+// render the widget (awkward fit in a chat bubble / small popup), so they
+// aren't in this map — they still get every other check below. Add an entry
+// here once you add the widget to one of those flows too.
+const TURNSTILE_REQUIRED_SOURCES = new Map([
+  ['Contact Us Page', 'contact_page'],
+  ['Contact Popup', 'contact_popup'],
+])
+
+// Production hostname(s) siteverify's response must match. Comma-separated,
+// e.g. "marcglocal.com,www.marcglocal.com". Falls back to marcglocal.com so
+// this still works before the env var is set; add www. or any other verified
+// domain from the Turnstile widget's hostname list if you use one.
+const EXPECTED_HOSTNAMES = new Set(
+  (process.env.TURNSTILE_HOSTNAMES || 'marcglocal.com')
+    .split(',')
+    .map((h) => h.trim())
+    .filter(Boolean)
+)
 
 // ── Persistent rate limiting (Supabase-backed) ──────────────────────────────
 // The old version used an in-memory Map, which resets on every serverless
@@ -64,27 +80,38 @@ async function isRateLimited(ip) {
 // The frontend widget only disables the submit button in the browser — that's
 // a UI nicety, not a security check. A bot posts straight to this endpoint
 // and never has to touch the button. This is the check that actually matters:
-// it asks Cloudflare directly whether the token is real.
-async function verifyTurnstile(token, ip) {
-  if (!token) return false
+// it asks Cloudflare directly whether the token is real, and — beyond just
+// `success` — that it was solved for *this* surface (`action`) on *this*
+// domain (`hostname`), so a token can't be solved once and replayed elsewhere.
+async function verifyTurnstile(token, ip, expectedAction) {
+  if (typeof token !== 'string' || token.length === 0 || token.length > 2048) return false
+
+  let result
   try {
     const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      signal: AbortSignal.timeout(10_000),
       body: new URLSearchParams({
         secret: process.env.TURNSTILE_SECRET_KEY,
         response: token,
         remoteip: ip,
       }),
     })
-    const data = await res.json()
-    return data.success === true
+    if (!res.ok) throw new Error(`siteverify ${res.status}`)
+    result = await res.json()
   } catch (err) {
     console.error('Turnstile verification request failed:', err)
     // Fail closed here: if Cloudflare can't be reached, treat as unverified
     // rather than letting every submission through until it's back up.
     return false
   }
+
+  return (
+    result.success === true &&
+    result.action === expectedAction &&
+    EXPECTED_HOSTNAMES.has(result.hostname)
+  )
 }
 
 // ── Spam/blocked-submission log ─────────────────────────────────────────────
@@ -154,7 +181,8 @@ export async function POST(request) {
     // ── 4. Turnstile verification (the check that actually stops bots that ────
     //      render real pages — honeypot/timing only catch naive bots) ─────────
     if (TURNSTILE_REQUIRED_SOURCES.has(source_page)) {
-      const humanVerified = await verifyTurnstile(turnstileToken, ip)
+      const expectedAction = TURNSTILE_REQUIRED_SOURCES.get(source_page)
+      const humanVerified = await verifyTurnstile(turnstileToken, ip, expectedAction)
       if (!humanVerified) {
         await logBlocked('turnstile', body, ip)
         return Response.json({ success: true }) // silent reject, same as the other bot checks
