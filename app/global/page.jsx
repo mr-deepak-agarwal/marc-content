@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import ScorecardBanner from '@/components/ScorecardBanner'
+import GlobalTrustLayer from '@/components/GlobalTrustLayer'
 import {
   ArrowRight,
   Scale,
@@ -209,6 +210,9 @@ export default function GlobalPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Trust layer (Week 4 placement — targeted at intl visitors) ─────── */}
+      <GlobalTrustLayer />
 
       {/* ── Scorecard entry CTA (Week 3 placement — targeted at intl visitors) ── */}
       <section className="py-14 bg-white">

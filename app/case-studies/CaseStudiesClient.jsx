@@ -3,19 +3,18 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
+import {
+  caseStudies as detailedStudies,
+  CASE_STUDY_INDUSTRIES,
+  CASE_STUDY_SERVICES,
+} from '@/data/caseStudies'
 import { 
   ArrowRight, ArrowUpRight, Building2, TrendingUp, Award,
   Target, CheckCircle2, Lightbulb, Filter
 } from 'lucide-react'
 
-const industries = [
-  { id: 'all', label: 'All', count: 4 },
-  { id: 'hospitality', label: 'Hospitality', count: 2 },
-  { id: 'retail', label: 'Retail', count: 1 },
-  { id: 'real-estate', label: 'Real Estate', count: 1 },
-]
-
-const caseStudies = [
+// Earlier PDF-based case studies (kept). New detailed pages live in data/caseStudies.js
+const legacyStudies = [
   {
     id: 1,
     title: 'Profitability Analysis for Premium Jewellery Brand',
@@ -68,6 +67,102 @@ const caseStudies = [
   },
 ]
 
+const LEGACY_SERVICE_IDS = {
+  'Profitability Analysis': 'strategy',
+  'Strategy Consulting': 'strategy',
+  'Market Research': 'market-research',
+}
+
+const industryLabels = {
+  hospitality: 'Hospitality',
+  retail: 'Retail',
+  'real-estate': 'Real Estate',
+  ...CASE_STUDY_INDUSTRIES,
+}
+
+// Detailed pages first (they are the indexable, conversion-focused assets),
+// followed by the earlier PDF case studies.
+const allStudies = [
+  ...detailedStudies.map((s, i) => ({
+    id: `detail-${s.slug}`,
+    href: `/case-studies/${s.slug}`,
+    title: s.title,
+    client: s.client,
+    industry: s.industry,
+    serviceId: s.service,
+    service: CASE_STUDY_SERVICES[s.service].label,
+    challenge: s.summary,
+    outcomes: [`${s.facts[0].value} · ${s.facts[0].label}`],
+    featured: i < 2,
+  })),
+  ...legacyStudies.map((s) => ({
+    ...s,
+    id: `pdf-${s.id}`,
+    serviceId: LEGACY_SERVICE_IDS[s.service] || 'market-research',
+    featured: false,
+  })),
+]
+
+const countBy = (key) =>
+  allStudies.reduce((acc, s) => {
+    acc[s[key]] = (acc[s[key]] || 0) + 1
+    return acc
+  }, {})
+
+const industryCounts = countBy('industry')
+const serviceCounts = countBy('serviceId')
+
+const industries = [
+  { id: 'all', label: 'All industries', count: allStudies.length },
+  ...Object.keys(industryCounts).map((id) => ({ id, label: industryLabels[id] || id, count: industryCounts[id] })),
+]
+
+const serviceFilters = [
+  { id: 'all', label: 'All services', count: allStudies.length },
+  ...Object.keys(serviceCounts).map((id) => ({
+    id,
+    label: CASE_STUDY_SERVICES[id]?.label || id,
+    count: serviceCounts[id],
+  })),
+]
+
+// Renders an internal link for detailed pages and a PDF link for the older ones.
+function StudyLink({ study, className, children, ...rest }) {
+  if (study.href) {
+    return (
+      <Link href={study.href} className={className} {...rest}>
+        {children}
+      </Link>
+    )
+  }
+  return (
+    <a
+      href={study.pdfPath ?? '#'}
+      target={study.pdfPath ? '_blank' : undefined}
+      rel={study.pdfPath ? 'noopener noreferrer' : undefined}
+      className={className}
+      {...rest}
+    >
+      {children}
+    </a>
+  )
+}
+
+function StudyImage({ study, className }) {
+  if (study.image) return <img src={study.image} alt={study.title} className={className} />
+  return (
+    <div
+      role="img"
+      aria-label={study.title}
+      className="w-full h-full bg-gradient-to-br from-[#1D342F] via-[#2a4a43] to-[#4E9141] flex items-end p-6"
+    >
+      <span className="text-white/80 font-semibold text-sm uppercase tracking-wider">
+        {industryLabels[study.industry] || study.industry}
+      </span>
+    </div>
+  )
+}
+
 const stats = [
   { value: '500+', label: 'Projects Delivered', icon: Award },
   { value: '30+', label: 'Industries Served', icon: Building2 },
@@ -84,6 +179,7 @@ const process = [
 
 export default function CaseStudiesPage() {
   const [activeIndustry, setActiveIndustry] = useState('all')
+  const [activeService, setActiveService] = useState('all')
   const [visibleCards, setVisibleCards] = useState({})
 
   useEffect(() => {
@@ -103,13 +199,14 @@ export default function CaseStudiesPage() {
     })
 
     return () => observer.disconnect()
-  }, [activeIndustry])
+  }, [activeIndustry, activeService])
 
-  const filteredStudies = caseStudies.filter(study => 
-    activeIndustry === 'all' || study.industry === activeIndustry
+  const filteredStudies = allStudies.filter(study =>
+    (activeIndustry === 'all' || study.industry === activeIndustry) &&
+    (activeService === 'all' || study.serviceId === activeService)
   )
 
-  const featuredStudies = caseStudies.filter(s => s.featured)
+  const featuredStudies = allStudies.filter(s => s.featured)
 
   return (
     <div className="bg-[#F0F4F0] min-h-screen" data-testid="case-studies-page">
@@ -178,19 +275,16 @@ export default function CaseStudiesPage() {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {featuredStudies.map((study) => (
-              <a 
+              <StudyLink
                 key={study.id}
-                href={study.pdfPath ?? '#'}
-                target={study.pdfPath ? '_blank' : undefined}
-                rel={study.pdfPath ? 'noopener noreferrer' : undefined}
+                study={study}
                 className="group block bg-white rounded-2xl overflow-hidden border-2 border-[#C2DDB4]/40 hover:border-[#4E9141] shadow-sm hover:shadow-xl transition-all duration-500"
               >
                 {/* Image */}
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  <img 
-                    src={study.image} 
-                    alt={study.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  <StudyImage
+                    study={study}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1D342F]/70 via-transparent to-transparent" />
                   
@@ -199,7 +293,7 @@ export default function CaseStudiesPage() {
                       Featured
                     </span>
                     <span className="px-4 py-1.5 bg-white text-[#4E9141] text-sm font-semibold rounded-full shadow-md capitalize">
-                      {study.industry}
+                      {industryLabels[study.industry] || study.industry}
                     </span>
                   </div>
 
@@ -228,21 +322,22 @@ export default function CaseStudiesPage() {
                     ))}
                   </div>
                 </div>
-              </a>
+              </StudyLink>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Filter Bar */}
-      <section id="cases" className="py-8 bg-white border-y border-[#C2DDB4]/30 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Filter Bar: by industry and by service */}
+      <section id="cases" className="py-6 bg-white border-y border-[#C2DDB4]/30 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-6 space-y-3">
           <div className="flex flex-wrap items-center justify-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#47635D] mr-2">Industry</span>
             {industries.map((ind) => (
               <button
                 key={ind.id}
                 onClick={() => setActiveIndustry(ind.id)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
                   activeIndustry === ind.id
                     ? 'bg-[#4E9141] text-white shadow-md shadow-[#4E9141]/20'
                     : 'bg-[#F7FFF5] text-[#47635D] hover:bg-[#C2DDB4]/30 border border-[#C2DDB4]/50'
@@ -254,6 +349,28 @@ export default function CaseStudiesPage() {
                   activeIndustry === ind.id ? 'bg-white/20' : 'bg-white'
                 }`}>
                   {ind.count}
+                </span>
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#47635D] mr-2">Service</span>
+            {serviceFilters.map((svc) => (
+              <button
+                key={svc.id}
+                onClick={() => setActiveService(svc.id)}
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
+                  activeService === svc.id
+                    ? 'bg-[#1D342F] text-white shadow-md'
+                    : 'bg-white text-[#47635D] hover:bg-[#C2DDB4]/30 border border-[#C2DDB4]/50'
+                }`}
+                data-testid={`filter-service-${svc.id}`}
+              >
+                {svc.label}
+                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
+                  activeService === svc.id ? 'bg-white/20' : 'bg-[#F7FFF5]'
+                }`}>
+                  {svc.count}
                 </span>
               </button>
             ))}
@@ -273,11 +390,9 @@ export default function CaseStudiesPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredStudies.map((study, i) => (
-              <a 
+              <StudyLink
                 key={study.id}
-                href={study.pdfPath ?? '#'}
-                target={study.pdfPath ? '_blank' : undefined}
-                rel={study.pdfPath ? 'noopener noreferrer' : undefined}
+                study={study}
                 data-index={i}
                 className="group block"
                 data-testid={`case-study-${study.id}`}
@@ -290,15 +405,14 @@ export default function CaseStudiesPage() {
                 >
                   {/* Image */}
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <img 
-                      src={study.image} 
-                      alt={study.title}
+                    <StudyImage
+                      study={study}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1.5 bg-white text-[#4E9141] text-xs font-semibold rounded-full shadow-md capitalize">
-                        {study.industry.replace('-', ' ')}
+                        {industryLabels[study.industry] || study.industry}
                       </span>
                     </div>
 
@@ -312,16 +426,12 @@ export default function CaseStudiesPage() {
                     
                     {/* PDF indicator or Coming Soon badge */}
                     <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                      {study.pdfPath ? (
-                        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg">
-                          <ArrowRight className="w-4 h-4 text-[#4E9141]" />
-                          <span className="text-[#4E9141] text-xs font-semibold">View PDF</span>
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-2 px-4 py-2 bg-white/90 rounded-full shadow-lg">
-                          <span className="text-[#47635D] text-xs font-semibold">Coming Soon</span>
-                        </div>
-                      )}
+                      <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg">
+                        <ArrowRight className="w-4 h-4 text-[#4E9141]" />
+                        <span className="text-[#4E9141] text-xs font-semibold">
+                          {study.href ? 'Read case study' : 'View PDF'}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -329,7 +439,7 @@ export default function CaseStudiesPage() {
                   <div className="p-6">
                     <p className="text-[#4E9141] font-semibold text-sm mb-2">{study.client}</p>
 
-                    <h3 className="text-lg font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors line-clamp-2">
+                    <h3 className="text-lg font-bold text-[#1D342F] leading-tight mb-3 group-hover:text-[#4E9141] transition-colors line-clamp-3">
                       {study.title}
                     </h3>
 
@@ -343,7 +453,7 @@ export default function CaseStudiesPage() {
                     </div>
                   </div>
                 </article>
-              </a>
+              </StudyLink>
             ))}
           </div>
         </div>

@@ -4,6 +4,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { blogs } from '@/data/blogData'
+import BlogSidebar, { ClusterNotice, ClusterGoDeeper } from '@/components/BlogSidebar'
+import ScorecardBanner from '@/components/ScorecardBanner'
+import CTAButton from '@/components/CTAButton'
+import { getCluster, getClusterPosts, getPostCta } from '@/lib/blogClusters'
 import {
   Calendar, Clock, Share2, Bookmark, ArrowLeft,
   Twitter, Linkedin, Facebook, Link2, Check, ChevronRight,
@@ -59,13 +63,30 @@ export default function BlogDetailClient({ slug }) {
 
   const content = post.content ?? buildFallbackContent(post)
   const tags = post.tags ?? []
-  const relatedPosts = getRelatedPosts(post, blogs)
-  const cta = post.cta ?? {
-    title: 'Need Expert Consultation?',
-    description: 'Our team of financial experts and consultants is ready to help your business grow.',
-    primaryButton: 'Schedule Consultation',
-    secondaryButton: 'Learn More',
-  }
+  const cluster = getCluster(post)
+  const clusterPosts = getClusterPosts(post, blogs, 6)
+  // Cluster siblings first; topped up with same-category posts so the grid is never sparse
+  const relatedPosts = [
+    ...clusterPosts.slice(0, 3),
+    ...getRelatedPosts(post, blogs, 6).filter(p => !clusterPosts.slice(0, 3).some(c => c.slug === p.slug)),
+  ].slice(0, 3)
+  const goDeeperPosts = clusterPosts.slice(3, 6)
+  // Every post ends with a service-matched CTA. Hand-written CTAs (post.cta) keep their
+  // own headline and copy; every other post gets the CTA of its cluster (or, failing
+  // that, its category), linked to the matching service page. The primary button opens
+  // the tracked lead form instead of a bare mailto: link.
+  const serviceCta = getPostCta(post)
+  const cta = post.cta
+    ? {
+        title: post.cta.title,
+        description: post.cta.description,
+        primaryButton: post.cta.primaryButton || serviceCta.button,
+      }
+    : {
+        title: serviceCta.title,
+        description: serviceCta.description,
+        primaryButton: serviceCta.button,
+      }
 
   const handleShare = (platform) => {
     const url = typeof window !== 'undefined' ? window.location.href : ''
@@ -189,7 +210,8 @@ export default function BlogDetailClient({ slug }) {
         </div>
 
         {/* Body */}
-        <div className="max-w-4xl mx-auto px-6 py-16">
+        <div className="max-w-7xl mx-auto px-6 py-16 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-12">
+        <div className="min-w-0 w-full max-w-4xl mx-auto lg:mx-0">
 
           {/* Introduction */}
           <div className="prose prose-lg max-w-none mb-12">
@@ -198,8 +220,10 @@ export default function BlogDetailClient({ slug }) {
             </p>
           </div>
 
+          {/* Cluster note: links up to the pillar service page */}
+          <ClusterNotice cluster={cluster} slug={post.slug} />
+
           {/* Sections */}
-{/* Sections */}
           {content.sections.map((section, i) => (
             <div key={i} className="mb-12">
               <h2 className="text-3xl font-bold text-[#1D342F] mb-6 pb-3 border-b-2 border-[#4E9141]/20">
@@ -226,6 +250,14 @@ export default function BlogDetailClient({ slug }) {
             <h2 className="text-2xl font-bold text-[#1D342F] mb-4">Key Takeaway</h2>
             <p className="text-[#47635D] leading-relaxed whitespace-pre-line">{content.conclusion}</p>
           </div>
+
+          {/* Mobile lead magnet (desktop gets the sticky sidebar) */}
+          <div className="lg:hidden mb-12">
+            <ScorecardBanner source="Blog Post - Mobile" />
+          </div>
+
+          {/* Cluster: pillar + sibling links */}
+          <ClusterGoDeeper cluster={cluster} posts={goDeeperPosts} slug={post.slug} />
 
           {/* Tags */}
           {tags.length > 0 && (
@@ -267,15 +299,15 @@ export default function BlogDetailClient({ slug }) {
               <p className="text-white/90">{cta.description}</p>
             </div>
           </div>
-          <div className="flex flex-wrap gap-4 mt-6">
-            <a
-             href={cta.primaryLink ?? '/contact-us'}
-             target="_blank"
-             rel="noopener noreferrer"
-             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#4E9141] rounded-xl font-semibold hover:bg-gray-50 transition-all">
-             {cta.primaryButton}
-             <ChevronRight className="w-5 h-5" />
-           </a>
+          <div className="flex flex-wrap items-center gap-4 mt-6">
+            <CTAButton source={`Blog: ${post.title}`} label={cta.primaryButton} variant="secondary" />
+            <Link
+              href={serviceCta.href}
+              className="inline-flex items-center gap-1 text-white font-semibold underline underline-offset-4 decoration-white/50 hover:decoration-white"
+            >
+              Explore our {serviceCta.anchor}
+              <ChevronRight className="w-4 h-4" />
+            </Link>
             {/*<Link
               href={cta.primaryLink ?? '/contact-us'}
               target={cta.primaryLink ? '_blank' : undefined}
@@ -290,6 +322,8 @@ export default function BlogDetailClient({ slug }) {
             </button>*/}
          </div>
        </div>
+     </div>
+        <BlogSidebar cluster={cluster} slug={post.slug} />
      </div>
    </article>
 

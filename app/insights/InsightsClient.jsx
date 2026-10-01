@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
+import CTAButton from '@/components/CTAButton'
 import { supabase } from '@/lib/supabase'
 import { 
  Download, Search, ArrowRight, FileText, TrendingUp, ArrowUpRight,
@@ -17,7 +18,12 @@ import {
 // Shows a lead-capture form before allowing PDF download.
 // On success: logs to `report_downloads` in Supabase, then triggers the download.
 // ─────────────────────────────────────────────────────────────────────────────
-function ReportDownloadPopup({ isOpen, onClose, reportTitle, pdfUrl }) {
+function ReportDownloadPopup({ isOpen, onClose: onCloseProp, reportTitle, pdfUrl, category }) {
+ const [done, setDone] = useState(false)
+ const onClose = () => {
+   setDone(false)
+   onCloseProp()
+ }
  const [formData, setFormData] = useState({ name: '', email: '', mobile: '', company: '' })
  const [isSubmitting, setIsSubmitting] = useState(false)
  const [error, setError] = useState('')
@@ -59,7 +65,8 @@ function ReportDownloadPopup({ isOpen, onClose, reportTitle, pdfUrl }) {
      document.body.removeChild(link)
 
      setFormData({ name: '', email: '', mobile: '', company: '' })
-     onClose()
+     trackEvent('report_download', { report: reportTitle, category })
+     setDone(true)
    } catch (err) {
      console.error('Unexpected error:', err)
      setError('Something went wrong. Please try again.')
@@ -69,6 +76,63 @@ function ReportDownloadPopup({ isOpen, onClose, reportTitle, pdfUrl }) {
  }
 
  if (!isOpen) return null
+
+ // After the download starts, show the sector-matched next step instead of just closing
+ if (done) {
+   const cta = getSectorCta(category)
+   return (
+     <div
+       className="fixed inset-0 z-50 flex items-center justify-center p-4"
+       onClick={(e) => e.target === e.currentTarget && onClose()}
+     >
+       <div className="absolute inset-0 bg-[#1D342F]/80 backdrop-blur-sm" onClick={onClose} />
+       <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden">
+         <div className="h-1.5 w-full bg-gradient-to-r from-[#4E9141] via-[#C2DDB4] to-[#4E9141]" />
+         <button
+           onClick={onClose}
+           aria-label="Close"
+           className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#F7FFF5] flex items-center justify-center text-[#47635D] hover:bg-[#C2DDB4] transition-all"
+         >
+           <X className="w-4 h-4" />
+         </button>
+         <div className="p-8">
+           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#F7FFF5] border border-[#C2DDB4]/50 rounded-full mb-4">
+             <Download className="w-3.5 h-3.5 text-[#4E9141]" />
+             <span className="text-xs font-medium text-[#47635D]">Your download has started</span>
+           </div>
+           <h3 className="text-2xl font-bold text-[#1D342F] mb-2">Need a custom {cta.sector} research report?</h3>
+           <p className="text-[#47635D] text-sm leading-relaxed mb-6">
+             This report is a public view of the sector. If you are making a decision in it (entering a market,
+             investing, expanding or valuing a business), our team can build the research around your specific
+             question.
+           </p>
+           <div className="flex flex-col gap-3">
+             <CTAButton
+               source={`Insight Report: ${reportTitle}`}
+               label={cta.button}
+               variant="primary"
+               className="justify-center w-full"
+             />
+             <Link
+               href={cta.href}
+               onClick={() => trackEvent('insight_service_click', { report: reportTitle, service: cta.service })}
+               className="text-center text-[#4E9141] font-semibold text-sm hover:underline"
+             >
+               See how our {cta.service.toLowerCase()} service works →
+             </Link>
+             <Link
+               href="/scorecard"
+               onClick={() => trackEvent('scorecard_banner_click', { source: 'Insight Download', report: reportTitle })}
+               className="text-center text-[#47635D] text-sm hover:text-[#4E9141]"
+             >
+               Or take the free India Market Entry &amp; Feasibility Scorecard
+             </Link>
+           </div>
+         </div>
+       </div>
+     </div>
+   )
+ }
 
  return (
    <div
@@ -184,10 +248,94 @@ function ReportDownloadPopup({ isOpen, onClose, reportTitle, pdfUrl }) {
              )}
            </button>
          </form>
+         <p className="text-xs text-[#47635D] text-center mt-4">
+           Making a decision in this sector? After your download, see how we can build research around your question.
+         </p>
        </div>
      </div>
    </div>
  )
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Week 8: Insights-to-enquiry conversion
+// Every report leads to a sector-matched next step (a service page, not the
+// generic contact page), and every report is tagged with a report type so the
+// library can be filtered by type as well as by sector.
+// ─────────────────────────────────────────────────────────────────────────────
+function trackEvent(event, params) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', event, params)
+  }
+}
+
+const SECTOR_CTA = {
+  healthcare: {
+    sector: 'healthcare',
+    service: 'Market Research',
+    href: '/services/market-research-company-in-india',
+    button: 'Request a Healthcare Research Proposal',
+  },
+  hospitality: {
+    sector: 'hospitality',
+    service: 'Feasibility Study',
+    href: '/services/feasibility-study-service-in-india',
+    button: 'Get a Free Scope Call',
+  },
+  manufacturing: {
+    sector: 'manufacturing',
+    service: 'Feasibility Study',
+    href: '/services/feasibility-study-service-in-india',
+    button: 'Get a Free Scope Call',
+  },
+  retail: {
+    sector: 'retail & FMCG',
+    service: 'Market Research',
+    href: '/services/market-research-company-in-india',
+    button: 'Request a Research Proposal in 24 Hours',
+  },
+  energy: {
+    sector: 'energy',
+    service: 'Feasibility Study',
+    href: '/services/feasibility-study-service-in-india',
+    button: 'Get a Free Scope Call',
+  },
+  other: {
+    sector: 'your sector',
+    service: 'Market Research',
+    href: '/services/market-research-company-in-india',
+    button: 'Request a Research Proposal in 24 Hours',
+  },
+}
+
+const getSectorCta = (category) => SECTOR_CTA[category] || SECTOR_CTA.other
+
+// Report types, used for the second filter row. Inferred from the report title;
+// change the rules (or add a `type` field on an insight) if a report is mis-tagged.
+const REPORT_TYPES = [
+  'Industry Overview',
+  'Market Entry Guide',
+  'Regional Outlook',
+  'Policy & Regulation',
+  'M&A Tracker',
+  'Thematic Analysis',
+]
+
+const REGION_WORDS = [
+  'goa', 'telangana', 'hyderabad', 'maharashtra', 'odisha', 'mysuru', 'hubballi',
+  'dharwad', 'dakshin', 'dakshina', 'kerala', 'tamil nadu', 'gujarat', 'gift city',
+  'verna', 'mopa', 'tier-2',
+]
+
+function getReportType(insight) {
+  if (insight.type) return insight.type
+  const title = insight.title.toLowerCase()
+  if (/\btracker\b|mergers and acquisitions/.test(title)) return 'M&A Tracker'
+  if (/entry/.test(title)) return 'Market Entry Guide'
+  if (/policy|gst|budget|tariff|fdi|china \+1|national education/.test(title)) return 'Policy & Regulation'
+  if (REGION_WORDS.some((w) => title.includes(w))) return 'Regional Outlook'
+  if (/overview|industry|sector|landscape|competenc/.test(title)) return 'Industry Overview'
+  return 'Thematic Analysis'
 }
 
 // Helper function to generate PDF filename from title
@@ -1330,12 +1478,14 @@ const trendingTopics = [
 
 export default function InsightsPageV2() {
  const [activeCategory, setActiveCategory] = useState('all')
+ const [activeType, setActiveType] = useState('all')
  const [searchQuery, setSearchQuery] = useState('')
  const [activeCard, setActiveCard] = useState(0)
- const [popup, setPopup] = useState({ isOpen: false, title: '', pdfUrl: '' })
+ const [popup, setPopup] = useState({ isOpen: false, title: '', pdfUrl: '', category: 'other' })
 
  const handleDownloadClick = (title, pdfUrl) => {
-   setPopup({ isOpen: true, title, pdfUrl })
+   const found = insights.find((i) => i.title === title)
+   setPopup({ isOpen: true, title, pdfUrl, category: found?.category || 'other' })
  }
  
  // Get stacked cards from insights
@@ -1351,8 +1501,9 @@ export default function InsightsPageV2() {
 
  const filteredInsights = insights.filter(insight => {
  const matchesCategory = activeCategory === 'all' || insight.category === activeCategory
+ const matchesType = activeType === 'all' || getReportType(insight) === activeType
  const matchesSearch = insight.title.toLowerCase().includes(searchQuery.toLowerCase())
- return matchesCategory && matchesSearch
+ return matchesCategory && matchesType && matchesSearch
  })
 
  const featuredInsight = insights.find(i => i.featured && i.new) || insights[0]
@@ -1364,6 +1515,7 @@ export default function InsightsPageV2() {
    isOpen={popup.isOpen}
    onClose={() => setPopup(p => ({ ...p, isOpen: false }))}
    reportTitle={popup.title}
+   category={popup.category}
    pdfUrl={popup.pdfUrl}
  />
  
@@ -1602,6 +1754,29 @@ export default function InsightsPageV2() {
  ))}
  </div>
 
+ {/* Report type filter */}
+ <div className="flex flex-wrap items-center gap-2 mb-8">
+ <span className="text-xs font-semibold uppercase tracking-wider text-[#47635D] mr-1">Report type</span>
+ {['all', ...REPORT_TYPES].map((type) => {
+ const count = insights.filter((i) => (activeCategory === 'all' || i.category === activeCategory) && (type === 'all' || getReportType(i) === type)).length
+ if (type !== 'all' && count === 0) return null
+ return (
+ <button
+ key={type}
+ onClick={() => setActiveType(type)}
+ className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+ activeType === type
+ ? 'bg-[#1D342F] text-white'
+ : 'bg-white text-[#47635D] border border-[#C2DDB4]/60 hover:border-[#4E9141]'
+ }`}
+ >
+ {type === 'all' ? 'All types' : type}
+ <span className="ml-2 text-xs opacity-70">{count}</span>
+ </button>
+ )
+ })}
+ </div>
+
  {/* Reports Grid */}
  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
  {filteredInsights.map((insight, i) => (
@@ -1626,24 +1801,24 @@ export default function InsightsPageV2() {
  <BarChart3 className="w-8 h-8 text-white" />
  </div>
  <h2 className="text-3xl lg:text-4xl font-bold text-[#1D342F] mb-4">
- Need Custom Research?
+ {activeCategory === 'all' ? 'Need a custom research report for your sector?' : `Need a custom ${getSectorCta(activeCategory).sector} research report?`}
  </h2>
  <p className="text-lg text-[#47635D] mb-8">
- Our team can prepare industry-specific insights tailored to your unique business needs and challenges.
+ These reports are our public view of each sector. If you are making a decision in one, our team can build
+ primary and secondary research around your specific question.
  </p>
- <div className="flex flex-col sm:flex-row gap-4 justify-center">
- <Link 
- href="/contact-us" 
- className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#4E9141] text-white rounded-xl font-semibold hover:bg-[#3d7334] transition-all group"
+ <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+ <CTAButton
+ source={`Insights Library - ${activeCategory}`}
+ label={getSectorCta(activeCategory === 'all' ? 'other' : activeCategory).button}
+ variant="primary"
+ />
+ <Link
+ href={getSectorCta(activeCategory === 'all' ? 'other' : activeCategory).href}
+ onClick={() => trackEvent('insight_service_click', { source: 'Insights Library', category: activeCategory })}
+ className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1D342F] border border-[#C2DDB4] rounded-full font-semibold hover:border-[#4E9141] hover:text-[#4E9141] transition-all"
  >
- Request Custom Report
- <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
- </Link>
- <Link 
- href="/contact-us" 
- className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1D342F] border border-[#C2DDB4] rounded-xl font-semibold hover:border-[#4E9141] hover:bg-[#F7FFF5] transition-all"
- >
- Schedule Consultation
+ See our {getSectorCta(activeCategory === 'all' ? 'other' : activeCategory).service.toLowerCase()} service
  </Link>
  </div>
  </div>

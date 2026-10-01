@@ -13,26 +13,100 @@ const NOTIFY_EMAILS = [
   'vindhya@marcglocal.com',
 ]
 
-// ── In-memory rate limiter (resets on cold start, good enough for edge bots) ──
-const rateLimitMap = new Map()
+// ── Forms that render the Turnstile widget ──────────────────────────────────
+// A submission from one of these source pages MUST carry a verified token.
+// Chatbot Widget and Lead Capture Popup don't render the widget (awkward fit
+// in a chat bubble / small popup), so they aren't required to — they still
+// get every other check below. Add a source_page here once you add the
+// widget to one of those flows too.
+const TURNSTILE_REQUIRED_SOURCES = new Set(['Contact Us Page', 'Contact Popup'])
 
-function isRateLimited(ip) {
-  const now = Date.now()
+// ── Persistent rate limiting (Supabase-backed) ──────────────────────────────
+// The old version used an in-memory Map, which resets on every serverless
+// cold start — on Vercel that's often enough to make it toothless in
+// production. This does the same 3-requests-per-15-minutes check against the
+// `contact_rate_limits` table instead (see supabase/2026-09-30_contact_antispam_tables.sql).
+// Fails OPEN: if the Supabase call itself errors, we don't block a real
+// submission over an infra hiccup — we just skip the rate-limit check for it.
+async function isRateLimited(ip) {
   const windowMs = 15 * 60 * 1000 // 15 minutes
   const maxRequests = 3
+  const now = new Date()
 
-  const record = rateLimitMap.get(ip) || { count: 0, start: now }
+  try {
+    const { data: existing } = await supabase
+      .from('contact_rate_limits')
+      .select('count, window_start')
+      .eq('ip', ip)
+      .maybeSingle()
 
-  // Reset window if expired
-  if (now - record.start > windowMs) {
-    rateLimitMap.set(ip, { count: 1, start: now })
+    if (!existing || now - new Date(existing.window_start) > windowMs) {
+      await supabase
+        .from('contact_rate_limits')
+        .upsert({ ip, count: 1, window_start: now.toISOString() })
+      return false
+    }
+
+    if (existing.count >= maxRequests) return true
+
+    await supabase
+      .from('contact_rate_limits')
+      .update({ count: existing.count + 1 })
+      .eq('ip', ip)
+    return false
+  } catch (err) {
+    console.error('Rate limit check failed, failing open:', err)
     return false
   }
+}
 
-  if (record.count >= maxRequests) return true
+// ── Cloudflare Turnstile server-side verification ───────────────────────────
+// The frontend widget only disables the submit button in the browser — that's
+// a UI nicety, not a security check. A bot posts straight to this endpoint
+// and never has to touch the button. This is the check that actually matters:
+// it asks Cloudflare directly whether the token is real.
+async function verifyTurnstile(token, ip) {
+  if (!token) return false
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: process.env.TURNSTILE_SECRET_KEY,
+        response: token,
+        remoteip: ip,
+      }),
+    })
+    const data = await res.json()
+    return data.success === true
+  } catch (err) {
+    console.error('Turnstile verification request failed:', err)
+    // Fail closed here: if Cloudflare can't be reached, treat as unverified
+    // rather than letting every submission through until it's back up.
+    return false
+  }
+}
 
-  rateLimitMap.set(ip, { count: record.count + 1, start: record.start })
-  return false
+// ── Spam/blocked-submission log ─────────────────────────────────────────────
+// Deliberately a separate table from `contact_requests` — the admin dashboard
+// reads every row in that table with no status filter, so a spam row there
+// would show up in the real leads list. Best-effort: a logging failure should
+// never be the reason a legitimate request fails.
+async function logBlocked(reason, body, ip) {
+  try {
+    await supabase.from('contact_spam_log').insert([{
+      reason,
+      ip,
+      source_page: body?.source_page || null,
+      name: body?.name || null,
+      email: body?.email || null,
+      mobile: body?.mobile || null,
+      message: body?.message || null,
+      raw: body,
+    }])
+  } catch (err) {
+    console.error('Failed to log blocked submission:', err)
+  }
 }
 
 export async function POST(request) {
@@ -43,13 +117,20 @@ export async function POST(request) {
       // Anti-spam fields
       website,       // honeypot — must be empty
       formLoadedAt,  // timestamp when form loaded
+      turnstileToken, // Cloudflare Turnstile token (required for sources in TURNSTILE_REQUIRED_SOURCES)
       // Attribution (see lib/attribution.js) — null when absent, that's fine
       utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, fbclid,
     } = body
 
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown'
+
     // ── 1. Honeypot check ─────────────────────────────────────────────────────
     if (website && website.trim() !== '') {
       // Bot filled the hidden field — silently accept (don't tip off bots)
+      await logBlocked('honeypot', body, ip)
       return Response.json({ success: true })
     }
 
@@ -57,23 +138,30 @@ export async function POST(request) {
     const elapsed = formLoadedAt ? Date.now() - Number(formLoadedAt) : 0
     if (elapsed < 3000) {
       // Under 3 s or no timestamp — almost certainly a bot or raw API call
+      await logBlocked('timing', body, ip)
       return Response.json({ success: true })
     }
 
-    // ── 3. Rate limit by IP ───────────────────────────────────────────────────
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown'
-
-    if (isRateLimited(ip)) {
+    // ── 3. Rate limit by IP (persistent — see contact_rate_limits table) ──────
+    if (await isRateLimited(ip)) {
+      await logBlocked('rate_limit', body, ip)
       return Response.json(
         { success: false, error: 'Too many submissions. Please try again later.' },
         { status: 429 }
       )
     }
 
-    // ── 4. Basic field validation ─────────────────────────────────────────────
+    // ── 4. Turnstile verification (the check that actually stops bots that ────
+    //      render real pages — honeypot/timing only catch naive bots) ─────────
+    if (TURNSTILE_REQUIRED_SOURCES.has(source_page)) {
+      const humanVerified = await verifyTurnstile(turnstileToken, ip)
+      if (!humanVerified) {
+        await logBlocked('turnstile', body, ip)
+        return Response.json({ success: true }) // silent reject, same as the other bot checks
+      }
+    }
+
+    // ── 5. Basic field validation ─────────────────────────────────────────────
     if (!name || !email || !mobile || !message) {
       return Response.json(
         { success: false, error: 'Missing required fields.' },
@@ -81,14 +169,25 @@ export async function POST(request) {
       )
     }
 
-    // Reject obviously fake names/emails (all random chars, no spaces or dots)
-    const looksLikeName = /^[a-zA-Z\s'-]{2,}$/.test(name.trim())
+    // Reject obviously fake names: require at least two space-separated words,
+    // so a single unbroken gibberish string (e.g. "dshStTfLISCMNGcwvGK") fails
+    // where the old charset-only check let it through.
+    const looksLikeName = /^[a-zA-Z'-]+(\s+[a-zA-Z'-]+)+$/.test(name.trim())
     const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())
-    if (!looksLikeName || !looksLikeEmail) {
+    // Reject a message that's just digits, or too short to be a real enquiry —
+    // catches the "message: 4673663851" pattern from the bot run.
+    const looksLikeMessage = message.trim().length >= 10 && !/^\d+$/.test(message.trim())
+
+    if (!looksLikeName || !looksLikeEmail || !looksLikeMessage) {
+      await logBlocked(
+        !looksLikeName ? 'pattern_name' : !looksLikeEmail ? 'pattern_email' : 'pattern_message',
+        body,
+        ip
+      )
       return Response.json({ success: true }) // silent reject
     }
 
-    // ── 5. Save to Supabase ───────────────────────────────────────────────────
+    // ── 6. Save to Supabase ───────────────────────────────────────────────────
     const fullMessage = [
       message,
       company ? `Company: ${company}` : '',
@@ -121,7 +220,7 @@ export async function POST(request) {
 
     const isChatbot = source_page === 'Chatbot Widget'
 
-    // ── 6. Send notification email to the team ────────────────────────────────
+    // ── 7. Send notification email to the team ────────────────────────────────
     await resend.emails.send({
       from: 'MARC Glocal <contact@marcglocal.com>',
       to: NOTIFY_EMAILS,
@@ -193,7 +292,9 @@ export async function POST(request) {
       replyTo: email,
     })
 
-    // ── 7. Send auto-reply to the lead ────────────────────────────────────────
+    // ── 8. Send auto-reply to the lead — only ever reached once every check above
+    //      has passed, so a bot can no longer use this endpoint to relay mail to a
+    //      third party's inbox under marcglocal.com's name. ─────────────────────
     await resend.emails.send({
       from: 'MARC Glocal <contact@marcglocal.com>',
       to: email,

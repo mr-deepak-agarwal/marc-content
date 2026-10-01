@@ -2,6 +2,7 @@
 // Next.js will automatically serve this at: https://marcglocal.com/sitemap.xml
 
 import { blogs } from '@/data/blogData'
+import { caseStudies } from '@/data/caseStudies'
 
 const BASE_URL = 'https://marcglocal.com'
 
@@ -9,7 +10,7 @@ const BASE_URL = 'https://marcglocal.com'
 // here would stamp every page as "modified today" on every single build/request,
 // which teaches Google to stop trusting the freshness signal. Bump this manually
 // whenever you actually make a meaningful content change to these pages.
-const SITE_LAST_UPDATED = new Date('2026-07-01')
+const SITE_LAST_UPDATED = new Date('2026-09-28')
 
 // "July 2026" style strings from blogData.js -> real Date, for accurate lastModified
 const MONTHS = {
@@ -52,6 +53,14 @@ export default function sitemap() {
     priority: 0.75,
   }))
 
+  // ── Case study detail pages (Week 6) ─────────────────────────────────────
+  const caseStudyPages = caseStudies.map((c) => ({
+    url: `${BASE_URL}/case-studies/${c.slug}`,
+    lastModified: SITE_LAST_UPDATED,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
   // ── Service pages ─────────────────────────────────────────────────────────
   const servicePages = [
     'deal-advisory-india',
@@ -86,5 +95,5 @@ export default function sitemap() {
     priority: 0.6,
   }))
 
-  return [...staticPages, ...locationPages, ...servicePages, ...blogPages]
+  return [...staticPages, ...locationPages, ...servicePages, ...caseStudyPages, ...blogPages]
 }

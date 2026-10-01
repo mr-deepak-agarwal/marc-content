@@ -1,0 +1,74 @@
+--- /tmp/a.jsx	2026-09-28 04:01:43.476711110 +0000
++++ /tmp/b.jsx	2026-09-28 04:01:43.477443570 +0000
+@@ -4,6 +4,9 @@
+ import Link from 'next/link'
+ import Footer from '@/components/Footer'
+ import { blogs } from '@/data/blogData'
++import BlogSidebar, { ClusterNotice, ClusterGoDeeper } from '@/components/BlogSidebar'
++import ScorecardBanner from '@/components/ScorecardBanner'
++import { getCluster, getClusterPosts } from '@/lib/blogClusters'
+ import {
+   Calendar, Clock, Share2, Bookmark, ArrowLeft,
+   Twitter, Linkedin, Facebook, Link2, Check, ChevronRight,
+@@ -59,7 +62,14 @@
+ 
+   const content = post.content ?? buildFallbackContent(post)
+   const tags = post.tags ?? []
+-  const relatedPosts = getRelatedPosts(post, blogs)
++  const cluster = getCluster(post)
++  const clusterPosts = getClusterPosts(post, blogs, 6)
++  // Cluster siblings first; topped up with same-category posts so the grid is never sparse
++  const relatedPosts = [
++    ...clusterPosts.slice(0, 3),
++    ...getRelatedPosts(post, blogs, 6).filter(p => !clusterPosts.slice(0, 3).some(c => c.slug === p.slug)),
++  ].slice(0, 3)
++  const goDeeperPosts = clusterPosts.slice(3, 6)
+   const cta = post.cta ?? {
+     title: 'Need Expert Consultation?',
+     description: 'Our team of financial experts and consultants is ready to help your business grow.',
+@@ -189,7 +199,8 @@
+         </div>
+ 
+         {/* Body */}
+-        <div className="max-w-4xl mx-auto px-6 py-16">
++        <div className="max-w-7xl mx-auto px-6 py-16 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-12">
++        <div className="min-w-0 w-full max-w-4xl mx-auto lg:mx-0">
+ 
+           {/* Introduction */}
+           <div className="prose prose-lg max-w-none mb-12">
+@@ -198,8 +209,10 @@
+             </p>
+           </div>
+ 
++          {/* Cluster note: links up to the pillar service page */}
++          <ClusterNotice cluster={cluster} slug={post.slug} />
++
+           {/* Sections */}
+-{/* Sections */}
+           {content.sections.map((section, i) => (
+             <div key={i} className="mb-12">
+               <h2 className="text-3xl font-bold text-[#1D342F] mb-6 pb-3 border-b-2 border-[#4E9141]/20">
+@@ -227,6 +240,14 @@
+             <p className="text-[#47635D] leading-relaxed whitespace-pre-line">{content.conclusion}</p>
+           </div>
+ 
++          {/* Mobile lead magnet (desktop gets the sticky sidebar) */}
++          <div className="lg:hidden mb-12">
++            <ScorecardBanner source="Blog Post - Mobile" />
++          </div>
++
++          {/* Cluster: pillar + sibling links */}
++          <ClusterGoDeeper cluster={cluster} posts={goDeeperPosts} slug={post.slug} />
++
+           {/* Tags */}
+           {tags.length > 0 && (
+             <div className="flex flex-wrap gap-2 mb-12 pb-12 border-b border-gray-100">
+@@ -291,6 +312,8 @@
+          </div>
+        </div>
+      </div>
++        <BlogSidebar cluster={cluster} slug={post.slug} />
++     </div>
+    </article>
+ 
+     {/* Related Articles */}
