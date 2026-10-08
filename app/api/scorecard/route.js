@@ -1,11 +1,10 @@
-import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 import { day0Email } from '@/lib/nurtureEmails'
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin'
+import { isRateLimited } from '@/lib/rateLimit'
+import { esc, cleanSubject, isValidEmail, getClientIp } from '@/lib/security'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-)
+const supabase = getSupabaseAdmin()
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -48,8 +47,8 @@ export async function POST(request) {
     const body = await request.json()
     const { sessionId, lead, answers, score, category, dimensionScores, completed, source, attribution } = body
 
-    if (!sessionId) {
-      return Response.json({ success: false, error: 'Missing sessionId' }, { status: 400 })
+    if (typeof sessionId !== 'string' || !/^[A-Za-z0-9_-]{6,100}$/.test(sessionId)) {
+      return Response.json({ success: false, error: 'Invalid sessionId' }, { status: 400 })
     }
 
     const { data: existing } = await supabase
@@ -60,6 +59,13 @@ export async function POST(request) {
 
     const wasAlreadyCompleted = existing?.completed === true
     const nowCompleting = completed === true && !wasAlreadyCompleted
+
+    // Only email addresses that look real, and only a few completions per IP per
+    // hour, so this endpoint can't be used to relay mail to strangers under the
+    // client's domain. The lead is still saved either way.
+    const emailOk = isValidEmail(lead?.email)
+    const canEmail =
+      nowCompleting && emailOk && !(await isRateLimited('scorecard', getClientIp(request), { max: 5 }))
 
     const mergedData = {
       ...(existing?.data || {}),
@@ -74,7 +80,7 @@ export async function POST(request) {
 
     // Schedule the nurture sequence the moment the lead completes the
     // assessment (not before — partial/abandoned sessions never enter it).
-    if (nowCompleting) {
+    if (nowCompleting && canEmail) {
       const now = new Date()
       mergedData.nurture = {
         day3_due: addDays(now, 3),
@@ -100,11 +106,11 @@ export async function POST(request) {
 
     if (error) {
       console.error('[scorecard] Supabase upsert error:', error)
-      return Response.json({ success: false, error: error.message }, { status: 500 })
+      return Response.json({ success: false, error: 'Could not save your response' }, { status: 500 })
     }
 
     // ── Fire the Day 0 email + internal notification, once, on completion ──
-    if (nowCompleting && lead?.email) {
+    if (canEmail) {
       try {
         const { subject, html } = day0Email({
           name: lead.name || 'there',
@@ -122,19 +128,19 @@ export async function POST(request) {
         await resend.emails.send({
           from: 'MARC Glocal <contact@marcglocal.com>',
           to: NOTIFY_EMAILS,
-          subject: `📊 New Scorecard Lead – ${lead.name} (${lead.company || 'Unknown Company'}) – ${category}`,
+          subject: `📊 New Scorecard Lead – ${cleanSubject(lead.name)} (${cleanSubject(lead.company) || 'Unknown Company'}) – ${cleanSubject(category)}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e0e0e0; border-radius: 8px;">
               <h2 style="color: #1D342F; border-bottom: 2px solid #4E9141; padding-bottom: 12px; margin-top: 0;">
                 New India Market Entry &amp; Feasibility Scorecard Submission
               </h2>
               <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
-                <tr><td style="padding:8px; font-weight:bold; color:#47635D; width:140px;">Name</td><td style="padding:8px;">${lead.name || '—'}</td></tr>
-                <tr style="background:#F7FFF5;"><td style="padding:8px; font-weight:bold; color:#47635D;">Email</td><td style="padding:8px;"><a href="mailto:${lead.email}">${lead.email}</a></td></tr>
-                <tr><td style="padding:8px; font-weight:bold; color:#47635D;">Company</td><td style="padding:8px;">${lead.company || '—'}</td></tr>
-                <tr style="background:#F7FFF5;"><td style="padding:8px; font-weight:bold; color:#47635D;">Industry</td><td style="padding:8px;">${lead.industry || '—'}</td></tr>
-                <tr><td style="padding:8px; font-weight:bold; color:#47635D;">Score</td><td style="padding:8px;">${score}/100 — ${category}</td></tr>
-                <tr style="background:#F7FFF5;"><td style="padding:8px; font-weight:bold; color:#47635D;">Source</td><td style="padding:8px;">${source || 'Scorecard'}</td></tr>
+                <tr><td style="padding:8px; font-weight:bold; color:#47635D; width:140px;">Name</td><td style="padding:8px;">${esc(lead.name) || '—'}</td></tr>
+                <tr style="background:#F7FFF5;"><td style="padding:8px; font-weight:bold; color:#47635D;">Email</td><td style="padding:8px;"><a href="mailto:${esc(lead.email)}">${esc(lead.email)}</a></td></tr>
+                <tr><td style="padding:8px; font-weight:bold; color:#47635D;">Company</td><td style="padding:8px;">${esc(lead.company) || '—'}</td></tr>
+                <tr style="background:#F7FFF5;"><td style="padding:8px; font-weight:bold; color:#47635D;">Industry</td><td style="padding:8px;">${esc(lead.industry) || '—'}</td></tr>
+                <tr><td style="padding:8px; font-weight:bold; color:#47635D;">Score</td><td style="padding:8px;">${esc(score)}/100 — ${esc(category)}</td></tr>
+                <tr style="background:#F7FFF5;"><td style="padding:8px; font-weight:bold; color:#47635D;">Source</td><td style="padding:8px;">${esc(source) || 'Scorecard'}</td></tr>
               </table>
             </div>
           `,

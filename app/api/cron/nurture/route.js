@@ -1,11 +1,9 @@
-import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 import { day3Email, day7Email, day14Email } from '@/lib/nurtureEmails'
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin'
+import { isValidEmail } from '@/lib/security'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-)
+const supabase = getSupabaseAdmin()
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Triggered daily by Vercel Cron (see vercel.json). Also callable manually
@@ -25,8 +23,10 @@ const STAGES = [
 ]
 
 export async function GET(request) {
+  // Fail CLOSED: if CRON_SECRET isn't configured, nobody gets in. Vercel Cron
+  // sends `Authorization: Bearer <CRON_SECRET>` automatically when the env var is set.
   const authHeader = request.headers.get('authorization')
-  if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!process.env.CRON_SECRET || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return Response.json({ success: false, error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -45,7 +45,7 @@ export async function GET(request) {
     for (const row of rows || []) {
       const nurture = row.data?.nurture
       const lead = row.data?.lead
-      if (!nurture || !lead?.email) continue
+      if (!nurture || !isValidEmail(lead?.email)) continue
 
       let updatedNurture = null
 

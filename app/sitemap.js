@@ -28,8 +28,7 @@ function parseBlogDate(dateStr) {
 
 export default function sitemap() {
   // ── Static pages ──────────────────────────────────────────────────────────
-  // Note: /apply is intentionally excluded — it's noindexed (see robots.js),
-  // and /home2, /home_original, /s1, /s2 are noindexed design iterations.
+  // Note: /apply is intentionally excluded — it's noindexed (see robots.js).
   const staticPages = [
     { url: BASE_URL, lastModified: SITE_LAST_UPDATED, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${BASE_URL}/about-us`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.8 },

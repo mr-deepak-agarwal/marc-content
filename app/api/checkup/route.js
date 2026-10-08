@@ -1,9 +1,6 @@
-import { createClient } from '@supabase/supabase-js'
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-)
+const supabase = getSupabaseAdmin()
 
 // ── Save / update checkup progress ──────────────────────────────────────────
 // Table: checkup_responses (id, session_id unique, data jsonb, completed,
@@ -18,8 +15,8 @@ export async function POST(request) {
     const body = await request.json()
     const { sessionId, lead, answers, results, step, completed } = body
 
-    if (!sessionId) {
-      return Response.json({ success: false, error: 'Missing sessionId' }, { status: 400 })
+    if (typeof sessionId !== 'string' || !/^[A-Za-z0-9_-]{6,100}$/.test(sessionId)) {
+      return Response.json({ success: false, error: 'Invalid sessionId' }, { status: 400 })
     }
 
     // Merge with any existing row so a partial save (e.g. just `lead`)
@@ -52,7 +49,7 @@ export async function POST(request) {
 
     if (error) {
       console.error('[checkup] Supabase upsert error:', error)
-      return Response.json({ success: false, error: error.message }, { status: 500 })
+      return Response.json({ success: false, error: 'Could not save your response' }, { status: 500 })
     }
 
     return Response.json({ success: true })

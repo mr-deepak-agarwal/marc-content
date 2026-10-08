@@ -50,20 +50,21 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 
-# CRA leftovers (delete these from project too)
 /plugins/-e 
 # Environment files
 *.env
 *.env.*
--e 
 # Environment files
 *.env
 *.env.*
--e 
 # Environment files
 *.env
 *.env.*
--e 
 # Environment files
 *.env
 *.env.*
+
+# environment files
+*.env
+*.env.*
+!.env.example

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
 import CTAButton from '@/components/CTAButton'
-import { supabase } from '@/lib/supabase'
 import { 
  Download, Search, ArrowRight, FileText, TrendingUp, ArrowUpRight,
  Building2, Heart, Plane, ShoppingBag, Factory, Zap, Filter,
@@ -39,20 +38,21 @@ function ReportDownloadPopup({ isOpen, onClose: onCloseProp, reportTitle, pdfUrl
    setError('')
 
    try {
-     const { error: sbError } = await supabase
-       .from('report_downloads')
-       .insert([{
+     const res = await fetch('/api/report-download', {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({
          name: formData.name,
          email: formData.email,
          mobile: formData.mobile,
          company: formData.company,
          report_name: reportTitle,
-         downloaded_at: new Date().toISOString(),
-       }])
+       }),
+     })
+     const result = await res.json().catch(() => ({}))
 
-     if (sbError) {
-       console.error('Supabase error:', sbError)
-       setError(`Submission failed: ${sbError.message}`)
+     if (!res.ok || !result.success) {
+       setError(result.error || 'Submission failed. Please try again.')
        return
      }
 

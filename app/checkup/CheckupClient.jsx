@@ -13,8 +13,7 @@ import {
   Download,
 } from "lucide-react";
 
-// In production: set NEXT_PUBLIC_GEMINI_API_KEY in Vercel env vars
-const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "YOUR_GEMINI_KEY_HERE";
+// The Gemini call runs server-side in /api/checkup-ai so the API key never reaches the browser.
 
 /* ────────────────────────────────────────────────────────────────────────
    SAVING RESPONSES
@@ -287,21 +286,11 @@ export default function App() {
     setStep("loading");
     setError("");
     try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: buildPrompt() }] }],
-            generationConfig: {
-              temperature: 0.4,
-              maxOutputTokens: 3000,
-              thinkingConfig: { thinkingBudget: 0 }
-            }
-          })
-        }
-      );
+      const response = await fetch("/api/checkup-ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: buildPrompt() }),
+      });
       const data = await response.json();
       if (data.error) throw new Error(data.error.message);
       const candidate = data.candidates?.[0];

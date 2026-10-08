@@ -15,9 +15,8 @@
 //   className    extra tailwind classes on the button
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
 import { getAttribution } from '@/lib/attribution'
 import { trackConversion } from '@/lib/analytics'
 import {
@@ -31,6 +30,11 @@ function CTAPopup({ isOpen, onClose, source }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
+  // The server rejects submissions that arrive within 3s of the form loading (bot check).
+  const openedAt = useRef(Date.now())
+  useEffect(() => {
+    if (isOpen) openedAt.current = Date.now()
+  }, [isOpen])
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -43,22 +47,34 @@ function CTAPopup({ isOpen, onClose, source }) {
     setError('')
 
     try {
-      const { error: sbError } = await supabase
-        .from('contact_requests')
-        .insert([{
+      // Same checks the server applies, so a real lead gets a clear message
+      // instead of being silently dropped.
+      if (!/^[\p{L}.'-]+(\s+[\p{L}.'-]+)+$/u.test(formData.name.trim())) {
+        setError('Please enter your first and last name.')
+        return
+      }
+      if (formData.message.trim().length < 10) {
+        setError('Please add a few more details (at least 10 characters).')
+        return
+      }
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           mobile: formData.mobile,
           message: formData.message,
           source_page: source,
-          created_at: new Date().toISOString(),
-          status: 'new',
+          formLoadedAt: openedAt.current,
           ...getAttribution(),
-        }])
+        }),
+      })
+      const result = await res.json().catch(() => ({}))
 
-      if (sbError) {
-        console.error('Supabase error:', sbError)
-        setError(`Submission failed: ${sbError.message}`)
+      if (!res.ok || !result.success) {
+        setError(result.error || 'Submission failed. Please try again or email us directly.')
         return
       }
 

@@ -28,6 +28,22 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Baseline security headers for every route.
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000' },
+        ],
+      },
+      {
+        // Keep the admin area out of search results.
+        source: '/admin/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      {
         // Next's own build output (JS/CSS chunks) is already content-hashed,
         // so it's safe to cache "forever" — a new deploy ships new filenames.
         source: '/_next/static/:path*',

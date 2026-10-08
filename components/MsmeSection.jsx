@@ -21,7 +21,7 @@ import {
   MARC Biz-Dost — MSME vertical landing sections
   --------------------------------------------
   Rebuilt to match marcglocal.com's actual design system, pulled from your
-  components_v2 reference (ServicesSection.jsx, WhyUsSection.jsx, tailwind.config.js):
+  Design reference (ServicesSection.jsx, WhyUsSection.jsx, tailwind.config.js):
 
     Font        : Poppins (font-sans / font-heading)
     Deep green  : #1B5E20  (section/card backgrounds, headline color)

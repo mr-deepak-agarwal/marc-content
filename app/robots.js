@@ -10,14 +10,9 @@ export default function robots() {
         // Block private/internal routes from being indexed
         disallow: [
           '/admin/',
-          '/dashboard/',
           '/api/',
           '/apply',         // job application form  usually not needed in index
           '/global/',       // internal pages (CIM, due diligence, valuation tools)
-          '/home2',         // design iteration, superseded by "/"
-          '/home_original', // design iteration, superseded by "/"
-          '/s1',            // internal test/design page
-          '/s2',            // internal test/design page
         ],
       },
     ],

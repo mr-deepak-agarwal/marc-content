@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "marc-glocal-web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -61,7 +61,7 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next dev -p 3000",
+    "start": "next start -p 3000",
     "lint": "next lint"
   },
   "browserslist": {

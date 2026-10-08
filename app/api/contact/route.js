@@ -1,10 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin'
+import { esc, cleanSubject, getClientIp, isValidEmail } from '@/lib/security'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-)
+const supabase = getSupabaseAdmin()
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -149,10 +147,7 @@ export async function POST(request) {
       utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, fbclid,
     } = body
 
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown'
+    const ip = getClientIp(request)
 
     // ── 1. Honeypot check ─────────────────────────────────────────────────────
     if (website && website.trim() !== '') {
@@ -200,8 +195,8 @@ export async function POST(request) {
     // Reject obviously fake names: require at least two space-separated words,
     // so a single unbroken gibberish string (e.g. "dshStTfLISCMNGcwvGK") fails
     // where the old charset-only check let it through.
-    const looksLikeName = /^[a-zA-Z'-]+(\s+[a-zA-Z'-]+)+$/.test(name.trim())
-    const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())
+    const looksLikeName = /^[\p{L}.'-]+(\s+[\p{L}.'-]+)+$/u.test(name.trim())
+    const looksLikeEmail = isValidEmail(email)
     // Reject a message that's just digits, or too short to be a real enquiry —
     // catches the "message: 4673663851" pattern from the bot run.
     const looksLikeMessage = message.trim().length >= 10 && !/^\d+$/.test(message.trim())
@@ -253,8 +248,8 @@ export async function POST(request) {
       from: 'MARC Glocal <contact@marcglocal.com>',
       to: NOTIFY_EMAILS,
       subject: isChatbot
-        ? `💬 New Chatbot Lead – ${name} (${company || 'Unknown Company'})`
-        : `New Lead from Website – ${name}`,
+        ? `💬 New Chatbot Lead – ${cleanSubject(name)} (${cleanSubject(company) || 'Unknown Company'})`
+        : `New Lead from Website – ${cleanSubject(name)}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e0e0e0; border-radius: 8px;">
           <h2 style="color: #1D342F; border-bottom: 2px solid #4E9141; padding-bottom: 12px; margin-top: 0;">
@@ -269,31 +264,31 @@ export async function POST(request) {
           <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
             <tr>
               <td style="padding: 10px 8px; font-weight: bold; color: #47635D; width: 130px; vertical-align: top;">Name</td>
-              <td style="padding: 10px 8px; color: #1D342F;">${name}</td>
+              <td style="padding: 10px 8px; color: #1D342F;">${esc(name)}</td>
             </tr>
             <tr style="background: #F7FFF5;">
               <td style="padding: 10px 8px; font-weight: bold; color: #47635D; vertical-align: top;">Email</td>
               <td style="padding: 10px 8px; color: #1D342F;">
-                <a href="mailto:${email}" style="color: #4E9141;">${email}</a>
+                <a href="mailto:${esc(email)}" style="color: #4E9141;">${esc(email)}</a>
               </td>
             </tr>
             <tr>
               <td style="padding: 10px 8px; font-weight: bold; color: #47635D; vertical-align: top;">Mobile</td>
-              <td style="padding: 10px 8px; color: #1D342F;">${mobile || '—'}</td>
+              <td style="padding: 10px 8px; color: #1D342F;">${esc(mobile) || '—'}</td>
             </tr>
             ${company ? `
             <tr style="background: #F7FFF5;">
               <td style="padding: 10px 8px; font-weight: bold; color: #47635D; vertical-align: top;">Company</td>
-              <td style="padding: 10px 8px; color: #1D342F;">${company}</td>
+              <td style="padding: 10px 8px; color: #1D342F;">${esc(company)}</td>
             </tr>` : ''}
             ${service ? `
             <tr>
               <td style="padding: 10px 8px; font-weight: bold; color: #47635D; vertical-align: top;">Service</td>
-              <td style="padding: 10px 8px; color: #1D342F;">${service}</td>
+              <td style="padding: 10px 8px; color: #1D342F;">${esc(service)}</td>
             </tr>` : ''}
             <tr style="background: #F7FFF5;">
               <td style="padding: 10px 8px; font-weight: bold; color: #47635D; vertical-align: top;">Message</td>
-              <td style="padding: 10px 8px; color: #1D342F; white-space: pre-line;">${message || '—'}</td>
+              <td style="padding: 10px 8px; color: #1D342F; white-space: pre-line;">${esc(message) || '—'}</td>
             </tr>
             <tr>
               <td style="padding: 10px 8px; font-weight: bold; color: #47635D; vertical-align: top;">Source</td>
@@ -308,7 +303,7 @@ export async function POST(request) {
           <div style="margin-top: 24px; padding: 12px 16px; background: #F7FFF5; border-left: 4px solid #4E9141; border-radius: 4px;">
             <p style="margin: 0; font-size: 13px; color: #47635D;">
               Reply directly to this email or reach out at
-              <a href="mailto:${email}" style="color: #4E9141;">${email}</a>
+              <a href="mailto:${esc(email)}" style="color: #4E9141;">${esc(email)}</a>
             </p>
           </div>
 
@@ -327,15 +322,15 @@ export async function POST(request) {
       from: 'MARC Glocal <contact@marcglocal.com>',
       to: email,
       subject: isChatbot
-        ? `Great speaking with you, ${name}! We'll be in touch soon.`
-        : `Thank you for reaching out, ${name}!`,
+        ? `Great speaking with you, ${cleanSubject(name)}! We'll be in touch soon.`
+        : `Thank you for reaching out, ${cleanSubject(name)}!`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e0e0e0; border-radius: 8px;">
           <h2 style="color: #1D342F; border-bottom: 2px solid #4E9141; padding-bottom: 12px; margin-top: 0;">
             ${isChatbot ? "Thanks for chatting with us! 👋" : "We've received your message"}
           </h2>
 
-          <p style="color: #1D342F; line-height: 1.6;">Dear ${name},</p>
+          <p style="color: #1D342F; line-height: 1.6;">Dear ${esc(name)},</p>
           ${isChatbot ? `
           <p style="color: #1D342F; line-height: 1.6;">
             It was great connecting with you through our chat! We've saved your details and a member of the MARC Glocal team will reach out to you within <strong>1–2 business days</strong>.
