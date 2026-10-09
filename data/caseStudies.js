@@ -8,7 +8,7 @@
 // and recommendations rather than a measured business result, the "results"
 // list says so honestly instead of quoting a made-up percentage.
 //
-// NAMING: Coastal Chicken and Partagal Math are named (client consent
+// NAMING: Partagal Math is named (client consent
 // confirmed). Every other engagement stays anonymous, as per the reference note.
 //
 // To add a case study: append an object here. The detail page, index card,
@@ -99,54 +99,6 @@ export const caseStudies = [
     ],
     takeaway:
       'The right question was not “is there demand?” It was whether the distribution system could protect freshness, margins and working capital together.',
-    relatedBlogs: [],
-  },
-
-  // ─────────────────────────────────────────────────────────────── 2
-  {
-    slug: 'coastal-chicken-poultry-growth-roadmap',
-    title: 'Coastal Chicken: A Growth Roadmap to Fill 32,000 Birds a Day of Processing Capacity',
-    shortTitle: 'Coastal Chicken Growth Roadmap',
-    client: 'Coastal Chicken',
-    named: true,
-    industry: 'food-processing',
-    service: 'strategy',
-    tags: ['Capacity utilisation', 'B2B growth', 'Value-added poultry', 'Profitability'],
-    metaDescription:
-      'How MARC helped Coastal Chicken plan a path from about 10,000 to 32,000 birds a day: profitability diagnostics, B2B market sizing and a 12-month action plan with a 3-year roadmap.',
-    keywords: [
-      'poultry processing growth strategy India',
-      'capacity utilisation strategy',
-      'food processing consulting India',
-      'B2B market sizing poultry',
-    ],
-    summary:
-      'After expanding capacity to about 32,000 birds a day against roughly 10,000 in use, Coastal Chicken needed a sequenced plan to lift utilisation without scaling a low-margin product mix.',
-    question:
-      'How should a poultry processor improve utilisation after expanding capacity from 10,000 to 32,000 birds per day?',
-    facts: [
-      { value: '32,000', label: 'birds/day installed capacity' },
-      { value: '10,000', label: 'birds/day current utilisation' },
-      { value: '12-month', label: 'action plan' },
-      { value: '3-year', label: 'growth roadmap' },
-    ],
-    before: [
-      'Installed capacity had expanded to about 32,000 birds a day against roughly 10,000 birds a day of actual utilisation.',
-      'Under-utilisation increased per-kg operating pressure and left the business dependent on commoditised raw chicken.',
-      'Growth avenues on the table included B2B, retail, value-added products, exports and adjacent diversification.',
-    ],
-    approach: [
-      'A diagnostic profitability and capacity cost assessment.',
-      'B2B market sizing across hotels, QSRs, caterers, institutions, distributors and modern retail.',
-      'An integrated 12-month action plan and a 3-year growth roadmap.',
-    ],
-    results: [
-      'B2B volume was identified as the fastest, lower-risk route to better utilisation.',
-      'Value-added poultry needs customer validation and competitor benchmarking before any plant-level decision.',
-      'Exports need country screening, an importer database and a cold-chain logistics assessment before they are treated as a growth lever.',
-    ],
-    takeaway:
-      'Growth strategy must start with economics. Scaling a low-margin product mix only increases stress unless capacity, customer and product profitability are sequenced correctly.',
     relatedBlogs: [],
   },
 
