@@ -1,5 +1,5 @@
 // app/robots.js
-// Next.js will automatically serve this at: https://marcglocal.com/robots.txt
+// Next.js will automatically serve this at: https://www.marcglocal.com/robots.txt
 
 export default function robots() {
   return {
@@ -16,6 +16,6 @@ export default function robots() {
         ],
       },
     ],
-    sitemap: 'https://marcglocal.com/sitemap.xml',
+    sitemap: 'https://www.marcglocal.com/sitemap.xml',
   }
 }

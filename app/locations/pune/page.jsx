@@ -4,12 +4,12 @@ export const metadata = {
   title: 'Feasibility Study & Business Consulting Firm in Pune | MARC Glocal',
   description:
     'MARC Glocal is a business consulting firm in Pune offering feasibility studies, market research, SOP consulting, and financial modelling for manufacturing, auto, and IT/education-sector businesses.',
-  alternates: { canonical: 'https://marcglocal.com/locations/pune' },
+  alternates: { canonical: 'https://www.marcglocal.com/locations/pune' },
   openGraph: {
     title: 'Feasibility Study & Business Consulting Firm in Pune | MARC Glocal',
     description:
       'Business consulting, feasibility studies, and growth strategy for Pune\u2019s manufacturing, auto-ancillary, and education-sector businesses.',
-    url: 'https://marcglocal.com/locations/pune',
+    url: 'https://www.marcglocal.com/locations/pune',
   },
 }
 

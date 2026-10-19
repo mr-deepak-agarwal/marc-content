@@ -4,11 +4,11 @@ import { Users, Target, TrendingUp, Award, ClipboardList, ShieldCheck } from 'lu
 export const metadata = {
   title: 'HR Consulting Services in India | People Strategy',
   description: 'Build the people structures, processes and policies you need to attract, retain and scale talent, without losing culture. HR advisory by MARC.',
-  alternates: { canonical: 'https://marcglocal.com/services/human-resource-hr-consulting' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/human-resource-hr-consulting' },
   openGraph: {
     title: 'HR Consulting Services in India | People Strategy',
     description: 'Build the people structures, processes and policies you need to attract, retain and scale talent, without losing culture. HR advisory by MARC.',
-    url: 'https://marcglocal.com/services/human-resource-hr-consulting',
+    url: 'https://www.marcglocal.com/services/human-resource-hr-consulting',
   },
 }
 

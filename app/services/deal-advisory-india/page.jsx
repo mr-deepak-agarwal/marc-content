@@ -4,11 +4,11 @@ import { Handshake, Target, TrendingUp, Users, Search, FileText, Building2, Scal
 export const metadata = {
   title: 'Deal Advisory Services in India | Cross-Border M&A',
   description: 'Trusted deal advisory for promoters, investors, family offices and PE funds. Reduce execution risk and close complex transactions with MARC.',
-  alternates: { canonical: 'https://marcglocal.com/services/deal-advisory-india' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/deal-advisory-india' },
   openGraph: {
     title: 'Deal Advisory Services in India | Cross-Border M&A',
     description: 'Trusted deal advisory for promoters, investors, family offices and PE funds. Reduce execution risk and close complex transactions with MARC.',
-    url: 'https://marcglocal.com/services/deal-advisory-india',
+    url: 'https://www.marcglocal.com/services/deal-advisory-india',
   },
 }
 

@@ -4,12 +4,12 @@ export const metadata = {
   title: 'Business Consulting Firm in Kolkata | Market Research & Feasibility | MARC Glocal',
   description:
     'MARC Glocal is a business consulting firm in Kolkata offering market research, feasibility studies, and growth strategy for East India\u2019s FMCG, retail, and trading businesses.',
-  alternates: { canonical: 'https://marcglocal.com/locations/kolkata' },
+  alternates: { canonical: 'https://www.marcglocal.com/locations/kolkata' },
   openGraph: {
     title: 'Business Consulting Firm in Kolkata | Market Research & Feasibility | MARC Glocal',
     description:
       'Business consulting, market research, and feasibility studies for Kolkata and East India\u2019s FMCG, retail, and trading businesses.',
-    url: 'https://marcglocal.com/locations/kolkata',
+    url: 'https://www.marcglocal.com/locations/kolkata',
   },
 }
 

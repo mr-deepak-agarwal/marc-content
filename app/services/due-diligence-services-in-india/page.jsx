@@ -4,11 +4,11 @@ import { Search, FileCheck, Shield, Eye, BarChart3, Building2, Scale, AlertTrian
 export const metadata = {
   title: 'Due Diligence Services in India | Financial & Commercial DD',
   description: 'Expert due diligence for investors, acquirers and corporates across India. Validate financials, uncover risks early, decide with confidence.',
-  alternates: { canonical: 'https://marcglocal.com/services/due-diligence-services-in-india' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/due-diligence-services-in-india' },
   openGraph: {
     title: 'Due Diligence Services in India | Financial & Commercial DD',
     description: 'Expert due diligence for investors, acquirers and corporates across India. Validate financials, uncover risks early, decide with confidence.',
-    url: 'https://marcglocal.com/services/due-diligence-services-in-india',
+    url: 'https://www.marcglocal.com/services/due-diligence-services-in-india',
   },
 }
 

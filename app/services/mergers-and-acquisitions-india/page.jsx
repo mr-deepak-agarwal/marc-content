@@ -4,11 +4,11 @@ import { Handshake, TrendingUp, Building2, Globe, Search, Scale, FileCheck, User
 export const metadata = {
   title: 'M&A Advisory Firm in India | Deal Execution & Strategy',
   description: 'Work with an experienced M&A advisory firm in India covering due diligence, valuation and deal execution for complex transactions.',
-  alternates: { canonical: 'https://marcglocal.com/services/mergers-and-acquisitions-india' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/mergers-and-acquisitions-india' },
   openGraph: {
     title: 'M&A Advisory Firm in India | Deal Execution & Strategy',
     description: 'Work with an experienced M&A advisory firm in India covering due diligence, valuation and deal execution for complex transactions.',
-    url: 'https://marcglocal.com/services/mergers-and-acquisitions-india',
+    url: 'https://www.marcglocal.com/services/mergers-and-acquisitions-india',
   },
 }
 

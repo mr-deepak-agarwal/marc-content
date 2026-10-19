@@ -4,11 +4,11 @@ import { BarChart3, TrendingUp, Scale, Building2, Target, Users, PieChart, Dolla
 export const metadata = {
   title: 'Business Valuation Firm in India | M&A & Fundraising',
   description: 'Work with a leading business valuation firm in India for accurate, defensible valuations across M&A, fundraising and strategic transactions.',
-  alternates: { canonical: 'https://marcglocal.com/services/valuation-advisory-india' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/valuation-advisory-india' },
   openGraph: {
     title: 'Business Valuation Firm in India | M&A & Fundraising',
     description: 'Work with a leading business valuation firm in India for accurate, defensible valuations across M&A, fundraising and strategic transactions.',
-    url: 'https://marcglocal.com/services/valuation-advisory-india',
+    url: 'https://www.marcglocal.com/services/valuation-advisory-india',
   },
 }
 

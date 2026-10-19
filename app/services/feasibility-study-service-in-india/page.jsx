@@ -3,20 +3,82 @@ import { FileCheck, MapPin, Building2, TrendingUp, Calculator, Target, Shield, B
 
 export const metadata = {
   title: 'Feasibility Study Consultant in India | Market & Financial',
-  description: 'Work with a trusted feasibility study consultant in India for market, technical and financial assessment before you invest. 360-degree research from MARC.',
-  alternates: { canonical: 'https://marcglocal.com/services/feasibility-study-service-in-india' },
+  description: "Assess your project before investing. MARC combines market research, location assessment and financial analysis for feasibility studies in India.",
+  alternates: { canonical: 'https://www.marcglocal.com/services/feasibility-study-service-in-india' },
   openGraph: {
     title: 'Feasibility Study Consultant in India | Market & Financial',
-    description: 'Work with a trusted feasibility study consultant in India for market, technical and financial assessment before you invest. 360-degree research from MARC.',
-    url: 'https://marcglocal.com/services/feasibility-study-service-in-india',
+    description: "Assess your project before investing. MARC combines market research, location assessment and financial analysis for feasibility studies in India.",
+    url: 'https://www.marcglocal.com/services/feasibility-study-service-in-india',
   },
 }
 
 const pageData = {
+  source: "Feasibility Study",
+  methodologySubtitle: "How we assess business feasibility",
+  decisionSections: [
+    {
+      "title": "Choose the study around your investment decision",
+      "body": "A new facility, a school and a retail location each need different evidence. Tell us what you plan to build, where you plan to operate and which decision the study must support. We will agree the research questions, geographic coverage and financial inputs before the work begins."
+    }
+  ],
+  scopeTable: {
+    "title": "What to agree before commissioning a study",
+    "rows": [
+      [
+        "Decision",
+        "New venture, location choice, product launch or expansion"
+      ],
+      [
+        "Market",
+        "Product or service, customer segment and geography"
+      ],
+      [
+        "Research",
+        "Secondary sources, interview groups and any fieldwork"
+      ],
+      [
+        "Financial inputs",
+        "Investment, operating costs, sales assumptions and scenarios"
+      ],
+      [
+        "Outputs",
+        "Analyses, recommendations and presentation format"
+      ],
+      [
+        "Timing",
+        "Milestones, client inputs and final review date"
+      ]
+    ]
+  },
+  scopeNotes: {
+    "title": "What to bring to the first discussion",
+    "body": "Share a short description of the project, the proposed location or markets, your target customers and the decision deadline. Include any existing sales information, investment estimates or business plan. We can then identify which assumptions need research."
+  },
+  relatedResources: [
+    {
+      "title": "Market research for your project",
+      "body": "Define the demand, customer and competitor questions your study needs to answer.",
+      "href": "/services/market-research-company-in-india",
+      "label": "Explore market research"
+    },
+    {
+      "title": "Financial analysis for your decision",
+      "body": "Connect market assumptions to the investment and operating model.",
+      "href": "/services/financial-and-project-report-consulting-services-in-india",
+      "label": "Explore financial modelling"
+    },
+    {
+      "title": "Start with an initial market estimate",
+      "body": "MARC Market Pulse can help you explore the size of an Indian market before discussing a research engagement. Review the sources and assumptions, then bring the estimate to MARC when you need further validation.",
+      "href": "https://pulse.marcglocal.com/",
+      "label": "Explore Market Pulse"
+    }
+  ],
+
   tagline: 'Feasibility Study for Business in India',
-  title: 'Taking The Right Step Towards',
-  titleHighlight: 'Your Business Future',
-  description: 'Assess risks and rewards with MARC\'s feasibility study for business. We help you understand the risks, rewards, and everything in between before taking a business decision. Our feasibility study services in India combine market insight with business location & feasibility advisory services to help you proceed with confidence and clarity.',
+  title: "Feasibility Study Services",
+  titleHighlight: "in India",
+  description: "Before you invest in a new business, location or expansion, test the demand and the financial assumptions behind it. MARC combines market research, location assessment and financial analysis to help you decide whether to proceed, revise the plan or investigate further.",
   
   // Custom images for Option 2
   heroImage: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
@@ -51,7 +113,7 @@ const pageData = {
     { num: '05', title: 'Stakeholder Interviews', desc: 'Interview distinguished individuals who are current or former stakeholders to understand key factors.' },
     { num: '06', title: 'Roadmap Development', desc: 'Provide comprehensive way forward to the client including roadmap on execution of the project.' },
   ],
-  methodologyDescription: 'The dynamic nature of the market provides various opportunities and potential risks. A business needs to gather data on current conditions and test future growth and market acceptance before it moves ahead with a new venture. As a trusted feasibility study company, MARC delivers data-backed evaluations that make every feasibility study for business practical, objective, and execution-ready.',
+  methodologyDescription: "We start with your proposed business model and the decision you need to make. We assess demand and competition, examine the location where relevant, and compare the opportunity with the investment and operating assumptions. Primary interviews and secondary research are selected to fit the agreed scope.",
 
   services: [
     {
@@ -120,6 +182,9 @@ const pageData = {
   ],
 
   faqs: [
+    {"q": "How much does a feasibility study cost?", "a": "The scope determines the fee. Geographic coverage, primary interviews, site assessment and the financial analysis required all affect the work involved. Share your project outline so MARC can define the scope and prepare a proposal."},
+    {"q": "How long does a feasibility study take?", "a": "Timing depends on the research questions, locations, access to respondents and availability of project data. Agree the milestones and delivery date in the proposal, including time to review assumptions with your team."},
+
     { q: 'What is a feasibility study for business?', a: 'A feasibility study for a business evaluates market demand, financial viability, technical requirements, and operational risks before launching or expanding a venture.' },
     { q: 'Why are feasibility study services important in India?', a: 'With diverse markets and regulatory complexity, feasibility study services in India help businesses minimize risk and align investments with real market potential.' },
     { q: 'What does a feasibility company typically analyze?', a: 'A feasibility company assesses market feasibility, financial returns, location suitability, regulatory factors, and execution challenges.' },
@@ -129,10 +194,10 @@ const pageData = {
     { q: 'Do you provide location-based feasibility studies?', a: 'Yes, MARC provides comprehensive location-based feasibility studies evaluating geographic viability, infrastructure, demographics, and cost factors to identify optimal business locations.' },
   ],
 
-  ctaTitle: 'Planning a Feasibility Study for Business in India?',
-  ctaDescription: 'Make informed decisions with MARC\'s expert-led Feasibility Study for Business, backed by market insight, financial analysis, and execution clarity.',
-  ctaLabel: 'Get a Free Scope Call',
-  midPageCtaText: 'Not sure if your idea is viable yet? Get a free scope call before you commit capital.',
+  ctaTitle: "Discuss the decision behind your project",
+  ctaDescription: "Tell us what you are considering and what you need to know before investing.",
+  ctaLabel: "Discuss Your Feasibility Study",
+  midPageCtaText: "Discuss the evidence you need before committing to your project.",
   showScorecardBanner: true,
   scorecardBannerContext: 'Not ready for a full study yet? Get an instant readiness score across market, regulatory, financial, and operational dimensions first — free, 4 minutes.',
   showChecklistCTA: true,

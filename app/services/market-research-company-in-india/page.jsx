@@ -3,21 +3,46 @@ import { Search, Target, TrendingUp, BarChart3, Globe, Building2, PieChart } fro
 
 export const metadata = {
   title: 'Market Research Firm in India | B2B & Consumer Insights',
-  description: 'MARC is a leading market research firm in India, decoding the country\'s complex regional consumer behaviour and demand drivers, trusted by global brands, SMEs, and investors.',
-  alternates: { canonical: 'https://marcglocal.com/services/market-research-company-in-india' },
+  description: "MARC provides market research in India for demand, customers, competitors and market entry. Discuss the research your business decision needs.",
+  alternates: { canonical: 'https://www.marcglocal.com/services/market-research-company-in-india' },
   openGraph: {
     title: 'Market Research Firm in India | B2B & Consumer Insights',
-    description: 'MARC is a leading market research firm in India, decoding the country\'s complex regional consumer behaviour and demand drivers, trusted by global brands, SMEs, and investors.',
-    url: 'https://marcglocal.com/services/market-research-company-in-india',
+    description: "MARC provides market research in India for demand, customers, competitors and market entry. Discuss the research your business decision needs.",
+    url: 'https://www.marcglocal.com/services/market-research-company-in-india',
   },
 }
 
 const pageData = {
+  decisionSections: [
+    {
+      "title": "Start with the question your business needs answered",
+      "body": "A useful research brief names the decision, the customer and the market boundary. You may need to assess a product launch, compare locations, understand a distribution channel or test a market-size estimate. We define the questions first, then choose the research method."
+    }
+  ],
+  scopeNotes: {
+    "title": "How the research supports your decision",
+    "body": "The proposal sets the research coverage, respondents, sources, deliverables and timetable. Primary research depends on the agreed scope and access to relevant participants."
+  },
+  relatedResources: [
+    {
+      "title": "When to commission a feasibility study",
+      "body": "Market research examines the opportunity and the people or businesses buying in that market. A feasibility study connects the opportunity to a particular project, location and financial assumptions.",
+      "href": "/services/feasibility-study-service-in-india",
+      "label": "Explore feasibility studies"
+    },
+    {
+      "title": "Need an initial market estimate?",
+      "body": "Start with MARC Market Pulse for an automated first pass on an Indian market. Use its references and assumptions to frame the questions you want a research team to investigate.",
+      "href": "https://pulse.marcglocal.com/",
+      "label": "Estimate your market with Pulse"
+    }
+  ],
+
   source: 'Market Research',
   tagline: 'Market Research',
-  title: 'Market Research',
+  title: "Market Research Services in India",
   // ✅ KEYWORD: "market research in India" | "a leading market research firm in India" | "market research services in India"
-  description: 'India is one of the world\'s fastest-growing economies, but also one of its most complex. Consumer behaviour, demand drivers, and regulations vary sharply across regions, making local market research in India critical for success. MARC is a leading market research firm in India, helping Indian and global businesses make confident decisions on market entry, expansion, and investment. Our market research services in India combine deep on-ground primary research with rigorous analysis to identify high-potential opportunities while reducing commercial, regulatory, and operational risk.',
+  description: "MARC helps businesses assess demand, understand customers and compare competitors before entering or expanding in an Indian market. We combine secondary research with interviews and fieldwork suited to the question, sector and geography.",
 
   // Custom images for Option 1
   heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
@@ -132,8 +157,8 @@ const pageData = {
   // ✅ KEYWORD: "Market Research Partner in India"
   ctaTitle: 'Ready to Make Confident Market Decisions?',
   ctaDescription: 'Choose MARC as your Market Research Partner in India. We\'re ready to help you navigate India\'s complex markets with decision-ready intelligence, clear go/no-go recommendations, and strategies built for long-term growth.',
-  ctaLabel: 'Request a Research Proposal in 24 Hours',
-  midPageCtaText: 'Need data before you decide? Request a research proposal in 24 hours.',
+  ctaLabel: "Discuss Your Research Requirement",
+  midPageCtaText: "Tell us the decision your research needs to support.",
   showScorecardBanner: true,
   scorecardBannerContext: 'Before commissioning custom research, see where you stand with a free instant readiness score across market, regulatory, financial, and operational dimensions.',
   socialProof: {

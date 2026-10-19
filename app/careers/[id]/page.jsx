@@ -1,7 +1,7 @@
 import { jobDetails } from '@/data/careersData'
 import JobDetailClient from './JobDetailClient'
 
-const BASE_URL = 'https://marcglocal.com'
+const BASE_URL = 'https://www.marcglocal.com'
 
 export function generateStaticParams() {
   return Object.keys(jobDetails).map((id) => ({ id }))

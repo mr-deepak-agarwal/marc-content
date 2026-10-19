@@ -68,8 +68,8 @@ export default function CityPageTemplate({
     },
     telephone: office?.phone,
     email: office?.email,
-    url: `https://marcglocal.com/locations/${city.toLowerCase()}`,
-    parentOrganization: { '@type': 'Organization', name: 'MARC Glocal', url: 'https://marcglocal.com' },
+    url: `https://www.marcglocal.com/locations/${city.toLowerCase()}`,
+    parentOrganization: { '@type': 'Organization', name: 'MARC Glocal', url: 'https://www.marcglocal.com' },
   }
 
   const faqSchema =

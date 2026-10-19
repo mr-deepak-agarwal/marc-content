@@ -4,12 +4,12 @@ export const metadata = {
   title: 'Market Research & Business Consulting Firm in Mumbai | MARC Glocal',
   description:
     'MARC Glocal is a business consulting firm in Mumbai offering market research, feasibility studies, due diligence, and valuation advisory for SMEs, PE/VC investors, and corporates.',
-  alternates: { canonical: 'https://marcglocal.com/locations/mumbai' },
+  alternates: { canonical: 'https://www.marcglocal.com/locations/mumbai' },
   openGraph: {
     title: 'Market Research & Business Consulting Firm in Mumbai | MARC Glocal',
     description:
       'Business consulting, market research, and M&A advisory for Mumbai-based SMEs, corporates, and investors — from a locally present, senior-led team.',
-    url: 'https://marcglocal.com/locations/mumbai',
+    url: 'https://www.marcglocal.com/locations/mumbai',
   },
 }
 

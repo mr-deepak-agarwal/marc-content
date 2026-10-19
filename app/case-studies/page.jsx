@@ -1,7 +1,7 @@
 import CaseStudiesClient from './CaseStudiesClient'
 import { caseStudies } from '@/data/caseStudies'
 
-const BASE_URL = 'https://marcglocal.com'
+const BASE_URL = 'https://www.marcglocal.com'
 
 export const metadata = {
   title: 'Case Studies | Feasibility, Market Research & Market Entry | MARC Glocal',

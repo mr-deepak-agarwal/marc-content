@@ -4,11 +4,11 @@ import { LayoutDashboard, BarChart3, TrendingUp, ShieldCheck, Database, Target }
 export const metadata = {
   title: 'MIS Consulting & Setup Services in India',
   description: 'Design and implement structured management information systems that turn raw data into reliable, decision-ready reporting.',
-  alternates: { canonical: 'https://marcglocal.com/services/management-information-systems-mis' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/management-information-systems-mis' },
   openGraph: {
     title: 'MIS Consulting & Setup Services in India',
     description: 'Design and implement structured management information systems that turn raw data into reliable, decision-ready reporting.',
-    url: 'https://marcglocal.com/services/management-information-systems-mis',
+    url: 'https://www.marcglocal.com/services/management-information-systems-mis',
   },
 }
 

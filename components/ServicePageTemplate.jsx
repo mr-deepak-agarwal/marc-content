@@ -44,6 +44,7 @@ export default function ServicePageTemplateOption2({
   
   // Value Propositions
   valueProps,
+  decisionSections = [],
   
   // Methodology
   methodology,
@@ -55,6 +56,9 @@ export default function ServicePageTemplateOption2({
   services,
   servicesTitle = "Key Services",
   serviceImages = [], // Array of images for each service (optional)
+  scopeTable,
+  scopeNotes,
+  relatedResources = [],
   
   // Case Studies
   caseStudies,
@@ -98,13 +102,13 @@ export default function ServicePageTemplateOption2({
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: title,
-    name: title,
+    serviceType: [title, titleHighlight].filter(Boolean).join(' '),
+    name: [title, titleHighlight].filter(Boolean).join(' '),
     description,
     provider: {
       '@type': 'Organization',
       name: 'MARC Glocal',
-      url: 'https://marcglocal.com',
+      url: 'https://www.marcglocal.com',
     },
     areaServed: 'IN',
   }
@@ -223,6 +227,18 @@ export default function ServicePageTemplateOption2({
       )}
 
       {/* ── Methodology ──────────────────────────────────────────────────── */}
+      {decisionSections.length > 0 && (
+        <section className="py-16 bg-white">
+          <div className="max-w-5xl mx-auto px-6 space-y-10">
+            {decisionSections.map((section) => (
+              <div key={section.title}>
+                <h2 className="text-2xl lg:text-3xl font-bold text-[#1D342F] mb-4">{section.title}</h2>
+                <p className="text-[#47635D] text-lg leading-relaxed">{section.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
       {methodology && (
         <section id="methodology" className="py-24 bg-[#F7FFF5]">
           <div className="max-w-7xl mx-auto px-6">
@@ -340,6 +356,50 @@ export default function ServicePageTemplateOption2({
       )}
 
       {/* ── Scorecard lead-magnet banner (Week 3 placement) ─────────────── */}
+      {(scopeTable || scopeNotes || relatedResources.length > 0) && (
+        <section className="py-16 bg-[#F7FFF5]">
+          <div className="max-w-5xl mx-auto px-6 space-y-10">
+            {scopeTable && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <caption className="text-left text-2xl lg:text-3xl font-bold text-[#1D342F] mb-6">{scopeTable.title}</caption>
+                  <thead>
+                    <tr className="border-b-2 border-[#C2DDB4] text-[#1D342F]">
+                      <th scope="col" className="py-4 pr-6">Item</th>
+                      <th scope="col" className="py-4">What the scope should specify</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {scopeTable.rows.map(([label, detail]) => (
+                      <tr key={label} className="border-b border-[#C2DDB4]">
+                        <th scope="row" className="py-4 pr-6 align-top text-[#1D342F]">{label}</th>
+                        <td className="py-4 align-top text-[#47635D]">{detail}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            {scopeNotes && (
+              <div>
+                <h2 className="text-2xl lg:text-3xl font-bold text-[#1D342F] mb-4">{scopeNotes.title}</h2>
+                <p className="text-[#47635D] text-lg leading-relaxed">{scopeNotes.body}</p>
+              </div>
+            )}
+            {relatedResources.length > 0 && (
+              <div className="grid md:grid-cols-2 gap-6">
+                {relatedResources.map((resource) => (
+                  <div key={resource.href} className="rounded-2xl border border-[#C2DDB4] bg-white p-6">
+                    <h3 className="text-xl font-bold text-[#1D342F] mb-3">{resource.title}</h3>
+                    <p className="text-[#47635D] leading-relaxed mb-5">{resource.body}</p>
+                    <Link href={resource.href} className="text-[#37682E] font-semibold underline underline-offset-4">{resource.label}</Link>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
       {showScorecardBanner && (
         <section className="py-16 bg-white">
           <div className="max-w-5xl mx-auto px-6">
@@ -530,14 +590,14 @@ export default function ServicePageTemplateOption2({
                 <div key={i} className="py-6">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
+                    aria-controls={`service-faq-${i}`}
                     className="w-full flex items-start justify-between text-left"
                   >
                     <span className="font-medium text-[#1D342F] pr-8">{faq.q}</span>
                     <ChevronDown className={`w-5 h-5 text-[#4E9141] flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
                   </button>
-                  {openFaq === i && (
-                    <p className="mt-4 text-[#47635D] pr-12">{faq.a}</p>
-                  )}
+                  <p id={`service-faq-${i}`} hidden={openFaq !== i} className="mt-4 text-[#47635D] pr-12">{faq.a}</p>
                 </div>
               ))}
             </div>

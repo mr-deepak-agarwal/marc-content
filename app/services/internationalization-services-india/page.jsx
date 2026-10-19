@@ -2,21 +2,37 @@ import ServicePageTemplate from '@/components/ServicePageTemplate'
 import { Globe, Plane, Building2, FileCheck, MapPin, Users, TrendingUp, Shield } from 'lucide-react'
 
 export const metadata = {
-  title: 'India Market Entry Consulting | Internationalization Services',
-  description: 'End-to-end India market entry consulting for global companies, and internationalization support for Indian companies expanding abroad.',
-  alternates: { canonical: 'https://marcglocal.com/services/internationalization-services-india' },
+  title: 'India Market Entry & Global Expansion Consulting',
+  description: "Assess India market entry or overseas expansion with MARC. Explore demand, entry options, partners and operating requirements for your target market.",
+  alternates: { canonical: 'https://www.marcglocal.com/services/internationalization-services-india' },
   openGraph: {
-    title: 'India Market Entry Consulting | Internationalization Services',
-    description: 'End-to-end India market entry consulting for global companies, and internationalization support for Indian companies expanding abroad.',
-    url: 'https://marcglocal.com/services/internationalization-services-india',
+    title: 'India Market Entry & Global Expansion Consulting',
+    description: "Assess India market entry or overseas expansion with MARC. Explore demand, entry options, partners and operating requirements for your target market.",
+    url: 'https://www.marcglocal.com/services/internationalization-services-india',
   },
 }
 
 const pageData = {
+  source: "Internationalization",
+  decisionSections: [
+    {
+      "title": "Entering India",
+      "body": "Assess the customers, competition and routes to market for your product or service. Define the geographic scope, evaluate suitable entry options and identify the partner and operational questions that need further work."
+    },
+    {
+      "title": "Expanding from India",
+      "body": "Compare potential markets and entry approaches against your business model. Examine demand, distribution, partner options and the resources required to support expansion."
+    }
+  ],
+  scopeNotes: {
+    "title": "Bring a focused expansion brief",
+    "body": "Share your product or service, current markets, target countries and intended route to market. Include the decision deadline and any research already completed. The agreed scope should state which markets will be assessed and where specialist legal, tax or technical advice is required."
+  },
+
   tagline: 'Internationalization',
-  title: 'Expand Your Business',
-  titleHighlight: 'Globally',
-  description: 'End-to-end support for Indian companies expanding internationally and global companies entering India, from market assessment through operational setup.',
+  title: "India Market Entry and",
+  titleHighlight: "Global Expansion Consulting",
+  description: "MARC supports global companies assessing entry into India and Indian businesses evaluating overseas expansion. We help you examine demand, compare entry options and identify the partners and operating requirements for your target market.",
   
   stats: [
     { value: '5', label: 'Continents served' },

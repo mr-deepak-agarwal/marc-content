@@ -4,11 +4,11 @@ import { GitBranch, Search, FileCheck, AlertCircle, BarChart3, Award, Target, Wo
 export const metadata = {
   title: 'Process Audit Services in India | Workflow Review',
   description: 'Identify inefficiencies, undocumented workflows and control gaps. MARC\'s process audits reveal how work actually happens.',
-  alternates: { canonical: 'https://marcglocal.com/services/process-audit' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/process-audit' },
   openGraph: {
     title: 'Process Audit Services in India | Workflow Review',
     description: 'Identify inefficiencies, undocumented workflows and control gaps. MARC\'s process audits reveal how work actually happens.',
-    url: 'https://marcglocal.com/services/process-audit',
+    url: 'https://www.marcglocal.com/services/process-audit',
   },
 }
 

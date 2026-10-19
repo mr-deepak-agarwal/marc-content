@@ -4,11 +4,11 @@ import { ClipboardList, GitMerge, Users, ShieldCheck, BarChart3, Layers } from '
 export const metadata = {
   title: 'SOP Consulting Services in India | Process Docs',
   description: 'Replace informal, undocumented workflows with clear, structured SOPs, reducing delays, inconsistency and key-person dependence.',
-  alternates: { canonical: 'https://marcglocal.com/services/standard-operating-procedure-sop' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/standard-operating-procedure-sop' },
   openGraph: {
     title: 'SOP Consulting Services in India | Process Docs',
     description: 'Replace informal, undocumented workflows with clear, structured SOPs, reducing delays, inconsistency and key-person dependence.',
-    url: 'https://marcglocal.com/services/standard-operating-procedure-sop',
+    url: 'https://www.marcglocal.com/services/standard-operating-procedure-sop',
   },
 }
 

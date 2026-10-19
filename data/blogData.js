@@ -5211,7 +5211,7 @@ At MARC, we bring over a decade of experience in Mergers and Acquisitions Adviso
 		id: 32,
 		slug: '5-stages-of-internationalization-of-business-from-domestic-to-global-operations',
 		title: '5 stages of internationalization of business: From Domestic to Global Operations',
-		excerpt: '[vc_row el_class=”style”][vc_column][vc_column_text] Expanding a company into international markets is not something that can be done overnight. There is so much thought that goes into it and most businesses struggle to',
+		excerpt: "Understand five stages of business internationalisation, from domestic operations to a transnational company, and what changes at each stage.",
 		category: 'strategy',
 		categoryLabel: 'Strategy',
 		author: 'MARC Research Team',

@@ -4,11 +4,11 @@ import { BarChart3, TrendingUp, Target, PieChart, Calculator, ShieldCheck } from
 export const metadata = {
   title: 'Project Report Consulting Services in India | Financial Modelling',
   description: 'Bank-ready project reports and financial models built on structured, assumption-driven projections for fundraising, expansion and financing.',
-  alternates: { canonical: 'https://marcglocal.com/services/financial-and-project-report-consulting-services-in-india' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/financial-and-project-report-consulting-services-in-india' },
   openGraph: {
     title: 'Project Report Consulting Services in India | Financial Modelling',
     description: 'Bank-ready project reports and financial models built on structured, assumption-driven projections for fundraising, expansion and financing.',
-    url: 'https://marcglocal.com/services/financial-and-project-report-consulting-services-in-india',
+    url: 'https://www.marcglocal.com/services/financial-and-project-report-consulting-services-in-india',
   },
 }
 

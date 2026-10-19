@@ -4,11 +4,11 @@ import { Compass, Target, TrendingUp, Lightbulb, BarChart3, Rocket, Award, GitMe
 export const metadata = {
   title: 'Strategy Consulting Companies in India | Growth Advisory',
   description: 'One of India\'s strategy consulting companies helping organizations define their growth path, optimize operations and build lasting advantage.',
-  alternates: { canonical: 'https://marcglocal.com/services/strategy-consulting-companies-in-india' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/strategy-consulting-companies-in-india' },
   openGraph: {
     title: 'Strategy Consulting Companies in India | Growth Advisory',
     description: 'One of India\'s strategy consulting companies helping organizations define their growth path, optimize operations and build lasting advantage.',
-    url: 'https://marcglocal.com/services/strategy-consulting-companies-in-india',
+    url: 'https://www.marcglocal.com/services/strategy-consulting-companies-in-india',
   },
 }
 

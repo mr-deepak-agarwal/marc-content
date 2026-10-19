@@ -17,7 +17,7 @@ const poppins = Poppins({
 })
 
 export const metadata = {
-  metadataBase: new URL('https://marcglocal.com'),
+  metadataBase: new URL('https://www.marcglocal.com'),
   title: {
     default: 'MARC Glocal - Business Consulting & Strategy',
     template: '%s | MARC Glocal'
@@ -33,7 +33,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://marcglocal.com',
+    url: 'https://www.marcglocal.com',
     title: 'MARC Glocal - Business Consulting',
     description: 'Leading strategy consultancy helping organizations achieve competitive advantage.',
     siteName: 'MARC Glocal',
@@ -53,8 +53,8 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'MARC Glocal',
-  url: 'https://marcglocal.com',
-  logo: 'https://marcglocal.com/marc_logo.png',
+  url: 'https://www.marcglocal.com',
+  logo: 'https://www.marcglocal.com/marc_logo.png',
   description: 'Leading strategy consultancy helping organizations achieve competitive advantage.',
   sameAs: [],
 }
@@ -63,10 +63,10 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'MARC Glocal',
-  url: 'https://marcglocal.com',
+  url: 'https://www.marcglocal.com',
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://marcglocal.com/blog?q={search_term_string}',
+    target: 'https://www.marcglocal.com/blog?q={search_term_string}',
     'query-input': 'required name=search_term_string',
   },
 }

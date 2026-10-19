@@ -4,11 +4,11 @@ import { FileText, TrendingUp, Target, BarChart3, Briefcase, Layers, ShieldCheck
 export const metadata = {
   title: 'Information Memorandum & Pitch Deck Services India',
   description: 'Investor-ready Information Memorandums and Pitch Decks that present your business clearly for fundraising and M&A transactions.',
-  alternates: { canonical: 'https://marcglocal.com/services/information-memorandum' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/information-memorandum' },
   openGraph: {
     title: 'Information Memorandum & Pitch Deck Services India',
     description: 'Investor-ready Information Memorandums and Pitch Decks that present your business clearly for fundraising and M&A transactions.',
-    url: 'https://marcglocal.com/services/information-memorandum',
+    url: 'https://www.marcglocal.com/services/information-memorandum',
   },
 }
 

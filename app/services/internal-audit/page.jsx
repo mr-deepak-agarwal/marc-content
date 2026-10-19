@@ -4,11 +4,11 @@ import { Shield, Search, FileCheck, AlertTriangle, BarChart3, Award, CheckCircle
 export const metadata = {
   title: 'Internal Audit Services in India | Governance & Controls',
   description: 'Independent, risk-based internal audits that strengthen governance, close control gaps and improve compliance discipline for your business.',
-  alternates: { canonical: 'https://marcglocal.com/services/internal-audit' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/internal-audit' },
   openGraph: {
     title: 'Internal Audit Services in India | Governance & Controls',
     description: 'Independent, risk-based internal audits that strengthen governance, close control gaps and improve compliance discipline for your business.',
-    url: 'https://marcglocal.com/services/internal-audit',
+    url: 'https://www.marcglocal.com/services/internal-audit',
   },
 }
 

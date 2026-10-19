@@ -4,11 +4,11 @@ import { TrendingUp, FileCheck, Users, Award, Building2, Scale, Target, BarChart
 export const metadata = {
   title: 'SME Listing Advisory Services in India',
   description: 'Navigate the SME listing journey with confidence, regulatory preparedness, financial discipline and end-to-end support from MARC.',
-  alternates: { canonical: 'https://marcglocal.com/services/sme-listing' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/sme-listing' },
   openGraph: {
     title: 'SME Listing Advisory Services in India',
     description: 'Navigate the SME listing journey with confidence, regulatory preparedness, financial discipline and end-to-end support from MARC.',
-    url: 'https://marcglocal.com/services/sme-listing',
+    url: 'https://www.marcglocal.com/services/sme-listing',
   },
 }
 

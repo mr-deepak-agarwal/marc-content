@@ -1,7 +1,7 @@
 import { blogs } from '@/data/blogData'
 import BlogDetailClient from './BlogDetailClient'
 
-const BASE_URL = 'https://marcglocal.com'
+const BASE_URL = 'https://www.marcglocal.com'
 
 export function generateStaticParams() {
   return blogs.map((post) => ({ slug: post.slug }))

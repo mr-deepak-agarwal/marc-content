@@ -4,11 +4,11 @@ import { BarChart3, TrendingUp, Target, DollarSign, PieChart, ShieldCheck } from
 export const metadata = {
   title: 'Profit & Loss Analysis Services in India',
   description: 'Understand where you make money and where you lose it. MARC\'s P&L analysis sharpens decisions on pricing, cost and growth investment.',
-  alternates: { canonical: 'https://marcglocal.com/services/profit-and-loss-analysis-services-in-india' },
+  alternates: { canonical: 'https://www.marcglocal.com/services/profit-and-loss-analysis-services-in-india' },
   openGraph: {
     title: 'Profit & Loss Analysis Services in India',
     description: 'Understand where you make money and where you lose it. MARC\'s P&L analysis sharpens decisions on pricing, cost and growth investment.',
-    url: 'https://marcglocal.com/services/profit-and-loss-analysis-services-in-india',
+    url: 'https://www.marcglocal.com/services/profit-and-loss-analysis-services-in-india',
   },
 }
 

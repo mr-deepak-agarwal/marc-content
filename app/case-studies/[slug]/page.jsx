@@ -14,7 +14,7 @@ import {
   ArrowRight, ChevronRight, CheckCircle2, Target, Compass, Lightbulb, Quote, Building2,
 } from 'lucide-react'
 
-const BASE_URL = 'https://marcglocal.com'
+const BASE_URL = 'https://www.marcglocal.com'
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }))

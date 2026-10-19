@@ -14,6 +14,7 @@ import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 
 export const metadata = {
+  alternates: { canonical: 'https://www.marcglocal.com/' },
   title: 'MARC - Growth Advisory for Indian & Global Businesses | Business Consulting India',
   description: 'MARC is a growth advisory firm partnering with founders and investors to build scalable businesses. Specializing in India market entry, international expansion, M&A, and growth strategy consulting.',
   keywords: ['growth advisory India', 'business consulting India', 'India market entry', 'international expansion', 'M&A advisory', 'growth strategy', 'market intelligence', 'MARC Glocal', 'compounding growth'],
