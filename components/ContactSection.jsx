@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Send, MapPin, Phone, Mail, ArrowRight, X, User, AtSign, Smartphone, MessageSquare, CheckCircle2, Loader2 } from 'lucide-react'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { companyInfo } from '@/data/mock'
+import { trackConversion } from '@/lib/analytics'
 
 
 // ── Popup Form Modal ─────────────────────────────────────────────────────────
@@ -36,13 +37,20 @@ const ContactPopup = ({ isOpen, onClose }) => {
           message: formData.message,
           source_page: 'Contact Popup',
           website: formData.website,   // honeypot — bots fill this, humans don't
-          formLoadedAt,                // time check — bots submit instantly
+          formLoadedAt,                // legacy time check
+          formElapsedMs: Date.now() - formLoadedAt, // measured on the visitor's own clock
           turnstileToken,              // Cloudflare Turnstile verification token
         }),
       })
 
       const data = await res.json()
       if (!res.ok || !data.success) throw new Error(data.error || 'Failed')
+
+      trackConversion('form_submit', {
+        email: formData.email,
+        phone: formData.mobile,
+        source: 'Contact Popup',
+      })
 
       setSubmitted(true)
       setFormData({ name: '', email: '', mobile: '', message: '', website: '' })
@@ -212,6 +220,11 @@ const ContactPopup = ({ isOpen, onClose }) => {
                     <><Send className="w-4 h-4" /> Send Message</>
                   )}
                 </button>
+
+                <p className="text-xs text-[#47635D] text-center">
+                  By submitting you agree to our{' '}
+                  <a href="/privacy-policy" className="underline hover:text-[#4E9141]">Privacy Policy</a>.
+                </p>
               </form>
             </>
           )}

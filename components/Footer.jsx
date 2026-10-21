@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import CookieSettingsLink from '@/components/CookieSettingsLink'
 import {
   Facebook,
   Instagram,
@@ -161,12 +162,12 @@ const Footer = () => {
           <p className="text-[#47635D] text-sm text-center sm:text-left">
             © {new Date().getFullYear()} Mangal Analytics and Research Consulting (MARC), All Rights Reserved.
           </p>
-          <Link 
-            href="/privacy-policy" 
-            className="text-[#47635D] hover:text-[#4E9141] text-sm transition-colors"
-          >
-            Privacy Policy
-          </Link>
+          <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link href="/privacy-policy" className="text-[#47635D] hover:text-[#4E9141] text-sm transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-[#47635D] hover:text-[#4E9141] text-sm transition-colors">Terms of Use</Link>
+            <Link href="/cookie-policy" className="text-[#47635D] hover:text-[#4E9141] text-sm transition-colors">Cookie Policy</Link>
+            <CookieSettingsLink className="text-[#47635D] hover:text-[#4E9141] text-sm transition-colors" />
+          </nav>
         </div>
       </div>
     </footer>

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Turnstile } from '@marsidev/react-turnstile'
+import { trackConversion } from '@/lib/analytics'
 
 import { 
   MapPin, Phone, Mail, Clock, Send, ArrowRight, Globe, ArrowUpRight,
@@ -192,12 +193,19 @@ export default function ContactPage() {
           source_page: 'Contact Us Page',
           website: formData.website,
           formLoadedAt,
+          formElapsedMs: Date.now() - formLoadedAt, // measured on the visitor's own clock
           turnstileToken,              // Cloudflare Turnstile verification token
         }),
       })
 
       const data = await res.json()
       if (!res.ok || !data.success) throw new Error(data.error || 'Failed')
+
+      trackConversion('form_submit', {
+        email: formData.email,
+        phone: formData.phone,
+        source: 'Contact Us Page',
+      })
 
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '', website: '' })
       router.push('/thank-you')
@@ -439,6 +447,11 @@ export default function ContactPage() {
                     <>Send Message <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>
                   )}
                 </button>
+
+                <p className="text-xs text-[#47635D] text-center">
+                  By submitting you agree to our{' '}
+                  <a href="/privacy-policy" className="underline hover:text-[#4E9141]">Privacy Policy</a>.
+                </p>
               </form>
             </div>
 

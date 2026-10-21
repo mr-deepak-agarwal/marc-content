@@ -396,6 +396,43 @@ const ContactsTableView = ({ onLogout, title, icon: Icon, emptyLabel, sourceFilt
     closed: rows.filter((s) => s.status === 'closed').length,
   }
 
+  // ── Google Ads offline conversion export ──────────────────────────────────
+  // Real enquiries that came from a Google Ads click carry a gclid. Download
+  // them as a CSV and upload it in Google Ads > Goals > Conversions > Uploads,
+  // so Ads counts real leads even when the browser tag was blocked/unconsented.
+  // The "Conversion Name" must match a conversion action created in Google Ads
+  // (type: Import > Other data sources or CRM > Track conversions from clicks).
+  const ADS_CONVERSION_NAME = 'Enquiry'
+  const isInternalRow = (s) => {
+    const e = (s.email || '').toLowerCase()
+    const n = (s.name || '').toLowerCase()
+    return e.endsWith('@marcglocal.com') || /(^|[^a-z])test([^a-z]|$)/.test(e) || /(^|[^a-z])test([^a-z]|$)/.test(n)
+  }
+  const toIst = (iso) => {
+    const d = new Date(new Date(iso).getTime() + 5.5 * 3600 * 1000)
+    return d.toISOString().slice(0, 19).replace('T', ' ') + '+05:30'
+  }
+  const exportForGoogleAds = () => {
+    const eligible = rows.filter((s) => s.gclid && !isInternalRow(s) && s.status !== 'spam')
+    if (eligible.length === 0) {
+      alert('No enquiries with a Google Ads click ID (gclid) found.')
+      return
+    }
+    const esc = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`
+    const lines = [
+      'Parameters:TimeZone=Asia/Kolkata',
+      ['Google Click ID', 'Conversion Name', 'Conversion Time', 'Conversion Value', 'Conversion Currency'].join(','),
+      ...eligible.map((s) => [esc(s.gclid), esc(ADS_CONVERSION_NAME), esc(toIst(s.created_at)), '', 'INR'].join(',')),
+    ]
+    const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `google-ads-conversions-${new Date().toISOString().slice(0, 10)}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   return (
     <div className="min-h-screen">
       <ContactModal entry={selected} onClose={() => setSelected(null)} onStatusChange={updateStatus} />
@@ -431,6 +468,10 @@ const ContactsTableView = ({ onLogout, title, icon: Icon, emptyLabel, sourceFilt
                 {f}
               </button>
             ))}
+            <button onClick={exportForGoogleAds} title="Download enquiries that came from Google Ads clicks, for upload to Google Ads"
+              className="px-4 py-2.5 rounded-xl text-xs font-semibold border bg-white text-[#47635D] border-[#C2DDB4]/40 hover:border-[#4E9141] transition-all">
+              Export for Google Ads
+            </button>
           </div>
         </div>
 

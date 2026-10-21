@@ -28,11 +28,16 @@ const TURNSTILE_REQUIRED_SOURCES = new Map([
 // e.g. "marcglocal.com,www.marcglocal.com". Falls back to marcglocal.com so
 // this still works before the env var is set; add www. or any other verified
 // domain from the Turnstile widget's hostname list if you use one.
+// Both the bare domain and its www. twin are always accepted: the site is served
+// on both, and a token solved on www.marcglocal.com reports hostname
+// "www.marcglocal.com". Accepting only the bare domain made EVERY contact-page
+// submission from www fail verification and get silently dropped.
 const EXPECTED_HOSTNAMES = new Set(
-  (process.env.TURNSTILE_HOSTNAMES || 'marcglocal.com')
+  (process.env.TURNSTILE_HOSTNAMES || 'marcglocal.com,www.marcglocal.com')
     .split(',')
-    .map((h) => h.trim())
+    .map((h) => h.trim().toLowerCase())
     .filter(Boolean)
+    .flatMap((h) => (h.startsWith('www.') ? [h, h.slice(4)] : [h, `www.${h}`]))
 )
 
 // ── Persistent rate limiting (Supabase-backed) ──────────────────────────────
@@ -81,8 +86,13 @@ async function isRateLimited(ip) {
 // it asks Cloudflare directly whether the token is real, and — beyond just
 // `success` — that it was solved for *this* surface (`action`) on *this*
 // domain (`hostname`), so a token can't be solved once and replayed elsewhere.
+// Returns { ok, detail }. `detail` is stored in the spam log when a check fails,
+// so the real reason (Cloudflare error code, wrong hostname, wrong action) is
+// visible instead of a bare "turnstile".
 async function verifyTurnstile(token, ip, expectedAction) {
-  if (typeof token !== 'string' || token.length === 0 || token.length > 2048) return false
+  if (typeof token !== 'string' || token.length === 0 || token.length > 2048) {
+    return { ok: false, detail: { why: 'missing_or_malformed_token' } }
+  }
 
   let result
   try {
@@ -102,14 +112,35 @@ async function verifyTurnstile(token, ip, expectedAction) {
     console.error('Turnstile verification request failed:', err)
     // Fail closed here: if Cloudflare can't be reached, treat as unverified
     // rather than letting every submission through until it's back up.
-    return false
+    return { ok: false, detail: { why: 'siteverify_unreachable', error: String(err) } }
   }
 
-  return (
+  const errorCodes = Array.isArray(result['error-codes']) ? result['error-codes'] : []
+
+  // Our own misconfiguration (secret missing/wrong in the server env) is not the
+  // visitor's fault. Don't throw real enquiries away over it: let it through and
+  // shout in the logs so it gets fixed.
+  if (errorCodes.includes('missing-input-secret') || errorCodes.includes('invalid-input-secret')) {
+    console.error('TURNSTILE_SECRET_KEY is missing or wrong — verification is NOT working:', errorCodes)
+    return { ok: true, detail: { why: 'secret_misconfigured', errorCodes } }
+  }
+
+  const hostname = String(result.hostname || '').toLowerCase()
+  const ok =
     result.success === true &&
     result.action === expectedAction &&
-    EXPECTED_HOSTNAMES.has(result.hostname)
-  )
+    EXPECTED_HOSTNAMES.has(hostname)
+
+  return {
+    ok,
+    detail: {
+      success: result.success,
+      errorCodes,
+      action: result.action ?? null,
+      expectedAction,
+      hostname: result.hostname ?? null,
+    },
+  }
 }
 
 // ── Spam/blocked-submission log ─────────────────────────────────────────────
@@ -117,8 +148,10 @@ async function verifyTurnstile(token, ip, expectedAction) {
 // reads every row in that table with no status filter, so a spam row there
 // would show up in the real leads list. Best-effort: a logging failure should
 // never be the reason a legitimate request fails.
-async function logBlocked(reason, body, ip) {
+async function logBlocked(reason, body, ip, detail) {
   try {
+    // Never store the Turnstile token itself; keep why the check failed.
+    const { turnstileToken: _omit, ...safeBody } = body || {}
     await supabase.from('contact_spam_log').insert([{
       reason,
       ip,
@@ -127,10 +160,58 @@ async function logBlocked(reason, body, ip) {
       email: body?.email || null,
       mobile: body?.mobile || null,
       message: body?.message || null,
-      raw: body,
+      raw: detail ? { ...safeBody, _verify: detail } : safeBody,
     }])
   } catch (err) {
     console.error('Failed to log blocked submission:', err)
+  }
+}
+
+// ── Human-looking blocked submissions get an e-mail, so nothing real is lost ──
+// A blocked submission is answered with "success" (so bots learn nothing), which
+// means a real person caught by a false positive would vanish without a trace.
+// If what was blocked still reads like a genuine enquiry, tell the team so they
+// can follow up. Gibberish bot runs fail this test and stay silent.
+function isGibberishName(name) {
+  const n = String(name || '').trim()
+  if (/\s/.test(n) || n.length < 10) return false
+  return (n.match(/[a-z][A-Z]/g) || []).length >= 3
+}
+
+function looksHuman(body) {
+  const msg = String(body?.message || '').trim()
+  return (
+    isValidEmail(String(body?.email || '')) &&
+    !isGibberishName(body?.name) &&
+    msg.length >= 15 &&
+    !/^\d+$/.test(msg) &&
+    (msg.match(/\s+/g) || []).length >= 2
+  )
+}
+
+async function notifyBlockedForReview(reason, body, detail) {
+  try {
+    if (!looksHuman(body)) return
+    await resend.emails.send({
+      from: 'MARC Glocal <contact@marcglocal.com>',
+      to: NOTIFY_EMAILS,
+      subject: `⚠️ Blocked enquiry may be genuine – ${cleanSubject(body?.name)}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e0e0e0; border-radius: 8px;">
+          <h2 style="color: #8A5A06; margin-top: 0;">Blocked by spam filter (${esc(reason)}), but it looks like a real enquiry</h2>
+          <p><b>Name:</b> ${esc(body?.name)}<br/>
+             <b>Email:</b> ${esc(body?.email)}<br/>
+             <b>Mobile:</b> ${esc(body?.mobile)}<br/>
+             <b>Company:</b> ${esc(body?.company) || '—'}<br/>
+             <b>Service:</b> ${esc(body?.service) || '—'}<br/>
+             <b>Source:</b> ${esc(body?.source_page)}</p>
+          <p style="white-space: pre-line;"><b>Message:</b><br/>${esc(body?.message)}</p>
+          <p style="font-size:12px;color:#777;">Filter detail: ${esc(JSON.stringify(detail || {}))}. Saved in contact_spam_log.</p>
+        </div>`,
+      replyTo: body.email,
+    })
+  } catch (err) {
+    console.error('Failed to send blocked-review notification:', err)
   }
 }
 
@@ -141,7 +222,8 @@ export async function POST(request) {
       name, email, mobile, message, company, service, source_page,
       // Anti-spam fields
       website,       // honeypot — must be empty
-      formLoadedAt,  // timestamp when form loaded
+      formLoadedAt,  // timestamp when form loaded (legacy; clock-dependent)
+      formElapsedMs, // ms the visitor spent on the form, measured on THEIR clock
       turnstileToken, // Cloudflare Turnstile token (required for sources in TURNSTILE_REQUIRED_SOURCES)
       // Attribution (see lib/attribution.js) — null when absent, that's fine
       utm_source, utm_medium, utm_campaign, utm_term, utm_content, gclid, fbclid,
@@ -157,10 +239,18 @@ export async function POST(request) {
     }
 
     // ── 2. Time check (bots submit instantly; missing = direct API call) ────────
-    const elapsed = formLoadedAt ? Date.now() - Number(formLoadedAt) : 0
-    if (elapsed < 3000) {
-      // Under 3 s or no timestamp — almost certainly a bot or raw API call
+    // Use the duration measured in the visitor's own browser (formElapsedMs).
+    // The old check compared the visitor's clock with the server's clock, so a
+    // phone whose clock ran ~20 s fast looked like an instant bot and real
+    // enquiries were silently dropped. The chatbot and pop-up have no real
+    // "form open" moment, so they are exempt (their timestamp was a fixed fake).
+    const TIMING_EXEMPT = new Set(['Chatbot Widget', 'Lead Capture Popup'])
+    const fillMs = formElapsedMs === undefined || formElapsedMs === null ? null : Number(formElapsedMs)
+    const noTimingSignal = fillMs === null && !formLoadedAt // direct API call
+    const tooFast = fillMs !== null && Number.isFinite(fillMs) && fillMs >= 0 && fillMs < 2000
+    if (!TIMING_EXEMPT.has(source_page) && (noTimingSignal || tooFast)) {
       await logBlocked('timing', body, ip)
+      await notifyBlockedForReview('timing', body)
       return Response.json({ success: true })
     }
 
@@ -177,9 +267,10 @@ export async function POST(request) {
     //      render real pages — honeypot/timing only catch naive bots) ─────────
     if (TURNSTILE_REQUIRED_SOURCES.has(source_page)) {
       const expectedAction = TURNSTILE_REQUIRED_SOURCES.get(source_page)
-      const humanVerified = await verifyTurnstile(turnstileToken, ip, expectedAction)
-      if (!humanVerified) {
-        await logBlocked('turnstile', body, ip)
+      const verdict = await verifyTurnstile(turnstileToken, ip, expectedAction)
+      if (!verdict.ok) {
+        await logBlocked('turnstile', body, ip, verdict.detail)
+        await notifyBlockedForReview('turnstile', body, verdict.detail)
         return Response.json({ success: true }) // silent reject, same as the other bot checks
       }
     }
@@ -195,7 +286,17 @@ export async function POST(request) {
     // Reject obviously fake names: require at least two space-separated words,
     // so a single unbroken gibberish string (e.g. "dshStTfLISCMNGcwvGK") fails
     // where the old charset-only check let it through.
-    const looksLikeName = /^[\p{L}.'-]+(\s+[\p{L}.'-]+)+$/u.test(name.trim())
+    // Real names can be one word ("Karan", "Zaid") or contain punctuation, so the
+    // old "at least two words, letters only" rule rejected genuine people. Reject
+    // only what is clearly not a name: no letters, links/emails, too long, or the
+    // unbroken mixed-case gibberish the bot run used.
+    const trimmedName = String(name).trim()
+    const looksLikeName =
+      trimmedName.length >= 2 &&
+      trimmedName.length <= 80 &&
+      /\p{L}/u.test(trimmedName) &&
+      !/https?:|www\.|@/i.test(trimmedName) &&
+      !isGibberishName(trimmedName)
     const looksLikeEmail = isValidEmail(email)
     // Reject a message that's just digits, or too short to be a real enquiry —
     // catches the "message: 4673663851" pattern from the bot run.
@@ -207,6 +308,7 @@ export async function POST(request) {
         body,
         ip
       )
+      await notifyBlockedForReview('pattern', body)
       return Response.json({ success: true }) // silent reject
     }
 

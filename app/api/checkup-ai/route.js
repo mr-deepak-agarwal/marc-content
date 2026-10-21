@@ -5,8 +5,7 @@ import { getClientIp } from '@/lib/security'
 // The Gemini key lives in GEMINI_API_KEY (server env only — NOT NEXT_PUBLIC_).
 // Model and generation settings are fixed here, so callers can only send the prompt.
 
-// Override via GEMINI_MODEL env var so future model retirements don't need a code change.
-const MODEL = process.env.GEMINI_MODEL || 'gemini-3.5-flash'
+const MODEL = 'gemini-2.5-flash'
 const MAX_PROMPT_CHARS = 20000
 
 export async function POST(request) {
@@ -40,8 +39,8 @@ export async function POST(request) {
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
             temperature: 0.4,
-            maxOutputTokens: 4000,
-            thinkingConfig: { thinkingLevel: 'minimal' },
+            maxOutputTokens: 3000,
+            thinkingConfig: { thinkingBudget: 0 },
           },
         }),
       }

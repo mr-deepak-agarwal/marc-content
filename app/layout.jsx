@@ -56,7 +56,29 @@ const organizationSchema = {
   url: 'https://marcglocal.com',
   logo: 'https://marcglocal.com/marc_logo.png',
   description: 'Leading strategy consultancy helping organizations achieve competitive advantage.',
-  sameAs: [],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Office No 202, Second Floor, CMM Building, Rua De Ourem',
+    addressLocality: 'Panaji',
+    addressRegion: 'Goa',
+    postalCode: '403001',
+    addressCountry: 'IN',
+  },
+  contactPoint: [{
+    '@type': 'ContactPoint',
+    telephone: '+91-93596-28675',
+    email: 'contact@marcglocal.com',
+    contactType: 'customer service',
+    areaServed: ['IN', 'AU', 'NZ', 'AE', 'GB', 'US'],
+    availableLanguage: ['en'],
+  }],
+  sameAs: [
+    'https://twitter.com/Marcglocal',
+    'https://www.facebook.com/MARCGlocal/',
+    'https://www.instagram.com/marc_glocal/',
+    'https://www.linkedin.com/company/marcglocal/',
+    'https://www.youtube.com/channel/UCMg4JaqL7zZ3pLfpfkhRnVQ',
+  ],
 }
 
 const websiteSchema = {
@@ -85,8 +107,20 @@ export default function RootLayout({ children }) {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
-      {/* Google Consent Mode v2 — must be set BEFORE gtag.js loads, so it starts
-          every visit fully denied until CookieConsentBanner tells it otherwise. */}
+      {/* Google Consent Mode v2 — must be set BEFORE gtag.js loads.
+
+          Defaults are set by region:
+          - EEA, UK and Switzerland (strict opt-in laws): everything starts
+            DENIED until the visitor clicks "Accept All" in CookieConsentBanner.
+          - Everywhere else (India, Australia, NZ, US ...): analytics and ad
+            measurement start GRANTED, so visitors who simply ignore the banner
+            are still counted. Ad personalization stays denied everywhere until
+            the visitor accepts. A visitor who clicks "Reject Non-Essential"
+            anywhere is still switched off (see lib/consent.js).
+
+          Google applies the most specific matching region, so the regional
+          "denied" block overrides the global "granted" block below it.
+          Have the client's legal advisor confirm this default for their markets. */}
       <Script id="consent-default" strategy="beforeInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -97,7 +131,14 @@ export default function RootLayout({ children }) {
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied',
+            'region': ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],
             'wait_for_update': 500
+          });
+          gtag('consent', 'default', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'denied'
           });
         `}
       </Script>

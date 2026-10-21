@@ -68,6 +68,7 @@ function CTAPopup({ isOpen, onClose, source }) {
           message: formData.message,
           source_page: source,
           formLoadedAt: openedAt.current,
+          formElapsedMs: Date.now() - openedAt.current, // measured on the visitor's own clock
           ...getAttribution(),
         }),
       })

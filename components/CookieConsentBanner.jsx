@@ -22,6 +22,14 @@ export default function CookieConsentBanner() {
     pushConsentUpdate(existing === 'granted')
   }, [])
 
+  // Lets the footer / cookie policy "Cookie settings" button re-open the
+  // banner so visitors can change or withdraw their choice at any time.
+  useEffect(() => {
+    const open = () => setVisible(true)
+    window.addEventListener('marc:open-cookie-settings', open)
+    return () => window.removeEventListener('marc:open-cookie-settings', open)
+  }, [])
+
   function handleChoice(granted) {
     storeConsent(granted ? 'granted' : 'denied')
     pushConsentUpdate(granted)
@@ -44,13 +52,21 @@ export default function CookieConsentBanner() {
 
         <div className="flex-1">
           <p className="text-sm text-[#1D342F] leading-relaxed">
-            We use cookies to understand site traffic and improve your experience. You can
-            accept all cookies or continue with only the essential ones.{' '}
+            We use cookies to understand site traffic, measure our ads and improve your
+            experience. You can accept all cookies or reject non-essential ones, and change
+            your choice any time from the footer.{' '}
             <Link
               href="/privacy-policy"
               className="text-[#4E9141] underline underline-offset-2 hover:text-[#3e7433]"
             >
-              Read our Privacy Policy
+              Privacy Policy
+            </Link>
+            {' · '}
+            <Link
+              href="/cookie-policy"
+              className="text-[#4E9141] underline underline-offset-2 hover:text-[#3e7433]"
+            >
+              Cookie Policy
             </Link>
             .
           </p>

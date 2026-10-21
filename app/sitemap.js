@@ -41,6 +41,9 @@ export default function sitemap() {
     { url: `${BASE_URL}/media`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/msme`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/msme/knowledge-hub`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/privacy-policy`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE_URL}/terms`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE_URL}/cookie-policy`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE_URL}/checkup`, lastModified: SITE_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.6 },
   ]
 

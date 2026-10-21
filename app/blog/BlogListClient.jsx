@@ -100,7 +100,7 @@ export default function BlogPage() {
 
  <div className="flex flex-wrap gap-8 pt-8 border-t border-gray-100">
  <div>
- <div className="text-3xl font-bold text-[#4E9141]">75+</div>
+ <div className="text-3xl font-bold text-[#4E9141]">{blogs.length}</div>
  <div className="text-sm text-[#47635D] mt-1">Articles</div>
  </div>
  <div>
